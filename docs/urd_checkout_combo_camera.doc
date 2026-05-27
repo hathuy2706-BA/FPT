@@ -1,0 +1,249 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - Checkout Combo Camera</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 12pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; }
+    .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA & HEADER -->
+<table class="header-table">
+    <tr>
+        <td rowspan="2" style="width: 120px; text-align: center; vertical-align: middle;"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" style="width:80px;height:auto;"/></td>
+        <td style="font-size: 16pt; text-align: center; text-transform: uppercase;">FPT.VN URD – User Requirements Document</td>
+    </tr>
+    <tr>
+        <td style="font-size: 11pt;">
+            <strong>Mã hiệu:</strong> URD-CHK-COMBOCAM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Phiên bản:</strong> 1.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Ngày:</strong> 27/05/2026
+        </td>
+    </tr>
+</table>
+
+<h2>REVISION HISTORY</h2>
+<p><em>[A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Version</th>
+            <th>Author</th>
+            <th>Change Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>27/05/2026</td>
+            <td>1.0</td>
+            <td>Senior BA/PO</td>
+            <td>[A] Khởi tạo tài liệu URD phân tích luồng Checkout sản phẩm Combo Camera.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>MỤC LỤC</h1>
+<ol>
+    <li><strong>I. GIỚI THIỆU</strong></li>
+    <li><strong>II. TỔNG QUAN LUỒNG NGHIỆP VỤ (WORKFLOW)</strong></li>
+    <li><strong>III. ĐẶC TẢ CHI TIẾT CHỨC NĂNG (USE CASES)</strong></li>
+    <li><strong>IV. CÁC YÊU CẦU PHI CHỨC NĂNG</strong></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>I. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả chi tiết yêu cầu người dùng (URD) đối với luồng Mua hàng và Thanh toán (Checkout) dành riêng cho sản phẩm <strong>Combo Camera</strong> trên nền tảng kênh bán hàng FPT.VN (tongdaiwifi.com). Tài liệu làm cơ sở cho đội ngũ thiết kế UI/UX, lập trình viên (Frontend/Backend), và kiểm thử viên (QA) thực hiện triển khai.</p>
+
+<h3>2. Thông tin chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px;">STT</th>
+            <th style="width: 200px;">HẠNG MỤC</th>
+            <th>MÔ TẢ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Giới thiệu tổng quan</td>
+            <td>Hệ thống checkout cho phép khách hàng mua gói Combo Camera (Bao gồm phần cứng thiết bị Camera IP/Ngoài trời và Gói dịch vụ lưu trữ Cloud).</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Mục tiêu kỳ vọng</td>
+            <td>Tối ưu hóa hành trình mua hàng, giúp khách hàng thao tác dễ dàng trên 1 trang (One-page checkout), tăng tỷ lệ chuyển đổi (CR) và gia tăng bán chéo (Cross-sell) dịch vụ lưu trữ đám mây.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>II. TỔNG QUAN LUỒNG NGHIỆP VỤ (WORKFLOW)</h1>
+<p>Luồng mua Combo Camera bao gồm 3 màn hình chính liền mạch:</p>
+<ol>
+    <li><strong>Màn hình Chi tiết sản phẩm (PDP):</strong> Khách hàng xem thông số Combo (Ví dụ: 3 Camera Ngoài Trời), chọn số lượng, chọn gói Cloud và Chu kỳ thanh toán. Khách hàng thấy ngay tổng tiền tạm tính và chọn Mua ngay.</li>
+    <li><strong>Màn hình Checkout:</strong> Khách hàng điền thông tin cá nhân, địa chỉ lắp đặt chi tiết, chọn phương thức thanh toán và áp dụng mã khuyến mãi (nếu có). Tại đây cũng hiển thị Tóm tắt đơn hàng rõ ràng từng phần cứng và gói dịch vụ.</li>
+    <li><strong>Màn hình Hoàn tất đơn hàng (Thank You Page):</strong> Hệ thống ghi nhận đơn hàng, cấp mã đơn, thông báo thời gian lắp đặt dự kiến và tổng hợp lại thông tin cho khách hàng.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>III. ĐẶC TẢ CHI TIẾT CHỨC NĂNG (USE CASES)</h1>
+
+<h2>1. Màn hình Chi tiết Sản phẩm (Product Detail Page - Combo Camera)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Màn hình hiển thị thông tin giới thiệu Combo Camera (Ví dụ: 3 Camera Ngoài Trời, Imou S21FP 2MP), cho phép khách hàng tùy chọn dịch vụ đi kèm.</td>
+    </tr>
+    <tr>
+        <td class="label">Business Rules</td>
+        <td>
+            - Khách hàng có thể tuỳ chọn Gói Cloud (3 ngày / 7 ngày / 14 ngày) và Chu kỳ (6 tháng / 12 tháng).<br>
+            - Giá tiền tổng cộng tự động cập nhật (re-calculate) ngay lập tức khi khách hàng thay đổi lựa chọn.<br>
+            - Mặc định chọn sẵn 1 tùy chọn Cloud và Chu kỳ phổ biến nhất để giảm bớt thao tác click.
+        </td>
+    </tr>
+</table>
+<h4>Mô tả các trường thông tin (Data Fields):</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Tên trường</th>
+            <th>Loại (Kiểu)</th>
+            <th>Bắt buộc</th>
+            <th>Hành vi / Ràng buộc</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Gói Cloud lưu trữ</td><td>Radio/Button Group</td><td>Y</td><td>Chọn thời gian lưu trữ (3 ngày, 7 ngày, 14 ngày). Mỗi tùy chọn tương ứng với mức giá khác nhau.</td></tr>
+        <tr><td>Chu kỳ thanh toán</td><td>Radio/Button Group</td><td>Y</td><td>Chọn thời hạn gói cước trả trước (6 tháng, 12 tháng). Tùy chọn dài hạn có thể hiển thị icon giảm giá (VD: -20%).</td></tr>
+        <tr><td>Số lượng</td><td>Number Input (+/-)</td><td>Y</td><td>Số lượng bộ Combo. Min = 1. Giá thiết bị và Cloud sẽ nhân theo tỷ lệ.</td></tr>
+        <tr><td>Tổng tiền (Tạm tính)</td><td>Display (Text)</td><td>-</td><td>Hiển thị giá gốc (gạch ngang) và giá ưu đãi. Cập nhật realtime theo lựa chọn.</td></tr>
+        <tr><td>Nút "Mua ngay"</td><td>Button</td><td>-</td><td>Click chuyển hướng sang trang Checkout. Đưa các tuỳ chọn vào giỏ hàng.</td></tr>
+    </tbody>
+</table>
+
+<h2>2. Màn hình Thanh toán (Checkout Page)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Màn hình thu thập thông tin để hoàn tất đơn hàng, cấu trúc chia làm 2 phần: Thông tin cá nhân/địa chỉ bên trái và Tóm tắt đơn hàng bên phải.</td>
+    </tr>
+    <tr>
+        <td class="label">Business Rules</td>
+        <td>
+            - Validate định dạng số điện thoại (10 số, đúng định dạng mạng viễn thông).<br>
+            - Tỉnh/Thành phố và Phường/Xã hoạt động theo cơ chế Cascading Dropdown.<br>
+            - Nút "Thanh toán" bị disable nếu các trường bắt buộc chưa điền đủ hoặc điền sai định dạng.
+        </td>
+    </tr>
+</table>
+<h4>Mô tả các trường thông tin (Data Fields):</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Khối thông tin</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc</th>
+            <th>Hành vi / Ràng buộc</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td rowspan="2">Thông tin cá nhân</td><td>Họ và tên</td><td>Y</td><td>Nhập text, không chứa số/ký tự đặc biệt, tối đa 50 ký tự.</td></tr>
+        <tr><td>Số điện thoại</td><td>Y</td><td>Nhập số, đúng 10 ký tự.</td></tr>
+        <tr><td rowspan="6">Địa chỉ lắp đặt</td><td>Tỉnh/Thành phố</td><td>Y</td><td>Dropdown list. Load từ API Master Data.</td></tr>
+        <tr><td>Phường/Xã</td><td>Y</td><td>Dropdown list. Phụ thuộc vào Tỉnh/Thành phố.</td></tr>
+        <tr><td>Tên đường</td><td>Y</td><td>Nhập text.</td></tr>
+        <tr><td>Loại nhà</td><td>Y</td><td>Radio hoặc Dropdown (Nhà riêng / Chung cư).</td></tr>
+        <tr><td>Số nhà</td><td>Y</td><td>Nhập text (Alphanumeric).</td></tr>
+        <tr><td>Ghi chú</td><td>N</td><td>Textarea (Ví dụ: Gọi cho tôi trước 30 phút nhé!).</td></tr>
+        <tr><td>Phương thức thanh toán</td><td>Tùy chọn thanh toán</td><td>Y</td><td>List chọn: Thanh toán bằng VietQR, Ví điện tử MoMo, Thanh toán tại nhà, Thẻ quốc tế. (Có thể đính kèm nhãn 'Ưu đãi').</td></tr>
+        <tr><td rowspan="5">Tóm tắt đơn hàng</td><td>Mã khuyến mãi</td><td>N</td><td>Input text + Nút "Áp dụng". Nút áp dụng gọi API kiểm tra tính hợp lệ.</td></tr>
+        <tr><td>Sản phẩm phần cứng</td><td>-</td><td>Tên Camera (VD: 3 Camera Ngoài trời), số lượng, đơn giá thiết bị.</td></tr>
+        <tr><td>Gói dịch vụ (Cloud)</td><td>-</td><td>Tên gói Cloud (VD: Gói Cloud 3D - 6 tháng), số lượng, đơn giá.</td></tr>
+        <tr><td>Tổng tiền</td><td>-</td><td>Tổng thanh toán cuối cùng = Tổng tiền cứng + dịch vụ - giảm giá. Cần hiển thị text (Đã bao gồm VAT).</td></tr>
+        <tr><td>Nút thanh toán</td><td>-</td><td>Nút "Thanh toán". Text cảnh báo: Bằng việc nhấn vào nút Thanh toán, bạn đã đồng ý với các điều khoản của FPT Telecom.</td></tr>
+    </tbody>
+</table>
+
+<h2>3. Màn hình Hoàn tất đơn hàng (Thank You Page)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Trang xác nhận đơn hàng thành công, hiển thị chi tiết mã đơn hàng và thông tin để đối soát.</td>
+    </tr>
+    <tr>
+        <td class="label">Business Rules</td>
+        <td>
+            - Gen ra Mã đơn hàng duy nhất (Ví dụ: HKGBTUIKOP12).<br>
+            - Không cho phép ấn Back (Quay lại) về trang trước để tránh Duplicate Payment / Order.
+        </td>
+    </tr>
+</table>
+<h4>Mô tả thông tin hiển thị:</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Khối thông tin</th>
+            <th>Chi tiết hiển thị</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Trạng thái</td><td>Icon Success + Text "Hoàn tất đơn hàng". Kèm thông báo: "Đơn hàng đã đăng ký thành công. Kỹ thuật viên FPT Telecom sẽ liên hệ triển khai..."</td></tr>
+        <tr><td>Mã đơn hàng</td><td>Hiển thị mã (VD: HKGBTUIKOP12) + Nút "Theo dõi ĐH".</td></tr>
+        <tr><td>Thông tin khách hàng</td><td>Họ và tên, Số điện thoại, Địa chỉ lắp đặt, Thời gian lắp đặt dự kiến (VD: Thứ 2, 02/01/2024).</td></tr>
+        <tr><td>Thông tin thanh toán</td><td>Chi tiết thiết bị và gói Cloud đã mua, Tổng thanh toán. Nút "Đóng" (Quay về trang chủ).</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>IV. CÁC YÊU CẦU PHI CHỨC NĂNG</h1>
+<ul>
+    <li><strong>Hiệu năng (Performance):</strong> 
+        <ul>
+            <li>Tốc độ load trang checkout phải dưới 1 giây. Các thao tác đổi tùy chọn giá không gây đơ trang.</li>
+            <li>API tính phí và áp dụng mã khuyến mãi phải phản hồi dưới 500ms.</li>
+        </ul>
+    </li>
+    <li><strong>Trải nghiệm người dùng (UX):</strong> 
+        <ul>
+            <li>Hỗ trợ tự động điền (Autofill) cho các trình duyệt Mobile.</li>
+            <li>Trường hợp có lỗi Validation, hiển thị inline text màu đỏ ngay dưới input (Inline Validation), focus vào input lỗi. Không dùng alert() popup.</li>
+            <li>Responsive 100% trên Mobile/Tablet. Ở Mobile, khối tóm tắt đơn hàng nên ghim linh hoạt hoặc chuyển xuống dưới luồng form thông tin.</li>
+        </ul>
+    </li>
+    <li><strong>Bảo mật:</strong> 
+        <ul>
+            <li>Toàn bộ thông tin cá nhân phải mã hoá và truyền tải qua HTTPS.</li>
+        </ul>
+    </li>
+</ul>
+
+</body>
+</html>

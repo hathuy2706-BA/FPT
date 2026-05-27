@@ -1,0 +1,890 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - CMS Content Management</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 12pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; }
+    .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA & HEADER -->
+<table class="header-table">
+    <tr>
+        <td rowspan="2" style="width: 120px; text-align: center; vertical-align: middle;"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" style="width:80px;height:auto;"/></td>
+        <td style="font-size: 16pt; text-align: center; text-transform: uppercase;">FPT.VN URD – User requirements document</td>
+    </tr>
+    <tr>
+        <td style="font-size: 11pt;">
+            <strong>Mã hiệu:</strong> URD-CMS-01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Phiên bản:</strong> 1.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Ngày:</strong> 25/05/2026
+        </td>
+    </tr>
+</table>
+
+<h2>REVISION HISTORY</h2>
+<p><em>[A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Version</th>
+            <th>Author</th>
+            <th>Reviewer</th>
+            <th>Approver</th>
+            <th>Change Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>25/05/2026</td>
+            <td>1.0</td>
+            <td>BA Team</td>
+            <td>QA Team</td>
+            <td>PM</td>
+            <td>[A] Khởi tạo tài liệu URD mới cho phân hệ Quản lý Nội dung (CMS) theo định dạng FPT.</td>
+        </tr>
+        <tr>
+            <td>26/05/2026</td>
+            <td>1.1</td>
+            <td>BA Team</td>
+            <td>QA Team</td>
+            <td>PM</td>
+            <td>[U] Cập nhật thiết kế Cấu hình Thông tin hay (Tag Mapping) gộp vào module Tin tức dạng Tab và đổi giao diện cấu hình sang cơ chế Slide-over Drawer.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>MỤC LỤC</h1>
+<ol>
+    <li><strong>I. GIỚI THIỆU</strong></li>
+    <li><strong>II. TỔNG QUAN</strong></li>
+    <li><strong>III. ĐẶC TẢ CHI TIẾT 11 CHỨC NĂNG</strong></li>
+    <li><strong>IV. CÁC YÊU CẦU PHI CHỨC NĂNG</strong></li>
+    <li><strong>V. PHỤ LỤC</strong></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>I. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này nhằm mô tả và làm rõ yêu cầu xây dựng phân hệ Quản lý Nội dung (CMS) phục vụ cho việc quản trị, cấu hình và tùy chỉnh nội dung trên chuỗi các website bán hàng của FPT.VN (bao gồm website chính fpt.vn và các kênh phụ như tongdaiwifi, hifpt).</p>
+<p>Hệ thống CMS được xây dựng với mục tiêu giúp các đơn vị nghiệp vụ (ĐVYC) có thể chủ động cập nhật nội dung, giao diện và cấu hình luồng checkout của từng kênh bán mà không cần phụ thuộc vào việc chỉnh sửa mã nguồn của lập trình viên.</p>
+
+<h3>2. Thông tin chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px;">STT</th>
+            <th style="width: 200px;">HẠNG MỤC</th>
+            <th>MÔ TẢ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Giới thiệu tổng quan</td>
+            <td>Xây dựng phân hệ Quản lý nội dung (CMS) cho phép cấu hình động giao diện (Pages, Sections, Blocks, Menu) và các chiến dịch (Banner, Popup, Tin tức, FAQ, Tag Mapping).</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Hiện trạng</td>
+            <td>Hệ thống cũ quản trị thủ công, các cấu hình trang Checkout bị gắn cứng (hard-code). Chưa hỗ trợ tùy chỉnh độc lập cho từng kênh bán phụ (như hifpt, tdw).</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Mục tiêu kỳ vọng</td>
+            <td>Số hóa 100% việc cấu hình giao diện và luồng checkout. Cho phép tùy chỉnh độc lập hoặc kế thừa cấu hình Global chỉ qua 1 click.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ, từ ngữ viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px;">STT</th>
+            <th style="width: 150px;">THUẬT NGỮ</th>
+            <th>MÔ TẢ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>PO</td><td>Product owner</td></tr>
+        <tr><td>2</td><td>ĐVYC</td><td>Đơn vị yêu cầu</td></tr>
+        <tr><td>3</td><td>PM</td><td>Project manager</td></tr>
+        <tr><td>4</td><td>BA</td><td>Business analyst</td></tr>
+        <tr><td>5</td><td>UC</td><td>Use case</td></tr>
+        <tr><td>6</td><td>SKU</td><td>Stock Keeping Unit (Mã sản phẩm từ Product Hub)</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>II. TỔNG QUAN</h1>
+<h3>1. Danh sách các chức năng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px;">STT</th>
+            <th>CHỨC NĂNG/MÀN HÌNH</th>
+            <th style="width: 80px;">VERSION</th>
+            <th style="width: 80px;">LOẠI</th>
+            <th>MÔ TẢ TÓM TẮT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Quản lý cấu trúc các Trang (Pages)</td><td>1.0</td><td>New</td><td>Định nghĩa cấu trúc trang và liên kết Sections hiển thị.</td></tr>
+        <tr><td>2</td><td>Quản lý Sections</td><td>1.0</td><td>New</td><td>Quản lý các vùng layout lớn và liên kết kéo thả các Blocks.</td></tr>
+        <tr><td>3</td><td>Quản lý Blocks</td><td>1.0</td><td>New</td><td>Tạo lập khối nội dung con (gán sản phẩm, FAQ, hình ảnh, CTA).</td></tr>
+        <tr><td>4</td><td>Landing Page (LDP)</td><td>1.0</td><td>New</td><td>Tạo trang đích khuyến mãi độc lập với giao diện HTML tùy biến.</td></tr>
+        <tr><td>5</td><td>Quản lý Menu</td><td>1.0</td><td>New</td><td>Thiết lập thanh điều hướng đa cấp, kéo thả cha-con.</td></tr>
+        <tr><td>6</td><td>Quản lý Banner</td><td>1.0</td><td>New</td><td>Đăng tải banner, đặt lịch hiển thị và gắn link chuyển hướng.</td></tr>
+        <tr><td>7</td><td>Quản lý Popup</td><td>1.0</td><td>New</td><td>Tạo Popup quảng cáo/thông báo nổi, cấu hình tần suất hiển thị.</td></tr>
+        <tr><td>8</td><td>Quản lý Tin tức</td><td>1.0</td><td>New</td><td>Soạn thảo tin tức bài viết, phân loại chuyên mục và xuất bản.</td></tr>
+        <tr><td>9</td><td>Quản lý FAQ</td><td>1.0</td><td>New</td><td>Quản lý ngân hàng câu hỏi & câu trả lời thường gặp theo chủ đề.</td></tr>
+        <tr><td>10</td><td>Cấu hình Thông tin hay (Tag Mapping)</td><td>1.1</td><td>Update</td><td>Ánh xạ từ khóa bài viết đến sản phẩm. Thiết kế mới tích hợp dạng Tab trong Quản lý Tin tức và sử dụng Slide-over Drawer để cấu hình.</td></tr>
+        <tr><td>11</td><td>Cài đặt hiển thị (Checkout Config)</td><td>1.0</td><td>Update</td><td>Cấu hình chi tiết luồng Checkout đa kênh (SKUs, Chu kỳ, Thiết bị).</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>III. ĐẶC TẢ CHI TIẾT 11 CHỨC NĂNG</h1>
+
+<!-- CHỨC NĂNG 1 -->
+<h2>1. Quản lý cấu trúc các Trang (Pages)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng tạo mới, chỉnh sửa thông tin cấu trúc, thiết lập URL định tuyến, SEO Metadata và gán các khối Sections hiển thị tương ứng của từng trang.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống (Super Admin, Admin CMS).</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Trang" và click tạo mới hoặc sửa một trang.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào trang quản trị và có quyền truy cập module Trang.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Cấu trúc trang được lưu thành công, URL hoạt động chính xác và giao diện hiển thị đúng các Sections đã được gán.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Trang".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Tạo trang mới" hoặc chọn "Sửa" một trang có sẵn trên danh sách.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form cấu trúc trang (Tên trang, URL path, SEO Title, SEO Description).</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tên trang (slug tự sinh), URL path, Tiêu đề SEO, Mô tả SEO.</li>
+    <li><strong>Bước 5:</strong> Người dùng thực hiện kéo thả gán các sections nội dung từ danh sách khả dụng sang danh sách áp dụng trên trang và sắp xếp thứ tự hiển thị.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống thực hiện validate dữ liệu, lưu thông tin trang vào database và cập nhật hiển thị ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>URL path của trang phải là duy nhất trên toàn hệ thống (Unique constraint), không được trùng lặp.</li>
+    <li>Không cho phép người dùng xóa các trang hệ thống cốt lõi (như Trang chủ /, Trang lỗi /404).</li>
+    <li>Tên trang và URL path là hai trường bắt buộc nhập, không được để trống khi lưu.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tên trang</td><td>Y</td><td>Text</td><td>Tên trang dùng nội bộ trong CMS.</td></tr>
+        <tr><td>2</td><td>URL path</td><td>Y</td><td>Text</td><td>Đường dẫn truy cập trang (VD: /tin-khuyen-mai).</td></tr>
+        <tr><td>3</td><td>SEO Title</td><td>N</td><td>Text</td><td>Tiêu đề hiển thị trên tab trình duyệt (tối đa 70 ký tự).</td></tr>
+        <tr><td>4</td><td>SEO Description</td><td>N</td><td>Textarea</td><td>Mô tả tóm tắt của trang trên công cụ tìm kiếm (tối đa 160 ký tự).</td></tr>
+        <tr><td>5</td><td>Trạng thái</td><td>Y</td><td>Select</td><td>Lựa chọn trạng thái hiển thị: Active hoặc Draft.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 2 -->
+<h2>2. Quản lý Sections</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng thiết kế và quản lý các vùng layout lớn của trang (như Header, Footer, Banner Hero, Body), hỗ trợ tái sử dụng một Section trên nhiều trang khác nhau.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Sections" và click tạo mới hoặc sửa Section.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào hệ thống quản trị.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Section được cập nhật thành công và tự động thay đổi hiển thị trên tất cả các Trang (Pages) có gán Section này.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Sections".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Tạo Section mới" hoặc chọn "Sửa" một section có sẵn.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form chi tiết cấu hình Section.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập thông tin: Tên section, chọn mẫu thiết kế layout hiển thị.</li>
+    <li><strong>Bước 5:</strong> Người dùng kéo thả và gán các khối Blocks nội dung con khả dụng vào bên trong Section.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống cập nhật cấu trúc section vào database và tự động đồng bộ sang tất cả các trang đang gán section này.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Một Section là component dùng chung. Khi thay đổi cấu trúc/khối Block bên trong Section, các trang đang sử dụng Section đó sẽ được cập nhật đồng thời.</li>
+    <li>Mỗi Section bắt buộc phải chọn 1 mẫu layout định sẵn của hệ thống.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tên Section</td><td>Y</td><td>Text</td><td>Tên phân biệt Section dùng nội bộ (VD: Section Gói Cước).</td></tr>
+        <tr><td>2</td><td>Mẫu Layout</td><td>Y</td><td>Select</td><td>Chọn kiểu layout hiển thị (Grid 3 cột, Slider, FAQ List).</td></tr>
+        <tr><td>3</td><td>Mô tả</td><td>N</td><td>Textarea</td><td>Ghi chú ngắn về mục đích của Section.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 3 -->
+<h2>3. Quản lý Blocks</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng định nghĩa nội dung các khối thông tin nhỏ (như gán sản phẩm từ Product Hub, chọn câu hỏi FAQ hiển thị, tải ảnh banner dọc hay thiết lập nút CTA).</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Blocks" và click tạo mới hoặc chỉnh sửa Block.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào hệ thống.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Khối Block được lưu thông tin thành công và sẵn sàng để kéo thả vào các Section tương ứng.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Blocks".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Tạo Block mới" hoặc chọn "Sửa" một block có sẵn.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form cấu hình tương ứng với loại Block.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tên block, chọn loại phân loại block (Package / FAQ / Banner Dọc / CTA).</li>
+    <li><strong>Bước 5:</strong> Người dùng gán nội dung thực tế (Tìm chọn Package từ Product Hub hoặc tìm chọn câu hỏi FAQ).</li>
+    <li><strong>Bước 6:</strong> Người dùng nhập text nút CTA và link chuyển hướng URL đích.</li>
+    <li><strong>Bước 7:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 8:</strong> Hệ thống lưu thông tin block vào kho dữ liệu dùng chung và cập nhật hiển thị.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Block loại Sản phẩm chỉ hiển thị các Package đang hoạt động (Active) được lấy từ Product Hub.</li>
+    <li>Block Banner dọc yêu cầu tải lên đủ 2 định dạng kích thước: Desktop (1920px) và Mobile (768px).</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tên Block</td><td>Y</td><td>Text</td><td>Tên nhận diện Block.</td></tr>
+        <tr><td>2</td><td>Loại Block</td><td>Y</td><td>Select</td><td>Phân loại block (Package, FAQ, Banner Dọc, CTA).</td></tr>
+        <tr><td>3</td><td>Gán Gói cước</td><td>N</td><td>Select/Search</td><td>Chọn gói cước từ Product Hub nếu block thuộc loại Package.</td></tr>
+        <tr><td>4</td><td>Đường dẫn nút</td><td>N</td><td>Text</td><td>Đường dẫn URL chuyển hướng của nút Xem Thêm/Mua Ngay.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 4 -->
+<h2>4. Landing Page (LDP)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng xây dựng, chỉnh sửa giao diện và cấu hình các trang chiến dịch marketing độc lập bằng cách upload file HTML tùy biến hoặc dựng trang qua kéo thả sections.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Landing Page (LDP)" và click tạo mới hoặc sửa LDP.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công và có sẵn hình ảnh hoặc sections dựng trang.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Trang Landing Page được lưu và xuất bản thành công theo đúng URL định tuyến riêng biệt.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Landing Page (LDP)".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Tạo LDP mới" hoặc chọn "Sửa" một chiến dịch LDP trên danh sách.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form thông tin LDP.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tên LDP, đường dẫn URL đích riêng, chọn phương thức dựng giao diện (HTML custom hoặc gán Sections).</li>
+    <li><strong>Bước 5:</strong> Người dùng thiết lập trạng thái hoạt động (Lưu nháp / Xuất bản).</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống ghi nhận, tạo đường dẫn route độc lập và lưu trữ thông tin chiến dịch.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Landing Page có cấu trúc định tuyến (route) riêng biệt, bỏ qua cấu trúc header/footer mặc định của trang chủ nếu được cấu hình dạng "Full-blank".</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tên LDP</td><td>Y</td><td>Text</td><td>Tên chiến dịch Landing Page.</td></tr>
+        <tr><td>2</td><td>URL path LDP</td><td>Y</td><td>Text</td><td>URL đích truy cập (VD: /khuyen-mai-he-2026).</td></tr>
+        <tr><td>3</td><td>Mã HTML tùy chọn</td><td>N</td><td>Textarea</td><td>Nhập code HTML/CSS tùy biến (nếu chọn loại Upload HTML).</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 5 -->
+<h2>5. Quản lý Menu</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng chỉnh sửa cấu trúc thanh điều hướng điều hướng đa cấp (Header/Footer), kéo thả sắp xếp vị trí hoặc phân cấp menu cha-con.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Menu" và chọn vùng menu cần sửa.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công và có quyền hạn Admin.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Thanh điều hướng ngoài trang chủ cập nhật cấu trúc menu mới ngay lập tức sau khi lưu.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Menu".</li>
+    <li><strong>Bước 2:</strong> Người dùng chọn phân vùng menu cần sửa (Header / Footer).</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị giao diện sơ đồ cây menu hiện hữu.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhấn nút "+ Thêm Menu Item" hoặc chọn sửa menu có sẵn để cập nhật Tên hiển thị và liên kết URL đích.</li>
+    <li><strong>Bước 5:</strong> Người dùng thực hiện kéo thả di chuyển vị trí các item lên/xuống, hoặc kéo lùi sang phải dưới một menu cha để phân cấp menu con.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống cập nhật sơ đồ định tuyến menu ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Hỗ trợ tối đa 3 cấp menu (Menu cha -> Menu con cấp 1 -> Menu con cấp 2) để đảm bảo hiển thị tối ưu trên giao diện.</li>
+    <li>Mỗi menu item bắt buộc phải điền đầy đủ nhãn hiển thị và URL liên kết.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Vị trí Menu</td><td>Y</td><td>Select</td><td>Header Menu hoặc Footer Menu.</td></tr>
+        <tr><td>2</td><td>Nhãn hiển thị</td><td>Y</td><td>Text</td><td>Tên hiển thị trên thanh menu (VD: "Trang chủ").</td></tr>
+        <tr><td>3</td><td>URL liên kết</td><td>Y</td><td>Text</td><td>Đường dẫn khi nhấp chuột (VD: /tin-tuc).</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 6 -->
+<h2>6. Quản lý Banner</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng đăng tải hình ảnh quảng cáo (Desktop/Mobile), thiết lập độ ưu tiên hiển thị, link liên kết đích và hẹn giờ tự động chạy slide trên các trang cụ thể.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Banner" và click tạo mới hoặc sửa banner.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công và có sẵn hình ảnh banner thiết kế.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Banner được hiển thị trên Slide ngoài trang chủ/trang chỉ định đúng khung giờ cài đặt.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Banner".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Tạo Banner mới" hoặc chọn "Sửa" một banner hiện tại.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form đăng tải thông tin Banner.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tên banner, thứ tự hiển thị, liên kết URL đích, chọn cách mở trang (_self / _blank).</li>
+    <li><strong>Bước 5:</strong> Người dùng tải lên ảnh Banner Desktop, tải lên ảnh Banner Mobile, chọn các Trang áp dụng hiển thị và cấu hình lịch thời gian chạy.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống ghi nhận dữ liệu, thực hiện kiểm tra thời gian hiển thị và cập nhật slider ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Phải tải lên tối thiểu hình ảnh bản Desktop. Nếu không tải ảnh Mobile, hệ thống tự động co giãn ảnh Desktop theo tỉ lệ màn hình.</li>
+    <li>Banner chỉ hiển thị ngoài website nếu trạng thái là Active và thời gian hiện tại nằm trong khoảng thời gian cấu hình hiển thị.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Ảnh Desktop</td><td>Y</td><td>File</td><td>Upload file ảnh định dạng PNG/JPG/WebP cho màn hình máy tính.</td></tr>
+        <tr><td>2</td><td>Ảnh Mobile</td><td>N</td><td>File</td><td>Upload file ảnh định dạng PNG/JPG/WebP cho màn hình điện thoại.</td></tr>
+        <tr><td>3</td><td>Thời gian bắt đầu</td><td>N</td><td>DateTime</td><td>Thời gian bắt đầu hiển thị banner trên site.</td></tr>
+        <tr><td>4</td><td>Thời gian kết thúc</td><td>N</td><td>DateTime</td><td>Thời gian kết thúc hiển thị banner trên site.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 7 -->
+<h2>7. Quản lý Popup</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng tạo lập và cấu hình các hộp thoại nổi (Modal popup) hiển thị ngoài website để thu thập thông tin khách hàng, quảng bá voucher hoặc gửi thông báo.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Popup" và chọn tạo mới/sửa Popup.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào trang quản trị.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Popup hiển thị đúng điều kiện cài đặt (trang áp dụng, tần suất, thời gian trễ) trên trình duyệt khách hàng.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Popup".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút tạo mới hoặc chọn "Sửa" một popup trong danh sách.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form chi tiết cấu hình Popup.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tên popup, chọn loại nội dung (Ảnh/HTML), tải lên ảnh hoặc nhập code HTML.</li>
+    <li><strong>Bước 5:</strong> Người dùng cấu hình điều kiện: Tần suất hiển thị, thời gian trễ hiển thị (số giây chờ) và đa chọn Trang áp dụng.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 7:</strong> Hệ thống ghi nhận cấu hình, lưu trữ thông tin và tự động hiển thị popup ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Mỗi trang tại một thời điểm chỉ cho phép kích hoạt tối đa 01 Popup để tránh gây phiền nhiễu cho trải nghiệm của khách hàng (UX).</li>
+    <li>Tần suất hiển thị mặc định: 1 lần mỗi phiên làm việc của người dùng nếu không có cấu hình khác.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Nội dung Popup</td><td>Y</td><td>File/Text</td><td>Nội dung hiển thị (tải lên file ảnh hoặc mã HTML tùy biến).</td></tr>
+        <tr><td>2</td><td>Tần suất hiển thị</td><td>Y</td><td>Select</td><td>Lựa chọn: Mọi lúc / 1 lần mỗi Session / 1 lần mỗi ngày.</td></tr>
+        <tr><td>3</td><td>Thời gian trễ</td><td>Y</td><td>Number</td><td>Số giây chờ trước khi popup hiển thị (VD: 3 giây).</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 8 -->
+<h2>8. Quản lý Tin tức (News & Articles)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép soạn thảo nội dung tin tức, bài viết khuyến mãi bằng Rich Text Editor, phân loại bài viết theo chuyên mục bài đăng và điều phối trạng thái xuất bản bài viết.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Biên tập viên (Tạo/Sửa nháp), Người duyệt (Xuất bản), Admin.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Tin tức" và click thêm mới hoặc sửa bài viết.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công và có quyền hạn biên tập/duyệt bài.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Bài viết được lưu nháp hoặc cập nhật hiển thị lên trang tin tức website tương ứng với trạng thái xuất bản.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Tin tức".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Thêm Bài Viết" hoặc chọn chỉnh sửa một bài viết hiện có.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form soạn thảo tin tức bài viết.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Tiêu đề (slug tự sinh), chọn chuyên mục bài đăng, upload ảnh Thumbnail đại diện và soạn thảo nội dung bài đăng qua Rich Text Editor.</li>
+    <li><strong>Bước 5:</strong> Người dùng cấu hình SEO Metadata cho bài viết.</li>
+    <li><strong>Bước 6:</strong> Người dùng nhấn nút "Lưu nháp" hoặc "Xuất bản" (tùy quyền hạn).</li>
+    <li><strong>Bước 7:</strong> Hệ thống ghi nhận trạng thái bài viết, cập nhật bảng danh sách bài viết quản trị và thay đổi thông tin ngoài trang tin tức website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Ảnh đại diện bài viết (Thumbnail) bắt buộc tải lên và có định dạng tỉ lệ 3:2 hoặc 16:9 để hiển thị đồng bộ trên danh sách tin.</li>
+    <li>Hệ thống tự động lưu lịch sử biên tập (Version History) và ghi nhận tên tài khoản thực hiện chỉnh sửa gần nhất.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tiêu đề bài viết</td><td>Y</td><td>Text</td><td>Tiêu đề bài viết (tự động gợi ý URL slug).</td></tr>
+        <tr><td>2</td><td>Chuyên mục</td><td>Y</td><td>Select</td><td>Lọc phân loại bài viết (Tin khuyến mãi, Tin công nghệ, Thông báo).</td></tr>
+        <tr><td>3</td><td>Nội dung bài viết</td><td>Y</td><td>Rich Text</td><td>Trình soạn thảo WYSIWYG nhập nội dung bài viết.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 9 -->
+<h2>9. Quản lý FAQ</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng thiết lập ngân hàng các câu hỏi thường gặp và câu trả lời tương ứng theo từng danh mục hỗ trợ kỹ thuật, cước phí.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Biên tập viên, Người duyệt, Admin.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý FAQ" và click thêm mới/sửa câu hỏi.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào hệ thống.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Câu hỏi FAQ được lưu thành công vào thư viện dùng chung và sẵn sàng để gán hiển thị lên các trang.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý FAQ".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấn nút "+ Thêm Câu hỏi" hoặc chọn "Sửa" câu hỏi hiện hữu.</li>
+    <li><strong>Bước 3:</strong> Hệ thống hiển thị Form chi tiết FAQ.</li>
+    <li><strong>Bước 4:</strong> Người dùng nhập các thông tin: Nội dung Câu hỏi, chọn danh mục chủ đề phân loại, soạn thảo nội dung câu trả lời.</li>
+    <li><strong>Bước 5:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 6:</strong> Hệ thống lưu thông tin câu hỏi vào thư viện dùng chung để có thể gán nhanh vào các blocks.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Hỗ trợ tìm kiếm nhanh câu hỏi theo từ khóa trong thư viện FAQ để phục vụ gán nhanh vào Block mà không cần tạo mới trùng lặp.</li>
+    <li>Cả câu hỏi và câu trả lời đều không được để trống khi thực hiện lưu.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Câu hỏi</td><td>Y</td><td>Text</td><td>Nội dung câu hỏi thường gặp (VD: Làm thế nào đổi mật khẩu Wifi?).</td></tr>
+        <tr><td>2</td><td>Chủ đề / Danh mục</td><td>Y</td><td>Select</td><td>Chủ đề liên quan (Hỗ trợ kỹ thuật, Đóng cước, Khuyến mãi).</td></tr>
+        <tr><td>3</td><td>Câu trả lời</td><td>Y</td><td>Textarea</td><td>Nội dung hướng dẫn giải quyết chi tiết cho khách hàng.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 10 -->
+<h2>10. Cấu hình Thông tin hay (Tag Mapping)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng tạo các Tag từ khóa và liên kết (map) các tin tức, bài viết hướng dẫn hoặc FAQ liên quan đến Tag đó cho các sản phẩm/gói cước tương ứng. Tính năng này được tích hợp trực tiếp dưới dạng một tab chức năng trong module Quản lý Tin tức.</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống, Biên tập viên.</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Quản lý Tin tức", chọn tab "Cấu hình Thông tin hay (Tags Mapping)" và nhấp chọn nút "Cấu hình" (⚙️) tại dòng Tag tương ứng.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công vào CMS và truy cập module Quản lý Tin tức.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Ngoài website, các bài viết tin tức/FAQ liên quan tự động hiển thị ở chân trang chi tiết của sản phẩm tương ứng.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Quản lý Tin tức" -> chọn tab "Cấu hình Thông tin hay (Tags Mapping)".</li>
+    <li><strong>Bước 2:</strong> Người dùng nhấp chọn nút "Cấu hình" (⚙️) tại dòng Tag cần chỉnh sửa hoặc nhấn "Thêm Tag Mới".</li>
+    <li><strong>Bước 3:</strong> Hệ thống mở **Panel cấu hình trượt từ bên phải qua (Slide-over Drawer)**, hiển thị Form cấu hình chi tiết (Tên Tag, bật/tắt Fallback, danh sách SKU liên kết, live preview bài viết liên quan).</li>
+    <li><strong>Bước 4:</strong> Người dùng cập nhật các thông tin liên kết: tìm kiếm và chọn các SKU sản phẩm liên quan đến Tag này.</li>
+    <li><strong>Bước 5:</strong> Người dùng nhấn nút "Lưu cấu hình".</li>
+    <li><strong>Bước 6:</strong> Hệ thống thực hiện validate dữ liệu, lưu cấu hình vào database, trượt đóng panel về bên phải, hiển thị thông báo thành công và cập nhật liên kết ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Một bài viết hoặc FAQ có thể được gán vào nhiều Tag khác nhau. Một dòng sản phẩm cũng có thể ánh xạ đến nhiều Tag.</li>
+    <li>Tag phải viết dưới dạng không dấu, ngăn cách bằng dấu gạch ngang (VD: uu-dai-wifi-giga).</li>
+    <li>**Quy tắc giao diện (UI/UX)**: Form cấu hình chi tiết của Tag sử dụng cơ chế Slide-over panel (trượt từ phải qua) chiếm 60% chiều rộng màn hình, cho phép thao tác nhanh mà không che khuất hoàn toàn ngữ cảnh danh sách bên dưới, mang lại trải nghiệm đồng bộ với màn hình cấu hình chi tiết SKU sản phẩm.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tên Tag</td><td>Y</td><td>Text</td><td>Mã tag nhận diện không dấu (VD: wifi-sky-family).</td></tr>
+        <tr><td>2</td><td>Gán bài viết</td><td>N</td><td>Multi-select</td><td>Chọn một hoặc nhiều bài viết tin tức liên quan.</td></tr>
+        <tr><td>3</td><td>Ánh xạ gói cước</td><td>Y</td><td>Multi-select</td><td>Chọn các gói cước (SKU) sẽ áp dụng hiển thị các bài viết này.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- CHỨC NĂNG 11 -->
+<h2>11. Cài đặt hiển thị (Cấu hình Checkout đa kênh)</h2>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Description</td>
+        <td>Chức năng cho phép người dùng cấu hình chi tiết trang Checkout (chọn sản phẩm áp dụng, chu kỳ thanh toán, thiết bị đi kèm, phí lắp đặt) độc lập cho từng kênh bán (Global vs tdw, hifpt, fptvn).</td>
+    </tr>
+    <tr>
+        <td class="label">Actor</td>
+        <td>Quản trị viên hệ thống (Super Admin, Admin CMS).</td>
+    </tr>
+    <tr>
+        <td class="label">Trigger</td>
+        <td>Người dùng chọn menu "Cài đặt Hiển thị" và click chỉnh sửa trên tab Cấu hình Checkout.</td>
+    </tr>
+    <tr>
+        <td class="label">Pre-condition</td>
+        <td>Người dùng đã đăng nhập thành công và có quyền hạn Admin.</td>
+    </tr>
+    <tr>
+        <td class="label">Post-condition</td>
+        <td>Cấu hình Checkout của kênh bán được cập nhật, hiển thị đúng luồng thanh toán ngoài website tương ứng.</td>
+    </tr>
+</table>
+
+<p><strong>a. Workflow:</strong> N/A</p>
+<p><strong>b. Diễn giải các bước thực hiện:</strong></p>
+<ul>
+    <li><strong>Bước 1:</strong> Người dùng truy cập CMS -> chọn menu "Cài đặt Hiển thị", tab "Cấu hình Checkout".</li>
+    <li><strong>Bước 2:</strong> Người dùng chọn Kênh bán cần cấu hình (Global hoặc các kênh con tdw, hifpt, fptvn).</li>
+    <li><strong>Bước 3:</strong> Người dùng chọn các mã SKU gói cước áp dụng từ danh sách cuộn dọc (danh sách này hỗ trợ tìm kiếm thời gian thực).</li>
+    <li><strong>Bước 4:</strong> Người dùng điền thông tin chi tiết: Thêm/Sửa/Bật/Tắt chu kỳ thanh toán, tích chọn thiết bị/dịch vụ đi kèm, điền ghi chú thanh toán và phí lắp đặt.</li>
+    <li><strong>Bước 5:</strong> Người dùng nhấn nút "Lưu".</li>
+    <li><strong>Bước 6:</strong> Hệ thống validate dữ liệu, ghi đè (nếu là tùy chỉnh riêng) hoặc đồng bộ dữ liệu thanh toán lên database và cập nhật giao diện ngoài website.</li>
+</ul>
+
+<p><strong>c. Business Rules:</strong></p>
+<ul>
+    <li>Bắt buộc chọn ít nhất 1 SKU gói cước áp dụng tại cấu hình Global để kích hoạt hiển thị cấu hình chi tiết bên dưới. Nếu không có SKU nào, hiển thị cảnh báo yêu cầu chọn SKU.</li>
+    <li>Danh sách SKU hiển thị dưới dạng list cuộn dọc giới hạn chiều cao tối đa 160px để tránh kéo giãn màn hình. Tích hợp thanh tìm kiếm thời gian thực theo mã và tên SKU.</li>
+    <li>Kênh con khi ở chế độ kế thừa (🌐 Dùng Global) sẽ bị vô hiệu hóa chỉnh sửa, các thông tin hiển thị mờ và ghi nhãn *(Kế thừa Global)*.</li>
+    <li>Khi có bất kỳ hành động chỉnh sửa nào trên kênh con, hệ thống tự động gọi hàm switchToCustom để nhân bản dữ liệu Global hiện tại sang và chuyển giao diện sang trạng thái Tùy chỉnh.</li>
+</ul>
+
+<p><strong>d. Wireframe, screen description:</strong></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên trường</th>
+            <th>Bắt buộc? (Y/N)</th>
+            <th>Format</th>
+            <th>Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Tìm kiếm SKU</td><td>N</td><td>Text</td><td>Ô tìm nhanh mã hoặc tên gói cước để chọn.</td></tr>
+        <tr><td>2</td><td>Chọn mã SKU</td><td>Y</td><td>Checkbox</td><td>Tick chọn các gói cước áp dụng cho trang Checkout của kênh.</td></tr>
+        <tr><td>3</td><td>Ghi chú thanh toán</td><td>N</td><td>Textarea</td><td>Dòng text ghi chú dưới phần thanh toán (tối đa 250 ký tự).</td></tr>
+        <tr><td>4</td><td>Chu kỳ thanh toán</td><td>Y</td><td>List</td><td>Thêm mới, sửa hoặc bật/tắt các chu kỳ (1T, 3T, 6T, 12T) áp dụng.</td></tr>
+        <tr><td>5</td><td>Thiết bị đi kèm</td><td>N</td><td>Checkbox List</td><td>Chọn các thiết bị (Modem WiFi, FPT Play Box) đi kèm mặc định.</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>IV. CÁC YÊU CẦU PHI CHỨC NĂNG</h1>
+<ul>
+    <li><strong>Hiệu năng:</strong> Tốc độ tải dữ liệu danh sách SKU và cập nhật cấu hình checkout phải dưới 1 giây. Việc render kéo thả không gây trễ hoặc đơ trình duyệt.</li>
+    <li><strong>Bảo mật:</strong> Kiểm tra token xác thực người dùng và quyền hạn (RBAC) trên Server trước khi cho phép lưu cấu hình hoặc cập nhật thông tin trang.</li>
+    <li><strong>Trải nghiệm (UI/UX):</strong> Giao diện CMS được xây dựng theo chuẩn Dark Mode mượt mà, phân tách các kênh con rõ ràng, trạng thái kế thừa/tùy chỉnh riêng trực quan bằng màu sắc tương phản.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>V. PHỤ LỤC</h1>
+<ul>
+    <li><strong>Link Wireframe tham chiếu:</strong> <a href="file:///c:/Users/Admin/OneDrive/Desktop/FPT/docs/wireframe_module_1_cms.html">wireframe_module_1_cms.html</a></li>
+    <li><strong>Tài liệu tham khảo hệ thống:</strong> Thiết kế hệ thống Product Hub (PDH) - FPT Telecom.</li>
+</ul>
+
+</body>
+</html>
