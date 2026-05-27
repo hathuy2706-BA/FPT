@@ -1,0 +1,693 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - Luồng Checkout Camera Only (Mua thiết bị riêng lẻ)</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 12pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; }
+    .page-break { page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA & HEADER -->
+<table class="header-table">
+    <tr>
+        <td rowspan="2" style="width: 120px; text-align: center; vertical-align: middle;"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" style="width:80px;height:auto;"/></td>
+        <td style="font-size: 16pt; text-align: center; text-transform: uppercase;">FPT.VN URD – User Requirements Document</td>
+    </tr>
+    <tr>
+        <td style="font-size: 11pt;">
+            <strong>Mã hiệu:</strong> FPT-URD-CHK-CAMONLY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Phiên bản:</strong> 1.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Ngày:</strong> 27/05/2026
+        </td>
+    </tr>
+</table>
+
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Version</th>
+            <th>Author</th>
+            <th>Action</th>
+            <th>Change Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>27/05/2026</td>
+            <td>1.0</td>
+            <td>Senior BA / PO</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu URD đặc tả luồng Mua hàng và Thanh toán (Checkout) cho đối tượng khách hàng mua lẻ thiết bị FPT Camera (Camera Only - không kèm đường truyền Internet FPT) trên môi trường trực tuyến.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>MỤC LỤC</h1>
+<ol>
+    <li><strong>A. GIỚI THIỆU</strong></li>
+    <li><strong>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</strong></li>
+    <li><strong>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN</strong></li>
+    <li><strong>D. YÊU CẦU PHI CHỨC NĂNG</strong></li>
+    <li><strong>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</strong></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>A. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả chi tiết yêu cầu người dùng (URD) đối với luồng Mua lẻ và Thanh toán (Checkout) sản phẩm <strong>Camera Only</strong> trên nền tảng bán lẻ trực tuyến của FPT Telecom (bao gồm website fpt.vn, ứng dụng di động, các trang vệ tinh khác).</p>
+<p>Tài liệu này tập trung giải quyết các bài toán nghiệp vụ đặc thù khi khách hàng chỉ đăng ký mua thiết bị FPT Camera (sử dụng mạng Internet của nhà mạng khác hoặc lắp thêm vào đường truyền FPT sẵn có) nhằm cung cấp trải nghiệm mua sắm mượt mà, tối ưu tỷ lệ chuyển đổi (CR) và đơn giản hóa quy trình tự cài đặt tại nhà.</p>
+<p>Tài liệu này đóng vai trò làm cơ sở duy nhất cho đội ngũ thiết kế UI/UX vẽ Wireframes/Figma, đội ngũ phát triển (Frontend/Backend) viết mã nguồn, và đội ngũ QC thực hiện kiểm thử nghiệm thu (UAT).</p>
+
+<h3>2. Thông tin chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 200px;">HẠNG MỤC</th>
+            <th>MÔ TẢ CHI TIẾT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Giới thiệu tổng quan</strong></td>
+            <td><strong>Camera Only (Cam-only)</strong> là kịch bản bán hàng phục vụ khách hàng có nhu cầu mua thiết bị FPT Camera và đăng ký gói lưu trữ Cloud độc lập, không mua kèm gói cước Internet FPT. Khách hàng có thể đang sử dụng đường truyền của bên thứ 3 (Non-FPT ISP như Viettel, VNPT) hoặc đã có sẵn đường truyền FPT tại nhà và chỉ muốn mua thêm Camera rời.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Hiện trạng hệ thống (AS-IS)</strong></td>
+            <td>Quy trình bán lẻ FPT Camera hiện tại đang gặp một số hạn chế đối với khách hàng dùng mạng ngoài:<br>
+            1. Hệ thống cũ mặc định khách hàng phải có mã hợp đồng Internet FPT mới có thể đăng ký lắp đặt Camera, gây khó khăn cho tập khách hàng ngoại mạng chiếm thị phần lớn.<br>
+            2. Chưa có cơ chế linh hoạt hỗ trợ khách hàng **Tự lắp đặt (Self-installation)**. Hệ thống luôn ép buộc tính phí và xếp lịch hẹn kỹ thuật viên FPT đến nhà, làm tăng giá thành đơn hàng và kéo dài thời gian nhận thiết bị đối với khách hàng có khả năng tự cài đặt.<br>
+            3. Chưa có logic phân tách biểu phí lắp đặt và triển khai giữa khách hàng Nội mạng (FPT) và khách hàng Ngoại mạng (Non-FPT) dùng modem nhà mạng khác.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Mục tiêu kỳ vọng (TO-BE)</strong></td>
+            <td>1. Xây dựng luồng mua hàng độc lập <strong>Camera Only</strong> tối ưu chỉ trong một trang thanh toán (One-page checkout).<br>
+            2. Cho phép khách hàng tùy chọn hình thức triển khai: **Kỹ thuật viên đến nhà lắp đặt** hoặc **Tự lắp đặt tại nhà** (Giao hàng qua bưu điện/chuyển phát nhanh miễn phí).<br>
+            3. Triển khai logic thông minh tự động kiểm tra số điện thoại để đề xuất liên kết hợp đồng Internet FPT có sẵn (nếu có) hoặc kích hoạt tài khoản Camera ngoại mạng tức thời.<br>
+            4. Tăng tỷ lệ mua thêm thiết bị (Add-on device) của khách hàng cũ bằng tùy chọn *"Tôi đã có gói Cloud"* trên PDP.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Phạm vi triển khai</strong></td>
+            <td><strong>- Phạm vi kỹ thuật:</strong> Website bán hàng FPT.VN, CMS quản trị cấu hình sản phẩm/kho hàng, hệ thống SPF xử lý đơn hàng, tích hợp đơn vị vận chuyển bưu điện (Giao Hàng Nhanh/Viettel Post) và cổng thanh toán trực tuyến.<br>
+            <strong>- Phạm vi nghiệp vụ:</strong> Từ cấu hình tùy chọn phần cứng và gói cước trên trang sản phẩm (PDP) -> Điền thông tin cá nhân & Địa chỉ nhận hàng/Lắp đặt -> Áp dụng ưu đãi -> Chọn hình thức triển khai (Kỹ thuật/Tự lắp) -> Chọn PTTT -> Xác nhận đơn hàng thành công và hướng dẫn tự kích hoạt trên Thank You Page.<br>
+            <strong>- Phạm vi tổ chức:</strong> Áp dụng cho mọi khách hàng (bao gồm cả khách hàng đang dùng Internet ngoài và Internet FPT) mua Camera trên toàn quốc.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ và viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 150px;">THUẬT NGỮ</th>
+            <th style="width: 250px;">NGHĨA TIẾNG ANH / TÊN ĐẦY ĐỦ</th>
+            <th>MÔ TẢ Ý NGHĨA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Camera Only (Cam Only)</td>
+            <td>Camera Only</td>
+            <td>Luồng đăng ký mua Camera riêng biệt, không kèm đường truyền Internet FPT.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Non-FPT ISP</td>
+            <td>Non-FPT Internet Service Provider</td>
+            <td>Nhà cung cấp dịch vụ Internet khác FPT (Viettel, VNPT, MobiFone...).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Self-installation</td>
+            <td>Self-installation</td>
+            <td>Khách hàng tự lắp đặt thiết bị tại nhà theo tài liệu/video hướng dẫn, không cần kỹ thuật viên.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Add-on Device</td>
+            <td>Add-on Device</td>
+            <td>Thiết bị mua thêm gán vào tài khoản/gói lưu trữ Cloud sẵn có của khách hàng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td>MAC Address</td>
+            <td>Media Access Control Address</td>
+            <td>Địa chỉ vật lý duy nhất của mỗi thiết bị Camera phục vụ việc kích hoạt và đối soát.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">6</td>
+            <td>SPF</td>
+            <td>Sales Processing Framework</td>
+            <td>Hệ thống lõi xử lý, phân rã và điều phối đơn hàng của FPT Telecom.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
+
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</h3>
+<p>Hành trình mua hàng lẻ Camera (Camera Only) gồm các bước nghiệp vụ khép kín sau:</p>
+<ol>
+    <li>Khách hàng lựa chọn Loại Camera (Indoor/Outdoor), Số lượng thiết bị và tùy chọn Gói Cloud (Mua kèm gói Cloud mới hoặc Chọn *"Tôi đã có gói Cloud / Chỉ mua thiết bị"*).</li>
+    <li>Tại trang Checkout Page: Khách hàng nhập Họ tên và Số điện thoại.
+        <ul>
+            <li>Hệ thống gọi API kiểm tra SĐT: Nếu khách hàng đang sử dụng Internet FPT, hiển thị thông báo đề xuất gộp hóa đơn vào hợp đồng Internet sẵn có để hưởng ưu đãi nội mạng.</li>
+            <li>Nếu khách hàng dùng mạng ngoài, hệ thống đánh dấu là đơn hàng Cam Only ngoại mạng.</li>
+        </ul>
+    </li>
+    <li>Khách hàng chọn **Hình thức triển khai**:
+        <ul>
+            <li><strong>Kỹ thuật viên FPT lắp đặt:</strong> Khách hàng điền địa chỉ chi tiết, hệ thống kiểm tra hạ tầng và xếp lịch hẹn thi công, tự động tính phí lắp đặt (tiêu chuẩn: 150k cho ngoại mạng, 110k cho nội mạng; miễn phí nếu trả trước 6/12 tháng Cloud).</li>
+            <li><strong>Tự lắp đặt (Self-installation):</strong> Khách hàng điền địa chỉ giao hàng, hệ thống tính phí lắp đặt = 0đ, tự động tính ngày nhận hàng dự kiến và hiển thị chính sách tặng thêm 1 tháng cước Cloud khuyến khích.</li>
+        </ul>
+    </li>
+    <li>Khách hàng áp dụng Voucher khuyến mãi (nếu có), lựa chọn Phương thức thanh toán (VietQR, MoMo, Thẻ tín dụng hoặc COD) và tiến hành Thanh toán.</li>
+    <li>Sau khi thanh toán thành công (hoặc xác nhận đơn COD), hệ thống SPF tự động phân tách đơn hàng:
+        <ul>
+            <li>Nếu chọn Kỹ thuật lắp: Sinh phiếu thi công chuyển cho chi nhánh kỹ thuật FPT gần nhất.</li>
+            <li>Nếu chọn Tự lắp: Tự động đẩy đơn sang đơn vị chuyển phát nhanh để đóng gói giao thiết bị, đồng thời kích hoạt gói cước Cloud chờ trên hệ thống quản lý cước.</li>
+        </ul>
+    </li>
+    <li>Khách hàng được điều hướng sang trang Thank You Page hiển thị mã đơn hàng, ngày hẹn lắp hoặc mã vận đơn bưu điện, kèm theo video/hình ảnh hướng dẫn chi tiết cách tự lắp đặt và tải app.</li>
+</ol>
+
+<h3>2. Danh sách các chức năng (Functional List)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 250px;">Module / Chức năng</th>
+            <th style="width: 80px; text-align: center;">Version</th>
+            <th style="width: 120px; text-align: center;">Loại (New/Update)</th>
+            <th>Mô tả tóm tắt hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Trang PDP - Cấu hình Camera rời</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Hỗ trợ khách hàng chọn mua thiết bị Camera lẻ, tùy chọn mua kèm gói Cloud hoặc chọn tích chọn đã có Cloud sẵn có (chỉ mua thiết bị add-on).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Động cơ nhận diện SĐT & Hợp đồng</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Tự động tra cứu SĐT nhập vào để phát hiện khách hàng đang dùng mạng ngoài (Non-FPT) hay mạng trong (FPT) để đề xuất liên kết hợp đồng và áp dụng biểu phí.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Tùy chọn Triển khai (Kỹ thuật vs Tự lắp)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Chức năng cho phép khách hàng chủ động chọn kỹ thuật viên FPT đến nhà thi công hoặc tự lắp đặt để nhận ưu đãi cước Cloud và được miễn phí vận chuyển.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Logic tính phí lắp đặt phân cấp</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Tự động tính toán biểu phí lắp đặt: 150k/thiết bị (Ngoại mạng), 110k/thiết bị (Nội mạng), và 0đ (khi tự lắp đặt hoặc mua gói Cloud cước 6/12 tháng).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td><strong>Trang cảm ơn tích hợp tự hướng dẫn (TYP)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Xác nhận đơn hàng, hiển thị mã đơn/mã vận đơn bưu điện và tích hợp trình phát video/hướng dẫn trực quan các bước tự quét mã QR kích hoạt Camera.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Ma trận quyền (Permission Matrix)</h3>
+<p>Hệ thống phân quyền cụ thể cho các tác nhân tham gia vào quy trình bán lẻ Camera Only:</p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 250px;">Quyền hạn / Chức năng</th>
+            <th style="width: 120px; text-align: center;">Super Admin</th>
+            <th style="width: 150px; text-align: center;">BA / PM</th>
+            <th style="width: 150px; text-align: center;">Khách hàng cuối</th>
+            <th>Mô tả chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Cấu hình biểu phí lắp đặt & ưu đãi tự lắp đặt</td>
+            <td style="text-align: center;">Full (F)</td>
+            <td style="text-align: center;">View (V)</td>
+            <td style="text-align: center;">N/A</td>
+            <td>Quản trị viên cấu hình định mức phí và ưu đãi tháng cước trên CMS Admin.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Đặt mua Camera rời (Camera Only)</td>
+            <td style="text-align: center;">N/A</td>
+            <td style="text-align: center;">N/A</td>
+            <td style="text-align: center;">Add (A)</td>
+            <td>Khách hàng cuối thao tác mua lẻ thiết bị và chọn hình thức lắp đặt trực tuyến.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Tra cứu trạng thái vận đơn bưu điện</td>
+            <td style="text-align: center;">View (V)</td>
+            <td style="text-align: center;">View (V)</td>
+            <td style="text-align: center;">View (V)</td>
+            <td>Khách hàng tra cứu qua mã vận đơn hiển thị trên trang Thank You Page hoặc SMS.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN</h1>
+
+<h3>I. Màn hình Chi tiết Sản phẩm (PDP - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Giao diện trang PDP cho phép khách hàng lựa chọn thiết bị Camera lẻ, điều chỉnh số lượng mua, chọn mua kèm gói Cloud dịch vụ tương thích hoặc đăng ký dưới dạng thiết bị mua thêm (Add-on) khi chọn tùy chọn *"Tôi đã có gói Cloud"*.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng truy cập trực tuyến.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Khách hàng xem thông tin Camera rời tại trang chi tiết sản phẩm (PDP).<br>
+            2. Khách hàng lựa chọn loại Camera: Camera Trong nhà (Indoor) hoặc Camera Ngoài trời (Outdoor).<br>
+            3. Tại khối **Cấu hình dịch vụ Cloud**, hệ thống cung cấp 2 tùy chọn chính:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- *Tùy chọn A (Mua kèm Cloud mới):* Khách hàng chọn gói Cloud (3 ngày/7 ngày/14 ngày) và chu kỳ thanh toán (6 tháng/12 tháng).<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- *Tùy chọn B (Tôi đã có gói Cloud/Chỉ mua thiết bị):* Hệ thống ẩn toàn bộ cấu hình gói Cloud cước và chuyển đơn giá cước Cloud về `0đ`. Khách hàng chỉ phải trả tiền mua thiết bị phần cứng.<br>
+            4. Khách hàng tăng giảm số lượng mua thiết bị.<br>
+            5. Hệ thống tính toán và hiển thị realtime **Đơn giá combo/thiết bị lẻ** và **Tổng tiền tạm tính**.<br>
+            6. Khách hàng click "Mua ngay" -> Điều hướng sang One-page checkout.
+        </td>
+    </tr>
+</table>
+
+<h4>Quy tắc Nghiệp vụ trên PDP (PDP Business Rules):</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 120px; text-align: center;">Mã Rule</th>
+            <th style="width: 200px;">Tên Quy tắc</th>
+            <th>Nội dung quy tắc chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">**PDP-CAM-01**</td>
+            <td><strong>Ràng buộc Gói Cloud add-on</strong></td>
+            <td>Nếu khách hàng chọn *Tùy chọn B (Chỉ mua thiết bị lẻ)*, hệ thống sẽ hiển thị một dòng lưu ý nhỏ ngay dưới checkbox: <em>"Lưu ý: Thiết bị FPT Camera bắt buộc phải có gói Cloud hoạt động để xem trực tuyến và lưu trữ dữ liệu. Hãy đảm bảo bạn đã có sẵn gói cước Cloud còn trống slot trong tài khoản của mình."</em> nhằm tránh việc khách hàng hiểu lầm thiết bị có thể chạy độc lập không cần Cloud.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">**PDP-CAM-02**</td>
+            <td><strong>Khuyến mãi chu kỳ cước Cloud</strong></td>
+            <td>Chương trình khuyến mãi áp dụng khi khách hàng chọn mua kèm Cloud mới chu kỳ dài:<br>- Chọn chu kỳ **6 tháng**: Không tặng thêm tháng cước.<br>- Chọn chu kỳ **12 tháng**: Tặng thêm **2 tháng cước Cloud miễn phí** (Tăng ưu đãi hơn so với bản Combo thường để kích thích tập khách hàng ngoại mạng).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">**PDP-CAM-03**</td>
+            <td><strong>Giới hạn số lượng add-on</strong></td>
+            <td>Mỗi giao dịch mua lẻ Camera Only chỉ được mua tối đa **5 thiết bị/đơn hàng** để đảm bảo khả năng đóng gói bưu điện và phòng ngừa hành vi mua đi bán lại không chính thức.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Mô tả các trường thông tin PDP:</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 180px;">Tên trường</th>
+            <th style="width: 150px;">Kiểu dữ liệu</th>
+            <th style="width: 80px; text-align: center;">Bắt buộc</th>
+            <th>Hành vi / Ràng buộc / Logic hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Tùy chọn dịch vụ Cloud</strong></td>
+            <td>Radio Button Group</td>
+            <td style="text-align: center;">Y</td>
+            <td>Gồm 2 Lựa chọn: "Đăng ký gói Cloud mới" hoặc "Tôi đã có sẵn gói Cloud (Chỉ mua thiết bị)".</td>
+        </tr>
+        <tr>
+            <td><strong>Gói lưu trữ Cloud</strong></td>
+            <td>Radio Button Group</td>
+            <td style="text-align: center;">Y</td>
+            <td>Hiển thị khi chọn đăng ký mới. Gồm: 3 ngày (Lưu trữ 72h), 7 ngày (Lưu trữ 168h), 14 ngày (Lưu trữ 336h).</td>
+        </tr>
+        <tr>
+            <td><strong>Chu kỳ cước Cloud</strong></td>
+            <td>Radio Button Group</td>
+            <td style="text-align: center;">Y</td>
+            <td>Hiển thị khi chọn đăng ký mới. Gồm: 6 tháng, 12 tháng (Có áp dụng ưu đãi [PDP-CAM-02]).</td>
+        </tr>
+        <tr>
+            <td><strong>Số lượng thiết bị</strong></td>
+            <td>Number Input (+/-)</td>
+            <td style="text-align: center;">Y</td>
+            <td>Số lượng Camera cần mua. Min = 1, Max = 5 [PDP-CAM-03]. Tự động nhân số lượng gói Cloud tương ứng nếu chọn mua kèm Cloud mới.</td>
+        </tr>
+        <tr>
+            <td><strong>Tổng tiền tạm tính</strong></td>
+            <td>Text Display</td>
+            <td style="text-align: center;">-</td>
+            <td>Read-only. Hiển thị tổng tiền tạm tính = (Giá thiết bị x Số lượng) + (Giá cước Cloud x Số lượng cước tương ứng). Cập nhật real-time.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>II. Màn hình Thanh toán (Checkout Page - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Trang One-page checkout thu thập thông tin khách hàng, cho phép chọn hình thức triển khai lắp đặt đặc thù, tự động phát hiện hợp đồng mạng để đề xuất ưu đãi, tính phí lắp đặt phân cấp và chọn PTTT tương thích.</td>
+    </tr>
+    <tr>
+        <td class="label">Các nghiệp vụ chính</td>
+        <td>
+            - Nhận diện loại hợp đồng (Mạng ngoài Non-FPT vs Mạng trong FPT) qua Số điện thoại [CASE 1].<br>
+            - Tùy chọn Hình thức Triển khai: Kỹ thuật viên FPT lắp đặt tại nhà hoặc Khách hàng Tự lắp đặt [CASE 2].<br>
+            - Động cơ tính phí lắp đặt linh hoạt theo nhóm khách hàng và hình thức triển khai [CASE 3].<br>
+            - Ràng buộc phương thức thanh toán COD theo khu vực và hình thức triển khai [CASE 4].
+        </td>
+    </tr>
+</table>
+
+<h4>Quy tắc Nghiệp vụ chi tiết theo từng Trường hợp (Cases & Rules):</h4>
+
+<h5>[CASE 1] Tự động kiểm tra SĐT & Đề xuất liên kết Hợp đồng Internet FPT</h5>
+<ul>
+    <li>Số điện thoại khách hàng nhập vào là khóa chính. Khi người dùng nhập đủ 10 chữ số di động Việt Nam, hệ thống lập tức gọi API ngầm (Asynchronous API) đối soát trên DB FPT Telecom:
+        <ul>
+            <li><strong>Trường hợp 1 (SĐT đang dùng Internet FPT):</strong> Hệ thống hiển thị một slide-up banner/inline box thông báo nổi bật màu xanh: 
+            <br><em>"Phát hiện SĐT của bạn đang sử dụng Internet FPT (Hợp đồng: <strong>FPT-XXXXXX</strong>). Bạn có muốn liên kết đơn hàng này vào hợp đồng Internet có sẵn để gộp hóa đơn thanh toán và được <strong>giảm ngay 50.000đ phí thiết bị</strong> không?"</em>
+            <br>Khách hàng có thể chọn nút **"Đồng ý liên kết"** hoặc **"Bỏ qua"**. Nếu chọn Đồng ý, hệ thống tự động gán mã hợp đồng và trừ trực tiếp 50.000đ vào tổng tiền thiết bị.</li>
+            <li><strong>Trường hợp 2 (SĐT mạng ngoài - Non-FPT ISP):</strong> Hệ thống ghi nhận đây là khách hàng Cam Only ngoại mạng. Hiển thị dòng thông báo nhẹ nhàng: <em>"FPT Camera hoạt động tối ưu trên tất cả các đường truyền mạng (Viettel, VNPT, FPT, 4G...). Kỹ thuật viên sẽ hỗ trợ bạn cấu hình tốt nhất."</em></li>
+        </ul>
+    </li>
+</ul>
+
+<h5>[CASE 2] Lựa chọn Hình thức Triển khai & Quy trình tự lắp đặt (Self-installation)</h5>
+<p>Đây là cải tiến lớn hỗ trợ khách hàng mua Camera rời tự lắp để tiết kiệm chi phí lắp đặt:</p>
+<ul>
+    <li>Khách hàng được chủ động lựa chọn 1 trong 2 hình thức:
+        <ol>
+            <li><strong>Kỹ thuật viên FPT đến nhà lắp đặt:</strong> 
+                <br>- Khách hàng điền địa chỉ thi công.
+                <br>- Hệ thống hiển thị lịch chọn ngày hẹn thi công (Ngày_Hẹn = Ngày_Đặt + tối thiểu 2 ngày làm việc).
+                <br>- Kỹ thuật viên FPT đến kéo dây mạng/kết nối Wifi, khoan lắp cố định thiết bị lên tường/trần nhà và hướng dẫn cài đặt.
+            </li>
+            <li><strong>Khách hàng tự lắp đặt tại nhà (Self-installation):</strong>
+                <br>- Khách hàng chỉ cần điền địa chỉ nhận thiết bị. Ẩn toàn bộ ô chọn lịch hẹn lắp đặt của kỹ thuật viên.
+                <br>- Hệ thống hiển thị dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng miễn phí qua bưu điện. Dự kiến nhận hàng sau 2-3 ngày làm việc."</em>
+                <br>- **Ưu đãi tặng thêm:** Để khuyến khích khách hàng tự phục vụ, khi chọn Tự lắp đặt, hệ thống tự động **Tặng thêm 01 tháng cước Cloud miễn phí** (giao diện hiển thị nhãn nổi bật: <em>"Tặng thêm 1 tháng Cloud tự lắp đặt"</em>).
+            </li>
+        </ol>
+    </li>
+</ul>
+
+<h5>[CASE 3] Động cơ tính Phí lắp đặt phân cấp (Layered Installation Fee Engine)</h5>
+<p>Hệ thống tự động tính toán chi phí lắp đặt dựa trên sự kết hợp giữa: Loại mạng Internet đang dùng, Hình thức triển khai và Chu kỳ cước Cloud đăng ký:</p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Loại mạng sử dụng</th>
+            <th>Hình thức triển khai</th>
+            <th>Chu kỳ Cloud đăng ký</th>
+            <th style="text-align: center;">Mức phí lắp đặt tính toán</th>
+            <th>Ghi chú nghiệp vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ngoại mạng (Non-FPT)</td>
+            <td>Kỹ thuật FPT lắp đặt</td>
+            <td>Mua lẻ thiết bị (Không kèm Cloud / Cước tháng)</td>
+            <td style="text-align: center;"><strong>150.000đ / thiết bị</strong></td>
+            <td>Bi biểu phí tiêu chuẩn cho khách mạng ngoài (phụ thuộc độ phức tạp cấu hình modem ngoài).</td>
+        </tr>
+        <tr>
+            <td>Nội mạng (FPT Telecom)</td>
+            <td>Kỹ thuật FPT lắp đặt</td>
+            <td>Mua lẻ thiết bị (Không kèm Cloud / Cước tháng)</td>
+            <td style="text-align: center;"><strong>110.000đ / thiết bị</strong></td>
+            <td>Mức phí ưu đãi cho khách hàng sẵn có đường truyền Internet FPT.</td>
+        </tr>
+        <tr>
+            <td>Bất kỳ (FPT / Non-FPT)</td>
+            <td>Kỹ thuật FPT lắp đặt</td>
+            <td>Trả trước 6 tháng hoặc 12 tháng Cloud</td>
+            <td style="text-align: center;"><strong>0đ (Miễn phí)</strong></td>
+            <td>Miễn phí lắp đặt hoàn toàn để khuyến khích đăng ký cước Cloud chu kỳ dài.</td>
+        </tr>
+        <tr>
+            <td>Bất kỳ (FPT / Non-FPT)</td>
+            <td>Khách tự lắp đặt</td>
+            <td>Bất kỳ chu kỳ nào</td>
+            <td style="text-align: center;"><strong>0đ (Miễn phí)</strong></td>
+            <td>Tự lắp đặt luôn có phí lắp đặt hiển thị là 0đ. Miễn phí vận chuyển toàn quốc.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h5>[CASE 4] Giới hạn áp dụng Phương thức Thanh toán tại nhà (COD)</h5>
+<ul>
+    <li>Phương thức thanh toán COD chỉ được kích hoạt hiển thị cho khách hàng chọn:
+        <ul>
+            <li>*Hình thức Kỹ thuật viên FPT lắp đặt:* Địa chỉ lắp đặt nằm trong danh sách các khu vực có văn phòng chi nhánh kỹ thuật của FPT Telecom quản lý trực tiếp.</li>
+            <li>*Hình thức Khách tự lắp đặt:* Địa chỉ nhận hàng không thuộc khu vực cấm vận chuyển hoặc ngoài tầm phủ sóng của đối tác bưu điện (đèo cao, hải đảo, vùng sâu đặc biệt).</li>
+        </ul>
+    </li>
+    <li>Nếu khách hàng nhập địa chỉ ngoại vùng hỗ trợ lắp đặt hoặc bưu điện từ chối COD: Hệ thống tự động disable nút COD (bôi mờ và hiển thị dấu tool-tip cảnh báo) và hướng dẫn khách hàng thanh toán trực tuyến qua VietQR, MoMo hoặc Thẻ ATM/Tín dụng để được bưu điện giao hàng tận nơi.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h4>Mô tả các trường giao diện One-page Checkout:</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 100px;">Khối</th>
+            <th style="width: 150px;">Tên trường</th>
+            <th style="width: 120px;">Kiểu dữ liệu</th>
+            <th style="width: 200px;">Ràng buộc / Validation</th>
+            <th style="width: 80px; text-align: center;">Mã BR</th>
+            <th>Hành vi hệ thống & Thao tác người dùng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2"><strong>Thông tin khách hàng</strong></td>
+            <td>Họ và tên</td>
+            <td>Textbox / String</td>
+            <td>- Bắt buộc nhập.<br>- Không chứa số/ký tự đặc biệt.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng nhập họ tên để đăng ký thông tin hóa đơn và phiếu lắp đặt.</td>
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
+            <td>Textbox / Number</td>
+            <td>- Bắt buộc nhập.<br>- Đúng 10 chữ số di động.</td>
+            <td style="text-align: center;">[CASE 1]</td>
+            <td>Khách hàng nhập SĐT. Hệ thống gọi API check tài khoản mạng và hiển thị đề xuất liên kết hợp đồng.</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><strong>Hình thức triển khai</strong></td>
+            <td>Chọn cách thức lắp đặt</td>
+            <td>Radio Group</td>
+            <td>- Bắt buộc chọn 1.<br>- Option: Kỹ thuật lắp / Tự lắp.</td>
+            <td style="text-align: center;">[CASE 2]</td>
+            <td>- Chọn Kỹ thuật lắp: Hiện lịch hẹn, tính phí lắp đặt tương ứng.<br>- Chọn Tự lắp: Ẩn lịch hẹn, phí lắp = 0đ, hiện thông báo giao hàng.</td>
+        </tr>
+        <tr>
+            <td>Lịch hẹn thi công</td>
+            <td>DatePicker</td>
+            <td>- Bắt buộc nếu chọn "Kỹ thuật lắp".<br>- Chọn ngày thi công.</td>
+            <td style="text-align: center;">[CASE 2]</td>
+            <td>Khách hàng chọn ngày hẹn phù hợp. Ngày khả dụng bắt đầu từ Ngày_Hiện_Tại + 2 (trừ Chủ nhật).</td>
+        </tr>
+        <tr>
+            <td rowspan="5"><strong>Địa chỉ giao hàng / Lắp đặt</strong></td>
+            <td>Tỉnh/Thành phố</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">[CASE 4]</td>
+            <td>Khách chọn Tỉnh. Hệ thống load Quận/Huyện tương ứng.</td>
+        </tr>
+        <tr>
+            <td>Quận/Huyện</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">[CASE 4]</td>
+            <td>Khách chọn Huyện. Hệ thống load Xã và check hạ tầng hỗ trợ COD/Lắp đặt trực tiếp.</td>
+        </tr>
+        <tr>
+            <td>Phường/Xã</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng chọn Phường/Xã cư trú.</td>
+        </tr>
+        <tr>
+            <td>Số nhà, tên đường</td>
+            <td>Textbox / String</td>
+            <td>- Bắt buộc nhập.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng nhập số nhà chi tiết để nhân viên bưu điện giao hàng hoặc kỹ thuật tìm nhà.</td>
+        </tr>
+        <tr>
+            <td>Ghi chú giao hàng</td>
+            <td>Textbox / String</td>
+            <td>- Không bắt buộc.</td>
+            <td style="text-align: center;">-</td>
+            <td>Nhập thông tin hướng dẫn thêm (Ví dụ: "Giao giờ hành chính", "Nhà cạnh cửa hàng tạp hóa").</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>III. Màn hình Hoàn tất đơn hàng (Thank You Page - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Mô tả</td>
+        <td>Giao diện xác nhận đặt mua lẻ Camera thành công. Khác với luồng combo thông thường, Thank You Page của Camera Only được thiết kế riêng biệt để phục vụ hai trải nghiệm hoàn toàn khác nhau dựa trên hình thức triển khai mà khách hàng đã lựa chọn ở trang Checkout.</td>
+    </tr>
+    <tr>
+        <td class="label">Quy tắc Giao diện & Nghiệp vụ</td>
+        <td>
+            - **Trường hợp A (Khách chọn Kỹ thuật lắp):** Màn hình hiển thị mã đơn hàng SPF, lịch hẹn kỹ thuật đã xác nhận, và hướng dẫn chuẩn bị modem Wifi sẵn sàng trước khi kỹ thuật viên đến.
+            <br>- **Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):** Màn hình hiển thị mã vận đơn bưu điện (kèm hyperlink trực tiếp sang trang đối soát hành trình của Giao Hàng Nhanh/Viettel Post) và tích hợp **Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)**.
+        </td>
+    </tr>
+</table>
+
+<h4>Đặc tả chi tiết Khu vực Hướng dẫn Tự lắp đặt (Self-Setup Assistant Hub):</h4>
+<p>Khu vực này được hiển thị dưới dạng một widget tương tác lớn ở trung tâm trang Thank You Page dành riêng cho luồng Tự lắp đặt, bao gồm các thành phần:</p>
+<ol>
+    <li><strong>Video hướng dẫn 3D Quick-Start (Thời lượng 60 giây):</strong>
+        <br>- Video hoạt hình ngắn, trực quan, hướng dẫn 4 bước: Cắm nguồn điện -> Chờ đèn Camera nhấp nháy xanh -> Tải App -> Quét QR code dán dưới đáy thiết bị để kích hoạt.
+    </li>
+    <li><strong>Các bước thực hiện dạng thẻ (Step-by-Step Card Flow):</strong>
+        <br>- *Bước 1: Tải ứng dụng FPT Camera:* Cung cấp 2 QR code để quét tải nhanh app trên kho ứng dụng Apple App Store và Google Play Store.
+        <br>- *Bước 2: Cắm nguồn:* Cắm củ sạc đi kèm vào nguồn điện sinh hoạt, kết nối cáp micro-USB vào cổng nguồn trên Camera.
+        <br>- *Bước 3: Quét QR kích hoạt:* Mở app -> Chọn "Thêm thiết bị" -> Đưa camera điện thoại quét mã QR in trên tem nhãn ở mặt đáy của Camera.
+        <br>- *Bước 4: Kết nối Wifi:* Chọn sóng Wifi nhà bạn đang dùng (chỉ hỗ trợ băng tần 2.4GHz), nhập mật khẩu Wifi và hoàn tất liên kết Cloud.
+    </li>
+    <li><strong>Trình hỗ trợ kiểm tra băng thông Wifi (Wifi Speedtest Widget):</strong>
+        <br>- Một nút bấm cho phép khách hàng click để đo thử tốc độ sóng Wifi tại vị trí dự kiến đặt Camera trực tiếp qua trình duyệt di động, đưa ra khuyến nghị vị trí đó sóng khỏe hay yếu có đủ băng thông tải video HD lên Cloud hay không (tốc độ upload khuyến nghị tối thiểu: 2Mbps/Camera).
+    </li>
+</ol>
+
+<h4>Mô tả thông tin hiển thị trên Thank You Page:</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 200px;">Khối hiển thị</th>
+            <th style="width: 350px;">Nội dung hiển thị chi tiết</th>
+            <th>Ý nghĩa và tương tác của người dùng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Mã đơn hàng & Vận đơn</strong></td>
+            <td>- Mã đơn SPF: `FPTCAMXXXXXXXX` (Có nút copy nhanh).
+            <br>- Mã vận đơn bưu điện: `GHN-XXXXXX` hoặc `VTP-XXXXXX` (Giao diện hiển thị link màu xanh, click sẽ tự động mở trang web giao vận để kiểm tra lịch trình giao hàng trực tiếp) - *Chỉ hiển thị với luồng Tự lắp đặt*.</td>
+            <td>Giúp khách hàng dễ dàng đối soát đơn hàng và theo dõi sát sao tiến độ giao thiết bị của bưu điện.</td>
+        </tr>
+        <tr>
+            <td><strong>Lịch trình dự kiến</strong></td>
+            <td>- *Nếu Kỹ thuật lắp:* Hiển thị Ngày hẹn thi công đã xếp lịch.
+            <br>- *Nếu Tự lắp:* Hiển thị Ngày giao hàng dự kiến (Ngày_Hiện_Tại + 3 ngày làm việc).</td>
+            <td>Xác nhận thời gian biểu rõ ràng để khách hàng chuẩn bị nhận thiết bị hoặc tiếp đón nhân viên kỹ thuật.</td>
+        </tr>
+        <tr>
+            <td><strong>Hướng dẫn cài đặt App</strong></td>
+            <td>- Nút tải app kèm hình minh họa giao diện App FPT Camera.
+            <br>- Thông tin tài khoản đăng nhập mặc định: <em>"Tài khoản xem Camera chính là Số điện thoại của bạn (`098***5678`). Mật khẩu kích hoạt sẽ được gửi tự động qua SMS ngay khi thiết bị được bàn giao thành công."</em></td>
+            <td>Hướng dẫn khách hàng chuẩn bị sẵn sàng môi trường phần mềm (App) để cấu hình ngay khi nhận thiết bị.</td>
+        </tr>
+        <tr>
+            <td><strong>Hỗ trợ kỹ thuật nhanh</strong></td>
+            <td>- Hotline hỗ trợ kỹ thuật Camera: `1900 6600` (Click to call trên Mobile).
+            <br>- Nút nhắn tin hỗ trợ trực tiếp qua Zalo OA FPT Camera.</td>
+            <td>Kênh xử lý khẩn cấp khi khách hàng tự lắp gặp khó khăn trong quá trình kết nối Wifi hoặc quét mã QR bị lỗi.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
+
+<h3>1. Hiệu năng & Tối ưu hóa (Performance)</h3>
+<ul>
+    <li><strong>Tải tài nguyên Video Hướng dẫn:</strong> Để tránh ảnh hưởng đến thời gian tải trang chính của Thank You Page, video hướng dẫn 3D tự lắp đặt phải được cấu hình dạng **Lazy Load** (chỉ tải dữ liệu video khi người dùng click vào nút Play hoặc cuộn màn hình đến khu vực Self-Setup Hub) và được phân phối qua mạng truyền tải nội dung CDN của FPT.</li>
+    <li><strong>Tốc độ gọi API kiểm tra SĐT:</strong> API ngầm tra cứu hợp đồng Internet của SĐT nhập vào tại trang Checkout phải phản hồi dưới **250ms** để đảm bảo hiển thị banner đề xuất liên kết hợp đồng mượt mà, không xảy ra hiện tượng giật lag giao diện nhập liệu.</li>
+</ul>
+
+<h3>2. Bảo mật & Tính toàn vẹn dữ liệu (Security)</h3>
+<ul>
+    <li><strong>Ràng buộc MAC Address thiết bị:</strong> Khi hệ thống bưu điện giao hàng thành công, số Serial/địa chỉ MAC của thiết bị Camera xuất kho phải được ghi nhận tự động từ hệ thống quản lý kho (WMS) và gán tự động vào đơn hàng SPF của khách hàng. Khi khách hàng quét mã QR kích hoạt trên app, app sẽ đối soát MAC Address này với DB để tự động kích hoạt đúng gói cước Cloud đã mua kèm, tránh việc kích hoạt sai thiết bị hoặc gian lận cước.</li>
+    <li><strong>Bảo mật thông tin hợp đồng liên kết:</strong> Khi SĐT được phát hiện có sử dụng Internet FPT, hệ thống chỉ hiển thị mã hợp đồng dưới dạng che dấu (Ví dụ: `SGDS*****12`) và **tuyệt đối không** hiển thị địa chỉ chi tiết hay tên chủ hợp đồng Internet đó lên màn hình Checkout công cộng để phòng ngừa rủi ro rò rỉ thông tin cá nhân.</li>
+</ul>
+
+<h3>3. Trải nghiệm người dùng (UX)</h3>
+<ul>
+    <li><strong>Xử lý ngoại lệ kết nối Wifi băng tần:</strong> Trên tài liệu hướng dẫn và giao diện App FPT Camera, hệ thống phải ghi chú rất nổi bật lưu ý: FPT Camera thế hệ hiện tại chỉ hoạt động trên băng tần Wifi **2.4GHz** (không hỗ trợ băng tần 5GHz). Hệ thống Checkout phải hiển thị cảnh báo này ở cả trang PDP và trang Thank You Page để khách hàng ngoại mạng lưu ý cấu hình lại modem Wifi nhà mình.</li>
+    <li><strong>Hỗ trợ giao diện tối (Dark Mode):</strong> Trang Checkout và trang Thank You Page phải tự động chuyển đổi giao diện sáng/tối (Light/Dark Mode) đồng bộ theo thiết lập hệ thống của thiết bị khách hàng đang truy cập để mang lại trải nghiệm thị giác cao cấp.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
+<ul>
+    <li><strong>Tài liệu hướng dẫn tự cấu hình modem ngoại mạng:</strong> <a href="https://fpt.vn/support/camera-selfinstall-modem" target="_blank">Hướng dẫn cấu hình modem nhà mạng khác kết nối Camera FPT</a> <em>(Link giả định)</em></li>
+    <li><strong>Link video 3D hướng dẫn tự lắp đặt trên kênh Youtube FPT Camera:</strong> <a href="https://youtube.com/fptcamera/self-install-3d" target="_blank">Video 3D hướng dẫn tự lắp đặt FPT Camera</a> <em>(Link giả định)</em></li>
+    <li><strong>API Đặc tả liên kết hợp đồng SPF và cước Cloud:</strong> <a href="https://api.fpt.vn/docs/spf/camera-contract-binding" target="_blank">Đặc tả API liên kết cước và thiết bị Camera lẻ</a> <em>(Link giả định)</em></li>
+</ul>
+
+</body>
+</html>
