@@ -1,0 +1,694 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - Luồng Giỏ Hàng & Checkout Camera FPT (Standardized)</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 12pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 180px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    .page-break { page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+    .note-box strong { color: #66512c; }
+    .highlight-text { color: #c00000; font-weight: bold; }
+    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER BẢNG TIÊU CHUẨN ĐỐI SOÁT -->
+<table class="header-table">
+    <tr>
+        <td rowspan="3" style="width: 150px; text-align: center; vertical-align: middle;">
+            <span style="font-size: 16pt; color: #1f4e78;">FPT TELECOM</span>
+        </td>
+        <td>DỰ ÁN: NÂNG CẤP HỆ THỐNG CHECKOUT & GIỎ HÀNG FPT.VN</td>
+        <td>MÃ HIỆU: FPT-URD-CART-CAMERA-01</td>
+    </tr>
+    <tr>
+        <td>PHÂN HỆ: GIỎ HÀNG CAMERA (CAMERA SHOPPING CART)</td>
+        <td>PHIÊN BẢN: V1.0</td>
+    </tr>
+    <tr>
+        <td>TÀI LIỆU YÊU CẦU NGƯỜI DÙNG (USER REQUIREMENTS DOCUMENT - URD)</td>
+        <td>NGÀY LẬP: 04/06/2026</td>
+    </tr>
+</table>
+
+<br>
+<div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+    <span style="font-family: 'Arial', sans-serif; font-size: 22pt; font-weight: bold; color: #1f4e78;">TÀI LIỆU YÊU CẦU NGƯỜI DÙNG (URD)</span><br>
+    <span style="font-family: 'Arial', sans-serif; font-size: 15pt; font-weight: bold; color: #2e75b6; text-transform: uppercase;">Chi Tiết Luồng Giỏ Hàng & Thanh Toán Cho Phân Hệ FPT Camera</span>
+</div>
+
+<div class="page-break"></div>
+
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 100px;">Ngày tiếp nhận</th>
+            <th style="width: 60px; text-align: center;">Version</th>
+            <th style="width: 150px;">Tác giả</th>
+            <th style="width: 70px; text-align: center;">Hành động</th>
+            <th style="width: 250px;">Mô tả chung thay đổi</th>
+            <th>Nội dung thay đổi chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>04/06/2026</td>
+            <td style="text-align: center;">V1.0</td>
+            <td>ThuyTT (BA Senior)</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu URD Camera Cart hoàn chỉnh</td>
+            <td>Đặc tả chi tiết luồng nghiệp vụ giỏ hàng Camera. Phân tích chi tiết 4 trường hợp nghiệp vụ đặc thù (Mua lẻ, Tách dòng theo đặc tính Cloud, Mua Combo Camera Only, Kết hợp mua lẻ và combo). Đặc tả chi tiết giao diện màn hình Giỏ hàng và Checkout dựa trên thiết kế Figma và file camcart.pdf.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>MỤC LỤC</h2>
+<ol>
+    <li><strong>A. GIỚI THIỆU</strong>
+        <ul>
+            <li>1. Mục đích tài liệu</li>
+            <li>2. Thông tin chung (AS-IS vs TO-BE)</li>
+            <li>3. Thuật ngữ và viết tắt</li>
+        </ul>
+    </li>
+    <li><strong>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</strong>
+        <ul>
+            <li>1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</li>
+            <li>2. Danh sách các chức năng (Functional List)</li>
+            <li>3. Ma trận quyền (Permission Matrix)</li>
+        </ul>
+    </li>
+    <li><strong>C. ĐẶC TẢ CHI TIẾT LUỒNG GIỎ HÀNG CAMERA (DETAILED SCENARIOS)</strong>
+        <ul>
+            <li>1. Case 1: Khách hàng mua 1 Camera lẻ</li>
+            <li>2. Case 2: Khách hàng mua 1 loại Camera nhưng khác đặc tính Cloud (Tách dòng sản phẩm)</li>
+            <li>3. Case 3: Khách hàng mua 1 Combo Camera Only (ví dụ: Combo 3 Camera Play 4)</li>
+            <li>4. Case 4: Khách hàng kết hợp mua cả Camera lẻ & Combo Camera Only</li>
+        </ul>
+    </li>
+    <li><strong>D. QUY TẮC NGHIỆP VỤ GIỎ HÀNG CAMERA (CART BUSINESS RULES)</strong></li>
+    <li><strong>E. ĐẶC TẢ GIAO DIỆN & RÀNG BUỘC TRƯỜNG (SCREEN SPECIFICATION)</strong>
+        <ul>
+            <li>1. Màn hình Chi tiết Giỏ hàng (Cart Page)</li>
+            <li>2. Màn hình Điền thông tin & Checkout (Checkout Page)</li>
+            <li>3. Màn hình Hoàn tất đơn hàng (Thank You Page)</li>
+        </ul>
+    </li>
+    <li><strong>F. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)</strong></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>A. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả chi tiết yêu cầu người dùng (URD) đối với module <strong>Giỏ hàng (Shopping Cart) và quy trình Checkout</strong> áp dụng riêng cho các sản phẩm, thiết bị và dịch vụ lưu trữ đám mây <strong>FPT Camera</strong> trên nền tảng bán hàng trực tuyến fpt.vn.</p>
+<p>Tài liệu đóng vai trò là cơ sở để:</p>
+<ul>
+    <li>Thống nhất luồng xử lý nghiệp vụ giỏ hàng giữa các bên liên quan (Product Owner, Business Analyst, UX Designer, Developers và QA/QC).</li>
+    <li>Đặc tả chi tiết cách xử lý giao diện đối với các kịch bản mua sắm đa dạng: mua camera lẻ, mua nhiều thiết bị cùng loại nhưng khác chu kỳ cước Cloud, mua combo gộp thiết bị và mua kết hợp nhiều loại hình.</li>
+    <li>Xây dựng kịch bản kiểm thử (Test Cases) phục vụ quá trình nghiệm thu chất lượng phần mềm (UAT).</li>
+</ul>
+
+<h3>2. Thông tin chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 200px;">HẠNG MỤC</th>
+            <th>MÔ TẢ CHI TIẾT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Giới thiệu tổng quan</strong></td>
+            <td>FPT Camera là giải pháp camera giám sát thông minh sử dụng công nghệ lưu trữ điện toán đám mây (Cloud). Khác với các sản phẩm viễn thông thông thường (như đường truyền Internet), giỏ hàng FPT Camera bao gồm hai thành phần bắt buộc đi kèm nhau: phần cứng thiết bị camera (mua đứt) và gói dịch vụ lưu trữ Cloud (trả trước theo chu kỳ 6 tháng hoặc 12 tháng). Phân hệ giỏ hàng mới cần xử lý tối ưu trải nghiệm hiển thị và mua sắm đồng thời nhiều dòng sản phẩm này.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Hiện trạng hệ thống (AS-IS)</strong></td>
+            <td>1. Hệ thống giỏ hàng cũ chỉ hỗ trợ mua đơn lẻ một loại thiết bị kèm một loại Cloud cố định. Khách hàng không thể thêm nhiều camera cùng loại với các gói Cloud khác nhau vào cùng một đơn hàng.<br>
+            2. Giao diện giỏ hàng gộp chung các dòng sản phẩm có cùng mã thiết bị phần cứng, dẫn đến việc không thể hiển thị rõ các đặc tính Cloud khác nhau và gây khó khăn khi khách hàng muốn chỉnh sửa chu kỳ cước hoặc xóa một cấu hình cụ thể.<br>
+            3. Luồng Combo Camera Only chưa được thiết lập cơ chế gộp nhóm hợp lý trên giao diện giỏ hàng, khiến khách hàng có thể thao tác xóa lẻ thiết bị trong combo, gây sai lệch giá trị đơn hàng khuyến mãi.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Mục tiêu kỳ vọng (TO-BE)</strong></td>
+            <td>1. Hỗ trợ cơ chế <strong>Tách dòng sản phẩm linh hoạt (Cart Line Item Splitting)</strong>: Tự động tách thành các dòng sản phẩm riêng biệt trong giỏ hàng nếu chúng có sự khác biệt về loại Cloud hoặc Chu kỳ cước trả trước.<br>
+            2. Thiết lập cơ chế **Quản lý nhóm Combo Camera (Combo Grouping)**: Khóa cứng các sản phẩm thành phần trong combo, không cho phép xóa lẻ, chỉ cho phép tăng giảm số lượng combo hoặc xóa toàn bộ combo.<br>
+            3. Hỗ trợ giao diện tương tác tối ưu: Bật/tắt thanh toán từng dòng sản phẩm bằng hộp kiểm (Checkbox), tự động cập nhật hóa đơn tạm tính theo thời gian thực (Real-time Calculation).</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ và viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 150px;">THUẬT NGỮ</th>
+            <th style="width: 250px;">NGHĨA TIẾNG ANH / TÊN ĐẦY ĐỦ</th>
+            <th>MÔ TẢ Ý NGHĨA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>SKU Hardware</td>
+            <td>Stock Keeping Unit - Hardware</td>
+            <td>Mã đơn vị phân loại thiết bị phần cứng Camera (ví dụ: Camera SE, Camera IQ3, Camera Play, Camera IQ4S).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Cloud Storage Type</td>
+            <td>Cloud Storage Service Type (3D/7D)</td>
+            <td>Gói dịch vụ lưu trữ dữ liệu trên Cloud FPT theo số ngày lưu trữ: 3 ngày (3D), 7 ngày (7D).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Billing Cycle</td>
+            <td>Billing Cycle (6T/12T)</td>
+            <td>Chu kỳ đóng cước trước của dịch vụ Cloud: 6 tháng (6T) hoặc 12 tháng (12T).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Combo Camera Only</td>
+            <td>Camera Only Bundle</td>
+            <td>Gói combo gồm nhiều thiết bị camera và gói Cloud tương ứng được bán với giá ưu đãi gộp, hoạt động độc lập không kèm đường truyền Internet FPT.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td>Line Item ID</td>
+            <td>Cart Line Item Identifier</td>
+            <td>Khóa định danh duy nhất của mỗi dòng sản phẩm trong giỏ hàng.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
+
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</h3>
+<p>Dưới đây là sơ đồ Mermaid mô tả hành trình từ lúc khách hàng thêm các sản phẩm camera vào giỏ hàng đến khi hoàn tất đơn hàng:</p>
+
+<div class="code-block">
+[Khách hàng chọn Camera/Combo trên PDP]
+               |
+               v
+  [Hệ thống kiểm tra & Định dạng Line Item]
+               |
+               +---> Nếu khác đặc tính Cloud/Chu kỳ cước -> [Tự động TÁCH DÒNG trong giỏ hàng]
+               +---> Nếu là Combo Camera Only -> [GỘP NHÓM, Khóa các thiết bị thành phần]
+               |
+               v
+    [Màn hình Chi tiết Giỏ hàng (Cart Page)]
+               |
+               +---> Khách hàng thực hiện bật/tắt (Tick/Untick) chọn sản phẩm để thanh toán
+               +---> Điều chỉnh số lượng / Xóa dòng sản phẩm -> Tính lại Tạm tính Real-time
+               |
+               v
+      [Màn hình Checkout (Checkout Page)]
+               |
+               +---> Nhập SĐT -> API tra cứu hợp đồng Internet -> Đề xuất liên kết & giảm phí
+               +---> Chọn Triển khai: Kỹ thuật lắp đặt (chọn lịch hẹn) vs Tự lắp (phí 0đ, tặng 1 tháng cước)
+               +---> Áp dụng mã Voucher (Real-time Validation)
+               |
+               v
+       [Thanh toán & SPF xử lý đơn]
+               |
+               v
+    [Màn hình Hoàn tất đơn hàng (Thank You Page)]
+               |
+               +---> Khách tự lắp: Hiển thị mã vận đơn bưu điện + Widget hướng dẫn Setup chi tiết
+               +---> Kỹ thuật lắp: Xác nhận lịch hẹn + Hướng dẫn chuẩn bị hạ tầng mạng
+</div>
+
+<h3>2. Danh sách các chức năng (Functional List)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 250px;">Module / Chức năng</th>
+            <th style="width: 80px; text-align: center;">Version</th>
+            <th style="width: 120px; text-align: center;">Loại</th>
+            <th>Mô tả tóm tắt hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Định dạng dòng sản phẩm (Line Item Identifier)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Tự động phân loại và tách dòng sản phẩm camera trong giỏ hàng dựa trên bộ khóa ba thành phần: Thiết bị + Loại Cloud + Chu kỳ cước.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Khóa thành phần Combo (Combo Locking)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Khóa cứng các thiết bị và dịch vụ Cloud trong Combo Camera Only. Khách hàng không thể thay đổi thông số riêng lẻ hoặc xóa riêng lẻ các sản phẩm con.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Tương tác hộp kiểm dòng (Checkbox Interaction)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">Update</td>
+            <td>Hỗ trợ checkbox đầu dòng sản phẩm để khách hàng chọn thanh toán một phần hoặc toàn bộ giỏ hàng. Đồng bộ checkbox tổng ở tiêu đề giỏ hàng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Tra cứu SĐT hợp đồng (Contract Integration)</strong></td>
+            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">New</td>
+            <td>Tự động truy vấn thông tin hợp đồng Internet cũ dựa trên SĐT khách hàng nhập để đề xuất liên kết và giảm phí thiết bị/thi công.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Ma trận quyền (Permission Matrix)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th>Tên Chức năng / Module</th>
+            <th style="text-align: center;">Khách vãng lai</th>
+            <th style="text-align: center;">Khách đăng nhập</th>
+            <th style="text-align: center;">Telesales / CSKH</th>
+            <th style="text-align: center;">Admin (CMS)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Thêm camera lẻ / combo vào giỏ hàng</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Điều chỉnh số lượng, tick/bỏ tick thanh toán dòng</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Bypass quy tắc đồng bộ cước Cloud (Đơn đặc thù)</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Cấu hình danh mục camera, giá bán và combo</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>C. ĐẶC TẢ CHI TIẾT LUỒNG GIỎ HÀNG CAMERA (DETAILED SCENARIOS)</h1>
+
+<h3>1. Case 1: Khách hàng mua 1 Camera lẻ</h3>
+<ul>
+    <li><strong>Mô tả kịch bản:</strong> Khách hàng truy cập trang sản phẩm Camera, chọn mua 01 chiếc Camera SE (hoặc Camera Play) kèm theo 01 gói dịch vụ lưu trữ đám mây Cloud 3D chu kỳ 6 tháng. Khách hàng lựa chọn hình thức thi công lắp đặt tại nhà.</li>
+    <li><strong>Sản phẩm trong giỏ hàng:</strong>
+        <ol>
+            <li><strong>Thiết bị phần cứng:</strong> Camera SE S2 (số lượng 1, đơn giá sau ưu đãi: 600.000đ). Nhãn hiển thị: <em>"Thiết bị mua đứt - Thuộc sở hữu của khách hàng"</em>.</li>
+            <li><strong>Dịch vụ Cloud đi kèm:</strong> Gói Cloud 3 ngày - Chu kỳ 6 tháng (số lượng 1 cước trả trước, giá: 240.000đ).</li>
+        </ol>
+    </li>
+    <li><strong>Quy trình thanh toán tạm tính:</strong>
+        <br>- Tiền thiết bị: 600.000đ
+        <br>- Tiền cước Cloud (6 tháng): 240.000đ
+        <br>- Tạm tính đơn hàng: 840.000đ (Đã bao gồm VAT)
+    </li>
+    <li><strong>Luồng triển khai:</strong> Do chọn kỹ thuật viên FPT lắp đặt tại nhà, phí thi công lắp đặt tại nhà được áp dụng động: phí 110.000đ (nếu phát hiện khách hàng nội mạng) hoặc 150.000đ (nếu khách hàng ngoại mạng). Tuy nhiên, do khách hàng trả trước cước Cloud 6 tháng, hệ thống tự động kích hoạt quy tắc giảm giá -> Phí lắp đặt = 0đ.</li>
+</ul>
+
+<h3>2. Case 2: Khách hàng mua 1 loại Camera nhưng khác đặc tính Cloud (Tách dòng sản phẩm)</h3>
+<div class="note-box">
+    <strong>[QUY TẮC THIẾT KẾ UX QUAN TRỌNG]:</strong> Khi khách hàng mua nhiều thiết bị camera của cùng một dòng sản phẩm (ví dụ: Camera IQ4S) nhưng lựa chọn các gói cước Cloud hoặc chu kỳ cước trả trước khác nhau cho từng thiết bị, hệ thống <strong>bắt buộc phải tách thành các dòng sản phẩm (Cart Lines) riêng biệt</strong> trên giao diện giỏ hàng.
+</div>
+<ul>
+    <li><strong>Mô tả kịch bản:</strong> Khách hàng muốn trang bị 4 camera IQ4S cho nhà mình nhưng với nhu cầu lưu trữ và chu kỳ cước khác nhau:
+        <br>- Camera 1 (Lắp phòng khách): Cần lưu trữ 3 ngày, trả trước 6 tháng -> <strong>IQ4S - 3D (6T)</strong>
+        <br>- Camera 2 (Lắp sân vườn): Cần lưu trữ 3 ngày, trả trước 12 tháng -> <strong>IQ4S - 3D (12T)</strong>
+        <br>- Camera 3 (Lắp cổng chính): Cần lưu trữ 7 ngày, trả trước 6 tháng -> <strong>IQ4S - 7D (6T)</strong>
+        <br>- Camera 4 (Lắp két sắt): Cần lưu trữ 7 ngày, trả trước 12 tháng -> <strong>IQ4S - 7D (12T)</strong>
+    </li>
+    <li><strong>Hành vi hiển thị trên giao diện giỏ hàng (4 Lines riêng biệt):</strong>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 40px; text-align: center;">Chọn</th>
+                    <th>Tên sản phẩm & Đặc tính dịch vụ</th>
+                    <th style="text-align: center; width: 100px;">Đơn giá thiết bị</th>
+                    <th style="text-align: center; width: 100px;">Giá cước Cloud</th>
+                    <th style="text-align: center; width: 80px;">Số lượng</th>
+                    <th style="text-align: center; width: 120px;">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled/></td>
+                    <td><strong>FPT Camera IQ4S (Dòng 1)</strong><br><span style="font-size: 10pt; color: #555;">Dịch vụ đi kèm: Gói Cloud 3 ngày - Trả trước 6 tháng</span></td>
+                    <td style="text-align: center;">900.000đ</td>
+                    <td style="text-align: center;">240.000đ</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center; font-weight: bold;">1.140.000đ</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled/></td>
+                    <td><strong>FPT Camera IQ4S (Dòng 2)</strong><br><span style="font-size: 10pt; color: #555;">Dịch vụ đi kèm: Gói Cloud 3 ngày - Trả trước 12 tháng (Khuyến mãi tặng 2 tháng cước)</span></td>
+                    <td style="text-align: center;">900.000đ</td>
+                    <td style="text-align: center;">480.000đ</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center; font-weight: bold;">1.380.000đ</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled/></td>
+                    <td><strong>FPT Camera IQ4S (Dòng 3)</strong><br><span style="font-size: 10pt; color: #555;">Dịch vụ đi kèm: Gói Cloud 7 ngày - Trả trước 6 tháng</span></td>
+                    <td style="text-align: center;">900.000đ</td>
+                    <td style="text-align: center;">360.000đ</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center; font-weight: bold;">1.260.000đ</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled/></td>
+                    <td><strong>FPT Camera IQ4S (Dòng 4)</strong><br><span style="font-size: 10pt; color: #555;">Dịch vụ đi kèm: Gói Cloud 7 ngày - Trả trước 12 tháng (Khuyến mãi tặng 2 tháng cước)</span></td>
+                    <td style="text-align: center;">900.000đ</td>
+                    <td style="text-align: center;">720.000đ</td>
+                    <td style="text-align: center;">1</td>
+                    <td style="text-align: center; font-weight: bold;">1.620.000đ</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <li><strong>Lý do thiết kế tách dòng:</strong>
+        <ul>
+            <li>Khách hàng có thể dễ dàng tăng/giảm số lượng của từng loại cấu hình riêng biệt (ví dụ muốn mua 2 cái loại 3D 6T và chỉ 1 cái loại 7D 12T).</li>
+            <li>Khách hàng có thể chủ động chọn mua (Tick chọn checkbox đầu dòng) hoặc tạm để lại (Bỏ tick) từng cấu hình mà không ảnh hưởng đến các cấu hình khác trong giỏ hàng.</li>
+            <li>Giúp hệ thống phân rã thông số cước chính xác khi đẩy thông tin sang SPF và CRM của FPT Telecom để kích hoạt các chu kỳ cước chờ tương ứng trên từng thiết bị vật lý (dựa vào địa chỉ MAC khi bàn giao).</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>3. Case 3: Khách hàng mua 1 Combo Camera Only (ví dụ: Combo 3 Camera Play 4)</h3>
+<p>Để tối ưu hóa chi phí cho khách hàng lắp đặt số lượng nhiều, FPT Camera cung cấp các gói Combo Camera Only. Ví dụ: <strong>Combo 3 Camera Play 4</strong> bao gồm: 3 thiết bị Camera Play 4 + 3 Gói Cloud 3 ngày chu kỳ 6 tháng.</p>
+<ul>
+    <li><strong>Hành vi hiển thị trong giỏ hàng:</strong>
+        <br>- Combo được hiển thị dưới dạng <strong>01 dòng sản phẩm Combo duy nhất</strong> có nhãn: <code>[Combo] Combo 3 Camera Play 4</code>.
+        <br>- Giá hiển thị là giá combo ưu đãi gộp (Ví dụ: 2.100.000đ thay vì giá gốc mua lẻ 3 chiếc là 2.520.000đ).
+        <br>- Hệ thống hiển thị danh sách các sản phẩm thành phần bên dưới dòng Combo chính để khách hàng nắm thông tin:
+        <ul>
+            <li><em>- 3 x Thiết bị Camera Play 4</em></li>
+            <li><em>- 3 x Gói Cloud 3 ngày (Đồng bộ chu kỳ 6 tháng)</em></li>
+        </ul>
+    </li>
+    <li><strong>Ràng buộc bảo vệ Combo (Combo Protection Rule):</strong>
+        <br>- Khách hàng **không được phép** thay đổi các thông số dịch vụ Cloud riêng lẻ của các thiết bị thành phần trong combo.
+        <br>- Khách hàng **không được phép** xóa lẻ bất kỳ thiết bị nào ra khỏi combo.
+        <br>- Nút tăng/giảm số lượng chỉ áp dụng cho toàn bộ Combo (ví dụ: tăng lên số lượng 2 Combo tức là mua 6 Camera Play 4).
+        <br>- Nút "Xóa" chỉ hỗ trợ xóa toàn bộ Combo ra khỏi giỏ hàng.
+    </li>
+</ul>
+
+<h3>4. Case 4: Khách hàng kết hợp mua cả Camera lẻ & Combo Camera Only</h3>
+<ul>
+    <li><strong>Mô tả kịch bản:</strong> Khách hàng mua 01 gói <em>Combo 3 Camera Play 4</em> (dùng cho các vị trí trong nhà) kết hợp mua thêm 01 chiếc <em>Camera IQ3 Outdoor mua lẻ</em> kèm gói Cloud 7 ngày chu kỳ 12 tháng (để lắp ở cổng ngoài trời).</li>
+    <li><strong>Hiển thị trong giỏ hàng:</strong>
+        <br>- Giỏ hàng sẽ được tổ chức hiển thị phân cấp rõ ràng gồm 2 khối (blocks) độc lập:
+        <ol>
+            <li><strong>Dòng 1:</strong> <code>[Combo] Combo 3 Camera Play 4</code> (Số lượng: 1 combo, đơn giá combo: 2.100.000đ).</li>
+            <li><strong>Dòng 2:</strong> <code>Camera IQ3 Outdoor (Mua lẻ)</code> kèm gói Cloud 7D - 12T (Số lượng: 1 chiếc, đơn giá: 1.400.000đ thiết bị + 720.000đ cước Cloud = 2.120.000đ).</li>
+        </ol>
+    </li>
+    <li><strong>Hành vi tương tác và thanh toán:</strong>
+        <ul>
+            <li>Khách hàng có thể tick chọn checkbox ở dòng 1 và bỏ tick ở dòng 2. Khi đó, hệ thống chỉ lấy thông tin của Combo 3 Camera để chuyển đến màn hình Checkout, tổng tiền tạm tính cập nhật realtime là 2.100.000đ.</li>
+            <li>Khách hàng có thể tick chọn cả hai. Tổng tiền tạm tính sẽ cộng dồn: 2.100.000đ + 2.120.000đ = 4.220.000đ.</li>
+            <li>Khi nhấn nút "Tiếp tục" thanh toán, hệ thống đóng gói toàn bộ danh sách các sản phẩm đang được tick chọn chuyển sang màn hình điền thông tin Checkout.</li>
+        </ul>
+    </li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>D. QUY TẮC NGHIỆP VỤ GIỎ HÀNG CAMERA (CART BUSINESS RULES)</h1>
+<p>Hệ thống giỏ hàng và checkout của FPT Camera phải tuân thủ nghiêm ngặt các quy tắc nghiệp vụ sau:</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 120px; text-align: center;">Mã Rule</th>
+            <th style="width: 220px;">Tên Quy tắc</th>
+            <th>Nội dung quy tắc chi tiết & Logic hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-01</strong></td>
+            <td><strong>Quy tắc Tách dòng Sản phẩm (Line Splitting)</strong></td>
+            <td>Mỗi dòng sản phẩm trong giỏ hàng (Cart Line Item) được định danh duy nhất bởi một mã băm khóa (Hash Key) tạo ra từ bộ ba thuộc tính:<br>
+            <code>Line_Key = SKU_Hardware + Cloud_Storage_Type + Billing_Cycle</code>.<br>
+            Nếu khách hàng thêm một sản phẩm có bộ thuộc tính trùng với một dòng đang có sẵn trong giỏ, hệ thống thực hiện cộng dồn số lượng (Quantity + 1) trên dòng đó.<br>
+            Nếu có bất kỳ thuộc tính nào trong bộ ba này khác biệt, hệ thống bắt buộc phải khởi tạo một dòng sản phẩm mới riêng biệt trong giỏ hàng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-02</strong></td>
+            <td><strong>Ràng buộc Gói cước Cloud đi kèm</strong></td>
+            <td>Ngoại trừ trường hợp khách hàng tích chọn tùy chọn *"Tôi đã có sẵn gói Cloud"* trên PDP, mọi thiết bị camera mua lẻ hoặc nằm trong combo bắt buộc phải đi kèm với 01 gói dịch vụ Cloud tương ứng. Hệ thống không cho phép tồn tại thiết bị camera độc lập trong giỏ hàng mà không gán dịch vụ lưu trữ Cloud đi kèm nếu không có xác nhận sở hữu Cloud trước đó.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-03</strong></td>
+            <td><strong>Quy tắc Khóa/Mở Khóa Checkbox Dòng</strong></td>
+            <td>- Khách hàng có quyền click chọn hoặc bỏ chọn từng dòng sản phẩm trong giỏ hàng.<br>
+            - Ở tiêu đề giỏ hàng có checkbox **"Chọn tất cả"**. Nếu check, tự động bật check cho tất cả các dòng sản phẩm hiện có. Nếu bỏ check, tự động bỏ chọn toàn bộ.<br>
+            - Hệ thống chỉ cho phép khách hàng chuyển hướng sang màn hình Checkout khi có tối thiểu <strong>01 dòng sản phẩm</strong> được tick chọn trong giỏ hàng. Nếu không có dòng nào được chọn, nút "Tiếp tục" sẽ bị bôi mờ (disabled).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-04</strong></td>
+            <td><strong>Tự động Tra cứu và Giảm phí Lắp đặt</strong></td>
+            <td>Khi khách hàng nhập Số điện thoại tại màn hình Checkout, hệ thống kích hoạt API tra cứu thông tin hợp đồng viễn thông trên CRM FPT:<br>
+            - Nếu SĐT đã có hợp đồng Internet FPT đang hoạt động (Nội mạng): Tự động hiển thị banner đề xuất gộp đơn hàng camera vào hóa đơn hợp đồng gốc, đồng thời áp dụng biểu phí lắp đặt ưu đãi nội mạng (giảm từ 150.000đ xuống còn 110.000đ/thiết bị).<br>
+            - Nếu không tìm thấy hợp đồng: Áp dụng biểu phí lắp đặt ngoại mạng tiêu chuẩn (150.000đ/thiết bị).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-05</strong></td>
+            <td><strong>Quy tắc Miễn phí Lắp đặt chu kỳ dài</strong></td>
+            <td>Bất kể khách hàng sử dụng mạng nội mạng hay ngoại mạng, nếu dòng sản phẩm camera được mua kèm gói dịch vụ Cloud trả trước có chu kỳ cước từ **6 tháng** trở lên, hệ thống sẽ tự động cấu hình Phí thi công lắp đặt tại nhà của thiết bị đó về mức **0đ (Miễn phí)**.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-06</strong></td>
+            <td><strong>Ưu đãi Tự lắp đặt (Self-installation Reward)</strong></td>
+            <td>Nếu khách hàng chọn hình thức *"Khách hàng tự lắp đặt"* tại màn hình Checkout:<br>
+            - Hệ thống tự động miễn phí 100% phí lắp đặt thi công (phí hiển thị 0đ).<br>
+            - Tự động tặng thêm **01 tháng cước Cloud miễn phí** cộng dồn vào thời hạn sử dụng gói Cloud của thiết bị tương ứng (Ví dụ: mua gói 6 tháng sẽ được kích hoạt thời hạn sử dụng là 7 tháng trên hệ thống cước).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-CAM-BR-07</strong></td>
+            <td><strong>Giới hạn Thanh toán COD</strong></td>
+            <td>Phương thức thanh toán COD (Thanh toán tại nhà khi lắp đặt/giao hàng) bị vô hiệu hóa (disabled) nếu địa chỉ nhận hàng của khách hàng nằm trong danh mục vùng sâu, vùng xa, hải đảo được đơn vị chuyển phát nhanh (GHN/Viettel Post) đánh dấu không hỗ trợ thu hộ COD, hoặc nằm ngoài tầm phục vụ thi công trực tiếp của kỹ thuật viên FPT. Khi đó khách hàng bắt buộc phải chọn thanh toán trực tuyến.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>E. ĐẶC TẢ GIAO DIỆN & RÀNG BUỘC TRƯỜNG (SCREEN SPECIFICATION)</h1>
+
+<h3>1. Màn hình Chi tiết Giỏ hàng (Cart Page)</h3>
+<p>Màn hình giỏ hàng hiển thị danh sách các camera và gói Cloud đã chọn. Dưới đây là mô tả chi tiết các phần tử tương tác trên giao diện:</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Phần tử giao diện</th>
+            <th style="width: 120px;">Kiểu hiển thị</th>
+            <th style="width: 80px; text-align: center;">Bắt buộc</th>
+            <th>Mô tả hành vi, ràng buộc & Phản hồi giao diện (UI/UX)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Hộp chọn dòng (Checkbox)</strong></td>
+            <td>Checkbox</td>
+            <td style="text-align: center;">-</td>
+            <td>- Đặt ở đầu mỗi dòng sản phẩm trong giỏ hàng.<br>- Mặc định khi thêm sản phẩm vào giỏ: Checked.<br>- Người dùng có thể click để bỏ check. Hệ thống lập tức trừ tiền của dòng đó ra khỏi tổng tiền tạm tính.<br>- Checkbox tổng ở tiêu đề cột cho phép chọn/bỏ chọn nhanh toàn bộ giỏ hàng.</td>
+        </tr>
+        <tr>
+            <td><strong>Thông tin sản phẩm</strong></td>
+            <td>Text & Badge</td>
+            <td style="text-align: center;">-</td>
+            <td>- Hiển thị tên thiết bị Camera kèm ảnh thumbnail thu nhỏ.<br>- Hiển thị nhãn loại Cloud đi kèm (ví dụ: Cloud 3 ngày).<br>- Nếu là Combo, hiển thị badge màu cam nổi bật: <code>[COMBO]</code> và danh sách sản phẩm thành phần thụt lề phía dưới.</td>
+        </tr>
+        <tr>
+            <td><strong>Chu kỳ cước Cloud</strong></td>
+            <td>Dropdown List</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Cho phép khách hàng thay đổi chu kỳ cước Cloud ngay tại giỏ hàng: 6 tháng hoặc 12 tháng.<br>- Nếu thay đổi chu kỳ, gọi API tính lại tiền và hiển thị nhãn khuyến mãi tương ứng (Ví dụ: chọn 12 tháng hiện nhãn *"Tặng 2 tháng cước"*).<br>- Đối với thiết bị trong Combo: Dropdown bị khóa (disabled) để tránh phá vỡ cấu hình combo.</td>
+        </tr>
+        <tr>
+            <td><strong>Số lượng</strong></td>
+            <td>Number Input (+/-)</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Gồm nút bấm tăng (+) và giảm (-) kèm ô hiển thị số lượng ở giữa.<br>- Số lượng tối thiểu = 1, tối đa = 5 (đối với mua lẻ).<br>- Đối với Combo: Tăng/giảm theo đơn vị cả bộ Combo.<br>- Khi số lượng thay đổi, hệ thống lập tức nhân đơn giá và cập nhật thành tiền của dòng.</td>
+        </tr>
+        <tr>
+            <td><strong>Nút Xóa dòng</strong></td>
+            <td>Icon Button (Thùng rác)</td>
+            <td style="text-align: center;">-</td>
+            <td>- Click để loại bỏ dòng sản phẩm ra khỏi giỏ.<br>- Hệ thống hiển thị popup xác nhận: <em>"Bạn có chắc chắn muốn xóa sản phẩm này ra khỏi giỏ hàng không?"</em> với hai nút "Đồng ý" và "Hủy bỏ". Nếu đồng ý, dòng sản phẩm biến mất với hiệu ứng fade-out mượt mà.</td>
+        </tr>
+        <tr>
+            <td><strong>Tổng tiền tạm tính</strong></td>
+            <td>Text Display</td>
+            <td style="text-align: center;">-</td>
+            <td>- Hiển thị tổng số tiền của tất cả các dòng sản phẩm đang được tích chọn thanh toán.<br>- Định dạng tiền tệ chuẩn: VNĐ, phân tách hàng nghìn (ví dụ: 1.200.000đ). Cập nhật real-time.</td>
+        </tr>
+        <tr>
+            <td><strong>Nút "Tiếp tục thanh toán"</strong></td>
+            <td>Button</td>
+            <td style="text-align: center;">-</td>
+            <td>- Nút có kích thước lớn, màu cam thương hiệu FPT (#FF6600).<br>- Chỉ active khi tổng tiền tạm tính > 0 (có ít nhất 1 dòng được check). Nếu không, nút bị disable và mờ đi. Click nút sẽ chuyển hướng sang trang Checkout.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>2. Màn hình Điền thông tin & Checkout (Checkout Page)</h3>
+<p>Trang thanh toán thu thập các thông tin lắp đặt, triển khai và phương thức thanh toán.</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Phần tử giao diện</th>
+            <th style="width: 120px;">Kiểu hiển thị</th>
+            <th style="width: 80px; text-align: center;">Bắt buộc</th>
+            <th>Mô tả hành vi, ràng buộc & Phản hồi giao diện (UI/UX)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Số điện thoại</strong></td>
+            <td>Textbox (Number)</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Chỉ cho phép nhập số từ 0-9, độ dài chuẩn 10 chữ số.<br>- Khi người dùng di chuyển con trỏ ra ngoài (onBlur), hệ thống gọi API đối soát để nhận diện khách hàng nội mạng/ngoại mạng [CRT-CAM-BR-04].</td>
+        </tr>
+        <tr>
+            <td><strong>Hình thức triển khai</strong></td>
+            <td>Radio Group</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Gồm 2 tùy chọn: "Kỹ thuật viên FPT lắp đặt tại nhà" và "Tự lắp đặt tại nhà".<br>- Nếu chọn "Kỹ thuật lắp": Hiển thị thêm ô chọn Ngày hẹn lắp đặt.<br>- Nếu chọn "Tự lắp": Ẩn ô chọn lịch hẹn, hiển thị thông tin bưu điện giao hàng miễn phí và nhãn khuyến mãi *"Tặng thêm 1 tháng Cloud"*. Phí lắp đặt cập nhật về 0đ.</td>
+        </tr>
+        <tr>
+            <td><strong>Địa chỉ lắp đặt / Giao hàng</strong></td>
+            <td>Cascading Dropdowns</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Gồm 3 dropdown liên kết: Tỉnh/Thành phố -> Quận/Huyện -> Phường/Xã và 1 Textbox nhập số nhà, tên đường.<br>- Dữ liệu địa chỉ được dùng để gán phiếu thi công kỹ thuật hoặc tính toán lộ trình bưu điện và kiểm tra điều kiện COD [CRT-CAM-BR-07].</td>
+        </tr>
+        <tr>
+            <td><strong>Mã khuyến mãi (Voucher)</strong></td>
+            <td>Textbox + Button</td>
+            <td style="text-align: center;">N</td>
+            <td>- Người dùng nhập mã giảm giá và nhấn "Áp dụng".<br>- Hệ thống gọi API kiểm tra điều kiện voucher. Nếu hợp lệ, trừ tiền trực tiếp trên tổng thanh toán và hiển thị dòng giảm trừ màu xanh lá. Nếu không hợp lệ, viền textbox đỏ lên và hiển thị lỗi inline.</td>
+        </tr>
+        <tr>
+            <td><strong>Phương thức thanh toán</strong></td>
+            <td>Radio Group</td>
+            <td style="text-align: center;">Y</td>
+            <td>- Cho phép chọn: VietQR (Khuyên dùng), Ví MoMo, Thẻ ATM nội địa, Thẻ quốc tế Visa/Master, COD (Thanh toán tiền mặt khi nhận hàng/lắp đặt).<br>- Nút COD bị khóa mờ nếu địa chỉ nhận hàng thuộc vùng cấm giao vận.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h3>3. Màn hình Hoàn tất đơn hàng (Thank You Page)</h3>
+<p>Thank You Page được thiết kế động để hiển thị các nội dung khác nhau tùy thuộc vào hình thức triển khai mà khách hàng đã lựa chọn:</p>
+
+<h4>Trường hợp A: Khách hàng chọn Kỹ thuật viên FPT lắp đặt</h4>
+<ul>
+    <li>Hiển thị thông điệp chúc mừng thanh toán/đặt hàng thành công.</li>
+    <li>Hiển thị thông tin đơn hàng: Mã đơn hàng (FPTCAMxxxxxx), Tổng số tiền thanh toán, Phương thức thanh toán.</li>
+    <li><strong>Lịch hẹn kỹ thuật:</strong> Hiển thị ngày và khung giờ kỹ thuật viên FPT dự kiến đến lắp đặt tại nhà. Có nút bấm "Yêu cầu thay đổi lịch hẹn" nếu khách hàng muốn đổi ngày.</li>
+    <li><strong>Khuyến nghị hạ tầng:</strong> Hiển thị dòng ghi chú nhắc nhở khách hàng chuẩn bị sẵn sóng Wifi và mật khẩu Wifi tại nhà để kỹ thuật viên cấu hình nhanh chóng.</li>
+</ul>
+
+<h4>Trường hợp B: Khách hàng chọn Tự lắp đặt tại nhà (Self-installation)</h4>
+<ul>
+    <li>Hiển thị mã đơn hàng và **Mã vận đơn bưu điện** (ví dụ: GHN-XXXXXX). Mã vận đơn được tích hợp liên kết trực tiếp, khi click sẽ mở tab mới chuyển sang trang tra cứu hành trình của đối tác giao vận để khách hàng theo dõi.</li>
+    <li>Hiển thị ngày giao hàng dự kiến nhận thiết bị tại nhà.</li>
+    <li><strong>Tích hợp Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub):</strong>
+        <br>- Giao diện tích hợp trình phát Video hướng dẫn cài đặt nhanh 3D dài 60 giây.
+        <br>- Hiển thị các bước hướng dẫn dạng thẻ (Step-by-Step Card Flow) trực quan:
+            <ul>
+                <li><em>Thẻ 1: Tải ứng dụng FPT Camera</em> (Có kèm link tải nhanh và QR code quét trên iOS/Android).</li>
+                <li><em>Thẻ 2: Cắm nguồn thiết bị</em> (Hướng dẫn cắm cáp nguồn Micro-USB vào thiết bị và nguồn điện gia đình).</li>
+                <li><em>Thẻ 3: Quét mã QR kích hoạt</em> (Hướng dẫn mở app -> chọn thêm thiết bị -> quét mã QR dán dưới đáy camera).</li>
+                <li><em>Thẻ 4: Kết nối sóng Wifi</em> (Nhắc nhở kết nối vào sóng Wifi băng tần 2.4GHz để thiết bị đồng bộ ổn định).</li>
+            </ul>
+        <br>- **Widget đo tốc độ mạng Wifi tại chỗ (Wifi Speedtest Widget):** Tích hợp công cụ đo băng thông upload tại vị trí chuẩn bị lắp camera. Khách hàng bấm nút, widget đo tốc độ và hiển thị kết quả:
+            <ul>
+                <li>Tốc độ upload < 2 Mbps: Cảnh báo *"Sóng Wifi yếu hoặc băng thông không đủ để tải video HD. Vui lòng di chuyển camera gần modem hơn hoặc nâng cấp mạng."*</li>
+                <li>Tốc độ upload >= 2 Mbps: Thông báo xanh *"Sóng tốt. Băng thông đủ điều kiện truyền tải mượt mà video HD lên Cloud."*</li>
+            </ul>
+    </li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>F. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)</h1>
+
+<h3>1. Hiệu năng hệ thống (Performance)</h3>
+<ul>
+    <li><strong>Thời gian phản hồi API:</strong> API kiểm tra SĐT hợp đồng tại trang Checkout và API áp dụng Voucher phải phản hồi dưới **250ms** để giao diện không bị đơ hoặc trễ khi người dùng nhập liệu.</li>
+    <li><strong>Lazy Load Video Hướng dẫn:</strong> Trình phát video hướng dẫn tự lắp đặt trên Thank You Page phải được cấu hình Lazy Load (chỉ tải dữ liệu khi khách hàng cuộn màn hình đến khu vực widget hoặc bấm Play) để tối ưu thời gian tải trang ban đầu (dưới 2 giây).</li>
+</ul>
+
+<h3>2. Bảo mật thông tin (Security)</h3>
+<ul>
+    <li><strong>Mã hóa dữ liệu:</strong> Toàn bộ quy trình truyền dữ liệu từ giỏ hàng đến cổng thanh toán trực tuyến và hệ thống CRM/SPF của FPT phải được mã hóa bảo mật qua giao thức HTTPS (TLS 1.3).</li>
+    <li><strong>Che dấu thông tin hợp đồng (Data Masking):</strong> Khi hệ thống tự động nhận diện khách hàng nội mạng và đề xuất liên kết hợp đồng qua SĐT, thông tin chi tiết của hợp đồng Internet (như tên chủ hộ, địa chỉ thi công cũ) phải được che dấu bằng ký tự `*` (ví dụ: Nguyễn Văn * - Hợp đồng: SG01***56) để bảo mật thông tin khách hàng, tránh rò rỉ dữ liệu trên giao diện web công cộng.</li>
+</ul>
+
+<h3>3. Trải nghiệm người dùng & Thiết kế di động (UI/UX & Mobile responsive)</h3>
+<ul>
+    <li><strong>Tương thích thiết bị (Responsive):</strong> Giao diện giỏ hàng và thanh toán camera phải hiển thị tối ưu trên cả phiên bản máy tính (Desktop) và di động (Mobile Web). Cột bảng trong giỏ hàng phải chuyển sang dạng thẻ (Cards) trên màn hình di động để dễ thao tác vuốt chạm.</li>
+    <li><strong>Cảnh báo băng tần Wifi:</strong> Hệ thống bắt buộc phải hiển thị cảnh báo nổi bật tại các trang PDP, Checkout và Thank You Page: <em>"FPT Camera thế hệ mới chỉ hỗ trợ kết nối với sóng Wifi băng tần 2.4GHz. Thiết bị không tương thích với sóng Wifi băng tần 5GHz."</em> để khách hàng lưu ý cấu hình modem nhà mình trước khi cài đặt.</li>
+</ul>
+
+</body>
+</html>
