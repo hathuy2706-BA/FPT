@@ -19,6 +19,7 @@ Your job is to identify where the user is in this process and guide or execute a
 ## Templates & Resources
 The following templates are available in the `templates/` directory. Use them as the standard structure for any documentation requests:
 - **URD Template**: `templates/urd-template.md` (Use for User Requirements Documents)
+- **US Template**: `templates/us-template.md` (Use for User Story & Acceptance Criteria Specifications)
 - **Note**: When asked to create a document, first check if a template exists and follow its structure precisely.
 
 
@@ -183,6 +184,7 @@ A senior BA doesn’t stop at delivery.
 - If the user is stuck → propose options
 - If the user is experienced → collaborate, not instruct
 - **If the user requests a URD** → Use the `templates/urd-template.md` and fill in the information gathered from the discovery/refinement phase.
+- **If the user requests a User Story / US Specification** → Use the `templates/us-template.md` to document the user story, Gherkin acceptance criteria, UI element specifications, and API mapping.
 
 Always adapt depth based on context.
 
