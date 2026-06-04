@@ -1,7 +1,7 @@
 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>FPT.VN URD - Đặc Tả Yêu Cầu Người Dùng Luồng Giỏ Hàng (Shopping Cart)</title>
+<title>FPT.VN - TÀI LIỆU ĐẶC TẢ YÊU CẦU NGƯỜI DÙNG LUỒNG GIỎ HÀNG (SHOPPING CART)</title>
 <style>
     body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
     .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
@@ -15,61 +15,90 @@
     table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
     table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
-    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 180px; }
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
-    p { margin-top: 0; margin-bottom: 8px; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
     .page-break { page-break-before: always; }
-    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 10px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f2f2f2; border: 1px solid #ccc; padding: 10px; white-space: pre-wrap; font-size: 10pt; margin-bottom: 15px; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+    .note-box strong { color: #66512c; }
 </style>
 </head>
 <body>
 
-<!-- TRANG BÌA & HEADER -->
 <table class="header-table">
     <tr>
-        <td rowspan="2" style="width: 120px; text-align: center; vertical-align: middle;"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" style="width:80px;height:auto;"/></td>
-        <td style="font-size: 16pt; text-align: center; text-transform: uppercase;">FPT.VN URD – User Requirements Document</td>
+        <td rowspan="3" style="width: 150px; text-align: center; vertical-align: middle;">
+            <span style="font-size: 18pt; color: #1f4e78;">FPT TELECOM</span>
+        </td>
+        <td>DỰ ÁN: NÂNG CẤP HỆ THỐNG CHECKOUT & GIỎ HÀNG FPT.VN</td>
+        <td>MÃ HIỆU: FPT-URD-CART-01</td>
     </tr>
     <tr>
-        <td style="font-size: 11pt;">
-            <strong>Mã hiệu:</strong> FPT-URD-CRT-ALL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <strong>Phiên bản:</strong> 1.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <strong>Ngày:</strong> 04/06/2026
-        </td>
+        <td>PHÂN HỆ: GIỎ HÀNG ĐA SẢN PHẨM & THANH TOÁN (SHOPPING CART & CHECKOUT)</td>
+        <td>PHIÊN BẢN: V2.0</td>
+    </tr>
+    <tr>
+        <td>TÀI LIỆU YÊU CẦU NGƯỜI DÙNG (USER REQUIREMENTS DOCUMENT - URD)</td>
+        <td>NGÀY LẬP: 04/06/2026</td>
     </tr>
 </table>
+
+<br>
+<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+    <span style="font-family: 'Arial', sans-serif; font-size: 24pt; font-weight: bold; color: #1f4e78;">ĐẶC TẢ YÊU CẦU NGƯỜI DÙNG (URD)</span><br>
+    <span style="font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; color: #2e75b6; text-transform: uppercase;">Luồng Giỏ hàng & Quy trình Checkout đa sản phẩm (Shopping Cart Module)</span>
+</div>
+
+<div class="page-break"></div>
 
 <h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
 <p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
 <table class="data-table">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Version</th>
-            <th>Author</th>
-            <th>Action</th>
-            <th>Change Description</th>
+            <th style="width: 100px;">Ngày tiếp nhận</th>
+            <th style="width: 60px; text-align: center;">Version</th>
+            <th style="width: 150px;">Tác giả</th>
+            <th style="width: 70px; text-align: center;">Hành động</th>
+            <th style="width: 300px;">Mô tả chung thay đổi</th>
+            <th>Nội dung thay đổi chi tiết</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>04/06/2026</td>
-            <td>1.0</td>
-            <td>Senior BA / PO</td>
+            <td>27/05/2026</td>
+            <td style="text-align: center;">V1.0</td>
+            <td>ThuyTT (BA Senior)</td>
             <td style="text-align: center;">[A]</td>
-            <td>Khởi tạo tài liệu URD đặc tả luồng Giỏ hàng (Shopping Cart) đầy đủ cho 10 nhóm sản phẩm và dịch vụ của FPT Telecom (Internet gia đình, Camera, FPT Play, Access Point, SaaS, Combo Internet + Camera, Camera Only).</td>
+            <td>Khởi tạo tài liệu URD Checkout Camera Only hoan chinh</td>
+            <td>Xây dựng khung luồng checkout đầu tiên của Camera và các cước Cloud bổ sung đi kèm.</td>
+        </tr>
+        <tr>
+            <td>03/06/2026</td>
+            <td style="text-align: center;">V1.5</td>
+            <td>ThuyTT (BA Senior)</td>
+            <td style="text-align: center;">[U]</td>
+            <td>Bổ sung tài liệu URD Checkout Combo Camera và Extra Services</td>
+            <td>Đặc tả luồng Combo Camera, cước Internet kết hợp và các extra dịch vụ đi kèm.</td>
+        </tr>
+        <tr>
+            <td>04/06/2026</td>
+            <td style="text-align: center;">V2.0</td>
+            <td>ThuyTT (BA Senior)</td>
+            <td style="text-align: center;">[U]</td>
+            <td>Tái cấu trúc và hoàn thiện URD Luồng Giỏ hàng đa sản phẩm chuẩn chỉnh</td>
+            <td>Đặc tả chi tiết từng bước cho 10 luồng giỏ hàng (Home, Camera, FPL, AP, SaaS lẻ...). Thiết lập hệ thống Quy tắc nghiệp vụ Cart Business Rules (Billing Cycle Sync, Contract lookup, Voucher logic) và mô tả chi tiết giao diện Cart/Checkout Page.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="page-break"></div>
-
-<h1>MỤC LỤC</h1>
+<h2>MỤC LỤC</h2>
 <ol>
     <li><strong>A. GIỚI THIỆU</strong></li>
     <li><strong>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</strong></li>
-    <li><strong>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN GIỎ HÀNG</strong></li>
+    <li><strong>C. ĐẶC TẢ CHI TIẾT 10 LUỒNG GIỎ HÀNG & PHẢN HỒI GIAO DIỆN</strong></li>
     <li><strong>D. YÊU CẦU PHI CHỨC NĂNG</strong></li>
     <li><strong>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</strong></li>
 </ol>
@@ -144,32 +173,26 @@
         <tr>
             <td style="text-align: center;">2</td>
             <td>Extra Product</td>
-            <td>Extra Product / Add-on Service</td>
-            <td>Sản phẩm bổ sung mua kèm theo gói chính (ví dụ: Box phụ, Access Point, Ultra Fast).</td>
+            <td>Add-on Service / Ancillary Product</td>
+            <td>Sản phẩm/dịch vụ bổ sung, mua kèm theo sản phẩm chính (như Cloud Camera, Box phụ, Ultra Fast).</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
-            <td>SaaS Product</td>
-            <td>Software-as-a-Service</td>
-            <td>Dịch vụ phần mềm cung cấp theo chu kỳ sử dụng (ví dụ: cước tính năng giảm ping game Ultra Fast, cước bảo mật F-safe Go).</td>
+            <td>SaaS</td>
+            <td>Software as a Service</td>
+            <td>Phần mềm cung cấp dưới dạng dịch vụ trả tiền theo chu kỳ (như Ultra Fast, F-Safe Go).</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
             <td>Billing Cycle</td>
-            <td>Billing Cycle</td>
-            <td>Chu kỳ tính cước và thanh toán (ví dụ: trả sau hàng tháng, trả trước 6 tháng, trả trước 12 tháng).</td>
+            <td>Billing Cycle / Subscription Cycle</td>
+            <td>Chu kỳ thanh toán của gói dịch vụ, bao gồm 1 tháng, 6 tháng, 12 tháng.</td>
         </tr>
         <tr>
             <td style="text-align: center;">5</td>
-            <td>Equipment Rental</td>
-            <td>Equipment Rental / Lease Device</td>
-            <td>Thiết bị thuộc quyền sở hữu của FPT, cung cấp cho khách hàng mượn hoặc thuê theo thời hạn hợp đồng.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">6</td>
-            <td>Equipment Purchase</td>
-            <td>Equipment Outright Purchase</td>
-            <td>Thiết bị khách hàng mua đứt và thuộc quyền sở hữu cá nhân sau khi thanh toán đơn hàng (ví dụ: Camera).</td>
+            <td>FID</td>
+            <td>Flow Identifier / FID Contract</td>
+            <td>Mã định danh luồng kiểm tra khách hàng cũ thông qua Số điện thoại.</td>
         </tr>
     </tbody>
 </table>
@@ -180,7 +203,6 @@
 
 <h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</h3>
 <p>Dưới đây là sơ đồ luồng nghiệp vụ giỏ hàng (Shopping Cart Workflow) bao quát từ lúc khách hàng bắt đầu lựa chọn sản phẩm đến khi thanh toán thành công đơn hàng:</p>
-<p><em>[Sơ đồ Mermaid mô tả Happy Path tổng quát]</em></p>
 <div class="code-block">
 +-------------------------+      +-------------------------+      +-------------------------+
 | Khách hàng chọn         |      |  Hệ thống kiểm tra      |      | Giỏ hàng (Cart Page)    |
@@ -222,44 +244,44 @@
         <tr>
             <td style="text-align: center;">1</td>
             <td><strong>Thêm sản phẩm vào giỏ (Add to Cart)</strong></td>
-            <td style="text-align: center;">V1.0</td>
-            <td style="text-align: center;">New</td>
-            <td>Cho phép người dùng click thêm sản phẩm chính từ PDP hoặc sản phẩm extra bán kèm vào giỏ hàng thống nhất.</td>
+            <td style="text-align: center;">V2.0</td>
+            <td style="text-align: center;">Update</td>
+            <td>Cho phép người dùng click thêm sản phẩm chính từ PDP hoặc sản phẩm extra bán kèm vào giỏ hàng thống nhất. Hỗ trợ kiểm tra giỏ hàng đa sản phẩm.</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
             <td><strong>Cập nhật và Xóa sản phẩm (Update/Delete)</strong></td>
-            <td style="text-align: center;">V1.0</td>
-            <td style="text-align: center;">New</td>
-            <td>Hỗ trợ thay đổi số lượng thiết bị phần cứng, thay đổi chu kỳ cước hoặc xóa hẳn sản phẩm ra khỏi giỏ hàng.</td>
+            <td style="text-align: center;">V2.0</td>
+            <td style="text-align: center;">Update</td>
+            <td>Hỗ trợ thay đổi số lượng thiết bị phần cứng, thay đổi chu kỳ cước hoặc xóa hẳn sản phẩm ra khỏi giỏ hàng. Gọi API cập nhật giá real-time.</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
             <td><strong>Động cơ tự động thay thế (Replacement Engine)</strong></td>
-            <td style="text-align: center;">V1.0</td>
+            <td style="text-align: center;">V2.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tự động thay thế gói cước Internet cũ bằng gói cước Internet mới nếu người dùng chọn gói cước chính khác loại, đảm bảo giỏ hàng chỉ có 1 gói mạng duy nhất.</td>
+            <td>Tự động thay thế gói cước Internet cũ bằng gói cước Internet mới nếu người dùng chọn gói cước chính khác loại, đảm bảo giỏ hàng chỉ có tối đa 1 gói mạng chính.</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
-            <td><strong>Đồng bộ chu kỳ thanh toán (Billing Sync)</strong></td>
-            <td style="text-align: center;">V1.0</td>
+            <td><strong>Đồng bộ chu kỳ cước (Billing Cycle Sync)</strong></td>
+            <td style="text-align: center;">V2.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tự động khóa và ép chu kỳ cước trả trước của Box phụ/Cloud/SaaS theo số tháng trả trước của gói Internet chính.</td>
+            <td>Tự động đồng bộ và khóa chu kỳ cước của các extra phụ thuộc theo chu kỳ cước của gói mạng chính.</td>
         </tr>
         <tr>
             <td style="text-align: center;">5</td>
-            <td><strong>Xác thực khách hàng và liên kết hợp đồng</strong></td>
-            <td style="text-align: center;">V1.0</td>
+            <td><strong>Tra cứu hợp đồng qua SĐT (Contract Lookup)</strong></td>
+            <td style="text-align: center;">V2.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tra cứu SĐT nhập vào tại Checkout để nhận diện khách hàng mới/cũ và đưa ra đề xuất liên kết hợp đồng Internet sẵn có.</td>
+            <td>Tự động truy vấn lịch sử hợp đồng của khách hàng qua số điện thoại để điền nhanh thông tin liên hệ và đề xuất giảm phí lắp đặt.</td>
         </tr>
         <tr>
             <td style="text-align: center;">6</td>
-            <td><strong>Tính phí triển khai phân cấp</strong></td>
-            <td style="text-align: center;">V1.0</td>
+            <td><strong>Động cơ áp Voucher (Promotion Engine)</strong></td>
+            <td style="text-align: center;">V2.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tự động tính phí lắp đặt đường mạng, phí cấu hình thiết bị extra và phí giao hàng dựa vào chu kỳ cước và địa chỉ của khách hàng.</td>
+            <td>Xử lý logic áp dụng mã giảm giá, kiểm tra điều kiện khả dụng và xử lý kịch bản ghi đè/xung đột voucher.</td>
         </tr>
     </tbody>
 </table>
@@ -269,184 +291,253 @@
     <thead>
         <tr>
             <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 250px;">Tên Chức năng / Module</th>
-            <th style="width: 120px; text-align: center;">Role Admin CMS</th>
-            <th style="width: 150px; text-align: center;">Role Nhân viên CSKH/Kỹ thuật</th>
-            <th style="width: 150px; text-align: center;">Role Khách hàng cuối</th>
-            <th>Ghi chú</th>
+            <th>Tên Chức năng / Module</th>
+            <th style="text-align: center;">Khách vãng lai</th>
+            <th style="text-align: center;">Khách đăng nhập</th>
+            <th style="text-align: center;">Telesales / CSKH</th>
+            <th style="text-align: center;">Admin (CMS)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="text-align: center;">1</td>
-            <td>Cấu hình biểu giá, chu kỳ cước và chính sách khuyến mãi</td>
-            <td style="text-align: center;">Full Access (F)</td>
-            <td style="text-align: center;">View (V)</td>
-            <td style="text-align: center;">N/A</td>
-            <td>Chỉ Admin được thao tác cấu hình sản phẩm trên CMS.</td>
+            <td>Quản lý thêm/sửa/xóa giỏ hàng</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
-            <td>Thêm/Sửa/Xóa giỏ hàng và tiến hành Checkout đơn hàng</td>
-            <td style="text-align: center;">View (V)</td>
-            <td style="text-align: center;">Add (A), Update (U)</td>
-            <td style="text-align: center;">Add (A), Update (U)</td>
-            <td>Khách hàng tự thực hiện hoặc nhân viên CSKH tạo giỏ hàng hộ khách hàng.</td>
+            <td>Áp dụng mã voucher khuyến mãi</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
-            <td>Xác nhận và ký biên bản nghiệm thu điện tử</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">View (V)</td>
-            <td style="text-align: center;">Full Access (F)</td>
-            <td>Khách hàng cuối trực tiếp click ký số bằng mã OTP gửi về điện thoại.</td>
-        </tr>
-    </tbody>
-</table>
-
-<div class="page-break"></div>
-
-<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN GIỎ HÀNG</h1>
-
-<h3>I. Phân loại 10 Luồng Giỏ hàng Sản phẩm & Đặc thù</h3>
-<p>Mỗi luồng giỏ hàng dưới đây đại diện cho một kịch bản bán hàng đặc thù trên fpt.vn, có cấu trúc giỏ hàng và ràng buộc nghiệp vụ hoàn toàn riêng biệt:</p>
-
-<table class="data-table">
-    <thead>
-        <tr>
-            <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 180px;">Tên Luồng Giỏ Hàng</th>
-            <th style="width: 120px;">Sản phẩm chính</th>
-            <th style="width: 180px;">Sản phẩm extra bán kèm</th>
-            <th>Đặc thù nghiệp vụ & Ràng buộc logic</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: center;">1</td>
-            <td><strong>Home Cart</strong> (Internet gia đình)</td>
-            <td>Đường truyền GIGA/SKY/META</td>
-            <td>Access Point Wifi 6 Mesh</td>
-            <td>Yêu cầu cung cấp địa chỉ lắp đặt chi tiết. Phí lắp đặt mặc định 299k, giảm về 0đ khi trả trước cước 6 hoặc 12 tháng. Thiết bị phát sóng Wifi Mesh là dạng trang bị mượn (đặt cọc cước).</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">2</td>
-            <td><strong>Cam Cart</strong> (Giỏ hàng Camera)</td>
-            <td>Thiết bị Camera (Indoor/Play/IQ)</td>
-            <td>Gói lưu trữ Cloud Camera</td>
-            <td>Số lượng gói Cloud lưu trữ phải luôn bằng số lượng Camera mua. SĐT khách hàng dùng làm tài khoản đăng nhập xem camera trên ứng dụng di động FPT Camera.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">3</td>
-            <td><strong>FPL Cart</strong> (FPT Play Cart)</td>
-            <td>Gói cước Premium/VIP</td>
-            <td>FPT Play Box 650 (Box phụ)</td>
-            <td>Box phụ FPT Play là dạng thiết bị thuê bao. Chu kỳ thanh toán cước Box phụ tự động đồng bộ theo chu kỳ cước của gói chính FPT Play.</td>
+            <td>Thao tác bỏ qua (Bypass) đồng bộ cước</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
-            <td><strong>AP Cart</strong> (Access Point Cart)</td>
-            <td>Thiết bị Router/Access Point Wifi 6</td>
-            <td>Phí thi công kéo dây</td>
-            <td>Khách hàng có thể mua đứt hoặc thuê thiết bị bổ sung. Nếu là thuê, cước thiết bị được tính cộng dồn hàng tháng vào hóa đơn Internet chính.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">5</td>
-            <td><strong>SASA Cart</strong> (Dịch vụ SaaS)</td>
-            <td>Gói bảo mật F-safe Go</td>
-            <td>Không có</td>
-            <td>Sản phẩm phần mềm dạng dịch vụ số. Không tính phí lắp đặt hay vận chuyển. Kích hoạt tự động thông qua tin nhắn SMS chứa mã kích hoạt hoặc link tải app.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">6</td>
-            <td><strong>SKUSA Cart</strong> (Dịch vụ SKU SaaS)</td>
-            <td>Các dịch vụ tiện ích số khác</td>
-            <td>Không có</td>
-            <td>Kích hoạt dựa theo định danh số điện thoại, hỗ trợ hình thức thanh toán tự động gia hạn hàng tháng (Auto-renew) qua thẻ tín dụng hoặc ví điện tử.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">7</td>
-            <td><strong>TV Cart</strong> (Tivi + Box phụ)</td>
-            <td>Gói truyền hình FPT Play VIP</td>
-            <td>Thiết bị FPT Play Box 650</td>
-            <td>Yêu cầu giao nhận thiết bị phần cứng qua bưu điện hoặc kỹ thuật viên đến lắp đặt cấu hình trực tiếp trên Smart TV của khách hàng.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">8</td>
-            <td><strong>ULF Cart</strong> (Ultra Fast Cart)</td>
-            <td>Gói dịch vụ tăng tốc game Ultra Fast</td>
-            <td>Không có</td>
-            <td>Yêu cầu người dùng nhập số điện thoại hoặc mã hợp đồng Internet FPT có sẵn. Dịch vụ chỉ hoạt động và kích hoạt được trên đường truyền cáp quang FPT.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">9</td>
-            <td><strong>Combo Cam</strong> (Combo mạng + Cam)</td>
-            <td>Đường truyền Internet + Camera</td>
-            <td>Gói lưu trữ Cloud Camera</td>
-            <td>Kết hợp phí lắp đặt mạng và phí triển khai camera. Áp dụng chính sách ưu đãi cước kép khi trả trước từ 6 tháng trở lên.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;">10</td>
-            <td><strong>Cam Only</strong> (Camera mua lẻ)</td>
-            <td>Thiết bị Camera mua lẻ</td>
-            <td>Gói lưu trữ Cloud Camera</td>
-            <td>Khách hàng sử dụng đường truyền mạng ngoài (Non-FPT). Có tùy chọn Kỹ thuật đến lắp đặt (phí 150k) hoặc Khách tự lắp đặt (phí 0đ, giao hàng miễn phí qua bưu điện).</td>
+            <td>Cấu hình sản phẩm, chu kỳ & biểu phí</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
         </tr>
     </tbody>
 </table>
 
 <div class="page-break"></div>
 
-<h3>II. Quy tắc Nghiệp vụ trong Giỏ hàng (Shopping Cart Business Rules)</h3>
+<h1>C. ĐẶC TẢ CHI TIẾT 10 LUỒNG GIỎ HÀNG & PHẢN HỒI GIAO DIỆN</h1>
+
+<h2>I. Đặc tả chi tiết cho 10 Luồng Giỏ hàng & Quy trình Tương tác</h2>
+
+<h3>1. Home Cart (Internet gia đình đơn lẻ)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Gói cước Internet cáp quang cá nhân (GIGA tốc độ 150Mbps, SKY tốc độ 1Gbps, META tốc độ 1Gbps, hoặc SpeedX tốc độ cao).</li>
+    <li><strong>Thiết bị trang bị đi kèm (Thuê/Mượn):</strong> Modem Wifi 6 băng tần kép (hoặc Modem Wifi 6 Mesh). Đơn giá hiển thị là 0đ. Nhãn chú thích bắt buộc: <em>"Thiết bị trang bị miễn phí, thuộc sở hữu của FPT Telecom và phải hoàn trả khi chấm dứt hợp đồng."</em></li>
+    <li><strong>Sản phẩm extra bán kèm khả dụng:</strong> Thiết bị Access Point lắp thêm, dịch vụ SaaS lẻ (Ultra Fast, F-Safe Go).</li>
+    <li><strong>Phí hòa mạng/lắp đặt:</strong> Mức tiêu chuẩn 299.000đ. Được giảm 100% nếu trả trước 6 tháng hoặc 12 tháng.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng truy cập trang chủ hoặc trang Internet Home, chọn gói cước (ví dụ: SKY) và nhấn "Đăng ký".</li>
+            <li>Hệ thống tự động chuyển hướng khách hàng tới trang Giỏ hàng, khởi tạo giỏ hàng mới chứa gói cước SKY chu kỳ mặc định là 6 tháng.</li>
+            <li>Giỏ hàng hiển thị các mục: Cước mạng SKY (6 tháng), Modem Wifi 6 trang bị (0đ), Phí lắp đặt (0đ do trả trước 6 tháng).</li>
+            <li>Hệ thống hiển thị phần "Gợi ý mua thêm thiết bị & dịch vụ" ngay phía dưới giỏ hàng để khách hàng lựa chọn mua thêm.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>2. Camera Cart (Thiết bị Camera FPT mua lẻ)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Thiết bị Camera phần cứng mua đứt (Camera IQ3, Camera SE, Camera IQ3S).</li>
+    <li><strong>Sản phẩm extra đi kèm:</strong> Gói lưu trữ Cloud Camera (gói lưu trữ 1 ngày, 3 ngày, 7 ngày, 30 ngày). Chu kỳ thanh toán cước Cloud phải đồng bộ theo gói Cloud (thường là 6 tháng hoặc 12 tháng).</li>
+    <li><strong>Phí lắp đặt/vận chuyển:</strong> Khách hàng tự lắp đặt: phí 0đ (Giao hàng miễn phí qua bưu điện). Kỹ thuật viên FPT lắp đặt tại nhà: Phí dịch vụ 150.000đ/thiết bị.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng tại PDP Camera chọn số lượng thiết bị cần mua (ví dụ: 2 Camera SE) và gói Cloud đi kèm (ví dụ: Gói Cloud 3 ngày - 6 tháng). Bấm "Mua ngay".</li>
+            <li>Hệ thống tạo giỏ hàng chứa: 2 Camera SE (Đơn giá x2), 2 gói Cloud 3 ngày - 6 tháng (Đơn giá cước Cloud x2 x6 tháng).</li>
+            <li>Khách hàng lựa chọn phương thức lắp đặt: Checkbox "Kỹ thuật viên FPT lắp đặt tại nhà". Nếu check, hệ thống tự động thêm dòng phí dịch vụ thi công: 300.000đ (150.000đ x 2 thiết bị).</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>3. FPL Cart (Dịch vụ FPT Play đơn lẻ)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Gói dịch vụ truyền hình FPT Play (Premium 66.000đ/tháng hoặc VIP 120.000đ/tháng).</li>
+    <li><strong>Thiết bị trang bị đi kèm (tùy chọn):</strong> Thiết bị FPT Play Box 650 (Box chạy hệ điều hành Android TV). Khách hàng có thể chọn lắp đặt kèm Box hoặc không kèm Box (chỉ xem trên ứng dụng Smart TV/Mobile).</li>
+    <li><strong>Phí hòa mạng/lắp đặt:</strong> Nếu đăng ký kèm Box phụ: Phí trang bị Box là 390.000đ (đối với trả sau) hoặc 0đ (đối với trả trước từ 6 tháng).</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng chọn gói Premium trên trang FPT Play, bấm "Đăng ký".</li>
+            <li>Hệ thống chuyển đến giỏ hàng. Hiển thị cước gói Premium. Hệ thống hiển thị tùy chọn: "Xem trên Smart TV/App di động (0đ thiết bị)" hoặc "Trang bị thêm FPT Play Box 650 (xem trên tivi thường)".</li>
+            <li>Nếu khách hàng chọn "Trang bị thêm FPT Play Box", hệ thống tự động thêm Box vào giỏ hàng và khóa chu kỳ cước thuê Box (nếu có) theo chu kỳ cước gói Play.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>4. AP Cart (Access Point / Mesh Wifi bán lẻ)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Thiết bị phần cứng Access Point Wifi 6 (như Mesh AC1200 hoặc Mesh AX1800).</li>
+    <li><strong>Ràng buộc hệ thống:</strong> Thiết bị chỉ hoạt động tốt nhất trên đường truyền mạng FPT. Giỏ hàng sẽ yêu cầu khách hàng điền số hợp đồng mạng cũ để nhân viên kỹ thuật đến bàn giao cấu hình.</li>
+    <li><strong>Phí thi công lắp đặt:</strong> Miễn phí vận chuyển và lắp đặt cấu hình tại nhà bởi kỹ thuật viên FPT.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng click chọn Mesh Wifi 6 tại trang Thiết bị, chọn số lượng và bấm "Mua ngay".</li>
+            <li>Hệ thống chuyển đến trang Checkout và bắt buộc nhập Số điện thoại liên hệ. Gọi API kiểm tra lịch sử hợp đồng.</li>
+            <li>Nếu tìm thấy hợp đồng mạng FPT cũ: Cho phép hoàn tất giỏ hàng mua thêm thiết bị. Kỹ thuật viên sẽ mang thiết bị đến lắp đặt cấu hình gán vào hợp đồng hiện hữu.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>5. SaaS Cart (Dịch vụ phần mềm số đơn lẻ - Ultra Fast / F-Safe Go)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Gói dịch vụ số SaaS lẻ như Ultra Fast (40.000đ/tháng) hoặc F-Safe Go (đóng vai trò bảo mật đường truyền).</li>
+    <li><strong>Thiết bị đi kèm:</strong> Không có thiết bị phần cứng. Kích hoạt dịch vụ hoàn toàn tự động qua tài khoản SĐT hoặc số hợp đồng Internet.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng bấm đăng ký gói Ultra Fast lẻ trên trang dịch vụ.</li>
+            <li>Hệ thống chuyển khách hàng tới giỏ hàng chỉ có duy nhất 1 sản phẩm phần mềm SaaS Ultra Fast.</li>
+            <li>Hệ thống bắt buộc khách hàng nhập SĐT và gọi API xác thực tài khoản hợp đồng Internet FPT. Nếu không có hợp đồng Internet FPT, hệ thống đưa ra cảnh báo ngăn chặn checkout dịch vụ lẻ do dịch vụ SaaS này bắt buộc phải hoạt động trên nền đường truyền mạng FPT.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>6. TV Cart (Truyền hình FPT kèm Box phụ cho khách hàng đang dùng mạng FPT)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Gói dịch vụ truyền hình FPT Play bổ sung vào hợp đồng mạng Internet FPT có sẵn.</li>
+    <li><strong>Thiết bị đi kèm:</strong> Thiết bị FPT Play Box 650 phụ (tính phí thuê mượn hoặc mua đứt).</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng truy cập trang truyền hình, chọn đăng ký thêm Box phụ cho tivi thứ 2.</li>
+            <li>Giỏ hàng hiển thị: Gói dịch vụ FPT Play và thiết bị Box phụ kèm cước thuê Box hàng tháng (nếu có).</li>
+            <li>Hệ thống yêu cầu đăng nhập/nhập SĐT hợp đồng Internet có sẵn để kiểm tra và gộp hóa đơn thanh toán hàng tháng vào hợp đồng cũ.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>7. ULF Cart (Đăng ký Ultra Fast trên hợp đồng Internet có sẵn)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Gói tính năng Ultra Fast (tăng tốc độ chơi game, giảm ping).</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng đang sử dụng mạng FPT đăng nhập vào Portal fpt.vn hoặc ứng dụng Hi FPT, chọn mua tính năng Ultra Fast.</li>
+            <li>Hệ thống nhận diện mã hợp đồng mạng hiện tại của khách hàng. Giỏ hàng hiển thị gói cước Ultra Fast với chu kỳ cước mặc định đồng bộ theo chu kỳ thanh toán hiện tại của hợp đồng gốc (ví dụ hợp đồng đang trả trước 6 tháng thì gói Ultra Fast tự động chọn và khóa ở chu kỳ 6 tháng).</li>
+            <li>Sau khi thanh toán thành công, hệ thống kích hoạt tự động tính năng Ultra Fast trên đường truyền của khách hàng trong vòng 5 phút và gửi tin nhắn SMS xác nhận.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>8. Combo Cam (Combo mạng Internet + Camera FPT)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Đường truyền Internet cáp quang (Giga/Sky/Meta) + Thiết bị Camera FPT (IQ3/SE).</li>
+    <li><strong>Sản phẩm extra bắt buộc đi kèm:</strong> Gói lưu trữ Cloud Camera cho từng Camera trong combo.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng chọn gói Combo Mạng + Camera trên trang chủ, chọn số lượng camera (ví dụ: 1 Camera IQ3) và chu kỳ trả trước (ví dụ: 6 tháng). Bấm "Đăng ký".</li>
+            <li>Hệ thống tạo giỏ hàng bao gồm: Gói mạng Internet SKY (trả trước 6 tháng), Thiết bị Modem mạng trang bị (0đ), 1 Thiết bị Camera IQ3 (giá ưu đãi combo), Gói lưu trữ Cloud Camera 1 ngày (trả trước 6 tháng đồng bộ theo gói mạng).</li>
+            <li>Phí thi công lắp đặt combo được tính ưu đãi gộp (giảm phí lắp đặt mạng và camera so với đăng ký lẻ).</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>9. Cam Only (Thiết bị Camera sử dụng đường truyền mạng ngoài - Non-FPT)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Thiết bị Camera IQ3 hoặc Camera SE sử dụng mạng Internet của nhà mạng khác (Viettel, VNPT...).</li>
+    <li><strong>Sản phẩm extra đi kèm:</strong> Gói dịch vụ lưu trữ Cloud Camera (bắt buộc).</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng chọn mua Camera tại trang sản phẩm Camera lẻ, bấm chọn phương án "Sử dụng mạng khác ngoài FPT".</li>
+            <li>Giỏ hàng hiển thị thiết bị Camera mua đứt kèm gói cước Cloud Camera đi kèm.</li>
+            <li>Hệ thống hiển thị tùy chọn: "Tự lắp đặt (Phí thi công 0đ, giao hàng miễn phí)" hoặc "Nhân viên FPT lắp đặt tại nhà (Phí 150.000đ/thiết bị)".</li>
+            <li>Quy trình Checkout yêu cầu điền địa chỉ giao hàng và địa chỉ thi công lắp đặt để nhân viên giao vận chuyển phát thiết bị hoặc kỹ thuật đến hỗ trợ.</li>
+        </ol>
+    </li>
+</ul>
+
+<h3>10. Sasa / Skusa Cart (Gói sản phẩm cước nâng cấp & Thiết bị phụ trợ nâng cao)</h3>
+<ul>
+    <li><strong>Sản phẩm chính:</strong> Các thiết bị phần cứng cao cấp nâng cấp (Modem Wifi 6 thế hệ mới, bộ kích sóng Mesh thế hệ mới) dành cho khách hàng hiện hữu nâng cấp thiết bị hoặc nâng cấp gói cước mạng lên băng thông cao hơn.</li>
+    <li><strong>Quy trình tương tác Step-by-step:</strong>
+        <ol>
+            <li>Khách hàng cũ đăng nhập Portal, truy cập trang đổi thiết bị hoặc nâng cấp băng thông.</li>
+            <li>Hệ thống hiển thị giỏ hàng nâng cấp: gói cước Internet mới (ví dụ nâng cấp từ GIGA lên SKY) hoặc thiết bị nâng cấp mới (ví dụ đổi Modem Wifi 5 sang Modem Wifi 6).</li>
+            <li>Tính toán chênh lệch cước: Hệ thống tự động tính số ngày sử dụng còn lại của gói cước cũ để quy đổi giảm trừ vào tiền thanh toán gói cước mới theo quy tắc khấu trừ.</li>
+        </ol>
+    </li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>II. Quy tắc Nghiệp vụ Chung trong Giỏ hàng (Cart Business Rules)</h2>
+<p>Hệ thống giỏ hàng và checkout phải tuân thủ nghiêm ngặt các quy tắc nghiệp vụ (Business Rules) dưới đây để đảm bảo tính đúng đắn của dữ liệu và doanh thu:</p>
+
 <table class="data-table">
     <thead>
         <tr>
             <th style="width: 120px; text-align: center;">Mã Rule</th>
             <th style="width: 200px;">Tên Quy tắc</th>
-            <th>Nội dung quy tắc chi tiết</th>
+            <th>Nội dung quy tắc chi tiết & Logic xử lý của hệ thống</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;">**CRT-BR-01**</td>
-            <td><strong>Giới hạn 1 gói Internet chính</strong></td>
-            <td>Giỏ hàng chỉ cho phép tồn tại tối đa 01 gói cước Internet chính (GIGA, SKY, META hoặc FPT Speed). Nếu khách hàng thêm gói mạng mới, hệ thống tự động loại bỏ gói mạng cũ ra khỏi giỏ hàng và hiển thị inline notification: <em>"Gói cước mạng trong giỏ hàng đã được thay đổi thành gói [Tên_Gói_Mới]."</em></td>
+            <td style="text-align: center;"><strong>CRT-BR-01</strong></td>
+            <td><strong>Giới hạn 01 gói cước Internet chính</strong></td>
+            <td>Giỏ hàng chỉ cho phép tồn tại tối đa 01 gói cước Internet chính (GIGA, SKY, META hoặc SpeedX). Nếu khách hàng đang có gói cước mạng chính A trong giỏ hàng và thực hiện thêm gói cước mạng chính B:<br>
+            Hệ thống tự động loại bỏ gói cước A và các thiết bị đi kèm của gói A ra khỏi giỏ hàng, thêm gói cước B và thiết bị mặc định của gói B vào giỏ. Hiển thị thông báo inline: <em>"Gói cước mạng trong giỏ hàng đã được thay đổi thành gói [Tên_Gói_Mới]."</em></td>
         </tr>
         <tr>
-            <td style="text-align: center;">**CRT-BR-02**</td>
-            <td><strong>Đồng bộ chu kỳ thanh toán phụ thuộc</strong></td>
-            <td>Các sản phẩm cước phụ trợ (như Cloud Camera, cước thuê Box phụ, cước Ultra Fast) khi mua kèm gói Internet chính sẽ tự động bị khóa chu kỳ thanh toán theo chu kỳ của gói mạng chính:<br>
-            - Internet trả trước 6 tháng: Dịch vụ bổ sung tự động chọn trả trước 6 tháng, ẩn tùy chọn 1 tháng và 12 tháng.<br>
-            - Internet trả trước 12 tháng: Dịch vụ bổ sung tự động chọn trả trước 12 tháng, ẩn tùy chọn khác.<br>
-            - Internet trả sau từng tháng: Dịch vụ bổ sung tự động chuyển về trả sau từng tháng.</td>
+            <td style="text-align: center;"><strong>CRT-BR-02</strong></td>
+            <td><strong>Đồng bộ chu kỳ thanh toán phụ thuộc (Billing Cycle Sync)</strong></td>
+            <td>Các sản phẩm cước dịch vụ phụ trợ/extra (như Cloud Camera, cước thuê Box phụ, cước Ultra Fast) khi được mua kèm cùng gói cước Internet chính sẽ bị bắt buộc khóa chu kỳ thanh toán theo chu kỳ của gói mạng chính:<br>
+            - Nếu gói Internet chọn trả trước 6 tháng: Dịch vụ phụ trợ tự động chọn chu kỳ cước trả trước 6 tháng, ẩn tất cả các tùy chọn chu kỳ khác (1 tháng, 12 tháng) trên UI.<br>
+            - Nếu gói Internet chọn trả trước 12 tháng: Dịch vụ phụ trợ tự động chọn chu kỳ cước trả trước 12 tháng.<br>
+            - Nếu gói Internet trả sau từng tháng: Dịch vụ phụ trợ tự động chuyển về trả sau từng tháng.</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**CRT-BR-03**</td>
-            <td><strong>Logic phân biệt thiết bị Thuê vs Mua</strong></td>
-            <td>Giỏ hàng phải chia làm 2 khu vực hiển thị rõ ràng:<br>
-            - <strong>Thiết bị trang bị (Mượn/Thuê):</strong> Ghi rõ đơn giá thiết bị = 0đ (hoặc tiền phí thuê hàng tháng) kèm nhãn chú thích: <em>"Thiết bị thuộc sở hữu của FPT Telecom, trang bị kèm dịch vụ và phải hoàn trả khi chấm dứt hợp đồng."</em> (Áp dụng cho Modem mạng, Box FPT Play).<br>
-            - <strong>Thiết bị mua đứt:</strong> Hiển thị rõ giá trị phần cứng và nhãn: <em>"Thiết bị thuộc quyền sở hữu của khách hàng sau khi thanh toán."</em> (Áp dụng cho Camera).</td>
+            <td style="text-align: center;"><strong>CRT-BR-03</strong></td>
+            <td><strong>Phân biệt rõ ràng Thiết bị Thuê vs Mua</strong></td>
+            <td>Giỏ hàng phải tách biệt và hiển thị rõ ràng nhãn sở hữu thiết bị phần cứng để tránh tranh chấp pháp lý:<br>
+            - <strong>Thiết bị trang bị (Mượn/Thuê):</strong> Đơn giá thiết bị hiển thị = 0đ (hoặc phí thuê hàng tháng) kèm nhãn chú thích: <em>"Thiết bị trang bị kèm đường truyền (thuộc sở hữu của FPT Telecom, hoàn trả khi chấm dứt hợp đồng)."</em> (Áp dụng cho Modem mạng, Box FPT Play).<br>
+            - <strong>Thiết bị mua đứt:</strong> Hiển thị rõ đơn giá phần cứng và nhãn: <em>"Thiết bị thuộc sở hữu của khách hàng sau khi thanh toán."</em> (Áp dụng cho Camera lẻ).</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**CRT-BR-04**</td>
+            <td style="text-align: center;"><strong>CRT-BR-04</strong></td>
             <td><strong>Ràng buộc áp dụng Voucher khuyến mãi</strong></td>
-            <td>Đơn hàng chỉ được áp dụng tối đa 01 mã voucher giảm giá. Mã voucher có thể giảm giá trực tiếp trên tiền thiết bị phần cứng, tiền cước mạng chính hoặc cước dịch vụ phụ. Nếu khách hàng nhập mã voucher mới, hệ thống hiển thị popup hỏi xác nhận: <em>"Bạn có muốn sử dụng mã ưu đãi mới này thay thế cho mã cũ đã áp dụng không?"</em></td>
+            <td>Đơn hàng chỉ được áp dụng tối đa 01 mã voucher giảm giá tại bước checkout. Hệ thống kiểm tra điều kiện áp dụng voucher theo loại sản phẩm và chu kỳ cước tối thiểu. Nếu khách hàng nhập mã voucher mới thay cho mã cũ đang áp dụng thành công:<br>
+            Hệ thống hiển thị popup hỏi xác nhận: <em>"Bạn có muốn sử dụng mã ưu đãi mới này thay thế cho mã cũ đã áp dụng không?"</em>. Nếu đồng ý, cập nhật mã mới và tính toán lại tiền; nếu từ chối, giữ nguyên mã cũ.</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**CRT-BR-05**</td>
-            <td><strong>Tự động nhận diện hợp đồng qua SĐT</strong></td>
-            <td>Khi khách hàng nhập số điện thoại tại trang Checkout, hệ thống tự động gọi API tra cứu trạng thái mạng trong vòng 200ms:<br>
-            - Nếu SĐT đã có hợp đồng Internet FPT: Hiển thị box thông báo xanh đề xuất gộp đơn hàng thiết bị extra vào hóa đơn hợp đồng có sẵn và trừ trực tiếp 50.000đ phí hòa mạng.<br>
-            - Nếu SĐT mạng ngoài: Đánh dấu đơn hàng là đơn hàng ngoại mạng và áp biểu phí lắp đặt chuẩn của mạng ngoài.</td>
+            <td style="text-align: center;"><strong>CRT-BR-05</strong></td>
+            <td><strong>Tự động nhận diện hợp đồng khách hàng cũ qua SĐT</strong></td>
+            <td>Khi khách hàng nhập số điện thoại tại màn hình điền thông tin Checkout, hệ thống tự động gọi API tra cứu lịch sử hợp đồng trên CRM FPT:<br>
+            - Nếu SĐT đã có hợp đồng Internet FPT đang hoạt động (Active): Hiển thị box thông báo xanh dương chào mừng khách hàng cũ và đề xuất gộp đơn hàng thiết bị extra vào hóa đơn hợp đồng có sẵn, tự động giảm trừ trực tiếp 50.000đ phí hòa mạng thi công thiết bị mới.<br>
+            - Nếu SĐT chưa có hợp đồng: Giữ nguyên quy trình checkout tiêu chuẩn dành cho khách hàng mới.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRT-BR-06</strong></td>
+            <td><strong>Phí hòa mạng/Lắp đặt phân cấp theo Tỉnh/Thành</strong></td>
+            <td>Phí hòa mạng/lắp đặt của đơn hàng được tính toán động dựa theo Địa chỉ lắp đặt lắp đặt thực tế và chu kỳ thanh toán:<br>
+            - Trả sau từng tháng: Phí hòa mạng chuẩn là 299.000đ (đối với Hà Nội & TP.HCM) và 150.000đ - 200.000đ (đối với các tỉnh thành khác theo cấu hình CMS).<br>
+            - Trả trước từ 6 tháng trở lên: Miễn phí 100% phí hòa mạng lắp đặt.</td>
         </tr>
     </tbody>
 </table>
 
 <div class="page-break"></div>
 
-<h3>III. Mô tả Giao diện & Ràng buộc Trường (Screen Fields & Validation)</h3>
+<h2>III. Mô tả Giao diện & Ràng buộc Trường (Screen Fields & Validation)</h2>
 
-<h4>1. Màn hình Chi tiết Giỏ hàng (Cart Page)</h4>
+<h3>1. Màn hình Chi tiết Giỏ hàng (Cart Page)</h3>
 <table class="data-table">
     <thead>
         <tr>
@@ -461,7 +552,7 @@
             <td><strong>Tên sản phẩm</strong></td>
             <td>Text Display</td>
             <td style="text-align: center;">-</td>
-            <td>Hiển thị tên gói cước chính và các sản phẩm phụ trợ đi kèm (Ví dụ: Camera SE S2, Gói Cloud 3 ngày - 6 tháng).</td>
+            <td>Hiển thị tên gói cước chính và các sản phẩm phụ trợ đi kèm (Ví dụ: Camera SE S2, Gói Cloud 3 ngày - 6 tháng). Màu sắc text xanh dương đen `#1f4e78`.</td>
         </tr>
         <tr>
             <td><strong>Chu kỳ cước</strong></td>
@@ -485,107 +576,105 @@
             <td><strong>Tạm tính</strong></td>
             <td>Text Display</td>
             <td style="text-align: center;">-</td>
-            <td>Read-only. Hiển thị tổng tiền các sản phẩm có trong giỏ hàng (đã bao gồm VAT). Cập nhật realtime khi thay đổi số lượng/chu kỳ.</td>
+            <td>Tính toán real-time: Tổng tiền của tất cả sản phẩm trong giỏ hàng (chưa bao gồm phí lắp đặt và voucher). Định dạng: VNĐ, phân tách hàng nghìn (ví dụ: 1.200.000đ).</td>
         </tr>
     </tbody>
 </table>
 
-<h4>2. Màn hình Điền Thông tin & Checkout (Checkout Page)</h4>
+<h3>2. Màn hình Điền Thông tin & Checkout (Checkout Page)</h3>
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 100px;">Khối</th>
-            <th style="width: 150px;">Tên trường</th>
-            <th style="width: 120px;">Kiểu dữ liệu</th>
-            <th style="width: 200px;">Ràng buộc / Validation</th>
-            <th>Hành vi hệ thống & Thao tác người dùng</th>
+            <th style="width: 180px;">Tên trường/Phần tử</th>
+            <th style="width: 150px;">Kiểu hiển thị</th>
+            <th style="width: 80px; text-align: center;">Bắt buộc</th>
+            <th>Hành vi / Ràng buộc / Logic hệ thống</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan="2"><strong>Thông tin cá nhân</strong></td>
-            <td>Họ và tên</td>
-            <td>Textbox / String</td>
-            <td>- Bắt buộc nhập.<br>- Không chứa ký tự đặc biệt/số.</td>
-            <td>Khách hàng nhập họ tên để đăng ký hợp đồng viễn thông/hóa đơn bán lẻ.</td>
-        </tr>
-        <tr>
-            <td>Số điện thoại</td>
+            <td><strong>Số điện thoại</strong></td>
             <td>Textbox / Number</td>
-            <td>- Bắt buộc nhập.<br>- Đúng 10 chữ số di động VN.</td>
-            <td>Nhập SĐT. Gọi API ngầm đối soát hợp đồng [CRT-BR-05]. SĐT này cũng dùng để nhận OTP ký biên bản điện tử ở bước cuối.</td>
+            <td style="text-align: center;">Y</td>
+            <td>Chỉ cho phép số [0-9], độ dài 10 chữ số. Định dạng đầu số di động Việt Nam. Khi chuyển focus (`onBlur`), kích hoạt API check khách hàng cũ [CRT-BR-05].</td>
         </tr>
         <tr>
-            <td rowspan="4"><strong>Địa chỉ lắp đặt / Giao hàng</strong></td>
-            <td>Tỉnh/Thành phố</td>
-            <td>Dropdown List</td>
-            <td>- Bắt buộc chọn.</td>
-            <td>Chọn Tỉnh -> Load Quận/Huyện tương ứng.</td>
+            <td><strong>Họ và tên</strong></td>
+            <td>Textbox</td>
+            <td style="text-align: center;">Y</td>
+            <td>Cho phép nhập chữ tiếng Việt có dấu. Tối đa 50 ký tự. Hệ thống tự động điền nếu nhận diện được khách hàng cũ qua SĐT.</td>
         </tr>
         <tr>
-            <td>Quận/Huyện</td>
-            <td>Dropdown List</td>
-            <td>- Bắt buộc chọn.</td>
-            <td>Chọn Huyện -> Load Phường/Xã tương ứng và kiểm tra hạ tầng phủ sóng/triển khai kỹ thuật của FPT Telecom.</td>
+            <td><strong>Địa chỉ thi công</strong></td>
+            <td>Cascading Dropdowns</td>
+            <td style="text-align: center;">Y</td>
+            <td>Gồm 4 dropdown liên kết cấp bậc: Tỉnh/Thành -> Quận/Huyện -> Phường/Xã -> Nhập số nhà, tên đường. Dùng làm căn cứ tính phí lắp đặt [CRT-BR-06].</td>
         </tr>
         <tr>
-            <td>Loại nhà</td>
+            <td><strong>Tôi muốn xuất hóa đơn VAT</strong></td>
+            <td>Checkbox</td>
+            <td style="text-align: center;">N</td>
+            <td>Mặc định unchecked. Khi check, mở rộng hiển thị các trường: Tên công ty, Địa chỉ công ty, Mã số thuế, Email nhận hóa đơn (tất cả các trường này trở thành bắt buộc).</td>
+        </tr>
+        <tr>
+            <td><strong>Phương thức thanh toán</strong></td>
             <td>Radio Group</td>
-            <td>- Bắt buộc chọn.<br>- Option: Nhà riêng / Chung cư.</td>
-            <td>- Chọn Nhà riêng: Hiện trường Số nhà.<br>- Chọn Chung cư: Hiện trường Tên tòa nhà/Block và Số căn hộ/Tầng.</td>
+            <td style="text-align: center;">Y</td>
+            <td>Cho phép lựa chọn: 1. Thanh toán trực tuyến (Thẻ ATM nội địa, Thẻ quốc tế Visa/Master, Ví điện tử MoMo/VNPAY) hoặc 2. Thanh toán tại nhà khi lắp đặt (COD).</td>
         </tr>
         <tr>
-            <td>Số nhà, tên đường</td>
-            <td>Textbox / String</td>
-            <td>- Bắt buộc nhập (với Nhà riêng).</td>
-            <td>Nhập chi tiết địa chỉ giao hàng hoặc lắp đặt để kỹ thuật tìm nhà.</td>
-        </tr>
-        <tr>
-            <td><strong>Phương thức TT</strong></td>
-            <td>Phương thức TT</td>
-            <td>Radio List</td>
-            <td>- Bắt buộc chọn 1.</td>
-            <td>Chọn phương thức: VietQR (Thanh toán trực tuyến), Ví MoMo, COD (Thanh toán tại nhà sau khi lắp đặt xong), Thẻ quốc tế.</td>
+            <td><strong>Nhập mã khuyến mãi</strong></td>
+            <td>Textbox + Button</td>
+            <td style="text-align: center;">N</td>
+            <td>Cho phép nhập mã Voucher. Gọi API kiểm tra điều kiện khả dụng và trừ tiền hiển thị chi tiết [CRT-BR-04].</td>
         </tr>
     </tbody>
 </table>
 
 <div class="page-break"></div>
 
-<h3>IV. Các trường hợp lỗi & Thông báo hiển thị (Error Messages)</h3>
+<h2>IV. Các trường hợp lỗi & Thông báo hiển thị (Error Messages)</h2>
+<p>Hệ thống hiển thị thông báo lỗi rõ ràng trực quan trên giao diện để hướng dẫn khách hàng xử lý tình huống:</p>
+
 <table class="data-table">
     <thead>
         <tr>
             <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 200px;">Tình huống ngoại lệ</th>
+            <th style="width: 200px;">Tình huống lỗi</th>
             <th style="width: 300px;">Thông báo hiển thị chính xác</th>
-            <th>Hành vi UI & Xử lý hệ thống</th>
+            <th>Hành vi giao diện & Xử lý của hệ thống</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="text-align: center;">1</td>
-            <td>Giỏ hàng chứa sản phẩm extra phụ thuộc nhưng người dùng xóa sản phẩm chính</td>
-            <td><span style="color: red;">"Sản phẩm bổ sung [Tên_Sản_Phẩm_Extra] chỉ hoạt động kèm gói cước chính. Nếu bạn xóa gói cước chính, sản phẩm này cũng sẽ bị xóa khỏi giỏ hàng. Bạn có đồng ý không?"</span></td>
-            <td>Hiển thị popup cảnh báo với 2 nút: "Đồng ý xóa tất cả" hoặc "Hủy". Nếu đồng ý, làm trống giỏ hàng. Nếu Hủy, giữ nguyên giỏ hàng.</td>
+            <td>Bỏ trống trường bắt buộc khi bấm Thanh toán</td>
+            <td><em>"Vui lòng nhập đầy đủ các trường thông tin bắt buộc!"</em></td>
+            <td>Hệ thống focus tự động vào trường trống đầu tiên trên form, viền đỏ trường đó và hiển thị text báo lỗi đỏ inline ngay bên dưới trường.</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
-            <td>Chọn địa chỉ lắp đặt thuộc khu vực chưa có hạ tầng cáp quang của FPT</td>
-            <td><span style="color: red;">"Rất tiếc! Khu vực của bạn hiện chưa có hạ tầng cáp quang FPT. Vui lòng đăng ký gói Camera sử dụng mạng ngoài hoặc liên hệ hotline 1900 6600 để được khảo sát!"</span></td>
-            <td>Hiển thị Alert Popup. Disable nút thanh toán, tự động gợi ý người dùng chuyển sang luồng đăng ký sản phẩm Camera Only hoặc dịch vụ SaaS dùng mạng ngoài.</td>
+            <td>Số điện thoại nhập sai định dạng</td>
+            <td><em>"Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng số di động Việt Nam (10 chữ số)!"</em></td>
+            <td>Viền đỏ trường Số điện thoại, disable nút "Bấm thanh toán" cho tới khi SĐT được nhập hợp lệ.</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
-            <td>Mã voucher áp dụng không thỏa mãn điều kiện đơn hàng (Ví dụ: voucher mạng áp dụng cho đơn camera lẻ)</td>
-            <td><span style="color: red;">"Mã khuyến mãi không áp dụng cho các sản phẩm hiện có trong giỏ hàng. Vui lòng kiểm tra lại điều kiện của chương trình ưu đãi!"</span></td>
-            <td>Hiển thị dòng text lỗi màu đỏ ngay dưới ô nhập voucher. Reset giá trị giảm giá về 0đ và giữ nguyên tổng tiền tạm tính cũ.</td>
+            <td>Nhập mã voucher không hợp lệ/hết hạn</td>
+            <td><em>"Mã khuyến mãi không tồn tại hoặc đã hết hạn sử dụng. Vui lòng kiểm tra lại!"</em></td>
+            <td>Hiển thị dòng chữ đỏ ngay dưới ô nhập voucher. Ô nhập voucher viền đỏ. Xóa ưu đãi giảm giá cũ nếu có.</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
-            <td>Xác thực OTP ký hợp đồng/biên bản điện tử thất bại quá 3 lần</td>
-            <td><span style="color: red;">"Mã OTP nhập sai quá 3 lần. Phiên giao dịch xác thực đã bị khóa. Vui lòng bấm gửi lại mã OTP mới hoặc liên hệ hotline hỗ trợ!"</span></td>
-            <td>Khóa ô nhập OTP trong vòng 60 giây. Nút "Xác nhận ký số" bị disable. Hiển thị đếm ngược thời gian gửi lại mã OTP mới.</td>
+            <td>Thanh toán thất bại từ Ngân hàng</td>
+            <td><em>"Giao dịch không thành công. Thẻ của bạn bị từ chối hoặc số dư không đủ. Vui lòng thử lại hoặc chọn phương thức thanh toán khác!"</em></td>
+            <td>Giữ nguyên thông tin giỏ hàng và form checkout của người dùng. Hiển thị popup cảnh báo lỗi màu đỏ ở giữa màn hình kèm nút [Thử lại] và [Chọn PTTT khác].</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td>Lỗi kết nối cổng thanh toán</td>
+            <td><em>"Hệ thống thanh toán đang gặp sự cố kết nối. Vui lòng không thực hiện lại giao dịch và liên hệ 1900 6600 để được hỗ trợ!"</em></td>
+            <td>Disable nút thanh toán để tránh trùng đơn hàng. Ghi nhận log lỗi hệ thống kèm mã giao dịch để đối soát.</td>
         </tr>
     </tbody>
 </table>
@@ -596,31 +685,30 @@
 
 <h3>1. Hiệu năng hệ thống (Performance)</h3>
 <ul>
-    <li><strong>Thời gian phản hồi tính toán giỏ hàng:</strong> Thời gian tính toán lại tổng tiền tạm tính, phí lắp đặt, tiền thuế VAT và số tiền giảm giá của voucher khi khách hàng thay đổi giỏ hàng phải phản hồi dưới <strong>200ms</strong> để đảm bảo trải nghiệm mượt mà.</li>
-    <li><strong>Tốc độ tra cứu thông tin hợp đồng (API SĐT):</strong> API kiểm tra SĐT khách hàng cũ để đưa ra đề xuất liên kết hợp đồng tại Checkout phải có thời gian phản hồi dưới <strong>250ms</strong> trong điều kiện tải bình thường.</li>
-    <li><strong>Khả năng đáp ứng tải trọng:</strong> Hệ thống giỏ hàng và thanh toán đáp ứng tối thiểu <strong>2.000 giao dịch đồng thời (Concurrent Sessions)</strong> mà không xảy ra tình trạng mất giỏ hàng của khách hàng hoặc lỗi nghẽn cổng kết nối thanh toán.</li>
+    <li><strong>Thời gian phản hồi API:</strong> Các API thêm/sửa/xóa giỏ hàng, áp mã voucher, check hợp đồng qua SĐT phải phản hồi trong thời gian tối đa 300ms trong điều kiện mạng bình thường.</li>
+    <li><strong>Tính toán real-time:</strong> Việc thay đổi số lượng, chu kỳ cước phải cập nhật ngay lập tức các dòng phí lắp đặt, tiền giảm giá và tổng tiền thanh toán trên UI trong vòng tối đa 0.1 giây.</li>
+    <li><strong>Khả năng chịu tải (Concurrency):</strong> Hệ thống giỏ hàng đáp ứng tối thiểu 2.000 phiên checkout đồng thời mà không bị trễ trang hoặc nghẽn giao dịch dữ liệu.</li>
 </ul>
 
 <h3>2. Bảo mật & An toàn thông tin (Security)</h3>
 <ul>
-    <li><strong>Mã hóa đầu cuối:</strong> Toàn bộ luồng dữ liệu cá nhân của khách hàng, địa chỉ và đặc biệt là các gói tin giao dịch thanh toán phải được truyền tải qua giao thức bảo mật HTTPS (sử dụng TLS 1.3).</li>
-    <li><strong>Bảo vệ dữ liệu nhạy cảm (Data Masking):</strong> Số điện thoại và số CMND/CCCD của khách hàng hiển thị trên trang hoàn tất đơn hàng (Thank You Page) và các email xác nhận tự động phải được che giấu một phần (Ví dụ: `093***6003`).</li>
-    <li><strong>Xác thực ký số hợp đồng:</strong> Quy trình ký biên bản điện tử/hợp đồng lắp đặt bắt buộc phải xác thực thông qua mã OTP OTP-SMS gửi trực tiếp tới số điện thoại đăng ký chính chủ để đảm bảo tính pháp lý và ngăn chặn hành vi đăng ký khống.</li>
+    <li><strong>Mã hóa đường truyền:</strong> Mọi thông tin cá nhân và dữ liệu đơn hàng truyền tải giữa Client và Server trong luồng thanh toán bắt buộc phải mã hóa qua HTTPS với giao thức bảo mật TLS 1.3.</li>
+    <li><strong>Che giấu dữ liệu nhạy cảm (Masking):</strong> Số điện thoại, email của khách hàng hiển thị trên màn hình "Cảm ơn/Hoàn tất đơn hàng" phải được che giấu một phần (ví dụ: `098***1234`, `nguy***@gmail.com`).</li>
+    <li><strong>An toàn thẻ thanh toán:</strong> Không được lưu trữ thông tin thẻ tín dụng của khách hàng trực tiếp tại Database của FPT Telecom. Quá trình xử lý thẻ phải được thực hiện qua cổng thanh toán đạt tiêu chuẩn quốc tế PCI-DSS.</li>
 </ul>
 
-<h3>3. Trải nghiệm người dùng (UX)</h3>
+<h3>3. Trải nghiệm người dùng & Giao diện (UI/UX)</h3>
 <ul>
-    <li><strong>Thiết kế Responsive 100%:</strong> Giao diện giỏ hàng và form checkout phải tương thích hoàn hảo trên các thiết bị Mobile Web, Tablet và Desktop. Trên Mobile, giỏ hàng tóm tắt được thu gọn thành thanh ghim ở cạnh dưới màn hình (Sticky Bottom Bar) để khách hàng có thể click xem nhanh bất cứ lúc nào.</li>
-    <li><strong>Duy trì trạng thái giỏ hàng (Cart Persistence):</strong> Giỏ hàng chưa thanh toán của khách hàng đã đăng nhập phải được lưu trữ trên Database trong vòng 7 ngày để hỗ trợ đội ngũ CSKH gọi lại tư vấn (Telesales) và gửi email nhắc nhở giỏ hàng bị bỏ quên (Abandoned Cart Recovery). Đối với khách hàng vãng lai chưa đăng nhập, duy trì giỏ hàng bằng LocalStorage/Cookies trong 48 giờ.</li>
+    <li><strong>Responsive Design:</strong> Giao diện trang Giỏ hàng và Checkout phải tương thích và hiển thị tối ưu trên cả thiết bị di động (Mobile Web) và máy tính để bàn (Desktop Web). Kích thước chữ tối thiểu 12px trên di động, khoảng cách tap target tối thiểu 44x44px.</li>
+    <li><strong>Session Retention (Duy trì phiên):</strong> Trong suốt quá trình hệ thống đang xử lý giao dịch thanh toán trực tuyến (Pending), hệ thống phải hiển thị màn hình khóa (Overlay Loading) kèm thông báo: <em>"Giao dịch đang được xử lý, quý khách vui lòng không tải lại trang hoặc bấm nút Quay lại!"</em> để ngăn chặn việc trùng lặp đơn hàng hoặc đứt đoạn giao dịch.</li>
+    <li><strong>Tải bộ cài đặt PC (PC Only):</strong> Nút tải file cài đặt phần mềm trên trang cảm ơn chỉ hiển thị file dạng `.exe` (Windows) hoặc `.dmg` (macOS) nếu trình duyệt nhận diện User-Agent là PC. Nếu là thiết bị di động, hiển thị mã QR Code dẫn tới chợ ứng dụng App Store hoặc Google Play tương ứng.</li>
 </ul>
-
-<div class="page-break"></div>
 
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
-    <li><strong>Link tài liệu đặc tả thiết kế UI/UX trên Figma:</strong> <a href="#">https://figma.com/file/fpt-vn-shopping-cart-v1</a></li>
-    <li><strong>Tài liệu đặc tả API Catalog & Giỏ hàng:</strong> <a href="#">https://api.fpt.vn/docs/cart-service-spec</a></li>
-    <li><strong>Chính sách bảo mật thông tin và xử lý dữ liệu cá nhân:</strong> Ban hành bởi Ban Pháp chế FPT Telecom năm 2025.</li>
+    <li><strong>Link Figma Mockup UI/UX Giỏ hàng & Checkout:</strong> <a href="#">https://figma.com/file/fpt-cart-checkout-mockup</a></li>
+    <li><strong>Tài liệu đặc tả API tích hợp cổng thanh toán VNPAY/Payoo:</strong> <a href="#">https://docs.vnpay.vn/api-integration</a></li>
+    <li><strong>Danh mục chuẩn hóa Tỉnh/Thành và Phường/Xã Việt Nam:</strong> <a href="#">https://danhmuchanhchinh.gso.gov.vn</a></li>
 </ul>
 
 </body>
