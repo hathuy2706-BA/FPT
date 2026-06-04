@@ -1,0 +1,932 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN - ĐẶC TẢ USER STORIES CHI TIẾT MODULE GIỎ HÀNG</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 11pt; }
+    .header-table { width: 100%; border: 1px solid #000; border-collapse: collapse; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #000; padding: 10px; font-weight: bold; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 13pt; font-weight: bold; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 11.5pt; font-weight: bold; margin-top: 16px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000; font-size: 11pt; font-weight: bold; margin-top: 12px; margin-bottom: 6px; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 180px; }
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; }
+    .page-break { page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f2f2f2; border: 1px solid #ccc; padding: 10px; white-space: pre-wrap; font-size: 9.5pt; margin-bottom: 15px; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+    .note-box strong { color: #66512c; }
+    .status-badge { display: inline-block; padding: 2px 6px; font-weight: bold; font-size: 9pt; border-radius: 3px; text-align: center; }
+    .status-active { background-color: #d4edda; color: #155724; }
+    .status-inactive { background-color: #f8d7da; color: #721c24; }
+</style>
+</head>
+<body>
+
+<table class="header-table">
+    <tr>
+        <td rowspan="3" style="width: 150px; text-align: center; vertical-align: middle;">
+            <span style="font-size: 16pt; color: #1f4e78;">FPT TELECOM</span>
+        </td>
+        <td>DỰ ÁN: CẢI TIẾN TRẢI NGHIỆM KHÁCH HÀNG TRÊN FPT.VN</td>
+        <td>MÃ HIỆU: FPT-US-CART-01</td>
+    </tr>
+    <tr>
+        <td>PHÂN HỆ: GIỎ HÀNG & CHECKOUT (SHOPPING CART & CHECKOUT)</td>
+        <td>PHIÊN BẢN: V1.0</td>
+    </tr>
+    <tr>
+        <td>TÀI LIỆU ĐẶC TẢ USER STORIES CHI TIẾT (US-SPEC)</td>
+        <td>NGÀY LẬP: 04/06/2026</td>
+    </tr>
+</table>
+
+<br>
+<div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+    <span style="font-family: 'Arial', sans-serif; font-size: 22pt; font-weight: bold; color: #1f4e78;">TÀI LIỆU ĐẶC TẢ USER STORIES CHI TIẾT</span><br>
+    <span style="font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; color: #2e75b6; text-transform: uppercase;">Phân hệ Giỏ hàng & Quy trình Checkout (Shopping Cart Module)</span>
+</div>
+
+<div class="page-break"></div>
+
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 100px;">Ngày tiếp nhận</th>
+            <th style="width: 60px; text-align: center;">Version</th>
+            <th style="width: 150px;">Người chịu trách nhiệm</th>
+            <th style="width: 70px; text-align: center;">Hành động</th>
+            <th style="width: 250px;">Mô tả chung thay đổi</th>
+            <th>Trước thay đổi (As-Is)</th>
+            <th>Sau thay đổi (To-Be)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>04/06/2026</td>
+            <td style="text-align: center;">V1.0</td>
+            <td>Lê Minh Hoàng (BA Senior)</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu đặc tả 4 User Story cốt lõi của Giỏ hàng</td>
+            <td>Chưa có tài liệu đặc tả US cho Giỏ hàng</td>
+            <td>Đặc tả chi tiết luồng nghiệp vụ, AC Gherkin, Giao diện và API tích hợp</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>PIC & TIMELINE (NHÂN SỰ & MỐC THỜI GIAN)</h2>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Link Ticket (Jira)</th>
+            <th>Deadline Golive</th>
+            <th>Ngày thực tế Golive</th>
+            <th>Business User (BU)</th>
+            <th>Business Analyst (BA)</th>
+            <th>Front-end Developer</th>
+            <th>Back-end Developer</th>
+            <th>QC Lead/Tester</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="#">FPT-JIRA-CART-2026</a></td>
+            <td>30/07/2026</td>
+            <td>-</td>
+            <td>Nguyễn Thị Thu Trang (P.MKT)</td>
+            <td>Lê Minh Hoàng (BA Senior)</td>
+            <td>Trần Văn Nam</td>
+            <td>Phạm Minh Tuấn</td>
+            <td>Đỗ Thị Mai Anh</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>DANH MỤC TỪ VIẾT TẮT</h2>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 100px; text-align: center;">Từ viết tắt</th>
+            <th style="width: 250px;">Ý nghĩa đầy đủ (Tiếng Anh / Tiếng Việt)</th>
+            <th>Mô tả chi tiết / Bối cảnh sử dụng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;"><strong>US</strong></td>
+            <td>User Story</td>
+            <td>Câu chuyện người dùng, đơn vị yêu cầu nhỏ nhất trong Agile.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>AC</strong></td>
+            <td>Acceptance Criteria</td>
+            <td>Tiêu chí nghiệm thu, dùng làm cơ sở viết kịch bản kiểm thử (Test Case).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR</strong></td>
+            <td>Business Rule</td>
+            <td>Quy tắc nghiệp vụ bắt buộc hệ thống phải tuân thủ.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>SaaS</strong></td>
+            <td>Software as a Service</td>
+            <td>Phần mềm dịch vụ (ví dụ: Ultra Fast, F-safe Go).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>PDP</strong></td>
+            <td>Product Detail Page</td>
+            <td>Trang chi tiết sản phẩm.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>CRM</strong></td>
+            <td>Customer Relationship Management</td>
+            <td>Hệ thống quản lý quan hệ khách hàng của FPT Telecom (Inside/CRM).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>ERP</strong></td>
+            <td>Enterprise Resource Planning</td>
+            <td>Hệ thống quản trị tài chính, kho vận (SAP/ERP).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>PTTT</strong></td>
+            <td>Phương thức thanh toán</td>
+            <td>Cổng thanh toán trực tuyến hoặc thanh toán tại nhà.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>USER STORY DETAILED SPECIFICATIONS</h1>
+
+<hr>
+
+<h2>US-CRT-01: THÊM, CẬP NHẬT VÀ XÓA SẢN PHẨM TRONG GIỎ HÀNG ĐA SẢN PHẨM (MULTI-PRODUCT CART)</h2>
+<p><strong>Mục tiêu:</strong> Đặc tả các hành vi quản lý các sản phẩm trong giỏ hàng chung, hỗ trợ đồng thời các sản phẩm cước dịch vụ viễn thông, thiết bị phần cứng mua đứt/thuê mượn và phần mềm SaaS lẻ.</p>
+
+<h3>1. Mô tả chung về yêu cầu (General Information)</h3>
+<div class="note-box">
+    <strong>As a (Với vai trò là):</strong> Khách hàng trực tuyến trên website fpt.vn<br>
+    <strong>I want to (Tôi muốn thực hiện):</strong> Thêm mới, thay đổi chu kỳ cước hoặc tăng giảm số lượng thiết bị phần cứng, xóa các sản phẩm trực tiếp ngay trong màn hình Giỏ hàng.<br>
+    <strong>So that (Để đạt được):</strong> Tôi có thể dễ dàng quản lý đơn hàng đa sản phẩm một cách trực quan, biết rõ loại thiết bị nào được mượn miễn phí và thiết bị nào mua đứt trước khi thực hiện thanh toán.
+</div>
+
+<h4>Phân tích W-H Questions</h4>
+<table class="data-table">
+    <tr>
+        <td style="width: 150px; font-weight: bold; background-color: #f2f2f2;">WHAT</td>
+        <td>Cho phép người dùng quản lý giỏ hàng gồm gói cước chính (Internet/FPT Play) kết hợp các thiết bị extra bán kèm và SaaS đơn lẻ.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHY</td>
+        <td>Giúp người dùng mua sắm tập trung, tăng tỷ lệ Cross-selling cho các dịch vụ phụ trợ (Ultra Fast, F-safe Go, Camera phụ) trên cùng một giỏ hàng.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHEN</td>
+        <td>Khách hàng truy cập PDP hoặc chọn mua dịch vụ trên trang fpt.vn, dẫn đến trang Giỏ hàng.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHO</td>
+        <td>Khách hàng vãng lai hoặc Khách hàng FPT hiện hữu đang đăng nhập.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHERE</td>
+        <td>Giao diện Web Portal fpt.vn (Desktop / Mobile).</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">HOW</td>
+        <td>Duy trì trạng thái giỏ hàng qua Cart Token lưu tại Cookie/Session. Đồng bộ dữ liệu real-time thông qua API Cart Service.</td>
+    </tr>
+</table>
+
+<h3>2. Quy trình & Phân quyền (Process & Permissions)</h3>
+
+<h4>2.1. Ma trận Phân quyền (Permission Matrix)</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th>Hành động / Chức năng chi tiết</th>
+            <th style="text-align: center;">Khách vãng lai</th>
+            <th style="text-align: center;">Khách đăng nhập</th>
+            <th style="text-align: center;">Nhân viên CSKH</th>
+            <th style="text-align: center;">Admin (CMS)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Thêm sản phẩm từ PDP vào giỏ</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Thay đổi số lượng thiết bị phần cứng</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Thay đổi chu kỳ cước sản phẩm chính</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Xóa sản phẩm ra khỏi giỏ hàng</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td>Cấu hình danh mục và chính sách giỏ</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center; font-weight: bold; color: green;">X</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>2.2. Quy trình Nghiệp vụ (Business Workflows)</h4>
+<p><strong>A. User Flow - Quy trình quản lý giỏ hàng:</strong></p>
+<div class="code-block">
+[Khách hàng bấm Add to Cart]
+            |
+            v
+[Kiểm tra loại sản phẩm: Mạng chính hay Phụ trợ?]
+   |
+   +---> [Mạng chính]: Kiểm tra giỏ hàng đã có mạng chính chưa?
+   |                         |
+   |                         +--- (Có rồi) ---> [Tự động thay thế gói cũ bằng gói mới]
+   |                         +--- (Chưa có) --> [Thêm trực tiếp vào giỏ]
+   |
+   +---> [Phụ trợ/SaaS/Camera]: Kiểm tra ràng buộc phụ thuộc đường truyền?
+                             |
+                             +--- (Thỏa mãn) -> [Thêm trực tiếp vào giỏ]
+                             +--- (Không) ----> [Yêu cầu đăng ký mạng chính / Đăng nhập tra cứu hợp đồng]
+            |
+            v
+[Cập nhật UI Giỏ hàng: Phân tách rõ thiết bị Thuê mượn (đơn giá 0đ) vs Thiết bị Mua đứt]
+            |
+            v
+[Tính toán lại Tổng tiền tạm tính real-time qua Cart Service API]
+</div>
+
+<p><strong>B. Sequence Diagram - Tương tác hệ thống khi thêm/sửa giỏ hàng:</strong></p>
+<div class="code-block">
+Actor Khách hàng            Frontend (FPT Portal)       Backend (Cart Service)       CRM / CMS Database
+      |                               |                           |                           |
+      |---- 1. Chọn gói cước chính -->|                           |                           |
+      |     & click "Đăng ký"         |                           |                           |
+      |------------------------------>|---- 2. POST /api/cart ---->|                           |
+      |                               |     (productCode, cycle)  |---- 3. Lấy cấu hình và -->|
+      |                               |                           |     áp dụng rule giá      |
+      |                               |                           |<--- 4. Trả về thông tin --|
+      |                               |<--- 5. Trả về Cart data --|                           |
+      |                               |     (Chi tiết sản phẩm,   |                           |
+      |                               |      tổng tiền tạm tính)  |                           |
+      |<--- 6. Render giao diện ------|                           |                           |
+      |     Cart Page phân cấp        |                           |                           |
+      |                               |                           |                           |
+      |---- 7. Thay đổi chu kỳ cước --|                           |                           |
+      |     (Từ 6T sang 12T)          |                           |                           |
+      |------------------------------>|---- 8. PUT /api/cart/item >|                           |
+      |                               |     (itemId, quantity)    |---- 9. Kiểm tra rule cước |
+      |                               |                           |     và áp dụng khuyến mãi |
+      |                               |<--- 10. Trả về Cart mới --|                           |
+      |<--- 11. Cập nhật real-time UI |                           |                           |
+</div>
+
+<h3>3. Tiêu chí nghiệm thu (Acceptance Criteria - AC)</h3>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Kịch bản</th>
+            <th>Mô tả chi tiết Acceptance Criteria (Gherkin Syntax)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Kịch bản 1: Happy Path</strong><br>Thêm thành công gói Internet và thiết bị phụ trợ vào giỏ hàng</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang ở trang chi tiết PDP của gói cước <strong>"SKY"</strong>.<br>
+                <strong>When</strong> Khách hàng nhấn nút <strong>"Đăng ký ngay"</strong>.<br>
+                <strong>Then</strong> Hệ thống tự động chuyển hướng khách hàng đến trang Giỏ hàng (`fpt.vn/gio-hang`), hiển thị gói cước SKY kèm Modem Wifi 6 được đánh nhãn <em>"Thiết bị trang bị kèm đường truyền (sở hữu FPT Telecom, hoàn trả khi thanh lý hợp đồng)"</em> với giá thuê cước 0đ.<br>
+                Đồng thời hiển thị danh sách các sản phẩm bán kèm (Extra) như Access Point Wifi 6 và Ultra Fast để người dùng dễ dàng chọn thêm.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 2: Exception Path</strong><br>Thêm gói mạng mới khi đã có gói mạng khác trong giỏ hàng</td>
+            <td>
+                <strong>Given</strong> Giỏ hàng hiện tại đang có sẵn gói cước <strong>"GIGA"</strong>.<br>
+                <strong>When</strong> Khách hàng quay lại PDP và bấm thêm gói cước <strong>"META"</strong> vào giỏ.<br>
+                <strong>Then</strong> Hệ thống tự động loại bỏ gói cước "GIGA" cũ và thêm gói cước "META" vào giỏ hàng.<br>
+                Đồng thời hiển thị thanh inline notification màu xanh lá ở phía trên giao diện giỏ hàng: <em>"Gói cước mạng trong giỏ hàng của bạn đã được chuyển thành gói META."</em> và thực hiện tính toán lại tổng số tiền tạm tính theo biểu phí gói mới.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 3: Validation Path</strong><br>Tăng/Giảm số lượng thiết bị vượt giới hạn</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang ở trang Giỏ hàng có sản phẩm thiết bị mua đứt <strong>"Camera SE S2"</strong> với số lượng đang hiển thị là <strong>1</strong>.<br>
+                <strong>When</strong> Khách hàng nhấn liên tiếp vào nút "+" để tăng số lượng lên <strong>11</strong>.<br>
+                <strong>Then</strong> Hệ thống không cho phép tăng lên 11 (nút "+" bị disable và chuyển sang màu xám mờ).<br>
+                Đồng thời hiển thị thông báo lỗi nhỏ inline ngay dưới ô nhập số lượng: <em>"Số lượng thiết bị đặt mua tối đa trong một đơn hàng là 10 sản phẩm. Vui lòng liên hệ hotline 1900 6600 nếu có nhu cầu số lượng lớn."</em>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>4. Đặc tả Giao diện & Ràng buộc Trường (Screen Specifications)</h3>
+
+<h4>4.1. Bảng mô tả chi tiết các trường thông tin (Field Specification)</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th>Tên trường (UI Label)</th>
+            <th>Mã phần tử (Element ID)</th>
+            <th>Kiểu dữ liệu</th>
+            <th>Độ rộng / Định dạng</th>
+            <th>Ràng buộc nghiệp vụ / Validations</th>
+            <th>Phản hồi UI / Mô tả thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Chu kỳ cước gói chính</td>
+            <td>`opt_core_cycle`</td>
+            <td>Radio Group</td>
+            <td>3 tùy chọn: 1T, 6T, 12T</td>
+            <td>Bắt buộc chọn 1 giá trị. Mặc định là trả trước 6 tháng (6T) theo chính sách bán hàng tối ưu.</td>
+            <td>Khi click chọn chu kỳ khác, hệ thống tự động gọi API cập nhật giỏ hàng và thay đổi phí lắp đặt tương ứng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Số lượng thiết bị</td>
+            <td>`txt_device_qty`</td>
+            <td>Number Input</td>
+            <td>Integer (Min = 1, Max = 10)</td>
+            <td>Chỉ cho phép nhập số nguyên từ 1 đến 10. Mặc định là 1.</td>
+            <td>Tăng/giảm bằng nút +/-. Nếu người dùng nhập tay giá trị ngoài khoảng [1-10] hoặc ký tự đặc biệt, tự động reset về giá trị hợp lệ gần nhất.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Nhãn thiết bị thuê mượn</td>
+            <td>`lbl_equipped_device`</td>
+            <td>Text Display</td>
+            <td>Chuỗi ký tự</td>
+            <td>Hiển thị tĩnh dưới tên thiết bị Modem/Box phụ. Đơn giá luôn hiển thị 0đ hoặc Miễn phí.</td>
+            <td>Màu sắc text xám nhạt (`#666`), font chữ nghiêng, kích thước nhỏ 10pt nhằm phân biệt với thiết bị bán đứt.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>4.2. Các kịch bản ngoại lệ & Thông báo lỗi (Error Messages)</h4>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th>Tình huống ngoại lệ</th>
+            <th>Nội dung thông báo hiển thị chính xác</th>
+            <th>Hành vi giao diện & Xử lý hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Xóa hết sản phẩm ra khỏi giỏ hàng</td>
+            <td><em>"Giỏ hàng của bạn đang trống. Vui lòng quay lại trang chủ để lựa chọn các sản phẩm và dịch vụ của FPT Telecom."</em></td>
+            <td>Giao diện Giỏ hàng ẩn toàn bộ bảng kê và phần checkout. Hiển thị hình ảnh minh họa giỏ hàng trống kèm nút <strong>"Quay lại trang chủ"</strong> hướng khách hàng về `fpt.vn`.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Mất kết nối Internet khi cập nhật giỏ</td>
+            <td><em>"Kết nối mạng không ổn định. Không thể cập nhật giỏ hàng. Vui lòng kiểm tra lại đường truyền!"</em></td>
+            <td>Hiển thị thanh banner cảnh báo màu cam ở đầu trang. Giữ nguyên số lượng/chu kỳ cũ trên giao diện, không cho phép bấm nút "Tiến hành checkout".</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>5. Đặc tả API & Tích hợp (API Specifications)</h3>
+<p><strong>Endpoint:</strong> `POST /api/v1/cart/add` (Thêm sản phẩm vào giỏ hàng)</p>
+<p><strong>Request Payload (Mẫu JSON):</strong></p>
+<div class="code-block">
+{
+  "cartToken": "cart_uuid_99882233",
+  "productCode": "SKYSING12",
+  "quantity": 1,
+  "billingCycle": "12T"
+}
+</div>
+<p><strong>Response Body (Mẫu JSON thành công):</strong></p>
+<div class="code-block">
+{
+  "statusCode": "200",
+  "message": "Sản phẩm đã được thêm vào giỏ hàng thành công.",
+  "data": {
+    "cartToken": "cart_uuid_99882233",
+    "totalAmount": 2640000,
+    "discountAmount": 220000,
+    "payableAmount": 2420000,
+    "items": [
+      {
+        "itemId": "item_01",
+        "productCode": "SKYSING12",
+        "productName": "Gói cước Internet cáp quang SKY",
+        "productType": "CORE_INTERNET",
+        "quantity": 1,
+        "billingCycle": "12T",
+        "unitPrice": 220000,
+        "isEquipped": true,
+        "notes": "Trang bị Modem Wifi 6"
+      }
+    ]
+  }
+}
+</div>
+
+<div class="page-break"></div>
+
+<h2>US-CRT-02: ĐỘNG CƠ ĐỒNG BỘ CHU KỲ CƯỚC TỰ ĐỘNG (BILLING CYCLE SYNC ENGINE)</h2>
+<p><strong>Mục tiêu:</strong> Đặc tả cơ chế Billing Cycle Sync Engine tự động đồng bộ hóa chu kỳ thanh toán trả trước của các dịch vụ extra, SaaS bán kèm (như Cloud Camera, Ultra Fast, Box phụ) theo chu kỳ trả trước của gói cước Internet chính.</p>
+
+<h3>1. Mô tả chung về yêu cầu (General Information)</h3>
+<div class="note-box">
+    <strong>As a (Với vai trò là):</strong> Business Analyst phụ trách Billing của hệ thống FPT Portal<br>
+    <strong>I want to (Tôi muốn thực hiện):</strong> Hệ thống tự động thay đổi và khóa chu kỳ cước của các sản phẩm extra đi kèm trùng khớp với chu kỳ thanh toán của gói Internet chính trong giỏ hàng.<br>
+    <strong>So that (Để đạt được):</strong> Khách hàng chỉ cần thanh toán một lần duy nhất cho toàn bộ dịch vụ trong cùng một chu kỳ cước, đồng thời hạn chế tối đa việc phát sinh hóa đơn lẻ tẻ lệch kỳ gây phiền hà cho khách hàng và khó khăn cho kế toán.
+</div>
+
+<h4>Phân tích W-H Questions</h4>
+<table class="data-table">
+    <tr>
+        <td style="width: 150px; font-weight: bold; background-color: #f2f2f2;">WHAT</td>
+        <td>Cơ chế đồng bộ hóa bắt buộc chu kỳ thanh toán của sản phẩm phụ (Extra) theo sản phẩm chính (Core).</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHY</td>
+        <td>Đồng bộ hóa kỳ đóng tiền cước viễn thông, giảm tỷ lệ hủy dịch vụ extra do quên đóng tiền lẻ tẻ hàng tháng, tối ưu dòng tiền trả trước cho doanh nghiệp.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHEN</td>
+        <td>Kích hoạt ngay khi khách hàng thay đổi chu kỳ cước của gói Internet chính trên Cart Page, hoặc khi khách hàng chọn mua thêm Extra.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHO</td>
+        <td>Hệ thống Backend (Billing Sync Engine) tự động xử lý ngầm và hiển thị kết quả lên Frontend.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHERE</td>
+        <td>Thực thi trên Cart Service API và hiển thị kết quả trên Giỏ hàng.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">HOW</td>
+        <td>Khi gói chính có chu kỳ = X (với X thuộc {1T, 6T, 12T}), hệ thống khóa trường chu kỳ cước của toàn bộ Extra = X. Ẩn tất cả các control lựa chọn chu kỳ khác của Extra.</td>
+    </tr>
+</table>
+
+<h3>2. Quy trình & Phân quyền (Process & Permissions)</h3>
+
+<h4>2.1. Ma trận Phân quyền (Permission Matrix)</h4>
+<p>Cơ chế đồng bộ chu kỳ cước là một logic tự động của hệ thống (System Rule), không có sự phân cấp can thiệp của người dùng cuối. Do đó, ma trận này tập trung vào quyền cấu hình luật đồng bộ tại CMS:</p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Xem luật đồng bộ trên UI</th>
+            <th>Cấu hình luật đồng bộ (CMS)</th>
+            <th>Bypass đồng bộ chu kỳ (Đơn hàng đặc biệt)</th>
+            <th>Ghi log lỗi đồng bộ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Khách hàng</strong></td>
+            <td style="font-weight: bold; color: green; text-align: center;">X (Bị động)</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td><strong>Điện thoại viên/Sales</strong></td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td><strong>Admin (Kế toán/BA)</strong></td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td><strong>Super Admin (IT/Dev)</strong></td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+            <td style="font-weight: bold; color: green; text-align: center;">X</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>2.2. Quy trình Nghiệp vụ (Business Workflows)</h4>
+<p><strong>Sơ đồ tuần tự xử lý Billing Cycle Sync Engine:</strong></p>
+<div class="code-block">
+Khách hàng                   Frontend (FPT Portal)       Cart Sync Engine             Inside CRM / Billing API
+    |                                 |                           |                           |
+    |-- 1. Đổi chu kỳ mạng chính ---->|                           |                           |
+    |   từ 6T sang 12T                |                           |                           |
+    |-------------------------------->|-- 2. PUT /api/cart/item ->|                           |
+    |                                 |     (mainItem, cycle=12T) |                           |
+    |                                 |                           |-- 3. Quét tất cả Extra ---|
+    |                                 |                           |     trong giỏ hàng        |
+    |                                 |                           |-- 4. Áp đặt chu kỳ cước --|
+    |                                 |                           |     tương ứng = 12T       |
+    |                                 |                           |-- 5. Gọi API Billing để --|
+    |                                 |                           |     lấy đơn giá 12T của   |
+    |                                 |                           |     từng Extra sản phẩm   |
+    |                                 |                           |<--- 6. Trả về bảng cước --|
+    |                                 |                           |     mới cho Extra         |
+    |                                 |                           |-- 7. Tính lại tổng tiền --|
+    |                                 |<--- 8. Trả về Cart data --|                           |
+    |                                 |     chu kỳ đã được khóa   |                           |
+    |<--- 9. Render giao diện mới ----|                           |                           |
+    |     Khóa chu kỳ Extra = 12T     |                           |                           |
+</div>
+
+<h3>3. Tiêu chí nghiệm thu (Acceptance Criteria - AC)</h3>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Kịch bản</th>
+            <th>Mô tả chi tiết Acceptance Criteria (Gherkin Syntax)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Kịch bản 1: Happy Path</strong><br>Đồng bộ chu kỳ cước thành công khi thay đổi gói cước chính</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang có giỏ hàng gồm gói cước chính Internet <strong>"SKY" (chu kỳ 6T)</strong> và gói dịch vụ bán kèm <strong>"Ultra Fast" (chu kỳ 6T)</strong>.<br>
+                <strong>When</strong> Khách hàng thay đổi chu kỳ thanh toán của gói SKY từ <strong>6T sang 12T</strong>.<br>
+                <strong>Then</strong> Hệ thống tự động chuyển chu kỳ thanh toán của "Ultra Fast" sang <strong>12T</strong>.<br>
+                Đồng thời cập nhật đơn giá của Ultra Fast theo gói 12T (áp dụng chính sách chiết khấu 12T của Ultra Fast nếu có) và hiển thị khóa tùy chọn chu kỳ cước của Ultra Fast trên giao diện.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 2: Exception Path</strong><br>Khách hàng chọn mua Extra lẻ mà không có gói mạng chính trong giỏ</td>
+            <td>
+                <strong>Given</strong> Giỏ hàng hiện tại đang trống không có gói cước Internet nào.<br>
+                <strong>When</strong> Khách hàng vào trang dịch vụ "Ultra Fast" lẻ và nhấn nút <strong>"Mua ngay"</strong>.<br>
+                <strong>Then</strong> Hệ thống hiển thị popup yêu cầu nhập Số điện thoại định danh để kiểm tra hợp lệ:<br>
+                - Nếu SĐT đã có đường truyền mạng FPT: Cho phép mua trực tiếp Ultra Fast với chu kỳ tùy chọn tự do (1T, 6T, 12T) gán theo hợp đồng hiện tại.<br>
+                - Nếu SĐT mạng ngoài hoặc chưa có hợp đồng: Hiển thị thông báo <em>"Dịch vụ Ultra Fast chỉ hoạt động trên đường truyền cáp quang FPT. Vui lòng đăng ký gói cước Internet trước khi mua dịch vụ."</em> kèm nút liên kết đến trang chọn gói cước Internet chính.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>4. Đặc tả Giao diện & Ràng buộc Trường (Screen Specifications)</h3>
+<p>Trên trang Giỏ hàng, tại khu vực hiển thị sản phẩm phụ trợ (Extra/SaaS):</p>
+<ul>
+    <li>Các nút chọn chu kỳ cước (Radio button) 1T, 6T, 12T của sản phẩm phụ trợ sẽ bị ẩn đi hoặc chuyển sang trạng thái Disable (Read-only).</li>
+    <li>Bên cạnh chu kỳ cước của sản phẩm phụ trợ hiển thị icon <strong>"Khóa đồng bộ" (Sync Lock)</strong> màu xanh lá kèm tooltip giải thích khi hover: <em>"Chu kỳ thanh toán của dịch vụ này được đồng bộ trùng khớp với chu kỳ thanh toán của gói Internet chính nhằm đảm bảo quyền lợi đóng cước một lần."</em></li>
+</ul>
+
+<h3>5. Đặc tả API & Tích hợp (API Specifications)</h3>
+<p>Khi Backend xử lý API cập nhật chu kỳ cước của gói chính, hệ thống sẽ thực hiện cập nhật các item liên đới. API response trả về cấu trúc item cập nhật.</p>
+<p><strong>Request Payload:</strong> `PUT /api/v1/cart/update-cycle`</p>
+<div class="code-block">
+{
+  "cartToken": "cart_uuid_99882233",
+  "mainItemId": "item_01",
+  "newCycle": "12T"
+}
+</div>
+<p><strong>Response Payload:</strong></p>
+<div class="code-block">
+{
+  "statusCode": "200",
+  "message": "Đã cập nhật chu kỳ cước và đồng bộ hóa giỏ hàng thành công.",
+  "data": {
+    "totalAmount": 3120000,
+    "payableAmount": 2880000,
+    "items": [
+      {
+        "itemId": "item_01",
+        "productCode": "SKYSING12",
+        "productType": "CORE_INTERNET",
+        "billingCycle": "12T",
+        "price": 2640000
+      },
+      {
+        "itemId": "item_02",
+        "productCode": "ULTRAFAST12",
+        "productType": "EXTRA_SAAS",
+        "billingCycle": "12T",
+        "price": 480000,
+        "isSynced": true
+      }
+    ]
+  }
+}
+</div>
+
+<div class="page-break"></div>
+
+<h2>US-CRT-03: ÁP DỤNG VOUCHER KHUYẾN MÃI (PROMO CODE PROMOTION ENGINE)</h2>
+<p><strong>Mục tiêu:</strong> Đặc tả logic áp dụng mã giảm giá (Voucher) vào giỏ hàng, giải quyết xung đột khi khách hàng nhập nhiều mã khác nhau và cách thức trừ tiền phân bổ theo loại ưu đãi.</p>
+
+<h3>1. Mô tả chung về yêu cầu (General Information)</h3>
+<div class="note-box">
+    <strong>As a (Với vai trò là):</strong> Khách hàng trực tuyến mua sản phẩm trên fpt.vn<br>
+    <strong>I want to (Tôi muốn thực hiện):</strong> Nhập mã voucher giảm giá tại trang Checkout để nhận ưu đãi giảm tiền trực tiếp trên đơn hàng.<br>
+    <strong>So that (Để đạt được):</strong> Tôi tiết kiệm được chi phí mua sắm và biết rõ số tiền được giảm trừ phân bổ chi tiết cho từng sản phẩm nào trong giỏ hàng.
+</div>
+
+<h4>Phân tích W-H Questions</h4>
+<table class="data-table">
+    <tr>
+        <td style="width: 150px; font-weight: bold; background-color: #f2f2f2;">WHAT</td>
+        <td>Chức năng nhập mã voucher, gọi API kiểm tra tính hợp lệ và áp mã ưu đãi giảm trừ tiền vào tổng hóa đơn checkout.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHY</td>
+        <td>Thu hút khách hàng, triển khai các chương trình marketing thúc đẩy doanh thu, tối ưu hóa tỷ lệ chuyển đổi đơn hàng.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHEN</td>
+        <td>Tại trang Checkout, trước khi khách hàng thực hiện nhấn nút "Thanh toán".</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHO</td>
+        <td>Tất cả khách hàng có mã ưu đãi hợp lệ do FPT Telecom phát hành.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHERE</td>
+        <td>Khung nhập Voucher tại màn hình thông tin thanh toán (Checkout Page).</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">HOW</td>
+        <td>Gọi API kiểm tra điều kiện áp dụng voucher (Loại sản phẩm áp dụng, chu kỳ tối thiểu, hạn sử dụng, khu vực địa lý).</td>
+    </tr>
+</table>
+
+<h3>2. Quy trình & Phân quyền (Process & Permissions)</h3>
+<p>Khách hàng và Điện thoại viên (Sales) được quyền nhập và áp dụng mã voucher. Hệ thống tự động phân loại voucher và kiểm tra tính khả dụng của mã dựa trên thông tin giỏ hàng hiện thời.</p>
+
+<h3>3. Tiêu chí nghiệm thu (Acceptance Criteria - AC)</h3>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Kịch bản</th>
+            <th>Mô tả chi tiết Acceptance Criteria (Gherkin Syntax)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Kịch bản 1: Happy Path</strong><br>Áp dụng mã Voucher hợp lệ thành công</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang ở màn hình Checkout có giỏ hàng giá trị tạm tính là <strong>2.640.000đ</strong>.<br>
+                <strong>When</strong> Khách hàng nhập mã <strong>"FPTNET50"</strong> (Voucher giảm 50.000đ cho gói cước Internet) vào ô nhập mã khuyến mãi và bấm "Áp dụng".<br>
+                <strong>Then</strong> Hệ thống kiểm tra mã hợp lệ, hiển thị dòng trạng thái màu xanh lá: <em>"Áp dụng mã khuyến mãi FPTNET50 thành công!"</em>.<br>
+                Đồng thời cập nhật tiền giảm giá là <strong>-50.000đ</strong> và tổng số tiền phải thanh toán giảm xuống còn <strong>2.590.000đ</strong>.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 2: Exception Path</strong><br>Nhập mã Voucher đã hết hạn sử dụng hoặc sai điều kiện áp dụng</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang checkout giỏ hàng chỉ có sản phẩm thiết bị Camera lẻ (không có gói cước Internet).<br>
+                <strong>When</strong> Khách hàng nhập mã <strong>"FPTNET50"</strong> (Mã chỉ áp dụng cho đơn đăng ký gói Internet) và bấm "Áp dụng".<br>
+                <strong>Then</strong> Hệ thống không áp dụng ưu đãi, giữ nguyên tổng tiền.<br>
+                Đồng thời hiển thị viền đỏ tại ô nhập mã khuyến mãi kèm thông báo lỗi: <em>"Mã khuyến mãi này chỉ áp dụng cho đơn hàng đăng ký gói cước Internet FPT. Vui lòng kiểm tra lại điều kiện!"</em>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 3: Validation Path</strong><br>Nhập mã mới thay thế cho mã cũ đang áp dụng thành công</td>
+            <td>
+                <strong>Given</strong> Giỏ hàng đang được áp dụng mã voucher thành công là <strong>"FPTNET50"</strong>.<br>
+                <strong>When</strong> Khách hàng nhập mã voucher mới là <strong>"GIFT100"</strong> và bấm "Áp dụng".<br>
+                <strong>Then</strong> Hệ thống hiển thị popup cảnh báo hỏi ý kiến khách hàng: <em>"Giỏ hàng chỉ cho phép áp dụng tối đa 01 mã ưu đãi. Bạn có muốn sử dụng mã GIFT100 thay thế cho mã FPTNET50 đang dùng không?"</em> với hai nút xác nhận: <strong>[Đồng ý]</strong> và <strong>[Hủy bỏ]</strong>.<br>
+                - Nếu chọn [Đồng ý]: Gỡ bỏ mã cũ, áp dụng mã mới và tính toán lại tiền.<br>
+                - Nếu chọn [Hủy bỏ]: Tắt popup, giữ nguyên trạng thái áp dụng mã cũ.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>4. Đặc tả Giao diện & Ràng buộc Trường (Screen Specifications)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th>Tên trường (UI Label)</th>
+            <th>Element ID</th>
+            <th>Kiểu dữ liệu</th>
+            <th>Độ rộng / Định dạng</th>
+            <th>Ràng buộc nghiệp vụ / Validations</th>
+            <th>Phản hồi UI / Mô tả thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Ô nhập mã khuyến mãi</td>
+            <td>`txt_promo_code`</td>
+            <td>Textbox</td>
+            <td>Tối đa 20 ký tự (Chữ và Số)</td>
+            <td>Không bắt buộc. Tự động chuyển ký tự nhập thành CHỮ IN HOA. Không cho phép nhập dấu cách và ký tự đặc biệt.</td>
+            <td>Người dùng nhập mã và nhấn nút "Áp dụng" kế bên để thực thi.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Nút "Áp dụng"</td>
+            <td>`btn_apply_promo`</td>
+            <td>Button</td>
+            <td>Cố định</td>
+            <td>Chỉ active khi trường `txt_promo_code` có ít nhất 3 ký tự. Mặc định ở trạng thái disable nếu để trống.</td>
+            <td>Click gọi API kiểm tra mã. Trong lúc gọi API, hiển thị spinner loading nhỏ trên nút và disable tạm thời để tránh click đúp.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>5. Đặc tả API & Tích hợp (API Specifications)</h3>
+<p><strong>Endpoint:</strong> `POST /api/v1/cart/apply-promo` (Áp dụng voucher)</p>
+<p><strong>Request Payload:</strong></p>
+<div class="code-block">
+{
+  "cartToken": "cart_uuid_99882233",
+  "promoCode": "FPTNET50",
+  "totalAmount": 2640000
+}
+</div>
+<p><strong>Response Payload:</strong></p>
+<div class="code-block">
+{
+  "statusCode": "200",
+  "message": "Áp dụng mã ưu đãi thành công.",
+  "data": {
+    "promoCode": "FPTNET50",
+    "discountType": "CASH",
+    "discountValue": 50000,
+    "appliedItems": [
+      {
+        "itemId": "item_01",
+        "productCode": "SKYSING12",
+        "discountAllocated": 50000
+      }
+    ],
+    "newTotalAmount": 2640000,
+    "newPayableAmount": 2590000
+  }
+}
+</div>
+
+<div class="page-break"></div>
+
+<h2>US-CRT-04: TỰ ĐỘNG TRA CỨU HỢP ĐỒNG KHÁCH HÀNG CŨ QUA SỐ ĐIỆN THOẠI (CONTRACT LOOKUP ENGINE)</h2>
+<p><strong>Mục tiêu:</strong> Đặc tả tính năng tự động kiểm tra xem Số điện thoại khách hàng nhập đã từng sử dụng dịch vụ của FPT chưa, từ đó đưa ra gợi ý nâng cấp hoặc miễn phí phí hòa mạng lắp đặt đường truyền mới.</p>
+
+<h3>1. Mô tả chung về yêu cầu (General Information)</h3>
+<div class="note-box">
+    <strong>As a (Với vai trò là):</strong> Khách hàng cũ của FPT Telecom đang đăng ký lắp đặt thêm đường truyền mới trên fpt.vn<br>
+    <strong>I want to (Tôi muốn thực hiện):</strong> Nhập Số điện thoại cá nhân tại trang Checkout để hệ thống tự động kiểm tra lịch sử hợp đồng của tôi.<br>
+    <strong>So that (Để đạt được):</strong> Tôi được nhận mức ưu đãi khách hàng thân thiết (ví dụ: giảm 50.000đ phí hòa mạng, miễn phí đặt cọc thiết bị) mà không cần phải thực hiện các thủ tục xác minh thủ công phức tạp.
+</div>
+
+<h4>Phân tích W-H Questions</h4>
+<table class="data-table">
+    <tr>
+        <td style="width: 150px; font-weight: bold; background-color: #f2f2f2;">WHAT</td>
+        <td>Hệ thống gọi API kiểm tra trạng thái hợp đồng trong cơ sở dữ liệu CRM FPT dựa theo số điện thoại khách hàng nhập tại bước điền thông tin liên hệ.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHY</td>
+        <td>Nhận diện khách hàng cũ để đưa ra chính sách chăm sóc/khuyến mãi phù hợp, kích thích khách hàng trung thành mua thêm dịch vụ, đơn giản hóa trải nghiệm điền đơn.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHEN</td>
+        <td>Tại trang Checkout, ngay khi khách hàng nhập xong số điện thoại và chuyển focus khỏi trường (Event `onBlur`), hoặc bấm xác nhận thông tin liên hệ.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHO</td>
+        <td>Khách hàng cũ của FPT (đang có hợp đồng Active/Suspended) hoặc Khách hàng hoàn toàn mới.</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">WHERE</td>
+        <td>Trang nhập thông tin lắp đặt & liên hệ (Checkout Page).</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold; background-color: #f2f2f2;">HOW</td>
+        <td>Frontend gửi SĐT lên API Cart Service. Cart Service gọi API của CRM để truy vấn danh sách hợp đồng. Thời gian xử lý yêu cầu phản hồi tối đa 300ms.</td>
+    </tr>
+</table>
+
+<h3>2. Quy trình & Phân quyền (Process & Permissions)</h3>
+<p>Logic tra cứu hợp đồng chạy ngầm hoàn toàn tự động ở phía Backend để bảo mật thông tin và đảm bảo tốc độ phản hồi tối đa cho giao diện người dùng.</p>
+
+<h3>3. Tiêu chí nghiệm thu (Acceptance Criteria - AC)</h3>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 150px;">Kịch bản</th>
+            <th>Mô tả chi tiết Acceptance Criteria (Gherkin Syntax)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Kịch bản 1: Happy Path</strong><br>Nhận diện khách hàng cũ đang hoạt động và đề xuất ưu đãi</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang ở trang Checkout và điền thông tin lắp đặt.<br>
+                <strong>When</strong> Khách hàng nhập Số điện thoại <strong>"0912345678"</strong> (đã có hợp đồng Internet FPT đang active) và chuyển focus khỏi ô nhập.<br>
+                <strong>Then</strong> Hệ thống hiển thị một box thông báo nhỏ màu xanh dương nổi bật: <em>"Chào mừng khách hàng cũ! Hệ thống nhận diện SĐT 0912345678 đang sử dụng hợp đồng Internet FPT. Bạn được tặng ưu đãi giảm 50.000đ phí hòa mạng cho đường truyền đăng ký thêm."</em>.<br>
+                Đồng thời tự động điền các thông tin cơ bản (Họ tên, Email) đã được lưu trữ trong CRM lên giao diện để người dùng không cần gõ lại, và thực hiện giảm trừ 50.000đ vào mục Phí hòa mạng/Lắp đặt của đơn hàng.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 2: Alternative Path</strong><br>Nhập số điện thoại là khách hàng mới hoàn toàn</td>
+            <td>
+                <strong>Given</strong> Khách hàng đang ở trang Checkout.<br>
+                <strong>When</strong> Khách hàng nhập số điện thoại mới chưa từng đăng ký dịch vụ của FPT là <strong>"0987654321"</strong>.<br>
+                <strong>Then</strong> Hệ thống không hiển thị box thông báo ưu đãi khách hàng cũ.<br>
+                Các ô nhập liệu Họ tên, Email giữ trạng thái trống để khách hàng tự điền, biểu phí lắp đặt giữ nguyên mức tiêu chuẩn.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Kịch bản 3: Exception Path</strong><br>Hệ thống CRM bị lỗi kết nối không thể tra cứu thông tin hợp đồng</td>
+            <td>
+                <strong>Given</strong> Hệ thống CRM nội bộ của FPT Telecom đang bị lỗi kết nối hoặc bảo trì định kỳ.<br>
+                <strong>When</strong> Khách hàng nhập SĐT tại màn hình Checkout và thực hiện chuyển focus.<br>
+                <strong>Then</strong> Hệ thống Backend tự động bỏ qua (Bypass) bước tra cứu hợp đồng này trong vòng 500ms (Timeout) để tránh làm nghẽn luồng checkout.<br>
+                Giao diện không hiển thị lỗi kết nối cho khách hàng, giữ nguyên quy trình checkout tiêu chuẩn dành cho khách hàng mới để đảm bảo đơn hàng được hoàn tất bình thường.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>4. Đặc tả Giao diện & Ràng buộc Trường (Screen Specifications)</h3>
+<ul>
+    <li>Trường Số điện thoại (`txt_checkout_phone`) bắt buộc có độ dài chuẩn 10 chữ số và định dạng nhà mạng Việt Nam.</li>
+    <li>Box thông báo khách hàng cũ (`div_loyalty_alert`) hiển thị ở dạng Card nhỏ, bo góc, background màu xanh nhạt `#e8f4fd`, border màu xanh `#2196f3`. Trong card hiển thị thông tin lời chào mừng kèm tóm tắt ưu đãi được áp dụng.</li>
+</ul>
+
+<h3>5. Đặc tả API & Tích hợp (API Specifications)</h3>
+<p><strong>Endpoint:</strong> `GET /api/v1/customers/lookup-contracts` (Tra cứu hợp đồng qua SĐT)</p>
+<p><strong>Request Parameters:</strong></p>
+<ul>
+    <li>`phoneNumber` = "0912345678" (String, Bắt buộc)</li>
+</ul>
+<p><strong>Response Payload (Mẫu JSON khách hàng cũ hợp lệ):</strong></p>
+<div class="code-block">
+{
+  "statusCode": "200",
+  "message": "Đã tìm thấy hợp đồng hiện hữu của khách hàng.",
+  "data": {
+    "isExistingCustomer": true,
+    "fullName": "NGUYỄN VĂN A",
+    "email": "nguyenvana@gmail.com",
+    "loyaltyTier": "GOLD",
+    "contracts": [
+      {
+        "contractNumber": "SG1234567",
+        "status": "ACTIVE",
+        "serviceType": "INTERNET_FTTH",
+        "installationAddress": "123 Nguyễn Thị Minh Khai, Phường 6, Quận 3, TP.HCM"
+      }
+    ],
+    "eligibleBenefits": {
+      "waiveConnectionFee": true,
+      "connectionFeeDiscount": 50000,
+      "waiveDeposit": true
+    }
+  }
+}
+</div>
+
+</body>
+</html>
