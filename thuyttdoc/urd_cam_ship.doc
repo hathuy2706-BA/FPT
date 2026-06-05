@@ -6,64 +6,56 @@
     /* Định dạng chung */
     body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
     
-    /* Thiết kế Trang Bìa */
+    /* Thiết kế Trang Bìa chuẩn Template URD */
     .cover-container {
         border: 4px double #1f4e78;
         padding: 50px 40px;
         margin: 10px;
         min-height: 800px;
+        position: relative;
     }
-    .cover-header {
-        width: 100%;
-        margin-bottom: 80px;
+    .cover-logo-box {
+        text-align: left;
+        margin-bottom: 60px;
     }
     .cover-logo {
-        width: 120px;
+        width: 130px;
         height: auto;
     }
-    .cover-org {
+    .cover-brand {
         font-family: 'Arial', sans-serif;
-        font-size: 12pt;
+        font-size: 18pt;
         color: #1f4e78;
         font-weight: bold;
-        text-transform: uppercase;
-        text-align: right;
-        vertical-align: middle;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
     }
     .cover-title-box {
         text-align: center;
-        margin-top: 100px;
+        margin-top: 80px;
         margin-bottom: 120px;
     }
-    .cover-doc-type {
-        font-family: 'Arial', sans-serif;
-        font-size: 14pt;
-        color: #5b9bd5;
-        font-weight: bold;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-    }
-    .cover-title {
+    .cover-title-main {
         font-family: 'Arial', sans-serif;
         color: #1f4e78;
-        font-size: 22pt;
+        font-size: 24pt;
         font-weight: bold;
         text-transform: uppercase;
-        line-height: 1.3;
-        margin: 10px 0;
+        line-height: 1.4;
+        margin-bottom: 20px;
     }
-    .cover-subtitle {
+    .cover-title-sub {
         font-family: 'Arial', sans-serif;
         color: #e37222; /* Màu cam FPT */
         font-size: 14pt;
         font-weight: bold;
         text-transform: uppercase;
-        margin-top: 15px;
+        margin-top: 10px;
+        letter-spacing: 0.5px;
     }
-    .cover-footer {
+    .cover-meta-box {
+        margin-top: 120px;
         width: 100%;
-        margin-top: 150px;
         border-top: 2px solid #1f4e78;
         padding-top: 20px;
     }
@@ -74,14 +66,14 @@
     }
     .cover-meta-table td {
         border: none;
-        padding: 5px 0;
+        padding: 6px 0;
         font-size: 11pt;
         color: #333333;
     }
     .cover-meta-label {
         font-weight: bold;
         color: #1f4e78;
-        width: 150px;
+        width: 120px;
     }
     
     /* Đầu mục Văn bản */
@@ -99,14 +91,25 @@
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
     
-    /* Mục lục & Định dạng */
-    table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-top: 15px; }
-    table.toc-table td { border: none; padding: 4px 0; vertical-align: bottom; }
-    .toc-dots { border-bottom: 1px dotted #999999; }
+    /* Thiết kế Mục lục Classic */
+    .toc-title {
+        font-family: 'Arial', sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        color: #1f4e78;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; }
+    table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
+    .toc-dots { border-bottom: 1px dotted #555555; }
     
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11pt; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; }
     .toc-l2 { padding-left: 20px; font-size: 11pt; color: #000000; }
     .toc-l3 { padding-left: 40px; font-size: 10.5pt; font-style: italic; color: #555555; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 40px; font-weight: bold; }
     
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
@@ -121,44 +124,33 @@
 <!-- TRANG BÌA (COVER PAGE) -->
 <!-- ========================================== -->
 <div class="cover-container">
-    <table class="cover-header" style="width: 100%; border: none;">
-        <tr style="border: none;">
-            <td style="border: none; text-align: left;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" class="cover-logo"/>
-            </td>
-            <td class="cover-org" style="border: none; text-align: right;">
-                CÔNG TY CỔ PHẦN VIỄN THÔNG FPT<br/>
-                <span style="font-size: 9.5pt; font-weight: normal; color: #555555;">BAN CÔNG NGHỆ THÔNG TIN & NGHIỆP VỤ</span>
-            </td>
-        </tr>
-    </table>
+    <div class="cover-logo-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/FPT_logo.svg" alt="FPT Logo" class="cover-logo"/>
+    </div>
+    
+    <div class="cover-brand">FPT.VN</div>
 
     <div class="cover-title-box">
-        <div class="cover-doc-type">Tài Liệu Yêu Cầu Người Dùng</div>
-        <div class="cover-title">Hệ Thống E-Commerce FPT.VN</div>
-        <div class="cover-title" style="font-size: 18pt; color: #2e75b6; margin-top: 5px;">Đặc Tả Quy Trình Checkout & Giao Hàng Camera</div>
-        <div class="cover-subtitle">Luồng Camera Only & Combo Camera</div>
+        <div class="cover-title-main">URD – Người dùng requirements document</div>
+        <div class="cover-title-sub">Đặc tả quy trình checkout & giao hàng camera</div>
+        <div style="font-size: 12pt; color: #555555; font-family: 'Arial', sans-serif; margin-top: 20px; font-style: italic;">
+            (Luồng Camera Only & Combo Camera)
+        </div>
     </div>
 
-    <div class="cover-footer">
+    <div class="cover-meta-box">
         <table class="cover-meta-table">
             <tr style="border: none;">
-                <td class="cover-meta-label">Mã tài liệu:</td>
+                <td class="cover-meta-label">Mã hiệu:</td>
                 <td>FPT-URD-CAM-SHIP-01</td>
-                <td class="cover-meta-label">Bộ phận soạn thảo:</td>
-                <td>Product Team (BA/PO)</td>
+                <td class="cover-meta-label">Tác giả:</td>
+                <td>Senior Business Analyst / Product Owner</td>
             </tr>
             <tr style="border: none;">
                 <td class="cover-meta-label">Phiên bản:</td>
-                <td>1.0 (Official Release)</td>
-                <td class="cover-meta-label">Tác giả:</td>
-                <td>Senior Business Analyst</td>
-            </tr>
-            <tr style="border: none;">
+                <td>1.0</td>
                 <td class="cover-meta-label">Ngày hiệu lực:</td>
                 <td>05/06/2026</td>
-                <td class="cover-meta-label">Trạng thái duyệt:</td>
-                <td><span style="color: #2e7d32; font-weight: bold;">ĐÃ PHÊ DUYỆT</span></td>
             </tr>
         </table>
     </div>
@@ -195,30 +187,30 @@
 <br clear="all" style="page-break-before: always;"/>
 
 <!-- ========================================== -->
-<!-- MỤC LỤC CHI TIẾT (TABLE OF CONTENTS) -->
+<!-- TRANG MỤC LỤC RIÊNG BIỆT (TABLE OF CONTENTS) -->
 <!-- ========================================== -->
-<h1>MỤC LỤC</h1>
+<div class="toc-title">Mục lục</div>
 <table class="toc-table">
     <!-- LEVEL 1 -->
     <tr>
         <td class="toc-l1" style="width: 90%;">A. GIỚI THIỆU</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; font-weight: bold; width: 40px;">4</td>
+        <td class="toc-page">4</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">1. Mục đích tài liệu</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">4</td>
+        <td class="toc-page" style="font-weight: normal;">4</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">2. Thông tin chung (Bối cảnh AS-IS - TO-BE)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">4</td>
+        <td class="toc-page" style="font-weight: normal;">4</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">3. Thuật ngữ và viết tắt</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">5</td>
+        <td class="toc-page" style="font-weight: normal;">5</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -228,35 +220,35 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">B. TỔNG QUAN HỆ THỐNG & LUỒNG NGHIỆP VỤ</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; font-weight: bold; width: 40px;">6</td>
+        <td class="toc-page">6</td>
     </tr>
     <!-- LEVEL 2 -->
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">I. Sơ đồ luồng nghiệp vụ tổng quan (Workflows)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">6</td>
+        <td class="toc-page" style="font-weight: normal;">6</td>
     </tr>
     <!-- LEVEL 3 -->
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Luồng Checkout trực tuyến phía khách hàng (Frontend Customer Flow)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">6</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">6</td>
     </tr>
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Logistics Flow)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Flow)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">7</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">7</td>
     </tr>
     <!-- LEVEL 2 -->
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">II. Danh sách các chức năng (Functional List)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">8</td>
+        <td class="toc-page" style="font-weight: normal;">8</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">III. Ma trận quyền (Permission Matrix)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">9</td>
+        <td class="toc-page" style="font-weight: normal;">9</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -266,50 +258,50 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; font-weight: bold; width: 40px;">10</td>
+        <td class="toc-page">10</td>
     </tr>
     <!-- LEVEL 2 -->
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">I. Luồng 1: Luồng Checkout Camera Only (Mua lẻ thiết bị)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">10</td>
+        <td class="toc-page" style="font-weight: normal;">10</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">II. Luồng 2: Luồng Checkout Combo Camera Only (Thiết bị + Cloud)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">11</td>
+        <td class="toc-page" style="font-weight: normal;">11</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">III. Luồng Giao hàng Camera & Xử lý Hậu kỳ (FTel Lắp đặt vs Tự lắp đặt)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">11</td>
+        <td class="toc-page" style="font-weight: normal;">11</td>
     </tr>
     <!-- LEVEL 3 -->
     <tr>
         <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Phương án "Hỗ trợ lắp đặt" (Kỹ thuật viên FTel thi công)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">11</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">11</td>
     </tr>
     <tr>
         <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Phương án "Tôi muốn tự lắp đặt" (Giao hàng qua bưu điện/3PL)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">12</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">12</td>
     </tr>
     <!-- LEVEL 2 -->
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">IV. Quy tắc Nghiệp vụ Chung (Business Rules)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">13</td>
+        <td class="toc-page" style="font-weight: normal;">13</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">V. Mô tả Giao diện & Ràng buộc Trường (Screen Description)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">14</td>
+        <td class="toc-page" style="font-weight: normal;">14</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">VI. Kịch bản lỗi & Thông báo hiển thị (Error Messages)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">16</td>
+        <td class="toc-page" style="font-weight: normal;">16</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -319,22 +311,22 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">D. YÊU CẦU PHI CHỨC NĂNG</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; font-weight: bold; width: 40px;">17</td>
+        <td class="toc-page">17</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">1. Hiệu năng hệ thống (Performance)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">17</td>
+        <td class="toc-page" style="font-weight: normal;">17</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">2. Bảo mật & An toàn thông tin (Security)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">17</td>
+        <td class="toc-page" style="font-weight: normal;">17</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">3. Trải nghiệm người dùng & Giao diện (UI/UX)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; width: 40px;">18</td>
+        <td class="toc-page" style="font-weight: normal;">18</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -344,7 +336,7 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</td>
         <td class="toc-dots">&nbsp;</td>
-        <td style="text-align: right; font-weight: bold; width: 40px;">19</td>
+        <td class="toc-page">19</td>
     </tr>
 </table>
 
@@ -488,7 +480,7 @@
 
 <h2>I. Sơ đồ luồng nghiệp vụ tổng quan (Workflows)</h2>
 
-<h3>1. Luồng Checkout trực tuyến phía khách hàng (Frontend Customer Flow)</h3>
+<h3>1. Luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</h3>
 <p>Dưới đây là sơ đồ thể hiện luồng đi từ PDP đến trang Checkout và Thank You Page của khách hàng:</p>
 <div class="code-block">
 graph TD
@@ -525,7 +517,7 @@ graph TD
     T -->|Tự lắp đặt| V[Hiện mã vận đơn bưu điện + Widget Self-Setup Hub]
 </div>
 
-<h3>2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Logistics Flow)</h3>
+<h3>2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Flow)</h3>
 <p>Dưới đây là sơ đồ thể hiện quy trình xử lý đơn hàng hậu kỳ, liên kết kho WMS, API bưu điện và hệ thống đối soát:</p>
 <div class="code-block">
 graph TD
