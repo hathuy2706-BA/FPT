@@ -116,6 +116,7 @@
     p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
     .page-break { page-break-before: always; }
     .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
+    .diagram-img { display: block; max-width: 650px; width: 100%; height: auto; margin: 20px auto; border: 1px solid #dddddd; }
 </style>
 </head>
 <body>
@@ -230,12 +231,12 @@
     </tr>
     <!-- LEVEL 3 -->
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Sơ đồ luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal; font-style: normal;">6</td>
     </tr>
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Flow)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Sơ đồ luồng Giao nhận & Hậu kỳ (Backend Flow)</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal; font-style: normal;">7</td>
     </tr>
@@ -246,7 +247,7 @@
         <td class="toc-page" style="font-weight: normal;">8</td>
     </tr>
     <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">III. Ma trận quyền (Permission Matrix)</td>
+        <td class="toc-l2" style="width: 90%; padding-left: 20px;">III. Ma trận quyền luồng khách hàng (Permission Matrix)</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal;">9</td>
     </tr>
@@ -266,42 +267,63 @@
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal;">10</td>
     </tr>
-    <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">II. Luồng 2: Luồng Checkout Combo Camera Only (Thiết bị + Cloud)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">11</td>
-    </tr>
-    <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">III. Luồng Giao hàng Camera & Xử lý Hậu kỳ (FTel Lắp đặt vs Tự lắp đặt)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">11</td>
-    </tr>
     <!-- LEVEL 3 -->
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1. Phương án "Hỗ trợ lắp đặt" (Kỹ thuật viên FTel thi công)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1.1. Định nghĩa tính năng</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">10</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1.2. Business flow & mô tả cụ thể các bước thao tác</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">10</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1.3. Business rules (bao gồm luồng giao hàng và hậu kỳ)</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal; font-style: normal;">11</td>
     </tr>
     <tr>
-        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2. Phương án "Tôi muốn tự lắp đặt" (Giao hàng qua bưu điện/3PL)</td>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1.4. Mô tả màn hình</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal; font-style: normal;">12</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">13</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">1.5. Các trường hợp lỗi & thông báo tương ứng</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">15</td>
     </tr>
     <!-- LEVEL 2 -->
     <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">IV. Quy tắc Nghiệp vụ Chung (Business Rules)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">13</td>
-    </tr>
-    <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">V. Mô tả Giao diện & Ràng buộc Trường (Screen Description)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">14</td>
-    </tr>
-    <tr>
-        <td class="toc-l2" style="width: 90%; padding-left: 20px;">VI. Kịch bản lỗi & Thông báo hiển thị (Error Messages)</td>
+        <td class="toc-l2" style="width: 90%; padding-left: 20px;">II. Luồng 2: Luồng Checkout Combo Camera Only (Thiết bị + Cloud)</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page" style="font-weight: normal;">16</td>
+    </tr>
+    <!-- LEVEL 3 -->
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2.1. Định nghĩa tính năng</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">16</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2.2. Business flow & mô tả cụ thể các bước thao tác</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">16</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2.3. Business rules (bao gồm luồng giao hàng và hậu kỳ)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">17</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2.4. Mô tả màn hình</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">19</td>
+    </tr>
+    <tr>
+        <td class="toc-l3" style="width: 90%; padding-left: 40px;">2.5. Các trường hợp lỗi & thông báo tương ứng</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page" style="font-weight: normal; font-style: normal;">21</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -311,22 +333,22 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">D. YÊU CẦU PHI CHỨC NĂNG</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">17</td>
+        <td class="toc-page">23</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">1. Hiệu năng hệ thống (Performance)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">17</td>
+        <td class="toc-page" style="font-weight: normal;">23</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">2. Bảo mật & An toàn thông tin (Security)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">17</td>
+        <td class="toc-page" style="font-weight: normal;">23</td>
     </tr>
     <tr>
         <td class="toc-l2" style="width: 90%; padding-left: 20px;">3. Trải nghiệm người dùng & Giao diện (UI/UX)</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page" style="font-weight: normal;">18</td>
+        <td class="toc-page" style="font-weight: normal;">24</td>
     </tr>
     
     <!-- LEVEL 1 -->
@@ -336,7 +358,7 @@
     <tr>
         <td class="toc-l1" style="width: 90%;">E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</td>
         <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">19</td>
+        <td class="toc-page">25</td>
     </tr>
 </table>
 
@@ -352,7 +374,6 @@
 <ul>
     <li><strong>Luồng 1 - Checkout Camera Only (Mua lẻ thiết bị):</strong> Khách hàng chỉ có nhu cầu mua phần cứng Camera độc lập.</li>
     <li><strong>Luồng 2 - Checkout Combo Camera Only (Combo Camera + Cloud):</strong> Khách hàng mua trọn gói combo bao gồm phần cứng Camera và dịch vụ lưu trữ đám mây Cloud Storage (không đi kèm đường truyền mạng Internet FPT).</li>
-    <li><strong>Luồng Giao hàng Hậu kỳ:</strong> Phân tích chi tiết quy trình xử lý đơn hàng giữa hai phương thức triển khai: <strong>Hỗ trợ lắp đặt</strong> (kỹ thuật viên FTel thi công trực tiếp và tính phí riêng theo từng camera) và <strong>Tự lắp đặt</strong> (giao hàng qua bưu điện/đối tác vận chuyển 3PL, tính phí giao vận trên tổng đơn hàng, tự động hóa luồng tạo phiếu giao DO, lấy mã vận đơn qua API và đối soát tài chính).</li>
 </ul>
 <p>Tài liệu này là căn cứ duy nhất để đội ngũ thiết kế UI/UX xây dựng giao diện, đội ngũ phát triển (Frontend/Backend) xây dựng logic hệ thống, và đội ngũ kiểm thử (QC) nghiệm thu tính năng trước khi đưa sản phẩm vào hoạt động chính thức.</p>
 
@@ -480,73 +501,13 @@
 
 <h2>I. Sơ đồ luồng nghiệp vụ tổng quan (Workflows)</h2>
 
-<h3>1. Luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</h3>
-<p>Dưới đây là sơ đồ thể hiện luồng đi từ PDP đến trang Checkout và Thank You Page của khách hàng:</p>
-<div class="code-block">
-graph TD
-    A[Khách hàng vào FPT.VN] --> B{Lựa chọn luồng mua}
-    B -->|Mua lẻ thiết bị| C[PDP: Checkout Cam Only]
-    B -->|Mua kèm cước Cloud| D[PDP: Checkout Combo Cam]
-    
-    C --> E[Giỏ hàng / Checkout Page]
-    D --> E
-    
-    E --> F[Nhập thông tin cá nhân & SĐT]
-    F --> G{API check SĐT}
-    G -->|Đang dùng Internet FPT| H[Hiển thị Popup liên kết HĐ - Giảm 50k thiết bị]
-    G -->|Mạng ngoài Non-FPT| I[Ghi nhận đơn hàng Cam Ngoại mạng]
-    
-    H --> J[Lựa chọn Hình thức Triển khai]
-    I --> J
-    
-    J -->|1. Hỗ trợ lắp đặt| K[Nhập địa chỉ thi công chi tiết]
-    K --> L[Chọn lịch hẹn lắp đặt của kỹ thuật FTel]
-    L --> M[Hệ thống tính Phí lắp đặt theo từng Camera]
-    
-    J -->|2. Tôi muốn tự lắp đặt| N[Nhập địa chỉ nhận hàng bưu điện]
-    N --> O[Ẩn lịch hẹn kỹ thuật]
-    O --> P[Hệ thống tính Phí ship trên tổng đơn hàng]
-    P --> Q[Tặng thêm 01 tháng Cloud khuyến khích]
-    
-    M --> R[Chọn PTTT: VietQR/MoMo/Thẻ/COD]
-    Q --> R
-    
-    R --> S{Thanh toán thành công / Xác nhận COD}
-    S --> T[Thank You Page]
-    T -->|Kỹ thuật lắp| U[Hiện lịch hẹn thi công + HD chuẩn bị modem Wifi]
-    T -->|Tự lắp đặt| V[Hiện mã vận đơn bưu điện + Widget Self-Setup Hub]
-</div>
+<h3>1. Sơ đồ luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</h3>
+<p>Dưới đây là sơ đồ luồng đi của khách hàng được tích hợp trực tiếp dưới dạng hình ảnh hiển thị trong tài liệu:</p>
+<img src="../diagrams/checkout_flow.png" alt="Sơ đồ luồng Checkout khách hàng" class="diagram-img" />
 
-<h3>2. Luồng Hậu kỳ xử lý Giao hàng & Đối soát (Backend Flow)</h3>
-<p>Dưới đây là sơ đồ thể hiện quy trình xử lý đơn hàng hậu kỳ, liên kết kho WMS, API bưu điện và hệ thống đối soát:</p>
-<div class="code-block">
-graph TD
-    A[Đơn hàng hoàn tất trên SPF] --> B{Hình thức Triển khai?}
-    
-    B -->|Kỹ thuật lắp| C[SPF tự động tạo Phiếu thi công]
-    C --> D[Phân bổ về Chi nhánh kỹ thuật FTel địa phương]
-    D --> E[Kỹ thuật viên xuất kho camera lẻ và đến nhà khách hàng]
-    E --> F[Kỹ thuật viên kéo dây, cấu hình camera vào mạng Wifi]
-    F --> G[Kỹ thuật viên dùng app Mobisale quét MAC camera để kích hoạt Cloud]
-    G --> H[Hoàn tất thi công & nghiệm thu tài chính tại nhà]
-    
-    B -->|Tự lắp đặt| I[SPF tự động tạo Phiếu giao hàng DO]
-    I --> J[Hệ thống gọi API của đối tác bưu điện GHN/Viettel Post]
-    J --> K[API 3PL trả về Mã vận đơn Tracking Number & ghi nhận COD]
-    K --> L[WMS FTel xuất kho thiết bị, gán MAC Address vào đơn hàng]
-    L --> M[Bưu điện đến kho FTel lấy thiết bị và vận chuyển]
-    M --> N[Khách nhận thiết bị, thanh toán COD cho bưu điện nếu có]
-    N --> O{Trạng thái giao hàng từ API 3PL?}
-    
-    O -->|Giao hàng thành công| P[Kích hoạt gói cước Cloud chờ Pending Active trên hệ thống cước]
-    P --> Q[Khách hàng tự quét QR trên camera qua App FPT Camera để kích hoạt sử dụng]
-    Q --> R[Hệ thống Đối soát Reconciliation Engine tự động đối chiếu]
-    R --> S[Đối soát COD & Phí ship thực tế với đối tác bưu điện hàng tuần]
-    
-    O -->|Giao thất bại/Hoàn hàng| T[Chuyển thiết bị hoàn trả về kho FTel]
-    T --> U[Hủy cước Cloud chờ trên hệ thống]
-    U --> V[Đối soát phí chuyển hoàn thực tế với bưu điện]
-</div>
+<h3>2. Sơ đồ luồng Giao nhận & Hậu kỳ (Backend Flow)</h3>
+<p>Dưới đây là sơ đồ quy trình hậu kỳ vận hành giao lắp camera và đối soát tài chính tự động:</p>
+<img src="../diagrams/logistics_flow.png" alt="Sơ đồ luồng Hậu kỳ Giao nhận & Đối soát" class="diagram-img" />
 
 <h2>II. Danh sách các chức năng (Functional List)</h2>
 <table class="data-table">
@@ -626,98 +587,67 @@ graph TD
     </tbody>
 </table>
 
-<h2>III. Ma trận quyền (Permission Matrix)</h2>
-
-<h4>1. Bảng Định nghĩa Quyền (Permission Definition List)</h4>
-<table class="data-table">
-    <thead>
-        <tr>
-            <th style="width: 100px; text-align: center;">Mã Quyền</th>
-            <th style="width: 150px;">Tên Quyền</th>
-            <th>Mô tả chi tiết hành vi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="text-align: center;"><strong>F</strong></td>
-            <td>Full Access</td>
-            <td>Toàn quyền thao tác trên module (Xem, Cấu hình giá, Phí lắp đặt, Phí ship, Đối tác bưu điện trên CMS).</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>A</strong></td>
-            <td>Add</td>
-            <td>Tạo mới đơn hàng, phiếu giao DO, phiếu thi công hoặc gửi yêu cầu API.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>V</strong></td>
-            <td>View</td>
-            <td>Xem thông tin chi tiết đơn hàng, mã vận đơn, hành trình giao nhận và kết quả đối soát.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>L</strong></td>
-            <td>List</td>
-            <td>Xem thông tin dưới dạng danh sách (danh sách đơn hàng, danh sách đối soát).</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>E</strong></td>
-            <td>Export</td>
-            <td>Xuất file báo cáo đối soát tài chính, doanh thu (Excel, PDF...).</td>
-        </tr>
-    </tbody>
-</table>
-
-<h4>2. Bảng Phân quyền Module (Permission Matrix Table)</h4>
+<h2>III. Ma trận quyền luồng khách hàng (Permission Matrix)</h2>
+<p>Bảng phân quyền dưới đây tập trung vào luồng thao tác của Khách hàng trên giao diện checkout FPT.VN:</p>
 <table class="data-table">
     <thead>
         <tr>
             <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 250px;">Tên Chức năng / Module</th>
-            <th style="width: 120px; text-align: center;">Role Admin</th>
-            <th style="width: 180px; text-align: center;">Role Kỹ thuật / Kho</th>
-            <th style="width: 150px; text-align: center;">Role Bưu điện (API)</th>
-            <th style="width: 120px; text-align: center;">Role Khách hàng</th>
+            <th style="width: 250px;">Quyền hạn / Chức năng</th>
+            <th style="width: 150px; text-align: center;">Khách vãng lai (Chưa đăng nhập)</th>
+            <th style="width: 180px; text-align: center;">Khách ngoại mạng (Dùng ISP khác)</th>
+            <th style="width: 180px; text-align: center;">Khách nội mạng (Sẵn có Internet FPT)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="text-align: center;">1</td>
-            <td>Cấu hình giá thiết bị, Cloud, phí ship</td>
-            <td style="text-align: center;">F</td>
-            <td style="text-align: center;">V</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">N/A</td>
+            <td>Xem sản phẩm & Cấu hình Camera tại PDP</td>
+            <td style="text-align: center;">Cho phép (V)</td>
+            <td style="text-align: center;">Cho phép (V)</td>
+            <td style="text-align: center;">Cho phép (V)</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
-            <td>Đặt mua hàng & chọn hình thức</td>
-            <td style="text-align: center;">V, L</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">A, V</td>
+            <td>Checkout & Nhập thông tin thanh toán</td>
+            <td style="text-align: center;">Cho phép (A)</td>
+            <td style="text-align: center;">Cho phép (A)</td>
+            <td style="text-align: center;">Cho phép (A)</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
-            <td>Quản lý kho (WMS) & gán MAC camera</td>
-            <td style="text-align: center;">V, L</td>
-            <td style="text-align: center;">A, V, L</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">N/A</td>
+            <td>Liên kết hợp đồng Internet nhận ưu đãi 50k</td>
+            <td style="text-align: center;">Không áp dụng</td>
+            <td style="text-align: center;">Không áp dụng</td>
+            <td style="text-align: center;">Cho phép (A, U)</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
-            <td>Tạo mã vận đơn & Cập nhật hành trình</td>
-            <td style="text-align: center;">V, L</td>
-            <td style="text-align: center;">V</td>
-            <td style="text-align: center;">A, V, L</td>
-            <td style="text-align: center;">V</td>
+            <td>Chọn hình thức triển khai (Kỹ thuật / Tự lắp)</td>
+            <td style="text-align: center;">Cho phép (A, U)</td>
+            <td style="text-align: center;">Cho phép (A, U)</td>
+            <td style="text-align: center;">Cho phép (A, U)</td>
         </tr>
         <tr>
             <td style="text-align: center;">5</td>
-            <td>Đối soát công nợ & phí ship</td>
-            <td style="text-align: center;">F, E</td>
-            <td style="text-align: center;">N/A</td>
-            <td style="text-align: center;">V, L</td>
-            <td style="text-align: center;">N/A</td>
+            <td>Thanh toán tại nhà (COD)</td>
+            <td style="text-align: center;">Hạn chế theo khu vực</td>
+            <td style="text-align: center;">Hạn chế theo khu vực</td>
+            <td style="text-align: center;">Cho phép (A)</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">6</td>
+            <td>Theo dõi mã vận đơn bưu điện (3PL)</td>
+            <td style="text-align: center;">Cho phép (V)</td>
+            <td style="text-align: center;">Cho phép (V)</td>
+            <td style="text-align: center;">Cho phép (V)</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">7</td>
+            <td>Quét QR Code kích hoạt cước Cloud qua app</td>
+            <td style="text-align: center;">Cho phép (A)</td>
+            <td style="text-align: center;">Cho phép (A)</td>
+            <td style="text-align: center;">Cho phép (A)</td>
         </tr>
     </tbody>
 </table>
@@ -730,115 +660,32 @@ graph TD
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG</h1>
 
 <h2>I. Luồng 1: Luồng Checkout Camera Only (Mua lẻ thiết bị)</h2>
-<table class="usecase-table">
-    <tr>
-        <td class="label">Mô tả</td>
-        <td>Hành trình khách hàng mua lẻ thiết bị phần cứng Camera an ninh riêng biệt (không bắt buộc mua kèm gói cước lưu trữ Cloud mới tại thời điểm mua, hoặc đã có tài khoản/gói cước sẵn từ trước).</td>
-    </tr>
-    <tr>
-        <td class="label">Tác nhân</td>
-        <td>Khách hàng truy cập trực tuyến fpt.vn.</td>
-    </tr>
-    <tr>
-        <td class="label">Luồng xử lý chi tiết</td>
-        <td>
-            1. Khách hàng xem thông tin Camera tại PDP, tick chọn *"Tôi đã có gói Cloud (Chỉ mua thiết bị lẻ)"*.<br/>
-            2. Khách hàng bấm *"Mua ngay"*, hệ thống chuyển hướng vào Checkout Page với giỏ hàng chứa thiết bị, cước Cloud = 0đ.<br/>
-            3. Khách hàng nhập thông tin Họ tên và Số điện thoại cá nhân.<br/>
-            4. Hệ thống thực hiện gọi API check SĐT ngầm: nếu có hợp đồng Internet FPT, hiển thị banner đề xuất liên kết hợp đồng để giảm 50.000đ/thiết bị.<br/>
-            5. Khách hàng lựa chọn Hình thức triển khai:<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;- **Hỗ trợ lắp đặt (Kỹ thuật FTel):** Điền địa chỉ thi công, chọn ngày giờ hẹn lắp đặt. Hệ thống tự động tính toán phí lắp đặt lũy kế theo từng camera.<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;- **Tôi muốn tự lắp đặt:** Điền địa chỉ nhận hàng bưu điện. Ẩn lịch hẹn kỹ thuật. Tính phí vận chuyển bưu điện trên tổng đơn hàng. Phí lắp đặt = 0đ.<br/>
-            6. Khách hàng lựa chọn PTTT (VietQR, MoMo, Thẻ quốc tế, COD) và thực hiện thanh toán.<br/>
-            7. Hệ thống SPF tiếp nhận đơn hàng, phân rã luồng hậu kỳ (tạo ticket thi công kỹ thuật hoặc tạo phiếu DO tích hợp API 3PL giao bưu điện).
-        </td>
-    </tr>
-</table>
 
-<h2>II. Luồng 2: Luồng Checkout Combo Camera Only (Thiết bị + Cloud)</h2>
-<table class="usecase-table">
-    <tr>
-        <td class="label">Mô tả</td>
-        <td>Hành trình khách hàng đăng ký trọn gói Combo Camera (bao gồm thiết bị phần cứng + gói cước Cloud lưu trữ mới) hoạt động độc lập trên hạ tầng Internet sẵn có của khách hàng (mạng FPT hoặc nhà mạng ngoài).</td>
-    </tr>
-    <tr>
-        <td class="label">Tác nhân</td>
-        <td>Khách hàng truy cập trực tuyến fpt.vn.</td>
-    </tr>
-    <tr>
-        <td class="label">Luồng xử lý chi tiết</td>
-        <td>
-            1. Khách hàng xem sản phẩm Camera tại PDP, chọn Gói lưu trữ Cloud (3 ngày/7 ngày/14 ngày) và Chu kỳ thanh toán (6 tháng/12 tháng).<br/>
-            2. Hệ thống khóa cứng tỷ lệ số lượng thiết bị phần cứng và số lượng gói Cloud là 1:1.<br/>
-            3. Khách hàng bấm *"Mua ngay"*, hệ thống chuyển hướng vào Checkout Page.<br/>
-            4. Khách hàng nhập Họ tên và SĐT. Hệ thống gọi API check SĐT để hiển thị thông báo gộp vào tài khoản Camera cũ hoặc tự tạo tài khoản mới.<br/>
-            5. Khách hàng chọn hình thức triển khai:<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;- **Kỹ thuật FTel lắp đặt:** Nhập địa chỉ, chọn lịch hẹn thi công. Tính phí lắp đặt theo từng camera lẻ. Nếu chọn trả trước Cloud 6/12 tháng, giảm phí lắp đặt về 0đ.<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;- **Tôi muốn tự lắp đặt:** Nhập địa chỉ nhận hàng. Hệ thống miễn phí lắp đặt hoàn toàn, đồng thời tự động kích hoạt ưu đãi tặng thêm 01 tháng cước Cloud.<br/>
-            6. Khách hàng áp dụng voucher khuyến mãi, chọn PTTT và hoàn tất giao dịch.
-        </td>
-    </tr>
-</table>
+<h3>1.1. Định nghĩa tính năng</h3>
+<p>Kịch bản bán hàng phục vụ khách hàng có nhu cầu chỉ mua phần cứng thiết bị Camera lẻ (không đăng ký mua gói cước lưu trữ Cloud mới tại thời điểm giao dịch). Khách hàng có thể sử dụng hạ tầng mạng của nhà cung cấp khác (Non-FPT) hoặc mua thêm thiết bị gắn vào tài khoản Cloud có sẵn tại nhà.</p>
 
-<h2>III. Luồng Giao hàng Camera & Xử lý Hậu kỳ (FTel Lắp đặt vs Tự lắp đặt)</h2>
-<p>Quy trình giao hàng và xử lý kỹ thuật/logistics hậu kỳ được phân tách chi tiết như sau:</p>
-
-<h3>1. Phương án "Hỗ trợ lắp đặt" (Kỹ thuật viên FTel thi công)</h3>
-<ul>
-    <li><strong>Định nghĩa:</strong> Khách hàng yêu cầu nhân viên kỹ thuật FPT Telecom đến địa chỉ nhà để thi công kéo cáp, cài đặt cấu hình camera.</li>
-    <li><strong>Quy trình vận hành:</strong>
-        <ol>
-            <li>Hệ thống SPF tiếp nhận đơn hàng, tự động kiểm tra địa chỉ lắp đặt để gán đơn hàng về cho chi nhánh FTel gần nhất quản lý.</li>
-            <li>Hệ thống tạo <strong>Phiếu thi công lắp đặt</strong> tự động, xếp lịch hẹn thi công theo ngày khách hàng chọn trên Checkout Page.</li>
-            <li>Nhân viên kỹ thuật của chi nhánh nhận phiếu thi công qua ứng dụng nội bộ (Mobisale).</li>
-            <li>Đến ngày hẹn, kỹ thuật viên đến kho chi nhánh lấy thiết bị Camera (quét barcode/Serial/MAC Address để xuất kho trên WMS chi nhánh).</li>
-            <li>Kỹ thuật viên đến nhà khách hàng thực hiện thi công lắp đặt phần cứng lên tường/trần, kết nối nguồn điện và bắt Wifi nhà khách hàng.</li>
-            <li>Sau khi kết nối thành công, kỹ thuật viên dùng app Mobisale quét mã MAC Address của thiết bị Camera để gửi yêu cầu kích hoạt lên hệ thống cước, tự động liên kết gói Cloud đã mua với thiết bị đó.</li>
-            <li>Thu tiền mặt COD từ khách hàng (nếu chọn PTTT là COD) và đóng phiếu thi công hoàn thành.</li>
-        </ol>
+<h3>1.2. Business flow & mô tả cụ thể các bước thao tác</h3>
+<ol>
+    <li><strong>Bước 1 - Tiếp cận:</strong> Khách hàng truy cập vào Trang chủ fpt.vn hoặc Trang danh mục thiết bị, lựa chọn sản phẩm Camera.</li>
+    <li><strong>Bước 2 - Lựa chọn PDP:</strong> Khách hàng tại trang PDP chọn loại Camera (Trong nhà / Ngoài trời), tick chọn checkbox <em>"Tôi đã có sẵn gói Cloud (Chỉ mua thiết bị lẻ)"</em>, điều chỉnh số lượng (1 - 5 thiết bị) và nhấn nút <strong>"Mua ngay"</strong>.</li>
+    <li><strong>Bước 3 - Vào giỏ hàng & Checkout:</strong> Hệ thống lưu thông tin thiết bị với giá gói Cloud = 0đ và điều hướng khách hàng sang trang Checkout `/checkout`.</li>
+    <li><strong>Bước 4 - Khai báo thông tin liên hệ:</strong> Khách hàng nhập Họ tên và Số điện thoại di động. Hệ thống tự động gọi API check SĐT ngầm:
+        <ul>
+            <li>Nếu phát hiện SĐT có hợp đồng Internet FPT: Hiển thị banner đề xuất gộp hợp đồng để hưởng ưu đãi giảm giá 50.000đ/thiết bị. Khách hàng lựa chọn *Đồng ý liên kết* hoặc *Bỏ qua*.</li>
+            <li>Nếu SĐT ngoại mạng: Ghi nhận đơn hàng Camera Only ngoại mạng.</li>
+        </ul>
     </li>
-</ul>
-
-<h3>2. Phương án "Tôi muốn tự lắp đặt" (Giao hàng qua bưu điện/3PL)</h3>
-<ul>
-    <li><strong>Định nghĩa:</strong> Khách hàng tự thi công lắp đặt tại nhà, FTel thực hiện đóng gói và vận chuyển thiết bị thông qua đơn vị chuyển phát nhanh độc lập (3PL).</li>
-    <li><strong>Quy trình vận hành chi tiết:</strong>
-        <ol>
-            <li>Hệ thống SPF tiếp nhận đơn hàng, ghi nhận trạng thái triển khai là <strong>Tự lắp đặt</strong>.</li>
-            <li>SPF tự động sinh <strong>Phiếu giao hàng DO (Delivery Order)</strong> và chuyển thông tin sang hệ thống Quản lý kho trung tâm (WMS).</li>
-            <li><strong>Tích hợp API Đối tác vận chuyển (3PL):</strong> Hệ thống WMS/SPF gọi API thời gian thực của đối tác giao vận (ví dụ: Giao Hàng Nhanh - GHN hoặc Viettel Post) để đẩy các thông tin đơn hàng:
-                <ul>
-                    <li>Thông tin người gửi (FTel Warehouse).</li>
-                    <li>Thông tin người nhận (Họ tên, SĐT, Địa chỉ chi tiết).</li>
-                    <li>Kích thước đóng gói & Trọng lượng đơn hàng.</li>
-                    <li>Số tiền thu hộ COD (Giá trị đơn hàng + Phí giao hàng - Tiền đã thanh toán trực tuyến).</li>
-                </ul>
-            </li>
-            <li>Đối tác 3PL tiếp nhận thông tin đơn hàng qua API, sinh và phản hồi lại cho hệ thống FTel <strong>Mã vận đơn (Tracking Number)</strong>.</li>
-            <li>Hệ thống FTel cập nhật mã vận đơn này lên tài khoản khách hàng, hiển thị trên trang Thank You Page và tự động gửi SMS xác nhận cho khách hàng.</li>
-            <li>Nhân viên kho WMS in phiếu giao hàng có chứa mã vận đơn bưu điện, thực hiện lấy thiết bị Camera trong kho, quét mã MAC Address của từng camera để gán cứng vào đơn hàng trên hệ thống, hoàn tất đóng gói.</li>
-            <li>Shipper của đối tác bưu điện đến kho FTel lấy hàng đi giao.</li>
-            <li><strong>Theo dõi hành trình qua API Webhook:</strong> Đối tác 3PL gửi Webhook cập nhật trạng thái đơn hàng thời gian thực về hệ thống FTel (Đang vận chuyển -> Đang giao hàng -> Giao hàng thành công / Giao thất bại - Chờ hoàn hàng).</li>
-            <li><strong>Kích hoạt cước Cloud tự động:</strong> Khi nhận được webhook trạng thái <strong>Giao hàng thành công (Delivered)</strong>:
-                <ul>
-                    <li>Hệ thống SPF chuyển đơn hàng sang trạng thái hoàn thành.</li>
-                    <li>Hệ thống cước tự động chuyển gói Cloud đã mua kèm (nếu có) từ trạng thái chờ sang trạng thái chờ quét thiết bị (Pending Activation).</li>
-                    <li>Khách hàng nhận được SMS thông báo: *"Đơn hàng của bạn đã giao thành công. Vui lòng mở ứng dụng FPT Camera, quét mã QR dưới đáy Camera để kích hoạt gói Cloud."*</li>
-                </ul>
-            </li>
-            <li><strong>Quy trình Đối soát Tài chính Hậu kỳ (Financial Reconciliation Engine):</strong>
-                <ul>
-                    <li><strong>Đối soát COD:</strong> Đối tác bưu điện định kỳ 2 lần/tuần gửi file đối soát tài chính (bao gồm số tiền COD thu hộ thực tế đã nhận từ khách hàng). Hệ thống đối soát FTel tự động đối chiếu số tiền COD bưu điện báo cáo với số tiền COD ghi nhận trên đơn hàng SPF. Nếu khớp, tự động xác nhận hoàn thành công nợ. Nếu lệch (lệch tiền thu hộ, lệch trạng thái), đẩy đơn hàng sang tab *Lệch đối soát* để nhân viên tài chính xử lý thủ công.</li>
-                    <li><strong>Đối soát Phí ship:</strong> Hệ thống tự động tính toán phí ship lý thuyết dựa trên bảng phí đã cấu hình trên CMS (Phí ship tổng đơn hàng, ví dụ: 30.000đ/đơn, hoặc 0đ nếu đơn hàng trên 1.000.000đ). Phân hệ đối soát sẽ so sánh phí ship lý thuyết này với phí ship thực tế mà đối tác bưu điện tính tiền trong file đối soát (dựa trên trọng lượng và khoảng cách thực tế) để kiểm soát chi phí vận hành logistics.</li>
-                </ul>
-            </li>
-        </ol>
+    <li><strong>Bước 5 - Chọn hình thức Triển khai & Giao nhận:</strong> Khách hàng lựa chọn 1 trong 2 hình thức:
+        <ul>
+            <li><strong>Tùy chọn A (Hỗ trợ lắp đặt):</strong> Khách hàng nhập địa chỉ lắp đặt chi tiết (Tỉnh/Thành -> Quận/Huyện -> Phường/Xã -> Số nhà/Tên đường) và chọn ngày thi công trên Lịch hẹn. Hệ thống tính phí lắp đặt theo từng camera lẻ.</li>
+            <li><strong>Tùy chọn B (Tôi muốn tự lắp đặt):</strong> Khách hàng nhập địa chỉ nhận hàng bưu điện. Ẩn lịch hẹn thi công. Hệ thống chuyển phí lắp đặt về 0đ và tính phí ship bưu điện trên tổng đơn hàng.</li>
+        </ul>
     </li>
-</ul>
+    <li><strong>Bước 6 - Xác nhận Thanh toán:</strong> Khách hàng lựa chọn phương thức thanh toán (VietQR, MoMo, Thẻ quốc tế, COD) và nhấn <strong>"Thanh toán"</strong>.</li>
+    <li><strong>Bước 7 - Hoàn tất đơn hàng:</strong> Giao dịch thành công, hệ thống điều hướng khách hàng sang trang Thank You Page hiển thị mã đơn hàng SPF, mã vận đơn bưu điện (nếu tự lắp) hoặc lịch hẹn kỹ thuật (nếu kỹ thuật lắp) kèm hướng dẫn chuẩn bị modem Wifi.</li>
+</ol>
 
----
-
-<h2>IV. Quy tắc Nghiệp vụ Chung (Business Rules)</h2>
+<h3>1.3. Business rules (bao gồm luồng giao hàng và hậu kỳ)</h3>
 <table class="data-table">
     <thead>
         <tr>
@@ -849,53 +696,34 @@ graph TD
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;"><strong>BR-CAM-01</strong></td>
-            <td>Kiểm tra SĐT không đồng bộ</td>
-            <td>Trường Số điện thoại phải được validate theo chuẩn Regex di động Việt Nam. Sau khi nhập đủ 10 số, hệ thống gọi API ngầm kiểm tra hợp đồng Internet FPT trong vòng tối đa 250ms. Tuyệt đối không chặn luồng nhập các trường thông tin khác của khách hàng trong lúc đợi API phản hồi.</td>
+            <td style="text-align: center;"><strong>BR-CO-01</strong></td>
+            <td>Ràng buộc giới hạn số lượng</td>
+            <td>Khách hàng chỉ được mua tối đa 05 thiết bị Camera lẻ trên một đơn hàng mua lẻ.</td>
         </tr>
         <tr>
-            <td style="text-align: center;"><strong>BR-CAM-02</strong></td>
-            <td>Ràng buộc liên kết hợp đồng Internet</td>
-            <td>Nếu khách hàng đồng ý liên kết hợp đồng Internet FPT sẵn có: <br/>- Áp dụng giảm trực tiếp 50.000đ vào tổng tiền thiết bị phần cứng.<br/>- Hóa đơn cước cũ/mới sẽ được gộp chung vào mã hợp đồng Internet FPT đó.<br/>- Che giấu thông tin hợp đồng (Ví dụ: `SGDS*****12`) để bảo mật quyền riêng tư.</td>
+            <td style="text-align: center;"><strong>BR-CO-02</strong></td>
+            <td>Ưu đãi liên kết hợp đồng</td>
+            <td>Nếu liên kết thành công với hợp đồng Internet FPT có sẵn, giảm ngay 50.000đ/thiết bị vào tổng tiền phần cứng. Thông tin hợp đồng Internet được gộp chung mã thanh toán cước.</td>
         </tr>
         <tr>
-            <td style="text-align: center;"><strong>BR-CAM-03</strong></td>
-            <td>Ràng buộc số lượng combo</td>
-            <td>On luồng Checkout Combo Camera, số lượng thiết bị phần cứng Camera và số lượng gói Cloud đăng ký mới phải luôn bằng nhau (tỷ lệ 1:1). Nếu khách hàng muốn mua thêm thiết bị lẻ không kèm Cloud, họ bắt buộc phải chọn tùy chọn mua Camera Only.</td>
+            <td style="text-align: center;"><strong>BR-CO-03</strong></td>
+            <td>Quy trình Giao hàng & Lắp đặt (Kỹ thuật FTel)</td>
+            <td>FTel thi công lắp đặt tại nhà: <br/>- Tính phí thi công riêng lẻ cho từng Camera: 110.000đ / camera đối với khách nội mạng và 150.000đ / camera đối với khách ngoại mạng.<br/>- Hậu kỳ: Hệ thống SPF tạo ticket thi công tự động đẩy về chi nhánh kỹ thuật khu vực theo lịch hẹn của khách hàng. Kỹ thuật viên đến kho chi nhánh nhận thiết bị, quét MAC để xuất kho và mang đến nhà khách hàng lắp ráp, cài đặt.</td>
         </tr>
         <tr>
-            <td style="text-align: center;"><strong>BR-CAM-04</strong></td>
-            <td>Biểu phí lắp đặt chi tiết từng Camera</td>
-            <td>Phí lắp đặt được tính lũy kế trên từng Camera riêng biệt khi chọn hình thức "Hỗ trợ lắp đặt":<br/>- Khách mạng ngoài (Non-FPT): 150.000đ / camera.<br/>- Khách mạng trong (FPT): 110.000đ / camera.<br/>- Trả trước Cloud 6/12 tháng: Giảm về 0đ (Miễn phí lắp đặt).</td>
+            <td style="text-align: center;"><strong>BR-CO-04</strong></td>
+            <td>Quy trình Giao bưu điện (Tôi muốn tự lắp đặt)</td>
+            <td>Khách tự cài đặt tại nhà: <br/>- Phí lắp đặt = 0đ. Phí giao hàng tính theo **tổng đơn hàng** (30.000đ / đơn hàng, miễn phí ship cho đơn từ 1.000.000đ trở lên).<br/>- Hậu kỳ: Hệ thống SPF sinh phiếu giao hàng DO đẩy sang kho trung tâm WMS và tự động gọi API đối tác 3PL (GHN/Viettel Post) đẩy thông tin đơn hàng để lấy mã vận đơn (Tracking Number). Nhân viên kho in phiếu giao hàng, quét địa chỉ MAC của camera gán vào đơn hàng và bàn giao cho shipper.</td>
         </tr>
         <tr>
-            <td style="text-align: center;"><strong>BR-CAM-05</strong></td>
-            <td>Biểu phí giao vận bưu điện trên tổng đơn</td>
-            <td>Phí giao hàng bưu điện cho hình thức "Tự lắp đặt" được tính trên <strong>tổng đơn hàng</strong> (không nhân theo số lượng camera):<br/>- Đơn hàng có tổng giá trị thiết bị dưới 1.000.000đ: Phí ship cố định là 30.000đ / đơn hàng.<br/>- Đơn hàng từ 1.000.000đ trở lên: Miễn phí giao hàng toàn quốc (Phí ship = 0đ).</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>BR-CAM-06</strong></td>
-            <td>Ưu đãi tặng thêm cước tự lắp đặt</td>
-            <td>Khi chọn hình thức "Tôi muốn tự lắp đặt" đối với luồng Combo Camera, hệ thống tự động cộng thêm <strong>01 tháng cước Cloud miễn phí</strong> vào gói cước Cloud của khách hàng sau khi kích hoạt thành công thiết bị.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>BR-CAM-07</strong></td>
-            <td>Ràng buộc MAC Address & Kích hoạt</td>
-            <td>Mỗi thiết bị Camera xuất kho giao qua bưu điện bắt buộc phải được nhân viên kho quét gán MAC Address duy nhất vào mã đơn hàng trên WMS. Khi khách hàng quét QR Code dán trên camera bằng app, app sẽ kiểm tra MAC Address này để mở khóa kích hoạt gói Cloud chờ sẵn trên hệ thống cước.</td>
-        </tr>
-        <tr>
-            <td style="text-align: center;"><strong>BR-CAM-08</strong></td>
-            <td>Điều kiện hiển thị hình thức COD</td>
-            <td>Phương thức COD chỉ hiển thị khi:<br/>- Với Kỹ thuật lắp: Địa chỉ lắp đặt nằm trong vùng phủ phục vụ của chi nhánh kỹ thuật FTel.<br/>- Với Tự lắp bưu điện: Địa chỉ nhận hàng nằm ngoài danh sách vùng cấm/hạn chế giao nhận của đối tác 3PL (được đồng bộ định kỳ từ API đối tác).</td>
+            <td style="text-align: center;"><strong>BR-CO-05</strong></td>
+            <td>Quy trình đối soát bưu điện hậu kỳ</td>
+            <td>Hệ thống Đối soát (Reconciliation Engine) thực hiện đối khớp dữ liệu tài chính định kỳ 2 lần/tuần từ API đối tác bưu điện: <br/>- Đối soát COD: Đối chiếu số tiền thu hộ thực tế bưu điện báo cáo với số tiền COD trên đơn hàng SPF.<br/>- Đối soát phí ship: Đối khớp phí vận chuyển thực tế từ bưu điện (tính theo trọng lượng/khoảng cách) với phí ship lý thuyết FTel đã tính để phát hiện chênh lệch chi phí.</td>
         </tr>
     </tbody>
 </table>
 
----
-
-<h2>V. Mô tả Giao diện & Ràng buộc Trường (Screen Description)</h2>
-
-<h4>Màn hình Checkout Page (One-page Checkout)</h4>
+<h3>1.4. Mô tả màn hình</h3>
 <table class="data-table">
     <thead>
         <tr>
@@ -914,42 +742,42 @@ graph TD
             <td>Textbox / String</td>
             <td>- Bắt buộc nhập.<br/>- Không chứa số/ký tự đặc biệt.<br/>- Max 50 ký tự.</td>
             <td style="text-align: center;">-</td>
-            <td>Khách hàng nhập họ tên. Hệ thống tự động viết hoa chữ cái đầu khi mất focus.</td>
+            <td>Khách hàng nhập họ tên liên hệ nhận hàng/lắp đặt.</td>
         </tr>
         <tr>
             <td>Số điện thoại</td>
             <td>Textbox / Number</td>
-            <td>- Bắt buộc nhập.<br/>- Đúng định dạng di động VN.<br/>- Đúng 10 chữ số.</td>
-            <td style="text-align: center;">BR-CAM-01</td>
-            <td>Khách hàng nhập SĐT. Hệ thống gọi API check tài khoản và hiển thị thông báo inline.</td>
+            <td>- Bắt buộc nhập.<br/>- Đúng 10 chữ số di động VN.</td>
+            <td style="text-align: center;">BR-CO-02</td>
+            <td>Khách hàng nhập SĐT. Hệ thống gọi API check để hiển thị popup đề xuất liên kết hợp đồng Internet FPT.</td>
         </tr>
         <tr>
             <td rowspan="6"><strong>Địa chỉ giao nhận / lắp đặt</strong></td>
             <td>Hình thức triển khai</td>
             <td>Radio Group</td>
             <td>- Bắt buộc chọn 1.<br/>- Option: "Kỹ thuật FTel lắp đặt" hoặc "Tôi muốn tự lắp đặt".</td>
-            <td style="text-align: center;">BR-CAM-04<br/>BR-CAM-05</td>
-            <td>- Chọn Kỹ thuật lắp: Hiện DatePicker chọn lịch hẹn, tính phí lắp đặt theo từng camera lẻ.<br/>- Chọn Tự lắp đặt: Ẩn DatePicker, tính phí giao hàng theo đơn hàng.</td>
+            <td style="text-align: center;">BR-CO-03<br/>BR-CO-04</td>
+            <td>- Chọn Kỹ thuật lắp: Hiện DatePicker chọn lịch hẹn, tính phí lắp đặt theo từng camera lẻ.<br/>- Chọn Tự lắp đặt: Ẩn DatePicker, tính phí giao hàng theo đơn hàng, phí lắp đặt = 0đ.</td>
         </tr>
         <tr>
             <td>Lịch thi công</td>
             <td>DatePicker</td>
             <td>- Bắt buộc nếu chọn Kỹ thuật lắp.<br/>- Ngày thi công bắt đầu từ Ngày_Đặt + 2 ngày.</td>
-            <td style="text-align: center;">BR-CAM-04</td>
-            <td>Người dùng chọn ngày thi công mong muốn trên lịch. Ẩn chủ nhật và ngày lễ.</td>
+            <td style="text-align: center;">BR-CO-03</td>
+            <td>Người dùng chọn ngày thi công mong muốn trên lịch. Ẩn các ngày chủ nhật/ngày lễ.</td>
         </tr>
         <tr>
             <td>Tỉnh/Thành phố</td>
             <td>Dropdown List</td>
             <td>- Bắt buộc chọn.</td>
-            <td style="text-align: center;">BR-CAM-08</td>
+            <td style="text-align: center;">BR-CO-05</td>
             <td>Khách chọn Tỉnh. Hệ thống load Quận/Huyện tương ứng.</td>
         </tr>
         <tr>
             <td>Quận/Huyện</td>
             <td>Dropdown List</td>
             <td>- Bắt buộc chọn.</td>
-            <td style="text-align: center;">BR-CAM-08</td>
+            <td style="text-align: center;">BR-CO-05</td>
             <td>Khách chọn Huyện. Hệ thống load Phường/Xã và check hạ tầng hỗ trợ COD.</td>
         </tr>
         <tr>
@@ -957,7 +785,7 @@ graph TD
             <td>Dropdown List</td>
             <td>- Bắt buộc chọn.</td>
             <td style="text-align: center;">-</td>
-            <td>Khách hàng chọn Phường/Xã.</td>
+            <td>Khách hàng chọn Phường/Xã cư trú.</td>
         </tr>
         <tr>
             <td>Số nhà, tên đường</td>
@@ -971,8 +799,8 @@ graph TD
             <td>Phương thức TT</td>
             <td>Radio / Icon List</td>
             <td>- Bắt buộc chọn 1.<br/>- Option: VietQR, MoMo, Thẻ ATM/Visa, COD.</td>
-            <td style="text-align: center;">BR-CAM-08</td>
-            <td>Khách hàng chọn PTTT. Hệ thống hiển thị các thông tin khuyến mãi/QR tương ứng. Nếu địa chỉ không hỗ trợ COD, tự động disable.</td>
+            <td style="text-align: center;">BR-CO-04</td>
+            <td>Khách hàng chọn PTTT. Hệ thống hiển thị các thông tin QR tương ứng. Nếu địa chỉ không hỗ trợ COD bưu điện, tự động disable.</td>
         </tr>
         <tr>
             <td rowspan="2"><strong>Tóm tắt đơn hàng</strong></td>
@@ -992,9 +820,224 @@ graph TD
     </tbody>
 </table>
 
----
+<h3>1.5. Các trường hợp lỗi & thông báo tương ứng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 150px;">Giai đoạn</th>
+            <th style="width: 250px;">Tình huống lỗi</th>
+            <th style="width: 300px;">Thông báo hiển thị chính xác</th>
+            <th>Hành vi UI & Xử lý hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Nhập liệu</strong></td>
+            <td>Số điện thoại sai định dạng</td>
+            <td><span style="color: red;">"Số điện thoại không hợp lệ! Vui lòng nhập đúng 10 chữ số di động."</span></td>
+            <td>Viền đỏ ô nhập SĐT. Disable nút "Thanh toán". Hiển thị text báo lỗi inline màu đỏ.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Chọn địa chỉ</strong></td>
+            <td>Khu vực không hỗ trợ giao hàng COD bưu điện</td>
+            <td><span style="color: red;">"Phương thức Thanh toán tại nhà (COD) không hỗ trợ tại khu vực này. Vui lòng chọn thanh toán trực tuyến để chúng tôi chuyển phát thiết bị!"</span></td>
+            <td>Hiển thị Alert Popup cảnh báo. Tự động bôi mờ tùy chọn COD. Reset lựa chọn phương thức thanh toán về "VietQR".</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Giao dịch</strong></td>
+            <td>Lỗi cổng thanh toán trực tuyến thất bại</td>
+            <td><span style="color: red;">"Giao dịch không thành công. Tài khoản của bạn chưa bị trừ tiền. Vui lòng thử lại hoặc chọn phương thức thanh toán khác!"</span></td>
+            <td>Giữ nguyên toàn bộ dữ liệu khách hàng đã điền trên form Checkout. Hiển thị Popup cảnh báo giao dịch lỗi.</td>
+        </tr>
+    </tbody>
+</table>
 
-<h2>VI. Kịch bản lỗi & Thông báo hiển thị (Error Messages)</h2>
+<br clear="all" style="page-break-before: always;"/>
+
+<!-- ========================================== -->
+<!-- II. LUỒNG 2: CHECKOUT COMBO CAMERA -->
+<!-- ========================================== -->
+<h2>II. Luồng 2: Luồng Checkout Combo Camera Only (Thiết bị + Cloud)</h2>
+
+<h3>2.1. Định nghĩa tính năng</h3>
+<p>Kịch bản bán hàng trọn gói (Combo) kết hợp giữa thiết bị phần cứng Camera và gói cước dịch vụ lưu trữ đám mây Cloud Storage mới. Luồng mua hàng phục vụ khách hàng chưa đăng ký Cloud hoặc muốn đăng ký gói Cloud mới tương ứng với thiết bị mua thêm hoạt động trên hạ tầng Internet sẵn có.</p>
+
+<h3>2.2. Business flow & mô tả cụ thể các bước thao tác</h3>
+<ol>
+    <li><strong>Bước 1 - Tiếp cận:</strong> Khách hàng truy cập Trang chủ fpt.vn hoặc Trang danh mục thiết bị, lựa chọn sản phẩm Camera.</li>
+    <li><strong>Bước 2 - Lựa chọn cấu hình PDP:</strong> Khách hàng tại trang PDP chọn loại Camera, chọn Gói lưu trữ Cloud mới (3 ngày/7 ngày/14 ngày), chọn Chu kỳ thanh toán cước (6 tháng / 12 tháng) và điều chỉnh Số lượng combo phần cứng + Cloud (1 - 10 bộ).
+        <ul>
+            <li>Hệ thống khóa cứng tỷ lệ đồng bộ số lượng Camera và gói Cloud là 1:1.</li>
+            <li>Nhấn nút <strong>"Mua ngay"</strong> để xác nhận.</li>
+        </ul>
+    </li>
+    <li><strong>Bước 3 - Điều hướng Checkout:</strong> FE lưu thông tin combo, tự động cập nhật giỏ hàng và chuyển khách hàng sang trang Checkout `/checkout`.</li>
+    <li><strong>Bước 4 - Nhập thông tin cá nhân:</strong> Khách hàng nhập Họ tên và SĐT liên hệ. Hệ thống check SĐT:
+        <ul>
+            <li>Nếu đã có tài khoản Camera: Hiển thị inline text thông báo gói cước Cloud mới sẽ tự động kích hoạt vào tài khoản cũ.</li>
+            <li>Nếu chưa có tài khoản Camera: Hệ thống sẽ tự động tạo tài khoản mới bằng SĐT này và gửi mật khẩu kích hoạt qua SMS sau khi nhận hàng.</li>
+        </ul>
+    </li>
+    <li><strong>Bước 5 - Chọn hình thức Triển khai & Giao nhận:</strong> Khách hàng lựa chọn 1 trong 2 hình thức:
+        <ul>
+            <li><strong>Tùy chọn A (Kỹ thuật FTel lắp):</strong> Nhập địa chỉ thi công, chọn ngày hẹn thi công. Phí lắp đặt tính lũy kế theo từng camera lẻ. Nếu chọn chu kỳ cước Cloud trả trước 6 hoặc 12 tháng, giảm phí lắp đặt về 0đ.</li>
+            <li><strong>Tùy chọn B (Khách tự lắp đặt):</strong> Nhập địa chỉ nhận hàng bưu điện. Phí lắp đặt = 0đ. Hệ thống tặng thêm 01 tháng cước Cloud khuyến khích.</li>
+        </ul>
+    </li>
+    <li><strong>Bước 6 - Xác nhận Thanh toán:</strong> Khách hàng áp dụng mã voucher, lựa chọn PTTT (VietQR, MoMo, Thẻ quốc tế, COD) và nhấn <strong>"Thanh toán"</strong>.</li>
+    <li><strong>Bước 7 - Hoàn tất đơn hàng:</strong> Sau khi thanh toán thành công (hoặc xác nhận đơn COD), hệ thống hiển thị Thank You Page:
+        <ul>
+            <li>Nếu Kỹ thuật lắp: Hiện ngày thi công kỹ thuật và hướng dẫn chuẩn bị modem Wifi.</li>
+            <li>Nếu Tự lắp đặt: Hiện mã vận đơn bưu điện và Widget Self-Setup Hub (Video 3D hướng dẫn tự quét QR, tải app, Wifi Speedtest Widget đo băng thông upload).</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>2.3. Business rules (bao gồm luồng giao hàng và hậu kỳ)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 120px; text-align: center;">Mã Rule</th>
+            <th style="width: 200px;">Tên Quy tắc</th>
+            <th>Nội dung quy tắc chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-01</strong></td>
+            <td>Ràng buộc đồng bộ số lượng</td>
+            <td>Số lượng gói Cloud lưu trữ đăng ký mới phải luôn luôn bằng số lượng thiết bị phần cứng Camera đặt mua (tỷ lệ 1:1). Giới hạn tối đa 10 combo/đơn hàng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-02</strong></td>
+            <td>Khuyến mãi chu kỳ cước</td>
+            <td>Áp dụng ưu đãi chu kỳ dài hạn cấu hình từ PDP: Chọn chu kỳ 12 tháng được tặng thêm 1 tháng cước Cloud miễn phí.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-03</strong></td>
+            <td>Quy trình Giao hàng & Lắp đặt (Kỹ thuật FTel)</td>
+            <td>Kỹ thuật viên đến nhà lắp ráp và kéo cáp: <br/>- Tính phí thi công riêng lẻ cho từng Camera: 110.000đ / camera đối với khách nội mạng và 150.000đ / camera đối với khách ngoại mạng.<br/>- **Miễn phí lắp đặt** (phí = 0đ) nếu khách hàng đăng ký cước Cloud trả trước chu kỳ 6 tháng hoặc 12 tháng.<br/>- Hậu kỳ: Hệ thống SPF tự tạo ticket thi công. Kỹ thuật viên nhận ticket qua Mobisale, xuất kho camera (quét MAC), thi công và quét MAC để kích hoạt cước Cloud trực tiếp.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-04</strong></td>
+            <td>Quy trình Giao bưu điện (Tôi muốn tự lắp đặt)</td>
+            <td>Khách hàng tự thi công lắp đặt tại nhà: <br/>- Phí lắp đặt = 0đ. Phí giao hàng tính theo **tổng đơn hàng** (30.000đ/đơn, miễn phí vận chuyển nếu đơn hàng đạt giá trị từ 1.000.000đ trở lên).<br/>- **Tặng thêm 01 tháng cước Cloud miễn phí** vào gói cước cước của khách hàng để khuyến khích tự lắp đặt.<br/>- Hậu kỳ: Hệ thống SPF tạo phiếu giao hàng DO, gọi API đối tác bưu điện lấy mã vận đơn. Kho WMS xuất kho quét MAC gán cứng vào đơn hàng và giao bưu điện.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-05</strong></td>
+            <td>Quy trình kích hoạt cước Cloud tự động</td>
+            <td>Đối với luồng Tự lắp đặt: <br/>- Gói cước Cloud mới được giữ ở trạng thái chờ kích hoạt (Pending Active) trên hệ thống cước.<br/>- Khi đối tác bưu điện gửi webhook trạng thái **Giao hàng thành công (Delivered)**, hệ thống SPF tự động kích hoạt trạng thái chờ trên tài khoản của khách hàng.<br/>- Khách hàng tự quét mã QR dán dưới đáy camera qua app FPT Camera để kích hoạt và gán gói cước vào thiết bị sử dụng.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>BR-CC-06</strong></td>
+            <td>Quy trình đối soát bưu điện hậu kỳ</td>
+            <td>Phân hệ đối soát tài chính (Reconciliation Engine) tự động đối khớp công nợ COD và đối soát chi phí ship thực tế với đối tác giao vận 3PL định kỳ hàng tuần.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>2.4. Mô tả màn hình</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 100px;">Khối</th>
+            <th style="width: 150px;">Tên trường</th>
+            <th style="width: 120px;">Kiểu dữ liệu</th>
+            <th style="width: 200px;">Ràng buộc / Validation</th>
+            <th style="width: 80px; text-align: center;">Mã BR</th>
+            <th>Hành vi hệ thống & Thao tác người dùng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2"><strong>Thông tin cá nhân</strong></td>
+            <td>Họ và tên</td>
+            <td>Textbox / String</td>
+            <td>- Bắt buộc nhập.<br/>- Không chứa số/ký tự đặc biệt.<br/>- Max 50 ký tự.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng nhập họ tên liên hệ.</td>
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
+            <td>Textbox / Number</td>
+            <td>- Bắt buộc nhập.<br/>- Đúng 10 chữ số di động VN.</td>
+            <td style="text-align: center;">BR-CC-05</td>
+            <td>Khách hàng nhập SĐT. Hệ thống gọi API check hiển thị thông báo gộp vào tài khoản cũ hoặc thông báo tạo mới tài khoản.</td>
+        </tr>
+        <tr>
+            <td rowspan="6"><strong>Địa chỉ giao nhận / lắp đặt</strong></td>
+            <td>Hình thức triển khai</td>
+            <td>Radio Group</td>
+            <td>- Bắt buộc chọn 1.<br/>- Option: "Kỹ thuật FTel lắp đặt" hoặc "Tôi muốn tự lắp đặt".</td>
+            <td style="text-align: center;">BR-CC-03<br/>BR-CC-04</td>
+            <td>- Chọn Kỹ thuật lắp: Hiện DatePicker chọn lịch hẹn, tính phí lắp đặt theo từng camera lẻ (hoặc giảm về 0đ nếu trả trước 6/12 tháng).<br/>- Chọn Tự lắp đặt: Ẩn DatePicker, tính phí giao hàng theo đơn hàng, phí lắp đặt = 0đ, hiện quà tặng thêm 1 tháng Cloud.</td>
+        </tr>
+        <tr>
+            <td>Lịch thi công</td>
+            <td>DatePicker</td>
+            <td>- Bắt buộc nếu chọn Kỹ thuật lắp.<br/>- Ngày thi công bắt đầu từ Ngày_Đặt + 2 ngày.</td>
+            <td style="text-align: center;">BR-CC-03</td>
+            <td>Người dùng chọn ngày thi công mong muốn trên lịch. Ẩn các ngày chủ nhật/ngày lễ.</td>
+        </tr>
+        <tr>
+            <td>Tỉnh/Thành phố</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">BR-CC-06</td>
+            <td>Khách chọn Tỉnh. Hệ thống load Quận/Huyện tương ứng.</td>
+        </tr>
+        <tr>
+            <td>Quận/Huyện</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">BR-CC-06</td>
+            <td>Khách chọn Huyện. Hệ thống load Phường/Xã và check hạ tầng hỗ trợ COD.</td>
+        </tr>
+        <tr>
+            <td>Phường/Xã</td>
+            <td>Dropdown List</td>
+            <td>- Bắt buộc chọn.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng chọn Phường/Xã cư trú.</td>
+        </tr>
+        <tr>
+            <td>Số nhà, tên đường</td>
+            <td>Textbox / String</td>
+            <td>- Bắt buộc nhập.</td>
+            <td style="text-align: center;">-</td>
+            <td>Khách hàng nhập số nhà chi tiết để giao hàng/lắp đặt.</td>
+        </tr>
+        <tr>
+            <td><strong>Phương thức TT</strong></td>
+            <td>Phương thức TT</td>
+            <td>Radio / Icon List</td>
+            <td>- Bắt buộc chọn 1.<br/>- Option: VietQR, MoMo, Thẻ ATM/Visa, COD.</td>
+            <td style="text-align: center;">BR-CC-04</td>
+            <td>Khách hàng chọn PTTT. Hệ thống hiển thị các thông tin QR tương ứng. Nếu địa chỉ không hỗ trợ COD bưu điện, tự động disable.</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><strong>Tóm tắt đơn hàng</strong></td>
+            <td>Tổng thanh toán</td>
+            <td>Display Text</td>
+            <td>- Chỉ đọc (Read-only).</td>
+            <td style="text-align: center;">-</td>
+            <td>Tự động cập nhật real-time bao gồm cả cước thiết bị, cước Cloud, phí lắp đặt (nếu có) hoặc phí vận chuyển và giảm giá.</td>
+        </tr>
+        <tr>
+            <td>Nút "Thanh toán"</td>
+            <td>Button</td>
+            <td>- Active khi điền đủ và đúng form.</td>
+            <td style="text-align: center;">-</td>
+            <td>Click xử lý đơn hàng, hiện overlay loading và chuyển hướng cổng thanh toán.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>2.5. Các trường hợp lỗi & thông báo tương ứng</h3>
 <table class="data-table">
     <thead>
         <tr>
