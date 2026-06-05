@@ -177,6 +177,61 @@ A senior BA doesn’t stop at delivery.
 - Identify improvements
 - Optimize process
 
+## 11. Case Studies & Real-world Workflows
+
+Dưới đây là hai luồng nghiệp vụ thực tế trong hệ thống FPT/FTEL để BA tham khảo và áp dụng tư duy phân tích hệ thống phức tạp.
+
+### Case Study 1: Luồng Bán Hàng TikTok Shop (Cross-functional Flow)
+Luồng này mô tả sự phối hợp vận hành và tự động hóa giữa nhiều bộ phận và hệ thống khi bán hàng qua sàn TMĐT TikTok Shop.
+
+#### Các bộ phận và vai trò (Swimlanes):
+- **PO (FES)**: Thực hiện các thiết lập ban đầu trên sàn TMĐT & Vendor (Tạo tài khoản/hồ sơ nhà bán, khai báo phạm vi bán hàng, phương thức thanh toán, phương thức giao hàng/đối tác vận chuyển, khai báo hợp đồng tại Vendor và khai báo sản phẩm). Cuối luồng, PO theo dõi các báo cáo giám sát (tồn kho, ví nhà bán, hoàn trả, bảng kê đối soát...).
+- **MKT**: Khai báo chính sách giá (Inside và sàn), ban hành & khai báo mã phiếu mua hàng (PMH) dịch vụ, các chương trình ưu đãi/voucher trên sàn và hoàn tất khai báo sản phẩm trên sàn & FTEL.
+- **Khách hàng**: Thực hiện tạo đơn hàng và thanh toán trực tuyến trên TikTok Shop (Trạng thái đơn hàng: *Đã đặt hàng - Chờ xác nhận*).
+- **DVKH CN / FES**:
+  - Đối với đơn hàng tự động: Hệ thống xử lý đồng bộ.
+  - Đối với đơn hàng thủ công: FES tiếp nhận đơn hàng trên sàn và DVKH tạo đơn hàng trên FTEL qua SalesClub/SOF/Bán hàng (Loại đơn: Bán mới/Bán thêm).
+  - Tiếp nhận và xử lý yêu cầu hoàn trả, hủy đơn hàng, bảo hành từ khách hàng.
+- **Hệ thống (Tự động hóa cốt lõi)**:
+  - Tự động tạo đơn hàng trên FTEL, xác nhận đơn hàng và cập nhật trạng thái *Đang chuẩn bị*.
+  - Đồng bộ đơn hàng TMĐT về hệ thống SPF (Trạng thái đơn hàng SPF: *Đã tạo tạm*, Trạng thái trên sàn: *Đang vận chuyển*).
+  - Tạo đơn hàng Vendor (Trạng thái: *Đã đặt hàng*).
+  - Tự động tạo phiếu giao dịch thiết bị ("Bán thiết bị") và tự động tạo phiếu thi công giao kỹ thuật viên.
+  - Tự động xác nhận thanh toán & gạch nợ khi đơn hàng trên sàn chuyển sang trạng thái *Hoàn thành*.
+  - Tự động nhập cọc khi đơn hàng ở trạng thái *Đã thanh toán* (đảm bảo ghi nhận đúng hồ sơ thu hộ).
+  - Tự động duyệt hợp đồng khi thỏa mãn các điều kiện: *Đã nộp tiền*, *Nhập cọc HĐ thành công*, *Đủ hồ sơ thông tin KH*, *Đã ký HĐ/PLAP*.
+  - Tự động phát hành hóa đơn và quản lý doanh thu - công nợ, đối soát với nhà cung cấp (Vendor) và hoàn ứng vật tư inside.
+- **Kỹ thuật viên (KTV TIN/PNC)**: Tiếp nhận thiết bị, thực hiện giao hàng, triển khai lắp đặt cho khách hàng và cập nhật hoàn tất phiếu thi công.
+
+---
+
+### Case Study 2: Luồng Tìm Kiếm Sản Phẩm & Kiểm Tra Bảo Hành Theo IMEI (Sequence Diagram)
+Luồng này mô tả sự tương tác chi tiết giữa các hệ thống Front-end, Back-end và các dịch vụ bổ trợ để xử lý tìm kiếm sản phẩm hoặc đề xuất gói bảo hành dựa trên số IMEI của thiết bị.
+
+#### Các thành phần tham gia:
+- **FE RSA**: Giao diện Front-end tương tác với người dùng.
+- **BE RSA**: Back-end xử lý logic nghiệp vụ trung gian.
+- **PIM (Product Information Management)**: Quản lý thông tin sản phẩm và SKU.
+- **Bảo hành APP & Bảo hành Core**: Hệ thống quản lý thông tin và điều kiện bảo hành.
+- **OMS (Order Management System)**: Quản lý đơn hàng và thông tin xuất bán của thiết bị.
+
+#### Kịch bản 1: Tìm kiếm sản phẩm thông thường
+1. Người dùng nhập sản phẩm cần tìm trên FE.
+2. FE gọi API `search SP` đến BE, BE chuyển tiếp yêu cầu đến PIM.
+3. PIM thực hiện kiểm tra nội bộ xem sản phẩm có thuộc danh mục bảo hành hay không.
+4. Nếu đúng, PIM gọi API `search SP` đến hệ thống Bảo hành APP -> Bảo hành Core để lấy thông tin gói bảo hành tương ứng.
+5. Thông tin gói bảo hành (Giá, thời gian bảo hành, nhà cung cấp) được trả ngược lại từ Bảo hành Core -> Bảo hành APP -> PIM -> BE -> FE để hiển thị cho người dùng.
+
+#### Kịch bản 2: Kiểm tra bảo hành và đề xuất gói bảo hành theo IMEI
+1. Người dùng nhập số IMEI của thiết bị trên FE.
+2. FE gọi API `search SP by imei` đến BE, BE chuyển tiếp yêu cầu đến PIM.
+3. PIM truy vấn SKU tương ứng với số IMEI đó (self-call) và trả thông tin SKU về BE.
+4. BE gọi API đến OMS để lấy thông tin **ngày xuất bán** của số IMEI này. OMS trả về ngày xuất bán.
+5. BE tự thực hiện kiểm tra so sánh ngày xuất bán với mốc **7 ngày**:
+   - **Trường hợp > 7 ngày**: BE trả về lỗi ngay lập tức (return error) cho FE hiển thị cho khách hàng (không đủ điều kiện mua gói bảo hành).
+   - **Trường hợp < 7 ngày**: BE gọi API `suggest gói bảo hành` đến Bảo hành APP -> Bảo hành Core để lấy danh sách gói bảo hành phù hợp.
+6. Danh sách gói bảo hành được gửi trả về từ Bảo hành Core -> Bảo hành APP -> PIM (để tích hợp thông tin imei) -> BE -> FE hiển thị cho người dùng lựa chọn mua kèm.
+
 ## How to work with the user
 - If the user is unclear → guide discovery
 - If the user has requirements → structure and refine
@@ -185,6 +240,7 @@ A senior BA doesn’t stop at delivery.
 - If the user is experienced → collaborate, not instruct
 - **If the user requests a URD** → Use the `templates/urd-template.md` and fill in the information gathered from the discovery/refinement phase.
 - **If the user requests a User Story / US Specification** → Use the `templates/us-template.md` to document the user story, Gherkin acceptance criteria, UI element specifications, and API mapping.
+
 
 Always adapt depth based on context.
 
