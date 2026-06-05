@@ -333,7 +333,25 @@ sequenceDiagram
 
 ---
 
-## 4. Quy Trình Tự Động Biên Dịch Mermaid sang PNG từ file MD
+## 4. Phương Pháp Phân Tích Nghiệp Vụ & Thiết Kế Luồng Cho BA
+
+Khi phân tích một yêu cầu nghiệp vụ để trực quan hóa thành sơ đồ, BA cần tuân thủ quy trình phân tích và chuyển hóa sau:
+
+### A. Phân tích để vẽ Flow Diagram (Swimlane Flowchart)
+Áp dụng khi cần mô tả **luồng công việc liên phòng ban (Cross-functional)** hoặc các hoạt động có sự tham gia của cả con người và hệ thống tự động.
+1. **Xác định Đối tượng (Who/What)**: Liệt kê tất cả các bộ phận tham gia (ví dụ: PO, MKT, Khách hàng, DVKH, Hệ thống, Kỹ thuật viên). Mỗi đối tượng sẽ tương ứng với một `subgraph` (làn) trong Mermaid.
+2. **Xác định các sự kiện Tự động hóa**: Phân biệt rõ các tác vụ thủ công (do con người làm) và các tác vụ tự động (hệ thống tự duyệt hợp đồng, tự tạo phiếu thi công, tự gạch nợ, tự phát hành hóa đơn). Các node tự động nên được gom vào làn `HỆ THỐNG`.
+3. **Mẫu phân tích**: Sử dụng file [flowchart-swimlane-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/flowchart-swimlane-template.md) để bắt đầu.
+
+### B. Phân tích để vẽ Sequence Diagram
+Áp dụng khi cần mô tả **tương tác kỹ thuật chi tiết giữa các hệ thống (System Interaction)**, các cuộc gọi API, và xử lý logic của Back-end.
+1. **Xác định Actor & Participants**: Actor là con người hoặc hệ thống bên ngoài. Participants là các thành phần hệ thống nội bộ (FE, BE Gateway, Microservices như PIM, OMS, Bảo hành APP, v.v.).
+2. **Xác định Logic rẽ nhánh (Decision Logic)**: Thể hiện rõ các kịch bản kiểm tra điều kiện (ví dụ: Kiểm tra IMEI có ngày xuất bán > 7 ngày thì báo lỗi, <= 7 ngày thì đề xuất gói bảo hành). Sử dụng các khối `alt/else` trong Mermaid.
+3. **Mẫu phân tích**: Sử dụng file [sequence-ba-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/sequence-ba-template.md) để bắt đầu.
+
+---
+
+## 5. Quy Trình Tự Động Biên Dịch Mermaid sang PNG từ file MD
 
 Để tạo ra file ảnh PNG có nền tối solid màu `#121212` trực tiếp từ khối code Mermaid trong file Markdown, sử dụng lệnh PowerShell sau:
 
@@ -346,16 +364,20 @@ Hoặc bạn có thể chạy file script PowerShell dùng chung [generate_image
 
 ---
 
-## 5. Thư Mục Templates
+## 6. Thư Mục Templates & Case Studies Cho BA
 
 Skill này đi kèm một thư mục `templates/` chứa các file mẫu sẵn sàng để sử dụng ngay:
 
 | File | Mô tả |
 |------|--------|
-| `templates/sequence-template.md` | Mẫu file tài liệu Markdown kèm khối code Mermaid và chỗ nhúng ảnh PNG. |
-| `templates/example-related-articles.md` | Ví dụ thực tế hoàn chỉnh (Sơ đồ "Thông tin hay theo Tag sản phẩm") để tham khảo. |
+| [sequence-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/sequence-template.md) | Mẫu file tài liệu Markdown kèm khối code Mermaid và chỗ nhúng ảnh PNG. |
+| [flowchart-swimlane-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/flowchart-swimlane-template.md) | **[MỚI]** Template vẽ Flow Diagram phân làn nghiệp vụ (Swimlane Flowchart) cho BA bằng Mermaid. |
+| [sequence-ba-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/sequence-ba-template.md) | **[MỚI]** Template vẽ Sequence Diagram tương tác hệ thống chi tiết cho BA bằng Mermaid. |
+| [example-related-articles.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/example-related-articles.md) | Ví dụ thực tế hoàn chỉnh (Sơ đồ "Thông tin hay theo Tag sản phẩm") để tham khảo. |
 
 ### Quy Trình Tạo Sơ Đồ Mới (Dùng Template):
-1. Copy file `templates/sequence-template.md` → `diagrams/[tên-mới].md` và điền nội dung sơ đồ vào khối code block ````mermaid```` cùng phần mô tả.
-2. Chạy lệnh PowerShell biên dịch nhanh ở trên (thay thế `$name = "[tên-mới]"`) để sinh ra file ảnh `diagrams/[tên-mới].png`.
-3. Kiểm tra hiển thị trong file Markdown mới tạo.
+1. Copy file template tương ứng từ `templates/` vào thư mục `diagrams/[tên-mới].md`.
+2. Điền nội dung sơ đồ vào khối code block ````mermaid```` cùng phần mô tả chi tiết.
+3. Chạy lệnh PowerShell biên dịch nhanh ở trên (thay thế `$name = "[tên-mới]"`) để sinh ra file ảnh `diagrams/[tên-mới].png`.
+4. Kiểm tra hiển thị trong file Markdown mới tạo.
+
