@@ -401,30 +401,7 @@
 <p>Dưới đây là mô tả luồng đi của dữ liệu áp dụng voucher giữa Khách hàng, Giao diện Front-end (FE), Hệ thống Back-end Checkout (BE) và hệ thống Quản lý Chính sách (QLCS) / Product Hub:</p>
 <p><i>[Luồng hoạt động lõi: BE Checkout đóng vai trò trung tâm tính toán toán bộ giá trị giảm giá, kiểm tra điều kiện loại trừ, kiểm tra phương thức thanh toán và trả kết quả hiển thị cho FE.]</i></p>
 
-<div class="code-block">
-+------------+             1. Chọn ưu đãi / Nhập mã             +------------+
-|            | ----------------------------------------------> |            |
-| KHÁCH HÀNG |             4. Hiển thị UI Voucher tương ứng    | FRONT-END  |
-|            | <---------------------------------------------- |  (FPT.VN)  |
-+------------+                                                 +------------+
-                                                                     |
-                                           3. Trả về kết quả         | 2. Gửi thông tin đơn
-                                              giảm giá, trạng thái   |    PTTT, địa điểm, SKU
-                                              của từng voucher       |    và mã khuyến mãi
-                                                                     v
-                                                               +------------+
-                                                               |  BACK-END  |
-                                                               |  CHECKOUT  |
-                                                               +------------+
-                                                                     |
-                                             Truy vấn luật &         | Kết nối cấu hình
-                                             kiểm tra điều kiện      | thông tin động
-                                                                     v
-                                                               +------------+
-                                                               | PRODUCT HUB|
-                                                               |   & QLCS   |
-                                                               +------------+
-</div>
+<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Sequence Diagram luồng Voucher FPT.vn">
 
 <h3>2. Danh sách các chức năng chính</h3>
 <table class="data-table">
