@@ -1,0 +1,831 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - HỆ THỐNG QUẢN LÝ VÀ ÁP DỤNG VOUCHER/ƯU ĐÃI (PHASE 1)</title>
+<style>
+    /* Định dạng chung */
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    
+    /* Thiết kế Trang Bìa chuẩn Template URD */
+    .cover-container {
+        border: 4px double #1f4e78;
+        padding: 50px 40px;
+        margin: 10px;
+        min-height: 800px;
+        position: relative;
+    }
+    .cover-logo-box {
+        text-align: left;
+        margin-bottom: 60px;
+    }
+    .cover-logo {
+        width: 130px;
+        height: auto;
+    }
+    .cover-brand {
+        font-family: 'Arial', sans-serif;
+        font-size: 18pt;
+        color: #1f4e78;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
+    }
+    .cover-title-box {
+        text-align: center;
+        margin-top: 80px;
+        margin-bottom: 120px;
+    }
+    .cover-title-main {
+        font-family: 'Arial', sans-serif;
+        color: #1f4e78;
+        font-size: 24pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+    .cover-title-sub {
+        font-family: 'Arial', sans-serif;
+        color: #e37222; /* Màu cam FPT */
+        font-size: 14pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 10px;
+        letter-spacing: 0.5px;
+    }
+    .cover-meta-box {
+        margin-top: 120px;
+        width: 100%;
+        border-top: 2px solid #1f4e78;
+        padding-top: 20px;
+    }
+    .cover-meta-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+    }
+    .cover-meta-table td {
+        border: none;
+        padding: 6px 0;
+        font-size: 11pt;
+        color: #333333;
+    }
+    .cover-meta-label {
+        font-weight: bold;
+        color: #1f4e78;
+        width: 120px;
+    }
+    
+    /* Đầu mục Văn bản */
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
+    
+    /* Thiết kế Bảng */
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    
+    /* Thiết kế Mục lục Classic */
+    .toc-title {
+        font-family: 'Arial', sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        color: #1f4e78;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; }
+    table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
+    .toc-dots { border-bottom: 1px dotted #555555; }
+    
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; }
+    .toc-l2 { padding-left: 20px; font-size: 11pt; color: #000000; }
+    .toc-l3 { padding-left: 40px; font-size: 10.5pt; font-style: italic; color: #555555; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 40px; font-weight: bold; }
+    
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    .page-break { page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
+    .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
+    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
+    .success-inline { color: #385723; font-size: 10pt; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA -->
+<div class="cover-container">
+    <div class="cover-logo-box">
+        <div class="cover-brand">FPT TELECOM</div>
+    </div>
+    
+    <div class="cover-title-box">
+        <div class="cover-title-main">Tài Liệu Yêu Cầu Người Dùng<br>(User Requirements Document - URD)</div>
+        <div class="cover-title-sub">HỆ THỐNG QUẢN LÝ VÀ ÁP DỤNG VOUCHER ƯU ĐÃI KHÁCH HÀNG<br>KÊNH FPT.VN (PHASE 1)</div>
+    </div>
+    
+    <div class="cover-meta-box">
+        <table class="cover-meta-table">
+            <tr>
+                <td class="cover-meta-label">Dự án:</td>
+                <td>Nâng cấp cổng Checkout FPT.vn - Phase 1</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Mã hiệu:</td>
+                <td>FPT-URD-VOUCHER-P1-01</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Phiên bản:</td>
+                <td>V1.0</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Tác giả:</td>
+                <td>Bộ phận Phân tích Nghiệp vụ (BA Senior)</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Ngày lập:</td>
+                <td>08/06/2026</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- LỊCH SỬ THAY ĐỔI -->
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><i>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</i></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 15%;">Ngày</th>
+            <th style="width: 10%;">Version</th>
+            <th style="width: 20%;">Tác giả</th>
+            <th style="width: 10%;">Hành động</th>
+            <th style="width: 45%;">Mô tả chi tiết thay đổi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>08/06/2026</td>
+            <td>V1.0</td>
+            <td>BA Senior</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu URD hệ thống Voucher Phase 1. Mô tả chi tiết 2 luồng Voucher NET/Combo NET (vcnetp1), Voucher SKU (vcskup1) và các kịch bản Voucher (casevcp1).</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- MỤC LỤC -->
+<div class="toc-title">MỤC LỤC</div>
+<table class="toc-table">
+    <tr>
+        <td class="toc-l1">A. GIỚI THIỆU</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">4</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Mục đích tài liệu</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">4</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Thông tin chung & Hiện trạng (AS-IS vs TO-BE)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">4</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">4</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">5</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">5</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Danh sách các chức năng chính</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">5</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Ma trận phân quyền sử dụng</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">6</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">7</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">I. LUỒNG CHECKOUT VÀ ÁP DỤNG VOUCHER NET / COMBO NET (vcnetp1)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">7</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Quy trình nghiệp vụ từng bước (Step-by-Step)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">7</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Quy tắc cấu hình từ Product Hub và Quản lý chính sách</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">8</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">II. LUỒNG CHECKOUT VÀ ÁP DỤNG VOUCHER SKU THIẾT BỊ / CLOUD (vcskup1)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">9</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Quy trình nghiệp vụ từng bước (Step-by-Step)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">9</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Quy tắc áp dụng SKU và Cloud đi kèm</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">10</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES VOUCHER (casevcp1)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">11</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Trường hợp không có ưu đãi khả dụng</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">11</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Kịch bản Voucher không đủ điều kiện (Disabled hiển thị lý do)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">11</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">3. Kịch bản cơ cấu loại trừ (Exclusion giữa các voucher)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">12</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">4. Thứ tự sắp xếp và cơ chế Random hiển thị</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">12</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">5. Nhãn cảnh báo "Sắp hết hạn" tự động</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">12</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">IV. BẢNG THÔNG ĐIỆP BÁO LỖI VÀ KỊCH BẢN THAY ĐỔI BỐI CẢNH</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">13</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">D. YÊU CẦU PHI CHỨC NĂNG</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">14</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">14</td>
+    </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- NỘI DUNG CHÍNH -->
+
+<h1>A. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả các yêu cầu người dùng cuối đối với phân hệ áp dụng mã khuyến mãi (Voucher) trên cổng thanh toán trực tuyến (Checkout) của FPT.vn cho Phase 1. Tài liệu này đóng vai trò làm cơ sở nghiệp vụ để đội ngũ phát triển Frontend (FE), Backend (BE), Quản lý chính sách (QLCS), Product Hub và đội ngũ Kiểm thử (QA/QC) xây dựng giải pháp kỹ thuật và kịch bản UAT.</p>
+
+<h3>2. Thông tin chung & Hiện trạng (AS-IS vs TO-BE)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 30%;">Hạng mục</th>
+            <th style="width: 70%;">Mô tả chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Quy trình hiện tại (AS-IS)</b></td>
+            <td>Khách hàng khi thanh toán các gói cước Internet, Combo hoặc thiết bị Camera trên FPT.vn chỉ có thể nhập mã coupon tĩnh. Chưa hỗ trợ hiển thị danh sách voucher tự động tương thích với hành vi/gói cước của khách hàng. Chưa có cơ chế hiển thị lý do không đủ điều kiện đối với các mã bị loại trừ hoặc không đạt điều kiện thanh toán.</td>
+        </tr>
+        <tr>
+            <td><b>Mục tiêu kỳ vọng (TO-BE)</b></td>
+            <td>Hệ thống checkout sẽ tích hợp sâu với Backend Checkout và Product Hub để hiển thị popup "Chọn ưu đãi" thông minh:
+            <br>- Tự động hiển thị các voucher khả dụng theo bối cảnh đơn hàng (gói cước, phương thức thanh toán, số lượng thiết bị).
+            <br>- Cho phép áp dụng đè mã mới lên mã cũ.
+            <br>- Hiển thị trực quan lý do voucher bị disabled (ví dụ: do sai Phương thức thanh toán - PTTT).
+            <br>- Hỗ trợ cơ cấu loại trừ giữa các voucher.
+            <br>- Tự động hiển thị nhãn "Sắp hết hạn" dựa trên thời gian thực.
+            </td>
+        </tr>
+        <tr>
+            <td><b>Phạm vi nghiệp vụ Phase 1</b></td>
+            <td>Áp dụng voucher cho 2 luồng mua sắm chính:
+            <br>1. Luồng Internet / Combo Internet + FPT Play (Voucher NET/Combo NET).
+            <br>2. Luồng Thiết bị Camera FPT lẻ kèm các chu kỳ cước Cloud (Voucher SKU).
+            <br><i>* Lưu ý: Tạm thời bỏ qua luồng đổi voucher bằng điểm tích lũy (FGold) trong phase này.</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ và viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 20%;">Thuật ngữ</th>
+            <th style="width: 40%;">Tên đầy đủ / Ý nghĩa</th>
+            <th style="width: 40%;">Mô tả</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>QLCS</b></td>
+            <td>Quản lý Chính sách Khuyến mại</td>
+            <td>Hệ thống cấu hình các quy định, điều kiện và giá trị giảm giá của Voucher.</td>
+        </tr>
+        <tr>
+            <td><b>Product Hub</b></td>
+            <td>Trung tâm Quản lý Sản phẩm</td>
+            <td>Hệ thống quản trị cấu hình các text mô tả dưới gói dịch vụ, thiết bị đi kèm và các tham số khuyến mãi.</td>
+        </tr>
+        <tr>
+            <td><b>SKU</b></td>
+            <td>Stock Keeping Unit</td>
+            <td>Đơn vị phân loại sản phẩm thiết bị (vd: Camera SE, Cloud 3 ngày chu kỳ 6T...).</td>
+        </tr>
+        <tr>
+            <td><b>COD</b></td>
+            <td>Cash on Delivery</td>
+            <td>Phương thức thanh toán tại nhà khi nhận hàng hoặc triển khai lắp đặt.</td>
+        </tr>
+        <tr>
+            <td><b>VietQR / MoMo</b></td>
+            <td>Các phương thức thanh toán online</td>
+            <td>Cổng thanh toán điện tử được tích hợp trên FPT.vn.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
+
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Context Diagram)</h3>
+<p>Dưới đây là mô tả luồng đi của dữ liệu áp dụng voucher giữa Khách hàng, Giao diện Front-end (FE), Hệ thống Back-end Checkout (BE) và hệ thống Quản lý Chính sách (QLCS) / Product Hub:</p>
+<p><i>[Luồng hoạt động lõi: BE Checkout đóng vai trò trung tâm tính toán toán bộ giá trị giảm giá, kiểm tra điều kiện loại trừ, kiểm tra phương thức thanh toán và trả kết quả hiển thị cho FE.]</i></p>
+
+<div class="code-block">
++------------+             1. Chọn ưu đãi / Nhập mã             +------------+
+|            | ----------------------------------------------> |            |
+| KHÁCH HÀNG |             4. Hiển thị UI Voucher tương ứng    | FRONT-END  |
+|            | <---------------------------------------------- |  (FPT.VN)  |
++------------+                                                 +------------+
+                                                                     |
+                                           3. Trả về kết quả         | 2. Gửi thông tin đơn
+                                              giảm giá, trạng thái   |    PTTT, địa điểm, SKU
+                                              của từng voucher       |    và mã khuyến mãi
+                                                                     v
+                                                               +------------+
+                                                               |  BACK-END  |
+                                                               |  CHECKOUT  |
+                                                               +------------+
+                                                                     |
+                                             Truy vấn luật &         | Kết nối cấu hình
+                                             kiểm tra điều kiện      | thông tin động
+                                                                     v
+                                                               +------------+
+                                                               | PRODUCT HUB|
+                                                               |   & QLCS   |
+                                                               +------------+
+</div>
+
+<h3>2. Danh sách các chức năng chính</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 25%;">Module / Chức năng</th>
+            <th style="width: 12%; text-align: center;">Phiên bản</th>
+            <th style="width: 15%; text-align: center;">Phân loại</th>
+            <th style="width: 40%;">Mô tả tóm tắt hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Áp dụng Voucher NET / Combo</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Cho phép áp dụng voucher giảm giá cho các đơn đăng ký lắp mạng Internet hoặc Combo Internet + Truyền hình.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Áp dụng Voucher SKU Thiết bị</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Áp dụng voucher giảm giá trực tiếp cho thiết bị Camera lẻ hoặc các chu kỳ cước lưu trữ Cloud.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Popup danh sách ưu đãi</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Hiển thị popup danh sách các mã giảm giá và ưu đãi. Phân tách rõ ràng giữa mục "Mã giảm giá" và "Ưu đãi".</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Hiển thị Voucher loại trừ</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Hiển thị cảnh báo và khóa không cho chọn đồng thời các voucher có cấu hình loại trừ lẫn nhau từ hệ thống QLCS.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">5</td>
+            <td>Cảnh báo Voucher không đủ điều kiện</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Hiển thị voucher ở trạng thái disabled kèm lý do không đủ điều kiện (ví dụ: chỉ áp dụng cho PTTT khác).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">6</td>
+            <td>Tính toán giảm cước tự động</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Hệ thống Backend tự động tính toán số tiền giảm (bao gồm cả mức cản/giảm tối đa) và trả kết quả về màn hình Checkout.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Ma trận phân quyền sử dụng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 42%;">Chức năng / Module</th>
+            <th style="width: 15%; text-align: center;">Khách hàng</th>
+            <th style="width: 15%; text-align: center;">Admin QLCS</th>
+            <th style="width: 20%;">Ghi chú</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Xem danh sách voucher khả dụng trên Checkout</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Khách hàng xem thông qua popup chọn ưu đãi</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Nhập tay mã giảm giá và áp dụng</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Áp dụng tại ô textbox nhập mã</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Cấu hình chính sách voucher, mức giảm tối đa</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Admin cấu hình trên hệ thống Quản lý chính sách</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td>Cấu hình text nhỏ dưới gói cước/dịch vụ</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Admin cấu hình tại Product Hub</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</h1>
+
+<h2>I. LUỒNG CHECKOUT VÀ ÁP DỤNG VOUCHER NET / COMBO NET (vcnetp1)</h2>
+
+<h3>1. Quy trình nghiệp vụ từng bước (Step-by-Step)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Tác nhân tham gia</td>
+        <td>Khách hàng (Cá nhân/Doanh nghiệp) mua sắm trên FPT.vn</td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện bắt đầu (Pre-conditions)</td>
+        <td>Khách hàng đã chọn gói dịch vụ Internet (ví dụ: Gói Sky - 6 tháng) hoặc Combo từ trang chủ/trang chi tiết sản phẩm và chuyển tiếp tới trang đăng ký thông tin thanh toán.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng xử lý chính</td>
+        <td>
+            <b>Bước 1: Điền thông tin cá nhân và lắp đặt</b>
+            <br>- Khách hàng điền: Họ tên, Số điện thoại.
+            <br>- Khách hàng chọn địa chỉ lắp đặt: Tỉnh/Thành phố (Hồ Chí Minh), Quận/Huyện, Phường/Xã, Tên đường (gợi ý tự động từ hệ thống), Số nhà và loại nhà (Nhà riêng/Chung cư).
+            <br>- Hệ thống hiển thị thông tin sản phẩm đã chọn (Gói Sky - 6 tháng, phí 1.500.000đ).
+            <br>
+            <b>Bước 2: Hiển thị trang Checkout (Màn hình Thanh toán)</b>
+            <br>- Hệ thống hiển thị chi tiết "Thông tin thanh toán":
+            <ul>
+                <li>Gói Sky 6 tháng: 1.500.000đ.</li>
+                <li>Internet hub AX1800GZ: 0đ (Trang bị kèm gói).</li>
+                <li>Quà tặng đi kèm (Ví dụ: Tặng F-Safe Go 3 ngày, tặng FPT Play Premium): 0đ.</li>
+                <li>Phí lắp đặt tại nhà: 300.000đ (Đây là phí cấu hình động từ Product Hub cho lần lắp đặt đầu tiên).</li>
+            </ul>
+            - Tổng tiền tạm tính: 1.800.000đ.
+            <br>- Hệ thống hiển thị ô nhập mã ưu đãi: Textbox <b>"Nhập mã ưu đãi"</b> và nút liên kết <b>"Chọn ưu đãi"</b> (kèm số lượng voucher hiện có của khách hàng, ví dụ: "3").
+            <br>
+            <b>Bước 3: Thực hiện áp dụng Voucher</b>
+            <br>- <i>Cách 1 (Nhập tay)</i>: Khách hàng nhập mã `FTEL30GIAM50K` vào ô textbox và nhấn <b>"Áp dụng"</b>.
+            <br>- <i>Cách 2 (Chọn từ popup)</i>: Khách hàng click nút <b>"Chọn ưu đãi"</b>. Giao diện hiển thị popup danh sách. Khách hàng tick chọn mã `FTEL30GIAM50K` và nhấn <b>"Xác nhận"</b>.
+            <br>- Hệ thống Backend thực hiện tính toán giá trị cước:
+            <ul>
+                <li>Mã `FTEL30GIAM50K` hợp lệ đối với bối cảnh: Gói cước Sky 6T, thanh toán qua VietQR/COD.</li>
+                <li>Số tiền giảm: -50.000đ.</li>
+            </ul>
+            <b>Bước 4: Cập nhật giao diện Checkout sau khi áp dụng</b>
+            <br>- Hệ thống hiển thị text xanh: <i>"Áp dụng voucher ưu đãi thành công"</i>.
+            <br>- Trong danh sách tiền chi tiết, bổ sung dòng: <b>`FTEL30GIAM50K: -50.000đ`</b>.
+            <br>- Số tiền <b>"Cần thanh toán (Đã bao gồm VAT)"</b> cập nhật thực tế: <b>1.750.000đ</b>.
+            <br>
+            <b>Bước 5: Hoàn tất thanh toán và đơn hàng</b>
+            <br>- Khách hàng chọn PTTT (VietQR) và nhấn nút <b>"Thanh toán"</b>.
+            <br>- Sau khi thanh toán thành công, hệ thống hiển thị màn hình <b>"Hoàn tất đơn hàng"</b>:
+            <ul>
+                <li>Thông báo: <i>"Thanh toán thành công. Đơn hàng đã đăng ký thành công. Kỹ thuật viên FPT Telecom sẽ liên hệ triển khai dịch vụ trong 8h - 12h..."</i>.</li>
+                <li>Mã đơn hàng: `HKGBTUIKOP12`.</li>
+                <li>Thông tin thanh toán cuối cùng hiển thị chi tiết số tiền đã trừ ưu đãi 50.000đ, tổng thu 1.750.000đ.</li>
+                <li>Nút hành động: "Xác nhận Hợp đồng điện tử" và "Đóng".</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện kết thúc (Post-conditions)</td>
+        <td>Đơn hàng Internet/Combo được tạo thành công trên hệ thống SPF với thông tin mã voucher đã áp dụng và số tiền thực thu đã chiết khấu. Đơn hàng được đồng bộ sang hệ thống triển khai lắp đặt.</td>
+    </tr>
+</table>
+
+<h3>2. Quy tắc cấu hình từ Product Hub và Quản lý chính sách</h3>
+<div class="alert-box">
+    <b>[VOUCHER-NET-BR-01] Cấu hình động từ Product Hub:</b>
+    <br>- Các dòng text nhỏ màu xám hiển thị dưới thông tin gói cước (ví dụ: <i>"Trang bị miễn phí thiết bị phát Wi-Fi 6"</i>, <i>"Miễn phí lắp đặt tại nhà"</i>, <i>"Tặng 1 tháng cước"</i>) không được viết cứng (hardcode) trên FE.
+    <br>- Toàn bộ các text này cùng phí lắp đặt (300.000đ) đều được cấu hình và quản lý tập trung tại hệ thống Product Hub và được API trả về dựa theo loại gói cước, số tháng trả trước và địa bàn lắp đặt (Tỉnh/Thành phố).
+    <br><br>
+    <b>[VOUCHER-NET-BR-02] Xử lý số tiền giảm giá:</b>
+    <br>- Backend checkout chịu trách nhiệm tính toán số tiền giảm. Mức giảm có thể là giảm tuyệt đối (vd: 50.000 VNĐ) hoặc giảm theo % gói cước nhưng không vượt quá mức giảm tối đa (Cap) cấu hình từ hệ thống QLCS.
+</div>
+
+<div class="page-break"></div>
+
+<h2>II. LUỒNG CHECKOUT VÀ ÁP DỤNG VOUCHER SKU THIẾT BỊ / CLOUD (vcskup1)</h2>
+
+<h3>1. Quy trình nghiệp vụ từng bước (Step-by-Step)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Tác nhân tham gia</td>
+        <td>Khách hàng (Cá nhân/Doanh nghiệp) đăng ký mua Camera lẻ</td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện bắt đầu (Pre-conditions)</td>
+        <td>Khách hàng đã chọn thiết bị Camera từ Trang danh mục sản phẩm (ví dụ: Camera SE S2) và chọn chu kỳ cước Cloud kèm theo (ví dụ: Cloud 3 ngày - chu kỳ 6 tháng) trên màn hình chi tiết sản phẩm, sau đó nhấn "Mua ngay".</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng xử lý chính</td>
+        <td>
+            <b>Bước 1: Điền thông tin giao nhận lắp đặt thiết bị</b>
+            <br>- Khách hàng điền: Họ tên, Số điện thoại.
+            <br>- Địa chỉ lắp đặt thiết bị: Nhập chi tiết Tỉnh/Thành phố, Quận/Huyện, Phường/Xã, Tên đường và Số nhà.
+            <br>- Chọn phương án lắp đặt: <i>"Tôi muốn tự lắp đặt"</i> hoặc <i>"Cần kỹ thuật viên lắp đặt"</i>.
+            <br>
+            <b>Bước 2: Hiển thị trang Checkout Thiết bị (Màn hình Thanh toán)</b>
+            <br>- Hệ thống hiển thị chi tiết các SKU trong đơn hàng:
+            <ul>
+                <li>Thiết bị Camera SE S2 (số lượng 1): 600.000đ.</li>
+                <li>Gói Cloud 3 ngày (chu kỳ cước 6 tháng): 240.000đ.</li>
+                <li>Phí triển khai Camera IQ 4S (thiết bị/phụ kiện lắp đặt đi kèm cấu hình từ Product Hub): 165.000đ.</li>
+            </ul>
+            - Tổng tiền tạm tính: 1.005.000đ.
+            <br>- Hiển thị ô nhập mã ưu đãi: Textbox <b>"Nhập mã khuyến mãi"</b> và nút liên kết <b>"Chọn ưu đãi"</b>.
+            <br>
+            <b>Bước 3: Thực hiện áp dụng Voucher SKU</b>
+            <br>- Khách hàng nhập mã hoặc click "Chọn ưu đãi" và chọn mã <b>`FTEL30GIAM50K`</b> (hoặc mã voucher SKU cụ thể ví dụ: `UUDAICAMERA`).
+            <br>- Hệ thống Backend kiểm tra điều kiện áp dụng của mã đối với SKU thiết bị `Camera SE S2` và gói cước Cloud đi kèm.
+            <br>- Trả về kết quả giảm giá thành công: Giảm 50.000đ trực tiếp vào đơn hàng.
+            <br>
+            <b>Bước 4: Cập nhật giao diện sau khi áp dụng</b>
+            <br>- Hệ thống hiển thị text xanh: <i>"Áp dụng thành công voucher Fgold FTEL30GIAM50K"</i>.
+            <br>- Dòng chi tiết giảm giá hiển thị: <b>`FTEL30GIAM50K: -50.000đ`</b>.
+            <br>- Số tiền <b>"Cần thanh toán"</b> cập nhật còn: <b>965.000đ</b>.
+            <br>
+            <b>Bước 5: Hoàn tất đơn hàng thiết bị</b>
+            <br>- Khách hàng hoàn tất thanh toán và chuyển hướng đến trang thông báo thành công.
+            <br>- Trang hoàn tất hiển thị:
+            <ul>
+                <li>Mã đơn hàng thiết bị: `HKGBTUIKOP12`.</li>
+                <li>Thông tin lắp đặt của khách hàng.</li>
+                <li>Chi tiết các SKU đã mua kèm số tiền đã trừ giảm giá của voucher.</li>
+                <li>Thông báo giao hàng dự kiến từ 3 đến 7 ngày đối với thiết bị tự lắp đặt.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện kết thúc (Post-conditions)</td>
+        <td>Tạo đơn hàng Camera + Cloud thành công trên hệ thống. Trừ kho thiết bị tương ứng với SKU Camera SE S2. Gửi thông tin đóng gói vận chuyển cho đối tác logistic/kỹ thuật triển khai.</td>
+    </tr>
+</table>
+
+<h3>2. Quy tắc áp dụng SKU và Cloud đi kèm</h3>
+<div class="alert-box">
+    <b>[VOUCHER-SKU-BR-01] Ràng buộc theo SKU thiết bị:</b>
+    <br>- Voucher SKU có thể được cấu hình chỉ áp dụng cho một hoặc một nhóm SKU thiết bị cụ thể (ví dụ: chỉ áp dụng cho Camera trong nhà - Camera SE S2, không áp dụng cho Camera ngoài trời).
+    <br>- Backend checkout kiểm tra danh sách SKU trong giỏ hàng. Nếu không tồn tại SKU thỏa mãn điều kiện, voucher sẽ không được áp dụng và trả về lỗi tương ứng.
+    <br><br>
+    <b>[VOUCHER-SKU-BR-02] Ràng buộc theo Gói Cloud đi kèm:</b>
+    <br>- Một số voucher yêu cầu đơn hàng phải mua kèm chu kỳ cước Cloud tối thiểu (ví dụ: mua Cloud chu kỳ từ 6 tháng trở lên mới được giảm giá thiết bị Camera). Backend sẽ kiểm tra thời hạn chu kỳ cước Cloud để quyết định kích hoạt mã giảm giá.
+</div>
+
+<div class="page-break"></div>
+
+<h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES VOUCHER (casevcp1)</h2>
+
+<p>Phần này đặc tả chi tiết 5 trường hợp (cases) nghiệp vụ hiển thị Voucher tại Popup chọn ưu đãi khi khách hàng nhấn vào nút "Chọn ưu đãi" tại màn hình checkout.</p>
+
+<h3>1. Trường hợp không có ưu đãi khả dụng (Không có Voucher)</h3>
+<table class="data-table">
+    <tr>
+        <td style="width: 25%;"><b>Mô tả tình huống</b></td>
+        <td>Khách hàng không sở hữu bất kỳ mã giảm giá hoặc chương trình ưu đãi nào khả dụng trong hệ thống QLCS cho đơn hàng hiện tại.</td>
+    </tr>
+    <tr>
+        <td><b>Hành vi Giao diện (UI)</b></td>
+        <td>
+            - Khi bấm nút "Chọn ưu đãi", hệ thống mở popup.
+            <br>- Thay vì hiển thị danh sách, hệ thống hiển thị hình ảnh minh họa chiếc hộp quà rỗng (hoặc voucher rỗng).
+            <br>- Hiển thị dòng thông báo màu xám chính giữa popup: <b style="color: #555555;">"Rất tiếc, quý khách không có mã ưu đãi."</b>
+            <br>- Khách hàng nhấn nút biểu tượng <b>"X"</b> ở góc trên bên phải popup để đóng và quay trở về màn hình thanh toán.
+        </td>
+    </tr>
+</table>
+
+<h3>2. Kịch bản Voucher không đủ điều kiện (Disabled hiển thị lý do)</h3>
+<table class="data-table">
+    <tr>
+        <td style="width: 25%;"><b>Mô tả tình huống</b></td>
+        <td>Voucher có tồn tại trong hệ thống nhưng đơn hàng hiện tại chưa thỏa mãn một số điều kiện (ví dụ: sai Phương thức thanh toán, hoặc giá trị đơn hàng chưa đạt mức tối thiểu).</td>
+    </tr>
+    <tr>
+        <td><b>Hành vi Giao diện (UI)</b></td>
+        <td>
+            - Voucher vẫn phải được hiển thị trong danh sách của Popup ưu đãi để khách hàng nhận biết chương trình khuyến mại.
+            <br>- **Trạng thái hiển thị**: Voucher bị mờ đi (Disabled - giảm Opacity xuống 50%). Ô checkbox để chọn voucher bị khóa, khách hàng không thể tick chọn.
+            <br>- **Hiển thị lý do cụ thể**: Ngay bên dưới thông tin voucher, hệ thống hiển thị dòng thông báo lý do không đạt điều kiện bằng chữ màu đỏ.
+            <br>- **Ví dụ thực tế**: Khách hàng chọn PTTT trực tuyến (VietQR) nhưng voucher cấu hình từ QLCS chỉ áp dụng cho hình thức thanh toán tại nhà (COD). Hệ thống sẽ hiển thị dòng cảnh báo: <span class="error-inline">"Chỉ áp dụng cho hình thức thanh toán tại nhà (COD)."</span>
+            <br>- **Hành vi động**: Nếu khách hàng quay lại màn hình checkout và thay đổi PTTT từ VietQR sang "Thanh toán tại nhà (COD)", khi mở lại popup, voucher này sẽ tự động chuyển sang trạng thái hoạt động (Active), cho phép tick chọn bình thường.
+        </td>
+    </tr>
+</table>
+
+<h3>3. Kịch bản cơ cấu loại trừ (Exclusion giữa các voucher)</h3>
+<table class="data-table">
+    <tr>
+        <td style="width: 25%;"><b>Mô tả tình huống</b></td>
+        <td>Khách hàng có nhiều voucher cùng đủ điều kiện áp dụng độc lập cho đơn hàng, tuy nhiên chính sách cấu hình từ QLCS quy định các voucher này không được áp dụng đồng thời (loại trừ lẫn nhau).</td>
+    </tr>
+    <tr>
+        <td><b>Hành vi Giao diện (UI)</b></td>
+        <td>
+            - Khi mở popup, cả Voucher A và Voucher B đều ở trạng thái Active và có thể tick chọn.
+            <br>- Khi khách hàng tick chọn áp dụng **Voucher A**:
+            <ul>
+                <li>**Voucher B** sẽ tự động chuyển sang trạng thái disabled (mờ đi, không thể tick).</li>
+                <li>Ngay bên dưới Voucher B hiển thị dòng cảnh báo màu đỏ: <span class="error-inline">"Không thể sử dụng với ưu đãi đã chọn khác."</span></li>
+            </ul>
+            - Nếu khách hàng untick chọn Voucher A, Voucher B sẽ lập tức trở lại trạng thái Active bình thường để khách hàng có thể chọn lại.
+        </td>
+    </tr>
+</table>
+
+<h3>4. Thứ tự sắp xếp và cơ chế Random hiển thị</h3>
+<div class="alert-box">
+    <b>[VOUCHER-CASE-BR-01] Quy tắc sắp xếp hiển thị trong Popup:</b>
+    <br>1. **Ưu tiên trạng thái**: Các voucher ở trạng thái hoạt động (Active) - đủ điều kiện áp dụng cho đơn hàng hiện tại phải luôn luôn được đưa lên phía trên cùng của danh sách. Các voucher bị khóa (Disabled) do không đủ điều kiện sẽ được xếp ở nhóm phía dưới.
+    <br>2. **Cơ chế hiển thị ngẫu nhiên (Random)**: Trong trường hợp có nhiều voucher cùng có trạng thái Active trong một mục (ví dụ: mục "Mã giảm giá" có 3 mã cùng thỏa mãn điều kiện đơn hàng), hệ thống sẽ thực hiện hiển thị ngẫu nhiên (random) thứ tự hiển thị của các mã này mỗi lần khách hàng mở popup để đảm bảo tính công bằng hiển thị chương trình khuyến mãi.
+</div>
+
+<h3>5. Nhãn cảnh báo "Sắp hết hạn" tự động</h3>
+<div class="alert-box">
+    <b>[VOUCHER-CASE-BR-02] Quy tắc gắn nhãn "Sắp hết hạn":</b>
+    <br>- Hệ thống tự động tính toán thời hạn sử dụng còn lại của từng voucher dựa trên ngày hết hạn cấu hình trong hệ thống QLCS so với ngày giờ hiện tại của hệ thống.
+    <br>- Nếu thời gian hiệu lực còn lại của voucher $\le 3$ ngày (hoặc theo số ngày $D$ cấu hình từ hệ thống quản lý chính sách):
+    <ul>
+        <li>Hệ thống hiển thị thêm một nhãn (tag) nhấp nháy hoặc chữ màu đỏ nổi bật ghi: <b style="color: red; font-size: 9pt; border: 1px solid red; padding: 2px 4px; border-radius: 3px;">Sắp hết hạn</b> tại góc trên của khung hiển thị voucher trong popup.</li>
+    </ul>
+</div>
+
+<div class="page-break"></div>
+
+<h2>IV. BẢNG THÔNG ĐIỆP BÁO LỖI VÀ KỊCH BẢN THAY ĐỔI BỐI CẢNH (CONTEXT CHANGE)</h2>
+
+<p>Bảng dưới đây quy định chính xác nội dung thông điệp báo lỗi/thành công mà hệ thống hiển thị cho khách hàng tại màn hình checkout trong các trường hợp áp dụng mã voucher.</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 25%;">Trường Hợp Nghiệp Vụ</th>
+            <th style="width: 15%;">Trạng Thái</th>
+            <th style="width: 40%;">Nội dung Message hiển thị chính xác</th>
+            <th style="width: 20%;">Hành vi Hệ thống & Giao diện</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- TH1 -->
+        <tr>
+            <td rowspan="2"><b>TH1: Lần đầu áp dụng mã</b><br>(Khách hàng nhập mã thủ công vào ô hoặc chọn từ popup khi chưa có mã nào được áp dụng)</td>
+            <td style="color: green; font-weight: bold;">TH1a: Thành công</td>
+            <td class="success-inline">Áp dụng mã ưu đãi thành công.</td>
+            <td>Cập nhật số tiền giảm giá cước, hiển thị dòng chi tiết voucher và giảm trừ tiền.</td>
+        </tr>
+        <tr>
+            <td style="color: red; font-weight: bold;">TH1b: Thất bại</td>
+            <td class="error-inline">Mã ưu đãi không hợp lệ. Vui lòng kiểm tra lại.</td>
+            <td>Không thay đổi tổng tiền. Viền ô nhập mã chuyển sang màu đỏ, hiển thị câu lỗi ngay dưới ô nhập.</td>
+        </tr>
+        <!-- TH2 -->
+        <tr>
+            <td rowspan="2"><b>TH2: Áp dụng mã mới đè lên mã cũ</b><br>(Đã có mã A đang áp dụng, khách hàng chọn hoặc nhập thêm mã B để thay thế)</td>
+            <td style="color: green; font-weight: bold;">TH2a: Thành công</td>
+            <td class="success-inline">Áp dụng ưu đãi mới thành công. Mã ưu đãi cũ đã được thay thế.</td>
+            <td>Hệ thống tự động hủy áp dụng mã A, áp dụng mã B, tính toán lại tiền giảm và cập nhật tên mã mới trên dòng chi tiết.</td>
+        </tr>
+        <tr>
+            <td style="color: red; font-weight: bold;">TH2b: Thất bại</td>
+            <td class="error-inline">Mã ưu đãi mới không hợp lệ. Hệ thống giữ nguyên mã cũ.</td>
+            <td>Hệ thống không thay đổi gì. Giữ nguyên mã A đang áp dụng và số tiền đã giảm của mã A. Hiển thị popup thông báo lỗi cho mã B.</td>
+        </tr>
+        <!-- TH3 -->
+        <tr>
+            <td><b>TH3: Thay đổi bối cảnh (Context Change)</b><br>(Khách hàng thay đổi PTTT, đổi số lượng SKU thiết bị hoặc gói cước cước ở trang checkout sau khi đã áp dụng mã thành công trước đó)</td>
+            <td style="color: red; font-weight: bold;">TH3a: Bị loại bỏ do không đạt điều kiện mới</td>
+            <td class="error-inline">Ưu đãi đã chọn không đủ điều kiện áp dụng, vui lòng kiểm tra lại.</td>
+            <td>Backend checkout tự động kiểm tra lại tính hợp lệ của mã. Nếu không đạt điều kiện mới, hệ thống tự động loại bỏ mã ưu đãi ra khỏi đơn hàng, đưa số tiền giảm về 0 và hiển thị thông báo lỗi cảnh báo cho khách hàng biết.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="alert-box">
+    <b>Quy tắc kỹ thuật cho TH3 (Thay đổi bối cảnh):</b>
+    <br>- Mỗi khi khách hàng thực hiện thay đổi bất kỳ trường thông tin nào trên trang Checkout (đặc biệt là: Phương thức thanh toán, Tỉnh/Thành địa chỉ lắp đặt, chu kỳ gói cước, số lượng SKU), FE phải tự động gửi request cập nhật đơn hàng về BE.
+    <br>- BE checkout sẽ thực hiện validate lại mã voucher đang áp dụng. Nếu mã không còn thỏa mãn điều kiện mới, BE trả về kết quả lỗi và thu hồi voucher, FE show câu thông báo TH3a: <i>"Ưu đãi đã chọn không đủ điều kiện áp dụng, vui lòng kiểm tra lại."</i>
+</div>
+
+<div class="page-break"></div>
+
+<h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
+
+<h3>1. Hiệu năng hệ thống (Performance)</h3>
+<ul>
+    <li><b>Tốc độ xử lý tính toán:</b> Thời gian Backend checkout nhận mã, validate các điều kiện từ QLCS/Product Hub và phản hồi lại số tiền giảm cước cho Frontend không được vượt quá 0.5 giây trong điều kiện mạng bình thường.</li>
+    <li><b>Tự động đồng bộ:</b> Trạng thái voucher (đã dùng/chưa dùng) phải được cập nhật thời gian thực ngay khi giao dịch thanh toán đơn hàng chuyển sang trạng thái thành công trên cổng thanh toán trực tuyến để tránh trường hợp khách hàng sử dụng lại mã nhiều lần cho các đơn hàng khác nhau.</li>
+</ul>
+
+<h3>2. Thiết kế trải nghiệm người dùng (UI/UX)</h3>
+<ul>
+    <li><b>Đồng bộ hiển thị lý do khóa:</b> Toàn bộ giao diện disabled của voucher và text báo lý do không đủ điều kiện (ví dụ: áp dụng cho COD) phải được hiển thị rõ ràng, dễ đọc, sử dụng màu đỏ tương phản nhẹ (#c00000) trên nền xám nhẹ của voucher bị khóa.</li>
+    <li><b>Responsive:</b> Popup danh sách ưu đãi và các thông báo lỗi phải hiển thị hoàn hảo trên cả phiên bản Desktop (Web) và Mobile (Responsive/App), đảm bảo nút tắt popup "X" và nút "Xác nhận" dễ thao tác bằng ngón tay trên điện thoại.</li>
+</ul>
+
+<h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
+<ul>
+    <li>Tài liệu thiết kế UI/UX luồng Voucher NET/Combo NET: [Chèn link Figma tại đây]</li>
+    <li>Tài liệu thiết kế UI/UX luồng Voucher SKU thiết bị Camera: [Chèn link Figma tại đây]</li>
+    <li>Tài liệu đặc tả API tích hợp hệ thống Quản lý chính sách (QLCS) và Product Hub: [Chèn link tài liệu API]</li>
+</ul>
+
+</body>
+</html>
