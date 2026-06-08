@@ -397,11 +397,11 @@
 
 <h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
 
-<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Context Diagram)</h3>
-<p>Dưới đây là mô tả luồng đi của dữ liệu áp dụng voucher giữa Khách hàng, Giao diện Front-end (FE), Hệ thống Back-end Checkout (BE) và hệ thống Quản lý Chính sách (QLCS) / Product Hub:</p>
-<p><i>[Luồng hoạt động lõi: BE Checkout đóng vai trò trung tâm tính toán toán bộ giá trị giảm giá, kiểm tra điều kiện loại trừ, kiểm tra phương thức thanh toán và trả kết quả hiển thị cho FE.]</i></p>
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</h3>
+<p>Dưới đây là sơ đồ luồng hoạt động rẽ nhánh kiểm tra điều kiện áp dụng Voucher trên hệ thống FPT.vn:</p>
+<p><i>[Luồng hoạt động lõi: BE Checkout đóng vai trò trung tâm tính toán toàn bộ giá trị giảm giá, kiểm tra điều kiện loại trừ, kiểm tra phương thức thanh toán và trả kết quả hiển thị cho FE.]</i></p>
 
-<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Sequence Diagram luồng Voucher FPT.vn">
+<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Flow Diagram luồng Voucher FPT.vn">
 
 <h3>2. Danh sách các chức năng chính</h3>
 <table class="data-table">
