@@ -6,78 +6,95 @@ Dưới đây là sơ đồ luồng hoạt động (Flow Diagram) thể hiện c
 
 ## Mã nguồn Mermaid (Dùng để render ảnh)
 ```mermaid
-%%{init: { 'theme': 'default', 'flowchart': { 'curve': 'stepAfter' } }%%
+%%{init: { 'theme': 'default', 'flowchart': { 'curve': 'linear', 'nodeSpacing': 35, 'rankSpacing': 50 } } }%%
 flowchart TD
-    %% Định nghĩa các lớp style màu sắc chuẩn sơ đồ dự án
-    classDef startClass fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#fff;
-    classDef endClass fill:#F44336,stroke:#D32F2F,stroke-width:2px,color:#fff;
-    classDef stepClass fill:#fff,stroke:#333,stroke-width:1.5px;
-    classDef decisionClass fill:#fff,stroke:#333,stroke-width:1.5px;
+    classDef startNode fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#fff
+    classDef endNode fill:#F44336,stroke:#D32F2F,stroke-width:2px,color:#fff
+    classDef processNode fill:#FFFFFF,stroke:#424242,stroke-width:1.5px,color:#212121
+    classDef decisionNode fill:#FFF9C4,stroke:#F57F17,stroke-width:2px,color:#212121
+    classDef errorNode fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#C62828
+    classDef retryNode fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1
 
-    %% KHAI BÁO CÁC NODE THEO TIÊU CHUẨN HÌNH DẠNG VÀ PHÂN VAI TRÒ
-    Node_Start((Start))
-    Node_GetConfig[BE: Lấy cấu hình cước & voucher từ Product Hub]
-    Node_ShowCheckout[FE: Hiển thị trang Checkout & nút Chọn ưu đãi]
-    Node_SelectVoucher[KH: Chọn / Nhập mã Voucher]
-    Node_ShowVouchers[FE: Hiển thị Popup Chọn ưu đãi]
-    Node_Validate[BE: Kiểm tra điều kiện áp dụng]
-    
-    Node_CheckSKU{BE: Đơn hàng<br/>đúng SKU?}
-    Node_CheckPTTT{BE: Đơn hàng<br/>đúng PTTT?}
-    Node_CheckExcl{Voucher<br/>bị loại trừ?}
-    
-    Node_ShowError[FE: Hiển thị lỗi điều kiện voucher<br/>Lý do: COD / SKU / Loại trừ]
-    Node_UpdateUI[FE: Cập nhật cước mới & Show thành công]
-    
-    Node_ChangeContext[KH: Thay đổi bối cảnh đơn hàng<br/>PTTT / SKU / Gói cước]
-    Node_ReValidate[BE: Tự động kiểm tra lại điều kiện]
-    Node_CheckReOK{BE: Vẫn đủ<br/>điều kiện?}
-    Node_ShowContextError[FE: Hiển thị lỗi bối cảnh mới<br/>& thu hồi voucher về cước gốc]
-    
-    Node_Pay[KH: Nhấn nút Thanh toán]
-    Node_MarkUsed[BE: Tạo đơn hàng SPF & Đánh dấu đã dùng mã]
-    Node_SuccessPage((Kết thúc))
+    %% ═══════════════════════════════════════
+    %% BLOCK 1: KHỞI TẠO & VÀO CHECKOUT
+    %% ═══════════════════════════════════════
+    A([Bắt đầu])
+    B["BE: Lấy cấu hình cước & danh sách voucher\ntừ Product Hub"]
+    C["FE: Hiển thị trang Checkout — nút 'Chọn ưu đãi'"]
+    D["KH: Nhấn 'Chọn ưu đãi' hoặc nhập mã thủ công"]
+    E["FE: Hiển thị Popup danh sách ưu đãi"]
+    F["BE: Kiểm tra điều kiện áp dụng voucher"]
 
-    %% Áp dụng style class cho các hình dạng node
-    class Node_Start startClass;
-    class Node_SuccessPage endClass;
-    class Node_SelectVoucher,Node_ChangeContext,Node_Pay,Node_ShowCheckout,Node_ShowVouchers,Node_UpdateUI,Node_ShowError,Node_ShowContextError,Node_GetConfig,Node_Validate,Node_ReValidate,Node_MarkUsed stepClass;
-    class Node_CheckSKU,Node_CheckPTTT,Node_CheckExcl,Node_CheckReOK decisionClass;
+    %% ═══════════════════════════════════════
+    %% BLOCK 2: KIỂM TRA ĐIỀU KIỆN
+    %% ═══════════════════════════════════════
+    G{"Đúng SKU\nyêu cầu?"}
+    H{"Đúng PTTT\nyêu cầu?"}
+    I{"Voucher\nbị loại trừ?"}
 
-    %% LUỒNG LIÊN KẾT TUYẾN TÍNH THẲNG ĐỨNG VÀ GÓC VUÔNG CHUẨN
-    Node_Start --> Node_GetConfig
-    Node_GetConfig --> Node_ShowCheckout
-    Node_ShowCheckout --> Node_SelectVoucher
-    Node_SelectVoucher --> Node_ShowVouchers
-    Node_ShowVouchers --> Node_Validate
-    
-    Node_Validate --> Node_CheckSKU
-    
-    %% Rẽ nhánh vuông góc kiểm tra điều kiện
-    Node_CheckSKU -->|Không| Node_ShowError
-    Node_CheckSKU -->|Có| Node_CheckPTTT
-    
-    Node_CheckPTTT -->|Không| Node_ShowError
-    Node_CheckPTTT -->|Có| Node_CheckExcl
-    
-    Node_CheckExcl -->|Không| Node_UpdateUI
-    Node_CheckExcl -->|Có| Node_ShowError
-    
-    %% Quay lại danh sách ưu đãi để chọn lại khi có lỗi
-    Node_ShowError --> Node_SelectVoucher
-    
-    %% Tiếp tục thanh toán
-    Node_UpdateUI --> Node_Pay
-    Node_Pay --> Node_MarkUsed
-    Node_MarkUsed --> Node_SuccessPage
+    %% ═══════════════════════════════════════
+    %% BLOCK 3: XỬ LÝ LỖI (Nhánh phải)
+    %% ═══════════════════════════════════════
+    ERR_SKU["FE: Lỗi — Sai SKU / Gói cước\nkhông đáp ứng điều kiện voucher"]
+    ERR_PTTT["FE: Lỗi — Sai PTTT / COD\nkhông được áp dụng voucher"]
+    ERR_EXCL["FE: Lỗi — Voucher loại trừ nhau\nkhông thể áp dụng đồng thời"]
+    RETRY["KH: Xem thông báo lỗi\nvà chọn lại ưu đãi phù hợp"]
+    REENTER["KH: Nhập mã mới hoặc bỏ qua ưu đãi"]
 
-    %% Luồng rẽ nhánh đổi bối cảnh (Context change)
-    Node_UpdateUI --> Node_ChangeContext
-    Node_ChangeContext --> Node_ReValidate
-    Node_ReValidate --> Node_CheckReOK
-    
-    Node_CheckReOK -->|Không| Node_ShowContextError
-    Node_CheckReOK -->|Có| Node_UpdateUI
-    
-    Node_ShowContextError --> Node_SelectVoucher
+    %% ═══════════════════════════════════════
+    %% BLOCK 4: ÁP DỤNG THÀNH CÔNG
+    %% ═══════════════════════════════════════
+    J["FE: Cập nhật giá cước mới\n'Áp dụng mã ưu đãi thành công'"]
+
+    %% ═══════════════════════════════════════
+    %% BLOCK 5: THAY ĐỔI BỐI CẢNH
+    %% ═══════════════════════════════════════
+    L{"KH thay đổi\nbối cảnh đơn hàng\nPTTT / SKU / Gói cước?"}
+    M["BE: Tự động kiểm tra lại\nđiều kiện voucher"]
+    N{"Voucher\nvẫn hợp lệ?"}
+    O["FE: Hiển thị lỗi bối cảnh mới\nThu hồi voucher — Hoàn về giá gốc"]
+    P["KH: Xem lại ưu đãi\nvà chọn ưu đãi phù hợp với bối cảnh mới"]
+    Q["KH: Nhập / Chọn mã mới\nhoặc tiếp tục không dùng ưu đãi"]
+
+    %% ═══════════════════════════════════════
+    %% BLOCK 6: THANH TOÁN & KẾT THÚC
+    %% ═══════════════════════════════════════
+    PAY["KH: Nhấn nút 'Thanh toán'"]
+    DONE["BE: Tạo đơn hàng SPF\n& Đánh dấu mã voucher đã sử dụng"]
+    R([Kết thúc])
+
+    %% Gán style
+    class A startNode
+    class R endNode
+    class B,C,D,E,F,J,M,O,P,PAY,DONE processNode
+    class G,H,I,L,N decisionNode
+    class ERR_SKU,ERR_PTTT,ERR_EXCL errorNode
+    class RETRY,REENTER,Q retryNode
+
+    %% ═══════════════════════════════════════
+    %% LUỒNG CHÍNH
+    %% ═══════════════════════════════════════
+    A --> B --> C --> D --> E --> F
+
+    F --> G
+    G -->|Có| H
+    H -->|Có| I
+    I -->|Không| J
+
+    %% Nhánh lỗi điều kiện
+    G -->|Không| ERR_SKU --> RETRY
+    H -->|Không| ERR_PTTT --> RETRY
+    I -->|Có| ERR_EXCL --> RETRY
+    RETRY --> REENTER --> F
+
+    %% Luồng sau khi áp dụng
+    J --> L
+    L -->|Không thay đổi| PAY
+    L -->|Có thay đổi| M
+    M --> N
+    N -->|Vẫn hợp lệ| J
+    N -->|Không còn hợp lệ| O --> P --> Q --> F
+
+    %% Kết thúc
+    PAY --> DONE --> R
 ```
