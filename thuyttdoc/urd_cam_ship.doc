@@ -162,6 +162,7 @@
 <!-- ========================================== -->
 <!-- LỊCH SỬ THAY ĐỔI (REVISION HISTORY) -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
 <p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
 <table class="data-table">
@@ -367,6 +368,7 @@
 <!-- ========================================== -->
 <!-- A. GIỚI THIỆU -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h1>A. GIỚI THIỆU</h1>
 
 <h2>1. Mục đích tài liệu</h2>
@@ -497,6 +499,7 @@
 <!-- ========================================== -->
 <!-- B. TỔNG QUAN HỆ THỐNG & LUỒNG NGHIỆP VỤ -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h1>B. TỔNG QUAN HỆ THỐNG & LUỒNG NGHIỆP VỤ</h1>
 
 <h2>I. Sơ đồ luồng nghiệp vụ tổng quan (Workflows)</h2>
@@ -657,6 +660,7 @@
 <!-- ========================================== -->
 <!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG</h1>
 
 <h2>I. Luồng 1: Luồng Checkout Camera Only (Mua lẻ thiết bị)</h2>
@@ -1085,6 +1089,7 @@
 <!-- ========================================== -->
 <!-- D. YÊU CẦU PHI CHỨC NĂNG -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
 
 <h2>1. Hiệu năng hệ thống (Performance)</h2>
@@ -1122,6 +1127,7 @@
 <!-- ========================================== -->
 <!-- E. PHỤ LỤC & TÀI LIỆU THAM KHẢO -->
 <!-- ========================================== -->
+<div class="page-break"></div>
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
     <li><strong>Tài liệu đặc tả API Đối tác Vận chuyển (GHN/Viettel Post):</strong> [Link tài liệu tích hợp API bưu điện]</li>

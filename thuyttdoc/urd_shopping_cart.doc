@@ -704,6 +704,7 @@
     <li><strong>Tải bộ cài đặt PC (PC Only):</strong> Nút tải file cài đặt phần mềm trên trang cảm ơn chỉ hiển thị file dạng `.exe` (Windows) hoặc `.dmg` (macOS) nếu trình duyệt nhận diện User-Agent là PC. Nếu là thiết bị di động, hiển thị mã QR Code dẫn tới chợ ứng dụng App Store hoặc Google Play tương ứng.</li>
 </ul>
 
+<div class="page-break"></div>
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
     <li><strong>Link Figma Mockup UI/UX Giỏ hàng & Checkout:</strong> <a href="#">https://figma.com/file/fpt-cart-checkout-mockup</a></li>

@@ -797,6 +797,7 @@
     <li><b>Responsive:</b> Popup danh sách ưu đãi và các thông báo lỗi phải hiển thị hoàn hảo trên cả phiên bản Desktop (Web) và Mobile (Responsive/App), đảm bảo nút tắt popup "X" và nút "Xác nhận" dễ thao tác bằng ngón tay trên điện thoại.</li>
 </ul>
 
+<div class="page-break"></div>
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
     <li>Tài liệu thiết kế UI/UX luồng Voucher NET/Combo NET: [Chèn link Figma tại đây]</li>
