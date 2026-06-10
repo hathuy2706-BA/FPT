@@ -28,9 +28,9 @@
         min-height: 800px;
         position: relative;
     }
-    .cover-logo-box { text-align: left; margin-bottom: 60px; }
-    .cover-logo { width: 200px; height: auto; }
-    .cover-title-box { text-align: center; margin-top: 80px; margin-bottom: 120px; }
+    .cover-logo-box { text-align: right; position: absolute; top: 30px; right: 40px; }
+    .cover-logo { width: 120px; height: auto; }
+    .cover-title-box { text-align: center; margin-top: 40px; margin-bottom: 80px; }
     .cover-title-main {
         font-family: 'Arial', sans-serif;
         color: #1f4e78;
