@@ -38,16 +38,24 @@ The following templates are available in the `templates/` directory. Use them as
 - Gồm: Mã hiệu, Phiên bản, Tác giả, Ngày lập, Ngày cập nhật
 
 #### 3. Page Break — Bắt buộc
-- CSS `h1` đã có `page-break-before: always` → Mọi đầu mục **A, B, C, D, E** tự xuống trang mới
-- CSS `.toc-title` đã có `page-break-before: always` → **MỤC LỤC** tự xuống trang mới
-- Dùng `<div class="page-break"></div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
+- CSS `h1` có `page-break-before: always; mso-page-break-before: always` → Mọi đầu mục **A, B, C, D, E** tự xuống trang mới
+- CSS `.toc-title` có `page-break-before: always; mso-page-break-before: always` → **MỤC LỤC** tự xuống trang mới
+- **⚠️ Word KHÔNG đọc CSS class** → Bắt buộc dùng **inline style** trực tiếp trên thẻ:
+  ```html
+  <!-- ĐÚNG — Word đọc được -->
+  <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+  <!-- SAI — Word bỏ qua class CSS -->
+  <div class="page-break"></div>
+  ```
+- `mso-page-break-before: always` là thuộc tính riêng của Word — **bắt buộc có cùng với** `page-break-before`
 
 #### 4. Sơ đồ Flow Diagram
 - Dùng skill `diagram-drawer` để vẽ — chuẩn nền trắng, đường thẳng/vuông góc
 - Ký hiệu bắt buộc: Tròn=Bắt đầu/Kết thúc | Chữ nhật=Tác vụ KH | Thoi=Quyết định | Note box=Quy tắc hệ thống
 - Góc nhìn **Customer Journey**: KH làm gì / KH thấy gì — không viết theo góc nhìn hệ thống kỹ thuật
 - Quy tắc hệ thống (BE logic, cấu hình...) → chuyển thành **note đính kèm step** (dạng bình hành nét đứt)
-- Lưu PNG tại `diagrams/[tên_flow].png`, nhúng bằng `<img class="diagram-img">`
+- Lưu PNG tại `diagrams/[tên_flow].png`, nhúng bằng `<img class="diagram-img" style="max-width:100%;">`
+- **⚠️ KHÔNG thêm text/bullet mô tả trước thẻ `<img>`** — sơ đồ tự giải thích, caption thừa gây rối bố cục
 
 #### 5. Nội dung luồng nghiệp vụ (usecase-table)
 - Gồm đầy đủ: Pre-conditions → Luồng chính (Step-by-Step) → Post-conditions → Luồng thay thế/Ngoại lệ (Alt)

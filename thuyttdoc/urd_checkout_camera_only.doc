@@ -19,7 +19,7 @@
     .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
     h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
     h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
@@ -35,7 +35,7 @@
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
     /* ===== MỤC LỤC ===== */
-    .toc-title { page-break-before: always; font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; color: #1f4e78; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+    .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; color: #1f4e78; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
     table.toc-table { width: 100%; border-collapse: collapse; border: none; }
     table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
     .toc-dots { border-bottom: 1px dotted #555555; }
@@ -48,7 +48,7 @@
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
     p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
-    .page-break { page-break-before: always; }
+    .page-break { page-break-before: always; mso-page-break-before: always; }
     .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
     .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
     .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
@@ -96,7 +96,7 @@
     </div>
 </div>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 
 
@@ -115,7 +115,7 @@
     </tr>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
 <p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
 <table class="data-table">
@@ -139,7 +139,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>MỤC LỤC</h1>
 <ol>
@@ -150,7 +150,7 @@
     <li><strong>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</strong></li>
 </ol>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>A. GIỚI THIỆU</h1>
 
@@ -250,7 +250,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
 
@@ -371,7 +371,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN</h1>
 
@@ -472,7 +472,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h3>II. Màn hình Thanh toán (Checkout Page - Camera Only)</h3>
 <table class="usecase-table">
@@ -579,7 +579,7 @@
     <li>Nếu khách hàng nhập địa chỉ ngoại vùng hỗ trợ lắp đặt hoặc bưu điện từ chối COD: Hệ thống tự động disable nút COD (bôi mờ và hiển thị dấu tool-tip cảnh báo) và hướng dẫn khách hàng thanh toán trực tuyến qua VietQR, MoMo hoặc Thẻ ATM/Tín dụng để được bưu điện giao hàng tận nơi.</li>
 </ul>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h4>Mô tả các trường giao diện One-page Checkout:</h4>
 <table class="data-table">
@@ -663,7 +663,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h3>III. Màn hình Hoàn tất đơn hàng (Thank You Page - Camera Only)</h3>
 <table class="usecase-table">
@@ -734,7 +734,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
 
@@ -756,7 +756,7 @@
     <li><strong>Hỗ trợ giao diện tối (Dark Mode):</strong> Trang Checkout và trang Thank You Page phải tự động chuyển đổi giao diện sáng/tối (Light/Dark Mode) đồng bộ theo thiết lập hệ thống của thiết bị khách hàng đang truy cập để mang lại trải nghiệm thị giác cao cấp.</li>
 </ul>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>

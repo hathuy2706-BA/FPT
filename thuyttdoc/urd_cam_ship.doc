@@ -19,7 +19,7 @@
     .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
     h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
     h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
@@ -35,7 +35,7 @@
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
     /* ===== MỤC LỤC ===== */
-    .toc-title { page-break-before: always; font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; color: #1f4e78; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+    .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; color: #1f4e78; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
     table.toc-table { width: 100%; border-collapse: collapse; border: none; }
     table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
     .toc-dots { border-bottom: 1px dotted #555555; }
@@ -48,7 +48,7 @@
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
     p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
-    .page-break { page-break-before: always; }
+    .page-break { page-break-before: always; mso-page-break-before: always; }
     .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
     .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
     .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
@@ -102,7 +102,7 @@
 <!-- ========================================== -->
 <!-- LỊCH SỬ THAY ĐỔI (REVISION HISTORY) -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
 <p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
 <table class="data-table">
@@ -308,7 +308,7 @@
 <!-- ========================================== -->
 <!-- A. GIỚI THIỆU -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h1>A. GIỚI THIỆU</h1>
 
 <h2>1. Mục đích tài liệu</h2>
@@ -439,17 +439,15 @@
 <!-- ========================================== -->
 <!-- B. TỔNG QUAN HỆ THỐNG & LUỒNG NGHIỆP VỤ -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h1>B. TỔNG QUAN HỆ THỐNG & LUỒNG NGHIỆP VỤ</h1>
 
 <h2>I. Sơ đồ luồng nghiệp vụ tổng quan (Workflows)</h2>
 
 <h3>1. Sơ đồ luồng Checkout trực tuyến phía khách hàng (Frontend Flow)</h3>
-<p>Dưới đây là sơ đồ luồng đi của khách hàng được tích hợp trực tiếp dưới dạng hình ảnh hiển thị trong tài liệu:</p>
 <img src="../diagrams/checkout_flow.png" alt="Sơ đồ luồng Checkout khách hàng" class="diagram-img" />
 
 <h3>2. Sơ đồ luồng Giao nhận & Hậu kỳ (Backend Flow)</h3>
-<p>Dưới đây là sơ đồ quy trình hậu kỳ vận hành giao lắp camera và đối soát tài chính tự động:</p>
 <img src="../diagrams/logistics_flow.png" alt="Sơ đồ luồng Hậu kỳ Giao nhận & Đối soát" class="diagram-img" />
 
 <h2>II. Danh sách các chức năng (Functional List)</h2>
@@ -595,12 +593,12 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ========================================== -->
 <!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG</h1>
 
 <h2>I. Luồng 1: Luồng Checkout Camera Only (Mua lẻ thiết bị)</h2>
@@ -1024,12 +1022,12 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ========================================== -->
 <!-- D. YÊU CẦU PHI CHỨC NĂNG -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
 
 <h2>1. Hiệu năng hệ thống (Performance)</h2>
@@ -1062,12 +1060,12 @@
     </li>
 </ul>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ========================================== -->
 <!-- E. PHỤ LỤC & TÀI LIỆU THAM KHẢO -->
 <!-- ========================================== -->
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
     <li><strong>Tài liệu đặc tả API Đối tác Vận chuyển (GHN/Viettel Post):</strong> [Link tài liệu tích hợp API bưu điện]</li>

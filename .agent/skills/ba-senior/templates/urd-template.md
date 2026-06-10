@@ -61,7 +61,7 @@
 
     /* ===== HEADINGS ===== */
     /* LƯU Ý: h1 có page-break-before để đầu mục lớn luôn xuống trang mới */
-    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
     h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
     h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
@@ -101,7 +101,7 @@
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
     p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
-    .page-break { page-break-before: always; }
+    .page-break { page-break-before: always; mso-page-break-before: always; }
     .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
     .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
     .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
@@ -156,7 +156,7 @@
     </div>
 </div>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ============================================================ -->
 <!-- LỊCH SỬ THAY ĐỔI                                             -->
@@ -344,7 +344,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ============================================================ -->
 <!-- B. TỔNG QUAN HỆ THỐNG                                        -->
@@ -420,7 +420,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ============================================================ -->
 <!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ                  -->
@@ -502,12 +502,12 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h2>II. [TÊN LUỒNG 2] (nếu có)</h2>
 <!-- Lặp lại cấu trúc như Luồng I -->
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</h2>
 
@@ -539,7 +539,7 @@
     </tbody>
 </table>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h2>IV. BẢNG THÔNG ĐIỆP BÁO LỖI (ERROR MESSAGES)</h2>
 <p>Bảng quy định chính xác nội dung thông điệp hệ thống hiển thị cho KH trong từng trường hợp:</p>
@@ -594,7 +594,7 @@
     <li><b>Che dấu dữ liệu nhạy cảm:</b> Số điện thoại hiển thị dạng masking (VD: <code>098***1234</code>). Thông tin thẻ không lưu tại DB hệ thống, ủy quyền cho cổng thanh toán PCI-DSS.</li>
 </ul>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ============================================================ -->
 <!-- E. PHỤ LỤC                                                   -->
@@ -624,7 +624,7 @@
 ### ✅ Page Break
 - [ ] MỤC LỤC xuống trang mới (class `toc-title` đã có `page-break-before: always`)
 - [ ] Mỗi `<h1>` (A, B, C, D, E) xuống trang mới (CSS `h1` đã có `page-break-before: always`)
-- [ ] Dùng `<div class="page-break"></div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
+- [ ] Dùng `<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
 
 ### ✅ Sơ đồ Flow Diagram
 - [ ] Dùng skill `diagram-drawer` để vẽ — nền trắng, đường thẳng/vuông góc
