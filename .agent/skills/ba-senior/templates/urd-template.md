@@ -187,7 +187,7 @@
 <!-- ============================================================ -->
 <!-- MỤC LỤC — class toc-title đã có page-break-before: always   -->
 <!-- ============================================================ -->
-<div class="toc-title">MỤC LỤC</div>
+<div class="toc-title" style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</div>
 <table class="toc-table">
     <tr>
         <td class="toc-l1">A. GIỚI THIỆU</td>
