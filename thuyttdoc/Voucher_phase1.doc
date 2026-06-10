@@ -183,6 +183,13 @@
             <td style="text-align: center;">[A]</td>
             <td>Khởi tạo tài liệu URD hệ thống Voucher Phase 1. Mô tả chi tiết 2 luồng Voucher NET/Combo NET (vcnetp1), Voucher SKU (vcskup1) và các kịch bản Voucher (casevcp1).</td>
         </tr>
+        <tr>
+            <td>09/06/2026</td>
+            <td>V1.1</td>
+            <td>BA Senior</td>
+            <td style="text-align: center;">[U]</td>
+            <td>Cập nhật luồng nghiệp vụ theo góc nhìn Customer Journey. Bổ sung 3 case: (1) Không có voucher khả dụng — empty state; (2) Voucher loại trừ nhau — cảnh báo inline real-time khi tick chọn; (3) Voucher không đáp ứng điều kiện đơn hàng — thông báo lỗi cụ thể theo loại điều kiện. Cập nhật sơ đồ Flow Diagram tương ứng.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -398,10 +405,15 @@
 <h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
 
 <h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</h3>
-<p>Dưới đây là sơ đồ luồng hoạt động rẽ nhánh kiểm tra điều kiện áp dụng Voucher trên hệ thống FPT.vn:</p>
-<p><i>[Luồng hoạt động lõi: BE Checkout đóng vai trò trung tâm tính toán toàn bộ giá trị giảm giá, kiểm tra điều kiện loại trừ, kiểm tra phương thức thanh toán và trả kết quả hiển thị cho FE.]</i></p>
-
-<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Flow Diagram luồng Voucher FPT.vn">
+<p>Dưới đây là sơ đồ luồng <b>hành trình khách hàng (Customer Journey)</b> khi áp dụng Voucher tại trang Checkout FPT.vn. Sơ đồ thể hiện từng bước hành động của KH, các điểm quyết định và các quy tắc hệ thống vận hành ngầm bên dưới.</p>
+<p><b>Nguyên tắc vận hành:</b></p>
+<ul>
+    <li>Hệ thống <b>GET danh sách voucher hợp lệ</b> ngay khi KH vào trang Checkout, dựa theo gói dịch vụ và PTTT mặc định của đơn hàng hiện tại.</li>
+    <li>Voucher <b>loại trừ nhau</b> được kiểm tra <b>ngay khi KH tick chọn</b> (inline, real-time), không cần KH nhấn Xác nhận.</li>
+    <li>Điều kiện đơn hàng (gói DV, SKU, PTTT) được BE kiểm tra sau khi KH nhấn <b>Xác nhận / Áp dụng mã</b>, kết quả lỗi trả về cụ thể theo từng điều kiện không đáp ứng.</li>
+    <li>Toàn bộ tính toán giá trị giảm do <b>BE Checkout xử lý</b>. FE chỉ nhận kết quả và hiển thị.</li>
+</ul>
+<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Flow Diagram luồng Voucher FPT.vn" style="max-width:100%; border: 1px solid #ddd; padding: 5px;">
 
 <h3>2. Danh sách các chức năng chính</h3>
 <table class="data-table">
@@ -517,54 +529,85 @@
     </tr>
     <tr>
         <td class="label">Điều kiện bắt đầu (Pre-conditions)</td>
-        <td>Khách hàng đã chọn gói dịch vụ Internet (ví dụ: Gói Sky - 6 tháng) hoặc Combo từ trang chủ/trang chi tiết sản phẩm và chuyển tiếp tới trang đăng ký thông tin thanh toán.</td>
+        <td>Khách hàng đã chọn gói dịch vụ Internet (ví dụ: Gói Sky - 6 tháng) hoặc Combo từ trang chủ/trang chi tiết sản phẩm và chuyển tiếp tới trang đăng ký thông tin.</td>
     </tr>
     <tr>
         <td class="label">Luồng xử lý chính</td>
         <td>
             <b>Bước 1: Điền thông tin cá nhân và lắp đặt</b>
-            <br>- Khách hàng điền: Họ tên, Số điện thoại.
-            <br>- Khách hàng chọn địa chỉ lắp đặt: Tỉnh/Thành phố (Hồ Chí Minh), Quận/Huyện, Phường/Xã, Tên đường (gợi ý tự động từ hệ thống), Số nhà và loại nhà (Nhà riêng/Chung cư).
-            <br>- Hệ thống hiển thị thông tin sản phẩm đã chọn (Gói Sky - 6 tháng, phí 1.500.000đ).
+            <br>- KH điền: Họ tên, Số điện thoại, địa chỉ lắp đặt (Tỉnh, Quận, Phường, Đường, Số nhà, Loại nhà).
+            <br>- Hệ thống hiển thị thông tin gói dịch vụ đã chọn (Ví dụ: Gói Sky 6 tháng - 1.500.000đ).
             <br>
-            <b>Bước 2: Hiển thị trang Checkout (Màn hình Thanh toán)</b>
-            <br>- Hệ thống hiển thị chi tiết "Thông tin thanh toán":
+            <b>Bước 2: Truy cập trang Checkout — Hệ thống GET danh sách voucher</b>
+            <br>- Hệ thống hiển thị chi tiết thông tin thanh toán:
             <ul>
-                <li>Gói Sky 6 tháng: 1.500.000đ.</li>
-                <li>Internet hub AX1800GZ: 0đ (Trang bị kèm gói).</li>
-                <li>Quà tặng đi kèm (Ví dụ: Tặng F-Safe Go 3 ngày, tặng FPT Play Premium): 0đ.</li>
-                <li>Phí lắp đặt tại nhà: 300.000đ (Đây là phí cấu hình động từ Product Hub cho lần lắp đặt đầu tiên).</li>
+                <li>Gói Sky 6 tháng: 1.500.000đ</li>
+                <li>Internet hub AX1800GZ: 0đ (trang bị kèm gói)</li>
+                <li>Quà tặng đi kèm: 0đ</li>
+                <li>Phí lắp đặt tại nhà: 300.000đ (cấu hình động từ Product Hub)</li>
+                <li><b>Tổng tiền tạm tính: 1.800.000đ</b></li>
             </ul>
-            - Tổng tiền tạm tính: 1.800.000đ.
-            <br>- Hệ thống hiển thị ô nhập mã ưu đãi: Textbox <b>"Nhập mã ưu đãi"</b> và nút liên kết <b>"Chọn ưu đãi"</b> (kèm số lượng voucher hiện có của khách hàng, ví dụ: "3").
+            - Hệ thống hiển thị khu vực ưu đãi: Textbox <b>"Nhập mã ưu đãi"</b> và nút <b>"Chọn ưu đãi"</b>.<br>
+            <span class="error-inline">→ Lưu ý hệ thống: Ngay khi KH vào Checkout, BE tự động GET danh sách voucher hợp lệ dựa theo gói DV và PTTT mặc định. FE chuẩn bị sẵn danh sách để hiển thị khi KH nhấn "Chọn ưu đãi".</span>
             <br>
-            <b>Bước 3: Thực hiện áp dụng Voucher</b>
-            <br>- <i>Cách 1 (Nhập tay)</i>: Khách hàng nhập mã `FTEL30GIAM50K` vào ô textbox và nhấn <b>"Áp dụng"</b>.
-            <br>- <i>Cách 2 (Chọn từ popup)</i>: Khách hàng click nút <b>"Chọn ưu đãi"</b>. Giao diện hiển thị popup danh sách. Khách hàng tick chọn mã `FTEL30GIAM50K` và nhấn <b>"Xác nhận"</b>.
-            <br>- Hệ thống Backend thực hiện tính toán giá trị cước:
+            <b>Bước 3: KH nhấn "Chọn ưu đãi" — Xem danh sách Popup</b>
+            <br>- Hệ thống hiển thị Popup danh sách ưu đãi với thông tin cơ bản mỗi voucher:
             <ul>
-                <li>Mã `FTEL30GIAM50K` hợp lệ đối với bối cảnh: Gói cước Sky 6T, thanh toán qua VietQR/COD.</li>
-                <li>Số tiền giảm: -50.000đ.</li>
+                <li>Tên ưu đãi, Giá trị giảm (số tiền hoặc %)</li>
+                <li>Hạn sử dụng, Điều kiện áp dụng ngắn gọn</li>
+                <li>Tag <b style="color:red;border:1px solid red;padding:1px 4px;font-size:9pt;">Sắp hết hạn</b> nếu còn ≤ D ngày (D cấu hình từ QLCS)</li>
             </ul>
-            <b>Bước 4: Cập nhật giao diện Checkout sau khi áp dụng</b>
-            <br>- Hệ thống hiển thị text xanh: <i>"Áp dụng voucher ưu đãi thành công"</i>.
-            <br>- Trong danh sách tiền chi tiết, bổ sung dòng: <b>`FTEL30GIAM50K: -50.000đ`</b>.
-            <br>- Số tiền <b>"Cần thanh toán (Đã bao gồm VAT)"</b> cập nhật thực tế: <b>1.750.000đ</b>.
+            <span class="error-inline">→ Trường hợp không có voucher nào khả dụng: Hiển thị empty state — "Không có ưu đãi khả dụng cho đơn hàng này". KH vẫn có thể nhập mã thủ công.</span>
             <br>
-            <b>Bước 5: Hoàn tất thanh toán và đơn hàng</b>
-            <br>- Khách hàng chọn PTTT (VietQR) và nhấn nút <b>"Thanh toán"</b>.
+            <b>Bước 4: KH tick chọn voucher — Kiểm tra loại trừ tức thì</b>
+            <br>- KH tick chọn voucher mong muốn từ danh sách.
+            <br>- <b>Ngay khi tick chọn</b>, hệ thống kiểm tra tính loại trừ:
+            <ul>
+                <li>Nếu voucher vừa chọn <b>không xung đột</b>: cho phép tick chọn bình thường.</li>
+                <li>Nếu voucher vừa chọn <b>xung đột</b> với voucher đang được chọn khác: Hiển thị cảnh báo inline ngay tại dòng voucher đó: <span class="error-inline">"Không thể sử dụng với ưu đãi đã chọn khác"</span>. KH có thể bỏ chọn voucher cũ để chọn voucher mới hoặc giữ nguyên.</li>
+            </ul>
+            <b>Bước 5: KH nhấn "Xác nhận" / Nhập mã và nhấn "Áp dụng" — Kiểm tra điều kiện đơn hàng</b>
+            <br>- Hệ thống BE kiểm tra điều kiện đơn hàng:
+            <ul>
+                <li>Gói dịch vụ / SKU có khớp với yêu cầu voucher?</li>
+                <li>Phương thức thanh toán có đáp ứng không?</li>
+            </ul>
+            - <b>Nếu đáp ứng:</b> <span class="success-inline">"Áp dụng mã ưu đãi thành công."</span> Cập nhật giá cước:
+            <ul>
+                <li>Bổ sung dòng: <b>FTEL30GIAM50K: -50.000đ</b></li>
+                <li>Tổng thanh toán cập nhật: <b>1.750.000đ</b></li>
+            </ul>
+            - <b>Nếu không đáp ứng:</b> Hiển thị cảnh báo cụ thể theo điều kiện lỗi. Ví dụ:
+            <ul>
+                <li>Sai PTTT: <span class="error-inline">"Ưu đãi chỉ áp dụng cho hình thức thanh toán Online"</span></li>
+                <li>Sai gói DV: <span class="error-inline">"Ưu đãi không áp dụng cho gói dịch vụ đang chọn"</span></li>
+            </ul>
+            <b>Bước 6: KH hoàn tất thanh toán</b>
+            <br>- KH chọn PTTT (VietQR) và nhấn <b>"Thanh toán"</b>.
             <br>- Sau khi thanh toán thành công, hệ thống hiển thị màn hình <b>"Hoàn tất đơn hàng"</b>:
             <ul>
-                <li>Thông báo: <i>"Thanh toán thành công. Đơn hàng đã đăng ký thành công. Kỹ thuật viên FPT Telecom sẽ liên hệ triển khai dịch vụ trong 8h - 12h..."</i>.</li>
-                <li>Mã đơn hàng: `HKGBTUIKOP12`.</li>
-                <li>Thông tin thanh toán cuối cùng hiển thị chi tiết số tiền đã trừ ưu đãi 50.000đ, tổng thu 1.750.000đ.</li>
-                <li>Nút hành động: "Xác nhận Hợp đồng điện tử" và "Đóng".</li>
+                <li>Thông báo: <i>"Thanh toán thành công. Đơn hàng đã đăng ký thành công..."</i></li>
+                <li>Mã đơn hàng, thông tin thanh toán đã trừ ưu đãi, nút "Xác nhận Hợp đồng điện tử"</li>
             </ul>
+            <span class="error-inline">→ Hệ thống đánh dấu mã voucher đã sử dụng trong SPF để ngăn tái sử dụng.</span>
         </td>
     </tr>
     <tr>
         <td class="label">Điều kiện kết thúc (Post-conditions)</td>
         <td>Đơn hàng Internet/Combo được tạo thành công trên hệ thống SPF với thông tin mã voucher đã áp dụng và số tiền thực thu đã chiết khấu. Đơn hàng được đồng bộ sang hệ thống triển khai lắp đặt.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng thay thế / Ngoại lệ</td>
+        <td>
+            <b>Alt 1: Không có voucher khả dụng</b><br>
+            Khi KH nhấn "Chọn ưu đãi" mà hệ thống không trả về voucher hợp lệ nào → Popup hiển thị empty state: <span class="error-inline">"Không có ưu đãi khả dụng cho đơn hàng này"</span>. KH có thể nhập mã thủ công nếu có mã riêng.
+            <br><br>
+            <b>Alt 2: Voucher loại trừ nhau</b><br>
+            KH đang chọn Voucher A, tick thêm Voucher B có cấu hình loại trừ → Hệ thống hiển thị cảnh báo inline ngay tại Voucher B: <span class="error-inline">"Không thể sử dụng với ưu đãi đã chọn khác"</span>. KH phải bỏ chọn Voucher A nếu muốn dùng Voucher B.
+            <br><br>
+            <b>Alt 3: Không đáp ứng điều kiện PTTT</b><br>
+            Voucher chỉ áp dụng cho PTTT Online nhưng KH đang chọn COD → Sau khi nhấn Xác nhận: <span class="error-inline">"Ưu đãi chỉ áp dụng cho hình thức thanh toán tại nhà"</span> (hoặc cụ thể theo cấu hình QLCS). KH có thể đổi PTTT hoặc chọn voucher khác.
+        </td>
     </tr>
 </table>
 
@@ -650,6 +693,103 @@
 <div class="page-break"></div>
 
 <h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES VOUCHER (casevcp1)</h2>
+
+<div class="alert-box">
+    <b>[VOUCHER-CASE-BR-00] Ba trường hợp chính trong luồng chọn ưu đãi:</b>
+    <br><b>Case 1 — Không có voucher khả dụng:</b> Khi popup mở mà danh sách trống, hệ thống hiển thị empty state rõ ràng. KH vẫn có thể nhập mã thủ công.
+    <br><b>Case 2 — Voucher loại trừ nhau:</b> Phát hiện và cảnh báo <b>ngay tại thời điểm KH tick chọn</b> (real-time inline), không cần KH nhấn Xác nhận.
+    <br><b>Case 3 — Voucher không đáp ứng điều kiện đơn hàng:</b> Phát hiện sau khi KH nhấn Xác nhận/Áp dụng. Thông báo lỗi phải nêu <b>cụ thể điều kiện</b> không đáp ứng (không generic).
+</div>
+
+<h3>Chi tiết Case 1: Không có voucher khả dụng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 20%;">Điều kiện xảy ra</th>
+            <th style="width: 35%;">Hành vi hiển thị</th>
+            <th style="width: 25%;">Message hiển thị</th>
+            <th style="width: 20%;">Hành động KH</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>KH nhấn "Chọn ưu đãi" nhưng hệ thống không có voucher nào hợp lệ với gói DV và PTTT đang chọn</td>
+            <td>Popup mở ra với empty state, không có item voucher nào trong danh sách. Vẫn hiển thị ô nhập mã thủ công.</td>
+            <td class="error-inline">Không có ưu đãi khả dụng cho đơn hàng này.</td>
+            <td>KH có thể nhập mã voucher thủ công nếu có hoặc đóng popup và tiếp tục thanh toán không có ưu đãi.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Chi tiết Case 2: Voucher loại trừ nhau</h3>
+<div class="alert-box">
+    <b>[VOUCHER-CASE-BR-EXCL] Cơ chế kiểm tra loại trừ tức thì (Real-time Inline Check):</b>
+    <br>- Kiểm tra xảy ra <b>ngay tại thời điểm KH tick chọn</b> voucher trong danh sách popup — không đợi KH nhấn nút Xác nhận.
+    <br>- Cấu hình loại trừ được khai báo từ hệ thống QLCS: Voucher A loại trừ Voucher B, Voucher B loại trừ Voucher A.
+    <br>- FE nhận cấu hình loại trừ từ response GET danh sách voucher và thực hiện kiểm tra phía client.
+</div>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 15%;">Trạng thái</th>
+            <th style="width: 30%;">Điều kiện xảy ra</th>
+            <th style="width: 30%;">Hành vi hiển thị</th>
+            <th style="width: 25%;">Message / Cảnh báo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="color:#E65100; font-weight:bold;">Cảnh báo inline</td>
+            <td>KH đang chọn Voucher A. Khi KH tick vào Voucher B có cấu hình loại trừ với Voucher A.</td>
+            <td>Hiển thị cảnh báo ngay dưới Voucher B trong danh sách (không đóng popup, không nhảy màn hình). Checkbox của Voucher B bị disable hoặc hiển thị trạng thái xung đột.</td>
+            <td class="error-inline">Không thể sử dụng với ưu đãi đã chọn khác.</td>
+        </tr>
+        <tr>
+            <td style="color:green; font-weight:bold;">Giải quyết</td>
+            <td>KH bỏ chọn Voucher A để chọn Voucher B</td>
+            <td>Cảnh báo biến mất, Voucher B được tick chọn thành công.</td>
+            <td class="success-inline">—</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Chi tiết Case 3: Voucher không đáp ứng điều kiện đơn hàng</h3>
+<div class="alert-box">
+    <b>[VOUCHER-CASE-BR-COND] Nguyên tắc thông báo lỗi điều kiện:</b>
+    <br>- Thông báo lỗi phải <b>cụ thể theo điều kiện không đáp ứng</b>, không được chỉ hiển thị message generic "Mã không hợp lệ".
+    <br>- BE trả về mã lỗi có type (VD: ERR_PTTT, ERR_SKU) để FE chọn đúng message template hiển thị.
+    <br>- KH cần biết <b>cần thay đổi gì</b> để voucher áp dụng được.
+</div>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 10%;">Loại lỗi</th>
+            <th style="width: 25%;">Điều kiện không đáp ứng</th>
+            <th style="width: 35%;">Message cụ thể hiển thị</th>
+            <th style="width: 30%;">Hướng dẫn KH</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="font-weight:bold;">ERR_PTTT</td>
+            <td>Voucher chỉ áp dụng cho PTTT Online (VietQR, thẻ,...) nhưng KH đang chọn COD/Thu tiền tại nhà</td>
+            <td class="error-inline">Ưu đãi chỉ áp dụng cho hình thức thanh toán Online.</td>
+            <td>KH chuyển sang PTTT Online để áp dụng, hoặc chọn voucher không yêu cầu PTTT cụ thể.</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">ERR_PTTT</td>
+            <td>Voucher chỉ áp dụng cho COD nhưng KH đang chọn PTTT Online</td>
+            <td class="error-inline">Ưu đãi chỉ áp dụng cho hình thức thanh toán tại nhà.</td>
+            <td>KH chuyển sang PTTT Thu tiền tại nhà hoặc chọn voucher khác.</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">ERR_SKU</td>
+            <td>Voucher yêu cầu gói DV hoặc SKU cụ thể nhưng đơn hàng KH không chứa</td>
+            <td class="error-inline">Ưu đãi không áp dụng cho gói dịch vụ đang chọn.</td>
+            <td>KH kiểm tra lại điều kiện voucher hoặc chọn voucher phù hợp với gói đang đăng ký.</td>
+        </tr>
+    </tbody>
+</table>
 
 <p>Phần này đặc tả chi tiết 5 trường hợp (cases) nghiệp vụ hiển thị Voucher tại Popup chọn ưu đãi khi khách hàng nhấn vào nút "Chọn ưu đãi" tại màn hình checkout.</p>
 
