@@ -48,6 +48,8 @@ The following templates are available in the `templates/` directory. Use them as
   <div class="page-break"></div>
   ```
 - `mso-page-break-before: always` là thuộc tính riêng của Word — **bắt buộc có cùng với** `page-break-before`
+- **⚠️ KHÔNG đặt `<div page-break>` ngay trước `<h1>`** — `h1` CSS đã có `mso-page-break-before`, thêm div = 2 page-break = 1 trang trắng thừa
+- Chỉ dùng div page-break inline cho: sau cover, trước MỤC LỤC, trước `<h2>` cần tách trang
 
 #### 4. Sơ đồ Flow Diagram
 - Dùng skill `diagram-drawer` để vẽ — chuẩn nền trắng, đường thẳng/vuông góc

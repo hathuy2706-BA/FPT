@@ -139,8 +139,6 @@
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1 style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</h1>
 <ol>
     <li><strong>A. GIỚI THIỆU</strong></li>
@@ -149,8 +147,6 @@
     <li><strong>D. YÊU CẦU PHI CHỨC NĂNG</strong></li>
     <li><strong>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</strong></li>
 </ol>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>A. GIỚI THIỆU</h1>
 
@@ -251,8 +247,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
 
@@ -398,8 +392,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN</h1>
 
@@ -797,8 +789,6 @@
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
 
 <h3>1. Hiệu năng hệ thống (Performance)</h3>
@@ -821,8 +811,6 @@
     <li><strong>Responsive 100%:</strong> Thiết kế giao diện One-page checkout phải tương thích hoàn hảo trên các kích thước màn hình Mobile, Tablet và Desktop. Trên giao diện Mobile, khối Tóm tắt đơn hàng (Sidebar ở bản Desktop) sẽ được thu gọn thành một thanh ghim cố định ở cạnh dưới màn hình (sticky bottom bar), cho phép click để mở rộng xem chi tiết sản phẩm.</li>
     <li><strong>Khóa màn hình khi xử lý (Session Protection):</strong> Khi người dùng nhấn nút "Thanh toán", hệ thống phải lập tức hiển thị một lớp phủ mờ (Overlay Loading) chứa vòng xoay hoạt họa và dòng thông báo: <em>"Hệ thống đang xử lý giao dịch và khởi tạo đơn hàng lắp đặt, quý khách vui lòng không tắt hoặc tải lại trang web!"</em> nhằm bảo vệ luồng dữ liệu giao dịch.</li>
 </ul>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>

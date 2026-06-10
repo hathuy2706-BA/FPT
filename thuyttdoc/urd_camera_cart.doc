@@ -160,8 +160,6 @@
     <li><strong>F. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)</strong></li>
 </ol>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1>A. GIỚI THIỆU</h1>
 
 <h3>1. Mục đích tài liệu</h3>
@@ -248,8 +246,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
 
@@ -346,8 +342,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>C. ĐẶC TẢ CHI TIẾT LUỒNG GIỎ HÀNG CAMERA (DETAILED SCENARIOS)</h1>
 
@@ -475,8 +469,6 @@
     </li>
 </ul>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1>D. QUY TẮC NGHIỆP VỤ GIỎ HÀNG CAMERA (CART BUSINESS RULES)</h1>
 <p>Hệ thống giỏ hàng và checkout của FPT Camera phải tuân thủ nghiêm ngặt các quy tắc nghiệp vụ sau:</p>
 
@@ -535,8 +527,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>E. ĐẶC TẢ GIAO DIỆN & RÀNG BUỘC TRƯỜNG (SCREEN SPECIFICATION)</h1>
 
@@ -679,8 +669,6 @@
             </ul>
     </li>
 </ul>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>F. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)</h1>
 

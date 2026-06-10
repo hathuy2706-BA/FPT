@@ -139,8 +139,6 @@
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1 style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</h1>
 <ol>
     <li><strong>A. GIỚI THIỆU</strong></li>
@@ -149,8 +147,6 @@
     <li><strong>D. YÊU CẦU PHI CHỨC NĂNG</strong></li>
     <li><strong>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</strong></li>
 </ol>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>A. GIỚI THIỆU</h1>
 
@@ -249,8 +245,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
 
@@ -370,8 +364,6 @@
         </tr>
     </tbody>
 </table>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG & GIAO DIỆN</h1>
 
@@ -734,8 +726,6 @@
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
 
 <h3>1. Hiệu năng & Tối ưu hóa (Performance)</h3>
@@ -755,8 +745,6 @@
     <li><strong>Xử lý ngoại lệ kết nối Wifi băng tần:</strong> Trên tài liệu hướng dẫn và giao diện App FPT Camera, hệ thống phải ghi chú rất nổi bật lưu ý: FPT Camera thế hệ hiện tại chỉ hoạt động trên băng tần Wifi **2.4GHz** (không hỗ trợ băng tần 5GHz). Hệ thống Checkout phải hiển thị cảnh báo này ở cả trang PDP và trang Thank You Page để khách hàng ngoại mạng lưu ý cấu hình lại modem Wifi nhà mình.</li>
     <li><strong>Hỗ trợ giao diện tối (Dark Mode):</strong> Trang Checkout và trang Thank You Page phải tự động chuyển đổi giao diện sáng/tối (Light/Dark Mode) đồng bộ theo thiết lập hệ thống của thiết bị khách hàng đang truy cập để mang lại trải nghiệm thị giác cao cấp.</li>
 </ul>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>E. PHỤ LỤC & TÀI LIỆU THAM KHẢO</h1>
 <ul>
