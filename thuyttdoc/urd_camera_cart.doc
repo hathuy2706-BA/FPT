@@ -34,15 +34,29 @@
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
-    /* ===== MỤC LỤC ===== */
-    .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; color: #1f4e78; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
-    table.toc-table { width: 100%; border-collapse: collapse; border: none; }
-    table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
-    .toc-dots { border-bottom: 1px dotted #555555; }
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; }
-    .toc-l2 { padding-left: 20px; font-size: 11pt; color: #000000; }
-    .toc-l3 { padding-left: 40px; font-size: 10.5pt; font-style: italic; color: #555555; }
-    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 40px; font-weight: bold; }
+        /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
+    .toc-title {
+        page-break-before: always;
+        mso-page-break-before: always;
+        font-family: 'Arial', sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        color: #1f4e78;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1f4e78;
+    }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
+    table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
+    .toc-entry { font-family: 'Times New Roman', serif; }
+    .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
+    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 11pt; color: #000000; }
+    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 10.5pt; font-style: italic; color: #555555; }
 
     /* ===== TIỆN ÍCH ===== */
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
@@ -125,40 +139,104 @@
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
-<h2>MỤC LỤC</h2>
-<ol>
-    <li><strong>A. GIỚI THIỆU</strong>
-        <ul>
-            <li>1. Mục đích tài liệu</li>
-            <li>2. Thông tin chung (AS-IS vs TO-BE)</li>
-            <li>3. Thuật ngữ và viết tắt</li>
-        </ul>
-    </li>
-    <li><strong>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</strong>
-        <ul>
-            <li>1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</li>
-            <li>2. Danh sách các chức năng (Functional List)</li>
-            <li>3. Ma trận quyền (Permission Matrix)</li>
-        </ul>
-    </li>
-    <li><strong>C. ĐẶC TẢ CHI TIẾT LUỒNG GIỎ HÀNG CAMERA (DETAILED SCENARIOS)</strong>
-        <ul>
-            <li>1. Case 1: Khách hàng mua 1 Camera lẻ</li>
-            <li>2. Case 2: Khách hàng mua 1 loại Camera nhưng khác đặc tính Cloud (Tách dòng sản phẩm)</li>
-            <li>3. Case 3: Khách hàng mua 1 Combo Camera Only (ví dụ: Combo 3 Camera Play 4)</li>
-            <li>4. Case 4: Khách hàng kết hợp mua cả Camera lẻ & Combo Camera Only</li>
-        </ul>
-    </li>
-    <li><strong>D. QUY TẮC NGHIỆP VỤ GIỎ HÀNG CAMERA (CART BUSINESS RULES)</strong></li>
-    <li><strong>E. ĐẶC TẢ GIAO DIỆN & RÀNG BUỘC TRƯỜNG (SCREEN SPECIFICATION)</strong>
-        <ul>
-            <li>1. Màn hình Chi tiết Giỏ hàng (Cart Page)</li>
-            <li>2. Màn hình Điền thông tin & Checkout (Checkout Page)</li>
-            <li>3. Màn hình Hoàn tất đơn hàng (Thank You Page)</li>
-        </ul>
-    </li>
-    <li><strong>F. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)</strong></li>
-</ol>
+<div class="toc-title" style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</div>
+<table class="toc-table">
+    <tr>
+        <td class="toc-l1">A. GIỚI THIỆU</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Mục đích tài liệu</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Thông tin chung (AS-IS vs TO-BE)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">B. TỔNG QUAN LUỒNG NGHIỆP VỤ &amp; PHÂN QUYỀN</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Danh sách các chức năng (Functional List)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Ma trận quyền (Permission Matrix)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT LUỒNG GIỎ HÀNG CAMERA</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Case 1: Khách hàng mua 1 Camera lẻ</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Case 2: Camera khác đặc tính Cloud (Tách dòng sản phẩm)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Case 3: Khách hàng mua 1 Combo Camera Only</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">4. Case 4: Kết hợp Camera lẻ &amp; Combo Camera Only</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">D. QUY TẮC NGHIỆP VỤ GIỎ HÀNG CAMERA</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">E. ĐẶC TẢ GIAO DIỆN &amp; RÀNG BUỘC TRƯỜNG</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Màn hình Chi tiết Giỏ hàng (Cart Page)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Màn hình Điền thông tin &amp; Checkout</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Màn hình Hoàn tất đơn hàng (Thank You Page)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">F. YÊU CẦU PHI CHỨC NĂNG</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+</table>
 
 <h1>A. GIỚI THIỆU</h1>
 

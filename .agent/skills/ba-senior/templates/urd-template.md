@@ -76,26 +76,28 @@
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
-    /* ===== MỤC LỤC ===== */
-    /* page-break-before: always đảm bảo MỤC LỤC luôn xuống trang mới */
+    /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
     .toc-title {
         page-break-before: always;
+        mso-page-break-before: always;
         font-family: 'Arial', sans-serif;
         font-size: 16pt;
         font-weight: bold;
         text-align: center;
         color: #1f4e78;
         text-transform: uppercase;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1f4e78;
     }
-    table.toc-table { width: 100%; border-collapse: collapse; border: none; }
-    table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
-    .toc-dots { border-bottom: 1px dotted #555555; }
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; }
-    .toc-l2 { padding-left: 20px; font-size: 11pt; color: #000000; }
-    .toc-l3 { padding-left: 40px; font-size: 10.5pt; font-style: italic; color: #555555; }
-    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 40px; font-weight: bold; }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
+    table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
+    .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
+    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 11pt; color: #000000; }
+    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 10.5pt; font-style: italic; color: #555555; }
 
     /* ===== TIỆN ÍCH ===== */
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
@@ -191,92 +193,92 @@
 <table class="toc-table">
     <tr>
         <td class="toc-l1">A. GIỚI THIỆU</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">1. Mục đích tài liệu</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l1">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">2. Danh sách các chức năng chính</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">3. Ma trận phân quyền sử dụng</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">I. [Luồng 1]</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l3">1. Quy trình nghiệp vụ từng bước (Step-by-Step)</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l3">2. Quy tắc cấu hình &amp; Business Rules</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l3">3. Mô tả giao diện &amp; Ràng buộc trường</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">II. [Luồng 2] (nếu có)</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">III. Đặc tả điều kiện &amp; Edge Cases</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l2">IV. Bảng thông điệp báo lỗi (Error Messages)</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l1">D. YÊU CẦU PHI CHỨC NĂNG</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
     <tr>
         <td class="toc-l1">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</td>
-        <td class="toc-dots"></td>
+        <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">X</td>
     </tr>
 </table>
