@@ -29,7 +29,7 @@
         position: relative;
     }
     .cover-logo-box { text-align: left; margin-bottom: 30px; }
-    .cover-logo { width: 90px; height: auto; }
+    .cover-logo { width: 70px; height: auto; display: block; }
     .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
     .cover-title-main {
         font-family: 'Arial', sans-serif;
@@ -121,7 +121,7 @@
     <div class="cover-logo-box">
         <!-- Thay [LOGO_BASE64] bằng chuỗi base64 của logoftel.png -->
         <!-- Lệnh lấy base64: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
-        <img src="[LOGO_BASE64]" class="cover-logo" alt="FPT Telecom Logo">
+        <img src="[LOGO_BASE64]" class="cover-logo" alt="FPT Telecom Logo" style="width:70px; height:auto; display:block;">
     </div>
 
     <div class="cover-title-box">
