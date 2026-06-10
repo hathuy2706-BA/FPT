@@ -9,7 +9,7 @@ Sơ đồ mô tả trải nghiệm của **Khách hàng** khi áp dụng voucher
 - 🔴 Hình chữ nhật đỏ → Thông báo lỗi / cảnh báo KH thấy
 - 🟢 Hình chữ nhật xanh lá → Thông báo thành công KH thấy
 
-![Sơ đồ Flow Diagram - Hành Trình KH Áp Dụng Voucher](./voucher_flow.png)
+![Sơ đồ Flow Diagram - Hành Trình KH Áp Dụng Voucher](./imgflowvc.png)
 
 ## Mã nguồn Mermaid (Dùng để render ảnh)
 ```mermaid

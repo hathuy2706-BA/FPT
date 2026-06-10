@@ -196,7 +196,7 @@
             <td>V1.2</td>
             <td>ThuyTT104</td>
             <td style="text-align: center;">[U]</td>
-            <td>Cập nhật trang bìa: Bổ sung logo FPT Telecom, cập nhật tác giả ThuyTT104, bỏ dòng tên dự án. Cập nhật sơ đồ Flow Diagram theo bản chỉnh sửa của tác giả (vcflow). Đảm bảo tất cả đầu mục lớn (A–E, Mục lục) xuống trang mới.</td>
+            <td>Cập nhật trang bìa: Bổ sung logo FPT Telecom, cập nhật tác giả ThuyTT104, bỏ dòng tên dự án. Cập nhật sơ đồ Flow Diagram theo bản chỉnh sửa của tác giả (imgflowvc). Đảm bảo tất cả đầu mục lớn (A–E, Mục lục) xuống trang mới.</td>
         </tr>
     </tbody>
 </table>
@@ -418,7 +418,7 @@
     <li>Điều kiện đơn hàng (gói DV, SKU, PTTT) được BE kiểm tra sau khi KH nhấn <b>Xác nhận / Áp dụng mã</b>, kết quả lỗi trả về cụ thể theo từng điều kiện không đáp ứng.</li>
     <li>Toàn bộ tính toán giá trị giảm do <b>BE Checkout xử lý</b>. FE chỉ nhận kết quả và hiển thị.</li>
 </ul>
-<img src="../diagrams/voucher_flow.png" class="diagram-img" alt="Sơ đồ Flow Diagram luồng Voucher FPT.vn" style="max-width:100%; border: 1px solid #ddd; padding: 5px;">
+<img src="../diagrams/imgflowvc.png" class="diagram-img" alt="Sơ đồ Flow Diagram luồng Voucher FPT.vn" style="max-width:100%; border: 1px solid #ddd; padding: 5px;">
 
 <h3>2. Danh sách các chức năng chính</h3>
 <table class="data-table">
