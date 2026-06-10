@@ -28,9 +28,9 @@
         min-height: 800px;
         position: relative;
     }
-    .cover-logo-box { text-align: right; position: absolute; top: 30px; right: 40px; }
-    .cover-logo { width: 120px; height: auto; }
-    .cover-title-box { text-align: center; margin-top: 40px; margin-bottom: 80px; }
+    .cover-logo-box { text-align: left; margin-bottom: 30px; }
+    .cover-logo { width: 90px; height: auto; }
+    .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
     .cover-title-main {
         font-family: 'Arial', sans-serif;
         color: #1f4e78;
@@ -50,7 +50,7 @@
         letter-spacing: 0.5px;
     }
     .cover-meta-box {
-        margin-top: 120px;
+        margin-top: 60px;
         width: 100%;
         border-top: 2px solid #1f4e78;
         padding-top: 20px;
@@ -664,3 +664,96 @@ print('data:image/png;base64,' + b64)
 ```
 
 > Copy toàn bộ chuỗi output (bắt đầu bằng `data:image/png;base64,...`) vào thuộc tính `src` của thẻ `<img>` trong trang bìa.
+
+---
+
+## PHẦN 4 — CHUẨN CANH CHỈNH CỘT BẢNG (% WIDTH)
+
+> **Nguyên tắc cốt lõi:** Cột chứa **nội dung mô tả / chi tiết** luôn chiếm tỷ lệ lớn nhất. Cột ID/Code/Flag giữ nhỏ để nhường không gian cho dữ liệu thực chất.
+
+### Quy tắc chung
+- Dùng **`%` (phần trăm)** thay vì `px` cứng để bảng co giãn đúng trong Word và trình duyệt
+- Tổng các cột phải bằng **100%**
+- `table-layout: auto` kết hợp `%` = Word tự điều chỉnh theo tỷ lệ
+- Cột cuối cùng (detail) có thể để `auto` hoặc đặt % lớn nhất
+
+### Bảng tỷ lệ chuẩn theo từng loại bảng
+
+#### 1. Revision History (Lịch sử thay đổi)
+```html
+<th style="width: 9%;">Ngày</th>           <!-- Ngắn: DD/MM/YYYY -->
+<th style="width: 6%; text-align:center">Ver.</th>   <!-- Ngắn: V1.0 -->
+<th style="width: 12%;">Tác giả</th>       <!-- Vừa: Tên người -->
+<th style="width: 7%; text-align:center">HĐ</th>     <!-- Ngắn: [A]/[U] -->
+<th style="width: 18%;">Mô tả chung</th>   <!-- Vừa -->
+<th style="width: 48%;">Nội dung chi tiết</th> <!-- ★ LỚN NHẤT -->
+```
+
+#### 2. Thông tin chung / Giới thiệu (3 cột)
+```html
+<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
+<th style="width: 22%;">Hạng mục</th>               <!-- Vừa -->
+<th style="width: 73%;">Mô tả chi tiết</th>         <!-- ★ LỚN NHẤT -->
+```
+
+#### 3. Thuật ngữ / Định nghĩa (4 cột)
+```html
+<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
+<th style="width: 13%;">Thuật ngữ</th>              <!-- Vừa -->
+<th style="width: 25%;">Nghĩa tiếng Anh</th>        <!-- Vừa -->
+<th style="width: 57%;">Mô tả ý nghĩa</th>          <!-- ★ LỚN NHẤT -->
+```
+
+#### 4. Functional List / Danh sách chức năng (5 cột)
+```html
+<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
+<th style="width: 25%;">Module / Chức năng</th>     <!-- Vừa -->
+<th style="width: 7%; text-align:center">Ver.</th>  <!-- Nhỏ -->
+<th style="width: 8%; text-align:center">Loại</th>  <!-- Nhỏ -->
+<th style="width: 55%;">Mô tả hành vi hệ thống</th> <!-- ★ LỚN NHẤT -->
+```
+
+#### 5. Permission Matrix / Phân quyền (6 cột)
+```html
+<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
+<th style="width: 55%;">Tên Chức năng / Module</th> <!-- ★ LỚN NHẤT -->
+<th style="width: 10%; text-align:center">KH vãng lai</th>    <!-- Role -->
+<th style="width: 10%; text-align:center">KH đăng nhập</th>   <!-- Role -->
+<th style="width: 10%; text-align:center">Telesales/CSKH</th> <!-- Role -->
+<th style="width: 10%; text-align:center">Admin (CMS)</th>    <!-- Role -->
+```
+
+#### 6. Cart Items / Sản phẩm giỏ hàng (6 cột)
+```html
+<th style="width: 4%; text-align:center">Chọn</th>          <!-- Checkbox -->
+<th style="width: 40%;">Tên sản phẩm & Đặc tính DV</th>    <!-- ★ LỚN NHẤT -->
+<th style="width: 13%; text-align:center">Đơn giá TB</th>   <!-- Số tiền -->
+<th style="width: 12%; text-align:center">Giá Cloud</th>    <!-- Số tiền -->
+<th style="width: 7%; text-align:center">SL</th>            <!-- Số lượng -->
+<th style="width: 14%; text-align:center">Thành tiền</th>   <!-- Tổng -->
+```
+
+#### 7. Business Rules / Quy tắc nghiệp vụ (3 cột)
+```html
+<th style="width: 12%; text-align:center">Mã Rule</th>      <!-- Ngắn: BR-01 -->
+<th style="width: 22%;">Tên Quy tắc</th>                   <!-- Vừa -->
+<th style="width: 66%;">Nội dung quy tắc & Logic hệ thống</th> <!-- ★ LỚN NHẤT -->
+```
+
+#### 8. Screen Description / Đặc tả màn hình (4 cột)
+```html
+<th style="width: 18%;">Phần tử giao diện</th>  <!-- Tên element -->
+<th style="width: 13%;">Kiểu hiển thị</th>      <!-- Input/Button... -->
+<th style="width: 8%; text-align:center">Bắt buộc</th> <!-- Y/N -->
+<th style="width: 61%;">Mô tả hành vi, ràng buộc & UI/UX</th> <!-- ★ LỚN NHẤT -->
+```
+
+### Lưu ý khi tạo bảng mới
+| Loại cột | Tỷ lệ gợi ý | Ví dụ |
+|---|---|---|
+| ID / STT / Mã code | 4–7% | STT, Mã Rule, Mã lỗi |
+| Cột cờ (Flag/Status) | 6–10% | Bắt buộc, Loại, HĐ |
+| Tên ngắn / Nhãn | 10–25% | Thuật ngữ, Module, Tác giả |
+| Mô tả vừa | 20–30% | Tên Quy tắc, Hạng mục |
+| **Mô tả chi tiết / Logic** | **40–73%** | Nội dung rule, Hành vi UI |
+

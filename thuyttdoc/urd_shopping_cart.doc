@@ -8,9 +8,9 @@
 
     /* ===== TRANG BÌA ===== */
     .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
-    .cover-logo-box { text-align: right; position: absolute; top: 30px; right: 40px; }
-    .cover-logo { width: 120px; height: auto; }
-    .cover-title-box { text-align: center; margin-top: 40px; margin-bottom: 80px; }
+    .cover-logo-box { text-align: left; margin-bottom: 30px; }
+    .cover-logo { width: 90px; height: auto; }
+    .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
     .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 24pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
     .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
     .cover-meta-box { margin-top: 60px; width: 100%; border-top: 2px solid #1f4e78; padding-top: 20px; }

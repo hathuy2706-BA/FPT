@@ -62,6 +62,28 @@ The following templates are available in the `templates/` directory. Use them as
 #### 7. Revision History
 - Cập nhật mỗi lần sửa: ngày + tác giả (tên thực) + mô tả chi tiết thay đổi
 
+#### 8. Canh chỉnh cột bảng (% Width — BẮT BUỘC)
+- Dùng **`%` thay `px`** cho tất cả `<th>` trong `data-table` — đảm bảo co giãn đúng trong Word
+- **Cột detail/mô tả chiếm phần lớn nhất** — xem tỷ lệ chuẩn tại `templates/urd-template.md` PHẦN 4
+- Tổng tỷ lệ toàn bảng = **100%**; dùng `table-layout: auto` trong CSS
+
+| Loại cột | Tỷ lệ | Ví dụ |
+|---|---|---|
+| ID / STT / Mã code | 4–7% | STT, Mã Rule |
+| Flag/Status nhỏ | 6–10% | Bắt buộc, Loại |
+| Tên ngắn | 10–25% | Module, Tác giả |
+| Mô tả vừa | 20–30% | Tên Quy tắc |
+| **Mô tả chi tiết ★** | **40–73%** | Nội dung rule, Hành vi UI |
+
+**Tỷ lệ theo từng bảng chuẩn:**
+- Revision History → Chi tiết=**48%**, Mô tả=18%, Tác giả=12%, còn lại nhỏ
+- Thông tin chung → Mô tả=**73%**, Hạng mục=22%
+- Thuật ngữ → Mô tả ý nghĩa=**57%**, Nghĩa TA=25%
+- Functional List → Mô tả hành vi=**55%**, Module=25%
+- Permission Matrix → Tên module=**55%**, mỗi role=10%
+- Business Rules → Nội dung=**66%**, Tên=22%
+- Screen Description → Mô tả UI/UX=**61%**, Phần tử=18%
+
 
 ## 1. Problem Framing & Discovery
 Start by clarifying the actual problem.
