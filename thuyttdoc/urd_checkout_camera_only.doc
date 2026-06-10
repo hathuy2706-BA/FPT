@@ -25,9 +25,9 @@
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
 
     /* ===== BẢNG DỮ LIỆU ===== */
-    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
-    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
-    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: fixed; word-wrap: break-word; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 10.5pt; }
 
     /* ===== BẢNG USE CASE ===== */
     table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
@@ -163,8 +163,8 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 200px;">HẠNG MỤC</th>
+            <th style="width: 40px; text-align: center;">STT</th>
+            <th style="width: 160px;">HẠNG MỤC</th>
             <th>MÔ TẢ CHI TIẾT</th>
         </tr>
     </thead>
@@ -204,9 +204,9 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 150px;">THUẬT NGỮ</th>
-            <th style="width: 250px;">NGHĨA TIẾNG ANH / TÊN ĐẦY ĐỦ</th>
+            <th style="width: 40px; text-align: center;">STT</th>
+            <th style="width: 90px;">THUẬT NGỮ</th>
+            <th style="width: 210px;">NGHĨA TIẾNG ANH / TÊN ĐẦY ĐỦ</th>
             <th>MÔ TẢ Ý NGHĨA</th>
         </tr>
     </thead>
@@ -284,10 +284,10 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 50px; text-align: center;">STT</th>
-            <th style="width: 250px;">Module / Chức năng</th>
-            <th style="width: 80px; text-align: center;">Version</th>
-            <th style="width: 120px; text-align: center;">Loại (New/Update)</th>
+            <th style="width: 40px; text-align: center;">STT</th>
+            <th style="width: 200px;">Module / Chức năng</th>
+            <th style="width: 65px; text-align: center;">Ver.</th>
+            <th style="width: 80px; text-align: center;">Loại (New/Update)</th>
             <th>Mô tả tóm tắt hành vi hệ thống</th>
         </tr>
     </thead>
@@ -335,7 +335,7 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 50px; text-align: center;">STT</th>
+            <th style="width: 40px; text-align: center;">STT</th>
             <th style="width: 250px;">Quyền hạn / Chức năng</th>
             <th style="width: 120px; text-align: center;">Super Admin</th>
             <th style="width: 150px; text-align: center;">BA / PM</th>
@@ -404,7 +404,7 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 120px; text-align: center;">Mã Rule</th>
+            <th style="width: 100px; text-align: center;">Mã Rule</th>
             <th style="width: 200px;">Tên Quy tắc</th>
             <th>Nội dung quy tắc chi tiết</th>
         </tr>
@@ -434,7 +434,7 @@
         <tr>
             <th style="width: 180px;">Tên trường</th>
             <th style="width: 150px;">Kiểu dữ liệu</th>
-            <th style="width: 80px; text-align: center;">Bắt buộc</th>
+            <th style="width: 65px; text-align: center;">Bắt buộc</th>
             <th>Hành vi / Ràng buộc / Logic hệ thống</th>
         </tr>
     </thead>

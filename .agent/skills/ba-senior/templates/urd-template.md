@@ -67,9 +67,9 @@
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
 
     /* ===== BẢNG DỮ LIỆU ===== */
-    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
-    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
-    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: fixed; word-wrap: break-word; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 10.5pt; }
 
     /* ===== BẢNG USE CASE ===== */
     table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
