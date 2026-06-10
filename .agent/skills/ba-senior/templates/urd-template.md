@@ -1,172 +1,666 @@
-# USER REQUIREMENTS DOCUMENT (URD) - TÀI LIỆU YÊU CẦU NGƯỜI DÙNG
+# URD TEMPLATE — TÀI LIỆU YÊU CẦU NGƯỜI DÙNG (FPT TELECOM CHUẨN)
 
-**Dự án:** [Tên Dự Án/Hệ Thống]
-**Mã hiệu:** [Mã hiệu tài liệu - VD: FPT-URD-CHECKOUT-01]
-**Phiên bản:** [Phiên bản hiện tại - VD: 1.0]
-**Tác giả:** [Tên BA soạn thảo]
-**Ngày lập:** [Ngày/Tháng/Năm]
-
----
-
-## REVISION HISTORY (LỊCH SỬ THAY ĐỔI)
-*Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa*
-
-| Date | Version | Author | Action | Change Description |
-| :--- | :--- | :--- | :---: | :--- |
-| [Ngày/Tháng/Năm] | [V1.0] | [Tên tác giả] | [A] | Khởi tạo tài liệu, cấu trúc luồng tổng quát |
-| | | | | |
+> **Hướng dẫn sử dụng template này:**
+> - File output là `.doc` (HTML-based, mở được bằng MS Word)
+> - Thay toàn bộ `[PLACEHOLDER]` bằng nội dung thực tế
+> - Logo: nhúng dạng base64 Data URI (`data:image/png;base64,...`) để tránh broken link khi mở trên máy khác
+> - Mỗi đầu mục lớn (MỤC LỤC, A, B, C, D, E) PHẢI xuống trang mới
+> - Sơ đồ flow: dùng skill `diagram-drawer`, xuất PNG nền trắng, nhúng bằng thẻ `<img class="diagram-img">`
 
 ---
 
-## MỤC LỤC
-A. GIỚI THIỆU
-B. TỔNG QUAN HỆ THỐNG
-C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG
-D. YÊU CẦU PHI CHỨC NĂNG
-E. PHỤ LỤC & TÀI LIỆU THAM KHẢO
+## PHẦN 1 — HTML SHELL (Copy toàn bộ vào file .doc)
 
----
+```html
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - [TÊN HỆ THỐNG]</title>
+<style>
+    /* ===== TYPOGRAPHY ===== */
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
 
-## A. GIỚI THIỆU
+    /* ===== TRANG BÌA ===== */
+    .cover-container {
+        border: 4px double #1f4e78;
+        padding: 50px 40px;
+        margin: 10px;
+        min-height: 800px;
+        position: relative;
+    }
+    .cover-logo-box { text-align: left; margin-bottom: 60px; }
+    .cover-logo { width: 200px; height: auto; }
+    .cover-title-box { text-align: center; margin-top: 80px; margin-bottom: 120px; }
+    .cover-title-main {
+        font-family: 'Arial', sans-serif;
+        color: #1f4e78;
+        font-size: 24pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+    .cover-title-sub {
+        font-family: 'Arial', sans-serif;
+        color: #e37222;
+        font-size: 14pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 10px;
+        letter-spacing: 0.5px;
+    }
+    .cover-meta-box {
+        margin-top: 120px;
+        width: 100%;
+        border-top: 2px solid #1f4e78;
+        padding-top: 20px;
+    }
+    .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
+    .cover-meta-table td { border: none; padding: 6px 0; font-size: 11pt; color: #333333; }
+    .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
 
-### 1. Mục đích tài liệu
-Tài liệu này mô tả và phác thảo chi tiết các yêu cầu của người dùng cuối nhằm:
-- Giúp đơn vị yêu cầu (ĐVYC) và các thành viên dự án (PM, BA, Dev, QA) xác định đúng và đủ phạm vi yêu cầu.
-- Làm cơ sở và đầu vào duy nhất cho các quá trình:
-  - Thu thập, phân tích yêu cầu nâng cao, đưa ra Đặc tả yêu cầu phần mềm (SRS).
-  - Phân tích thiết kế hệ thống và thiết kế cơ sở dữ liệu.
-  - Lập trình, phát triển phần mềm.
-  - Xây dựng kịch bản kiểm thử (Test Cases) và thực hiện kiểm thử phần mềm (QA/QC).
-  - Nghiệm thu sản phẩm (UAT).
+    /* ===== HEADINGS ===== */
+    /* LƯU Ý: h1 có page-break-before để đầu mục lớn luôn xuống trang mới */
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
 
-### 2. Thông tin chung
-| STT | HẠNG MỤC | MÔ TẢ CHI TIẾT |
-| :---: | :--- | :--- |
-| 1 | **Giới thiệu tổng quan** | [Mô tả ngắn gọn bối cảnh dự án, tính năng mới hoặc hệ thống sắp xây dựng] |
-| 2 | **Hiện trạng hệ thống (AS-IS)**| [Mô tả quy trình hiện tại, hệ thống cũ đang gặp những khó khăn, bất cập hay lỗi gì cần giải quyết] |
-| 3 | **Mục tiêu kỳ vọng (TO-BE)** | [Các mục tiêu cụ thể, KPI hoặc hiệu quả mong muốn đạt được sau khi triển khai hệ thống mới] |
-| 4 | **Phạm vi triển khai** | **- Phạm vi kỹ thuật:** [Các nền tảng Web, App, Backend, CMS... áp dụng]<br>**- Phạm vi nghiệp vụ:** [Các luồng quy trình nghiệp vụ được bao phủ]<br>**- Phạm vi tổ chức:** [Các phòng ban, đối tượng sử dụng hoặc khu vực áp dụng] |
+    /* ===== BẢNG DỮ LIỆU ===== */
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 8px; text-align: left; vertical-align: top; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; }
 
-### 3. Thuật ngữ và viết tắt
-| STT | THUẬT NGỮ | NGHĨA TIẾNG ANH / TÊN ĐẦY ĐỦ | MÔ TẢ Ý NGHĨA |
-| :---: | :--- | :--- | :--- |
-| 1 | URD | User Requirements Document | Tài liệu yêu cầu người dùng |
-| 2 | SKU | Stock Keeping Unit | Đơn vị phân loại hàng hóa/dịch vụ |
-| 3 | COD | Cash On Delivery | Thanh toán trực tiếp khi nhận hàng |
-| 4 | FID | Flexible ID / Flow ID | Luồng kích hoạt/định danh linh hoạt |
-| 5 | [Thuật ngữ] | [Tên đầy đủ] | [Giải thích ngắn gọn] |
+    /* ===== BẢNG USE CASE ===== */
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
----
+    /* ===== MỤC LỤC ===== */
+    /* page-break-before: always đảm bảo MỤC LỤC luôn xuống trang mới */
+    .toc-title {
+        page-break-before: always;
+        font-family: 'Arial', sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        color: #1f4e78;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; }
+    table.toc-table td { border: none; padding: 5px 0; vertical-align: bottom; }
+    .toc-dots { border-bottom: 1px dotted #555555; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; }
+    .toc-l2 { padding-left: 20px; font-size: 11pt; color: #000000; }
+    .toc-l3 { padding-left: 40px; font-size: 10.5pt; font-style: italic; color: #555555; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 40px; font-weight: bold; }
 
-## B. TỔNG QUAN HỆ THỐNG
+    /* ===== TIỆN ÍCH ===== */
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    .page-break { page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
+    .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
+    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
+    .success-inline { color: #385723; font-size: 10pt; font-weight: bold; }
+    .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
+</style>
+</head>
+<body>
 
-### 1. Sơ đồ luồng nghiệp vụ tổng quan (Business Workflow / Context Diagram)
-*[Vẽ sơ đồ Mermaid thể hiện luồng đi tổng quát giữa các tác nhân và hệ thống, hoặc chèn link hình ảnh]*
-```mermaid
-graph TD
-    A[Khách hàng] -->|Chọn dịch vụ| B(Trang Chi Tiết)
-    B -->|Bấm Checkout| C{Hệ Thống Checkout}
-    C -->|Nhập SĐT| D[Kiểm tra gói cước/Hợp đồng]
-    D -->|Chưa có gói| E[Thanh toán trực tuyến]
-    D -->|Đang có gói| F[Popup Cộng dồn/Thay thế]
-    E -->|Thành công| G[Kích hoạt tự động/Gửi mã SMS]
+<!-- ============================================================ -->
+<!-- TRANG BÌA                                                     -->
+<!-- Ghi chú: Logo nhúng dạng base64 - không bị vỡ khi copy file -->
+<!-- ============================================================ -->
+<div class="cover-container">
+    <div class="cover-logo-box">
+        <!-- Thay [LOGO_BASE64] bằng chuỗi base64 của logoftel.png -->
+        <!-- Lệnh lấy base64: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
+        <img src="[LOGO_BASE64]" class="cover-logo" alt="FPT Telecom Logo">
+    </div>
+
+    <div class="cover-title-box">
+        <div class="cover-title-main">Tài Liệu Yêu Cầu Người Dùng<br>(User Requirements Document - URD)</div>
+        <div class="cover-title-sub">[TÊN HỆ THỐNG / TÍNH NĂNG]<br>[KÊNH / PHASE]</div>
+    </div>
+
+    <div class="cover-meta-box">
+        <table class="cover-meta-table">
+            <!-- BỎ dòng "Dự án" theo yêu cầu chuẩn hóa -->
+            <tr>
+                <td class="cover-meta-label">Mã hiệu:</td>
+                <td>FPT-URD-[MODULE]-[SỐ THỨ TỰ]-01</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Phiên bản:</td>
+                <td>V1.0</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Tác giả:</td>
+                <td>[Tên tác giả — VD: ThuyTT104]</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Ngày lập:</td>
+                <td>[DD/MM/YYYY]</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Ngày cập nhật:</td>
+                <td>[DD/MM/YYYY]</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- LỊCH SỬ THAY ĐỔI                                             -->
+<!-- ============================================================ -->
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><i>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</i></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 15%;">Ngày</th>
+            <th style="width: 10%;">Version</th>
+            <th style="width: 20%;">Tác giả</th>
+            <th style="width: 10%;">Hành động</th>
+            <th style="width: 45%;">Mô tả chi tiết thay đổi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>[DD/MM/YYYY]</td>
+            <td>V1.0</td>
+            <td>[Tên tác giả]</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu URD [Tên hệ thống]. Mô tả chi tiết [Mô tả ngắn].</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- MỤC LỤC — class toc-title đã có page-break-before: always   -->
+<!-- ============================================================ -->
+<div class="toc-title">MỤC LỤC</div>
+<table class="toc-table">
+    <tr>
+        <td class="toc-l1">A. GIỚI THIỆU</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Mục đích tài liệu</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Danh sách các chức năng chính</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Ma trận phân quyền sử dụng</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">I. [Luồng 1]</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Quy trình nghiệp vụ từng bước (Step-by-Step)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Quy tắc cấu hình &amp; Business Rules</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">3. Mô tả giao diện &amp; Ràng buộc trường</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">II. [Luồng 2] (nếu có)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">III. Đặc tả điều kiện &amp; Edge Cases</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">IV. Bảng thông điệp báo lỗi (Error Messages)</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">D. YÊU CẦU PHI CHỨC NĂNG</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</td>
+        <td class="toc-dots"></td>
+        <td class="toc-page">X</td>
+    </tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- A. GIỚI THIỆU — h1 tự xuống trang do page-break-before       -->
+<!-- ============================================================ -->
+<h1>A. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả các yêu cầu người dùng cuối đối với [Tên hệ thống/tính năng]. Tài liệu đóng vai trò làm cơ sở nghiệp vụ để đội ngũ phát triển Frontend (FE), Backend (BE), Quản lý chính sách (QLCS), Product Hub và đội ngũ Kiểm thử (QA/QC) xây dựng giải pháp kỹ thuật và kịch bản UAT.</p>
+
+<h3>2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 25%;">Hạng mục</th>
+            <th style="width: 67%;">Mô tả chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><b>Giới thiệu tổng quan</b></td>
+            <td>[Mô tả ngắn gọn bối cảnh dự án, tính năng mới hoặc hệ thống sắp xây dựng]</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><b>Hiện trạng (AS-IS)</b></td>
+            <td>[Mô tả quy trình hiện tại, bất cập cần giải quyết]</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><b>Mục tiêu (TO-BE)</b></td>
+            <td>[Mục tiêu cụ thể, KPI hoặc hiệu quả mong muốn sau triển khai]</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><b>Phạm vi triển khai</b></td>
+            <td><b>Kỹ thuật:</b> [Web / App / Backend / CMS...]<br><b>Nghiệp vụ:</b> [Các luồng quy trình được bao phủ]<br><b>Tổ chức:</b> [Phòng ban, đối tượng người dùng]</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ và viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 15%;">Thuật ngữ</th>
+            <th style="width: 30%;">Tên đầy đủ</th>
+            <th style="width: 47%;">Mô tả ý nghĩa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="text-align: center;">1</td><td>URD</td><td>User Requirements Document</td><td>Tài liệu yêu cầu người dùng</td></tr>
+        <tr><td style="text-align: center;">2</td><td>SKU</td><td>Stock Keeping Unit</td><td>Đơn vị phân loại hàng hóa/dịch vụ</td></tr>
+        <tr><td style="text-align: center;">3</td><td>COD</td><td>Cash On Delivery</td><td>Thanh toán trực tiếp khi nhận hàng</td></tr>
+        <tr><td style="text-align: center;">4</td><td>PTTT</td><td>Phương Thức Thanh Toán</td><td>Hình thức thanh toán KH lựa chọn</td></tr>
+        <tr><td style="text-align: center;">5</td><td>BE</td><td>Backend</td><td>Hệ thống xử lý logic phía máy chủ</td></tr>
+        <tr><td style="text-align: center;">6</td><td>FE</td><td>Frontend</td><td>Giao diện hiển thị phía người dùng</td></tr>
+        <tr><td style="text-align: center;">7</td><td>SPF</td><td>Hệ thống Phê duyệt &amp; Quản lý đơn hàng FPT</td><td>Hệ thống tạo &amp; quản lý đơn hàng nội bộ</td></tr>
+        <tr><td style="text-align: center;">8</td><td>[Thuật ngữ]</td><td>[Tên đầy đủ]</td><td>[Giải thích]</td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- B. TỔNG QUAN HỆ THỐNG                                        -->
+<!-- ============================================================ -->
+<h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
+
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</h3>
+<p>Dưới đây là sơ đồ luồng <b>hành trình khách hàng (Customer Journey)</b> khi sử dụng [Tên hệ thống]. Sơ đồ thể hiện từng bước hành động của KH, các điểm quyết định và quy tắc hệ thống vận hành ngầm.</p>
+<p><b>Nguyên tắc vận hành:</b></p>
+<ul>
+    <li>[Nguyên tắc 1 — Ví dụ: BE xử lý toàn bộ tính toán, FE chỉ nhận kết quả và hiển thị]</li>
+    <li>[Nguyên tắc 2 — Ví dụ: Cấu hình text động từ Product Hub, không hardcode trên FE]</li>
+    <li>[Nguyên tắc 3 — Ví dụ: Mọi thay đổi điều kiện đơn hàng trigger re-validate tự động]</li>
+</ul>
+<!-- Sơ đồ flow: xuất PNG nền trắng bằng skill diagram-drawer, nhúng vào đây -->
+<img src="[ĐƯỜNG_DẪN_HOẶC_BASE64]" class="diagram-img" alt="Sơ đồ Flow Diagram [Tên hệ thống]">
+
+<h3>2. Danh sách các chức năng chính</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 25%;">Module / Chức năng</th>
+            <th style="width: 12%; text-align: center;">Phiên bản</th>
+            <th style="width: 15%; text-align: center;">Phân loại</th>
+            <th style="width: 40%;">Mô tả tóm tắt hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>[Tên chức năng 1]</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>[Mô tả ngắn chức năng 1]</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>[Tên chức năng 2]</td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>[Mô tả ngắn chức năng 2]</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Ma trận phân quyền sử dụng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 42%;">Chức năng / Module</th>
+            <th style="width: 15%; text-align: center;">Khách hàng</th>
+            <th style="width: 15%; text-align: center;">Admin QLCS</th>
+            <th style="width: 20%;">Ghi chú</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>[Tên chức năng]</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>[Ghi chú]</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>[Cấu hình hệ thống]</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Admin cấu hình tại Product Hub / QLCS</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ                  -->
+<!-- ============================================================ -->
+<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</h1>
+
+<h2>I. [TÊN LUỒNG 1]</h2>
+
+<h3>1. Quy trình nghiệp vụ từng bước (Step-by-Step)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label">Tác nhân tham gia</td>
+        <td>[Ví dụ: Khách hàng (Cá nhân/Doanh nghiệp) mua sắm trên FPT.vn]</td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện bắt đầu (Pre-conditions)</td>
+        <td>[Ví dụ: Khách hàng đã chọn gói dịch vụ và chuyển tới trang Checkout]</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng xử lý chính</td>
+        <td>
+            <b>Bước 1: [Tên bước]</b>
+            <br>- [Mô tả hành động KH]
+            <br>- [Mô tả phản hồi hệ thống]
+            <br>
+            <b>Bước 2: [Tên bước]</b>
+            <br>- [Mô tả hành động KH]
+            <br>- [Mô tả phản hồi hệ thống]
+            <br>
+            <!-- Thêm bước theo từng luồng -->
+        </td>
+    </tr>
+    <tr>
+        <td class="label">Điều kiện kết thúc (Post-conditions)</td>
+        <td>[Ví dụ: Đơn hàng tạo thành công trên SPF, KH nhận xác nhận qua SMS/Email]</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng thay thế / Ngoại lệ</td>
+        <td>
+            <b>Alt 1: [Tên ngoại lệ]</b><br>
+            [Điều kiện xảy ra] → [Hành vi hệ thống / thông báo hiển thị]
+            <br><br>
+            <b>Alt 2: [Tên ngoại lệ]</b><br>
+            [Điều kiện xảy ra] → [Hành vi hệ thống / thông báo hiển thị]
+        </td>
+    </tr>
+</table>
+
+<h3>2. Quy tắc cấu hình từ Product Hub và Quản lý chính sách</h3>
+<div class="alert-box">
+    <b>[[MODULE]-BR-01] [Tên Business Rule]:</b>
+    <br>- [Mô tả quy tắc 1]
+    <br>- [Mô tả quy tắc 2]
+</div>
+<div class="alert-box">
+    <b>[[MODULE]-BR-02] [Tên Business Rule]:</b>
+    <br>- [Mô tả quy tắc]
+</div>
+
+<h3>3. Mô tả giao diện &amp; Ràng buộc trường (Screen Description)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 8%; text-align: center;">STT</th>
+            <th style="width: 20%;">Field / Element</th>
+            <th style="width: 15%;">Kiểu dữ liệu</th>
+            <th style="width: 25%;">Ràng buộc / Validation</th>
+            <th style="width: 32%;">Thao tác &amp; Phản hồi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><b>[Tên field]</b></td>
+            <td>Textbox / Dropdown / Checkbox...</td>
+            <td>- Bắt buộc (Required)<br>- [Ràng buộc khác]</td>
+            <td>- KH: [Hành động]<br>- Hệ thống: [Phản hồi]</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>II. [TÊN LUỒNG 2] (nếu có)</h2>
+<!-- Lặp lại cấu trúc như Luồng I -->
+
+<div class="page-break"></div>
+
+<h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</h2>
+
+<!-- ✅ PATTERN CHO EDGE CASE: Mỗi case gồm (1) mô tả tổng quan + (2) bảng chi tiết -->
+<div class="alert-box">
+    <b>[[MODULE]-CASE-BR-00] Tổng hợp các trường hợp ngoại lệ:</b>
+    <br><b>Case 1 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
+    <br><b>Case 2 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
+    <br><b>Case 3 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
+</div>
+
+<h3>Chi tiết Case 1: [Tên]</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 25%;">Điều kiện xảy ra</th>
+            <th style="width: 35%;">Hành vi hiển thị</th>
+            <th style="width: 20%;">Message hiển thị</th>
+            <th style="width: 20%;">Hành động KH</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>[Điều kiện]</td>
+            <td>[Mô tả hành vi UI]</td>
+            <td style="color: #c00000; font-style: italic; font-weight: bold;">[Text thông báo chính xác]</td>
+            <td>[KH có thể làm gì tiếp theo]</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>IV. BẢNG THÔNG ĐIỆP BÁO LỖI (ERROR MESSAGES)</h2>
+<p>Bảng quy định chính xác nội dung thông điệp hệ thống hiển thị cho KH trong từng trường hợp:</p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 25%;">Trường Hợp Nghiệp Vụ</th>
+            <th style="width: 15%;">Trạng Thái</th>
+            <th style="width: 40%;">Nội dung Message hiển thị chính xác</th>
+            <th style="width: 20%;">Hành vi Hệ thống &amp; Giao diện</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>TH1: [Tên trường hợp]</b><br>([Mô tả ngắn điều kiện xảy ra])</td>
+            <td style="color: green; font-weight: bold;">Thành công</td>
+            <td style="color: #385723; font-weight: bold;">[Text thông báo thành công chính xác]</td>
+            <td>[Hành vi UI sau thành công]</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td style="color: #c00000; font-style: italic; font-weight: bold;">[Text thông báo lỗi chính xác]</td>
+            <td>[Hành vi UI sau lỗi]</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- D. YÊU CẦU PHI CHỨC NĂNG                                     -->
+<!-- ============================================================ -->
+<h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
+
+<h3>1. Hiệu năng hệ thống (Performance)</h3>
+<ul>
+    <li><b>Tốc độ xử lý tính toán:</b> Thời gian Backend nhận dữ liệu, validate và phản hồi kết quả cho Frontend không được vượt quá <b>0.5 giây</b> trong điều kiện mạng bình thường.</li>
+    <li><b>Tự động đồng bộ:</b> Trạng thái [đối tượng] phải được cập nhật thời gian thực ngay khi giao dịch hoàn tất, tránh sử dụng lại dữ liệu cũ.</li>
+    <li><b>Tải đồng thời:</b> Hệ thống đáp ứng tối thiểu [1.000] giao dịch đồng thời không bị nghẽn.</li>
+</ul>
+
+<h3>2. Thiết kế trải nghiệm người dùng (UI/UX)</h3>
+<ul>
+    <li><b>Responsive Design:</b> Giao diện phải hiển thị hoàn hảo trên cả Desktop (Web) và Mobile (Responsive/App). Nút bấm và popup đảm bảo thao tác ngón tay trên điện thoại.</li>
+    <li><b>Thông báo lỗi cụ thể:</b> Mọi thông báo lỗi phải nêu <b>cụ thể điều kiện</b> không đáp ứng, không dùng message generic. KH phải biết cần thay đổi gì để tiếp tục.</li>
+    <li><b>Cấu hình động:</b> Toàn bộ text nhỏ dưới gói cước, thông tin hiển thị trong popup, và các điều kiện áp dụng đều được cấu hình từ Product Hub — không hardcode trên FE.</li>
+    <li><b>Phản hồi tức thì:</b> Các kiểm tra có thể thực hiện phía client (định dạng số điện thoại, điều kiện loại trừ...) phải được xử lý real-time, không chờ submit.</li>
+</ul>
+
+<h3>3. Bảo mật &amp; An toàn thông tin (Security)</h3>
+<ul>
+    <li><b>Mã hóa thông tin:</b> Mọi dữ liệu truyền tải trong luồng thanh toán phải được mã hóa qua HTTPS (TLS 1.3).</li>
+    <li><b>Che dấu dữ liệu nhạy cảm:</b> Số điện thoại hiển thị dạng masking (VD: <code>098***1234</code>). Thông tin thẻ không lưu tại DB hệ thống, ủy quyền cho cổng thanh toán PCI-DSS.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- E. PHỤ LỤC                                                   -->
+<!-- ============================================================ -->
+<h1>E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</h1>
+<ul>
+    <li>Tài liệu thiết kế UI/UX (Figma): [Chèn link Figma tại đây]</li>
+    <li>Tài liệu đặc tả API tích hợp: [Chèn link tài liệu API]</li>
+    <li>Sơ đồ Flow Diagram: [Đường dẫn file diagrams/...]</li>
+    <li>[Tài liệu tham khảo khác]</li>
+</ul>
+
+</body>
+</html>
 ```
 
-### 2. Danh sách các chức năng (Functional List)
-| STT | Module / Chức năng | Version | Loại (New/Update/Delete) | Mô tả tóm tắt hành vi hệ thống |
-| :---: | :--- | :---: | :---: | :--- |
-| 1 | [Luồng checkout DV FPT Play SA] | [2.1] | [Update] | [Đặc tả các bước nhập thông tin, kích hoạt tài khoản tự động hoặc qua SMS đối với dịch vụ FPT Play SA] |
-| 2 | [Chức năng X] | [1.0] | [New] | [Mô tả tóm tắt...] |
+---
 
-### 3. Ma trận quyền (Permission Matrix)
+## PHẦN 2 — CHECKLIST TRƯỚC KHI SUBMIT URD
 
-#### Bảng Định nghĩa Quyền (Permission Definition List)
-| Mã Quyền | Tên Quyền | Mô tả chi tiết hành vi |
-| :---: | :--- | :--- |
-| **F** | Full Access | Toàn quyền thao tác trên module (Xem, Thêm, Sửa, Xóa) |
-| **A** | Add | Tạo mới dữ liệu |
-| **U** | Update | Cập nhật, chỉnh sửa thông tin |
-| **D** | Delete | Xóa dữ liệu (có thể ràng buộc theo nhóm quyền đặc biệt) |
-| **V** | View | Xem thông tin chi tiết |
-| **L** | List | Xem thông tin dưới dạng danh sách |
-| **E** | Export | Xuất file báo cáo (Excel, PDF...) |
-| **I** | Import | Nhập dữ liệu hàng loạt từ file Excel |
+### ✅ Trang bìa
+- [ ] Logo FPT Telecom nhúng dạng **base64 Data URI** (không dùng đường dẫn file)
+- [ ] Tác giả điền tên thực (VD: ThuyTT104)
+- [ ] **BỎ dòng "Dự án"** theo chuẩn mới
+- [ ] Có đầy đủ: Mã hiệu, Phiên bản, Ngày lập, Ngày cập nhật
 
-#### Bảng Phân quyền Module (Permission Matrix Table)
-| STT | Tên Chức năng / Module | Role Admin | Role Sales | Role Khách hàng | Ghi chú |
-| :---: | :--- | :---: | :---: | :---: | :--- |
-| 1 | Quản lý cấu hình dịch vụ | F | V, L | N/A | Chỉ Admin được cấu hình |
-| 2 | Đăng ký & Checkout dịch vụ | V, L | A, U, V | A, V | Người dùng cuối thực hiện thanh toán |
+### ✅ Page Break
+- [ ] MỤC LỤC xuống trang mới (class `toc-title` đã có `page-break-before: always`)
+- [ ] Mỗi `<h1>` (A, B, C, D, E) xuống trang mới (CSS `h1` đã có `page-break-before: always`)
+- [ ] Dùng `<div class="page-break"></div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
+
+### ✅ Sơ đồ Flow Diagram
+- [ ] Dùng skill `diagram-drawer` để vẽ — nền trắng, đường thẳng/vuông góc
+- [ ] Hình tròn: Bắt đầu / Kết thúc
+- [ ] Hình chữ nhật: Tác vụ (hành động KH)
+- [ ] Hình thoi: Điểm quyết định (YES/NO)
+- [ ] Hình bình hành / Note box: Quy tắc hệ thống ẩn (note đi kèm step)
+- [ ] Lưu PNG tại `diagrams/[tên_flow].png`
+- [ ] Nhúng vào URD bằng `<img class="diagram-img">`
+
+### ✅ Luồng nghiệp vụ
+- [ ] Góc nhìn **Customer Journey** — KH làm gì, KH thấy gì
+- [ ] Quy tắc hệ thống viết dưới dạng **note/BR** không phải step chính
+- [ ] Có đầy đủ: Pre-conditions, Luồng chính, Post-conditions, Luồng ngoại lệ (Alt)
+
+### ✅ Edge Cases & Error Messages
+- [ ] Mỗi case có: điều kiện xảy ra, hành vi UI, message chính xác, hướng dẫn KH
+- [ ] Message lỗi **cụ thể** theo loại điều kiện (ERR_PTTT, ERR_SKU...) — không generic
+- [ ] Message thành công viết màu xanh lá (`success-inline`)
+- [ ] Message lỗi viết màu đỏ (`error-inline`)
+
+### ✅ Revision History
+- [ ] Cập nhật version + ngày + tác giả + mô tả chi tiết thay đổi sau mỗi lần sửa
 
 ---
 
-## C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG
+## PHẦN 3 — LỆNH LẤY BASE64 LOGO
 
-### I. [Tên Chức Năng / Module 1]
+```bash
+# Chạy trong thư mục project để lấy base64 của logo
+python3 -c "
+import base64
+with open('docs/images/logoftel.png', 'rb') as f:
+    b64 = base64.b64encode(f.read()).decode()
+print('data:image/png;base64,' + b64)
+"
+```
 
-#### 1. Luồng Nghiệp Vụ (Business Workflow)
-*[Mô tả kịch bản sử dụng (Use Case Scenario) chi tiết từ lúc bắt đầu đến khi kết thúc. Chia rõ các bước thao tác của người dùng và phản hồi tương ứng của hệ thống]*
-
-- **Tác nhân tham gia:** [Ví dụ: Khách hàng vãng lai, Khách hàng đã đăng nhập, Nhân viên CSKH...]
-- **Điều kiện bắt đầu (Pre-conditions):** [Ví dụ: Khách hàng đã chọn sản phẩm từ trang chi tiết và bấm nút "Thanh toán"]
-- **Luồng xử lý chi tiết (Step-by-step):**
-  - **Bước 1:** Khách hàng mở màn hình Checkout. Hệ thống hiển thị thông tin sản phẩm đã chọn, giá gốc, giá khuyến mãi và các phương thức thanh toán khả dụng.
-  - **Bước 2:** Khách hàng nhập thông tin cá nhân (Số điện thoại, Họ tên, Email). Hệ thống thực hiện kiểm tra định dạng dữ liệu tự động.
-  - **Bước 3:** Khách hàng thực hiện chọn phương thức thanh toán và áp dụng mã ưu đãi (nếu có). Hệ thống tính toán lại số tiền cần thanh toán thực tế (Real-time).
-  - **Bước 4:** Khách hàng bấm nút "Thanh toán". Hệ thống gọi API cổng thanh toán tương ứng.
-  - **Bước 5:** Thanh toán thành công, hệ thống tiến hành kích hoạt dịch vụ tự động và hiển thị màn hình hoàn tất đơn hàng.
-- **Điều kiện kết thúc (Post-conditions):** [Ví dụ: Tạo đơn hàng thành công trên hệ thống SPF, gửi thông báo kích hoạt thành công qua SMS/Email cho khách hàng]
-
-#### 2. Quy tắc Nghiệp Vụ (Business Rules)
-*[Đặc tả chi tiết các thuật toán, điều kiện kiểm tra dữ liệu, logic xử lý phức tạp hoặc các ràng buộc nghiệp vụ]*
-
-| Mã Rule | Tên Quy tắc | Nội dung quy tắc chi tiết |
-| :---: | :--- | :--- |
-| **[CODE]-BR-01** | Bắt buộc nhập Số điện thoại | Số điện thoại khách hàng nhập là bắt buộc, phải là định dạng số di động Việt Nam (10 chữ số, đúng các đầu số nhà mạng). SĐT này dùng làm tài khoản định danh kích hoạt dịch vụ. |
-| **[CODE]-BR-02** | Logic Cộng dồn / Thay thế gói | - Nếu SĐT đang sử dụng gói dịch vụ tương đương: Cho phép mua cộng dồn thời hạn sử dụng cước. Ngày hết hạn mới = Ngày hết hạn cũ + Chu kỳ mua mới.<br>- Nếu SĐT đang sử dụng gói khác loại: Khi thanh toán thành công, gói mới sẽ thay thế gói cũ, số tiền còn dư của gói cũ (nếu có) sẽ được quy đổi tương đương số ngày sử dụng gói mới theo công thức tính toán tự động. |
-| **[CODE]-BR-03** | Ràng buộc nhận Hóa đơn | Khi người dùng tick chọn "Tôi muốn nhận hóa đơn", tất cả các trường thông tin: Tên tổ chức/Cá nhân, Email nhận hóa đơn, Mã số thuế (nếu có), Địa chỉ xuất hóa đơn đều trở thành trường bắt buộc nhập (Required). |
-
-#### 3. Mô tả Giao diện & Ràng buộc Trường (Screen Description)
-*[Bảng chi tiết mô tả tất cả các điều khiển giao diện (Control), kiểu hiển thị, ràng buộc dữ liệu đầu vào và phản hồi UI tương ứng]*
-
-| STT | Field / Element | Kiểu dữ liệu | Ràng buộc dữ liệu / Validation | Liên kết Rule | Thao tác người dùng & Phản hồi hệ thống |
-| :---: | :--- | :--- | :--- | :---: | :--- |
-| 1 | **Số điện thoại** | Textbox / Number | - Bắt buộc nhập (Required)<br>- Chỉ cho phép số [0-9]<br>- Độ dài chuẩn 10 chữ số | [CODE]-BR-01 | - Người dùng: Nhập SĐT.<br>- Hệ thống: Kiểm tra hợp lệ khi người dùng chuyển focus khỏi trường. Nếu lỗi, hiển thị text đỏ cảnh báo: *"Số điện thoại không hợp lệ!"* |
-| 2 | **Nhận hóa đơn** | Checkbox | - Mặc định: Unchecked<br>- Không bắt buộc | [CODE]-BR-03 | - Người dùng: Click chọn tick/untick.<br>- Hệ thống: Nếu Checked, mở rộng hiển thị phần nhập thông tin Hóa đơn ở phía dưới. Nếu Unchecked, ẩn đi. |
-| 3 | **Nút "Thanh toán"**| Button | - Chỉ active khi tất cả trường bắt buộc đã điền hợp lệ | N/A | - Người dùng: Click nút.<br>- Hệ thống: Kiểm tra tính hợp lệ toàn màn hình. Nếu hợp lệ, hiển thị overlay loading và chuyển hướng sang cổng thanh toán. |
-
-#### 4. Các trường hợp lỗi & Thông báo hiển thị (Error Messages & UI Scenarios)
-*[Bảng liệt kê tất cả các kịch bản ngoại lệ, lỗi hệ thống, lỗi kết nối và cách giao diện ứng dụng xử lý hoặc hiển thị thông tin lỗi cho người dùng]*
-
-| STT | Giai đoạn / Tình huống | Thông báo hiển thị chính xác | Hành vi UI & Xử lý hệ thống |
-| :---: | :--- | :--- | :--- |
-| 1 | **Nhập liệu**<br>Bỏ trống trường bắt buộc | *"Vui lòng nhập đầy đủ các trường thông tin bắt buộc!"* | - Focus vào trường trống đầu tiên.<br>- Viền trường chuyển màu đỏ.<br>- Hiển thị text báo lỗi inline bên dưới. |
-| 2 | **Thanh toán**<br>Lỗi giao dịch từ Ngân hàng | *"Thanh toán thất bại. Giao dịch không thành công từ phía ngân hàng. Vui lòng thử lại!"* | - Giữ người dùng ở màn hình Checkout.<br>- Hiển thị thông báo dạng Alert Popup cảnh báo.<br>- Cho phép người dùng chọn phương thức thanh toán khác để thử lại. |
-| 3 | **Kích hoạt**<br>Lỗi hệ thống không tạo được mã code | *"Lấy mã kích hoạt không thành công. Vui lòng liên hệ 1900 6600 để được hỗ trợ!"* | - Hiển thị dòng text thông báo màu đỏ ngay tại vị trí hiển thị Code.<br>- Nút "Kích hoạt dịch vụ" bị disable (ẩn mờ).<br>- Ghi log lỗi chi tiết lên hệ thống quản trị (Admin). |
-
----
-
-## D. YÊU CẦU PHI CHỨC NĂNG
-
-### 1. Hiệu năng hệ thống (Performance)
-- **Thời gian phản hồi:** Thời gian tải trang Checkout và hiển thị thông tin thanh toán không quá 2 giây trong điều kiện mạng bình thường.
-- **Tính toán Real-time:** Thời gian tính lại tiền khi áp dụng voucher hoặc thay đổi phương thức thanh toán không quá 0.5 giây.
-- **Tải đồng thời:** Hệ thống đáp ứng được tối thiểu [1,000] giao dịch checkout đồng thời mà không bị nghẽn mạng hoặc mất dữ liệu.
-
-### 2. Bảo mật & An toàn thông tin (Security)
-- **Mã hóa thông tin:** Mọi dữ liệu truyền tải giữa Client và Server trong luồng thanh toán phải được mã hóa qua giao thức HTTPS (TLS 1.3).
-- **Che dấu dữ liệu nhạy cảm (Masking):** 
-  - Số điện thoại hiển thị trên màn hình Hoàn tất đơn hàng phải được che giấu (VD: `098***1234`).
-  - Không được lưu trữ thông tin thẻ tín dụng của khách hàng trực tiếp tại DB hệ thống; việc xử lý thẻ phải được ủy quyền hoàn toàn cho cổng thanh toán đạt chứng chỉ PCI-DSS.
-
-### 3. Trải nghiệm người dùng & Giao diện (UI/UX)
-- **Responsive Design:** Giao diện màn hình Checkout phải tương thích và tối ưu hiển thị trên cả thiết bị di động (Responsive Web/App) và máy tính để bàn (Desktop).
-- **Duy trì phiên làm việc (Session Retention):** Trong quá trình đang xử lý thanh toán và kích hoạt (Pending), hệ thống phải hiển thị màn hình khóa (Overlay Loading) kèm cảnh báo *"Hệ thống đang thực hiện kích hoạt dịch vụ, quý khách vui lòng không tắt màn hình!"* nhằm ngăn chặn hành động reload trang gây lỗi giao dịch.
-- **Tải ứng dụng (PC Only):** Nút tải ứng dụng PC chỉ cho phép tải file cài đặt `.exe` nếu hệ thống phát hiện User-Agent là thiết bị chạy Windows. Với các hệ điều hành khác (Mac, iOS, Android), hiển thị popup hướng dẫn chi tiết tải phiên bản ứng dụng tương ứng trên App Store / Google Play.
-
----
-
-## E. PHỤ LỤC & TÀI LIỆU THAM KHẢO
-- **Link thiết kế UI/UX (Figma/Mockups):** [Chèn link Figma tại đây]
-- **Tài liệu đặc tả API tích hợp cổng thanh toán:** [Chèn link tài liệu API]
-- **Danh mục Tỉnh/Thành, Phường/Xã chuẩn hóa:** [Chèn link file danh mục]
+> Copy toàn bộ chuỗi output (bắt đầu bằng `data:image/png;base64,...`) vào thuộc tính `src` của thẻ `<img>` trong trang bìa.

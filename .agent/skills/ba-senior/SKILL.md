@@ -22,6 +22,46 @@ The following templates are available in the `templates/` directory. Use them as
 - **US Template**: `templates/us-template.md` (Use for User Story & Acceptance Criteria Specifications)
 - **Note**: When asked to create a document, first check if a template exists and follow its structure precisely.
 
+### ⚠️ Chuẩn bắt buộc khi tạo URD (cập nhật từ thực tế dự án FPT)
+
+#### 1. Định dạng file output
+- File `.doc` (HTML-based) — mở được bằng MS Word và in ấn đúng chuẩn
+- Copy toàn bộ HTML shell từ `templates/urd-template.md` — **không tự chế CSS**
+
+#### 2. Trang bìa (Cover Page)
+- **Logo FPT Telecom**: Nhúng dạng `base64 Data URI` — không dùng đường dẫn tương đối để tránh broken link
+  ```bash
+  python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())"
+  ```
+- **Tác giả**: Ghi tên cụ thể của người soạn (VD: ThuyTT104) — không ghi chức danh chung
+- **BỎ dòng "Dự án"**: Không hiển thị tên dự án trên trang bìa
+- Gồm: Mã hiệu, Phiên bản, Tác giả, Ngày lập, Ngày cập nhật
+
+#### 3. Page Break — Bắt buộc
+- CSS `h1` đã có `page-break-before: always` → Mọi đầu mục **A, B, C, D, E** tự xuống trang mới
+- CSS `.toc-title` đã có `page-break-before: always` → **MỤC LỤC** tự xuống trang mới
+- Dùng `<div class="page-break"></div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
+
+#### 4. Sơ đồ Flow Diagram
+- Dùng skill `diagram-drawer` để vẽ — chuẩn nền trắng, đường thẳng/vuông góc
+- Ký hiệu bắt buộc: Tròn=Bắt đầu/Kết thúc | Chữ nhật=Tác vụ KH | Thoi=Quyết định | Note box=Quy tắc hệ thống
+- Góc nhìn **Customer Journey**: KH làm gì / KH thấy gì — không viết theo góc nhìn hệ thống kỹ thuật
+- Quy tắc hệ thống (BE logic, cấu hình...) → chuyển thành **note đính kèm step** (dạng bình hành nét đứt)
+- Lưu PNG tại `diagrams/[tên_flow].png`, nhúng bằng `<img class="diagram-img">`
+
+#### 5. Nội dung luồng nghiệp vụ (usecase-table)
+- Gồm đầy đủ: Pre-conditions → Luồng chính (Step-by-Step) → Post-conditions → Luồng thay thế/Ngoại lệ (Alt)
+- Mỗi **Alt** phải nêu: điều kiện xảy ra + message chính xác + KH làm gì tiếp theo
+
+#### 6. Edge Cases & Error Messages
+- Mỗi case có bảng riêng: Điều kiện | Hành vi UI | Message chính xác | Hướng dẫn KH
+- **Message lỗi phải cụ thể** theo loại điều kiện — không dùng message generic
+- Dùng class `error-inline` (màu đỏ) cho lỗi, `success-inline` (màu xanh lá) cho thành công
+- Các rule hệ thống đặt trong `<div class="alert-box">` với mã `[MODULE-BR-XX]`
+
+#### 7. Revision History
+- Cập nhật mỗi lần sửa: ngày + tác giả (tên thực) + mô tả chi tiết thay đổi
+
 
 ## 1. Problem Framing & Discovery
 Start by clarifying the actual problem.
@@ -238,7 +278,7 @@ Luồng này mô tả sự tương tác chi tiết giữa các hệ thống Fron
 - If the user has solution → challenge and improve
 - If the user is stuck → propose options
 - If the user is experienced → collaborate, not instruct
-- **If the user requests a URD** → Use the `templates/urd-template.md` and fill in the information gathered from the discovery/refinement phase.
+- **If the user requests a URD** → Đọc `templates/urd-template.md`, copy HTML shell, nhúng logo base64, điền nội dung theo cấu trúc A→E. Đảm bảo page-break đúng, sơ đồ Customer Journey, error message cụ thể theo từng case.
 - **If the user requests a User Story / US Specification** → Use the `templates/us-template.md` to document the user story, Gherkin acceptance criteria, UI element specifications, and API mapping.
 
 
