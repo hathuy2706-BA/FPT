@@ -1,0 +1,645 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FPT.VN URD - Luồng Checkout Camera (Phase 1)</title>
+<style>
+
+    /* ===== TYPOGRAPHY ===== */
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+
+    /* ===== TRANG BÌA ===== */
+    .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
+    .cover-logo-box { text-align: left; margin-bottom: 30px; }
+    .cover-logo { width: 70px; height: auto; display: block; }
+    .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
+    .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 24pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
+    .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
+    .cover-meta-box { margin-top: 60px; width: 100%; border-top: 2px solid #1f4e78; padding-top: 20px; }
+    .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
+    .cover-meta-table td { border: none; padding: 6px 0; font-size: 11pt; color: #333333; }
+    .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
+
+    /* ===== HEADINGS ===== */
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
+
+    /* ===== BẢNG DỮ LIỆU ===== */
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: auto; word-wrap: break-word; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 10.5pt; }
+
+    /* ===== BẢNG USE CASE ===== */
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+
+    /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
+    .toc-title {
+        page-break-before: always;
+        mso-page-break-before: always;
+        font-family: 'Arial', sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        color: #1f4e78;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1f4e78;
+    }
+    table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
+    table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
+    .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
+    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 11pt; color: #000000; }
+    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 10.5pt; font-style: italic; color: #555555; }
+
+    /* ===== TIỆN ÍCH ===== */
+    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    .page-break { page-break-before: always; mso-page-break-before: always; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
+    .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
+    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
+    .success-inline { color: #385723; font-size: 10pt; font-weight: bold; }
+    .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
+    .header-table { width: 100%; border-collapse: collapse; border: 1px solid #1f4e78; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #1f4e78; padding: 10px; vertical-align: middle; }
+
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA -->
+<div class="cover-container">
+    <div class="cover-logo-box">
+        <img src="data:image/png;base64,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" class="cover-logo" alt="FPT Telecom Logo" style="width:70px; height:auto; display:block;">
+    </div>
+    <div class="cover-title-box">
+        <div class="cover-title-main">Tài Liệu Yêu Cầu Người Dùng<br>(User Requirements Document - URD)</div>
+        <div class="cover-title-sub">LUỒNG CHECKOUT CAMERA (PHASE 1)<br>(CAMERA ONLY & COMBO CAMERA)</div>
+    </div>
+    <div class="cover-meta-box">
+        <table class="cover-meta-table">
+            <tr>
+                <td class="cover-meta-label">Mã hiệu:</td>
+                <td>FPT-URD-CAM-PHASE1-01</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Phiên bản:</td>
+                <td>V1.1</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Tác giả:</td>
+                <td>ThuyTT104</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Ngày lập:</td>
+                <td>27/05/2026</td>
+            </tr>
+            <tr>
+                <td class="cover-meta-label">Ngày cập nhật:</td>
+                <td>15/06/2026</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+
+<!-- REVISION HISTORY -->
+<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
+<p><em>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</em></p>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 12%;">Date</th>
+            <th style="width: 8%; text-align: center;">Version</th>
+            <th style="width: 15%;">Author</th>
+            <th style="width: 8%; text-align: center;">Action</th>
+            <th style="width: 57%;">Change Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>27/05/2026</td>
+            <td>1.0</td>
+            <td>Senior BA / PO</td>
+            <td style="text-align: center;">[A]</td>
+            <td>Khởi tạo tài liệu URD đặc tả luồng Mua hàng và Thanh toán (Checkout) cho đối tượng khách hàng mua lẻ thiết bị FPT Camera (Camera Only) và Combo Camera trên môi trường trực tuyến.</td>
+        </tr>
+        <tr>
+            <td>15/06/2026</td>
+            <td>1.1</td>
+            <td>ThuyTT104</td>
+            <td style="text-align: center;">[U]</td>
+            <td>Gộp tài liệu luồng Camera Only và Combo Camera thành tài liệu duy nhất urd_cam_phase1, cập nhật mã hiệu camonly thành onlycam, camcombo thành combocam và chuẩn hóa định dạng theo template mới.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- MỤC LỤC -->
+<div class="toc-title" style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</div>
+<table class="toc-table">
+    <tr>
+        <td class="toc-l1">A. GIỚI THIỆU</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Mục đích tài liệu</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">B. TỔNG QUAN LUỒNG NGHIỆP VỤ &amp; PHÂN QUYỀN</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">2. Danh sách các chức năng chính</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">3. Ma trận phân quyền sử dụng</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">I. LUỒNG NGHIỆP VỤ CAMERA ONLY (onlycam)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Màn hình Chi tiết Sản phẩm (PDP - Camera Only)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Màn hình Thanh toán (Checkout Page - Camera Only)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">3. Màn hình Hoàn tất đơn hàng (Thank You Page - Camera Only)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">II. LUỒNG NGHIỆP VỤ COMBO CAMERA (combocam)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">1. Màn hình Chi tiết Sản phẩm (PDP - Combo Camera)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">2. Màn hình Thanh toán (Checkout Page - Combo Camera)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l3">3. Màn hình Hoàn tất đơn hàng (Thank You Page - Combo Camera)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l2">IV. BẢNG THÔNG ĐIỆP BÁO LỖI (ERROR MESSAGES)</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">D. YÊU CẦU PHI CHỨC NĂNG</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+    <tr>
+        <td class="toc-l1">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</td>
+        <td class="toc-dots">&nbsp;</td>
+        <td class="toc-page">—</td>
+    </tr>
+</table>
+
+<!-- A. GIỚI THIỆU -->
+<h1>A. GIỚI THIỆU</h1>
+
+<h3>1. Mục đích tài liệu</h3>
+<p>Tài liệu này đặc tả chi tiết yêu cầu người dùng (URD) đối với luồng Mua lẻ và Thanh toán (Checkout) sản phẩm <strong>Camera Only (onlycam)</strong> và sản phẩm <strong>Combo Camera (combocam)</strong> trên nền tảng bán lẻ trực tuyến của FPT Telecom (bao gồm website fpt.vn, ứng dụng di động và các trang vệ tinh khác).</p>
+<p>Tài liệu này tập trung giải quyết các bài toán nghiệp vụ đặc thù cho cả hai đối tượng khách hàng:</p>
+<ul>
+    <li>Khách hàng chỉ đăng ký mua thiết bị FPT Camera đơn lẻ (onlycam - sử dụng mạng Internet của nhà mạng khác hoặc lắp thêm vào đường truyền FPT sẵn có) nhằm cung cấp trải nghiệm mua sắm mượt mà và đơn giản hóa quy trình tự cài đặt tại nhà.</li>
+    <li>Khách hàng đăng ký trọn gói Combo Camera (combocam - bao gồm thiết bị phần cứng và gói dịch vụ lưu trữ Cloud chu kỳ dài) để hưởng ưu đãi đặc quyền tối ưu chi phí.</li>
+</ul>
+<p>Tài liệu đóng vai trò làm cơ sở duy nhất cho đội ngũ thiết kế UI/UX vẽ Wireframes/Figma, đội ngũ phát triển Frontend/Backend viết mã nguồn, và đội ngũ QC thực hiện kiểm thử nghiệm thu (UAT).</p>
+
+<h3>2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 22%;">HẠNG MỤC</th>
+            <th style="width: 73%;">MÔ TẢ CHI TIẾT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Giới thiệu tổng quan</strong></td>
+            <td>
+                - <strong>Camera Only (onlycam):</strong> Là kịch bản bán hàng phục vụ khách hàng có nhu cầu mua thiết bị FPT Camera và đăng ký gói lưu trữ Cloud độc lập, không mua kèm gói cước Internet FPT. Khách hàng có thể đang sử dụng đường truyền của bên thứ 3 (Non-FPT ISP như Viettel, VNPT) hoặc đã có sẵn đường truyền FPT tại nhà và chỉ muốn mua thêm Camera rời.<br>
+                - <strong>Combo Camera (combocam):</strong> Sản phẩm trọn gói kết hợp thiết bị phần cứng và gói lưu trữ Cloud Storage (chu kỳ cước 6 hoặc 12 tháng) trên cùng một đơn hàng thanh toán trực tuyến.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Hiện trạng hệ thống (AS-IS)</strong></td>
+            <td>
+                1. Hệ thống cũ mặc định khách hàng phải có mã hợp đồng Internet FPT mới có thể đăng ký lắp đặt Camera, gây khó khăn cho tập khách hàng ngoại mạng.<br>
+                2. Chưa có cơ chế linh hoạt hỗ trợ tự lắp đặt (Self-installation). Hệ thống luôn ép buộc tính phí và hẹn lịch kỹ thuật viên đến lắp đặt.<br>
+                3. Gói Cloud và thiết bị thường phải mua rời rạc qua các bước thủ công, chưa được bán trọn gói Combo trên One-page checkout.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Mục tiêu kỳ vọng (TO-BE)</strong></td>
+            <td>
+                1. Xây dựng luồng mua hàng độc lập <strong>onlycam</strong> và <strong>combocam</strong> tối ưu chỉ trong một trang thanh toán (One-page checkout).<br>
+                2. Cho phép tùy chọn hình thức triển khai linh hoạt: <strong>Kỹ thuật viên đến nhà lắp đặt</strong> hoặc <strong>Tự lắp đặt tại nhà</strong> (Giao hàng bưu điện miễn phí).<br>
+                3. Triển khai logic thông minh tự động kiểm tra số điện thoại để đề xuất liên kết hợp đồng Internet FPT có sẵn (nếu có) để giảm phí lắp đặt.<br>
+                4. Khuyến khích khách hàng mua Combo chu kỳ dài bằng chính sách tặng tháng cước Cloud hoặc miễn phí thiết bị phần cứng.
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Phạm vi triển khai</strong></td>
+            <td>
+                <strong>- Kỹ thuật:</strong> Website bán hàng FPT.VN, CMS quản trị cấu hình sản phẩm, hệ thống SPF xử lý đơn hàng, tích hợp đơn vị vận chuyển bưu điện và cổng thanh toán trực tuyến.<br>
+                <strong>- Nghiệp vụ:</strong> Cấu hình gói thiết bị/dịch vụ tại PDP -> Điền thông tin cá nhân và địa chỉ giao lắp -> Áp dụng ưu đãi -> Chọn hình thức triển khai -> Chọn PTTT -> Xác nhận đơn hàng thành công và hiển thị hướng dẫn tự kích hoạt dịch vụ.<br>
+                <strong>- Tổ chức:</strong> Áp dụng cho mọi đối tượng khách hàng mua Camera FPT trên phạm vi toàn quốc.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Thuật ngữ và viết tắt</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 15%;">Thuật ngữ</th>
+            <th style="width: 30%;">Tên đầy đủ</th>
+            <th style="width: 50%;">Mô tả ý nghĩa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td style="text-align: center;">1</td><td>URD</td><td>User Requirements Document</td><td>Tài liệu yêu cầu người dùng</td></tr>
+        <tr><td style="text-align: center;">2</td><td>onlycam</td><td>Camera Only</td><td>Luồng đăng ký mua Camera riêng biệt, không kèm đường truyền Internet FPT.</td></tr>
+        <tr><td style="text-align: center;">3</td><td>combocam</td><td>Combo Camera</td><td>Sản phẩm trọn gói bao gồm thiết bị Camera và gói dịch vụ lưu trữ Cloud Storage.</td></tr>
+        <tr><td style="text-align: center;">4</td><td>Non-FPT ISP</td><td>Non-FPT Internet Service Provider</td><td>Nhà cung cấp dịch vụ Internet khác FPT (Viettel, VNPT, MobiFone...).</td></tr>
+        <tr><td style="text-align: center;">5</td><td>Self-installation</td><td>Self-installation</td><td>Khách hàng tự lắp đặt thiết bị tại nhà theo tài liệu/video hướng dẫn.</td></tr>
+        <tr><td style="text-align: center;">6</td><td>COD</td><td>Cash On Delivery</td><td>Phương thức thanh toán bằng tiền mặt khi nhận hàng.</td></tr>
+        <tr><td style="text-align: center;">7</td><td>PTTT</td><td>Phương thức thanh toán</td><td>Hình thức thanh toán khách hàng lựa chọn (VietQR, Thẻ, Ví điện tử, COD).</td></tr>
+        <tr><td style="text-align: center;">8</td><td>SPF</td><td>Sales Processing Framework</td><td>Hệ thống xử lý đơn hàng nội bộ của FPT Telecom.</td></tr>
+    </tbody>
+</table>
+
+<!-- B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN -->
+<h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
+
+<h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</h3>
+<p>Dưới đây là sơ Sơ đồ thể hiện hành trình khách hàng (Customer Journey) từ khi chọn sản phẩm Camera trên trang chi tiết sản phẩm (PDP) đến khi hoàn tất đơn hàng, bao gồm toàn bộ các điểm quyết định và luồng xử lý ngoại lệ.</p>
+<img src="../diagrams/camera_cart_flow.png" class="diagram-img" alt="Sơ đồ Flow Diagram Luồng Giỏ Hàng & Checkout Camera FPT" />
+
+<h3>2. Danh sách các chức năng chính</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 25%;">Module / Chức năng</th>
+            <th style="width: 10%; text-align: center;">Phiên bản</th>
+            <th style="width: 15%; text-align: center;">Phân loại</th>
+            <th style="width: 45%;">Mô tả tóm tắt hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Cấu hình sản phẩm (PDP)</strong></td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Cho phép chọn loại Camera (Indoor/Outdoor), số lượng, chọn gói lưu trữ Cloud thích hợp hoặc chọn tùy chọn đã có gói Cloud (chỉ mua thiết bị).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Đề xuất thông minh (Checkout)</strong></td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Hệ thống tự kiểm tra số điện thoại nhập vào để đề xuất liên kết hợp đồng Internet FPT có sẵn và giảm phí lắp đặt.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Lựa chọn hình thức triển khai</strong></td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Cho phép chọn "Kỹ thuật lắp đặt" (chọn lịch hẹn) hoặc "Tự lắp đặt" (phí 0đ, giao hàng nhanh bưu điện, tặng thêm 1 tháng Cloud).</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Thanh toán và Hoàn tất</strong></td>
+            <td style="text-align: center;">1.0</td>
+            <td style="text-align: center;">Thêm mới</td>
+            <td>Xử lý thanh toán đa kênh. Sau khi thành công, chuyển sang Thank You Page có mã vận đơn bưu điện (luồng tự lắp) hoặc thông tin lịch hẹn kỹ thuật (luồng kỹ thuật).</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Ma trận phân quyền sử dụng</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 55%;">Tên Chức năng / Module</th>
+            <th style="width: 15%; text-align: center;">Khách hàng</th>
+            <th style="width: 15%; text-align: center;">Admin (CMS)</th>
+            <th style="width: 10%;">Ghi chú</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Xem chi tiết sản phẩm và chọn cấu hình</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>Công khai</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Điền thông tin và Đặt hàng trực tuyến</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td>Dành cho KH</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Cấu hình danh mục, giá thiết bị và gói Cloud</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td>CMS Admin</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ -->
+<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</h1>
+
+<h2>I. LUỒNG NGHIỆP VỤ CAMERA ONLY (onlycam)</h2>
+
+<h3>1. Màn hình Chi tiết Sản phẩm (PDP - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Giao diện trang PDP cho phép khách hàng lựa chọn thiết bị Camera lẻ, điều chỉnh số lượng mua, chọn mua kèm gói Cloud dịch vụ tương thích hoặc đăng ký dưới dạng thiết bị mua thêm (Add-on) khi chọn tùy chọn *"Tôi đã có gói Cloud"*.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng truy cập trực tuyến.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Khách hàng xem thông tin thiết bị Camera (Indoor/Outdoor).<br>
+            2. Khách hàng chọn cấu hình gói lưu trữ Cloud mong muốn (1 ngày, 3 ngày, v.v.).<br>
+            3. Hệ thống hiển thị giá bán tương ứng (Giá thiết bị + Gói Cloud).<br>
+            4. Khách hàng click "Mua ngay" hoặc "Thêm vào giỏ hàng".
+        </td>
+    </tr>
+</table>
+
+<h3>2. Màn hình Thanh toán (Checkout Page - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Màn hình xử lý thông tin đơn hàng Camera Only. Khách hàng điền thông tin người nhận, địa chỉ triển khai, lựa chọn hình thức lắp đặt (Kỹ thuật FPT lắp đặt hoặc Tự lắp đặt), áp dụng mã giảm giá và chọn phương thức thanh toán.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Khách hàng điền số điện thoại. Hệ thống tra cứu hợp đồng Internet FPT.<br>
+            2. Nếu phát hiện số điện thoại có hợp đồng Internet FPT đang hoạt động, hệ thống đề xuất liên kết hợp đồng và hiển thị tùy chọn miễn/giảm phí lắp đặt.<br>
+            3. Khách hàng lựa chọn hình thức triển khai:<br>
+            - **Kỹ thuật viên FPT lắp đặt:** Khách hàng chọn lịch hẹn thời gian (Sáng/Chiều/Tối) và ngày thi công.<br>
+            - **Tự lắp đặt tại nhà (Self-installation):** Phí lắp đặt = 0đ. Hệ thống tự động tặng thêm 01 tháng cước sử dụng gói Cloud đã đăng ký. Đơn hàng sẽ được đóng gói và chuyển phát nhanh qua bưu điện.<br>
+            4. Khách hàng áp dụng mã ưu đãi (Voucher), nếu hợp lệ hệ thống cập nhật tổng tiền thanh toán.<br>
+            5. Khách hàng chọn phương thức thanh toán (VietQR, ATM nội địa, Thẻ quốc tế, Ví điện tử, COD).<br>
+            6. Khách hàng xác nhận thanh toán.
+        </td>
+    </tr>
+</table>
+
+<h3>3. Màn hình Hoàn tất đơn hàng (Thank You Page - Camera Only)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Hiển thị kết quả thanh toán thành công và thông tin tổng hợp của đơn hàng Camera Only. Định hướng trải nghiệm tiếp theo tùy theo hình thức triển khai khách hàng đã đăng ký.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. **Nếu chọn luồng Kỹ thuật viên thi công:** Hệ thống hiển thị thông tin xác nhận ngày thi công và số điện thoại hỗ trợ kỹ thuật.<br>
+            2. **Nếu chọn luồng Tự lắp đặt:** Hệ thống hiển thị mã vận đơn bưu điện (để tra cứu hành trình giao hàng) và widget các bước hướng dẫn kết nối nguồn, tải app FPT Camera, và quét QR Code để tự kích hoạt thiết bị tại nhà.
+        </td>
+    </tr>
+</table>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+
+<h2>II. LUỒNG NGHIỆP VỤ COMBO CAMERA (combocam)</h2>
+
+<h3>1. Màn hình Chi tiết Sản phẩm (PDP - Combo Camera)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Màn hình hiển thị hình ảnh sản phẩm Camera, các đặc tính kỹ thuật nổi bật, đơn giá thiết bị và tích hợp khung tùy chọn gói lưu trữ Cloud để khách hàng đăng ký combo trọn gói.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Khách hàng xem thông tin thiết bị Camera.<br>
+            2. Khách hàng lựa chọn Combo (Ví dụ: Thiết bị + Gói Cloud 6 tháng hoặc 12 tháng).<br>
+            3. Hệ thống hiển thị chính sách khuyến mãi (Ví dụ: Miễn phí thiết bị khi đăng ký Cloud 12 tháng).<br>
+            4. Khách hàng bấm "Mua ngay" để chuyển tiếp tới trang giỏ hàng/checkout.
+        </td>
+    </tr>
+</table>
+
+<h3>2. Màn hình Thanh toán (Checkout Page - Combo Camera)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Màn hình One-page checkout xử lý đặt hàng sản phẩm Combo Camera. Hệ thống tự động khoá nhóm thiết bị và gói cước tương ứng, áp dụng biểu phí combo đặc thù và hỗ trợ các hình thức thanh toán COD hoặc trực tuyến.</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Khách hàng nhập thông tin nhận hàng và địa chỉ triển khai.<br>
+            2. Hệ thống kiểm tra điều kiện combo (Nếu đăng ký gói Cloud chu kỳ dài, hệ thống sẽ tự động cấu hình lịch hẹn kỹ thuật miễn phí hoặc miễn phí vận chuyển thiết bị nếu tự lắp).<br>
+            3. Khách hàng chọn PTTT và tiến hành xác nhận đặt hàng.
+        </td>
+    </tr>
+</table>
+
+<h3>3. Màn hình Hoàn tất đơn hàng (Thank You Page - Combo Camera)</h3>
+<table class="usecase-table">
+    <tr>
+        <td class="label" style="width: 20%;">Mô tả</td>
+        <td style="width: 80%;">Hiển thị thông tin tổng kết đơn hàng Combo Camera đã đăng ký thành công (bao gồm thiết bị phần cứng và các gói dịch vụ đi kèm).</td>
+    </tr>
+    <tr>
+        <td class="label">Tác nhân</td>
+        <td>Khách hàng.</td>
+    </tr>
+    <tr>
+        <td class="label">Luồng Nghiệp vụ</td>
+        <td>
+            1. Hệ thống gửi mã hợp đồng và thông tin tài khoản Cloud qua SMS cho khách hàng.<br>
+            2. Hiển thị thông báo xác nhận tạo đơn hàng Combo thành công và các nút quay về trang chủ hoặc nút "Theo dõi đơn hàng".
+        </td>
+    </tr>
+</table>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+
+<h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</h2>
+
+<div class="alert-box">
+    <b>[CAM-CASE-BR-01] Kiểm tra số điện thoại và liên kết hợp đồng Internet:</b>
+    <br>- Hệ thống tự động kiểm tra số điện thoại khách hàng nhập vào trên trang Checkout.
+    <br>- Nếu số điện thoại khớp với hợp đồng Internet FPT đang hoạt động (Active): Đề xuất liên kết để miễn phí lắp đặt thiết bị FPT Camera.
+</div>
+
+<div class="alert-box">
+    <b>[CAM-CASE-BR-02] Ràng buộc gói cước Cloud khi mua Camera lẻ (onlycam):</b>
+    <br>- Nếu khách hàng chọn hình thức tự lắp đặt (Self-installation), hệ thống bắt buộc kiểm tra giỏ hàng phải có ít nhất 01 thiết bị Camera và 01 gói dịch vụ Cloud đi kèm (trừ trường hợp chọn *"Tôi đã có gói Cloud"*).
+</div>
+
+<div class="alert-box">
+    <b>[CAM-CASE-BR-03] Khoá nhóm combo (combocam):</b>
+    <br>- Đối với sản phẩm Combo Camera, hệ thống khoá chặt liên kết giữa thiết bị Camera và gói Cloud đi kèm. Trong giỏ hàng, khách hàng không thể chỉnh sửa thay đổi số lượng riêng lẻ của thiết bị hoặc gói Cloud thành phần mà phải điều chỉnh hoặc xoá cả Combo.
+</div>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+
+<h2>IV. BẢNG THÔNG ĐIỆP BÁO LỖI (ERROR MESSAGES)</h2>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 25%;">Trường Hợp Nghiệp Vụ</th>
+            <th style="width: 15%;">Trạng Thái</th>
+            <th style="width: 40%;">Nội dung Message hiển thị chính xác</th>
+            <th style="width: 20%;">Hành vi Hệ thống &amp; Giao diện</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Đăng ký liên kết hợp đồng</strong><br>(Không tìm thấy mã hợp đồng Internet FPT khớp với SĐT)</td>
+            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td class="error-inline">"Số điện thoại này hiện chưa đăng ký đường truyền Internet FPT. Vui lòng kiểm tra lại hoặc tiếp tục đăng ký tài khoản ngoại mạng."</td>
+            <td>Hiển thị cảnh báo màu đỏ ngay dưới ô nhập SĐT, cho phép khách hàng chọn tiếp tục mua lẻ.</td>
+        </tr>
+        <tr>
+            <td><strong>Áp dụng Voucher giảm giá</strong><br>(Mã giảm giá hết hạn hoặc không áp dụng cho Combo Camera)</td>
+            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td class="error-inline">"Mã ưu đãi không hợp lệ hoặc đã hết lượt sử dụng. Vui lòng kiểm tra lại điều kiện chương trình."</td>
+            <td>Hiển thị thông báo màu đỏ tại khu vực nhập Voucher, không trừ tiền tạm tính.</td>
+        </tr>
+        <tr>
+            <td><strong>Thanh toán trực tuyến</strong><br>(Giao dịch qua cổng VietQR/Ví điện tử bị huỷ hoặc hết hạn)</td>
+            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td class="error-inline">"Giao dịch thanh toán chưa thành công. Vui lòng thử lại hoặc lựa chọn phương thức thanh toán khác."</td>
+            <td>Giữ nguyên thông tin đơn hàng tại trang Checkout và cho phép khách hàng chọn lại PTTT.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- D. YÊU CẦU PHI CHỨC NĂNG -->
+<h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
+
+<h3>1. Hiệu năng hệ thống (Performance)</h3>
+<ul>
+    <li>Thời gian xử lý giao dịch thanh toán trực tuyến qua cổng tích hợp không quá <strong>3.0 giây</strong>.</li>
+    <li>Thời gian phản hồi kiểm tra liên kết hợp đồng Internet FPT theo SĐT không quá <strong>1.5 giây</strong>.</li>
+</ul>
+
+<h3>2. Bảo mật &amp; An toàn thông tin (Security)</h3>
+<ul>
+    <li>Che dấu dữ liệu nhạy cảm của khách hàng (masking SĐT, địa chỉ nhận hàng) trên các giao diện công khai.</li>
+    <li>Mã hoá toàn bộ thông tin thanh toán truyền tải qua HTTPS (TLS 1.3).</li>
+</ul>
+
+<h3>3. Trải nghiệm người dùng &amp; Giao diện (UI/UX)</h3>
+<ul>
+    <li>Giao diện tương thích và hiển thị tốt trên cả Desktop và Mobile.</li>
+    <li>Luồng checkout thiết kế tối giản, tập trung vào One-page checkout để giảm thiểu tỷ lệ rớt đơn hàng.</li>
+</ul>
+
+<!-- E. PHỤ LỤC & TÀI LIỆU THAM KHẢO -->
+<h1>E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</h1>
+<ul>
+    <li>Sơ đồ Flow Diagram chi tiết: [diagrams/camera_cart_flow.png](file:///Users/hathuy/Documents/FPT-1/diagrams/camera_cart_flow.png)</li>
+    <li>Tài liệu hướng dẫn lắp đặt (Self-installation Guide) dành cho Khách hàng: [docs/flowcheckout/onlycam.pdf](file:///Users/hathuy/Documents/FPT-1/docs/flowcheckout/onlycam.pdf)</li>
+    <li>Tài liệu đặc tả gói sản phẩm Combo Camera: [docs/flowcheckout/combocam.pdf](file:///Users/hathuy/Documents/FPT-1/docs/flowcheckout/combocam.pdf)</li>
+</ul>
+
+</body>
+</html>

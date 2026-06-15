@@ -3,6 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>FPT.VN URD - Luồng Checkout Camera Only (Mua thiết bị riêng lẻ)</title>
 <style>
+
     /* ===== TYPOGRAPHY ===== */
     body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
 
@@ -34,7 +35,7 @@
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
-        /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
+    /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
     .toc-title {
         page-break-before: always;
         mso-page-break-before: always;
@@ -51,7 +52,6 @@
     }
     table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
     table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
-    .toc-entry { font-family: 'Times New Roman', serif; }
     .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
     .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
     .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
@@ -70,7 +70,9 @@
     .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
     .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
     .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
-    .highlight-text { color: #c00000; font-weight: bold; }
+    .header-table { width: 100%; border-collapse: collapse; border: 1px solid #1f4e78; margin-bottom: 20px; }
+    .header-table td { border: 1px solid #1f4e78; padding: 10px; vertical-align: middle; }
+
 </style>
 </head>
 <body>
@@ -135,11 +137,11 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Version</th>
-            <th>Author</th>
-            <th>Action</th>
-            <th>Change Description</th>
+            <th style="width: 15%;">Date</th>
+            <th style="width: 10%;">Version</th>
+            <th style="width: 20%;">Author</th>
+            <th style="width: 10%;">Action</th>
+            <th style="width: 45%;">Change Description</th>
         </tr>
     </thead>
     <tbody>
