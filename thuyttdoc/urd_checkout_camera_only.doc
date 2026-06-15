@@ -88,7 +88,7 @@
         <table class="cover-meta-table">
             <tr>
                 <td class="cover-meta-label">Mã hiệu:</td>
-                <td>FPT-URD-CAMONLY-01</td>
+                <td>FPT-URD-ONLYCAM-01</td>
             </tr>
             <tr>
                 <td class="cover-meta-label">Phiên bản:</td>
@@ -122,7 +122,7 @@
     </tr>
     <tr>
         <td style="font-size: 11pt;">
-            <strong>Mã hiệu:</strong> FPT-URD-CHK-CAMONLY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Mã hiệu:</strong> FPT-URD-CHK-ONLYCAM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <strong>Phiên bản:</strong> 1.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <strong>Ngày:</strong> 27/05/2026
         </td>
@@ -202,7 +202,7 @@
         <tr>
             <td style="text-align: center;">1</td>
             <td><strong>Giới thiệu tổng quan</strong></td>
-            <td><strong>Camera Only (Cam-only)</strong> là kịch bản bán hàng phục vụ khách hàng có nhu cầu mua thiết bị FPT Camera và đăng ký gói lưu trữ Cloud độc lập, không mua kèm gói cước Internet FPT. Khách hàng có thể đang sử dụng đường truyền của bên thứ 3 (Non-FPT ISP như Viettel, VNPT) hoặc đã có sẵn đường truyền FPT tại nhà và chỉ muốn mua thêm Camera rời.</td>
+            <td><strong>Camera Only (onlycam)</strong> là kịch bản bán hàng phục vụ khách hàng có nhu cầu mua thiết bị FPT Camera và đăng ký gói lưu trữ Cloud độc lập, không mua kèm gói cước Internet FPT. Khách hàng có thể đang sử dụng đường truyền của bên thứ 3 (Non-FPT ISP như Viettel, VNPT) hoặc đã có sẵn đường truyền FPT tại nhà và chỉ muốn mua thêm Camera rời.</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
