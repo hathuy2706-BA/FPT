@@ -378,7 +378,7 @@
             <td><strong>Động cơ nhận diện SĐT & Hợp đồng</strong></td>
             <td style="text-align: center;">V1.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tự động tra cứu SĐT nhập vào để phát hiện khách hàng đang dùng mạng ngoài (Non-FPT) hay mạng trong (FPT) để đề xuất liên kết hợp đồng và áp dụng biểu phí.</td>
+            <td>Tự động kiểm tra SĐT nhập vào để xác nhận thông tin khách hàng phục vụ đăng ký tài khoản FPT Camera và liên lạc lắp đặt.</td>
         </tr><tr>
             <td style="text-align: center;">3</td>
             <td><strong>Tùy chọn Triển khai (Kỹ thuật vs Tự lắp)</strong></td>
@@ -396,7 +396,7 @@
             <td><strong>Trang cảm ơn tích hợp tự hướng dẫn (TYP)</strong></td>
             <td style="text-align: center;">V1.0</td>
             <td style="text-align: center;">New</td>
-            <td>Xác nhận đơn hàng, hiển thị mã đơn/mã vận đơn bưu điện và tích hợp trình phát video/hướng dẫn trực quan các bước tự quét mã QR kích hoạt Camera.</td>
+            <td>Xác nhận đơn hàng thành công, hiển thị mã đơn hàng SPF và thông tin tóm tắt sản phẩm đã đặt mua.</td>
         </tr><tr>
             <td style="text-align: center;">6</td>
             <td><strong>Trang chi tiết sản phẩm (PDP) - Cấu hình Combo</strong></td>
@@ -411,10 +411,10 @@
             <td>Thu thập thông tin SĐT, họ tên, địa chỉ lắp đặt 3 cấp (Tỉnh/Thành, Quận/Huyện, Phường/Xã) và phân loại nhà (Nhà riêng/Chung cư) để phục vụ thi công.</td>
         </tr><tr>
             <td style="text-align: center;">8</td>
-            <td><strong>Logic kiểm tra tài khoản & hiển thị thông báo</strong></td>
+            <td><strong>Logic tạo tài khoản mới</strong></td>
             <td style="text-align: center;">V1.0</td>
             <td style="text-align: center;">New</td>
-            <td>Tự động kiểm tra SĐT trên hệ thống FPT Camera để hiển thị thông báo liên kết tài khoản cũ hoặc tự động tạo tài khoản mới.</td>
+            <td>Hệ thống sẽ tự động tạo tài khoản mới cho khách hàng dựa trên SĐT đăng ký.</td>
         </tr><tr>
             <td style="text-align: center;">9</td>
             <td><strong>Động cơ tính phí lắp đặt & áp dụng Voucher</strong></td>
@@ -426,7 +426,7 @@
             <td><strong>Trang hoàn tất đơn hàng (Thank You Page)</strong></td>
             <td style="text-align: center;">V1.0</td>
             <td style="text-align: center;">New</td>
-            <td>Xác nhận đặt hàng thành công, hiển thị mã đơn hàng SPF, thông tin đối soát và ngày hẹn lắp đặt tự động. Chặn hành vi back/reload trang.</td>
+            <td>Xác nhận đặt hàng thành công, hiển thị mã đơn hàng SPF và thông tin tóm tắt sản phẩm đã đặt mua.</td>
         </tr>
     </tbody>
 </table>
@@ -458,13 +458,6 @@
             <td style="text-align: center;">N/A</td>
             <td style="text-align: center;">Add (A)</td>
             <td>Khách hàng cuối thao tác mua lẻ thiết bị và chọn hình thức lắp đặt trực tuyến.</td>
-        </tr><tr>
-            <td style="text-align: center;">3</td>
-            <td>Tra cứu trạng thái vận đơn bưu điện</td>
-            <td style="text-align: center;">View (V)</td>
-            <td style="text-align: center;">View (V)</td>
-            <td style="text-align: center;">View (V)</td>
-            <td>Khách hàng tra cứu qua mã vận đơn hiển thị trên trang Thank You Page hoặc SMS.</td>
         </tr>
     </tbody>
 </table>
@@ -576,12 +569,12 @@
 <table class="usecase-table">
     <tr>
         <td class="label">Mô tả</td>
-        <td>Trang One-page checkout thu thập thông tin khách hàng, cho phép chọn hình thức triển khai lắp đặt đặc thù, tự động phát hiện hợp đồng mạng để đề xuất ưu đãi, tính phí lắp đặt phân cấp và chọn PTTT tương thích.</td>
+        <td>Trang One-page checkout thu thập thông tin khách hàng, cho phép chọn hình thức triển khai lắp đặt đặc thù, tính phí lắp đặt phân cấp và chọn PTTT tương thích.</td>
     </tr>
     <tr>
         <td class="label">Các nghiệp vụ chính</td>
         <td>
-            - Nhận diện loại hợp đồng (Mạng ngoài Non-FPT vs Mạng trong FPT) qua Số điện thoại [CASE 1].<br>
+            - Tạo mới tài khoản FPT Camera qua Số điện thoại [CASE 1].<br>
             - Tùy chọn Hình thức Triển khai: Kỹ thuật viên FPT lắp đặt tại nhà hoặc Khách hàng Tự lắp đặt [CASE 2].<br>
             - Động cơ tính phí lắp đặt linh hoạt theo nhóm khách hàng và hình thức triển khai [CASE 3].<br>
             - Ràng buộc phương thức thanh toán COD theo khu vực và hình thức triển khai [CASE 4].
@@ -591,15 +584,11 @@
 
 <h4>Quy tắc Nghiệp vụ chi tiết theo từng Trường hợp (Cases & Rules):</h4>
 
-<h5>[CASE 1] Tự động kiểm tra SĐT & Đề xuất liên kết Hợp đồng Internet FPT</h5>
+<h5>[CASE 1] Tự động tạo tài khoản FPT Camera</h5>
 <ul>
-    <li>Số điện thoại khách hàng nhập vào là khóa chính. Khi người dùng nhập đủ 10 chữ số di động Việt Nam, hệ thống lập tức gọi API ngầm (Asynchronous API) kiểm tra trên DB FPT Camera:
-        <ul>
-            <li><strong>Trường hợp 1 (SĐT đã có tài khoản FPT Camera):</strong> Hiển thị inline text thông báo màu xanh dưới trường SĐT: <em>"Số điện thoại này đã có tài khoản FPT Camera. Gói Cloud mua mới sẽ được tự động kích hoạt vào tài khoản hiện tại của bạn."</em></li>
-            <li><strong>Trường hợp 2 (SĐT chưa có tài khoản FPT Camera):</strong> Hiển thị inline text thông báo màu xám dưới trường SĐT: <em>"Hệ thống sẽ tự động tạo tài khoản FPT Camera cho bạn bằng số điện thoại này. Mật khẩu kích hoạt sẽ được gửi qua SMS sau khi lắp đặt thành công."</em></li>
-        </ul>
-    </li>
-    <li><em>Lưu ý: Đây là luồng bán mới (New Sales), hệ thống không kiểm tra hợp đồng Internet FPT (FTEL) của khách hàng.</em></li>
+    <li>Số điện thoại khách hàng nhập vào là khóa chính. Khi người dùng nhập đủ 10 chữ số di động Việt Nam, hệ thống sử dụng SĐT này làm tài khoản đăng nhập ứng dụng FPT Camera.</li>
+    <li>Hệ thống sẽ tự động tạo tài khoản FPT Camera mới cho khách hàng dựa trên SĐT đăng ký. Mật khẩu kích hoạt sẽ được gửi qua SMS sau khi lắp đặt/giao hàng thành công.</li>
+    <li><em>Lưu ý: Hệ thống không kiểm tra SĐT đã có tài khoản FPT Camera hay chưa. Tất cả đơn hàng đều được xử lý như khách hàng mới.</em></li>
 </ul>
 
 <h5>[CASE 2] Lựa chọn Hình thức Triển khai & Quy trình tự lắp đặt (Self-installation)</h5>
@@ -614,7 +603,7 @@
             </li>
             <li><strong>Tôi muốn tự lắp đặt (Self-installation):</strong>
                 <br>- Khách hàng chỉ cần điền địa chỉ nhận thiết bị. Không hiển thị trường chọn ngày giao hàng/lắp đặt.
-                <br>- Hệ thống hiển thị Phí giao hàng theo mức phí định nghĩa trên hệ thống chính sách (QLCS) và dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng qua bưu điện."</em> Thời gian giao hàng dự kiến hiển thị theo dữ liệu từ đối tác giao vận <em>(cần xác nhận thực tế với hạ tầng FPT.VN)</em>.
+                <br>- Hệ thống hiển thị Phí giao hàng theo mức phí định nghĩa trên hệ thống chính sách (QLCS) và dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng qua bưu điện."</em> Thời gian giao hàng dự kiến hiển thị theo dữ liệu từ đối tác giao vận.
                 <br>- Khi chọn "Tôi muốn tự lắp đặt", chỉ hiển thị thông tin đơn hàng và phí giao hàng. Không hiển thị phí lắp đặt.
                 <br>- <strong>Ưu đãi tặng thêm:</strong> Để khuyến khích khách hàng tự phục vụ, khi chọn Tự lắp đặt, hệ thống tự động <strong>Tặng thêm 01 tháng cước Cloud miễn phí</strong> (giao diện hiển thị nhãn nổi bật: <em>"Tặng thêm 1 tháng Cloud tự lắp đặt"</em>).
             </li>
@@ -688,7 +677,7 @@
             <td>Textbox / Number</td>
             <td>- Bắt buộc nhập.<br>- Đúng 10 chữ số di động.</td>
             <td style="text-align: center;">[CASE 1]</td>
-            <td>Khách hàng nhập SĐT. Hệ thống gọi API check tài khoản mạng và hiển thị đề xuất liên kết hợp đồng.</td>
+            <td>Khách hàng nhập SĐT. Hệ thống tự động dùng SĐT này tạo tài khoản FPT Camera.</td>
         </tr>
         <tr>
             <td rowspan="2"><strong>Hình thức triển khai</strong></td>
@@ -744,33 +733,9 @@
 <table class="usecase-table">
     <tr>
         <td class="label">Mô tả</td>
-        <td>Giao diện xác nhận đặt mua lẻ Camera thành công. Khác với luồng combo thông thường, Thank You Page của Camera Only được thiết kế riêng biệt để phục vụ hai trải nghiệm hoàn toàn khác nhau dựa trên hình thức triển khai mà khách hàng đã lựa chọn ở trang Checkout.</td>
-    </tr>
-    <tr>
-        <td class="label">Quy tắc Giao diện & Nghiệp vụ</td>
-        <td>
-            - <strong>Trường hợp A (Khách chọn Kỹ thuật lắp):</strong> Màn hình hiển thị mã đơn hàng SPF, lịch hẹn kỹ thuật đã xác nhận, và hướng dẫn chuẩn bị modem Wifi sẵn sàng trước khi kỹ thuật viên đến.
-            <br>- <strong>Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):</strong> Màn hình hiển thị thông tin đơn hàng, phí giao hàng, mã vận đơn bưu điện <em>(Nguồn dữ liệu mã vận đơn và đối tác giao vận: cần xác nhận thực tế với hạ tầng FPT.VN)</em> và tích hợp <strong>Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)</strong>.
-        </td>
+        <td>Giao diện xác nhận đặt mua lẻ Camera thành công. Màn hình tập trung hiển thị mã đơn hàng SPF và tóm tắt thông tin đã đặt mua.</td>
     </tr>
 </table>
-
-<h4>Đặc tả chi tiết Khu vực Hướng dẫn Tự lắp đặt (Self-Setup Assistant Hub):</h4>
-<p>Khu vực này được hiển thị dưới dạng một widget tương tác lớn ở trung tâm trang Thank You Page dành riêng cho luồng Tự lắp đặt, bao gồm các thành phần:</p>
-<ol>
-    <li><strong>Video hướng dẫn 3D Quick-Start (Thời lượng 60 giây):</strong>
-        <br>- Video hoạt hình ngắn, trực quan, hướng dẫn 4 bước: Cắm nguồn điện -> Chờ đèn Camera nhấp nháy xanh -> Tải App -> Quét QR code dán dưới đáy thiết bị để kích hoạt.
-    </li>
-    <li><strong>Các bước thực hiện dạng thẻ (Step-by-Step Card Flow):</strong>
-        <br>- *Bước 1: Tải ứng dụng FPT Camera:* Cung cấp 2 QR code để quét tải nhanh app trên kho ứng dụng Apple App Store và Google Play Store.
-        <br>- *Bước 2: Cắm nguồn:* Cắm củ sạc đi kèm vào nguồn điện sinh hoạt, kết nối cáp micro-USB vào cổng nguồn trên Camera.
-        <br>- *Bước 3: Quét QR kích hoạt:* Mở app -> Chọn "Thêm thiết bị" -> Đưa camera điện thoại quét mã QR in trên tem nhãn ở mặt đáy của Camera.
-        <br>- *Bước 4: Kết nối Wifi:* Chọn sóng Wifi nhà bạn đang dùng (chỉ hỗ trợ băng tần 2.4GHz), nhập mật khẩu Wifi và hoàn tất liên kết Cloud.
-    </li>
-    <li><strong>Trình hỗ trợ kiểm tra băng thông Wifi (Wifi Speedtest Widget):</strong>
-        <br>- Một nút bấm cho phép khách hàng click để đo thử tốc độ sóng Wifi tại vị trí dự kiến đặt Camera trực tiếp qua trình duyệt di động, đưa ra khuyến nghị vị trí đó sóng khỏe hay yếu có đủ băng thông tải video HD lên Cloud hay không (tốc độ upload khuyến nghị tối thiểu: 2Mbps/Camera).
-    </li>
-</ol>
 
 <h4>Mô tả thông tin hiển thị trên Thank You Page:</h4>
 <table class="data-table">
@@ -783,28 +748,27 @@
     </thead>
     <tbody>
         <tr>
-            <td><strong>Mã đơn hàng & Vận đơn</strong></td>
-            <td>- Mã đơn SPF: `FPTCAMXXXXXXXX` (Có nút copy nhanh).
-            <br>- Mã vận đơn bưu điện: <em>(Format mã và đối tác giao vận cụ thể cần xác nhận thực tế với hạ tầng FPT.VN)</em>. Giao diện hiển thị link, click sẽ tự động mở trang web giao vận để kiểm tra lịch trình giao hàng trực tiếp - <em>Chỉ hiển thị với luồng Tự lắp đặt</em>.</td>
-            <td>Giúp khách hàng dễ dàng đối soát đơn hàng và theo dõi sát sao tiến độ giao thiết bị của bưu điện.</td>
+            <td><strong>Mã đơn hàng</strong></td>
+            <td>- Mã đơn SPF: `FPTCAMXXXXXXXX` (Có nút copy nhanh).</td>
+            <td>Giúp khách hàng dễ dàng đối soát đơn hàng khi liên hệ tổng đài hỗ trợ.</td>
         </tr>
         <tr>
-            <td><strong>Lịch trình dự kiến</strong></td>
-            <td>- <em>Nếu Hỗ trợ lắp đặt:</em> Hiển thị thông báo: "Bộ phận kỹ thuật FPT sẽ liên hệ bạn để sắp xếp lịch thi công."
-            <br>- <em>Nếu Tự lắp đặt:</em> Hiển thị thời gian giao hàng dự kiến <em>(thời gian cụ thể cần xác nhận thực tế với đối tác giao vận qua hạ tầng FPT.VN)</em>.</td>
-            <td>Xác nhận thời gian biểu rõ ràng để khách hàng chuẩn bị nhận thiết bị hoặc tiếp đón nhân viên kỹ thuật.</td>
-        </tr>
-        <tr>
-            <td><strong>Hướng dẫn cài đặt App</strong></td>
-            <td>- Nút tải app kèm hình minh họa giao diện App FPT Camera.
-            <br>- Thông tin tài khoản đăng nhập mặc định: <em>"Tài khoản xem Camera chính là Số điện thoại của bạn (`098*<strong>5678`). Mật khẩu kích hoạt sẽ được gửi tự động qua SMS ngay khi thiết bị được bàn giao thành công."</em></td>
-            <td>Hướng dẫn khách hàng chuẩn bị sẵn sàng môi trường phần mềm (App) để cấu hình ngay khi nhận thiết bị.</td>
+            <td><strong>Tóm tắt sản phẩm</strong></td>
+            <td>- Chi tiết số lượng Camera (Indoor/Outdoor).
+            <br>- Chi tiết gói Cloud (thời gian lưu trữ, chu kỳ cước, số lượng gói).
+            <br>- Tổng số tiền đã thanh toán (hoặc cần thanh toán khi nhận hàng).</td>
+            <td>Giúp khách hàng kiểm tra lại chính xác các hạng mục đã đặt mua.</td>
         </tr>
         <tr>
             <td><strong>Hỗ trợ kỹ thuật nhanh</strong></td>
             <td>- Hotline hỗ trợ kỹ thuật Camera: `1900 6600` (Click to call trên Mobile).
             <br>- Nút nhắn tin hỗ trợ trực tiếp qua Zalo OA FPT Camera.</td>
-            <td>Kênh xử lý khẩn cấp khi khách hàng tự lắp gặp khó khăn trong quá trình kết nối Wifi hoặc quét mã QR bị lỗi.</td>
+            <td>Kênh xử lý khẩn cấp khi khách hàng cần hỗ trợ.</td>
+        </tr>
+        <tr>
+            <td><strong>Nút điều hướng</strong></td>
+            <td>- <strong>Nút "Về trang chủ":</strong> Điều hướng về trang chủ FPT.VN.</td>
+            <td>Cung cấp lối thoát giao diện tự nhiên.</td>
         </tr>
     </tbody>
 </table>
