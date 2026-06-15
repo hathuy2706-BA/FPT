@@ -24,6 +24,7 @@
     h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
     h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 14pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 14pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
+    h5 { font-family: 'Arial', sans-serif; color: #404040; font-size: 13pt; font-weight: bold; margin-top: 12px; margin-bottom: 5px; background-color: #f2f2f2; padding: 4px 8px; border-left: 4px solid #5b9bd5; }
 
     /* ===== BẢNG DỮ LIỆU ===== */
     table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: auto; word-wrap: break-word; }
@@ -131,7 +132,7 @@
         <tr>
             <td>27/05/2026</td>
             <td>1.0</td>
-            <td>Senior BA / PO</td>
+            <td>ThuyTT104</td>
             <td style="text-align: center;">[A]</td>
             <td>Khởi tạo tài liệu URD đặc tả luồng Mua hàng và Thanh toán (Checkout) cho đối tượng khách hàng mua lẻ thiết bị FPT Camera (Camera Only) và Combo Camera trên môi trường trực tuyến.</td>
         </tr>
@@ -307,7 +308,7 @@
             <td>
                 1. Xây dựng luồng mua hàng độc lập <strong>onlycam</strong> và <strong>combocam</strong> tối ưu chỉ trong một trang thanh toán (One-page checkout).<br>
                 2. Cho phép tùy chọn hình thức triển khai linh hoạt: <strong>Kỹ thuật viên đến nhà lắp đặt</strong> hoặc <strong>Tự lắp đặt tại nhà</strong> (Giao hàng bưu điện miễn phí).<br>
-                3. Triển khai logic thông minh tự động kiểm tra số điện thoại trên hệ thống FPT Camera để nhận diện tài khoản cũ hoặc tạo mới.<br>
+                3. Hệ thống tự động tạo tài khoản FPT Camera mới cho khách hàng dựa trên số điện thoại đăng ký (không kiểm tra tài khoản cũ).<br>
                 4. Khuyến khích khách hàng mua Combo chu kỳ dài bằng chính sách tặng tháng cước Cloud hoặc miễn phí thiết bị phần cứng.
             </td>
         </tr>
@@ -896,15 +897,11 @@
 
 <h4>Quy tắc Nghiệp vụ chi tiết theo từng Trường hợp (Cases & Rules):</h4>
 
-<h5>[CASE 1] Validate Số điện thoại & Kiểm tra Tài khoản (FPT Camera Account)</h5>
+<h5>[CASE 1] Validate Số điện thoại & Tạo tài khoản FPT Camera</h5>
 <ul>
     <li>Số điện thoại là trường thông tin bắt buộc, dùng để liên lạc lắp đặt và đồng thời là tài khoản đăng nhập ứng dụng FPT Camera để xem Cloud sau này.</li>
-    <li>Khi người dùng nhập đủ 10 chữ số, hệ thống tự động gọi API ngầm (không chặn UI) kiểm tra SĐT trên cơ sở dữ liệu FPT Camera:
-        <ul>
-            <li><strong>Trường hợp 1 (SĐT đã có tài khoản Camera):</strong> Hiển thị inline text thông báo màu xanh dưới trường SĐT: <em>"Số điện thoại này đã có tài khoản FPT Camera. Gói Cloud mua mới sẽ được tự động kích hoạt vào tài khoản hiện tại của bạn."</em></li>
-            <li><strong>Trường hợp 2 (SĐT chưa có tài khoản Camera):</strong> Hiển thị inline text thông báo màu xám dưới trường SĐT: <em>"Hệ thống sẽ tự động tạo tài khoản FPT Camera cho bạn bằng số điện thoại này. Mật khẩu kích hoạt sẽ được gửi qua SMS sau khi lắp đặt thành công."</em></li>
-        </ul>
-    </li>
+    <li>H\u1ec7 th\u1ed1ng s\u1ebd t\u1ef1 \u0111\u1ed9ng t\u1ea1o t\u00e0i kho\u1ea3n FPT Camera m\u1edbi cho kh\u00e1ch h\u00e0ng d\u1ef1a tr\u00ean S\u0110T \u0111\u0103ng k\u00fd. M\u1eadt kh\u1ea9u k\u00edch ho\u1ea1t s\u1ebd \u0111\u01b0\u1ee3c g\u1eedi qua SMS sau khi l\u1eafp \u0111\u1eb7t th\u00e0nh c\u00f4ng.</li>
+    <li><em>L\u01b0u \u00fd: H\u1ec7 th\u1ed1ng kh\u00f4ng ki\u1ec3m tra S\u0110T \u0111\u00e3 c\u00f3 t\u00e0i kho\u1ea3n FPT Camera hay ch\u01b0a. T\u1ea5t c\u1ea3 \u0111\u01a1n h\u00e0ng \u0111\u1ec1u \u0111\u01b0\u1ee3c x\u1eed l\u00fd nh\u01b0 kh\u00e1ch h\u00e0ng m\u1edbi.</em></li>
 </ul>
 
 <h5>[CASE 2] Ràng buộc Loại nhà (Nhà riêng vs Chung cư)</h5>
