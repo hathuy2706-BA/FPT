@@ -147,7 +147,7 @@
             <td>1.2</td>
             <td>ThuyTT104</td>
             <td style="text-align: center;">[U]</td>
-            <td>Cập nhật phí lắp đặt/giao hàng theo chính sách QLCS (không hardcode mức phí cố định). Bỏ kiểm tra hợp đồng Internet FPT (luồng bán mới). Bỏ trường chọn ngày lắp đặt/giao hàng. Mặc định Cloud theo gói + chu kỳ giá thấp nhất. Min/Max số lượng theo QLCS. Bổ sung nguồn dữ liệu vận đơn từ OMS/Logistics.</td>
+            <td>Cập nhật phí lắp đặt/giao hàng theo chính sách QLCS (không hardcode mức phí cố định). Bỏ kiểm tra hợp đồng Internet FPT (luồng bán mới). Bỏ trường chọn ngày lắp đặt/giao hàng. Mặc định Cloud theo gói + chu kỳ giá thấp nhất. Min/Max số lượng theo QLCS. Đánh dấu nguồn vận đơn cần xác nhận thực tế với FPT.VN.</td>
         </tr>
     </tbody>
 </table>
@@ -614,7 +614,7 @@
             </li>
             <li><strong>Tôi muốn tự lắp đặt (Self-installation):</strong>
                 <br>- Khách hàng chỉ cần điền địa chỉ nhận thiết bị. Không hiển thị trường chọn ngày giao hàng/lắp đặt.
-                <br>- Hệ thống hiển thị Phí giao hàng theo mức phí định nghĩa trên hệ thống chính sách (QLCS) và dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng qua bưu điện. Dự kiến nhận hàng sau 2-3 ngày làm việc."</em>
+                <br>- Hệ thống hiển thị Phí giao hàng theo mức phí định nghĩa trên hệ thống chính sách (QLCS) và dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng qua bưu điện."</em> Thời gian giao hàng dự kiến hiển thị theo dữ liệu từ đối tác giao vận <em>(cần xác nhận thực tế với hạ tầng FPT.VN)</em>.
                 <br>- Khi chọn "Tôi muốn tự lắp đặt", chỉ hiển thị thông tin đơn hàng và phí giao hàng. Không hiển thị phí lắp đặt.
                 <br>- <strong>Ưu đãi tặng thêm:</strong> Để khuyến khích khách hàng tự phục vụ, khi chọn Tự lắp đặt, hệ thống tự động <strong>Tặng thêm 01 tháng cước Cloud miễn phí</strong> (giao diện hiển thị nhãn nổi bật: <em>"Tặng thêm 1 tháng Cloud tự lắp đặt"</em>).
             </li>
@@ -750,7 +750,7 @@
         <td class="label">Quy tắc Giao diện & Nghiệp vụ</td>
         <td>
             - <strong>Trường hợp A (Khách chọn Kỹ thuật lắp):</strong> Màn hình hiển thị mã đơn hàng SPF, lịch hẹn kỹ thuật đã xác nhận, và hướng dẫn chuẩn bị modem Wifi sẵn sàng trước khi kỹ thuật viên đến.
-            <br>- <strong>Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):</strong> Màn hình hiển thị thông tin đơn hàng, phí giao hàng, mã vận đơn bưu điện (tích hợp từ hệ thống OMS/Logistics của FPT, kèm hyperlink trực tiếp sang trang đối soát hành trình của Giao Hàng Nhanh/Viettel Post) và tích hợp <strong>Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)</strong>.
+            <br>- <strong>Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):</strong> Màn hình hiển thị thông tin đơn hàng, phí giao hàng, mã vận đơn bưu điện <em>(Nguồn dữ liệu mã vận đơn và đối tác giao vận: cần xác nhận thực tế với hạ tầng FPT.VN)</em> và tích hợp <strong>Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)</strong>.
         </td>
     </tr>
 </table>
@@ -785,13 +785,13 @@
         <tr>
             <td><strong>Mã đơn hàng & Vận đơn</strong></td>
             <td>- Mã đơn SPF: `FPTCAMXXXXXXXX` (Có nút copy nhanh).
-            <br>- Mã vận đơn bưu điện: `GHN-XXXXXX` hoặc `VTP-XXXXXX` (Giao diện hiển thị link màu xanh, click sẽ tự động mở trang web giao vận để kiểm tra lịch trình giao hàng trực tiếp) - *Chỉ hiển thị với luồng Tự lắp đặt*.</td>
+            <br>- Mã vận đơn bưu điện: <em>(Format mã và đối tác giao vận cụ thể cần xác nhận thực tế với hạ tầng FPT.VN)</em>. Giao diện hiển thị link, click sẽ tự động mở trang web giao vận để kiểm tra lịch trình giao hàng trực tiếp - <em>Chỉ hiển thị với luồng Tự lắp đặt</em>.</td>
             <td>Giúp khách hàng dễ dàng đối soát đơn hàng và theo dõi sát sao tiến độ giao thiết bị của bưu điện.</td>
         </tr>
         <tr>
             <td><strong>Lịch trình dự kiến</strong></td>
-            <td>- *Nếu Kỹ thuật lắp:* Hiển thị Ngày hẹn thi công đã xếp lịch.
-            <br>- *Nếu Tự lắp:* Hiển thị Ngày giao hàng dự kiến (Ngày_Hiện_Tại + 3 ngày làm việc).</td>
+            <td>- <em>Nếu Hỗ trợ lắp đặt:</em> Hiển thị thông báo: "Bộ phận kỹ thuật FPT sẽ liên hệ bạn để sắp xếp lịch thi công."
+            <br>- <em>Nếu Tự lắp đặt:</em> Hiển thị thời gian giao hàng dự kiến <em>(thời gian cụ thể cần xác nhận thực tế với đối tác giao vận qua hạ tầng FPT.VN)</em>.</td>
             <td>Xác nhận thời gian biểu rõ ràng để khách hàng chuẩn bị nhận thiết bị hoặc tiếp đón nhân viên kỹ thuật.</td>
         </tr>
         <tr>
