@@ -4,75 +4,300 @@
 <title>FPT.VN URD - Luồng Checkout Camera (Phase 1)</title>
 <style>
 
-    /* ===== TYPOGRAPHY ===== */
-    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 13pt; }
+    /* ===== TYPOGRAPHY & BASIC ===== */
+    body { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        line-height: 1.6; 
+        color: #1D2939; 
+        font-size: 11.5pt; 
+    }
+    p { margin-top: 0; margin-bottom: 10px; text-align: justify; }
+    ul, ol { margin-top: 6px; margin-bottom: 12px; padding-left: 24px; }
+    li { margin-bottom: 5px; }
 
-    /* ===== TRANG BÌA ===== */
-    .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
-    .cover-logo-box { text-align: left; margin-bottom: 30px; }
+    /* ===== TRANG BÌA (COVER PAGE) ===== */
+    .cover-container { 
+        border: 2px solid #4564ED; 
+        border-radius: 12px; 
+        padding: 60px 45px; 
+        margin: 15px; 
+        min-height: 850px; 
+        position: relative; 
+        background-color: #FFFFFF; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+    }
+    .cover-logo-box { text-align: left; margin-bottom: 40px; }
     .cover-logo { width: 4.27cm; height: 1.4cm; display: block; }
-    .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
-    .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 20pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
-    .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
-    .cover-meta-box { margin-top: 60px; width: 100%; border-top: 2px solid #1f4e78; padding-top: 20px; }
+    .cover-title-box { text-align: center; margin-top: 80px; margin-bottom: 100px; }
+    .cover-title-main { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #1E318E; 
+        font-size: 22pt; 
+        font-weight: 800; 
+        text-transform: uppercase; 
+        line-height: 1.4; 
+        margin-bottom: 24px; 
+        letter-spacing: 0.5px; 
+    }
+    .cover-title-sub { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #FF7A00; 
+        font-size: 14pt; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        margin-top: 12px; 
+        letter-spacing: 1px; 
+    }
+    .cover-meta-box { 
+        margin-top: 80px; 
+        width: 100%; 
+        border-top: 2px solid #4564ED; 
+        padding-top: 25px; 
+    }
     .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
-    .cover-meta-table td { border: none; padding: 6px 0; font-size: 13pt; color: #333333; }
-    .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
+    .cover-meta-table td { border: none; padding: 8px 0; font-size: 11.5pt; color: #344054; }
+    .cover-meta-label { font-weight: 600; color: #4564ED; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
-    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
-    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 14pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
-    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 14pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
-    h5 { font-family: 'Arial', sans-serif; color: #404040; font-size: 13pt; font-weight: bold; margin-top: 12px; margin-bottom: 5px; background-color: #f2f2f2; padding: 4px 8px; border-left: 4px solid #5b9bd5; }
+    h1 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #1e318e; 
+        font-size: 16pt; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        margin-top: 35px; 
+        margin-bottom: 15px; 
+        border-bottom: 2px solid #4564ED; 
+        padding-bottom: 6px; 
+        page-break-before: always; 
+        mso-page-break-before: always; 
+    }
+    h2 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #2740B5; 
+        font-size: 14pt; 
+        font-weight: 700; 
+        margin-top: 28px; 
+        margin-bottom: 12px; 
+        border-bottom: 1px solid #BCCAFF; 
+        padding-bottom: 4px; 
+    }
+    h3 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #3451D4; 
+        font-size: 13pt; 
+        font-weight: 600; 
+        margin-top: 22px; 
+        margin-bottom: 8px; 
+    }
+    h4 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #1D2939; 
+        font-size: 12pt; 
+        font-weight: 600; 
+        margin-top: 16px; 
+        margin-bottom: 6px; 
+    }
+    h5 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        color: #344054; 
+        font-size: 11.5pt; 
+        font-weight: 600; 
+        margin-top: 14px; 
+        margin-bottom: 6px; 
+        background-color: #F8F9FC; 
+        padding: 6px 12px; 
+        border-left: 4px solid #4564ED; 
+        border-radius: 0 4px 4px 0; 
+    }
 
-    /* ===== BẢNG DỮ LIỆU ===== */
-    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: auto; word-wrap: break-word; }
-    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 13pt; }
-    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 14pt; }
+    /* ===== BẢNG DỮ LIỆU (DATA TABLES) ===== */
+    table.data-table { 
+        border-collapse: collapse; 
+        width: 100%; 
+        margin-top: 12px; 
+        margin-bottom: 18px; 
+        table-layout: auto; 
+        word-wrap: break-word; 
+        background-color: #FFFFFF; 
+    }
+    table.data-table th, table.data-table td { 
+        border: 1px solid #EAECF0; 
+        padding: 10px 12px; 
+        text-align: left; 
+        vertical-align: top; 
+        font-size: 11.5pt; 
+    }
+    table.data-table th { 
+        background-color: #F9FAFB; 
+        font-weight: 600; 
+        color: #344054; 
+        font-size: 12pt; 
+        border-bottom: 2px solid #EAECF0; 
+    }
 
     /* ===== BẢNG USE CASE ===== */
-    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
-    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; font-size: 13pt; }
-    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; font-size: 14pt; }
+    table.usecase-table { 
+        border-collapse: collapse; 
+        width: 100%; 
+        margin-top: 10px; 
+        margin-bottom: 15px; 
+        background-color: #FFFFFF; 
+    }
+    table.usecase-table td { 
+        border: 1px solid #EAECF0; 
+        padding: 10px 12px; 
+        vertical-align: top; 
+        font-size: 11.5pt; 
+        line-height: 1.6; 
+    }
+    table.usecase-table td.label { 
+        background-color: #F8F9FC; 
+        font-weight: 600; 
+        width: 150px; 
+        font-size: 12pt; 
+        color: #3451D4; 
+    }
 
-    /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
+    /* ===== MỤC LỤC — MODERN WORD STYLE ===== */
     .toc-title {
         page-break-before: always;
         mso-page-break-before: always;
-        font-family: 'Arial', sans-serif;
-        font-size: 14pt;
-        font-weight: bold;
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        font-size: 16pt;
+        font-weight: 700;
         text-align: center;
-        color: #1f4e78;
+        color: #1e318e;
         text-transform: uppercase;
         margin-bottom: 25px;
         letter-spacing: 1px;
         padding-bottom: 8px;
-        border-bottom: 2px solid #1f4e78;
+        border-bottom: 2px solid #4564ED;
     }
     table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
-    table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
-    .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
-    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 13pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 14pt; text-transform: uppercase; padding-left: 0; }
-    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 13pt; color: #000000; }
-    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 13pt; font-style: italic; color: #555555; }
+    table.toc-table td { border: none; padding: 6px 0 4px 0; vertical-align: bottom; line-height: 1.5; }
+    .toc-dots { border-bottom: 1px dotted #98A2B3; min-width: 30px; }
+    .toc-page { 
+        text-align: right; 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        font-size: 11.5pt; 
+        width: 35px; 
+        font-weight: 700; 
+        color: #4564ED; 
+        white-space: nowrap; 
+    }
+    .toc-l1 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        font-weight: 700; 
+        color: #1e318e; 
+        font-size: 12.5pt; 
+        text-transform: uppercase; 
+        padding-left: 0; 
+    }
+    .toc-l2 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        padding-left: 20px; 
+        font-size: 11.5pt; 
+        color: #344054; 
+    }
+    .toc-l3 { 
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+        padding-left: 40px; 
+        font-size: 11pt; 
+        font-style: italic; 
+        color: #667085; 
+    }
 
-    /* ===== TIỆN ÍCH ===== */
-    ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
-    li { margin-bottom: 4px; }
-    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    /* ===== TIỆN ÍCH / HỘP THÔNG TIN ===== */
     .page-break { page-break-before: always; mso-page-break-before: always; }
-    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 13pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
-    .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
-    .error-inline { color: #c00000; font-size: 13pt; font-style: italic; font-weight: bold; margin-top: 3px; }
-    .success-inline { color: #385723; font-size: 13pt; font-weight: bold; }
-    .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
-    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
-    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 13pt; margin-bottom: 10px; }
-    .header-table { width: 100%; border-collapse: collapse; border: 1px solid #1f4e78; margin-bottom: 20px; }
-    .header-table td { border: 1px solid #1f4e78; padding: 10px; vertical-align: middle; }
+    
+    .code-block { 
+        font-family: 'Courier New', Courier, monospace; 
+        background-color: #F8F9FC; 
+        border: 1px solid #EAECF0; 
+        padding: 12px 16px; 
+        white-space: pre-wrap; 
+        font-size: 11pt; 
+        margin-top: 8px; 
+        margin-bottom: 12px; 
+        line-height: 1.4; 
+        border-radius: 6px; 
+        color: #232936; 
+    }
+    
+    .alert-box { 
+        background-color: #FEF3F2; 
+        border-left: 4px solid #D92D20; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #B42318; 
+        font-size: 11.5pt; 
+        line-height: 1.6; 
+    }
+    
+    .error-inline { 
+        color: #D92D20; 
+        font-size: 11.5pt; 
+        font-style: italic; 
+        font-weight: bold; 
+        margin-top: 3px; 
+    }
+    
+    .success-inline { 
+        color: #039855; 
+        font-size: 11.5pt; 
+        font-weight: bold; 
+    }
+    
+    .diagram-img { 
+        max-width: 100%; 
+        height: auto; 
+        display: block; 
+        margin: 20px auto; 
+        border: 1px solid #EAECF0; 
+        padding: 8px; 
+        background: #ffffff; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+    }
+    
+    .note-box { 
+        background-color: #FFF9EB; 
+        border-left: 4px solid #FDB022; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #B54708; 
+        font-size: 11.5pt; 
+        line-height: 1.6; 
+    }
+    
+    .figma-comment { 
+        background-color: #ECFDF3; 
+        border-left: 4px solid #039855; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #027A48; 
+        font-size: 11.5pt; 
+        line-height: 1.6; 
+    }
+    
+    .header-table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        border: 1px solid #4564ED; 
+        margin-bottom: 20px; 
+    }
+    .header-table td { 
+        border: 1px solid #4564ED; 
+        padding: 12px; 
+        vertical-align: middle; 
+    }
 
 </style>
 </head>
@@ -95,7 +320,7 @@
             </tr>
             <tr>
                 <td class="cover-meta-label">Phiên bản:</td>
-                <td>V1.2</td>
+                <td>V1.3</td>
             </tr>
             <tr>
                 <td class="cover-meta-label">Tác giả:</td>
@@ -121,11 +346,11 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 15%;">Date</th>
+            <th style="width: 15%;">Ngày</th>
             <th style="width: 10%; text-align: center;">Version</th>
-            <th style="width: 20%;">Author</th>
-            <th style="width: 10%; text-align: center;">Action</th>
-            <th style="width: 45%;">Change Description</th>
+            <th style="width: 20%;">Tác giả</th>
+            <th style="width: 10%; text-align: center;">Hành động</th>
+            <th style="width: 45%;">Mô tả chi tiết thay đổi</th>
         </tr>
     </thead>
     <tbody>
@@ -184,7 +409,7 @@
         <td class="toc-page">—</td>
     </tr>
     <tr>
-        <td class="toc-l1">B. TỔNG QUAN LUỒNG NGHIỆP VỤ &amp; PHÂN QUYỀN</td>
+        <td class="toc-l1">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</td>
         <td class="toc-dots">&nbsp;</td>
         <td class="toc-page">—</td>
     </tr>
@@ -356,8 +581,8 @@
     </tbody>
 </table>
 
-<!-- B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN -->
-<h1>B. TỔNG QUAN LUỒNG NGHIỆP VỤ & PHÂN QUYỀN</h1>
+<!-- B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI -->
+<h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
 
 <h3>1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</h3>
 <p>Dưới đây là sơ đồ hành trình khách hàng (Customer Journey) khi mua và thanh toán các sản phẩm Camera. Sơ đồ thể hiện từng bước hành động, các điểm quyết định và quy tắc hệ thống vận hành ngầm:</p>
@@ -472,6 +697,8 @@
 
 <!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ -->
 <h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</h1>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h2>I. LUỒNG NGHIỆP VỤ CAMERA ONLY (onlycam)</h2>
 <h3>1. Màn hình Chi tiết Sản phẩm (PDP - Camera Only)</h3>
@@ -1083,35 +1310,35 @@
             <td style="text-align: center;">1</td>
             <td><strong>Nhập liệu</strong></td>
             <td>Bỏ trống hoặc nhập sai định dạng Số điện thoại</td>
-            <td><span style="color: red;">"Số điện thoại không hợp lệ! Vui lòng nhập đúng 10 chữ số di động."</span></td>
+            <td><span class="error-inline">"Số điện thoại không hợp lệ! Vui lòng nhập đúng 10 chữ số di động."</span></td>
             <td>Hiển thị text cảnh báo màu đỏ ngay dưới trường SĐT. Viền trường chuyển màu đỏ. Disable nút "Thanh toán".</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
             <td><strong>Nhập liệu</strong></td>
             <td>Chọn "Chung cư" nhưng bỏ trống trường Tên tòa nhà/Block</td>
-            <td><span style="color: red;">"Vui lòng nhập tên tòa nhà / block chung cư để kỹ thuật viên định vị khu vực thi công!"</span></td>
+            <td><span class="error-inline">"Vui lòng nhập tên tòa nhà / block chung cư để kỹ thuật viên định vị khu vực thi công!"</span></td>
             <td>Focus vào trường Tòa nhà, hiển thị cảnh báo viền đỏ lỗi nhập liệu.</td>
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
             <td><strong>Địa chỉ</strong></td>
             <td>Chọn khu vực huyện đảo không hỗ trợ thi công và click chọn phương thức COD</td>
-            <td><span style="color: red;">"Phương thức Thanh toán tại nhà (COD) chưa được hỗ trợ tại khu vực của bạn. Vui lòng thanh toán trực tuyến để chúng tôi chuyển phát thiết bị qua bưu điện!"</span></td>
+            <td><span class="error-inline">"Phương thức Thanh toán tại nhà (COD) chưa được hỗ trợ tại khu vực của bạn. Vui lòng thanh toán trực tuyến để chúng tôi chuyển phát thiết bị qua bưu điện!"</span></td>
             <td>Hiển thị Alert Popup cảnh báo. Tự động reset lựa chọn phương thức thanh toán về "VietQR" (mặc định trực tuyến) và đóng popup.</td>
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
             <td><strong>Áp Voucher</strong></td>
             <td>Nhập mã voucher đã hết hạn hoặc không tồn tại</td>
-            <td><span style="color: red;">"Mã khuyến mãi đã hết hạn sử dụng. Vui lòng kiểm tra lại thời gian diễn ra chương trình!"</span></td>
+            <td><span class="error-inline">"Mã khuyến mãi đã hết hạn sử dụng. Vui lòng kiểm tra lại thời gian diễn ra chương trình!"</span></td>
             <td>Hiển thị dòng thông báo đỏ ngay dưới ô nhập voucher. Loại bỏ voucher và giữ nguyên giá trị tổng tiền thanh toán cũ.</td>
         </tr>
         <tr>
             <td style="text-align: center;">5</td>
             <td><strong>Thanh toán</strong></td>
             <td>Lỗi kết nối cổng thanh toán trực tuyến (Gateway Timeout)</td>
-            <td><span style="color: red;">"Không thể kết nối đến cổng thanh toán. Giao dịch của bạn chưa bị trừ tiền. Vui lòng thử lại sau ít phút hoặc đổi phương thức thanh toán!"</span></td>
+            <td><span class="error-inline">"Không thể kết nối đến cổng thanh toán. Giao dịch của bạn chưa bị trừ tiền. Vui lòng thử lại sau ít phút hoặc đổi phương thức thanh toán!"</span></td>
             <td>Hiển thị Popup lỗi. Giữ nguyên toàn bộ thông tin đã điền trên màn hình Checkout để khách hàng chọn lại phương thức khác hoặc thử lại mà không phải nhập lại từ đầu.</td>
         </tr>
     </tbody>
@@ -1212,19 +1439,19 @@
         
         <tr>
             <td><strong>Tạo tài khoản FPT Camera</strong><br>(SĐT chưa có tài khoản, tự động tạo mới)</td>
-            <td style="color: green; font-weight: bold;">Thành công</td>
-            <td style="color: #385723; font-weight: bold;">"Hệ thống sẽ tự động tạo tài khoản FPT Camera cho bạn bằng số điện thoại này. Mật khẩu kích hoạt sẽ được gửi qua SMS ngay sau khi lắp đặt/giao hàng thành công."</td>
+            <td class="success-inline">Thành công</td>
+            <td class="success-inline">"Hệ thống sẽ tự động tạo tài khoản FPT Camera cho bạn bằng số điện thoại này. Mật khẩu kích hoạt sẽ được gửi qua SMS ngay sau khi lắp đặt/giao hàng thành công."</td>
             <td>Hiển thị inline text màu xám dưới ô nhập SĐT, cho phép khách hàng tiếp tục đặt hàng bình thường.</td>
         </tr>
         <tr>
             <td><strong>Áp dụng Voucher giảm giá</strong><br>(Mã giảm giá hết hạn hoặc không áp dụng cho Combo Camera)</td>
-            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td class="error-inline">Thất bại</td>
             <td class="error-inline">"Mã ưu đãi không hợp lệ hoặc đã hết lượt sử dụng. Vui lòng kiểm tra lại điều kiện chương trình."</td>
             <td>Hiển thị thông báo màu đỏ tại khu vực nhập Voucher, không trừ tiền tạm tính.</td>
         </tr>
         <tr>
             <td><strong>Thanh toán trực tuyến</strong><br>(Giao dịch qua cổng VietQR/Ví điện tử bị huỷ hoặc hết hạn)</td>
-            <td style="color: red; font-weight: bold;">Thất bại</td>
+            <td class="error-inline">Thất bại</td>
             <td class="error-inline">"Giao dịch thanh toán chưa thành công. Vui lòng thử lại hoặc lựa chọn phương thức thanh toán khác."</td>
             <td>Giữ nguyên thông tin đơn hàng tại trang Checkout và cho phép khách hàng chọn lại PTTT.</td>
         </tr>
