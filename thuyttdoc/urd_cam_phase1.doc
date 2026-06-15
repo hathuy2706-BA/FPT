@@ -5,42 +5,42 @@
 <style>
 
     /* ===== TYPOGRAPHY ===== */
-    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
+    body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 13pt; }
 
     /* ===== TRANG BÌA ===== */
     .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
     .cover-logo-box { text-align: left; margin-bottom: 30px; }
-    .cover-logo { width: 100px; height: 40px; display: block; }
+    .cover-logo { width: 4.27cm; height: 1.4cm; display: block; }
     .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
-    .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 24pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
+    .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 20pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
     .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
     .cover-meta-box { margin-top: 60px; width: 100%; border-top: 2px solid #1f4e78; padding-top: 20px; }
     .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
-    .cover-meta-table td { border: none; padding: 6px 0; font-size: 11pt; color: #333333; }
+    .cover-meta-table td { border: none; padding: 6px 0; font-size: 13pt; color: #333333; }
     .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
+    h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
     h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
-    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
-    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
+    h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 14pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
+    h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 14pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
 
     /* ===== BẢNG DỮ LIỆU ===== */
     table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: auto; word-wrap: break-word; }
-    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; }
-    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 10.5pt; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 13pt; }
+    table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 14pt; }
 
     /* ===== BẢNG USE CASE ===== */
     table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
-    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
-    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; font-size: 13pt; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; font-size: 14pt; }
 
     /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
     .toc-title {
         page-break-before: always;
         mso-page-break-before: always;
         font-family: 'Arial', sans-serif;
-        font-size: 16pt;
+        font-size: 14pt;
         font-weight: bold;
         text-align: center;
         color: #1f4e78;
@@ -53,23 +53,23 @@
     table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
     table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
     .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
-    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
-    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 11pt; color: #000000; }
-    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 10.5pt; font-style: italic; color: #555555; }
+    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 13pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
+    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 14pt; text-transform: uppercase; padding-left: 0; }
+    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 13pt; color: #000000; }
+    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 13pt; font-style: italic; color: #555555; }
 
     /* ===== TIỆN ÍCH ===== */
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
     li { margin-bottom: 4px; }
     p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
     .page-break { page-break-before: always; mso-page-break-before: always; }
-    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
+    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 13pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
     .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
-    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
-    .success-inline { color: #385723; font-size: 10pt; font-weight: bold; }
+    .error-inline { color: #c00000; font-size: 13pt; font-style: italic; font-weight: bold; margin-top: 3px; }
+    .success-inline { color: #385723; font-size: 13pt; font-weight: bold; }
     .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
     .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
-    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
+    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 13pt; margin-bottom: 10px; }
     .header-table { width: 100%; border-collapse: collapse; border: 1px solid #1f4e78; margin-bottom: 20px; }
     .header-table td { border: 1px solid #1f4e78; padding: 10px; vertical-align: middle; }
 
@@ -80,7 +80,7 @@
 <!-- TRANG BÌA -->
 <div class="cover-container">
     <div class="cover-logo-box">
-        <img src="data:image/png;base64,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" class="cover-logo" alt="FPT Telecom Logo" style="width:100px; height:40px; display:block;">
+        <img src="data:image/png;base64,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" class="cover-logo" alt="FPT Telecom Logo" style="width:4.27cm; height:1.4cm; display:block;">
     </div>
     <div class="cover-title-box">
         <div class="cover-title-main">Tài Liệu Yêu Cầu Người Dùng<br>(User Requirements Document - URD)</div>
