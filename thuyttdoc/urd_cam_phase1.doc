@@ -5,7 +5,11 @@
 <style>
 
     /* ===== TYPOGRAPHY & BASIC ===== */
-    Kpt; 
+    body { 
+        font-family: 'Times New Roman', Times, serif; 
+        line-height: 1.6; 
+        color: #1D2939; 
+        font-size: 13pt; 
     }
     p { margin-top: 0; margin-bottom: 10px; text-align: justify; }
     ul, ol { margin-top: 6px; margin-bottom: 12px; padding-left: 24px; }
@@ -51,12 +55,15 @@
         padding-top: 25px; 
     }
     .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
-    .cover-meta-table td { border: none; padding: 8px 0; font-size: 11.5pt; color: #344054; }
+    .cover-meta-table td { border: none; padding: 8px 0; font-size: 13pt; color: #344054; }
     .cover-meta-label { font-weight: 600; color: #4564ED; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    Npt; 
-        font-weight: 700; 
+    h1 { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: #1e318e; 
+        font-size: 16pt; 
+        font-weight: bold; 
         text-transform: uppercase; 
         margin-top: 35px; 
         margin-bottom: 15px; 
@@ -65,25 +72,37 @@
         page-break-before: always; 
         mso-page-break-before: always; 
     }
-    Mpt; 
-        font-weight: 700; 
+    h2 { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: #2740B5; 
+        font-size: 15pt; 
+        font-weight: bold; 
         margin-top: 28px; 
         margin-bottom: 12px; 
         border-bottom: 1px solid #000000; 
         padding-bottom: 4px; 
     }
-    Lpt; 
-        font-weight: 600; 
+    h3 { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: #3451D4; 
+        font-size: 14pt; 
+        font-weight: bold; 
         margin-top: 22px; 
         margin-bottom: 8px; 
     }
-    Kpt; 
-        font-weight: 600; 
+    h4 { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: #1D2939; 
+        font-size: 13pt; 
+        font-weight: bold; 
         margin-top: 16px; 
         margin-bottom: 6px; 
     }
-    Kpt; 
-        font-weight: 600; 
+    h5 { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: #344054; 
+        font-size: 13pt; 
+        font-weight: bold; 
         margin-top: 14px; 
         margin-bottom: 6px; 
         background-color: #F8F9FC; 
@@ -102,9 +121,18 @@
         word-wrap: break-word; 
         background-color: #FFFFFF; 
     }
-    Kpt; 
+    table.data-table th, table.data-table td { 
+        border: 1px solid #000000; 
+        padding: 10px 12px; 
+        text-align: left; 
+        vertical-align: top; 
+        font-size: 13pt; 
     }
-    K.5pt; 
+    table.data-table th { 
+        background-color: #F9FAFB; 
+        font-weight: bold; 
+        color: #344054; 
+        font-size: 13pt; 
         border-bottom: 2px solid #000000; 
     }
 
@@ -116,10 +144,18 @@
         margin-bottom: 15px; 
         background-color: #FFFFFF; 
     }
-    Kpt; 
+    table.usecase-table td { 
+        border: 1px solid #000000; 
+        padding: 10px 12px; 
+        vertical-align: top; 
+        font-size: 13pt; 
         line-height: 1.6; 
     }
-    Kpt; 
+    table.usecase-table td.label { 
+        background-color: #F8F9FC; 
+        font-weight: bold; 
+        width: 150px; 
+        font-size: 13pt; 
         color: #3451D4; 
     }
 
@@ -129,7 +165,7 @@
         mso-page-break-before: always;
         font-family: 'Times New Roman', Times, serif;
         font-size: 16pt;
-        font-weight: 700;
+        font-weight: bold;
         text-align: center;
         color: #1e318e;
         text-transform: uppercase;
@@ -141,20 +177,33 @@
     table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
     table.toc-table td { border: none; padding: 6px 0 4px 0; vertical-align: bottom; line-height: 1.5; }
     .toc-dots { border-bottom: 1px dotted #98A2B3; min-width: 30px; }
-    Kpt; 
+    .toc-page { 
+        text-align: right; 
+        font-family: 'Times New Roman', Times, serif; 
+        font-size: 13pt; 
         width: 35px; 
-        font-weight: 700; 
+        font-weight: bold; 
         color: #4564ED; 
         white-space: nowrap; 
     }
-    L.5pt; 
+    .toc-l1 { 
+        font-family: 'Times New Roman', Times, serif; 
+        font-weight: bold; 
+        color: #1e318e; 
+        font-size: 13pt; 
         text-transform: uppercase; 
         padding-left: 0; 
     }
-    Kpt; 
+    .toc-l2 { 
+        font-family: 'Times New Roman', Times, serif; 
+        padding-left: 20px; 
+        font-size: 13pt; 
         color: #344054; 
     }
-    Jpt; 
+    .toc-l3 { 
+        font-family: 'Times New Roman', Times, serif; 
+        padding-left: 40px; 
+        font-size: 13pt; 
         font-style: italic; 
         color: #667085; 
     }
@@ -162,7 +211,13 @@
     /* ===== TIỆN ÍCH / HỘP THÔNG TIN ===== */
     .page-break { page-break-before: always; mso-page-break-before: always; }
     
-    I.5pt; 
+    .code-block { 
+        font-family: 'Courier New', Courier, monospace; 
+        background-color: #F8F9FC; 
+        border: 1px solid #000000; 
+        padding: 12px 16px; 
+        white-space: pre-wrap; 
+        font-size: 13pt; 
         margin-top: 8px; 
         margin-bottom: 12px; 
         line-height: 1.4; 
@@ -170,17 +225,29 @@
         color: #232936; 
     }
     
-    Kpt; 
+    .alert-box { 
+        background-color: #FEF3F2; 
+        border-left: 4px solid #D92D20; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #B42318; 
+        font-size: 13pt; 
         line-height: 1.6; 
     }
     
-    Kpt; 
+    .error-inline { 
+        color: #D92D20; 
+        font-size: 13pt; 
         font-style: italic; 
         font-weight: bold; 
         margin-top: 3px; 
     }
     
-    Kpt; 
+    .success-inline { 
+        color: #039855; 
+        font-size: 13pt; 
         font-weight: bold; 
     }
     
@@ -196,11 +263,27 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
     }
     
-    Kpt; 
+    .note-box { 
+        background-color: #FFF9EB; 
+        border-left: 4px solid #FDB022; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #B54708; 
+        font-size: 13pt; 
         line-height: 1.6; 
     }
     
-    Kpt; 
+    .figma-comment { 
+        background-color: #ECFDF3; 
+        border-left: 4px solid #039855; 
+        padding: 12px 16px; 
+        margin-top: 12px; 
+        margin-bottom: 12px; 
+        border-radius: 0 8px 8px 0; 
+        color: #027A48; 
+        font-size: 13pt; 
         line-height: 1.6; 
     }
     
