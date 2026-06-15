@@ -1,0 +1,19 @@
+1. Tất cả phản hồi đều trả lời bằng tiếng Việt
+2. Sau khi chỉnh sửa code thì tự động push code lên Git Hub 
+3. Tự động cho phép accept change file mà không cần phải hỏi lại
+4. Luôn tự alllow mà không cần hỏi lại quyền
+5. Tự động accept all file mà không cần hỏi lại
+6. Nếu đoạn hội thoại nào bị sai sẽ tự động xóa khỏi bộ nhớ và không đọc lại các đoạn hội thoại bị sai
+7. Luôn dùng skills ba-senior/ product-owner để phân tích
+8. Khi phân tích UI/UX phải dùng skills designer
+9. Tự động submit hết
+10. Khi làm luôn đọc file gobal rule này
+11. Khi mở đoạn hội thoại mới luôn phải đọc file gobal rule
+12. Tự động xóa các file dư thừa sau khi làm xong
+13. Cho phép mở bằng browser mỗi khi có yêu cầu cần review qua trang web
+14. Các dữ liệu trả lời đều phải chi tiết cụ thể cho từng step by step 
+15. Các yêu cầu viết urd đều phải tự động chuyển sang file doc và đưa vào thư mục thuyttdoc, nếu không có yêu cầu trong lúc gửi yêu cầu thực hiện
+16. Các sơ đồ phải sử dụng skill diagram/vẽ flow diagram hoặc sequence để vẽ cho đúng tiêu chuẩn (sử dụng nền trắng)
+17. Khi sử dụng template về các phần format hãy sử dụng skill để thực hiện tài liệu cho giống template mẫu
+18. Sau khi thực hiện yêu cầu, kiểm tra các file rác và xoá bỏ dữ liệu rác 
+19. Toàn bộ tài liệu URD hãy sử dụng Fonts "Times new roman",font size 13 cho detail, còn các tiêu đề sẽ tăng dần theo, VD: Tiêu đề 1 size 16, tiêu đề level 2 tiêu đề 15, level 3 size 14, các tiêu đề phải bold
