@@ -14,10 +14,10 @@
 ## REVISION HISTORY (LỊCH SỬ THAY ĐỔI)
 *Hành động: [A]: Add - Thêm mới | [U]: Update - Cập nhật | [D]: Delete - Xóa*
 
-| Ngày tiếp nhận | Version | Người chịu trách nhiệm | Hành động | Mô tả chung thay đổi | Trước thay đổi (As-Is) | Sau thay đổi (To-Be) |
-| :--- | :--- | :--- | :---: | :--- | :--- | :--- |
-| [dd/mm/yyyy] | V1.0 | [Tên BA] | [A] | Khởi tạo tài liệu đặc tả | N/A | Khởi tạo tài liệu đặc tả US |
-| | | | | | | |
+| Ngày tiếp nhận | Version | Người chịu trách nhiệm | Hành động | Mô tả chung thay đổi     | Trước thay đổi (As-Is) | Sau thay đổi (To-Be)        |
+| :---------------| :--------| :-----------------------| :---------:| :-------------------------| :-----------------------| :----------------------------|
+| [dd/mm/yyyy]   | V1.0    | [Tên BA]               | [A]       | Khởi tạo tài liệu đặc tả | N/A                    | Khởi tạo tài liệu đặc tả US |
+|                |         |                        |           |                          |                        |                             |
 
 ---
 

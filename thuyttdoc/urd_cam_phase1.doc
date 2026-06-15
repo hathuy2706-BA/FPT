@@ -10,7 +10,7 @@
     /* ===== TRANG BÌA ===== */
     .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
     .cover-logo-box { text-align: left; margin-bottom: 30px; }
-    .cover-logo { width: 70px; height: auto; display: block; }
+    .cover-logo { width: 100px; height: 40px; display: block; }
     .cover-title-box { text-align: center; margin-top: 60px; margin-bottom: 80px; }
     .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 24pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
     .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
@@ -80,7 +80,7 @@
 <!-- TRANG BÌA -->
 <div class="cover-container">
     <div class="cover-logo-box">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAERCAYAAACDycNJAAAACXBIWXMAAJnKAACZygHjkaQiAAAgAElEQVR4nOydCZgUxdnHB4+YfCrbvTCzakyICt0rUZNootEcmnjBDHglJCYxwSPZrd4V2Zn1ikbXIyreR+KB932sMFW9IIgHCwIaUfG+RZHDC4Sd2V1Y9urvqVlUrl16qmqmemb/v+d5n++LwEx11Tvd/3/X8YZCAIC80nT23mZLfNiPmhPWoan4sGhzwh6TStgnp2vLKxA++iBefjBSFgAAAAAAgI1YedbuJU015UekE9Z5qYQ1KRW3F6QT9qp0wvYQMn1gnYlkAwAAAAAA/R5v3NDtUrXWyFTCuiUVt99Mxe0uGI0cmK2aYb/q98kGAAAAAAD6r+loTlh/TCXsR9JxKw3DkdvZnVTCavfiu35H97gDAAAAAACQV1Jn7DkslbAnpBL2FzAdeV1S9jxSHQAAAAAA9Bv4BuhU3H4qlbC7YTx07GWxrtedAwAAAAAAAOScVMI+KB23psB06N1Az5e7Id0BAAAAAEDRkhpv2+m49TiMRzBiZe2eQ3TnBAAAAAAAAMrhG51TcfuCVMJu0y26ET19kIpby5DqAAAAAACg6GiuGXZYOmEvhPAPlvlJxa3JunMDAAAAAAAAZXh1B2+TmfVA/Y6AGhC7FukOAAAAAACKgpWnDf9+KmHP1S2yEX0YkIR9kO48AQAAAAAAQJqmRPnh6YS9CuI/uAYoFbfWenVDvo10BwAAAAAABU0qYZ/Mq2vrFtiILfRB3P6f7lwBAAAAAABAGC8UGsD3e0D4F4z5uRbpDgAAAAAAChKvLrRVOm7dEQBRjfDZByhACAAAAAAACnnm4yaI/8IyP6sTe3xPd+4AAAAAAACQvflI2DfqFtOI7PoABQgBAAAAAEBBkorbl0P8F54BSsWtR3XnDgAAAAAAAFmRStgn6hbSCEEDUmvFke4AAAAAAKBgSNcM+1UqYbfBABSmCUrFy3+uO4cAAAAAAADwxarx9g/SCWuFbhGNEDQfCbvNGzd0O6Q7AAAAAAAoiON2UwlrFsR/IRsg61ndeQQAAAAAAIAv0nHrfP0CGiHVB3H7aqQ7AAAAAAAIPE019k9TCasdBqDADVCt/XvduQQAAAAAAECfeHXDv5VOWO9oF88I6T5oPXPorkh3AAAAAAAQaNLx8n9C/Be+AUrF7cW6cwkAAAAAAIA+4W/M0wmrWbd4RigwIAn7EaQ7AAAAAAAINLxqNsR/cRigVNyq0Z1PAAAAAAAA9EpTbfl+qYTdrVs4IxQZkNphByDdAQAAAABAYEnHrSkQ/8VhgFCAEAAAAAAABJqW8cN+jNmPojIgc3XnFAAAAAAAAL2SSthJ3aIZobAP4taVSHcAAAAAABBIVtVau6XidhcMQBGZoNry43TnFQAAAAAAAJslFbcu0S6YEUr7oDU+7LtIdwAAAAAAEDi8uoO3ScWtZTAARWSC4tYi3XkFAAAAAADAZknXWEdrF8wIpX2QStgPId0BAAAAAEAgQeHB4jNAqYQ9XndeAQAAAAAAsAneuKHbpeNWWrdgRqjtg6Za62dIdwAAAAAAEDiaEvaREP/FZYBScXuNVzf8W7pzCwAAAAAAGqmr28okyZGmQ13TYZ0wHnlcWkbY8TJDl47bTdoFM0JpHzTFy08NBZBB7KgdIywaD7uxt2A68rmsLNpl1h9Wonv8AQAAAEV4A3r2ddAFMB2a9rNUNHxfdPSaT9urDOK/+AxQU235fkEzHmE3dlbYjX0J45H//SxhN/aa7hwAAAAAlGAQdpRJ2MswHvo20hsO+0RmDNO15cfpFssItX2QStirvYr9tg3CbW7nhlH/x/ceRNxYE4yHvo30YTd6q+5cAAAAAKQYWOUONRz2OIxHIAzIJJmx5LUiYACKywSl4vbsINziyuio0WE39hGMRyAMyIm68wEAAAAQY0z9t9adaLVGt/BGfLX/g9bKpHMqYc/VLZgRymdAJui8xYXd0UPDLPa0btGN+KYPBjWMKteZEwAAAIAQJYT9xHDoOxD+ATM/VclfiqY0X6bDl+vAABSZCaqxjtZ1mwuz2N9wqlXAzA+LreT1VXTlBAAAACCE4bC/GYSt1i62EWoLENYOO0C7WEYo74OW04fvlO9b3U7TRoTDLMa0i23E5gzItHznAwAAACBMiTPVXHesLsR/ERYgTMWtGhiAojNBC/N9ywvT6I/DLLYI4j+gBohF/5XvnAAAAACEKHEm7W4Q9pZukY3osw+ulUnvVMJ+JACCGaGyD+LW/fm85ZWx2PFhFm3VLrIRvfdBw6hD85kTAAAAgBBmRfJA02GfQ/wH3ABVJv8gk+KpuL0YBqC4DFBzwqrOy23PCw2IuLHLIPyDbn6inaXTRgzMS04AAAAAopQ67hiT0Dbt4hqx5SVYVZOGiI5z6xn2LrrFMkJ9H6yqKd8353e/urqtwm7sNv3iGuFj+dUrOc8HAAAAQIH56ID4D74BMghdJjPW6Vr79zAAxWaCrFav7uBtcnoXrB+zdYRF74b4LwzzE3ajN+c0HwAAAAAZYD4KzoA8KjPe6bh9tX7BjFDZB6mENSund8HGg7cJsyjVLaoR2RiQ2Nic5gQAAAAgCsxHIQY9XSbj0wnrORiA4jJAqYR1ac7ugl5oQJjFbof4LywDNHhKbFjOcgIAAAAQhReyw56PgjQgB4mOuTdu6HaphN2mWzAjFBuQGnt0ru6EERa9XLeYRmS9/GoFChACAAAI5FG7JmFf6BfTiCz7YO2QsY3fFh331PjyAyH+i88ANZ+2V1koBwxm0dMg/gvSAE3NRT4AAAAAwuxYnRxkEPYuxH/hmR+D0P/JpH4qYSV0i2WE6j6w3s/F7bCMRX8TYbGOAIhpRPZ9cE4ucgIAAAAQxBtgOmyKbiGN0FSAMG49CgNQZCYobt+r+nY4ePKRO0fc2CcQ/4Vpfrh5VJ0TAAAAgDCmQ8+C+O/XBQiXaBfMCNUzII7KW+Lw+jHfCrPYc7pFNEK0D6Kd4foxO6jMCQAAAECYQU7Dz/geAu0iGiHRB/R7ouO/8rTh34f4Lz4D1DJ+2I9V3hYjLHopxH9BG6AFKvMBAAAAEGbQyWxHk9APIf4L1wAZDl0q8xNoTlh/1C2WEYr7IG61qCxAOJjG9ou4sfYAiGiEaB+w2I2q" class="cover-logo" alt="FPT Telecom Logo" style="width:70px; height:auto; display:block;">
+        <img src="data:image/png;base64,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" class="cover-logo" alt="FPT Telecom Logo" style="width:100px; height:40px; display:block;">
     </div>
     <div class="cover-title-box">
         <div class="cover-title-main">Tài Liệu Yêu Cầu Người Dùng<br>(User Requirements Document - URD)</div>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
                 <td class="cover-meta-label">Phiên bản:</td>
-                <td>V1.1</td>
+                <td>V1.2</td>
             </tr>
             <tr>
                 <td class="cover-meta-label">Tác giả:</td>
@@ -141,6 +141,13 @@
             <td>ThuyTT104</td>
             <td style="text-align: center;">[U]</td>
             <td>Gộp tài liệu luồng Camera Only và Combo Camera thành tài liệu duy nhất urd_cam_phase1, cập nhật mã hiệu camonly thành onlycam, camcombo thành combocam và chuẩn hóa định dạng theo template mới.</td>
+        </tr>
+        <tr>
+            <td>15/06/2026</td>
+            <td>1.2</td>
+            <td>ThuyTT104</td>
+            <td style="text-align: center;">[U]</td>
+            <td>Cập nhật phí lắp đặt/giao hàng theo chính sách QLCS (không hardcode mức phí cố định). Bỏ kiểm tra hợp đồng Internet FPT (luồng bán mới). Bỏ trường chọn ngày lắp đặt/giao hàng. Mặc định Cloud theo gói + chu kỳ giá thấp nhất. Min/Max số lượng theo QLCS. Bổ sung nguồn dữ liệu vận đơn từ OMS/Logistics.</td>
         </tr>
     </tbody>
 </table>
@@ -300,7 +307,7 @@
             <td>
                 1. Xây dựng luồng mua hàng độc lập <strong>onlycam</strong> và <strong>combocam</strong> tối ưu chỉ trong một trang thanh toán (One-page checkout).<br>
                 2. Cho phép tùy chọn hình thức triển khai linh hoạt: <strong>Kỹ thuật viên đến nhà lắp đặt</strong> hoặc <strong>Tự lắp đặt tại nhà</strong> (Giao hàng bưu điện miễn phí).<br>
-                3. Triển khai logic thông minh tự động kiểm tra số điện thoại để đề xuất liên kết hợp đồng Internet FPT có sẵn (nếu có) để giảm phí lắp đặt.<br>
+                3. Triển khai logic thông minh tự động kiểm tra số điện thoại trên hệ thống FPT Camera để nhận diện tài khoản cũ hoặc tạo mới.<br>
                 4. Khuyến khích khách hàng mua Combo chu kỳ dài bằng chính sách tặng tháng cước Cloud hoặc miễn phí thiết bị phần cứng.
             </td>
         </tr>
@@ -337,47 +344,7 @@
         <tr><td style="text-align: center;">7</td><td>PTTT</td><td>Phương thức thanh toán</td><td>Hình thức thanh toán khách hàng lựa chọn (VietQR, ATM, Thẻ, Ví).</td></tr>
         <tr><td style="text-align: center;">8</td><td>SPF</td><td>Sales Processing Framework</td><td>Hệ thống xử lý đơn hàng nội bộ của FPT Telecom.</td></tr>
 
-        <tr>
-            <td style="text-align: center;">1</td>
-            <td>Camera Only (Cam Only)</td>
-            <td>Camera Only</td>
-            <td>Luồng đăng ký mua Camera riêng biệt, không kèm đường truyền Internet FPT.</td>
-        </tr><tr>
-            <td style="text-align: center;">2</td>
-            <td>Non-FPT ISP</td>
-            <td>Non-FPT Internet Service Provider</td>
-            <td>Nhà cung cấp dịch vụ Internet khác FPT (Viettel, VNPT, MobiFone...).</td>
-        </tr><tr>
-            <td style="text-align: center;">3</td>
-            <td>Self-installation</td>
-            <td>Self-installation</td>
-            <td>Khách hàng tự lắp đặt thiết bị tại nhà theo tài liệu/video hướng dẫn, không cần kỹ thuật viên.</td>
-        </tr><tr>
-            <td style="text-align: center;">4</td>
-            <td>Add-on Device</td>
-            <td>Add-on Device</td>
-            <td>Thiết bị mua thêm gán vào tài khoản/gói lưu trữ Cloud sẵn có của khách hàng.</td>
-        </tr><tr>
-            <td style="text-align: center;">5</td>
-            <td>MAC Address</td>
-            <td>Media Access Control Address</td>
-            <td>Địa chỉ vật lý duy nhất của mỗi thiết bị Camera phục vụ việc kích hoạt và đối soát.</td>
-        </tr><tr>
-            <td style="text-align: center;">6</td>
-            <td>PDP</td>
-            <td>Product Detail Page</td>
-            <td>Trang chi tiết sản phẩm</td>
-        </tr><tr>
-            <td style="text-align: center;">7</td>
-            <td>Cloud Storage</td>
-            <td>Cloud Storage</td>
-            <td>Dịch vụ lưu trữ video của Camera an ninh thay cho thẻ nhớ</td>
-        </tr><tr>
-            <td style="text-align: center;">8</td>
-            <td>SMS Gateway</td>
-            <td>SMS Gateway</td>
-            <td>Hệ thống gửi tin nhắn kích hoạt/thông tin tài khoản qua SMS</td>
-        </tr>
+        
     </tbody>
 </table>
 
@@ -521,11 +488,11 @@
         <td>
             1. Khách hàng xem thông tin Camera rời tại trang chi tiết sản phẩm (PDP).<br>
             2. Khách hàng lựa chọn loại Camera: Camera Trong nhà (Indoor) hoặc Camera Ngoài trời (Outdoor).<br>
-            3. Tại khối **Cấu hình dịch vụ Cloud**, hệ thống cung cấp 2 tùy chọn chính:<br>
+            3. Tại khối <strong>Cấu hình dịch vụ Cloud</strong>, hệ thống cung cấp 2 tùy chọn chính:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;- *Tùy chọn A (Mua kèm Cloud mới):* Khách hàng chọn gói Cloud (3 ngày/7 ngày/14 ngày) và chu kỳ thanh toán (6 tháng/12 tháng).<br>
             &nbsp;&nbsp;&nbsp;&nbsp;- *Tùy chọn B (Tôi đã có gói Cloud/Chỉ mua thiết bị):* Hệ thống ẩn toàn bộ cấu hình gói Cloud cước và chuyển đơn giá cước Cloud về `0đ`. Khách hàng chỉ phải trả tiền mua thiết bị phần cứng.<br>
             4. Khách hàng tăng giảm số lượng mua thiết bị.<br>
-            5. Hệ thống tính toán và hiển thị realtime **Đơn giá combo/thiết bị lẻ** và **Tổng tiền tạm tính**.<br>
+            5. Hệ thống tính toán và hiển thị realtime <strong>Đơn giá combo/thiết bị lẻ</strong> và <strong>Tổng tiền tạm tính</strong>.<br>
             6. Khách hàng click "Mua ngay" -> Điều hướng sang One-page checkout.
         </td>
     </tr>
@@ -542,19 +509,19 @@
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;">**PDP-CAM-01**</td>
+            <td style="text-align: center;"><strong>PDP-CAM-01</strong></td>
             <td><strong>Ràng buộc Gói Cloud add-on</strong></td>
             <td>Nếu khách hàng chọn *Tùy chọn B (Chỉ mua thiết bị lẻ)*, hệ thống sẽ hiển thị một dòng lưu ý nhỏ ngay dưới checkbox: <em>"Lưu ý: Thiết bị FPT Camera bắt buộc phải có gói Cloud hoạt động để xem trực tuyến và lưu trữ dữ liệu. Hãy đảm bảo bạn đã có sẵn gói cước Cloud còn trống slot trong tài khoản của mình."</em> nhằm tránh việc khách hàng hiểu lầm thiết bị có thể chạy độc lập không cần Cloud.</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**PDP-CAM-02**</td>
+            <td style="text-align: center;"><strong>PDP-CAM-02</strong></td>
             <td><strong>Khuyến mãi chu kỳ cước Cloud</strong></td>
-            <td>Chương trình khuyến mãi áp dụng khi khách hàng chọn mua kèm Cloud mới chu kỳ dài:<br>- Chọn chu kỳ **6 tháng**: Không tặng thêm tháng cước.<br>- Chọn chu kỳ **12 tháng**: Tặng thêm **2 tháng cước Cloud miễn phí** (Tăng ưu đãi hơn so với bản Combo thường để kích thích tập khách hàng ngoại mạng).</td>
+            <td>Chương trình khuyến mãi áp dụng khi khách hàng chọn mua kèm Cloud mới chu kỳ dài:<br>- Chọn chu kỳ <strong>6 tháng</strong>: Không tặng thêm tháng cước.<br>- Chọn chu kỳ <strong>12 tháng</strong>: Tặng thêm <strong>2 tháng cước Cloud miễn phí</strong> (Tăng ưu đãi hơn so với bản Combo thường để kích thích tập khách hàng ngoại mạng).</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**PDP-CAM-03**</td>
+            <td style="text-align: center;"><strong>PDP-CAM-03</strong></td>
             <td><strong>Giới hạn số lượng add-on</strong></td>
-            <td>Mỗi giao dịch mua lẻ Camera Only chỉ được mua tối đa **5 thiết bị/đơn hàng** để đảm bảo khả năng đóng gói bưu điện và phòng ngừa hành vi mua đi bán lại không chính thức.</td>
+            <td>Số lượng tối thiểu (Min) và tối đa (Max) mỗi đơn hàng Camera Only được quy định theo khai báo trên hệ thống quản lý cấu hình sản phẩm (QLCS/Product Hub). Giá trị Min/Max có thể thay đổi linh hoạt theo từng chính sách bán hàng mà không cần chỉnh sửa code.</td>
         </tr>
     </tbody>
 </table>
@@ -592,7 +559,7 @@
             <td><strong>Số lượng thiết bị</strong></td>
             <td>Number Input (+/-)</td>
             <td style="text-align: center;">Y</td>
-            <td>Số lượng Camera cần mua. Min = 1, Max = 5 [PDP-CAM-03]. Tự động nhân số lượng gói Cloud tương ứng nếu chọn mua kèm Cloud mới.</td>
+            <td>Số lượng Camera cần mua. Min/Max theo khai báo trên hệ thống QLCS (Product Hub) [PDP-CAM-03]. Tự động nhân số lượng gói Cloud tương ứng nếu chọn mua kèm Cloud mới.</td>
         </tr>
         <tr>
             <td><strong>Tổng tiền tạm tính</strong></td>
@@ -626,14 +593,13 @@
 
 <h5>[CASE 1] Tự động kiểm tra SĐT & Đề xuất liên kết Hợp đồng Internet FPT</h5>
 <ul>
-    <li>Số điện thoại khách hàng nhập vào là khóa chính. Khi người dùng nhập đủ 10 chữ số di động Việt Nam, hệ thống lập tức gọi API ngầm (Asynchronous API) đối soát trên DB FPT Telecom:
+    <li>Số điện thoại khách hàng nhập vào là khóa chính. Khi người dùng nhập đủ 10 chữ số di động Việt Nam, hệ thống lập tức gọi API ngầm (Asynchronous API) kiểm tra trên DB FPT Camera:
         <ul>
-            <li><strong>Trường hợp 1 (SĐT đang dùng Internet FPT):</strong> Hệ thống hiển thị một slide-up banner/inline box thông báo nổi bật màu xanh: 
-            <br><em>"Phát hiện SĐT của bạn đang sử dụng Internet FPT (Hợp đồng: <strong>FPT-XXXXXX</strong>). Bạn có muốn liên kết đơn hàng này vào hợp đồng Internet có sẵn để gộp hóa đơn thanh toán và được <strong>giảm ngay 50.000đ phí thiết bị</strong> không?"</em>
-            <br>Khách hàng có thể chọn nút **"Đồng ý liên kết"** hoặc **"Bỏ qua"**. Nếu chọn Đồng ý, hệ thống tự động gán mã hợp đồng và trừ trực tiếp 50.000đ vào tổng tiền thiết bị.</li>
-            <li><strong>Trường hợp 2 (SĐT mạng ngoài - Non-FPT ISP):</strong> Hệ thống ghi nhận đây là khách hàng Cam Only ngoại mạng. Hiển thị dòng thông báo nhẹ nhàng: <em>"FPT Camera hoạt động tối ưu trên tất cả các đường truyền mạng (Viettel, VNPT, FPT, 4G...). Kỹ thuật viên sẽ hỗ trợ bạn cấu hình tốt nhất."</em></li>
+            <li><strong>Trường hợp 1 (SĐT đã có tài khoản FPT Camera):</strong> Hiển thị inline text thông báo màu xanh dưới trường SĐT: <em>"Số điện thoại này đã có tài khoản FPT Camera. Gói Cloud mua mới sẽ được tự động kích hoạt vào tài khoản hiện tại của bạn."</em></li>
+            <li><strong>Trường hợp 2 (SĐT chưa có tài khoản FPT Camera):</strong> Hiển thị inline text thông báo màu xám dưới trường SĐT: <em>"Hệ thống sẽ tự động tạo tài khoản FPT Camera cho bạn bằng số điện thoại này. Mật khẩu kích hoạt sẽ được gửi qua SMS sau khi lắp đặt thành công."</em></li>
         </ul>
     </li>
+    <li><em>Lưu ý: Đây là luồng bán mới (New Sales), hệ thống không kiểm tra hợp đồng Internet FPT (FTEL) của khách hàng.</em></li>
 </ul>
 
 <h5>[CASE 2] Lựa chọn Hình thức Triển khai & Quy trình tự lắp đặt (Self-installation)</h5>
@@ -641,15 +607,16 @@
 <ul>
     <li>Khách hàng được chủ động lựa chọn 1 trong 2 hình thức:
         <ol>
-            <li><strong>Kỹ thuật viên FPT đến nhà lắp đặt:</strong> 
+            <li><strong>Hỗ trợ lắp đặt (Kỹ thuật viên FPT đến nhà):</strong> 
                 <br>- Khách hàng điền địa chỉ thi công.
-                <br>- Hệ thống hiển thị lịch chọn ngày hẹn thi công (Ngày_Hẹn = Ngày_Đặt + tối thiểu 2 ngày làm việc).
+                <br>- Hệ thống hiển thị Phí lắp đặt theo mức phí định nghĩa trên hệ thống chính sách (QLCS). Khách hàng không chọn ngày lắp đặt; lịch hẹn sẽ do bộ phận kỹ thuật FPT chủ động liên hệ sau khi đơn hàng được xác nhận.
                 <br>- Kỹ thuật viên FPT đến kéo dây mạng/kết nối Wifi, khoan lắp cố định thiết bị lên tường/trần nhà và hướng dẫn cài đặt.
             </li>
-            <li><strong>Khách hàng tự lắp đặt tại nhà (Self-installation):</strong>
-                <br>- Khách hàng chỉ cần điền địa chỉ nhận thiết bị. Ẩn toàn bộ ô chọn lịch hẹn lắp đặt của kỹ thuật viên.
-                <br>- Hệ thống hiển thị dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng miễn phí qua bưu điện. Dự kiến nhận hàng sau 2-3 ngày làm việc."</em>
-                <br>- **Ưu đãi tặng thêm:** Để khuyến khích khách hàng tự phục vụ, khi chọn Tự lắp đặt, hệ thống tự động **Tặng thêm 01 tháng cước Cloud miễn phí** (giao diện hiển thị nhãn nổi bật: <em>"Tặng thêm 1 tháng Cloud tự lắp đặt"</em>).
+            <li><strong>Tôi muốn tự lắp đặt (Self-installation):</strong>
+                <br>- Khách hàng chỉ cần điền địa chỉ nhận thiết bị. Không hiển thị trường chọn ngày giao hàng/lắp đặt.
+                <br>- Hệ thống hiển thị Phí giao hàng theo mức phí định nghĩa trên hệ thống chính sách (QLCS) và dòng thông tin: <em>"Thiết bị sẽ được đóng gói và giao hàng qua bưu điện. Dự kiến nhận hàng sau 2-3 ngày làm việc."</em>
+                <br>- Khi chọn "Tôi muốn tự lắp đặt", chỉ hiển thị thông tin đơn hàng và phí giao hàng. Không hiển thị phí lắp đặt.
+                <br>- <strong>Ưu đãi tặng thêm:</strong> Để khuyến khích khách hàng tự phục vụ, khi chọn Tự lắp đặt, hệ thống tự động <strong>Tặng thêm 01 tháng cước Cloud miễn phí</strong> (giao diện hiển thị nhãn nổi bật: <em>"Tặng thêm 1 tháng Cloud tự lắp đặt"</em>).
             </li>
         </ol>
     </li>
@@ -660,41 +627,24 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th>Loại mạng sử dụng</th>
-            <th>Hình thức triển khai</th>
-            <th>Chu kỳ Cloud đăng ký</th>
-            <th style="text-align: center;">Mức phí lắp đặt tính toán</th>
-            <th>Ghi chú nghiệp vụ</th>
+            <th style="width: 20%;">Hình thức triển khai</th>
+            <th style="width: 20%;">Loại phí hiển thị</th>
+            <th style="width: 25%;">Nguồn mức phí</th>
+            <th style="width: 35%;">Ghi chú nghiệp vụ</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Ngoại mạng (Non-FPT)</td>
-            <td>Kỹ thuật FPT lắp đặt</td>
-            <td>Mua lẻ thiết bị (Không kèm Cloud / Cước tháng)</td>
-            <td style="text-align: center;"><strong>150.000đ / thiết bị</strong></td>
-            <td>Bi biểu phí tiêu chuẩn cho khách mạng ngoài (phụ thuộc độ phức tạp cấu hình modem ngoài).</td>
+            <td><strong>Hỗ trợ lắp đặt</strong> (Kỹ thuật viên FPT đến nhà)</td>
+            <td>Phí lắp đặt</td>
+            <td>Theo mức phí định nghĩa trên hệ thống chính sách (QLCS/Product Hub). Không hiển thị mức phí cố định trên giao diện.</td>
+            <td>Hệ thống gọi API lấy mức phí từ QLCS dựa trên loại sản phẩm, khu vực và chính sách hiện hành. Chỉ hiển thị Phí lắp đặt, không hiển thị Phí giao hàng.</td>
         </tr>
         <tr>
-            <td>Nội mạng (FPT Telecom)</td>
-            <td>Kỹ thuật FPT lắp đặt</td>
-            <td>Mua lẻ thiết bị (Không kèm Cloud / Cước tháng)</td>
-            <td style="text-align: center;"><strong>110.000đ / thiết bị</strong></td>
-            <td>Mức phí ưu đãi cho khách hàng sẵn có đường truyền Internet FPT.</td>
-        </tr>
-        <tr>
-            <td>Bất kỳ (FPT / Non-FPT)</td>
-            <td>Kỹ thuật FPT lắp đặt</td>
-            <td>Trả trước 6 tháng hoặc 12 tháng Cloud</td>
-            <td style="text-align: center;"><strong>0đ (Miễn phí)</strong></td>
-            <td>Miễn phí lắp đặt hoàn toàn để khuyến khích đăng ký cước Cloud chu kỳ dài.</td>
-        </tr>
-        <tr>
-            <td>Bất kỳ (FPT / Non-FPT)</td>
-            <td>Khách tự lắp đặt</td>
-            <td>Bất kỳ chu kỳ nào</td>
-            <td style="text-align: center;"><strong>0đ (Miễn phí)</strong></td>
-            <td>Tự lắp đặt luôn có phí lắp đặt hiển thị là 0đ. Miễn phí vận chuyển toàn quốc.</td>
+            <td><strong>Tôi muốn tự lắp đặt</strong> (Self-installation)</td>
+            <td>Phí giao hàng</td>
+            <td>Theo mức phí định nghĩa trên hệ thống chính sách (QLCS/Product Hub). Không hiển thị mức phí cố định trên giao diện.</td>
+            <td>Hệ thống gọi API lấy mức phí giao hàng từ QLCS. Chỉ hiển thị thông tin đơn hàng và Phí giao hàng. Không hiển thị Phí lắp đặt.</td>
         </tr>
     </tbody>
 </table>
@@ -744,17 +694,11 @@
             <td rowspan="2"><strong>Hình thức triển khai</strong></td>
             <td>Chọn cách thức lắp đặt</td>
             <td>Radio Group</td>
-            <td>- Bắt buộc chọn 1.<br>- Option: Kỹ thuật lắp / Tự lắp.</td>
+            <td>- Bắt buộc chọn 1.<br>- Option: Hỗ trợ lắp đặt / Tôi muốn tự lắp đặt.</td>
             <td style="text-align: center;">[CASE 2]</td>
-            <td>- Chọn Kỹ thuật lắp: Hiện lịch hẹn, tính phí lắp đặt tương ứng.<br>- Chọn Tự lắp: Ẩn lịch hẹn, phí lắp = 0đ, hiện thông báo giao hàng.</td>
+            <td>- Chọn "Hỗ trợ lắp đặt": Hiển thị phí lắp đặt theo chính sách hệ thống (QLCS).<br>- Chọn "Tôi muốn tự lắp đặt": Hiển thị phí giao hàng theo chính sách hệ thống (QLCS), hiện thông báo vận chuyển bưu điện.</td>
         </tr>
-        <tr>
-            <td>Lịch hẹn thi công</td>
-            <td>DatePicker</td>
-            <td>- Bắt buộc nếu chọn "Kỹ thuật lắp".<br>- Chọn ngày thi công.</td>
-            <td style="text-align: center;">[CASE 2]</td>
-            <td>Khách hàng chọn ngày hẹn phù hợp. Ngày khả dụng bắt đầu từ Ngày_Hiện_Tại + 2 (trừ Chủ nhật).</td>
-        </tr>
+
         <tr>
             <td rowspan="5"><strong>Địa chỉ giao hàng / Lắp đặt</strong></td>
             <td>Tỉnh/Thành phố</td>
@@ -805,8 +749,8 @@
     <tr>
         <td class="label">Quy tắc Giao diện & Nghiệp vụ</td>
         <td>
-            - **Trường hợp A (Khách chọn Kỹ thuật lắp):** Màn hình hiển thị mã đơn hàng SPF, lịch hẹn kỹ thuật đã xác nhận, và hướng dẫn chuẩn bị modem Wifi sẵn sàng trước khi kỹ thuật viên đến.
-            <br>- **Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):** Màn hình hiển thị mã vận đơn bưu điện (kèm hyperlink trực tiếp sang trang đối soát hành trình của Giao Hàng Nhanh/Viettel Post) và tích hợp **Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)**.
+            - <strong>Trường hợp A (Khách chọn Kỹ thuật lắp):</strong> Màn hình hiển thị mã đơn hàng SPF, lịch hẹn kỹ thuật đã xác nhận, và hướng dẫn chuẩn bị modem Wifi sẵn sàng trước khi kỹ thuật viên đến.
+            <br>- <strong>Trường hợp B (Khách chọn Tự lắp đặt - Self-installation):</strong> Màn hình hiển thị thông tin đơn hàng, phí giao hàng, mã vận đơn bưu điện (tích hợp từ hệ thống OMS/Logistics của FPT, kèm hyperlink trực tiếp sang trang đối soát hành trình của Giao Hàng Nhanh/Viettel Post) và tích hợp <strong>Khu vực Hướng dẫn Tự lắp đặt thông minh (Self-Setup Assistant Hub)</strong>.
         </td>
     </tr>
 </table>
@@ -853,7 +797,7 @@
         <tr>
             <td><strong>Hướng dẫn cài đặt App</strong></td>
             <td>- Nút tải app kèm hình minh họa giao diện App FPT Camera.
-            <br>- Thông tin tài khoản đăng nhập mặc định: <em>"Tài khoản xem Camera chính là Số điện thoại của bạn (`098***5678`). Mật khẩu kích hoạt sẽ được gửi tự động qua SMS ngay khi thiết bị được bàn giao thành công."</em></td>
+            <br>- Thông tin tài khoản đăng nhập mặc định: <em>"Tài khoản xem Camera chính là Số điện thoại của bạn (`098*<strong>5678`). Mật khẩu kích hoạt sẽ được gửi tự động qua SMS ngay khi thiết bị được bàn giao thành công."</em></td>
             <td>Hướng dẫn khách hàng chuẩn bị sẵn sàng môi trường phần mềm (App) để cấu hình ngay khi nhận thiết bị.</td>
         </tr>
         <tr>
@@ -868,7 +812,7 @@
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h2>II. LUỒNG NGHIỆP VỤ COMBO CAMERA (combocam)</h2>
-### I. Màn hình Chi tiết Sản phẩm (PDP - Combo Camera)
+<h3>1. Màn hình Chi tiết Sản phẩm (PDP - Combo Camera)</h3>
 
 <table class="usecase-table">
     <tr>
@@ -903,19 +847,19 @@
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;">**PDP-BR-01**</td>
+            <td style="text-align: center;"><strong>PDP-BR-01</strong></td>
             <td><strong>Chọn mặc định thông minh</strong></td>
-            <td>Để tối ưu hóa hành trình mua hàng, khi trang chi tiết tải xong, hệ thống sẽ tự động cấu hình mặc định sẵn các tùy chọn phổ biến nhất:<br>- Gói Cloud mặc định: <strong>7 ngày</strong>.<br>- Chu kỳ thanh toán mặc định: <strong>6 tháng</strong>.<br>- Số lượng combo mặc định: <strong>1</strong>.</td>
+            <td>Để tối ưu hóa hành trình mua hàng, khi trang chi tiết tải xong, hệ thống sẽ tự động cấu hình mặc định sẵn tùy chọn có giá thấp nhất:<br>- Gói Cloud mặc định: <strong>Gói Cloud có giá thấp nhất</strong> (theo cấu hình QLCS tại thời điểm truy cập).<br>- Chu kỳ thanh toán mặc định: <strong>Chu kỳ có giá thấp nhất</strong> (theo cấu hình QLCS tại thời điểm truy cập).<br>- Số lượng combo mặc định: <strong>1</strong>.</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**PDP-BR-02**</td>
+            <td style="text-align: center;"><strong>PDP-BR-02</strong></td>
             <td><strong>Ràng buộc đồng bộ số lượng</strong></td>
             <td>Vì đây là luồng bán Combo thiết bị + dịch vụ lưu trữ, <strong>Số lượng gói Cloud đăng ký phải luôn bằng Số lượng thiết bị phần cứng Camera</strong>. Ví dụ: Mua 3 Camera thì tự động đăng ký 3 gói Cloud tương ứng (không hỗ trợ mua 3 Camera nhưng chỉ mua 1 gói Cloud trên luồng Combo này).</td>
         </tr>
         <tr>
-            <td style="text-align: center;">**PDP-BR-03**</td>
+            <td style="text-align: center;"><strong>PDP-BR-03</strong></td>
             <td><strong>Khuyến mãi tặng tháng cước</strong></td>
-            <td>Hệ thống hiển thị trực tiếp ưu đãi chu kỳ dài hạn trên giao diện:<br>- Chọn chu kỳ **6 tháng**: Không tặng thêm tháng.<br>- Chọn chu kỳ **12 tháng**: Tặng thêm **1 tháng sử dụng Cloud miễn phí** (hiển thị nhãn nổi bật: *"Tặng 1 tháng"* màu cam trên radio button của chu kỳ).</td>
+            <td>Hệ thống hiển thị trực tiếp ưu đãi chu kỳ dài hạn trên giao diện:<br>- Chọn chu kỳ <strong>6 tháng</strong>: Không tặng thêm tháng.<br>- Chọn chu kỳ <strong>12 tháng</strong>: Tặng thêm <strong>1 tháng sử dụng Cloud miễn phí</strong> (hiển thị nhãn nổi bật: <em>"Tặng 1 tháng"</em> màu cam trên radio button của chu kỳ).</td>
         </tr>
     </tbody>
 </table>
@@ -947,7 +891,7 @@
             <td><strong>Số lượng</strong></td>
             <td>Number Input (+/-)</td>
             <td style="text-align: center;">Y</td>
-            <td>Số lượng bộ Combo. Giới hạn Min = 1, Max = 10. Tự động đồng bộ số lượng [PDP-BR-02].</td>
+            <td>Số lượng bộ Combo. Giới hạn Min/Max theo khai báo trên hệ thống QLCS (Product Hub). Tự động đồng bộ số lượng [PDP-BR-02].</td>
         </tr>
         <tr>
             <td><strong>Tổng tiền tạm tính</strong></td>
@@ -966,7 +910,7 @@
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
-### II. Màn hình Thanh toán (Checkout Page)
+<h3>2. Màn hình Thanh toán (Checkout Page - Combo Camera)</h3>
 
 <table class="usecase-table">
     <tr>
@@ -1015,7 +959,7 @@
 <p>Hệ thống tự động tính phí lắp đặt dựa trên chu kỳ gói Cloud lưu trữ để khuyến khích khách hàng đăng ký dài hạn:</p>
 <ul>
     <li>Nếu chu kỳ cước Cloud là <strong>6 tháng hoặc 12 tháng</strong>: <strong>Miễn phí hoàn toàn chi phí lắp đặt & vận chuyển</strong> (Phí lắp đặt hiển thị ở Sidebar: `0đ` - Kèm nhãn nổi bật: <em>"Miễn phí lắp đặt"</em> màu xanh lá).</li>
-    <li>Nếu khách hàng mua thiết bị không kèm Cloud (hoặc chọn gói Cloud thanh toán từng tháng): Tính phí lắp đặt mặc định là <strong>110.000đ/thiết bị</strong> (Tổng phí lắp đặt = 110.000đ x Số lượng thiết bị).</li>
+    <li>Mức phí cụ thể (bao gồm cả trường hợp miễn phí) do hệ thống QLCS quy định và có thể thay đổi linh hoạt theo chính sách mà không cần chỉnh sửa code frontend.</li>
 </ul>
 
 <h5>[CASE 4] Ràng buộc áp dụng Voucher (Khuyến mãi)</h5>
@@ -1207,7 +1151,7 @@
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
-### III. Màn hình Hoàn tất đơn hàng (Thank You Page)
+<h3>3. Màn hình Hoàn tất đơn hàng (Thank You Page - Combo Camera)</h3>
 
 <table class="usecase-table">
     <tr>
@@ -1217,9 +1161,9 @@
     <tr>
         <td class="label">Quy tắc Nghiệp vụ</td>
         <td>
-            - **TYP-BR-01 (Khóa nút Back trình duyệt):** Để tránh việc gửi yêu cầu thanh toán kép hoặc tạo trùng đơn hàng trên hệ thống SPF, giao diện phải hoàn toàn vô hiệu hóa nút Back của trình duyệt. Nếu người dùng cố tình Back, hệ thống tự động giữ họ ở trang Thank You Page hoặc đưa về Trang chủ FPT.VN.<br>
-            - **TYP-BR-02 (Tính toán ngày lắp đặt tự động):** Ngày hẹn lắp đặt dự kiến thi công hiển thị cho khách hàng được tính theo công thức: <strong>Ngày_Hẹn = Ngày_Đặt_Hàng + 2 ngày làm việc</strong> (loại trừ Chủ nhật).<br>
-            - **TYP-BR-03 (Quy chuẩn mã đơn hàng SPF):** Mã đơn hàng hiển thị phải là mã SPF định dạng chuẩn để dễ dàng đối soát hệ thống (Ví dụ: `FPTCAM12345678X`).
+            - <strong>TYP-BR-01 (Khóa nút Back trình duyệt):</strong> Để tránh việc gửi yêu cầu thanh toán kép hoặc tạo trùng đơn hàng trên hệ thống SPF, giao diện phải hoàn toàn vô hiệu hóa nút Back của trình duyệt. Nếu người dùng cố tình Back, hệ thống tự động giữ họ ở trang Thank You Page hoặc đưa về Trang chủ FPT.VN.<br>
+            - <strong>TYP-BR-02 (Lịch hẹn lắp đặt):</strong> Khách hàng không chọn ngày lắp đặt trên giao diện. Sau khi đơn hàng được xác nhận thành công, bộ phận kỹ thuật FPT sẽ chủ động liên hệ khách hàng qua SĐT đăng ký để xếp lịch thi công phù hợp.<br>
+            - <strong>TYP-BR-03 (Quy chuẩn mã đơn hàng SPF):</strong> Mã đơn hàng hiển thị phải là mã SPF định dạng chuẩn để dễ dàng đối soát hệ thống (Ví dụ: `FPTCAM12345678X`).
         </td>
     </tr>
 </table>
@@ -1241,12 +1185,12 @@
         </tr>
         <tr>
             <td><strong>Thông tin đơn hàng</strong></td>
-            <td>- **Mã đơn hàng:** `FPTCAMXXXXXXXX` (Định dạng in đậm, có nút copy nhanh).<br>- **Trạng thái:** *Đã thanh toán* (nếu chọn TT trực tuyến) hoặc *Chờ thanh toán khi lắp đặt* (nếu chọn COD).</td>
+            <td>- <strong>Mã đơn hàng:</strong> `FPTCAMXXXXXXXX` (Định dạng in đậm, có nút copy nhanh).<br>- <strong>Trạng thái:</strong> *Đã thanh toán* (nếu chọn TT trực tuyến) hoặc *Chờ thanh toán khi lắp đặt* (nếu chọn COD).</td>
             <td>Cung cấp mã tra cứu phục vụ đối soát và liên hệ tổng đài hỗ trợ khi cần thiết.</td>
         </tr>
         <tr>
             <td><strong>Lịch hẹn lắp đặt</strong></td>
-            <td>- **Thời gian lắp đặt dự kiến:** Thứ X, ngày Y/Z/2026.<br>- **Lưu ý:** *Kỹ thuật viên FPT Telecom sẽ liên hệ trực tiếp với bạn qua SĐT đăng ký trước khi đến 30 phút.*</td>
+            <td>- <strong>Thời gian lắp đặt dự kiến:</strong> Thứ X, ngày Y/Z/2026.<br>- <strong>Lưu ý:</strong> *Kỹ thuật viên FPT Telecom sẽ liên hệ trực tiếp với bạn qua SĐT đăng ký trước khi đến 30 phút.*</td>
             <td>Giúp khách hàng chủ động sắp xếp thời gian có mặt tại địa chỉ lắp đặt để tiếp đón kỹ thuật viên thi công.</td>
         </tr>
         <tr>
@@ -1256,8 +1200,8 @@
         </tr>
         <tr>
             <td><strong>Nút điều hướng</strong></td>
-            <td>- **Nút "Về trang chủ":** Điều hướng về trang chủ FPT.VN.<br>- **Nút "Theo dõi đơn hàng":** Dẫn đến trang tra cứu hành trình đơn hàng lắp đặt.</td>
-            <td>Cung cấp lối thoát giao diện tự nhiên và tăng tương tác giữ chân người dùng.</td>¬
+            <td>- <strong>Nút "Về trang chủ":</strong> Điều hướng về trang chủ FPT.VN.<br>- <strong>Nút "Theo dõi đơn hàng":</strong> Dẫn đến trang tra cứu hành trình đơn hàng lắp đặt.</td>
+            <td>Cung cấp lối thoát giao diện tự nhiên và tăng tương tác giữ chân người dùng.</td>
         </tr>
     </tbody>
 </table>
@@ -1267,9 +1211,9 @@
 <h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</h2>
 
 <div class="alert-box">
-    <b>[CAM-CASE-BR-01] Kiểm tra số điện thoại và liên kết hợp đồng Internet:</b>
-    <br>- Hệ thống tự động kiểm tra số điện thoại khách hàng nhập vào trên trang Checkout.
-    <br>- Nếu số điện thoại khớp với hợp đồng Internet FPT đang hoạt động (Active): Đề xuất liên kết để miễn phí lắp đặt thiết bị FPT Camera.
+    <b>[CAM-CASE-BR-01] Kiểm tra số điện thoại và tài khoản FPT Camera:</b>
+    <br>- Đây là luồng bán mới (New Sales). Hệ thống chỉ kiểm tra số điện thoại trên cơ sở dữ liệu FPT Camera để xác nhận tài khoản.
+    <br>- Không thực hiện kiểm tra hợp đồng Internet FPT (FTEL).
 </div>
 
 <div class="alert-box">
@@ -1298,10 +1242,10 @@
     <tbody>
         
         <tr>
-            <td><strong>Đăng ký liên kết hợp đồng</strong><br>(Không tìm thấy mã hợp đồng Internet FPT khớp với SĐT)</td>
+            <td><strong>Kiểm tra tài khoản FPT Camera</strong><br>(SĐT chưa có tài khoản trên hệ thống)</td>
             <td style="color: red; font-weight: bold;">Thất bại</td>
-            <td class="error-inline">"Số điện thoại này hiện chưa đăng ký đường truyền Internet FPT. Vui lòng kiểm tra lại hoặc tiếp tục đăng ký tài khoản ngoại mạng."</td>
-            <td>Hiển thị cảnh báo màu đỏ ngay dưới ô nhập SĐT, cho phép khách hàng chọn tiếp tục mua lẻ.</td>
+            <td class="error-inline">"Số điện thoại này chưa có tài khoản FPT Camera. Hệ thống sẽ tự động tạo tài khoản mới khi đơn hàng được xác nhận thành công."</td>
+            <td>Hiển thị thông báo inline màu xám dưới ô nhập SĐT, cho phép khách hàng tiếp tục đặt hàng bình thường.</td>
         </tr>
         <tr>
             <td><strong>Áp dụng Voucher giảm giá</strong><br>(Mã giảm giá hết hạn hoặc không áp dụng cho Combo Camera)</td>
