@@ -28,14 +28,23 @@ The following templates are available in the `templates/` directory. Use them as
 - File `.doc` (HTML-based) — mở được bằng MS Word và in ấn đúng chuẩn
 - Copy toàn bộ HTML shell từ `templates/urd-template.md` — **không tự chế CSS**
 
-#### 2. Trang bìa (Cover Page)
-- **Logo FPT Telecom**: Nhúng dạng `base64 Data URI` — không dùng đường dẫn tương đối để tránh broken link
+#### 2. Trang bìa (Cover Page) — chuẩn URD
+- **Logo FPT Telecom**: Nhúng dạng `base64 Data URI` — không dùng đường dẫn tương đối để tránh broken link. Kích thước chuẩn **4cm × 1.4cm**, đặt **góc trái trên** (dùng đơn vị `cm` để in đúng).
   ```bash
   python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())"
   ```
-- **Tác giả**: Ghi tên cụ thể của người soạn (VD: ThuyTT104) — không ghi chức danh chung
-- **BỎ dòng "Dự án"**: Không hiển thị tên dự án trên trang bìa
-- Gồm: Mã hiệu, Phiên bản, Tác giả, Ngày lập, Ngày cập nhật
+- **Badge phân loại** `LƯU HÀNH NỘI BỘ` ở góc phải trên; dòng **Phân loại** (Internal Use Only) trong bảng meta.
+- **Người lập**: tên cụ thể + vai trò (VD: ThuyTT104 · Business Analyst) — không ghi chức danh chung; **BỎ dòng "Dự án"**.
+- Bảng meta gồm: Mã hiệu, **Phiên bản**, **Trạng thái** (Draft/In Review/Approved), Người lập, Ngày lập, Ngày cập nhật, Phân loại; kèm **Kênh áp dụng** + **footer bản quyền** © FPT Telecom.
+- **⚠️ Đồng bộ phiên bản**: số Phiên bản trên bìa phải = phiên bản mới nhất trong Revision History.
+- **Phê duyệt tài liệu**: ngay sau bìa có bảng **PHÊ DUYỆT (Sign-off)** — Người lập / Người rà soát / Người phê duyệt (Vai trò · Họ tên · Chức danh · Ngày · Chữ ký).
+
+#### 2b. Đánh số trang (MS Word)
+- Bọc toàn bộ thân tài liệu trong `<div class="Section1">`; khai báo `@page Section1 { mso-footer: f1; }` và `<div id="f1" style="mso-element:footer">` chứa field `PAGE`/`NUMPAGES` (cú pháp `mso-element:field-begin/separator/end`).
+- Footer hiển thị: `Trang X / Y | Mã hiệu · Version`.
+
+#### 2c. Mục lục (TOC)
+- **Điền số trang thực** vào mọi `<td class="toc-page">`: render bản A4 (Chrome `--headless --print-to-pdf` hoặc Word), dò trang từng heading rồi thay. **KHÔNG để "X"/"—"** ở bản phát hành.
 
 #### 3. Page Break — Bắt buộc
 - CSS `h1` có `page-break-before: always; mso-page-break-before: always` → Mọi đầu mục **A, B, C, D, E** tự xuống trang mới
@@ -51,17 +60,19 @@ The following templates are available in the `templates/` directory. Use them as
 - **⚠️ KHÔNG đặt `<div page-break>` ngay trước `<h1>`** — `h1` CSS đã có `mso-page-break-before`, thêm div = 2 page-break = 1 trang trắng thừa
 - Chỉ dùng div page-break inline cho: sau cover, trước MỤC LỤC, trước `<h2>` cần tách trang
 
-#### 4. Sơ đồ Flow Diagram
-- Dùng skill `diagram-drawer` để vẽ — chuẩn nền trắng, đường thẳng/vuông góc
-- Ký hiệu bắt buộc: Tròn=Bắt đầu/Kết thúc | Chữ nhật=Tác vụ KH | Thoi=Quyết định | Note box=Quy tắc hệ thống
-- Góc nhìn **Customer Journey**: KH làm gì / KH thấy gì — không viết theo góc nhìn hệ thống kỹ thuật
-- Quy tắc hệ thống (BE logic, cấu hình...) → chuyển thành **note đính kèm step** (dạng bình hành nét đứt)
-- Lưu PNG tại `diagrams/[tên_flow].png`, nhúng bằng `<img class="diagram-img" style="max-width:100%;">`
-- **⚠️ KHÔNG thêm text/bullet mô tả trước thẻ `<img>`** — sơ đồ tự giải thích, caption thừa gây rối bố cục
+#### 4. Sơ đồ luồng nghiệp vụ — CHUẨN BPMN (bắt buộc)
+- Sơ đồ tổng quan phải theo **chuẩn BPMN**, không dùng flowchart tự do. Cách ổn định: viết generator sinh **SVG swimlane dọc** → `rsvg-convert -z 2` → PNG → nhúng base64 (chi tiết tại `templates/urd-template.md` PHẦN 5).
+- **Swimlane/Pool** theo tác nhân (VD: Khách hàng · Website/FE · Backend & Tích hợp).
+- Ký hiệu BPMN: **Start Event** = vòng tròn mảnh | **End Event** = vòng tròn đậm | **Task** = chữ nhật bo góc | **Exclusive Gateway** = hình thoi gắn ký hiệu **×** | **Text Annotation** = khối nét đứt gắn mã `[MODULE-BR-xx]` | **Sequence Flow** = mũi tên liền, luồng quay lui = mũi tên nét đứt.
+- Góc nhìn **Customer Journey** ở lane Khách hàng; quy tắc hệ thống → **Text Annotation** gắn mã BR, không phải step chính.
+- Lưu nguồn `diagrams/[tên_flow].svg` + PNG, nhúng bằng `<img class="diagram-img" style="max-width:100%;">`.
+- **⚠️ KHÔNG thêm text/bullet mô tả TRƯỚC thẻ `<img>`** — đặt ghi chú "cách đọc sơ đồ" + nguyên tắc vận hành SAU ảnh.
 
 #### 5. Nội dung luồng nghiệp vụ (usecase-table)
 - Gồm đầy đủ: Pre-conditions → Luồng chính (Step-by-Step) → Post-conditions → Luồng thay thế/Ngoại lệ (Alt)
 - Mỗi **Alt** phải nêu: điều kiện xảy ra + message chính xác + KH làm gì tiếp theo
+- **Cấu hình động, không hardcode**: mọi ngưỡng (giá, **biểu phí**, **giới hạn số lượng**, **phương thức thanh toán/PTTT**, bậc dịch vụ...) ghi rõ **do QLCS / Product Hub khai báo** và FE chỉ render theo dữ liệu trả về.
+- **Không bịa ưu đãi/khuyến mãi**: chỉ mô tả chương trình (miễn phí lắp đặt, tặng cước...) khi thực tế đang áp dụng; nếu chưa có → nêu phí/điều kiện theo biểu phí chuẩn.
 
 #### 6. Edge Cases & Error Messages
 - Mỗi case có bảng riêng: Điều kiện | Hành vi UI | Message chính xác | Hướng dẫn KH
@@ -69,8 +80,13 @@ The following templates are available in the `templates/` directory. Use them as
 - Dùng class `error-inline` (màu đỏ) cho lỗi, `success-inline` (màu xanh lá) cho thành công
 - Các rule hệ thống đặt trong `<div class="alert-box">` với mã `[MODULE-BR-XX]`
 
-#### 7. Revision History
-- Cập nhật mỗi lần sửa: ngày + tác giả (tên thực) + mô tả chi tiết thay đổi
+#### 7. Business Rules & Revision History
+- Mã Business Rule **liên tục, không gãy số** (`[MODULE]-BR-01 → -BR-0n`); khi thêm/xóa/gộp rule phải **cập nhật mọi cross-reference** (screen spec, annotation sơ đồ, ghi chú).
+- Revision History: cập nhật mỗi lần sửa: ngày + tác giả (tên thực) + mô tả chi tiết thay đổi.
+
+#### 7b. Chỉnh sửa file .doc (HTML-based) an toàn
+- File `.doc` dòng quá dài → tool đọc nhầm là binary. **Sửa bằng Python (đọc/ghi UTF-8)**, không Read trực tiếp.
+- Mọi `replace` nên kèm `assert count == kỳ vọng`; backup `.bak` trước khi sửa lớn; verify bằng render `.doc → PDF`.
 
 #### 8. Canh chỉnh cột bảng (% Width — BẮT BUỘC)
 - Dùng **`%` thay `px`** cho tất cả `<th>` trong `data-table` — đảm bảo co giãn đúng trong Word
