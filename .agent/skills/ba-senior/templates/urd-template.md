@@ -983,22 +983,68 @@ print('data:image/png;base64,' + b64)
 # 1) Viết generator Python sinh SVG swimlane dọc: mỗi node gán (lane, row, kind, label).
 python3 diagrams/gen_[tên]_bpmn.py          # -> diagrams/[tên]_bpmn.svg
 
-# 2) Convert SVG -> PNG @2x (cần: brew install librsvg)
-rsvg-convert -z 2 -o diagrams/[tên]_bpmn.png diagrams/[tên]_bpmn.svg
+# 2) Convert SVG -> PNG (cần: brew install librsvg)
+#    -w 1600: chiều rộng 1600px — sắc nét khi Word in A4 (~250 DPI), file nhỏ hơn -z 2
+rsvg-convert -w 1600 diagrams/[tên]_bpmn.svg -o diagrams/[tên]_bpmn.png
 
-# 3) Nhúng base64 vào URD
+# 3) Lấy kích thước thực của PNG để điền vào width/height HTML attribute
+python3 -c "
+import struct
+with open('diagrams/[tên]_bpmn.png','rb') as f:
+    f.read(8); f.read(4); f.read(4)
+    w = struct.unpack('>I', f.read(4))[0]
+    h = struct.unpack('>I', f.read(4))[0]
+# Quy đổi sang px hiển thị 16cm tại 96dpi (= 605px)
+dw = 605; dh = round(605 * h / w)
+print(f'PNG native: {w}x{h}  →  HTML attr: width={dw} height={dh}')
+"
+
+# 4) Nhúng base64 vào URD và cập nhật width/height đúng với từng ảnh
 python3 - <<'PY'
-import re, base64
-p='thuyttdoc/[urd_file].doc'
+import re, base64, struct
+
+def get_dims(path):
+    with open(path,'rb') as f:
+        f.read(8); f.read(4); f.read(4)
+        w = struct.unpack('>I',f.read(4))[0]
+        h = struct.unpack('>I',f.read(4))[0]
+    return w, h
+
+def b64img(path):
+    return 'data:image/png;base64,' + base64.b64encode(open(path,'rb').read()).decode()
+
+p = 'thuyttdoc/[urd_file].doc'
 html = open(p, encoding='utf-8').read()
-b64 = 'data:image/png;base64,' + base64.b64encode(open('diagrams/[tên]_bpmn.png','rb').read()).decode()
-# Thay ảnh tổng quan (diagram-img đầu tiên)
-html = re.sub(r'(<img class="diagram-img"[^>]*src=")[^"]*(")', r'\g<1>' + b64 + r'\g<2>', html, count=1)
-open(p, 'w', encoding='utf-8').write(html)
+
+# Danh sách ảnh theo thứ tự xuất hiện trong file
+diagrams = [
+    'diagrams/[tên_overview]_bpmn.png',   # B.1 — tổng quan
+    'diagrams/[tên_nhom1]_bpmn.png',      # B.2.1 — nhóm 1
+    'diagrams/[tên_nhom2]_bpmn.png',      # B.2.2 — nhóm 2 (nếu có)
+]
+
+lines = html.split('\n')
+img_indices = [i for i,l in enumerate(lines) if re.match(r'\s*<img class="diagram-img"', l)]
+assert len(img_indices) == len(diagrams), f"Số ảnh không khớp: {len(img_indices)} vs {len(diagrams)}"
+
+for idx, (line_num, path) in enumerate(zip(img_indices, diagrams)):
+    w, h = get_dims(path)
+    dw, dh = 605, round(605 * h / w)
+    new_img = (
+        f'<img class="diagram-img" '
+        f'width="{dw}" height="{dh}" '
+        f'style="width:16.0cm; height:auto; display:block; margin:0 auto; '
+        f'border:none; padding:0; mso-width-source:userset; mso-height-source:userset;" '
+        f'src="{b64img(path)}">'
+    )
+    lines[line_num] = new_img
+    print(f"[{idx+1}] {path}: {w}x{h} → {dw}x{dh}")
+
+open(p, 'w', encoding='utf-8').write('\n'.join(lines))
 print('Done')
 PY
 
-# 4) Verify: render .doc -> PDF, kiểm tra sơ đồ
+# 5) Verify: render .doc -> PDF, kiểm tra sơ đồ
 # macOS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
 #   --headless=new --disable-gpu --print-to-pdf=out.pdf "file://$PWD/thuyttdoc/[urd_file].doc"
 ```
@@ -1022,38 +1068,316 @@ file diagrams/[tên].png
 # Output: PNG image data, 605 x 493, ...
 ```
 
-### Script nhúng tất cả ảnh base64 vào URD (thay theo thứ tự)
+### Lưu ý quan trọng
+- **File `.doc` (HTML-based)** — tool đọc nhầm binary do dòng quá dài. Chỉnh sửa bằng **Python split('\n') + join**, KHÔNG dùng `re.sub` trên toàn chuỗi (chuỗi base64 có thể chứa `class=`, `src=` ngẫu nhiên → replace sai vị trí).
+- **`width/height` px** điền theo kích thước thực PNG (`struct.unpack` hoặc PIL). Sai giá trị → Word scale lệch tỷ lệ khi in.
+- **`mso-width-source:userset`** bắt buộc để Word ưu tiên `width:16.0cm` thay vì tính lại từ pixel.
+- **`rsvg-convert -w 1600`** thay vì `-z 2` — xuất đúng 1600px bất kể SVG gốc bao nhiêu px; sắc nét ~250 DPI khi in A4, file nhỏ hơn.
+- **Lề trái/phải** (`LEFT_PAD`/`RIGHT_PAD` ≥ 250px) để Text Annotation không tràn canvas.
+- **Tiêu đề** ở đỉnh (`y=34`), **legend** ở đáy (`y=H-15`) — không đè lên lane.
+
+---
+
+## PHẦN 6 — PYTHON GENERATOR TEMPLATE CHUẨN BPMN (FPT)
+
+> **Nguồn gốc**: Chuẩn hoá từ `diagrams/gen_cart_bpmn.py` (URD Giỏ hàng & Checkout đa sản phẩm — đã kiểm chứng thực tế).
+> Copy file này vào `diagrams/gen_[tên]_bpmn.py`, thay các `[PLACEHOLDER]`, chạy `python3 diagrams/gen_[tên]_bpmn.py`.
+
 ```python
-import re, base64
+# -*- coding: utf-8 -*-
+"""Sinh sơ đồ BPMN swimlane dọc cho URD [TÊN MODULE] — FPT Telecom."""
 
-p = 'thuyttdoc/[urd_file].doc'
-html = open(p, encoding='utf-8').read()
+ESC = lambda s: s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-diagrams = [
-    'diagrams/[tên_overview]_bpmn.png',   # sơ đồ tổng quan B.1
-    'diagrams/[tên_nhom1]_bpmn.png',      # sơ đồ nhóm 1 B.2.1
-    'diagrams/[tên_nhom2]_bpmn.png',      # sơ đồ nhóm 2 B.2.2 (nếu có)
+# ============================================================
+# CẤU HÌNH LAYOUT — điều chỉnh khi cần thêm/bớt lane hoặc node
+# ============================================================
+LEFT_PAD  = 290   # px lề trái (chứa back-edge + Text Annotation bên trái)
+RIGHT_PAD = 290   # px lề phải (chứa Text Annotation bên phải)
+LANE_W    = 460   # px chiều rộng mỗi lane
+LANE_X    = {0: LEFT_PAD, 1: LEFT_PAD + LANE_W, 2: LEFT_PAD + 2 * LANE_W}
+
+# Tên lane, màu viền, màu nền — thay theo tác nhân của luồng
+LANES = [
+    ("[LANE 0 — VD: KHÁCH HÀNG (CUSTOMER)]",              LANE_X[0], LANE_W, "#1f4e78", "#eef3fb"),
+    ("[LANE 1 — VD: WEBSITE FPT.VN (FRONTEND)]",          LANE_X[1], LANE_W, "#2e75b6", "#eef7fd"),
+    ("[LANE 2 — VD: BACKEND & TÍCH HỢP (SPF · CRM · Payment · Product Hub)]",
+                                                           LANE_X[2], LANE_W, "#7030a0", "#f6f0fb"),
 ]
+LANE_COLOR = {0: "#1f4e78", 1: "#2e75b6", 2: "#7030a0"}  # màu viền node khớp với lane
 
-def b64(path):
-    return 'data:image/png;base64,' + base64.b64encode(open(path,'rb').read()).decode()
+HEADER_H = 46    # chiều cao header lane
+ROW_H    = 94    # khoảng cách dọc mỗi hàng node (tăng nếu label nhiều dòng)
+TOP      = 84    # khoảng cách từ đỉnh SVG đến top lane (chứa tiêu đề)
+BOXW     = 270   # chiều rộng Task box (lane "c")
+BOXH     = 62    # chiều cao Task box
+NARROW   = 206   # chiều rộng Task box khi vị trí "l" hoặc "r" (2 nhánh song song)
 
-# Thay từng src theo thứ tự xuất hiện trong file
-for i, path in enumerate(diagrams):
-    html = re.sub(
-        r'(<img class="diagram-img"[^>]*src=")[^"]*(")',
-        lambda m, b=b64(path): m.group(1) + b + m.group(2),
-        html, count=1
-    )
 
-open(p, 'w', encoding='utf-8').write(html)
-print('Done —', len(diagrams), 'diagrams embedded')
+def lane_cx(l, half="c"):
+    """Tâm ngang: 'c'=giữa lane, 'l'=28% từ trái, 'r'=72% từ trái."""
+    x = LANE_X[l]
+    return x + LANE_W / 2 if half == "c" else (x + LANE_W * 0.28 if half == "l" else x + LANE_W * 0.72)
+
+
+def row_y(r):
+    """Tâm dọc của hàng r (0-based)."""
+    return TOP + HEADER_H + r * ROW_H + ROW_H / 2
+
+
+# ============================================================
+# HÀM BUILD — sinh SVG cho 1 sơ đồ
+# Gọi nhiều lần để sinh nhiều sơ đồ từ 1 file
+# ============================================================
+def build(title, N, E, BACK, ANNOT, nrows, outfile):
+    """
+    title   : str  — tiêu đề hiển thị trên đỉnh sơ đồ
+    N       : dict — node definitions {id: (lane, row, half, kind, label)}
+                     lane: 0/1/2  |  row: 0-based int  |  half: 'c'/'l'/'r'
+                     kind: 'start' | 'end' | 'task' | 'gw'
+                     label: str, dùng '\n' để xuống dòng
+    E       : list — sequence flows [(from_id, to_id, label, dashed)]
+                     dashed=0 → liền; dashed=1 → nét đứt
+    BACK    : list — luồng quay lui nét đứt [(from_id, to_id, label)]
+                     vẽ đi vòng ngoài bên trái lane 0
+    ANNOT   : list — text annotation [(text, anchor_node_id, side)]
+                     side: 'r' (phải lane) hoặc 'l' (trái lane)
+                     text: dùng '\n' xuống dòng; gắn mã [MODULE-BR-nn]
+    nrows   : int  — số hàng tổng cộng (= max row trong N + 1)
+    outfile : str  — đường dẫn SVG xuất ra
+    """
+    def npos(nid):
+        l, r, half, kind, label = N[nid][:5]
+        return lane_cx(l, half), row_y(r), kind, label, l
+
+    W = LANE_X[2] + LANE_W + RIGHT_PAD
+    H = TOP + HEADER_H + nrows * ROW_H + 56
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
+           f'viewBox="0 0 {W} {H}" font-family="Arial, sans-serif">']
+    out.append(f'<rect x="0" y="0" width="{W}" height="{H}" fill="#ffffff"/>')
+    out.append(f'<text x="{W/2}" y="34" font-size="20" font-weight="bold" '
+               f'fill="#1f4e78" text-anchor="middle">{ESC(title)}</text>')
+    out.append('<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" '
+               'orient="auto" markerUnits="strokeWidth">'
+               '<path d="M0,0 L7,3 L0,6 Z" fill="#444"/></marker></defs>')
+
+    # --- Vẽ lanes ---
+    laneTop, laneBot = TOP, H - 22
+    for name, x, w, c, fill in LANES:
+        out.append(f'<rect x="{x}" y="{laneTop}" width="{w}" height="{laneBot-laneTop}" '
+                   f'fill="{fill}" stroke="{c}" stroke-width="1.4"/>')
+        out.append(f'<rect x="{x}" y="{laneTop}" width="{w}" height="{HEADER_H}" fill="{c}"/>')
+        out.append(f'<text x="{x+w/2}" y="{laneTop+HEADER_H/2+5}" font-size="12.5" '
+                   f'font-weight="bold" fill="#ffffff" text-anchor="middle">{ESC(name)}</text>')
+
+    def tspans(label, cx, cy, fs=10, fill="#000", weight="normal"):
+        lines = label.split("\n")
+        y0 = cy - (len(lines) - 1) * fs * 0.62
+        s = f'<text x="{cx}" y="{y0+fs*0.35}" font-size="{fs}" fill="{fill}" ' \
+            f'font-weight="{weight}" text-anchor="middle">'
+        for j, ln in enumerate(lines):
+            s += f'<tspan x="{cx}" dy="{0 if j==0 else fs*1.24}">{ESC(ln)}</tspan>'
+        return s + '</text>'
+
+    def anchor(nid, where):
+        cx, cy, kind, label, l = npos(nid)
+        if kind == "gw":       h = w = 70
+        elif kind in ("start","end"): h = w = 52
+        else: h = BOXH; w = NARROW if N[nid][2] != "c" else BOXW
+        if where == "b": return cx, cy + h / 2
+        if where == "t": return cx, cy - h / 2
+        if where == "l": return cx - w / 2, cy
+        if where == "r": return cx + w / 2, cy
+
+    # --- Sequence Flow (vẽ trước, nằm dưới node) ---
+    def draw_edge(a, b, label, dashed):
+        ax, ay = anchor(a, "b"); bx, by = anchor(b, "t")
+        dash = ' stroke-dasharray="6,4"' if dashed else ''
+        if abs(ax - bx) < 2:
+            d = f'M{ax},{ay} L{bx},{by}'; lx, ly = ax + 8, (ay + by) / 2
+        else:
+            midy = ay + (by - ay) * 0.5
+            d = f'M{ax},{ay} L{ax},{midy} L{bx},{midy} L{bx},{by}'
+            lx, ly = (ax + bx) / 2, midy - 5
+        out.append(f'<path d="{d}" fill="none" stroke="#444" stroke-width="1.5"'
+                   f'{dash} marker-end="url(#arr)"/>')
+        if label:
+            wlbl = len(label) * 6.2 + 8
+            out.append(f'<rect x="{lx-wlbl/2}" y="{ly-9}" width="{wlbl}" height="15" '
+                       f'fill="#ffffff" opacity="0.92"/>')
+            out.append(f'<text x="{lx}" y="{ly+3}" font-size="9.5" fill="#333" '
+                       f'text-anchor="middle">{ESC(label)}</text>')
+
+    for a, b, lbl, dsh in E:
+        draw_edge(a, b, lbl, dsh)
+
+    # --- Back / Retry flow (đi vòng ngoài bên trái) ---
+    def draw_back(a, b, label, xx):
+        ax, ay = anchor(a, "l"); bx, by = anchor(b, "l")
+        d = f'M{ax},{ay} L{xx},{ay} L{xx},{by} L{bx},{by}'
+        out.append(f'<path d="{d}" fill="none" stroke="#c62828" stroke-width="1.4" '
+                   f'stroke-dasharray="6,4" marker-end="url(#arr)"/>')
+        out.append(f'<text x="{xx+4}" y="{(ay+by)/2}" font-size="9.5" fill="#c62828" '
+                   f'text-anchor="start" '
+                   f'transform="rotate(-90 {xx+4} {(ay+by)/2})">{ESC(label)}</text>')
+
+    for i, (a, b, lbl) in enumerate(BACK):
+        # Mũi tên đầu tiên đi sâu ra ngoài hơn; các mũi tên sau gần lane hơn
+        xx = LEFT_PAD - 250 if i == 0 else LANE_X[1] - 24
+        draw_back(a, b, lbl, xx)
+
+    # --- Text Annotation (Business Rule) ---
+    def draw_annot(text, nid, side):
+        cx, cy, kind, label, l = npos(nid)
+        bw, bh = 252, 50
+        if side == "r":
+            ax = LANE_X[l] + LANE_W; bxs = ax + 18; endx = bxs
+        else:
+            ax = LANE_X[l]; bxs = ax - 18 - bw; endx = bxs + bw
+        by = cy - bh / 2
+        out.append(f'<path d="M{ax},{cy} L{endx},{cy}" stroke="#bf8f00" '
+                   f'stroke-width="1.1" stroke-dasharray="3,3"/>')
+        out.append(f'<rect x="{bxs}" y="{by}" width="{bw}" height="{bh}" '
+                   f'fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" '
+                   f'stroke-dasharray="5,3" rx="3"/>')
+        out.append(tspans(text, bxs + bw / 2, cy, fs=8.2, fill="#7a5b00"))
+
+    for t, nid, side in ANNOT:
+        draw_annot(t, nid, side)
+
+    # --- Vẽ nodes (trên cùng) ---
+    for nid in N:
+        cx, cy, kind, label, l = npos(nid)
+        col = LANE_COLOR[l]
+        if kind == "start":
+            out.append(f'<circle cx="{cx}" cy="{cy}" r="26" fill="#e8f5e9" '
+                       f'stroke="#2e7d32" stroke-width="2"/>')
+            out.append(tspans(label, cx, cy, fs=9, fill="#1b5e20", weight="bold"))
+        elif kind == "end":
+            out.append(f'<circle cx="{cx}" cy="{cy}" r="26" fill="#ffebee" '
+                       f'stroke="#c62828" stroke-width="3.4"/>')
+            out.append(tspans(label, cx, cy, fs=8.5, fill="#b71c1c", weight="bold"))
+        elif kind == "gw":
+            r = 35
+            out.append(f'<polygon points="{cx},{cy-r} {cx+r},{cy} {cx},{cy+r} {cx-r},{cy}" '
+                       f'fill="#fff2cc" stroke="#bf8f00" stroke-width="1.8"/>')
+            out.append(f'<text x="{cx}" y="{cy-r-6}" font-size="15" font-weight="bold" '
+                       f'fill="#bf8f00" text-anchor="middle">\xd7</text>')
+            out.append(tspans(label, cx, cy, fs=8.8, fill="#5b4500", weight="bold"))
+        else:  # task
+            w = NARROW if N[nid][2] != "c" else BOXW
+            out.append(f'<rect x="{cx-w/2}" y="{cy-BOXH/2}" width="{w}" height="{BOXH}" '
+                       f'rx="9" fill="#ffffff" stroke="{col}" stroke-width="1.7"/>')
+            out.append(tspans(label, cx, cy, fs=9.6, fill="#1a1a1a"))
+
+    # --- Legend ---
+    out.append(f'<text x="{W/2}" y="{H-15}" font-size="11" fill="#555" text-anchor="middle">'
+               'K\xed hiệu BPMN: ◯ Start Event ◉ End Event'
+               ' ▭ Task ◇\xd7 Exclusive Gateway'
+               ' ╌╌ Text Annotation —▸ Sequence Flow'
+               ' ╌▸ Luồng quay lại</text>')
+
+    out.append('</svg>')
+    open(outfile, "w", encoding="utf-8").write("\n".join(out))
+    print("OK", outfile, W, "x", H)
+
+
+# ============================================================
+# KHAI BÁO CÁC SƠ ĐỒ — mỗi sơ đồ 1 khối N / E / BACK / ANNOT
+# ============================================================
+
+# ----- SƠ ĐỒ 1 — TỔNG QUAN (bắt buộc) -----
+# Quy ước node id: viết tắt có nghĩa (start, k1-kN=Khách hàng, f1-fN=Frontend, b1-bN=Backend, gXXX=gateway)
+N1 = {
+    # id         : (lane, row, half,  kind,    label)
+    "start"      : (0,    0,   "c",   "start", "Bắt đầu\n[Mô tả điểm khởi đầu]"),
+    "k1"         : (0,    1,   "c",   "task",  "[Hành động KH 1]\n[Chi tiết thêm nếu cần]"),
+    "f1"         : (1,    2,   "c",   "task",  "[Hành động FE 1]\n[Chi tiết]"),
+    "b1"         : (2,    3,   "c",   "task",  "[Xử lý BE 1]\n[Tích hợp hệ thống nào]"),
+    "g1"         : (2,    4,   "c",   "gw",    "[Điều kiện\nrẽ nhánh?]"),
+    "k2_yes"     : (0,    5,   "l",   "task",  "[Nhánh Có\nhành động KH]"),
+    "k2_no"      : (0,    5,   "r",   "task",  "[Nhánh Không\nhành động KH]"),
+    "f2"         : (1,    6,   "c",   "task",  "[Hiển thị kết quả\nFE]"),
+    "end"        : (0,    7,   "c",   "end",   "Hoàn tất\n[Mô tả kết thúc]"),
+}
+E1 = [
+    # (from,      to,       label_trên_mũi_tên,  dashed)
+    ("start",     "k1",     "",                   0),
+    ("k1",        "f1",     "",                   0),
+    ("f1",        "b1",     "",                   0),
+    ("b1",        "g1",     "",                   0),
+    ("g1",        "k2_yes", "Có",                 0),
+    ("g1",        "k2_no",  "Không",              0),
+    ("k2_yes",    "f2",     "",                   0),
+    ("k2_no",     "f2",     "",                   0),
+    ("f2",        "end",    "",                   0),
+]
+BACK1 = [
+    # (from,  to,    label_dọc)          — luồng quay lui / retry
+    ("g1",  "k1",  "[Điều kiện] → thử lại"),
+]
+ANNOT1 = [
+    # (text_annotation,                                          anchor_node, side)
+    ("[MODULE-BR-01] [Mô tả quy tắc nghiệp vụ liên quan].\n[Điều kiện áp dụng].", "f1", "r"),
+    ("[MODULE-BR-02] [Mô tả quy tắc thứ 2].\n[Logic xử lý].",                     "b1", "r"),
+]
+build(
+    "SƠ ĐỒ BPMN TỔNG QUAN — [TÊN MODULE / LUỒNG NGHIỆP VỤ] (FPT.VN)",
+    N1, E1, BACK1, ANNOT1,
+    nrows=8,   # = max(row trong N1) + 1
+    outfile="diagrams/[tên]_overview_bpmn.svg"
+)
+
+# ----- SƠ ĐỒ 2 — LUỒNG CHI TIẾT NHÓM 1 (nếu có) -----
+# N2 = { ... }
+# E2 = [ ... ]
+# BACK2 = [ ... ]
+# ANNOT2 = [ ... ]
+# build("SƠ ĐỒ BPMN — [TÊN NHÓM 1]", N2, E2, BACK2, ANNOT2, nrows=..., outfile="diagrams/[tên]_group1_bpmn.svg")
+
+# ----- SƠ ĐỒ 3 — LUỒNG CHI TIẾT NHÓM 2 (nếu có) -----
+# N3 = { ... }
+# E3 = [ ... ]
+# BACK3 = [ ... ]
+# ANNOT3 = [ ... ]
+# build("SƠ ĐỒ BPMN — [TÊN NHÓM 2]", N3, E3, BACK3, ANNOT3, nrows=..., outfile="diagrams/[tên]_group2_bpmn.svg")
 ```
 
-### Lưu ý quan trọng
-- **File `.doc` (HTML-based)** bị tool đọc nhầm là binary do dòng quá dài — chỉnh sửa bằng **Python (đọc/ghi UTF-8)**, không Read trực tiếp.
-- **`width/height` px**: PHẢI khớp với kích thước thực PNG — nếu để sai, Word scale ảnh lệch tỷ lệ khi in.
-- **`mso-width-source:userset`**: bắt buộc để Word tôn trọng `width:16.0cm` trong CSS thay vì tính lại từ px.
-- **Lề & lane**: chừa lề trái/phải đủ cho Text Annotation, tránh tràn canvas.
-- **Tiêu đề & chú giải (legend)**: đặt riêng ở đỉnh/đáy, không đè lên lane.
-- **Mọi replace** nên có `count=1` hoặc xác nhận số lần thay để tránh replace sai vị trí.
+### Hướng dẫn thêm node và edge
+
+#### Thêm node mới
+```python
+# Format: "id": (lane, row, half, kind, label)
+"ten_node": (0, 3, "c", "task", "Dòng 1\nDòng 2 (xuống dòng dùng \\n)"),
+```
+| Tham số | Giá trị hợp lệ | Ghi chú |
+|---|---|---|
+| `lane` | `0` / `1` / `2` | 0=Khách hàng, 1=Frontend, 2=Backend |
+| `row` | `0` – `N` | Hàng dọc (0-based từ trên xuống) |
+| `half` | `"c"` / `"l"` / `"r"` | Vị trí ngang trong lane; `"l"/"r"` → NARROW box (song song) |
+| `kind` | `"start"` / `"end"` / `"task"` / `"gw"` | Loại ký hiệu BPMN |
+| `label` | string, `\n` xuống dòng | Tối đa 2-3 dòng, không quá 30 ký tự/dòng |
+
+#### Thêm edge (sequence flow)
+```python
+# Format: (from_id, to_id, label, dashed)
+("node_a", "node_b", "Có",  0),   # liền, có nhãn
+("node_c", "node_d", "",    0),   # liền, không nhãn
+("gw1",    "node_e", "Không", 1), # nét đứt (exception flow)
+```
+
+#### Thêm Text Annotation (Business Rule)
+```python
+# Format: (text, anchor_node_id, side)
+# text: xuống dòng bằng \n; side: "r"=phải lane, "l"=trái lane
+("[MODULE-BR-03] Logic ràng buộc.\nĐiều kiện áp dụng thêm.", "node_id", "r"),
+```
+
+#### Điều chỉnh khi sơ đồ bị lệch / tràn
+| Triệu chứng | Điều chỉnh |
+|---|---|
+| Node bị chồng lên nhau | Tăng `ROW_H` (VD: 94 → 104) |
+| Label bị cắt | Giảm font size trong `tspans()` (VD: `fs=9.6` → `fs=8.5`) |
+| Text Annotation tràn ra ngoài canvas | Tăng `LEFT_PAD` / `RIGHT_PAD` (VD: 290 → 320) |
+| Lane quá chật | Tăng `LANE_W` (VD: 460 → 500) |
+| Sơ đồ quá cao, dài | Giảm `ROW_H` hoặc gộp node ít quan trọng |
