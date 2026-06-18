@@ -1,257 +1,246 @@
 # -*- coding: utf-8 -*-
-"""BPMN swimlane - Luồng Voucher Phase 2 (Internet/Combo & SKU/Camera)."""
+"""BPMN Swimlane – Luồng Voucher Phase 2 (Internet/Combo & SKU/Camera) – v2 clean routing."""
 
-ESC = lambda s: s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+ESC = lambda s: s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-LEFT_PAD = 260
-LANE_W   = 420
-LANE_X   = {0: LEFT_PAD, 1: LEFT_PAD+LANE_W, 2: LEFT_PAD+2*LANE_W}
+LEFT_PAD   = 50
+RIGHT_PAD  = 170    # khoảng trống bên phải cho BACK arrow
+LANE_W     = 440
+LANE_X     = {0: LEFT_PAD, 1: LEFT_PAD + LANE_W, 2: LEFT_PAD + 2 * LANE_W}
 LANES = [
-    ("KHÁCH HÀNG",                            LANE_X[0], LANE_W, "#1f4e78", "#eef3fb"),
-    ("WEBSITE FPT.VN (FRONTEND)",             LANE_X[1], LANE_W, "#2e75b6", "#eef7fd"),
-    ("BACKEND & ECP (VOUCHER ENGINE)",         LANE_X[2], LANE_W, "#7030a0", "#f6f0fb"),
+    ("KHÁCH HÀNG",                              LANE_X[0], LANE_W, "#1f4e78", "#eef3fb"),
+    ("WEBSITE FPT.VN  (FRONTEND)",              LANE_X[1], LANE_W, "#2e75b6", "#eef7fd"),
+    ("BACKEND  &  ECP  (VOUCHER ENGINE)",       LANE_X[2], LANE_W, "#7030a0", "#f6f0fb"),
 ]
+LANE_COLOR = {0: "#1f4e78", 1: "#2e75b6", 2: "#7030a0"}
+
 HEADER_H = 46
-ROW_H    = 90
-TOP      = 80
-BOXW, BOXH = 248, 58
-NARROW   = 190
+ROW_H    = 92
+TOP      = 72
+BOXW     = 286
+BOXH     = 62
+GW_R     = 34     # gateway half-size
 
-def lane_cx(l, half="c"):
-    x = LANE_X[l]
-    if half == "c":  return x + LANE_W/2
-    if half == "l":  return x + LANE_W*0.27
-    if half == "r":  return x + LANE_W*0.73
+def lane_cx(l):
+    return LANE_X[l] + LANE_W / 2
 
-def row_y(r): return TOP + HEADER_H + r*ROW_H + ROW_H/2
+def row_cy(r):
+    return TOP + HEADER_H + r * ROW_H + ROW_H / 2
 
-# id: (lane, row, half, kind, label)
+# ── Node table: id → (lane, row, kind, label) ──────────────────────────────
 # kind: start | end | task | gw
 N = {
-  "start":    (0,  0, "c", "start", "Bắt đầu:\nChọn ưu đãi"),
-  "k1":       (0,  1, "c", "task",  "Vào giỏ hàng (SKU)\nhoặc trang Checkout (Internet/Combo)"),
-  "k2":       (0,  2, "c", "task",  "Click 'Chọn ưu đãi'\nhoặc nhập mã khuyến mãi"),
-  "f1":       (1,  2, "c", "task",  "Mở popup Ưu đãi:\nSection Mã giảm giá + Chọn ưu đãi"),
-  "b1":       (2,  3, "c", "task",  "Lấy danh sách voucher\ncủa KH từ ECP"),
-  "gw_has":   (1,  4, "c", "gw",    "Có ưu đãi\nkhả dụng?"),
-  "f2_no":    (1,  5, "r", "task",  "Hiển thị:\n'Rất tiếc, quý khách\nkhông có mã ưu đãi'"),
-  "f2_yes":   (1,  5, "l", "task",  "Hiển thị danh sách:\nActive lên đầu · Label D-3\nScroll khi > 452px"),
-  "k3":       (0,  6, "c", "task",  "Nhập mã tay\nhoặc chọn voucher từ list"),
-  "gw_input": (1,  7, "c", "gw",    "Cách nhập\nvoucher?"),
-  "f3_code":  (1,  8, "l", "task",  "KH nhập mã tay\n→ Bấm 'Áp dụng'"),
-  "f3_pick":  (1,  8, "r", "task",  "KH chọn từ popup\n→ Bấm 'Sử dụng ưu đãi'"),
-  "b2":       (2,  9, "c", "task",  "Validate voucher:\n• Điều kiện đơn tối thiểu\n• PTTT hợp lệ\n• SL SP / Khu vực / Loại trừ"),
-  "gw_valid": (2, 10, "c", "gw",    "Voucher\nhợp lệ?"),
-  "b3_ok":    (2, 11, "l", "task",  "Tính số tiền giảm\n→ Trả kết quả FE"),
-  "b3_err":   (2, 11, "r", "task",  "Trả mã lỗi:\n• Không đủ điều kiện\n• Loại trừ với voucher khác\n• Mã không tồn tại"),
-  "f4_ok":    (1, 12, "l", "task",  "Áp dụng giảm giá:\nCập nhật tổng tiền · Đóng popup\nHiển thị '1 ưu đãi' trên section"),
-  "f4_err":   (1, 12, "r", "task",  "Disable voucher + Show thông báo:\n• 'Không đủ điều kiện tham gia'\n• 'Không áp dụng đồng thời...'"),
-  "k4":       (0, 13, "c", "task",  "Xem tóm tắt giảm giá\ntrên đơn hàng"),
-  "gw_change":(0, 14, "c", "gw",    "KH muốn\nthay đổi ưu đãi?"),
-  "k5":       (0, 15, "c", "task",  "Tiếp tục thanh toán\n(bước Xác nhận & Thanh toán)"),
-  "end_ok":   (0, 16, "l", "end",   "Đơn hàng\nhoàn tất"),
-  "end_no":   (0,  5, "r", "end",   "Không có\nưu đãi"),
+    "start": (0,  0, "start", "Bat dau"),
+    "k1":    (0,  1, "task",  "Vao trang Checkout\n(Internet/Combo)\nhoac Gio hang (SKU/Camera)"),
+    "f1":    (1,  2, "task",  "Hien thi section\n\"Ma giam gia\"\nhoac \"Uu dai\""),
+    "k2":    (0,  3, "task",  "Click \"Chon uu dai\"\nhoac nhap ma tay"),
+    "f2":    (1,  4, "task",  "Goi ECP API\nlay danh sach voucher KH"),
+    "c1":    (2,  4, "task",  "Tra danh sach voucher\n(ten / mo ta / anh tu CMS)"),
+    "f3":    (1,  5, "task",  "Hien thi Popup uu dai:\n- Active len dau  -  Label D-3\n- Scroll khi noi dung > 452px"),
+    "k3":    (0,  6, "task",  "Chon voucher tu popup\nhoac nhap ma tay\n->  Bam \"Ap dung\""),
+    "f4":    (1,  6, "task",  "Gui validate request\n(ma  .  PTTT  .  don  .  dia chi)"),
+    "c2":    (2,  6, "task",  "Validate voucher:\n- PTTT  -  Don toi thieu\n- SL SP  -  Khu vuc  -  Loai tru"),
+    "gw":    (2,  7, "gw",    "Voucher\nhop le?"),
+    "c3":    (2,  8, "task",  "Tinh so tien giam\n->  Tra ket qua hop le"),
+    "f5":    (1,  8, "task",  "Cap nhat tong tien\n\"1 uu dai dang ap dung\"\n->  Dong popup"),
+    "k4":    (0,  8, "task",  "Xac nhan don hang\n&  Thanh toan"),
+    "c5":    (2,  9, "task",  "Final check voucher\n->  Tao don SPF"),
+    "end":   (0, 10, "end",   "Don hang\nhoan tat"),
 }
 
+# ── Forward edges: (src, dst, label) ─────────────────────────────────────
+# Routing auto-detected: same row -> horizontal; cross-row -> L-shape orthogonal
 EDGES = [
-  ("start",    "k1",      "",            False),
-  ("k1",       "k2",      "",            False),
-  ("k2",       "f1",      "",            False),
-  ("f1",       "b1",      "",            False),
-  ("b1",       "gw_has",  "",            False),
-  ("gw_has",   "f2_yes",  "Có",          False),
-  ("gw_has",   "f2_no",   "Không",       False),
-  ("f2_no",    "end_no",  "",            False),
-  ("f2_yes",   "k3",      "",            False),
-  ("k3",       "gw_input","",            False),
-  ("gw_input", "f3_code", "Nhập mã",     False),
-  ("gw_input", "f3_pick", "Chọn popup",  False),
-  ("f3_code",  "b2",      "",            False),
-  ("f3_pick",  "b2",      "",            False),
-  ("b2",       "gw_valid","",            False),
-  ("gw_valid", "b3_ok",   "Có",          False),
-  ("gw_valid", "b3_err",  "Không",       False),
-  ("b3_ok",    "f4_ok",   "",            False),
-  ("b3_err",   "f4_err",  "",            False),
-  ("f4_ok",    "k4",      "",            False),
-  ("f4_err",   "k3",      "Chỉnh lại",   True),
-  ("k4",       "gw_change","",           False),
-  ("gw_change","k3",      "Có",          True),
-  ("gw_change","k5",      "Không",       False),
-  ("k5",       "end_ok",  "",            False),
+    ("start", "k1",  ""),
+    ("k1",    "f1",  ""),
+    ("f1",    "k2",  ""),
+    ("k2",    "f2",  ""),
+    ("f2",    "c1",  ""),
+    ("c1",    "f3",  ""),
+    ("f3",    "k3",  ""),
+    ("k3",    "f4",  ""),
+    ("f4",    "c2",  ""),
+    ("c2",    "gw",  ""),
+    ("gw",    "c3",  "Hop le"),
+    ("c3",    "f5",  ""),
+    ("f5",    "k4",  ""),
+    ("k4",    "c5",  ""),
+    ("c5",    "end", ""),
 ]
 
-ANNOTATIONS = [
-  (1, 3, "l", "[VCP-BR-01] Tên/Mô tả/Ảnh\nvoucher: CMS cấu hình\nriêng cho Web"),
-  (2, 9, "r", "[VCP-BR-02] Cơ cấu loại trừ:\nKhi chọn A → disable B\n'Không áp dụng đồng thời'"),
-  (1, 5, "c", "[VCP-BR-03] Sort: Active lên\nđầu · D-3 label 'Sắp hết hạn'\nScroll popup > 452px"),
+# ── Backward (retry) arrows: (src, dst, label) ────────────────────────────
+# Routed via RIGHT side of diagram (outside BE lane)
+BACK = [
+    ("gw", "k3", "Loi: FE hien thi\nthong bao inline/toast\nKH thu lai"),
 ]
 
-# ─────────── SVG BUILDERS ───────────
-def circle(cx,cy,r,fill,stroke,sw=2):
-    return f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>'
+# ── Annotations (text boxes): (nid, side, text) ──────────────────────────
+ANNOT = [
+    ("f3", "l", "[VCP-BR-01]\nTen/mo ta/anh voucher\ndo CMS (ECP) cau hinh"),
+    ("c2", "r", "[VCP-BR-02]\nCo cau loai tru:\nExclusion Group tai ECP"),
+]
 
-def diamond(cx,cy,half,fill,stroke,sw=2):
-    pts=f"{cx},{cy-half} {cx+half},{cy} {cx},{cy+half} {cx-half},{cy}"
-    return f'<polygon points="{pts}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>'
-
-def rounded_rect(cx,cy,w,h,fill,stroke,sw=1.5,r=8):
-    x,y=cx-w/2, cy-h/2
-    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>'
-
-def text_block(cx,cy,label,color="#000",fs=9.5,bold=False):
-    lines=[l for l in label.split("\n") if l.strip()]
-    n=len(lines); lh=13
-    start_y=cy - (n-1)*lh/2
-    fw="bold" if bold else "normal"
-    out=""
-    for i,ln in enumerate(lines):
-        dy=start_y+i*lh
-        out+=f'<text x="{cx}" y="{dy}" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="{fs}" fill="{color}" font-weight="{fw}">{ESC(ln)}</text>\n'
-    return out
-
-def node_svg(nid):
-    l,r,half,kind,label = N[nid][:5]
-    cx,cy = lane_cx(l,half), row_y(r)
-    lane_col = LANES[l][3]
-    out=""
-    if kind=="start":
-        out+=circle(cx,cy,18,"#d6f5d6",lane_col,2.5)
-        out+=text_block(cx,cy,label,lane_col,8.5)
-    elif kind=="end":
-        out+=circle(cx,cy,18,"#fde0d0",lane_col,2.5)
-        out+=circle(cx,cy,13,"#c00000","#c00000",0)
-        out+=text_block(cx,cy+28,label,"#c00000",8.5)
-    elif kind=="task":
-        w=BOXW; h=BOXH
-        out+=rounded_rect(cx,cy,w,h,"white",lane_col,1.5)
-        out+=text_block(cx,cy,label,lane_col,8.5)
-    elif kind=="gw":
-        out+=diamond(cx,cy,26,"#fff9e6",lane_col,2)
-        out+=text_block(cx,cy,label,lane_col,8.5)
-    return out
-
-def get_edge_pts(src,dst):
-    l0,r0,h0,k0,_=N[src][:5]; cx0,cy0=lane_cx(l0,h0),row_y(r0)
-    l1,r1,h1,k1,_=N[dst][:5]; cx1,cy1=lane_cx(l1,h1),row_y(r1)
-    if k0=="gw": cy0=cy0+26
-    elif k0=="start" or k0=="end": cy0=cy0+18
-    else: cy0=cy0+BOXH/2
-    if k1=="gw": cy1=cy1-26
-    elif k1=="start" or k1=="end": cy1=cy1-18
-    else: cy1=cy1-BOXH/2
-    return cx0,cy0,cx1,cy1
-
-def arrow(x1,y1,x2,y2,dashed=False,color="#333",label="",label_color="#555"):
-    dash=""
-    if dashed: dash='stroke-dasharray="6,4"'
-    mid_x=(x1+x2)/2; mid_y=(y1+y2)/2
-    if abs(x1-x2)>10:
-        path=f"M{x1},{y1} C{x1},{mid_y} {x2},{mid_y} {x2},{y2}"
-    else:
-        path=f"M{x1},{y1} L{x2},{y2}"
-    out=f'<path d="{path}" fill="none" stroke="{color}" stroke-width="1.5" {dash} marker-end="url(#arr)"/>\n'
-    if label:
-        out+=f'<text x="{mid_x+4}" y="{mid_y-4}" font-family="Arial" font-size="8" fill="{label_color}">{ESC(label)}</text>\n'
-    return out
-
-def annotation_svg(row, col_half, lane_idx, text):
-    ax = lane_cx(lane_idx, col_half) + BOXW/2 + 14
-    ay = row_y(row) - BOXH/2
-    lines = text.split("\n")
-    h = len(lines)*13+10; w=180
-    out = f'<rect x="{ax}" y="{ay}" width="{w}" height="{h}" rx="4" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="5,3"/>\n'
-    out += f'<line x1="{ax-14}" y1="{ay+h/2}" x2="{ax}" y2="{ay+h/2}" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,3"/>\n'
-    for i,ln in enumerate(lines):
-        out += f'<text x="{ax+6}" y="{ay+13+i*13}" font-family="Arial" font-size="8" fill="#7b5e00">{ESC(ln)}</text>\n'
-    return out
+# ──────────────────────────────────────────────────────────────────────────
+# SVG builder
+# ──────────────────────────────────────────────────────────────────────────
 
 def build_svg():
-    total_rows = max(N[nid][1] for nid in N) + 1
-    TOTAL_H = TOP + HEADER_H + total_rows*ROW_H + 60
-    TOTAL_W = LEFT_PAD + len(LANES)*LANE_W + 220
+    nrows   = max(v[1] for v in N.values()) + 1
+    TOTAL_W = LEFT_PAD + 3 * LANE_W + RIGHT_PAD
+    TOTAL_H = TOP + HEADER_H + nrows * ROW_H + 48
 
-    lines=[f'''<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="{TOTAL_W}" height="{TOTAL_H}">
-<defs>
-  <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-    <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
-  </marker>
-</defs>
-<!-- BG -->
-<rect width="{TOTAL_W}" height="{TOTAL_H}" fill="white"/>
-''']
+    def npos(nid):
+        l, r, kind, label = N[nid]
+        return lane_cx(l), row_cy(r), kind, label, l
+
+    def anchor(nid, where):
+        cx, cy, kind, label, l = npos(nid)
+        if kind == "gw":
+            hw = GW_R
+            ww = GW_R
+        elif kind in ("start", "end"):
+            hw = 24
+            ww = 24
+        else:
+            hw = BOXH / 2
+            ww = BOXW / 2
+        if where == "b": return cx, cy + hw
+        if where == "t": return cx, cy - hw
+        if where == "l": return cx - ww, cy
+        if where == "r": return cx + ww, cy
+
+    def same_row(a, b):
+        return N[a][1] == N[b][1]
+
+    def tspans(label, cx, cy, fs=10, fill="#111", weight="normal"):
+        lines = label.split("\n")
+        lh = fs * 1.28
+        y0 = cy - (len(lines) - 1) * lh / 2
+        s = '<text x="%.1f" y="%.1f" font-size="%s" fill="%s" font-weight="%s" text-anchor="middle">' % (cx, y0, fs, fill, weight)
+        for i, ln in enumerate(lines):
+            dy = "" if i == 0 else ' dy="%.1f"' % lh
+            s += '<tspan x="%.1f"%s>%s</tspan>' % (cx, dy, ESC(ln))
+        return s + "</text>"
+
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d" font-family="Arial, sans-serif">' % (TOTAL_W, TOTAL_H, TOTAL_W, TOTAL_H),
+        '<rect width="%d" height="%d" fill="#ffffff"/>' % (TOTAL_W, TOTAL_H),
+        '<defs>'
+        '<marker id="arr" markerWidth="9" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth">'
+        '<path d="M0,0 L7,3.5 L0,7 Z" fill="#444"/></marker>'
+        '<marker id="arr_red" markerWidth="9" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth">'
+        '<path d="M0,0 L7,3.5 L0,7 Z" fill="#c62828"/></marker></defs>',
+    ]
 
     # Title
-    lines.append(f'<rect x="0" y="0" width="{TOTAL_W}" height="{TOP}" fill="#1f4e78"/>')
-    lines.append(f'<text x="{TOTAL_W//2}" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">BPMN — LUỒNG CHỌN VÀ ÁP DỤNG VOUCHER (PHASE 2)</text>')
-    lines.append(f'<text x="{TOTAL_W//2}" y="52" text-anchor="middle" font-family="Arial" font-size="10" fill="#a8c8f0">Phạm vi: Dịch vụ Internet/Combo (Checkout) · Sản phẩm SKU/Camera (Giỏ hàng)</text>')
-    lines.append(f'<text x="{TOTAL_W//2}" y="68" text-anchor="middle" font-family="Arial" font-size="9" fill="#7aa8d0">FPT.VN · Voucher Phase 2 · 2025</text>')
+    out.append('<text x="%.1f" y="44" font-size="17" font-weight="bold" fill="#1f4e78" text-anchor="middle">SO DO BPMN -- LUONG CHON &amp; AP DUNG VOUCHER (PHASE 2)</text>' % (TOTAL_W / 2))
+
+    # Swimlane backgrounds & headers
+    lane_top = TOP
+    lane_h   = HEADER_H + nrows * ROW_H
+    for name, x, w, col, bg in LANES:
+        out.append('<rect x="%s" y="%s" width="%s" height="%s" fill="%s" stroke="#c8d4e0" stroke-width="1.2"/>' % (x, lane_top, w, lane_h, bg))
+        out.append('<rect x="%s" y="%s" width="%s" height="%s" fill="%s"/>' % (x, lane_top, w, HEADER_H, col))
+        out.append('<text x="%.1f" y="%.1f" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">%s</text>' % (x + w/2, lane_top + HEADER_H/2 + 5, ESC(name)))
+        # Row guide lines
+        for r in range(1, nrows):
+            gy = TOP + HEADER_H + r * ROW_H
+            out.append('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="#dde8f0" stroke-width="0.5"/>' % (x, gy, x+w, gy))
 
     # Pool border
-    pool_x = LEFT_PAD - 8
-    pool_y = TOP
-    pool_w = len(LANES)*LANE_W + 16
-    pool_h = HEADER_H + total_rows*ROW_H + 8
-    lines.append(f'<rect x="{pool_x}" y="{pool_y}" width="{pool_w}" height="{pool_h}" rx="6" fill="none" stroke="#999" stroke-width="1.5"/>')
+    out.append('<rect x="%s" y="%s" width="%s" height="%s" fill="none" stroke="#7a9abc" stroke-width="2" rx="4"/>' % (LEFT_PAD, lane_top, 3*LANE_W, lane_h))
 
-    # Pool label (left sidebar)
-    lines.append(f'<rect x="{LEFT_PAD-260}" y="{TOP}" width="248" height="{pool_h}" rx="4" fill="#f0f4fa" stroke="#ccc" stroke-width="1"/>')
-    lines.append(f'<text x="{LEFT_PAD-136}" y="{TOP + pool_h//2}" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1f4e78" transform="rotate(-90,{LEFT_PAD-136},{TOP + pool_h//2})">LUỒNG VOUCHER FPT.VN PHASE 2</text>')
+    # ── Forward edges ────────────────────────────────────────────────────
+    def draw_edge(a, b, label):
+        if same_row(a, b):
+            ax, ay = anchor(a, "r")
+            bx, by = anchor(b, "l")
+            d = "M%.1f,%.1f L%.1f,%.1f" % (ax, ay, bx, by)
+            lx = (ax + bx) / 2
+            ly = ay - 7
+        else:
+            ax, ay = anchor(a, "b")
+            bx, by = anchor(b, "t")
+            midy = (ay + by) / 2
+            d = "M%.1f,%.1f L%.1f,%.1f L%.1f,%.1f L%.1f,%.1f" % (ax, ay, ax, midy, bx, midy, bx, by)
+            lx = (ax + bx) / 2
+            ly = midy - 5
+        out.append('<path d="%s" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>' % d)
+        if label:
+            wl = len(label) * 6 + 10
+            out.append('<rect x="%.1f" y="%.1f" width="%.1f" height="14" fill="#ffffff" opacity="0.9" rx="2"/>' % (lx - wl/2, ly - 10, wl))
+            out.append('<text x="%.1f" y="%.1f" font-size="9" fill="#1f4e78" text-anchor="middle" font-weight="bold">%s</text>' % (lx, ly + 1, ESC(label)))
 
-    # Lanes
-    lh = HEADER_H + total_rows*ROW_H + 8
-    for i,(lname,lx,lw,lc,lbg) in enumerate(LANES):
-        lines.append(f'<rect x="{lx}" y="{TOP}" width="{lw}" height="{lh}" fill="{lbg}" stroke="#bbb" stroke-width="1"/>')
-        lines.append(f'<rect x="{lx}" y="{TOP}" width="{lw}" height="{HEADER_H}" fill="{lc}" opacity="0.15" stroke="#bbb" stroke-width="1"/>')
-        lines.append(f'<text x="{lx+lw//2}" y="{TOP+HEADER_H//2+5}" text-anchor="middle" font-family="Arial" font-size="10.5" font-weight="bold" fill="{lc}">{ESC(lname)}</text>')
-        # row guides
-        for r in range(total_rows+1):
-            gy = TOP + HEADER_H + r*ROW_H
-            lines.append(f'<line x1="{lx}" y1="{gy}" x2="{lx+lw}" y2="{gy}" stroke="#e0e8f0" stroke-width="0.5"/>')
+    for a, b, lbl in EDGES:
+        draw_edge(a, b, lbl)
 
-    # Nodes
-    for nid in N:
-        lines.append(node_svg(nid))
+    # ── Backward (BACK) arrows via right side ────────────────────────────
+    xx_back = LEFT_PAD + 3 * LANE_W + 60
+    for a, b, lbl in BACK:
+        ax, ay = anchor(a, "r")
+        bx, by = anchor(b, "r")
+        d = "M%.1f,%.1f L%.1f,%.1f L%.1f,%.1f L%.1f,%.1f" % (ax, ay, xx_back, ay, xx_back, by, bx, by)
+        out.append('<path d="%s" fill="none" stroke="#c62828" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arr_red)"/>' % d)
+        if lbl:
+            mid_y = (ay + by) / 2
+            lines = lbl.split("\n")
+            for i, ln in enumerate(lines):
+                dy_val = i * 10 - len(lines) * 4
+                out.append('<text x="%.1f" y="%.1f" font-size="8.5" fill="#c62828" text-anchor="middle">%s</text>' % (xx_back + 8, mid_y + dy_val, ESC(ln)))
 
-    # Edges
-    for (src,dst,lbl,dashed) in EDGES:
-        x1,y1,x2,y2 = get_edge_pts(src,dst)
-        lines.append(arrow(x1,y1,x2,y2,dashed,label=lbl))
+    # ── Annotations ──────────────────────────────────────────────────────
+    for nid, side, text in ANNOT:
+        cx, cy, kind, label, l = npos(nid)
+        bw, bh = 230, 50
+        if side == "r":
+            ax0 = LANE_X[l] + LANE_W
+            bxs = ax0 + 14
+            endx = bxs
+        else:
+            ax0 = LANE_X[l]
+            bxs = ax0 - 14 - bw
+            endx = bxs + bw
+        by0 = cy - bh / 2
+        out.append('<path d="M%.1f,%.1f L%.1f,%.1f" stroke="#bf8f00" stroke-width="1" stroke-dasharray="3,3"/>' % (ax0, cy, endx, cy))
+        out.append('<rect x="%.1f" y="%.1f" width="%s" height="%s" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>' % (bxs, by0, bw, bh))
+        lines = text.split("\n")
+        lh = 12
+        ty = cy - (len(lines) - 1) * lh / 2
+        for i, ln in enumerate(lines):
+            out.append('<text x="%.1f" y="%.1f" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">%s</text>' % (bxs + bw/2, ty + i*lh, ESC(ln)))
 
-    # Annotations
-    for (row, half, lane_hint, txt) in ANNOTATIONS:
-        ann_lane = {"l":0,"c":1,"r":2}.get(lane_hint,1)
-        lines.append(annotation_svg(row, "c", ann_lane, txt))
+    # ── Draw nodes (on top of edges) ────────────────────────────────────
+    for nid, (l, r, kind, label) in N.items():
+        cx = lane_cx(l)
+        cy = row_cy(r)
+        col = LANE_COLOR[l]
+        if kind == "start":
+            out.append('<circle cx="%.1f" cy="%.1f" r="24" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.2"/>' % (cx, cy))
+            out.append(tspans(label, cx, cy, fs=9.5, fill="#1b5e20", weight="bold"))
+        elif kind == "end":
+            out.append('<circle cx="%.1f" cy="%.1f" r="24" fill="#ffebee" stroke="#c62828" stroke-width="3.5"/>' % (cx, cy))
+            out.append(tspans(label, cx, cy, fs=9, fill="#b71c1c", weight="bold"))
+        elif kind == "gw":
+            gpts = "%.1f,%.1f %.1f,%.1f %.1f,%.1f %.1f,%.1f" % (cx, cy-GW_R, cx+GW_R, cy, cx, cy+GW_R, cx-GW_R, cy)
+            out.append('<polygon points="%s" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.8"/>' % gpts)
+            out.append('<text x="%.1f" y="%.1f" font-size="14" font-weight="bold" fill="#bf8f00" text-anchor="middle">x</text>' % (cx, cy - GW_R - 5))
+            out.append(tspans(label, cx, cy, fs=9, fill="#5b4500", weight="bold"))
+        else:
+            out.append('<rect x="%.1f" y="%.1f" width="%s" height="%s" rx="9" fill="#ffffff" stroke="%s" stroke-width="1.8"/>' % (cx - BOXW/2, cy - BOXH/2, BOXW, BOXH, col))
+            out.append(tspans(label, cx, cy, fs=9.6, fill="#1a1a1a"))
 
-    # Legend
-    lx0 = LEFT_PAD - 258
-    ly0 = TOP + pool_h + 10
-    lines.append(f'<text x="{lx0}" y="{ly0+14}" font-family="Arial" font-size="9.5" font-weight="bold" fill="#1f4e78">LEGEND (Ký hiệu BPMN)</text>')
-    items=[
-        ("#d6f5d6","#1f4e78","start","Start Event"),
-        ("#fde0d0","#c00000","end",  "End Event"),
-        ("white",  "#2e75b6","task", "Task / Activity"),
-        ("#fff9e6","#7030a0","gw",   "Exclusive Gateway (×)"),
-        ("white",  "none",   "ann",  "Text Annotation (BR)"),
-        ("white",  "none",   "dash", "Luồng quay lui (nét đứt)"),
-    ]
-    for i,(fc,sc,tp,lbl) in enumerate(items):
-        lyi=ly0+30+i*20
-        if tp=="start": lines.append(circle(lx0+10,lyi,8,fc,sc,2))
-        elif tp=="end":  lines.append(circle(lx0+10,lyi,8,fc,sc,2)+circle(lx0+10,lyi,5,"#c00000","#c00000",0))
-        elif tp=="task": lines.append(rounded_rect(lx0+10,lyi,30,14,fc,sc,1.5,3))
-        elif tp=="gw":   lines.append(diamond(lx0+10,lyi,10,fc,sc,1.5))
-        elif tp=="ann":  lines.append(f'<rect x="{lx0+3}" y="{lyi-7}" width="14" height="14" rx="2" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,2"/>')
-        elif tp=="dash": lines.append(f'<line x1="{lx0+3}" y1="{lyi}" x2="{lx0+20}" y2="{lyi}" stroke="#333" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>')
-        lines.append(f'<text x="{lx0+26}" y="{lyi+4}" font-family="Arial" font-size="8.5" fill="#333">{ESC(lbl)}</text>')
+    # ── Legend ───────────────────────────────────────────────────────────
+    legend_y = TOP + HEADER_H + nrows * ROW_H + 14
+    out.append('<text x="%.1f" y="%s" font-size="10" fill="#555" text-anchor="middle">Ky hieu BPMN:  O Start Event   End Event (double ring)   Task/Activity   Diamond Exclusive Gateway   -- Sequence Flow   -- Luong quay lui/retry</text>' % (TOTAL_W / 2, legend_y + 16))
 
-    lines.append('</svg>')
-    return "\n".join(lines)
+    out.append("</svg>")
+    return "\n".join(out)
+
 
 if __name__ == "__main__":
+    import os
     svg = build_svg()
-    out_path = "diagrams/voucher_bpmn.svg"
-    with open(out_path, "w", encoding="utf-8") as f:
+    os.makedirs("diagrams", exist_ok=True)
+    with open("diagrams/voucher_bpmn.svg", "w", encoding="utf-8") as f:
         f.write(svg)
-    print(f"Wrote {out_path}")
+    print("OK diagrams/voucher_bpmn.svg")

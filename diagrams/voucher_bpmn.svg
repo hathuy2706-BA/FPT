@@ -1,248 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1740" height="1716">
-<defs>
-  <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-    <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
-  </marker>
-</defs>
-<!-- BG -->
-<rect width="1740" height="1716" fill="white"/>
-
-<rect x="0" y="0" width="1740" height="80" fill="#1f4e78"/>
-<text x="870" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="white">BPMN — LUỒNG CHỌN VÀ ÁP DỤNG VOUCHER (PHASE 2)</text>
-<text x="870" y="52" text-anchor="middle" font-family="Arial" font-size="10" fill="#a8c8f0">Phạm vi: Dịch vụ Internet/Combo (Checkout) · Sản phẩm SKU/Camera (Giỏ hàng)</text>
-<text x="870" y="68" text-anchor="middle" font-family="Arial" font-size="9" fill="#7aa8d0">FPT.VN · Voucher Phase 2 · 2025</text>
-<rect x="252" y="80" width="1276" height="1584" rx="6" fill="none" stroke="#999" stroke-width="1.5"/>
-<rect x="0" y="80" width="248" height="1584" rx="4" fill="#f0f4fa" stroke="#ccc" stroke-width="1"/>
-<text x="124" y="872" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1f4e78" transform="rotate(-90,124,872)">LUỒNG VOUCHER FPT.VN PHASE 2</text>
-<rect x="260" y="80" width="420" height="1584" fill="#eef3fb" stroke="#bbb" stroke-width="1"/>
-<rect x="260" y="80" width="420" height="46" fill="#1f4e78" opacity="0.15" stroke="#bbb" stroke-width="1"/>
-<text x="470" y="108" text-anchor="middle" font-family="Arial" font-size="10.5" font-weight="bold" fill="#1f4e78">KHÁCH HÀNG</text>
-<line x1="260" y1="126" x2="680" y2="126" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="216" x2="680" y2="216" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="306" x2="680" y2="306" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="396" x2="680" y2="396" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="486" x2="680" y2="486" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="576" x2="680" y2="576" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="666" x2="680" y2="666" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="756" x2="680" y2="756" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="846" x2="680" y2="846" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="936" x2="680" y2="936" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1026" x2="680" y2="1026" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1116" x2="680" y2="1116" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1206" x2="680" y2="1206" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1296" x2="680" y2="1296" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1386" x2="680" y2="1386" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1476" x2="680" y2="1476" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1566" x2="680" y2="1566" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="260" y1="1656" x2="680" y2="1656" stroke="#e0e8f0" stroke-width="0.5"/>
-<rect x="680" y="80" width="420" height="1584" fill="#eef7fd" stroke="#bbb" stroke-width="1"/>
-<rect x="680" y="80" width="420" height="46" fill="#2e75b6" opacity="0.15" stroke="#bbb" stroke-width="1"/>
-<text x="890" y="108" text-anchor="middle" font-family="Arial" font-size="10.5" font-weight="bold" fill="#2e75b6">WEBSITE FPT.VN (FRONTEND)</text>
-<line x1="680" y1="126" x2="1100" y2="126" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="216" x2="1100" y2="216" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="306" x2="1100" y2="306" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="396" x2="1100" y2="396" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="486" x2="1100" y2="486" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="576" x2="1100" y2="576" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="666" x2="1100" y2="666" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="756" x2="1100" y2="756" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="846" x2="1100" y2="846" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="936" x2="1100" y2="936" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1026" x2="1100" y2="1026" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1116" x2="1100" y2="1116" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1206" x2="1100" y2="1206" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1296" x2="1100" y2="1296" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1386" x2="1100" y2="1386" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1476" x2="1100" y2="1476" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1566" x2="1100" y2="1566" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="680" y1="1656" x2="1100" y2="1656" stroke="#e0e8f0" stroke-width="0.5"/>
-<rect x="1100" y="80" width="420" height="1584" fill="#f6f0fb" stroke="#bbb" stroke-width="1"/>
-<rect x="1100" y="80" width="420" height="46" fill="#7030a0" opacity="0.15" stroke="#bbb" stroke-width="1"/>
-<text x="1310" y="108" text-anchor="middle" font-family="Arial" font-size="10.5" font-weight="bold" fill="#7030a0">BACKEND &amp; ECP (VOUCHER ENGINE)</text>
-<line x1="1100" y1="126" x2="1520" y2="126" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="216" x2="1520" y2="216" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="306" x2="1520" y2="306" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="396" x2="1520" y2="396" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="486" x2="1520" y2="486" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="576" x2="1520" y2="576" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="666" x2="1520" y2="666" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="756" x2="1520" y2="756" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="846" x2="1520" y2="846" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="936" x2="1520" y2="936" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1026" x2="1520" y2="1026" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1116" x2="1520" y2="1116" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1206" x2="1520" y2="1206" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1296" x2="1520" y2="1296" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1386" x2="1520" y2="1386" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1476" x2="1520" y2="1476" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1566" x2="1520" y2="1566" stroke="#e0e8f0" stroke-width="0.5"/>
-<line x1="1100" y1="1656" x2="1520" y2="1656" stroke="#e0e8f0" stroke-width="0.5"/>
-<circle cx="470.0" cy="171.0" r="18" fill="#d6f5d6" stroke="#1f4e78" stroke-width="2.5"/><text x="470.0" y="164.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Bắt đầu:</text>
-<text x="470.0" y="177.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Chọn ưu đãi</text>
-
-<rect x="346.0" y="232.0" width="248" height="58" rx="8" fill="white" stroke="#1f4e78" stroke-width="1.5"/><text x="470.0" y="254.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Vào giỏ hàng (SKU)</text>
-<text x="470.0" y="267.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">hoặc trang Checkout (Internet/Combo)</text>
-
-<rect x="346.0" y="322.0" width="248" height="58" rx="8" fill="white" stroke="#1f4e78" stroke-width="1.5"/><text x="470.0" y="344.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Click 'Chọn ưu đãi'</text>
-<text x="470.0" y="357.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">hoặc nhập mã khuyến mãi</text>
-
-<rect x="766.0" y="322.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="890.0" y="344.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Mở popup Ưu đãi:</text>
-<text x="890.0" y="357.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Section Mã giảm giá + Chọn ưu đãi</text>
-
-<rect x="1186.0" y="412.0" width="248" height="58" rx="8" fill="white" stroke="#7030a0" stroke-width="1.5"/><text x="1310.0" y="434.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">Lấy danh sách voucher</text>
-<text x="1310.0" y="447.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">của KH từ ECP</text>
-
-<polygon points="890.0,505.0 916.0,531.0 890.0,557.0 864.0,531.0" fill="#fff9e6" stroke="#2e75b6" stroke-width="2"/><text x="890.0" y="524.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Có ưu đãi</text>
-<text x="890.0" y="537.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">khả dụng?</text>
-
-<rect x="862.5999999999999" y="592.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="986.5999999999999" y="608.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Hiển thị:</text>
-<text x="986.5999999999999" y="621.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">'Rất tiếc, quý khách</text>
-<text x="986.5999999999999" y="634.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">không có mã ưu đãi'</text>
-
-<rect x="669.4" y="592.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="793.4" y="608.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Hiển thị danh sách:</text>
-<text x="793.4" y="621.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Active lên đầu · Label D-3</text>
-<text x="793.4" y="634.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Scroll khi &gt; 452px</text>
-
-<rect x="346.0" y="682.0" width="248" height="58" rx="8" fill="white" stroke="#1f4e78" stroke-width="1.5"/><text x="470.0" y="704.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Nhập mã tay</text>
-<text x="470.0" y="717.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">hoặc chọn voucher từ list</text>
-
-<polygon points="890.0,775.0 916.0,801.0 890.0,827.0 864.0,801.0" fill="#fff9e6" stroke="#2e75b6" stroke-width="2"/><text x="890.0" y="794.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Cách nhập</text>
-<text x="890.0" y="807.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">voucher?</text>
-
-<rect x="669.4" y="862.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="793.4" y="884.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">KH nhập mã tay</text>
-<text x="793.4" y="897.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">→ Bấm 'Áp dụng'</text>
-
-<rect x="862.5999999999999" y="862.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="986.5999999999999" y="884.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">KH chọn từ popup</text>
-<text x="986.5999999999999" y="897.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">→ Bấm 'Sử dụng ưu đãi'</text>
-
-<rect x="1186.0" y="952.0" width="248" height="58" rx="8" fill="white" stroke="#7030a0" stroke-width="1.5"/><text x="1310.0" y="961.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">Validate voucher:</text>
-<text x="1310.0" y="974.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• Điều kiện đơn tối thiểu</text>
-<text x="1310.0" y="987.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• PTTT hợp lệ</text>
-<text x="1310.0" y="1000.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• SL SP / Khu vực / Loại trừ</text>
-
-<polygon points="1310.0,1045.0 1336.0,1071.0 1310.0,1097.0 1284.0,1071.0" fill="#fff9e6" stroke="#7030a0" stroke-width="2"/><text x="1310.0" y="1064.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">Voucher</text>
-<text x="1310.0" y="1077.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">hợp lệ?</text>
-
-<rect x="1089.4" y="1132.0" width="248" height="58" rx="8" fill="white" stroke="#7030a0" stroke-width="1.5"/><text x="1213.4" y="1154.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">Tính số tiền giảm</text>
-<text x="1213.4" y="1167.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">→ Trả kết quả FE</text>
-
-<rect x="1282.6" y="1132.0" width="248" height="58" rx="8" fill="white" stroke="#7030a0" stroke-width="1.5"/><text x="1406.6" y="1141.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">Trả mã lỗi:</text>
-<text x="1406.6" y="1154.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• Không đủ điều kiện</text>
-<text x="1406.6" y="1167.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• Loại trừ với voucher khác</text>
-<text x="1406.6" y="1180.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#7030a0" font-weight="normal">• Mã không tồn tại</text>
-
-<rect x="669.4" y="1222.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="793.4" y="1238.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Áp dụng giảm giá:</text>
-<text x="793.4" y="1251.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Cập nhật tổng tiền · Đóng popup</text>
-<text x="793.4" y="1264.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Hiển thị '1 ưu đãi' trên section</text>
-
-<rect x="862.5999999999999" y="1222.0" width="248" height="58" rx="8" fill="white" stroke="#2e75b6" stroke-width="1.5"/><text x="986.5999999999999" y="1238.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">Disable voucher + Show thông báo:</text>
-<text x="986.5999999999999" y="1251.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">• 'Không đủ điều kiện tham gia'</text>
-<text x="986.5999999999999" y="1264.0" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#2e75b6" font-weight="normal">• 'Không áp dụng đồng thời...'</text>
-
-<rect x="346.0" y="1312.0" width="248" height="58" rx="8" fill="white" stroke="#1f4e78" stroke-width="1.5"/><text x="470.0" y="1334.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Xem tóm tắt giảm giá</text>
-<text x="470.0" y="1347.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">trên đơn hàng</text>
-
-<polygon points="470.0,1405.0 496.0,1431.0 470.0,1457.0 444.0,1431.0" fill="#fff9e6" stroke="#1f4e78" stroke-width="2"/><text x="470.0" y="1424.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">KH muốn</text>
-<text x="470.0" y="1437.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">thay đổi ưu đãi?</text>
-
-<rect x="346.0" y="1492.0" width="248" height="58" rx="8" fill="white" stroke="#1f4e78" stroke-width="1.5"/><text x="470.0" y="1514.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">Tiếp tục thanh toán</text>
-<text x="470.0" y="1527.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#1f4e78" font-weight="normal">(bước Xác nhận &amp; Thanh toán)</text>
-
-<circle cx="373.4" cy="1611.0" r="18" fill="#fde0d0" stroke="#1f4e78" stroke-width="2.5"/><circle cx="373.4" cy="1611.0" r="13" fill="#c00000" stroke="#c00000" stroke-width="0"/><text x="373.4" y="1632.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#c00000" font-weight="normal">Đơn hàng</text>
-<text x="373.4" y="1645.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#c00000" font-weight="normal">hoàn tất</text>
-
-<circle cx="566.5999999999999" cy="621.0" r="18" fill="#fde0d0" stroke="#1f4e78" stroke-width="2.5"/><circle cx="566.5999999999999" cy="621.0" r="13" fill="#c00000" stroke="#c00000" stroke-width="0"/><text x="566.5999999999999" y="642.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#c00000" font-weight="normal">Không có</text>
-<text x="566.5999999999999" y="655.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="8.5" fill="#c00000" font-weight="normal">ưu đãi</text>
-
-<path d="M470.0,189.0 L470.0,232.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M470.0,290.0 L470.0,322.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M470.0,380.0 C470.0,351.0 890.0,351.0 890.0,322.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M890.0,380.0 C890.0,396.0 1310.0,396.0 1310.0,412.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M1310.0,470.0 C1310.0,487.5 890.0,487.5 890.0,505.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M890.0,557.0 C890.0,574.5 793.4,574.5 793.4,592.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="845.7" y="570.5" font-family="Arial" font-size="8" fill="#555">Có</text>
-
-<path d="M890.0,557.0 C890.0,574.5 986.5999999999999,574.5 986.5999999999999,592.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="942.3" y="570.5" font-family="Arial" font-size="8" fill="#555">Không</text>
-
-<path d="M986.5999999999999,650.0 C986.5999999999999,626.5 566.5999999999999,626.5 566.5999999999999,603.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M793.4,650.0 C793.4,666.0 470.0,666.0 470.0,682.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M470.0,740.0 C470.0,757.5 890.0,757.5 890.0,775.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M890.0,827.0 C890.0,844.5 793.4,844.5 793.4,862.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="845.7" y="840.5" font-family="Arial" font-size="8" fill="#555">Nhập mã</text>
-
-<path d="M890.0,827.0 C890.0,844.5 986.5999999999999,844.5 986.5999999999999,862.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="942.3" y="840.5" font-family="Arial" font-size="8" fill="#555">Chọn popup</text>
-
-<path d="M793.4,920.0 C793.4,936.0 1310.0,936.0 1310.0,952.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M986.5999999999999,920.0 C986.5999999999999,936.0 1310.0,936.0 1310.0,952.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M1310.0,1010.0 L1310.0,1045.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M1310.0,1097.0 C1310.0,1114.5 1213.4,1114.5 1213.4,1132.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="1265.7" y="1110.5" font-family="Arial" font-size="8" fill="#555">Có</text>
-
-<path d="M1310.0,1097.0 C1310.0,1114.5 1406.6,1114.5 1406.6,1132.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="1362.3" y="1110.5" font-family="Arial" font-size="8" fill="#555">Không</text>
-
-<path d="M1213.4,1190.0 C1213.4,1206.0 793.4,1206.0 793.4,1222.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M1406.6,1190.0 C1406.6,1206.0 986.5999999999999,1206.0 986.5999999999999,1222.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M793.4,1280.0 C793.4,1296.0 470.0,1296.0 470.0,1312.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M986.5999999999999,1280.0 C986.5999999999999,981.0 470.0,981.0 470.0,682.0" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
-<text x="732.3" y="977.0" font-family="Arial" font-size="8" fill="#555">Chỉnh lại</text>
-
-<path d="M470.0,1370.0 L470.0,1405.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<path d="M470.0,1457.0 L470.0,682.0" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
-<text x="474.0" y="1065.5" font-family="Arial" font-size="8" fill="#555">Có</text>
-
-<path d="M470.0,1457.0 L470.0,1492.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-<text x="474.0" y="1470.5" font-family="Arial" font-size="8" fill="#555">Không</text>
-
-<path d="M470.0,1550.0 C470.0,1571.5 373.4,1571.5 373.4,1593.0" fill="none" stroke="#333" stroke-width="1.5"  marker-end="url(#arr)"/>
-
-<rect x="608.0" y="232.0" width="180" height="49" rx="4" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="5,3"/>
-<line x1="594.0" y1="256.5" x2="608.0" y2="256.5" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="614.0" y="245.0" font-family="Arial" font-size="8" fill="#7b5e00">[VCP-BR-01] Tên/Mô tả/Ảnh</text>
-<text x="614.0" y="258.0" font-family="Arial" font-size="8" fill="#7b5e00">voucher: CMS cấu hình</text>
-<text x="614.0" y="271.0" font-family="Arial" font-size="8" fill="#7b5e00">riêng cho Web</text>
-
-<rect x="1448.0" y="322.0" width="180" height="49" rx="4" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="5,3"/>
-<line x1="1434.0" y1="346.5" x2="1448.0" y2="346.5" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="1454.0" y="335.0" font-family="Arial" font-size="8" fill="#7b5e00">[VCP-BR-02] Cơ cấu loại trừ:</text>
-<text x="1454.0" y="348.0" font-family="Arial" font-size="8" fill="#7b5e00">Khi chọn A → disable B</text>
-<text x="1454.0" y="361.0" font-family="Arial" font-size="8" fill="#7b5e00">'Không áp dụng đồng thời'</text>
-
-<rect x="1028.0" y="232.0" width="180" height="49" rx="4" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="5,3"/>
-<line x1="1014.0" y1="256.5" x2="1028.0" y2="256.5" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="1034.0" y="245.0" font-family="Arial" font-size="8" fill="#7b5e00">[VCP-BR-03] Sort: Active lên</text>
-<text x="1034.0" y="258.0" font-family="Arial" font-size="8" fill="#7b5e00">đầu · D-3 label 'Sắp hết hạn'</text>
-<text x="1034.0" y="271.0" font-family="Arial" font-size="8" fill="#7b5e00">Scroll popup &gt; 452px</text>
-
-<text x="2" y="1688" font-family="Arial" font-size="9.5" font-weight="bold" fill="#1f4e78">LEGEND (Ký hiệu BPMN)</text>
-<circle cx="12" cy="1704" r="8" fill="#d6f5d6" stroke="#1f4e78" stroke-width="2"/>
-<text x="28" y="1708" font-family="Arial" font-size="8.5" fill="#333">Start Event</text>
-<circle cx="12" cy="1724" r="8" fill="#fde0d0" stroke="#c00000" stroke-width="2"/><circle cx="12" cy="1724" r="5" fill="#c00000" stroke="#c00000" stroke-width="0"/>
-<text x="28" y="1728" font-family="Arial" font-size="8.5" fill="#333">End Event</text>
-<rect x="-3.0" y="1737.0" width="30" height="14" rx="3" fill="white" stroke="#2e75b6" stroke-width="1.5"/>
-<text x="28" y="1748" font-family="Arial" font-size="8.5" fill="#333">Task / Activity</text>
-<polygon points="12,1754 22,1764 12,1774 2,1764" fill="#fff9e6" stroke="#7030a0" stroke-width="1.5"/>
-<text x="28" y="1768" font-family="Arial" font-size="8.5" fill="#333">Exclusive Gateway (×)</text>
-<rect x="5" y="1777" width="14" height="14" rx="2" fill="#fffbe6" stroke="#f0c040" stroke-width="1" stroke-dasharray="4,2"/>
-<text x="28" y="1788" font-family="Arial" font-size="8.5" fill="#333">Text Annotation (BR)</text>
-<line x1="5" y1="1804" x2="22" y2="1804" stroke="#333" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-<text x="28" y="1808" font-family="Arial" font-size="8.5" fill="#333">Luồng quay lui (nét đứt)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="1178" viewBox="0 0 1540 1178" font-family="Arial, sans-serif">
+<rect width="1540" height="1178" fill="#ffffff"/>
+<defs><marker id="arr" markerWidth="9" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3.5 L0,7 Z" fill="#444"/></marker><marker id="arr_red" markerWidth="9" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3.5 L0,7 Z" fill="#c62828"/></marker></defs>
+<text x="770.0" y="44" font-size="17" font-weight="bold" fill="#1f4e78" text-anchor="middle">SO DO BPMN -- LUONG CHON &amp; AP DUNG VOUCHER (PHASE 2)</text>
+<rect x="50" y="72" width="440" height="1058" fill="#eef3fb" stroke="#c8d4e0" stroke-width="1.2"/>
+<rect x="50" y="72" width="440" height="46" fill="#1f4e78"/>
+<text x="270.0" y="100.0" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">KHÁCH HÀNG</text>
+<line x1="50" y1="210" x2="490" y2="210" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="302" x2="490" y2="302" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="394" x2="490" y2="394" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="486" x2="490" y2="486" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="578" x2="490" y2="578" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="670" x2="490" y2="670" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="762" x2="490" y2="762" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="854" x2="490" y2="854" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="946" x2="490" y2="946" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="50" y1="1038" x2="490" y2="1038" stroke="#dde8f0" stroke-width="0.5"/>
+<rect x="490" y="72" width="440" height="1058" fill="#eef7fd" stroke="#c8d4e0" stroke-width="1.2"/>
+<rect x="490" y="72" width="440" height="46" fill="#2e75b6"/>
+<text x="710.0" y="100.0" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">WEBSITE FPT.VN  (FRONTEND)</text>
+<line x1="490" y1="210" x2="930" y2="210" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="302" x2="930" y2="302" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="394" x2="930" y2="394" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="486" x2="930" y2="486" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="578" x2="930" y2="578" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="670" x2="930" y2="670" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="762" x2="930" y2="762" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="854" x2="930" y2="854" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="946" x2="930" y2="946" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="490" y1="1038" x2="930" y2="1038" stroke="#dde8f0" stroke-width="0.5"/>
+<rect x="930" y="72" width="440" height="1058" fill="#f6f0fb" stroke="#c8d4e0" stroke-width="1.2"/>
+<rect x="930" y="72" width="440" height="46" fill="#7030a0"/>
+<text x="1150.0" y="100.0" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">BACKEND  &amp;  ECP  (VOUCHER ENGINE)</text>
+<line x1="930" y1="210" x2="1370" y2="210" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="302" x2="1370" y2="302" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="394" x2="1370" y2="394" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="486" x2="1370" y2="486" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="578" x2="1370" y2="578" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="670" x2="1370" y2="670" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="762" x2="1370" y2="762" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="854" x2="1370" y2="854" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="946" x2="1370" y2="946" stroke="#dde8f0" stroke-width="0.5"/>
+<line x1="930" y1="1038" x2="1370" y2="1038" stroke="#dde8f0" stroke-width="0.5"/>
+<rect x="50" y="72" width="1320" height="1058" fill="none" stroke="#7a9abc" stroke-width="2" rx="4"/>
+<path d="M270.0,188.0 L270.0,206.5 L270.0,206.5 L270.0,225.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M270.0,287.0 L270.0,302.0 L710.0,302.0 L710.0,317.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M710.0,379.0 L710.0,394.0 L270.0,394.0 L270.0,409.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M270.0,471.0 L270.0,486.0 L710.0,486.0 L710.0,501.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M853.0,532.0 L1007.0,532.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M1150.0,563.0 L1150.0,578.0 L710.0,578.0 L710.0,593.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M710.0,655.0 L710.0,670.0 L270.0,670.0 L270.0,685.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M413.0,716.0 L567.0,716.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M853.0,716.0 L1007.0,716.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M1150.0,747.0 L1150.0,760.5 L1150.0,760.5 L1150.0,774.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M1150.0,842.0 L1150.0,855.5 L1150.0,855.5 L1150.0,869.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="1127.0" y="840.5" width="46.0" height="14" fill="#ffffff" opacity="0.9" rx="2"/>
+<text x="1150.0" y="851.5" font-size="9" fill="#1f4e78" text-anchor="middle" font-weight="bold">Hop le</text>
+<path d="M1293.0,900.0 L567.0,900.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M853.0,900.0 L127.0,900.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M270.0,931.0 L270.0,946.0 L1150.0,946.0 L1150.0,961.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M1150.0,1023.0 L1150.0,1041.5 L270.0,1041.5 L270.0,1060.0" fill="none" stroke="#444" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M1184.0,808.0 L1430.0,808.0 L1430.0,716.0 L413.0,716.0" fill="none" stroke="#c62828" stroke-width="1.5" stroke-dasharray="7,4" marker-end="url(#arr_red)"/>
+<text x="1438.0" y="750.0" font-size="8.5" fill="#c62828" text-anchor="middle">Loi: FE hien thi</text>
+<text x="1438.0" y="760.0" font-size="8.5" fill="#c62828" text-anchor="middle">thong bao inline/toast</text>
+<text x="1438.0" y="770.0" font-size="8.5" fill="#c62828" text-anchor="middle">KH thu lai</text>
+<path d="M490.0,624.0 L476.0,624.0" stroke="#bf8f00" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="246.0" y="599.0" width="230" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="361.0" y="612.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">[VCP-BR-01]</text>
+<text x="361.0" y="624.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Ten/mo ta/anh voucher</text>
+<text x="361.0" y="636.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">do CMS (ECP) cau hinh</text>
+<path d="M1370.0,716.0 L1384.0,716.0" stroke="#bf8f00" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="1384.0" y="691.0" width="230" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1499.0" y="704.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">[VCP-BR-02]</text>
+<text x="1499.0" y="716.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Co cau loai tru:</text>
+<text x="1499.0" y="728.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Exclusion Group tai ECP</text>
+<circle cx="270.0" cy="164.0" r="24" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.2"/>
+<text x="270.0" y="164.0" font-size="9.5" fill="#1b5e20" font-weight="bold" text-anchor="middle"><tspan x="270.0">Bat dau</tspan></text>
+<rect x="127.0" y="225.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="270.0" y="243.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="270.0">Vao trang Checkout</tspan><tspan x="270.0" dy="12.3">(Internet/Combo)</tspan><tspan x="270.0" dy="12.3">hoac Gio hang (SKU/Camera)</tspan></text>
+<rect x="567.0" y="317.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="710.0" y="335.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="710.0">Hien thi section</tspan><tspan x="710.0" dy="12.3">"Ma giam gia"</tspan><tspan x="710.0" dy="12.3">hoac "Uu dai"</tspan></text>
+<rect x="127.0" y="409.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="270.0" y="433.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="270.0">Click "Chon uu dai"</tspan><tspan x="270.0" dy="12.3">hoac nhap ma tay</tspan></text>
+<rect x="567.0" y="501.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="710.0" y="525.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="710.0">Goi ECP API</tspan><tspan x="710.0" dy="12.3">lay danh sach voucher KH</tspan></text>
+<rect x="1007.0" y="501.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1150.0" y="525.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1150.0">Tra danh sach voucher</tspan><tspan x="1150.0" dy="12.3">(ten / mo ta / anh tu CMS)</tspan></text>
+<rect x="567.0" y="593.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="710.0" y="611.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="710.0">Hien thi Popup uu dai:</tspan><tspan x="710.0" dy="12.3">- Active len dau  -  Label D-3</tspan><tspan x="710.0" dy="12.3">- Scroll khi noi dung &gt; 452px</tspan></text>
+<rect x="127.0" y="685.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="270.0" y="703.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="270.0">Chon voucher tu popup</tspan><tspan x="270.0" dy="12.3">hoac nhap ma tay</tspan><tspan x="270.0" dy="12.3">-&gt;  Bam "Ap dung"</tspan></text>
+<rect x="567.0" y="685.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="710.0" y="709.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="710.0">Gui validate request</tspan><tspan x="710.0" dy="12.3">(ma  .  PTTT  .  don  .  dia chi)</tspan></text>
+<rect x="1007.0" y="685.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1150.0" y="703.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1150.0">Validate voucher:</tspan><tspan x="1150.0" dy="12.3">- PTTT  -  Don toi thieu</tspan><tspan x="1150.0" dy="12.3">- SL SP  -  Khu vuc  -  Loai tru</tspan></text>
+<polygon points="1150.0,774.0 1184.0,808.0 1150.0,842.0 1116.0,808.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.8"/>
+<text x="1150.0" y="769.0" font-size="14" font-weight="bold" fill="#bf8f00" text-anchor="middle">x</text>
+<text x="1150.0" y="802.2" font-size="9" fill="#5b4500" font-weight="bold" text-anchor="middle"><tspan x="1150.0">Voucher</tspan><tspan x="1150.0" dy="11.5">hop le?</tspan></text>
+<rect x="1007.0" y="869.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1150.0" y="893.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1150.0">Tinh so tien giam</tspan><tspan x="1150.0" dy="12.3">-&gt;  Tra ket qua hop le</tspan></text>
+<rect x="567.0" y="869.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="710.0" y="887.7" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="710.0">Cap nhat tong tien</tspan><tspan x="710.0" dy="12.3">"1 uu dai dang ap dung"</tspan><tspan x="710.0" dy="12.3">-&gt;  Dong popup</tspan></text>
+<rect x="127.0" y="869.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="270.0" y="893.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="270.0">Xac nhan don hang</tspan><tspan x="270.0" dy="12.3">&amp;  Thanh toan</tspan></text>
+<rect x="1007.0" y="961.0" width="286" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1150.0" y="985.9" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1150.0">Final check voucher</tspan><tspan x="1150.0" dy="12.3">-&gt;  Tao don SPF</tspan></text>
+<circle cx="270.0" cy="1084.0" r="24" fill="#ffebee" stroke="#c62828" stroke-width="3.5"/>
+<text x="270.0" y="1078.2" font-size="9" fill="#b71c1c" font-weight="bold" text-anchor="middle"><tspan x="270.0">Don hang</tspan><tspan x="270.0" dy="11.5">hoan tat</tspan></text>
+<text x="770.0" y="1160" font-size="10" fill="#555" text-anchor="middle">Ky hieu BPMN:  O Start Event   End Event (double ring)   Task/Activity   Diamond Exclusive Gateway   -- Sequence Flow   -- Luong quay lui/retry</text>
 </svg>
