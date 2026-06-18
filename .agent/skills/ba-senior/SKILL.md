@@ -22,6 +22,14 @@ The following templates are available in the `templates/` directory. Use them as
 - **US Template**: `templates/us-template.md` (Use for User Story & Acceptance Criteria Specifications)
 - **Note**: When asked to create a document, first check if a template exists and follow its structure precisely.
 
+### 🎨 Figma Export (Sub-skill)
+Khi user yêu cầu đưa sơ đồ BPMN lên Figma board để lưu trữ/chia sẻ với team:
+1. Dùng skill **`figma-bpmn-exporter`** tại `.agent/skills/figma-bpmn-exporter/`
+2. Chạy: `python3 .agent/skills/figma-bpmn-exporter/scripts/build_plugin.py`
+3. Load plugin vào Figma Desktop → chạy plugin → sơ đồ được tạo dưới dạng vector native editable
+- SVG source: `diagrams/*.svg` (luôn cập nhật cùng repo)
+- Kết quả: Frame vector trong Figma, chỉnh sửa được trực tiếp, không cần redraw
+
 ### ⚠️ Chuẩn bắt buộc khi tạo URD (cập nhật từ thực tế dự án FPT)
 
 #### 1. Định dạng file output
