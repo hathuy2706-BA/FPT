@@ -65,12 +65,12 @@
 <text x="1438.0" y="770.0" font-size="8.5" fill="#c62828" text-anchor="middle">KH thu lai</text>
 <path d="M490.0,624.0 L476.0,624.0" stroke="#bf8f00" stroke-width="1" stroke-dasharray="3,3"/>
 <rect x="246.0" y="599.0" width="230" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
-<text x="361.0" y="612.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">[VCP-BR-01]</text>
+<text x="361.0" y="612.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">BR01</text>
 <text x="361.0" y="624.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Ten/mo ta/anh voucher</text>
 <text x="361.0" y="636.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">do CMS (ECP) cau hinh</text>
 <path d="M1370.0,716.0 L1384.0,716.0" stroke="#bf8f00" stroke-width="1" stroke-dasharray="3,3"/>
 <rect x="1384.0" y="691.0" width="230" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
-<text x="1499.0" y="704.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">[VCP-BR-02]</text>
+<text x="1499.0" y="704.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">BR02</text>
 <text x="1499.0" y="716.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Co cau loai tru:</text>
 <text x="1499.0" y="728.0" font-size="8.2" fill="#7a5b00" text-anchor="middle" dominant-baseline="middle">Exclusion Group tai ECP</text>
 <circle cx="270.0" cy="164.0" r="24" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.2"/>

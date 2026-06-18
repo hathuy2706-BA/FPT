@@ -76,8 +76,8 @@ BACK = [
 
 # ── Annotations (text boxes): (nid, side, text) ──────────────────────────
 ANNOT = [
-    ("f3", "l", "[VCP-BR-01]\nTen/mo ta/anh voucher\ndo CMS (ECP) cau hinh"),
-    ("c2", "r", "[VCP-BR-02]\nCo cau loai tru:\nExclusion Group tai ECP"),
+    ("f3", "l", "BR01\nTen/mo ta/anh voucher\ndo CMS (ECP) cau hinh"),
+    ("c2", "r", "BR02\nCo cau loai tru:\nExclusion Group tai ECP"),
 ]
 
 # ──────────────────────────────────────────────────────────────────────────
