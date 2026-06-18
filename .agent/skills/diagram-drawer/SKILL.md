@@ -1,6 +1,6 @@
 ---
 name: diagram-drawer
-description: Skill chuyên dụng để thiết kế, vẽ sơ đồ trình tự (Sequence Diagram), Flowchart bằng ngôn ngữ Mermaid và tự động xuất ra file ảnh PNG/SVG có nền tối chất lượng cao lưu tại folder 'diagrams'. Hãy kích hoạt skill này bất cứ khi nào người dùng yêu cầu vẽ sơ đồ, phân tích luồng hệ thống, hoặc cập nhật sơ đồ có sẵn.
+description: Skill chuyên dụng để thiết kế và vẽ 3 loại sơ đồ nghiệp vụ: (1) BPMN swimlane dọc — luồng nghiệp vụ tổng quan cho URD, dùng Python SVG generator; (2) Sequence Diagram — tương tác kỹ thuật hệ thống, dùng Mermaid; (3) Flowchart Swimlane — luồng liên phòng ban, dùng Mermaid. Kích hoạt khi user yêu cầu vẽ sơ đồ, thiết kế luồng nghiệp vụ, cập nhật sơ đồ đã có, hoặc nhúng sơ đồ vào URD/SRS.
 ---
 
 # Skill Vẽ Sơ Đồ Hệ Thống & Trực Quan Hóa (Diagram Drawer)
@@ -366,18 +366,59 @@ Hoặc bạn có thể chạy file script PowerShell dùng chung [generate_image
 
 ## 6. Thư Mục Templates & Case Studies Cho BA
 
-Skill này đi kèm một thư mục `templates/` chứa các file mẫu sẵn sàng để sử dụng ngay:
+Skill này đi kèm thư mục `templates/` chứa các file mẫu sẵn sàng dùng ngay:
+
+### 🔷 BPMN Swimlane (Python SVG Generator — chuẩn URD FPT)
+> Dùng cho: sơ đồ luồng nghiệp vụ tổng quan, Customer Journey, nhúng vào URD Word
 
 | File | Mô tả |
 |------|--------|
-| [sequence-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/sequence-template.md) | Mẫu file tài liệu Markdown kèm khối code Mermaid và chỗ nhúng ảnh PNG. |
-| [flowchart-swimlane-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/flowchart-swimlane-template.md) | **[MỚI]** Template vẽ Flow Diagram phân làn nghiệp vụ (Swimlane Flowchart) cho BA bằng Mermaid. |
-| [sequence-ba-template.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/sequence-ba-template.md) | **[MỚI]** Template vẽ Sequence Diagram tương tác hệ thống chi tiết cho BA bằng Mermaid. |
-| [example-related-articles.md](file:///Users/hathuy/Documents/FPT-1/.agent/skills/diagram-drawer/templates/example-related-articles.md) | Ví dụ thực tế hoàn chỉnh (Sơ đồ "Thông tin hay theo Tag sản phẩm") để tham khảo. |
+| [bpmn_template/SKILL.md](templates/bpmn_template/SKILL.md) | **Hướng dẫn đầy đủ** BPMN: ký hiệu, quy trình 5 bước, cấu trúc node, điều chỉnh layout, checklist. |
+| [bpmn_template/gen_bpmn_template.py](templates/bpmn_template/gen_bpmn_template.py) | **Generator template** — copy → `diagrams/gen_[tên]_bpmn.py`, thay placeholder, chạy ngay. |
 
-### Quy Trình Tạo Sơ Đồ Mới (Dùng Template):
-1. Copy file template tương ứng từ `templates/` vào thư mục `diagrams/[tên-mới].md`.
-2. Điền nội dung sơ đồ vào khối code block ````mermaid```` cùng phần mô tả chi tiết.
-3. Chạy lệnh PowerShell biên dịch nhanh ở trên (thay thế `$name = "[tên-mới]"`) để sinh ra file ảnh `diagrams/[tên-mới].png`.
-4. Kiểm tra hiển thị trong file Markdown mới tạo.
+**Quy trình nhanh:**
+```bash
+# 1. Copy template
+cp .agent/skills/diagram-drawer/templates/bpmn_template/gen_bpmn_template.py \
+   diagrams/gen_[module]_bpmn.py
+
+# 2. Chỉnh sửa node/edge/annotation trong file vừa copy
+# 3. Chạy generator
+python3 diagrams/gen_[module]_bpmn.py          # → diagrams/[module]_bpmn.svg
+
+# 4. Xuất PNG sắc nét (cần: brew install librsvg)
+rsvg-convert -w 1600 diagrams/[module]_bpmn.svg -o diagrams/[module]_bpmn.png
+
+# 5. Nhúng vào URD: xem ba-senior/templates/urd-template.md PHẦN 5
+```
+
+**Ví dụ thực tế đã kiểm chứng:** [`diagrams/gen_cart_bpmn.py`](../../../../diagrams/gen_cart_bpmn.py) (URD Giỏ hàng & Checkout đa SP)
+
+---
+
+### 🔶 Sequence Diagram & Flowchart (Mermaid)
+> Dùng cho: tương tác API chi tiết (Sequence), luồng liên phòng ban (Flowchart)
+
+| File | Mô tả |
+|------|--------|
+| [sequence-template.md](templates/sequence-template.md) | Mẫu file Markdown kèm khối Mermaid + chỗ nhúng ảnh PNG. |
+| [flowchart-swimlane-template.md](templates/flowchart-swimlane-template.md) | Template Flow Diagram phân làn nghiệp vụ bằng Mermaid. |
+| [sequence-ba-template.md](templates/sequence-ba-template.md) | Template Sequence Diagram tương tác hệ thống chi tiết. |
+| [example-related-articles.md](templates/example-related-articles.md) | Ví dụ thực tế hoàn chỉnh (sơ đồ "Thông tin hay theo Tag SP"). |
+
+**Quy trình tạo sơ đồ Mermaid:**
+1. Copy file template tương ứng → `diagrams/[tên-mới].md`
+2. Điền nội dung vào khối ` ```mermaid ``` ` cùng mô tả chi tiết
+3. Chạy PowerShell biên dịch nhanh ở Mục 5 để sinh `diagrams/[tên-mới].png`
+4. Kiểm tra hiển thị trong file Markdown mới tạo
+
+---
+
+### Bảng chọn loại sơ đồ
+
+| Yêu cầu | Loại sơ đồ | Template |
+|---|---|---|
+| Luồng nghiệp vụ tổng quan cho URD, Customer Journey, ai làm gì | **BPMN Swimlane** | `bpmn_template/gen_bpmn_template.py` |
+| Tương tác API giữa các hệ thống, call sequence kỹ thuật | **Sequence Diagram** | `sequence-ba-template.md` |
+| Luồng công việc liên phòng ban, quy trình nghiệp vụ nội bộ | **Flowchart Swimlane** | `flowchart-swimlane-template.md` |
 
