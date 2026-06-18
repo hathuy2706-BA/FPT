@@ -4,8 +4,11 @@
 > - File output là `.doc` (HTML-based, mở được bằng MS Word)
 > - Thay toàn bộ `[PLACEHOLDER]` bằng nội dung thực tế
 > - Logo: nhúng dạng base64 Data URI (`data:image/png;base64,...`) để tránh broken link khi mở trên máy khác
-> - Mỗi đầu mục lớn (MỤC LỤC, A, B, C, D, E) PHẢI xuống trang mới
-> - Sơ đồ flow: dùng skill `diagram-drawer`, xuất PNG nền trắng, nhúng bằng thẻ `<img class="diagram-img">`
+> - Mỗi đầu mục lớn (A, B, C, D, E, F) PHẢI xuống trang mới (`h1` đã có `page-break-before: always`)
+> - Mỗi `h2` (luồng trong mục C) cũng PHẢI xuống trang mới (`h2` đã có `page-break-before: always`)
+> - Sơ đồ flow: dùng skill `diagram-drawer`, xuất PNG nền trắng, nhúng bằng thẻ `<img class="diagram-img">` KHÔNG có border/padding
+> - BR (Business Rules) viết dạng **bảng 3 cột** (Mã | Tên quy tắc | Nội dung), KHÔNG dùng alert-box
+> - Mỗi luồng trong mục C gồm **4 phần cố định**: x.1 Đặc tả chi tiết · x.2 Quy tắc nghiệp vụ · x.3 Đặc tả giao diện · x.4 Edge cases & Mã lỗi
 
 ---
 
@@ -20,11 +23,9 @@
     /* ===== TYPOGRAPHY ===== */
     body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; color: #000000; font-size: 12pt; }
 
-    /* ===== ĐÁNH SỐ TRANG (MS WORD) — bắt buộc ===== */
-    /* Footer field PAGE/NUMPAGES tự đánh số trang khi mở bằng Word.
-       Phải bọc toàn bộ thân tài liệu trong div.Section1 và đặt div footer id=f1 (mso-element:footer) ở cuối. */
+    /* ===== ĐÁNH SỐ TRANG (MS WORD) ===== */
     @page Section1 {
-        size: 21.0cm 29.7cm;          /* A4 dọc */
+        size: 21.0cm 29.7cm;
         margin: 2.0cm 2.0cm 2.0cm 2.0cm;
         mso-header-margin: 1.0cm;
         mso-footer-margin: 1.0cm;
@@ -35,15 +36,7 @@
     p.MsoFooter, p.MsoHeader { margin: 0; font-family: 'Times New Roman', serif; font-size: 9pt; color: #666666; }
 
     /* ===== TRANG BÌA ===== */
-    .cover-container {
-        border: 4px double #1f4e78;
-        padding: 50px 40px;
-        margin: 10px;
-        min-height: 800px;
-        position: relative;
-    }
-    .cover-logo-box { text-align: left; margin-bottom: 30px; }
-    /* Logo FPT Telecom: kích thước chuẩn 4cm x 1.4cm, góc trái trên (dùng đơn vị cm để in đúng) */
+    .cover-container { border: 4px double #1f4e78; padding: 50px 40px; margin: 10px; min-height: 800px; position: relative; }
     .cover-logo { width: 4cm; height: 1.4cm; display: block; margin: 0; }
     .cover-badge { display: inline-block; border: 1.5px solid #c00000; color: #c00000; font-family: 'Arial', sans-serif; font-size: 9.5pt; font-weight: bold; letter-spacing: 0.5px; padding: 4px 12px; }
     .cover-org { font-family: 'Arial', sans-serif; color: #808080; font-size: 10.5pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
@@ -51,50 +44,31 @@
     .cover-scope { font-family: 'Arial', sans-serif; color: #595959; font-size: 11pt; margin-top: 8px; }
     .cover-copyright { border-top: 1px solid #d0d0d0; margin-top: 28px; padding-top: 10px; text-align: center; font-family: 'Arial', sans-serif; font-size: 9pt; color: #808080; }
     .cover-title-box { text-align: center; margin-top: 40px; margin-bottom: 60px; }
-    .cover-title-main {
-        font-family: 'Arial', sans-serif;
-        color: #1f4e78;
-        font-size: 24pt;
-        font-weight: bold;
-        text-transform: uppercase;
-        line-height: 1.4;
-        margin-bottom: 20px;
-    }
-    .cover-title-sub {
-        font-family: 'Arial', sans-serif;
-        color: #e37222;
-        font-size: 14pt;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-top: 10px;
-        letter-spacing: 0.5px;
-    }
-    .cover-meta-box {
-        margin-top: 60px;
-        width: 100%;
-        border-top: 2px solid #1f4e78;
-        padding-top: 20px;
-    }
+    .cover-title-main { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 24pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; margin-bottom: 20px; }
+    .cover-title-sub { font-family: 'Arial', sans-serif; color: #e37222; font-size: 14pt; font-weight: bold; text-transform: uppercase; margin-top: 10px; letter-spacing: 0.5px; }
+    .cover-meta-box { margin-top: 60px; width: 100%; border-top: 2px solid #1f4e78; padding-top: 20px; }
     .cover-meta-table { width: 100%; border-collapse: collapse; border: none; }
     .cover-meta-table td { border: none; padding: 6px 0; font-size: 11pt; color: #333333; }
     .cover-meta-label { font-weight: bold; color: #1f4e78; width: 140px; }
 
     /* ===== HEADINGS ===== */
-    /* LƯU Ý: h1 có page-break-before để đầu mục lớn luôn xuống trang mới */
+    /* h1 và h2 đều có page-break-before để xuống trang mới */
     h1 { font-family: 'Arial', sans-serif; color: #1f4e78; font-size: 18pt; font-weight: bold; text-transform: uppercase; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; page-break-before: always; mso-page-break-before: always; }
-    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; }
+    h2 { font-family: 'Arial', sans-serif; color: #2e75b6; font-size: 14pt; font-weight: bold; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #2e75b6; padding-bottom: 3px; page-break-before: always; mso-page-break-before: always; }
     h3 { font-family: 'Arial', sans-serif; color: #5b9bd5; font-size: 12pt; font-weight: bold; margin-top: 18px; margin-bottom: 8px; }
     h4 { font-family: 'Arial', sans-serif; color: #000000; font-size: 12pt; font-weight: bold; margin-top: 14px; margin-bottom: 6px; }
 
-    /* ===== BẢNG DỮ LIỆU ===== */
-    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: auto; word-wrap: break-word; }
-    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; }
+    /* ===== BẢNG — ép co giãn đúng trong Word ===== */
+    table { max-width: 100%; box-sizing: border-box; }
+    th, td { box-sizing: border-box; word-wrap: break-word; overflow-wrap: anywhere; word-break: break-word; }
+    table.data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; table-layout: fixed; mso-table-layout-alt: fixed; word-wrap: break-word; }
+    table.data-table th, table.data-table td { border: 1px solid #000000; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 11pt; overflow-wrap: anywhere; word-break: break-word; }
     table.data-table th { background-color: #d9e1f2; font-weight: bold; color: #1f4e78; font-size: 10.5pt; }
 
     /* ===== BẢNG USE CASE ===== */
-    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; }
-    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
-    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
+    table.usecase-table { border-collapse: collapse; width: 100%; margin-top: 8px; margin-bottom: 12px; table-layout: fixed; mso-table-layout-alt: fixed; }
+    table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; font-size: 11pt; overflow-wrap: anywhere; word-break: break-word; }
+    table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 170px; }
 
     /* ===== MỤC LỤC — WORD CLASSIC STYLE ===== */
     .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Times New Roman', Times, serif; font-size: 16pt; font-weight: bold; text-align: center; color: #000000; text-transform: uppercase; margin-bottom: 18px; letter-spacing: 0; padding-bottom: 0; border-bottom: none; }
@@ -107,38 +81,33 @@
 
     /* ===== TIỆN ÍCH ===== */
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
-    li { margin-bottom: 4px; }
-    p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+    li { margin-bottom: 4px; overflow-wrap: anywhere; word-break: break-word; }
+    p { margin-top: 0; margin-bottom: 8px; text-align: justify; overflow-wrap: anywhere; word-break: break-word; }
     .page-break { page-break-before: always; mso-page-break-before: always; }
-    .code-block { font-family: 'Courier New', Courier, monospace; background-color: #f4f4f4; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; font-size: 10pt; margin-top: 5px; margin-bottom: 10px; line-height: 1.2; }
     .alert-box { background-color: #fce4d6; border-left: 6px solid #ed7d31; padding: 10px; margin-top: 10px; margin-bottom: 10px; }
-    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; margin-top: 3px; }
+    .error-inline { color: #c00000; font-size: 10pt; font-style: italic; font-weight: bold; }
     .success-inline { color: #385723; font-size: 10pt; font-weight: bold; }
-    .diagram-img { max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
-    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
-    .figma-comment { background-color: #e2f0d9; border: 1px solid #a9d08e; color: #375623; padding: 10px; font-size: 10.5pt; margin-bottom: 10px; }
+    /* diagram-img: KHÔNG có border, padding — kích thước cố định 16cm */
+    .diagram-img { width: 16.0cm; height: auto; display: block; margin: 10px auto; border: none; padding: 0; background: #fff; mso-style-priority: 100; }
+    .note-box { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 12px; margin-bottom: 15px; }
+    /* flow-band: nhãn loại luồng hiển thị đầu mỗi h2 luồng */
+    .flow-band { background-color: #1f4e78; color: #ffffff; font-family: 'Arial', sans-serif; font-weight: bold; padding: 3px 8px; font-size: 10pt; border-radius: 3px; }
 </style>
 </head>
 <body>
 
-<!-- ⚠️ BẮT BUỘC: bọc toàn bộ thân tài liệu trong div.Section1 để áp footer đánh số trang -->
+<!-- ⚠️ BẮT BUỘC: bọc toàn bộ thân tài liệu trong div.Section1 -->
 <div class="Section1">
 
 <!-- ============================================================ -->
-<!-- TRANG BÌA (chuẩn URD)                                         -->
-<!-- Ghi chú:                                                      -->
-<!--  - Logo nhúng base64, kích thước 110×39px (≈3cm×1cm)          -->
-<!--  - Dùng width/height px thay cm — Word HTML bỏ qua đơn vị cm  -->
-<!--  - table-layout:fixed + max-width ô logo để logo không giãn   -->
-<!--  - Revision History nằm trên trang bìa (KHÔNG tách thành h2)  -->
+<!-- TRANG BÌA                                                     -->
 <!-- ============================================================ -->
 
 <!-- Bảng 1: Header tài liệu -->
 <table style="width:100%; border-collapse:collapse; border:2px solid #000000; margin:0; table-layout:fixed;">
     <tr>
         <td style="border-right:1.5px solid #000000; border-bottom:1.5px solid #000000; padding:12px 16px; width:120px; max-width:120px; overflow:hidden; text-align:center; vertical-align:middle;">
-            <!-- Thay [LOGO_BASE64] bằng chuỗi data:image/png;base64,... -->
-            <!-- Lệnh lấy base64: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
+            <!-- Logo base64: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
             <img src="[LOGO_BASE64]" width="110" height="39" style="width:110px; height:39px; max-width:110px; display:block; margin:auto;" alt="FPT Telecom">
         </td>
         <td style="border-bottom:1.5px solid #000000; padding:20px 24px; text-align:center; vertical-align:middle;">
@@ -198,39 +167,9 @@
     </table>
 </div>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
-<!-- ============================================================ -->
-<!-- PHÊ DUYỆT TÀI LIỆU (Document Sign-off) — chuẩn URD           -->
-<!-- ============================================================ -->
-<h2>PHÊ DUYỆT TÀI LIỆU (DOCUMENT SIGN-OFF)</h2>
-<p><em>Tài liệu chỉ có hiệu lực làm cơ sở triển khai sau khi được các bên liên quan rà soát và phê duyệt đầy đủ.</em></p>
-<table class="data-table">
-    <thead>
-        <tr>
-            <th style="width: 22%;">Vai trò</th>
-            <th style="width: 22%;">Họ và tên</th>
-            <th style="width: 26%;">Chức danh / Bộ phận</th>
-            <th style="width: 13%; text-align: center;">Ngày</th>
-            <th style="width: 17%; text-align: center;">Chữ ký</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td><strong>Người lập</strong> (Prepared by)</td><td>[Tên tác giả]</td><td>Business Analyst</td><td style="text-align: center;">[DD/MM/YYYY]</td><td>&nbsp;</td></tr>
-        <tr><td><strong>Người rà soát</strong> (Reviewed by)</td><td>&nbsp;</td><td>Product Owner</td><td style="text-align: center;">&nbsp;</td><td>&nbsp;</td></tr>
-        <tr><td><strong>Người phê duyệt</strong> (Approved by)</td><td>&nbsp;</td><td>Trưởng bộ phận Sản phẩm / QLCS</td><td style="text-align: center;">&nbsp;</td><td>&nbsp;</td></tr>
-    </tbody>
-</table>
-
 <!-- ============================================================ -->
 <!-- MỤC LỤC — class toc-title đã có page-break-before: always   -->
-<!-- ⚠️ Dùng paragraph + tab leader kiểu Word Classic:
-     - Level 1 sát lề, bold
-     - Level 2 thụt 0.75cm
-     - Level 3 thụt 1.5cm
-     - Tất cả level dùng cùng tab stop phải 16.8cm để số trang thẳng cột
-     - Dòng dài được phép xuống dòng để không tràn viền
-     Render bản A4 bằng Word rồi thay "X" bằng số trang thực.             -->
+<!-- Điền số trang thực sau khi render bằng Word (thay "X")       -->
 <!-- ============================================================ -->
 <div class="toc-title" style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</div>
 <div class="toc-list">
@@ -238,37 +177,42 @@
     <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Mục đích tài liệu<span style="mso-tab-count:1 dotted">	</span>X</p>
     <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)<span style="mso-tab-count:1 dotted">	</span>X</p>
     <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Thuật ngữ và viết tắt<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Danh sách các chức năng chính<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Ma trận phân quyền sử dụng<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">I. [Luồng 1]<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Quy trình nghiệp vụ từng bước (Step-by-Step)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Quy tắc cấu hình &amp; Business Rules<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Mô tả giao diện &amp; Ràng buộc trường<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">II. [Luồng 2] (nếu có)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">III. Đặc tả điều kiện &amp; Edge Cases<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">IV. Bảng thông điệp báo lỗi (Error Messages)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">D. YÊU CẦU PHI CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. TỔNG QUAN HỆ THỐNG &amp; PHẠM VI<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Sơ đồ luồng nghiệp vụ tổng quan (BPMN)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Phân loại nhóm luồng &amp; sơ đồ luồng chính<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Danh sách chức năng &amp; Ma trận phân quyền<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">4. Đặc tả giao diện dùng chung &amp; trạng thái hệ thống<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. ĐẶC TẢ CHI TIẾT CÁC LUỒNG NGHIỆP VỤ<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. [Tên Luồng 1]<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.1 Đặc tả chi tiết<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.2 Quy tắc nghiệp vụ<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.3 Đặc tả giao diện<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.4 Edge cases &amp; Mã lỗi<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. [Tên Luồng 2] (nếu có)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">D. TRƯỜNG HỢP LỖI &amp; THÔNG BÁO HỆ THỐNG<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Nguyên tắc hiển thị lỗi &amp; retry<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Trạng thái lỗi dùng chung<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Bảng mã lỗi dùng chung<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">E. YÊU CẦU PHI CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">F. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO<span style="mso-tab-count:1 dotted">	</span>X</p>
 </div>
 
 <!-- ============================================================ -->
-<!-- A. GIỚI THIỆU — h1 tự xuống trang do page-break-before       -->
+<!-- A. GIỚI THIỆU                                                 -->
 <!-- ============================================================ -->
 <h1>A. GIỚI THIỆU</h1>
 
 <h3>1. Mục đích tài liệu</h3>
-<p>Tài liệu này đặc tả các yêu cầu người dùng cuối đối với [Tên hệ thống/tính năng]. Tài liệu đóng vai trò làm cơ sở nghiệp vụ để đội ngũ phát triển Frontend (FE), Backend (BE), Quản lý chính sách (QLCS), Product Hub và đội ngũ Kiểm thử (QA/QC) xây dựng giải pháp kỹ thuật và kịch bản UAT.</p>
+<p>Tài liệu này đặc tả các yêu cầu người dùng cuối đối với <b>[Tên hệ thống/tính năng]</b> trên [Kênh: Website FPT.vn / App...]. [Mô tả ngắn phạm vi tài liệu — số luồng, loại sản phẩm/dịch vụ bao phủ].</p>
+<p>Tài liệu làm cơ sở nghiệp vụ để FE, BE, QLCS, Product Hub và QA/QC xây dựng giải pháp kỹ thuật và kịch bản UAT. Mỗi luồng được trình bày như một <b>mục lớn tự chứa</b>, gồm 4 phần: đặc tả chi tiết, quy tắc nghiệp vụ, đặc tả giao diện &amp; ràng buộc trường, edge cases &amp; bảng mã lỗi.</p>
 
 <h3>2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</h3>
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 8%; text-align: center;">STT</th>
-            <th style="width: 25%;">Hạng mục</th>
-            <th style="width: 67%;">Mô tả chi tiết</th>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 22%;">Hạng mục</th>
+            <th style="width: 73%;">Mô tả chi tiết</th>
         </tr>
     </thead>
     <tbody>
@@ -299,303 +243,524 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 8%; text-align: center;">STT</th>
-            <th style="width: 15%;">Thuật ngữ</th>
-            <th style="width: 30%;">Tên đầy đủ</th>
-            <th style="width: 47%;">Mô tả ý nghĩa</th>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 14%;">Thuật ngữ</th>
+            <th style="width: 26%;">Tên đầy đủ</th>
+            <th style="width: 55%;">Mô tả ý nghĩa</th>
         </tr>
     </thead>
     <tbody>
         <tr><td style="text-align: center;">1</td><td>URD</td><td>User Requirements Document</td><td>Tài liệu yêu cầu người dùng</td></tr>
-        <tr><td style="text-align: center;">2</td><td>SKU</td><td>Stock Keeping Unit</td><td>Đơn vị phân loại hàng hóa/dịch vụ</td></tr>
-        <tr><td style="text-align: center;">3</td><td>COD</td><td>Cash On Delivery</td><td>Thanh toán trực tiếp khi nhận hàng</td></tr>
-        <tr><td style="text-align: center;">4</td><td>PTTT</td><td>Phương Thức Thanh Toán</td><td>Hình thức thanh toán KH lựa chọn</td></tr>
-        <tr><td style="text-align: center;">5</td><td>BE</td><td>Backend</td><td>Hệ thống xử lý logic phía máy chủ</td></tr>
-        <tr><td style="text-align: center;">6</td><td>FE</td><td>Frontend</td><td>Giao diện hiển thị phía người dùng</td></tr>
-        <tr><td style="text-align: center;">7</td><td>SPF</td><td>Hệ thống Phê duyệt &amp; Quản lý đơn hàng FPT</td><td>Hệ thống tạo &amp; quản lý đơn hàng nội bộ</td></tr>
+        <tr><td style="text-align: center;">2</td><td>SKU</td><td>Stock Keeping Unit (Thiết bị)</td><td>Sản phẩm thiết bị bán lẻ: Camera, Access Point, TV...</td></tr>
+        <tr><td style="text-align: center;">3</td><td>SA</td><td>Dịch vụ (Service)</td><td>Sản phẩm dịch vụ: FPT Play, Cloud, Ultrafast...</td></tr>
+        <tr><td style="text-align: center;">4</td><td>SPF</td><td>Hệ thống đơn hàng FPT</td><td>Hệ thống tạo &amp; quản lý đơn hàng nội bộ</td></tr>
+        <tr><td style="text-align: center;">5</td><td>QLCS / Product Hub</td><td>Quản lý Chính sách / Trung tâm SP</td><td>Nguồn khai báo động giá, biểu phí, PTTT, chu kỳ, ưu đãi</td></tr>
+        <tr><td style="text-align: center;">6</td><td>PTTT / COD</td><td>Phương thức thanh toán / Cash On Delivery</td><td>VietQR, Ví MoMo/ZaloPay, Thẻ ATM/Visa, COD (thu khi nhận)</td></tr>
+        <tr><td style="text-align: center;">7</td><td>BE / FE</td><td>Backend / Frontend</td><td>Hệ thống xử lý server / Giao diện người dùng</td></tr>
         <tr><td style="text-align: center;">8</td><td>[Thuật ngữ]</td><td>[Tên đầy đủ]</td><td>[Giải thích]</td></tr>
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
 <!-- ============================================================ -->
-<!-- B. TỔNG QUAN HỆ THỐNG                                        -->
+<!-- B. TỔNG QUAN HỆ THỐNG & PHẠM VI                              -->
 <!-- ============================================================ -->
-<h1>B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</h1>
+<h1>B. TỔNG QUAN HỆ THỐNG &amp; PHẠM VI</h1>
 
 <h3>1. Sơ đồ luồng nghiệp vụ tổng quan (BPMN)</h3>
-<!-- ⚠️ KHÔNG đặt text/bullet mô tả TRƯỚC <img>. Sơ đồ đặt ngay sau heading.   -->
-<!-- Sơ đồ phải theo CHUẨN BPMN: swimlane/pool theo tác nhân; Start/End Event   -->
-<!-- là vòng tròn (mảnh/đậm); Task = chữ nhật bo góc; Exclusive Gateway = hình  -->
-<!-- thoi gắn ký hiệu ×; Text Annotation = khối nét đứt gắn mã [MODULE-BR-xx];  -->
-<!-- Sequence Flow = mũi tên liền, luồng quay lui = mũi tên nét đứt.            -->
-<!-- Cách tạo: viết generator SVG (3 lane dọc KH/FE/BE) → rsvg-convert -z 2     -->
-<!-- → PNG → nhúng base64 (xem PHẦN 5).                                         -->
-<img src="[ĐƯỜNG_DẪN_HOẶC_BASE64]" class="diagram-img" alt="Sơ đồ BPMN [Tên hệ thống]">
-<div class="note-box">
-    <strong>Cách đọc sơ đồ (BPMN):</strong> Sơ đồ dùng [N] làn trách nhiệm (swimlane): <strong>Khách hàng</strong> – thao tác trên giao diện; <strong>Website/Frontend</strong> – hiển thị &amp; điều phối; <strong>Backend &amp; Tích hợp</strong> – xử lý nghiệp vụ &amp; tích hợp hệ thống. Ký hiệu: vòng tròn mảnh = Start Event; vòng tròn đậm = End Event; chữ nhật bo góc = Task; hình thoi × = Exclusive Gateway; khối nét đứt = chú thích Business Rule; mũi tên liền = luồng tuần tự; mũi tên nét đứt = luồng quay lui.
+<!-- ⚠️ KHÔNG đặt text/bullet TRƯỚC <img>. Sơ đồ đặt ngay sau heading.        -->
+<!-- Chuẩn BPMN: swimlane/pool theo tác nhân; Start/End = vòng tròn mảnh/đậm;  -->
+<!-- Task = chữ nhật bo góc; Exclusive Gateway = hình thoi ×;                   -->
+<!-- Text Annotation = khối nét đứt; Sequence Flow = mũi tên liền.              -->
+<div style="text-align:center; page-break-inside:avoid; margin:10px 0; overflow:hidden;">
+<img class="diagram-img" width="605" height="493" style="width:16.0cm; height:auto; display:block; margin:0 auto; border:none; padding:0; mso-width-source:userset; mso-height-source:userset;" src="[LOGO_BASE64_DIAGRAM_TỔNG_QUAN]">
 </div>
-<p><b>Nguyên tắc vận hành xuyên suốt:</b></p>
+<div class="note-box">
+    <strong>Cách đọc sơ đồ (BPMN):</strong> [N] làn trách nhiệm (swimlane): <strong>Khách hàng</strong> – thao tác giao diện; <strong>Website/Frontend</strong> – hiển thị &amp; điều phối; <strong>Backend &amp; Tích hợp</strong> – xử lý nghiệp vụ &amp; tích hợp SPF/CRM/Payment/Product Hub. Ký hiệu: vòng tròn mảnh = Start; vòng tròn đậm = End; chữ nhật bo góc = Task; hình thoi &times; = Exclusive Gateway; khối nét đứt = chú thích Business Rule; mũi tên liền = luồng tuần tự; mũi tên nét đứt = luồng quay lui.
+</div>
+<p><b>Nguyên tắc vận hành xuyên suốt (áp dụng cho mọi luồng tại Mục C):</b></p>
 <ul>
-    <li>[Nguyên tắc 1 — Ví dụ: BE xử lý toàn bộ tính toán, FE chỉ nhận kết quả và hiển thị real-time]</li>
-    <li>[Nguyên tắc 2 — Ví dụ: Mọi ngưỡng cấu hình (giá, phí, giới hạn SL, PTTT...) nạp động từ QLCS/Product Hub, không hardcode trên FE]</li>
-    <li>[Nguyên tắc 3 — Ví dụ: Mọi thay đổi điều kiện đơn hàng trigger re-validate tự động]</li>
+    <li>BE xử lý toàn bộ tính toán (thành tiền, tạm tính, ưu đãi, cần thanh toán); FE chỉ nhận kết quả &amp; hiển thị real-time.</li>
+    <li>Mọi ngưỡng cấu hình (giá, biểu phí, giới hạn SL, chu kỳ, PTTT, ưu đãi) nạp động từ QLCS / Product Hub — không hardcode FE; không gài ưu đãi nếu thực tế chưa khai báo.</li>
+    <li>Mọi thay đổi điều kiện đơn (đổi chu kỳ/SL/thuộc tính, áp/huỷ ưu đãi, đổi PTTT) trigger BE re-validate giá &amp; điều kiện trước thanh toán.</li>
+    <li>[Nguyên tắc đặc thù khác của hệ thống này]</li>
 </ul>
 
-<h3>2. Danh sách các chức năng chính</h3>
+<h3>2. Phân loại nhóm luồng &amp; sơ đồ luồng chính</h3>
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 8%; text-align: center;">STT</th>
-            <th style="width: 25%;">Module / Chức năng</th>
-            <th style="width: 12%; text-align: center;">Phiên bản</th>
-            <th style="width: 15%; text-align: center;">Phân loại</th>
-            <th style="width: 40%;">Mô tả tóm tắt hành vi hệ thống</th>
+            <th style="width: 24%;">Nhóm luồng</th>
+            <th style="width: 38%;">Mô tả</th>
+            <th style="width: 38%;">Áp dụng cho</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;">1</td>
-            <td>[Tên chức năng 1]</td>
-            <td style="text-align: center;">1.0</td>
-            <td style="text-align: center;">Thêm mới</td>
-            <td>[Mô tả ngắn chức năng 1]</td>
+            <td><b>Nhóm 1 — [Tên nhóm]</b></td>
+            <td>[Mô tả đặc điểm chung nhóm này]</td>
+            <td>[Danh sách luồng thuộc nhóm]</td>
         </tr>
         <tr>
-            <td style="text-align: center;">2</td>
-            <td>[Tên chức năng 2]</td>
-            <td style="text-align: center;">1.0</td>
-            <td style="text-align: center;">Thêm mới</td>
-            <td>[Mô tả ngắn chức năng 2]</td>
+            <td><b>Nhóm 2 — [Tên nhóm]</b> (nếu có)</td>
+            <td>[Mô tả đặc điểm chung]</td>
+            <td>[Danh sách luồng]</td>
         </tr>
     </tbody>
 </table>
 
-<h3>3. Ma trận phân quyền sử dụng</h3>
+<!-- Sơ đồ luồng nhóm 1 -->
+<h4>2.1. Sơ đồ luồng [Tên nhóm 1]</h4>
+<div style="text-align:center; page-break-inside:avoid; margin:10px 0; overflow:hidden;">
+<img class="diagram-img" width="605" height="493" style="width:16.0cm; height:auto; display:block; margin:0 auto; border:none; padding:0; mso-width-source:userset; mso-height-source:userset;" src="[LOGO_BASE64_DIAGRAM_NHÓM1]">
+</div>
+
+<!-- Sơ đồ luồng nhóm 2 (nếu có) -->
+<h4>2.2. Sơ đồ luồng [Tên nhóm 2]</h4>
+<div style="text-align:center; page-break-inside:avoid; margin:10px 0; overflow:hidden;">
+<img class="diagram-img" width="605" height="464" style="width:16.0cm; height:auto; display:block; margin:0 auto; border:none; padding:0; mso-width-source:userset; mso-height-source:userset;" src="[LOGO_BASE64_DIAGRAM_NHÓM2]">
+</div>
+<div class="note-box"><strong>Lưu ý:</strong> [Ghi chú về cách dùng sơ đồ và phần đặc thù từng luồng ở Mục C]</div>
+
+<h3>3. Danh sách chức năng &amp; Ma trận phân quyền</h3>
+<!-- Bảng danh sách chức năng / luồng -->
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 8%; text-align: center;">STT</th>
-            <th style="width: 42%;">Chức năng / Module</th>
-            <th style="width: 15%; text-align: center;">Khách hàng</th>
-            <th style="width: 15%; text-align: center;">Admin QLCS</th>
-            <th style="width: 20%;">Ghi chú</th>
+            <th style="width: 5%; text-align: center;">STT</th>
+            <th style="width: 33%;">Luồng / Chức năng</th>
+            <th style="width: 14%; text-align: center;">Loại / Nhóm</th>
+            <th style="width: 48%;">Mô tả tóm tắt</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="text-align: center;">1</td>
-            <td>[Tên chức năng]</td>
-            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
-            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
-            <td>[Ghi chú]</td>
+            <td>[Tên luồng 1]</td>
+            <td style="text-align: center;">[Loại] / [Nhóm]</td>
+            <td>[Mô tả ngắn]</td>
         </tr>
         <tr>
             <td style="text-align: center;">2</td>
-            <td>[Cấu hình hệ thống]</td>
+            <td>[Tên luồng 2]</td>
+            <td style="text-align: center;">[Loại] / [Nhóm]</td>
+            <td>[Mô tả ngắn]</td>
+        </tr>
+    </tbody>
+</table>
+<div style="height:18px; line-height:18px;">&nbsp;</div>
+<!-- Bảng ma trận phân quyền -->
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 40%;">Chức năng / Module</th>
+            <th style="width: 15%; text-align: center;">KH vãng lai</th>
+            <th style="width: 15%; text-align: center;">KH đăng nhập</th>
+            <th style="width: 15%; text-align: center;">Telesales/CSKH</th>
+            <th style="width: 15%; text-align: center;">Admin QLCS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>[Chức năng 1]</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: green; font-weight: bold;">Có</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+        </tr>
+        <tr>
+            <td>[Cấu hình giá/biểu phí/PTTT]</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
+            <td style="text-align: center; color: red; font-weight: bold;">Không</td>
             <td style="text-align: center; color: red; font-weight: bold;">Không</td>
             <td style="text-align: center; color: green; font-weight: bold;">Có</td>
-            <td>Admin cấu hình tại Product Hub / QLCS</td>
         </tr>
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+<h3>4. Đặc tả giao diện dùng chung &amp; trạng thái hệ thống</h3>
+<!-- Bảng mô tả các trạng thái/thành phần dùng chung trên mọi luồng -->
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 18%;">Thành phần / Trạng thái</th>
+            <th style="width: 16%;">Màn hình áp dụng</th>
+            <th style="width: 12%; text-align: center;">Bắt buộc</th>
+            <th style="width: 54%;">Yêu cầu hiển thị &amp; hành vi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>[Thành phần dùng chung 1]</b></td>
+            <td>[Màn hình]</td>
+            <td style="text-align: center;">Có / Không</td>
+            <td>[Mô tả hành vi, message, CTA]</td>
+        </tr>
+        <tr>
+            <td><b>Lỗi tải / tính giá</b></td>
+            <td>[Màn hình] / Checkout</td>
+            <td style="text-align: center;">Có nếu lỗi chặn</td>
+            <td>Khi API lỗi/timeout, giữ KH tại màn hiện tại, bảo toàn dữ liệu đã nhập; hiển thị <span class="error-inline">"Chưa thể cập nhật thông tin. Vui lòng thử lại."</span>; CTA <b>Thử lại</b>; chặn thanh toán khi tổng tiền chưa xác thực.</td>
+        </tr>
+        <tr>
+            <td><b>QLCS không trả PTTT</b></td>
+            <td>Checkout / Thanh toán</td>
+            <td style="text-align: center;">Có</td>
+            <td>Hiển thị <span class="error-inline">"Hiện chưa có phương thức thanh toán khả dụng. Vui lòng thử lại hoặc liên hệ 1900 6600."</span>; disable nút đặt hàng; CTA <b>Tải lại phương thức thanh toán</b>.</td>
+        </tr>
+    </tbody>
+</table>
+<div class="note-box"><strong>Nguyên tắc chung cho trạng thái lỗi:</strong>
+    <ul>
+        <li>Lỗi làm sai tổng tiền, phí, PTTT hoặc consent bắt buộc phải chặn đặt hàng/thanh toán đến khi dữ liệu hợp lệ.</li>
+        <li>CTA retry gọi lại đúng API đang lỗi; không xóa giỏ, không xóa dữ liệu KH chưa có xác nhận.</li>
+        <li>Message hiển thị cho KH dùng copy nghiệp vụ rõ ràng; mã lỗi kỹ thuật chỉ dùng cho log &amp; CSKH.</li>
+    </ul>
+</div>
 
 <!-- ============================================================ -->
-<!-- C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ                  -->
+<!-- C. ĐẶC TẢ CHI TIẾT CÁC LUỒNG NGHIỆP VỤ                      -->
 <!-- ============================================================ -->
-<h1>C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</h1>
+<h1>C. ĐẶC TẢ CHI TIẾT CÁC LUỒNG NGHIỆP VỤ</h1>
+<p>Mỗi luồng là một mục lớn tự chứa, gồm <b>4 phần</b>: <b>.1</b> Đặc tả chi tiết (quy trình từng bước); <b>.2</b> Quy tắc nghiệp vụ; <b>.3</b> Đặc tả giao diện &amp; ràng buộc trường; <b>.4</b> Edge cases &amp; Bảng mã lỗi. Các nguyên tắc vận hành chung tại Mục B áp dụng cho mọi luồng.</p>
 
-<h2>I. [TÊN LUỒNG 1]</h2>
+<!-- ===== LUỒNG 1 ===== -->
+<!-- h2 tự xuống trang mới do CSS page-break-before: always -->
+<h2>1. [Tên Luồng 1]</h2>
+<p><span class="flow-band">Loại: [SKU / SA / SKU+SA] &middot; [Giỏ lẻ / Gộp giỏ]</span> &nbsp; [Mô tả ngắn một dòng về luồng này]</p>
 
-<h3>1. Quy trình nghiệp vụ từng bước (Step-by-Step)</h3>
+<h3>1.1 Đặc tả chi tiết (Quy trình từng bước)</h3>
 <table class="usecase-table">
     <tr>
-        <td class="label">Tác nhân tham gia</td>
-        <td>[Ví dụ: Khách hàng (Cá nhân/Doanh nghiệp) mua sắm trên FPT.vn]</td>
+        <td class="label">Tác nhân</td>
+        <td>[Ví dụ: Khách hàng mua [sản phẩm] trên FPT.vn]</td>
     </tr>
     <tr>
-        <td class="label">Điều kiện bắt đầu (Pre-conditions)</td>
-        <td>[Ví dụ: Khách hàng đã chọn gói dịch vụ và chuyển tới trang Checkout]</td>
+        <td class="label">Điều kiện bắt đầu</td>
+        <td>[Ví dụ: KH đang ở trang PDP / giỏ hàng]</td>
     </tr>
     <tr>
         <td class="label">Luồng xử lý chính</td>
         <td>
-            <b>Bước 1: [Tên bước]</b>
-            <br>- [Mô tả hành động KH]
-            <br>- [Mô tả phản hồi hệ thống]
-            <br>
-            <b>Bước 2: [Tên bước]</b>
-            <br>- [Mô tả hành động KH]
-            <br>- [Mô tả phản hồi hệ thống]
-            <br>
-            <!-- Thêm bước theo từng luồng -->
+            <b>B1:</b> [Hành động KH] &rarr; [Phản hồi hệ thống].<br>
+            <b>B2:</b> [Hành động KH] &rarr; [Phản hồi hệ thống].<br>
+            <b>B3:</b> [Hành động KH] &rarr; [Phản hồi hệ thống].<br>
+            <b>B4:</b> Xác nhận &amp; thanh toán &rarr; BE tạo đơn SPF &rarr; Hoàn tất (mã đơn).
         </td>
     </tr>
     <tr>
-        <td class="label">Điều kiện kết thúc (Post-conditions)</td>
-        <td>[Ví dụ: Đơn hàng tạo thành công trên SPF, KH nhận xác nhận qua SMS/Email]</td>
+        <td class="label">Điều kiện kết thúc</td>
+        <td>[Ví dụ: Đơn tạo thành công, KH nhận mã đơn / mã kích hoạt]</td>
     </tr>
     <tr>
         <td class="label">Luồng thay thế / Ngoại lệ</td>
         <td>
-            <b>Alt 1: [Tên ngoại lệ]</b><br>
-            [Điều kiện xảy ra] → [Hành vi hệ thống / thông báo hiển thị]
-            <br><br>
-            <b>Alt 2: [Tên ngoại lệ]</b><br>
-            [Điều kiện xảy ra] → [Hành vi hệ thống / thông báo hiển thị]
+            <b>Alt 1 — [Tên ngoại lệ]:</b> [Điều kiện xảy ra] &rarr; [Hành vi hệ thống].<br><br>
+            <b>Alt 2 — [Tên ngoại lệ]:</b> [Điều kiện xảy ra] &rarr; [Hành vi hệ thống].
         </td>
     </tr>
 </table>
 
-<h3>2. Quy tắc cấu hình từ Product Hub và Quản lý chính sách</h3>
-<div class="alert-box">
-    <b>[[MODULE]-BR-01] [Tên Business Rule]:</b>
-    <br>- [Mô tả quy tắc 1]
-    <br>- [Mô tả quy tắc 2]
-</div>
-<div class="alert-box">
-    <b>[[MODULE]-BR-02] [Tên Business Rule]:</b>
-    <br>- [Mô tả quy tắc]
-</div>
-
-<h3>3. Mô tả giao diện &amp; Ràng buộc trường (Screen Description)</h3>
+<!-- Kịch bản đặc thù (nếu có) -->
+<h4>1.1.1 Kịch bản nghiệp vụ đặc thù</h4>
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 8%; text-align: center;">STT</th>
-            <th style="width: 20%;">Field / Element</th>
-            <th style="width: 15%;">Kiểu dữ liệu</th>
-            <th style="width: 25%;">Ràng buộc / Validation</th>
-            <th style="width: 32%;">Thao tác &amp; Phản hồi hệ thống</th>
+            <th style="width: 18%;">Kịch bản</th>
+            <th style="width: 42%;">Mô tả</th>
+            <th style="width: 40%;">Hành vi bắt buộc</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center;">1</td>
-            <td><b>[Tên field]</b></td>
-            <td>Textbox / Dropdown / Checkbox...</td>
-            <td>- Bắt buộc (Required)<br>- [Ràng buộc khác]</td>
-            <td>- KH: [Hành động]<br>- Hệ thống: [Phản hồi]</td>
+            <td><b>Case 1 — [Tên]</b></td>
+            <td>[Điều kiện và mô tả nghiệp vụ]</td>
+            <td>[Hành vi hệ thống bắt buộc]</td>
+        </tr>
+        <tr>
+            <td><b>Case 2 — [Tên]</b></td>
+            <td>[Điều kiện và mô tả nghiệp vụ]</td>
+            <td>[Hành vi hệ thống bắt buộc]</td>
         </tr>
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
-<h2>II. [TÊN LUỒNG 2] (nếu có)</h2>
-<!-- Lặp lại cấu trúc như Luồng I -->
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
-<h2>III. ĐẶC TẢ CÁC ĐIỀU KIỆN VÀ EDGE CASES</h2>
-
-<!-- ✅ PATTERN CHO EDGE CASE: Mỗi case gồm (1) mô tả tổng quan + (2) bảng chi tiết -->
-<div class="alert-box">
-    <b>[[MODULE]-CASE-BR-00] Tổng hợp các trường hợp ngoại lệ:</b>
-    <br><b>Case 1 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
-    <br><b>Case 2 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
-    <br><b>Case 3 — [Tên case]:</b> [Mô tả ngắn gọn điều kiện và hành vi]
-</div>
-
-<h3>Chi tiết Case 1: [Tên]</h3>
+<h3>1.2 Quy tắc nghiệp vụ</h3>
+<!-- BR viết dạng bảng 3 cột — KHÔNG dùng alert-box -->
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 25%;">Điều kiện xảy ra</th>
-            <th style="width: 35%;">Hành vi hiển thị</th>
-            <th style="width: 20%;">Message hiển thị</th>
-            <th style="width: 20%;">Hành động KH</th>
+            <th style="width: 14%; text-align:center;">Mã</th>
+            <th style="width: 24%;">Tên quy tắc</th>
+            <th style="width: 62%;">Nội dung &amp; Logic hệ thống</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>[Điều kiện]</td>
-            <td>[Mô tả hành vi UI]</td>
-            <td style="color: #c00000; font-style: italic; font-weight: bold;">[Text thông báo chính xác]</td>
-            <td>[KH có thể làm gì tiếp theo]</td>
+            <td style="text-align:center;">[MÔ-ĐUN]-BR-01</td>
+            <td>[Tên quy tắc 1]</td>
+            <td>[Mô tả chi tiết logic, điều kiện, nguồn cấu hình]</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">[MÔ-ĐUN]-BR-02</td>
+            <td>[Tên quy tắc 2]</td>
+            <td>[Mô tả chi tiết logic]</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">[MÔ-ĐUN]-BR-03</td>
+            <td>PTTT động &amp; COD vùng cấm</td>
+            <td>Danh sách PTTT do QLCS/Backend khai báo; FE render theo dữ liệu trả về. COD ẩn/disable nếu địa chỉ thuộc vùng không hỗ trợ thu hộ.</td>
         </tr>
     </tbody>
 </table>
 
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
-
-<h2>IV. BẢNG THÔNG ĐIỆP BÁO LỖI (ERROR MESSAGES)</h2>
-<p>Bảng quy định chính xác nội dung thông điệp hệ thống hiển thị cho KH trong từng trường hợp:</p>
+<h3>1.3 Đặc tả giao diện &amp; ràng buộc trường</h3>
 <table class="data-table">
     <thead>
         <tr>
-            <th style="width: 25%;">Trường Hợp Nghiệp Vụ</th>
-            <th style="width: 15%;">Trạng Thái</th>
-            <th style="width: 40%;">Nội dung Message hiển thị chính xác</th>
-            <th style="width: 20%;">Hành vi Hệ thống &amp; Giao diện</th>
+            <th style="width: 20%;">Phần tử</th>
+            <th style="width: 16%;">Màn hình</th>
+            <th style="width: 8%; text-align:center;">Bắt buộc</th>
+            <th style="width: 56%;">Ràng buộc &amp; hành vi</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><b>TH1: [Tên trường hợp]</b><br>([Mô tả ngắn điều kiện xảy ra])</td>
-            <td style="color: green; font-weight: bold;">Thành công</td>
-            <td style="color: #385723; font-weight: bold;">[Text thông báo thành công chính xác]</td>
-            <td>[Hành vi UI sau thành công]</td>
+            <td><b>[Tên phần tử / field]</b></td>
+            <td>[Màn hình: PDP / Giỏ / Checkout]</td>
+            <td style="text-align:center;">Có / Không</td>
+            <td>[Mô tả ràng buộc, validation, phản hồi hệ thống]</td>
         </tr>
         <tr>
-            <td></td>
-            <td style="color: red; font-weight: bold;">Thất bại</td>
-            <td style="color: #c00000; font-style: italic; font-weight: bold;">[Text thông báo lỗi chính xác]</td>
-            <td>[Hành vi UI sau lỗi]</td>
+            <td><b>Phương thức thanh toán</b></td>
+            <td>Checkout</td>
+            <td style="text-align:center;">Có</td>
+            <td>Danh sách động từ QLCS; COD ẩn ở vùng cấm ([MÔ-ĐUN]-BR-03).</td>
+        </tr>
+        <tr>
+            <td><b>Hoàn tất đơn hàng</b></td>
+            <td>Hoàn tất</td>
+            <td style="text-align:center;">&ndash;</td>
+            <td>Hiển thị mã đơn, tổng tiền, PTTT, trạng thái tiếp nhận; CTA <b>Theo dõi đơn hàng</b>.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>1.4 Edge cases &amp; Bảng mã lỗi</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 16%;">Mã lỗi</th>
+            <th style="width: 26%;">Trường hợp</th>
+            <th style="width: 36%;">Message hiển thị</th>
+            <th style="width: 22%;">Hành vi hệ thống</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ERR_[MÔ-ĐUN]_01</td>
+            <td>[Tên trường hợp 1]</td>
+            <td><span class="error-inline">"[Message lỗi chính xác]"</span></td>
+            <td>[Hành vi UI / CTA]</td>
+        </tr>
+        <tr>
+            <td>ERR_[MÔ-ĐUN]_02</td>
+            <td>[Tên trường hợp 2]</td>
+            <td><span class="error-inline">"[Message lỗi chính xác]"</span></td>
+            <td>[Hành vi UI / CTA]</td>
+        </tr>
+        <tr>
+            <td>MSG_[MÔ-ĐUN]_OK</td>
+            <td>Thanh toán thành công</td>
+            <td><span class="success-inline">"Thanh toán thành công! Cảm ơn quý khách đã đăng ký sử dụng dịch vụ của FPT Telecom."</span></td>
+            <td>Chuyển trang Hoàn tất; hiển thị mã đơn.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===== LUỒNG 2 (nếu có) ===== -->
+<h2>2. [Tên Luồng 2]</h2>
+<p><span class="flow-band">Loại: [SKU / SA] &middot; [Nhóm]</span> &nbsp; [Mô tả ngắn]</p>
+
+<h3>2.1 Đặc tả chi tiết (Quy trình từng bước)</h3>
+<!-- Lặp lại cấu trúc usecase-table như Luồng 1 -->
+
+<h3>2.2 Quy tắc nghiệp vụ</h3>
+<!-- Lặp lại cấu trúc bảng BR như Luồng 1 -->
+
+<h3>2.3 Đặc tả giao diện &amp; ràng buộc trường</h3>
+<!-- Lặp lại cấu trúc bảng giao diện như Luồng 1 -->
+
+<h3>2.4 Edge cases &amp; Bảng mã lỗi</h3>
+<!-- Lặp lại cấu trúc bảng mã lỗi như Luồng 1 -->
+
+<!-- ============================================================ -->
+<!-- D. TRƯỜNG HỢP LỖI & THÔNG BÁO HỆ THỐNG                       -->
+<!-- ============================================================ -->
+<h1>D. TRƯỜNG HỢP LỖI &amp; THÔNG BÁO HỆ THỐNG</h1>
+
+<h3>1. Nguyên tắc hiển thị lỗi &amp; retry</h3>
+<ul>
+    <li><b>Ưu tiên thông điệp nghiệp vụ:</b> KH chỉ nhìn thấy message dễ hiểu và CTA xử lý tiếp theo; mã lỗi kỹ thuật dùng cho log, tracking và CSKH.</li>
+    <li><b>Không cho thanh toán khi dữ liệu chưa hợp lệ:</b> Các lỗi tính giá, phí, PTTT, consent bắt buộc hoặc tồn kho phải disable CTA đặt hàng/thanh toán.</li>
+    <li><b>Bảo toàn dữ liệu KH:</b> Khi retry, hệ thống giữ nguyên giỏ hàng, thông tin KH, voucher đã nhập; chỉ cập nhật lại phần dữ liệu từ API sau khi retry thành công.</li>
+    <li><b>Retry đúng nguồn lỗi:</b> CTA <b>Thử lại</b>/<b>Áp dụng lại</b>/<b>Tải lại</b> gọi lại đúng API tương ứng và ghi nhận log thời điểm, mã lỗi, request ID nếu có.</li>
+</ul>
+
+<h3>2. Trạng thái lỗi dùng chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 18%;">Trạng thái</th>
+            <th style="width: 22%;">Điều kiện kích hoạt</th>
+            <th style="width: 34%;">Message hiển thị</th>
+            <th style="width: 26%;">Hành vi / CTA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Không tải được dữ liệu</b></td>
+            <td>API lấy dữ liệu lỗi, timeout hoặc trả dữ liệu không hợp lệ.</td>
+            <td><span class="error-inline">"Chưa thể tải thông tin. Vui lòng thử lại."</span></td>
+            <td>CTA <b>Thử lại</b>; không cho tiếp tục khi chưa có dữ liệu hợp lệ.</td>
+        </tr>
+        <tr>
+            <td><b>Không cập nhật được tổng tiền</b></td>
+            <td>API tính giá/biểu phí/voucher lỗi hoặc timeout.</td>
+            <td><span class="error-inline">"Chưa thể cập nhật giá và tổng tiền. Vui lòng thử lại."</span></td>
+            <td>Đánh dấu tổng tiền chưa xác thực; disable CTA thanh toán; CTA <b>Thử lại</b>.</td>
+        </tr>
+        <tr>
+            <td><b>Không có PTTT</b></td>
+            <td>QLCS không trả danh sách PTTT phù hợp với giỏ/khu vực/chính sách.</td>
+            <td><span class="error-inline">"Hiện chưa có phương thức thanh toán khả dụng. Vui lòng thử lại hoặc liên hệ 1900 6600."</span></td>
+            <td>Disable đặt hàng/thanh toán; CTA <b>Tải lại phương thức thanh toán</b>.</td>
+        </tr>
+        <tr>
+            <td><b>Voucher không hợp lệ</b></td>
+            <td>Voucher không tồn tại, hết hạn hoặc không thỏa điều kiện giỏ.</td>
+            <td><span class="error-inline">"Mã khuyến mãi không hợp lệ hoặc đã hết hạn. Vui lòng kiểm tra lại."</span></td>
+            <td>Không áp dụng giảm giá; giữ mã KH đã nhập.</td>
+        </tr>
+        <tr>
+            <td><b>[Trạng thái lỗi đặc thù]</b></td>
+            <td>[Điều kiện kích hoạt]</td>
+            <td><span class="error-inline">"[Message]"</span></td>
+            <td>[Hành vi / CTA]</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>3. Bảng mã lỗi dùng chung</h3>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th style="width: 15%;">Mã lỗi</th>
+            <th style="width: 18%;">Màn hình</th>
+            <th style="width: 25%;">Điều kiện</th>
+            <th style="width: 28%;">Message thông báo</th>
+            <th style="width: 14%;">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CART_EMPTY</td>
+            <td>[Màn hình]</td>
+            <td>Không có dòng hợp lệ.</td>
+            <td><span class="error-inline">"[Tên màn hình] của bạn đang trống. Vui lòng chọn sản phẩm/dịch vụ để tiếp tục."</span></td>
+            <td>Tiếp tục mua sắm</td>
+        </tr>
+        <tr>
+            <td>PRICE_CALC_FAILED</td>
+            <td>[Màn hình] / Checkout</td>
+            <td>API tính giá, phí hoặc tổng tiền trả lỗi.</td>
+            <td><span class="error-inline">"Chưa thể cập nhật giá và tổng tiền. Vui lòng thử lại."</span></td>
+            <td>Thử lại; chặn thanh toán</td>
+        </tr>
+        <tr>
+            <td>VOUCHER_TIMEOUT</td>
+            <td>[Màn hình] / Checkout</td>
+            <td>API kiểm tra voucher timeout.</td>
+            <td><span class="error-inline">"Chưa thể kiểm tra mã khuyến mãi. Vui lòng thử lại sau ít phút."</span></td>
+            <td>Áp dụng lại</td>
+        </tr>
+        <tr>
+            <td>PAYMENT_METHOD_EMPTY</td>
+            <td>Checkout / Thanh toán</td>
+            <td>QLCS không trả PTTT khả dụng.</td>
+            <td><span class="error-inline">"Hiện chưa có phương thức thanh toán khả dụng. Vui lòng thử lại hoặc liên hệ 1900 6600."</span></td>
+            <td>Tải lại PTTT; chặn đặt hàng</td>
+        </tr>
+        <tr>
+            <td>API_SESSION_EXPIRED</td>
+            <td>[Màn hình] / Checkout</td>
+            <td>Phiên hết hạn hoặc token không hợp lệ.</td>
+            <td><span class="error-inline">"Phiên làm việc đã hết hạn. Vui lòng tải lại để tiếp tục."</span></td>
+            <td>Tải lại</td>
+        </tr>
+        <tr>
+            <td>CONSENT_REQUIRED</td>
+            <td>Nhập thông tin KH / Checkout</td>
+            <td>KH chưa xác nhận mục đích xử lý dữ liệu cá nhân bắt buộc.</td>
+            <td><span class="error-inline">"Vui lòng xác nhận đồng ý xử lý dữ liệu cá nhân để tiếp tục."</span></td>
+            <td>Highlight khối consent; chặn submit</td>
+        </tr>
+        <tr>
+            <td>ERR_[MÔ-ĐUN]_XX</td>
+            <td>[Màn hình]</td>
+            <td>[Điều kiện đặc thù của hệ thống]</td>
+            <td><span class="error-inline">"[Message lỗi]"</span></td>
+            <td>[Hành động]</td>
         </tr>
     </tbody>
 </table>
 
 <!-- ============================================================ -->
-<!-- D. YÊU CẦU PHI CHỨC NĂNG                                     -->
+<!-- E. YÊU CẦU PHI CHỨC NĂNG                                     -->
 <!-- ============================================================ -->
-<h1>D. YÊU CẦU PHI CHỨC NĂNG</h1>
+<h1>E. YÊU CẦU PHI CHỨC NĂNG</h1>
 
 <h3>1. Hiệu năng hệ thống (Performance)</h3>
 <ul>
-    <li><b>Tốc độ xử lý tính toán:</b> Thời gian Backend nhận dữ liệu, validate và phản hồi kết quả cho Frontend không được vượt quá <b>0.5 giây</b> trong điều kiện mạng bình thường.</li>
-    <li><b>Tự động đồng bộ:</b> Trạng thái [đối tượng] phải được cập nhật thời gian thực ngay khi giao dịch hoàn tất, tránh sử dụng lại dữ liệu cũ.</li>
-    <li><b>Tải đồng thời:</b> Hệ thống đáp ứng tối thiểu [1.000] giao dịch đồng thời không bị nghẽn.</li>
+    <li><b>Tốc độ xử lý tính toán:</b> BE nhận dữ liệu, validate &amp; phản hồi kết quả cho FE không quá <b>0.5 giây</b> trong điều kiện mạng bình thường.</li>
+    <li><b>Đồng bộ real-time:</b> Trạng thái [đối tượng] cập nhật ngay khi giao dịch hoàn tất, tránh dùng lại dữ liệu cũ.</li>
+    <li><b>Tải đồng thời:</b> Hệ thống đáp ứng tối thiểu <b>1.000</b> giao dịch đồng thời không nghẽn.</li>
 </ul>
 
-<h3>2. Thiết kế trải nghiệm người dùng (UI/UX)</h3>
+<h3>2. Bảo mật &amp; An toàn thông tin (Security)</h3>
 <ul>
-    <li><b>Responsive Design:</b> Giao diện phải hiển thị hoàn hảo trên cả Desktop (Web) và Mobile (Responsive/App). Nút bấm và popup đảm bảo thao tác ngón tay trên điện thoại.</li>
-    <li><b>Thông báo lỗi cụ thể:</b> Mọi thông báo lỗi phải nêu <b>cụ thể điều kiện</b> không đáp ứng, không dùng message generic. KH phải biết cần thay đổi gì để tiếp tục.</li>
-    <li><b>Cấu hình động:</b> Toàn bộ text nhỏ dưới gói cước, thông tin hiển thị trong popup, và các điều kiện áp dụng đều được cấu hình từ Product Hub — không hardcode trên FE.</li>
-    <li><b>Phản hồi tức thì:</b> Các kiểm tra có thể thực hiện phía client (định dạng số điện thoại, điều kiện loại trừ...) phải được xử lý real-time, không chờ submit.</li>
+    <li><b>Mã hóa:</b> Mọi dữ liệu truyền tải trong luồng thanh toán mã hóa qua HTTPS (TLS 1.3).</li>
+    <li><b>Che dấu dữ liệu nhạy cảm:</b> SĐT &amp; mã hợp đồng hiển thị masking (VD: 098***1234); thông tin thẻ không lưu tại DB, ủy quyền cổng thanh toán PCI-DSS.</li>
+    <li><b>Phân quyền:</b> Cấu hình giá/biểu phí/PTTT/ưu đãi chỉ Admin QLCS; KH không truy cập.</li>
+    <li><b>Ghi nhận consent:</b> Lưu phiên bản chính sách, mã mục đích, thời điểm, kênh, trạng thái đồng ý và định danh phiên/đơn hàng; nội dung chính sách lấy từ cấu hình, không hardcode FE.</li>
 </ul>
 
-<h3>3. Bảo mật &amp; An toàn thông tin (Security)</h3>
+<h3>3. Trải nghiệm người dùng &amp; Mobile responsive (UI/UX)</h3>
 <ul>
-    <li><b>Mã hóa thông tin:</b> Mọi dữ liệu truyền tải trong luồng thanh toán phải được mã hóa qua HTTPS (TLS 1.3).</li>
-    <li><b>Che dấu dữ liệu nhạy cảm:</b> Số điện thoại hiển thị dạng masking (VD: <code>098***1234</code>). Thông tin thẻ không lưu tại DB hệ thống, ủy quyền cho cổng thanh toán PCI-DSS.</li>
+    <li><b>Responsive:</b> Hiển thị hoàn hảo trên Desktop &amp; Mobile; nút/popup/stepper thao tác tốt bằng ngón tay.</li>
+    <li><b>Thông báo cụ thể:</b> Mọi lỗi nêu rõ điều kiện không đáp ứng, không dùng message generic; KH biết cần làm gì để tiếp tục.</li>
+    <li><b>Cấu hình động:</b> Giá, chu kỳ, ưu đãi, PTTT, text điều khoản cấu hình từ Product Hub/QLCS — không hardcode FE.</li>
+    <li><b>Phản hồi tức thì:</b> Kiểm tra phía client (định dạng SĐT/email, chọn dòng, tính tạm tính) xử lý real-time, không chờ submit.</li>
 </ul>
-
-<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- ============================================================ -->
-<!-- E. PHỤ LỤC                                                   -->
+<!-- F. PHỤ LỤC & TÀI LIỆU THAM KHẢO                             -->
 <!-- ============================================================ -->
-<h1>E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</h1>
+<h1>F. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</h1>
 <ul>
+    <li>Taxonomy sản phẩm: [Mô tả ngắn các loại sản phẩm/dịch vụ trong phạm vi tài liệu]</li>
     <li>Tài liệu thiết kế UI/UX (Figma): [Chèn link Figma tại đây]</li>
-    <li>Tài liệu đặc tả API tích hợp: [Chèn link tài liệu API]</li>
-    <li>Sơ đồ BPMN: [Đường dẫn file diagrams/...]</li>
-    <li>[Tài liệu tham khảo khác]</li>
+    <li>Sơ đồ BPMN: diagrams/[tên_flow]_bpmn.svg (generator: diagrams/gen_[tên]_bpmn.py)</li>
+    <li>URD liên quan: [Danh sách các URD khác cùng hệ thống]</li>
+    <li>Tài liệu đặc tả API tích hợp (SPF / CRM / Payment / Product Hub): [Chèn link]</li>
+    <li>Quy ước mã: BR theo luồng ([PREFIX]-BR-nn); mã lỗi ERR_{LUỒNG}_{NN}; thông điệp thành công MSG_{LUỒNG}_OK</li>
 </ul>
 
 <!-- ============================================================ -->
-<!-- FOOTER ĐÁNH SỐ TRANG (MS WORD) — field PAGE / NUMPAGES        -->
-<!-- Đặt ở CUỐI, BÊN TRONG div.Section1. Word tự render số trang;  -->
-<!-- Chrome bỏ qua phần trong <!--[if supportFields]-->.          -->
+<!-- FOOTER ĐÁNH SỐ TRANG (MS WORD)                               -->
 <!-- ============================================================ -->
 <div style='mso-element:footer' id="f1">
     <p class="MsoFooter" align="center" style="text-align:center; font-family:'Times New Roman', serif; font-size:9pt; color:#666666;">
-        Trang <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--> / <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>NUMPAGES <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->&nbsp;&nbsp;|&nbsp;&nbsp;FPT-URD-[MODULE]-[SỐ THỨ TỰ]-01 &middot; [VERSION]
+        Trang <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--> / <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>NUMPAGES <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->&nbsp;&nbsp;|&nbsp;&nbsp;FPT-URD-[MODULE]-[SỐ]-01 &middot; [VERSION]
     </p>
 </div>
 
@@ -609,61 +774,78 @@
 
 ## PHẦN 2 — CHECKLIST TRƯỚC KHI SUBMIT URD
 
-### ✅ Trang bìa (chuẩn URD)
-- [ ] **Bảng 1** — Header: Logo FPT (ô trái, `width:120px`) | Tiêu đề "FPT.VN URD – USER REQUIREMENTS DOCUMENT" (ô phải, in hoa); Row 2: Mã hiệu · Phiên bản · Ngày inline
-- [ ] Logo nhúng **base64 Data URI**, kích thước **`width="110" height="39"`** (px, không dùng cm — Word bỏ qua cm); `table-layout:fixed` + `max-width:120px` trên ô logo
-- [ ] **Bảng 2** — Revision History: tiêu đề "REVISION HISTORY" màu `#1f4e78`, đường kẻ ngang, chú thích `[A]/[U]/[D]`, bảng 6 cột (Date · Version · Author · Reviewer · Approver · Change Description), header nền `#dae3f3`
-- [ ] ⚠️ **Phiên bản ở Bảng 1 = phiên bản mới nhất trong Bảng 2** (đồng bộ, không lệch)
+### ✅ Trang bìa
+- [ ] **Bảng 1** — Logo FPT (ô trái, `width:120px`, `table-layout:fixed`) | Tiêu đề "FPT.VN URD – USER REQUIREMENTS DOCUMENT" (ô phải, in hoa)
+- [ ] Row 2 của Bảng 1: Mã hiệu · Phiên bản · Ngày inline
+- [ ] Logo nhúng **base64 Data URI**, `width="110" height="39"` (px, không dùng cm)
+- [ ] **Bảng 2** — Revision History: tiêu đề màu `#1f4e78`, đường kẻ ngang `#1f4e78`, chú thích `[A]/[U]/[D]`, bảng 6 cột (Date · Version · Author · Reviewer · Approver · Change Description), header nền `#dae3f3`
+- [ ] ⚠️ **Phiên bản ở Bảng 1 = phiên bản mới nhất trong Bảng 2** (đồng bộ)
 - [ ] Cách 2 bảng **2cm** (`margin-top:2cm` trên div bọc Bảng 2)
-- [ ] Kết thúc trang bìa bằng `<div style="page-break-before: always;">&nbsp;</div>`
-
-### ✅ Phê duyệt tài liệu (Sign-off)
-- [ ] Có bảng **PHÊ DUYỆT TÀI LIỆU** ngay sau bìa: Người lập / Người rà soát / Người phê duyệt (Vai trò · Họ tên · Chức danh · Ngày · Chữ ký)
+- [ ] Kết thúc trang bìa bằng `<div style="page-break-before: always;">&nbsp;</div>` (class `toc-title` tự xử lý)
 
 ### ✅ Đánh số trang (MS Word)
 - [ ] Toàn bộ thân tài liệu bọc trong `<div class="Section1">`
-- [ ] Có `@page Section1 { mso-footer: f1; }` + `<div id="f1" style="mso-element:footer">` với field `PAGE`/`NUMPAGES`
-- [ ] Footer hiển thị "Trang X / Y | Mã hiệu · Version"
+- [ ] `@page Section1 { mso-footer: f1; }` + `<div id="f1" style="mso-element:footer">` với field `PAGE`/`NUMPAGES`
+- [ ] Footer: "Trang X / Y | Mã hiệu · Version"
 
 ### ✅ Page Break
-- [ ] MỤC LỤC xuống trang mới (class `toc-title` đã có `page-break-before: always`)
-- [ ] Mỗi `<h1>` (A, B, C, D, E...) xuống trang mới (CSS `h1` đã có `page-break-before: always`)
-- [ ] Dùng `<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
+- [ ] MỤC LỤC có `class="toc-title"` (đã tích hợp `page-break-before: always`)
+- [ ] Mỗi `<h1>` (A, B, C, D, E, F) xuống trang mới (CSS đã có `page-break-before: always`)
+- [ ] Mỗi `<h2>` (luồng trong mục C) xuống trang mới (CSS đã có `page-break-before: always`)
 
 ### ✅ Mục lục (TOC)
-- [ ] **Điền số trang thực** vào ký tự `X` cuối từng dòng `<p class="toc-entry ...">` sau `<span style="mso-tab-count:1 dotted">	</span>` — render bản A4 bằng Word rồi dò trang từng heading. KHÔNG để "X"/"—"
-- [ ] Số trang khớp với các đầu mục đã ép page-break
+- [ ] **Điền số trang thực** vào ký tự `X` sau khi render bằng Word — KHÔNG để "X"/"—"
+- [ ] Số trang khớp với các đầu mục đã page-break
+- [ ] Level 1 bold sát lề, level 2 thụt 0.75cm, level 3 thụt 1.5cm; tab stop phải 16.8cm
 
-### ✅ Sơ đồ BPMN (thay flowchart cũ)
-- [ ] Theo **chuẩn BPMN**: swimlane/pool theo tác nhân (KH / FE / BE & Tích hợp)
-- [ ] **Start Event** = vòng tròn mảnh; **End Event** = vòng tròn đậm
-- [ ] **Task** = chữ nhật bo góc; **Exclusive Gateway** = hình thoi gắn ký hiệu **×**
-- [ ] **Text Annotation** = khối nét đứt gắn mã `[MODULE-BR-xx]`; **Sequence Flow** liền, luồng quay lui nét đứt
+### ✅ Sơ đồ BPMN
+- [ ] Chuẩn BPMN: swimlane/pool theo tác nhân (KH / FE / BE & Tích hợp)
+- [ ] Start Event = vòng tròn mảnh; End Event = vòng tròn đậm; Task = chữ nhật bo góc; Exclusive Gateway = hình thoi **×**; Text Annotation = khối nét đứt; Sequence Flow liền; luồng quay lui nét đứt
+- [ ] `<img>` phải có `width="[PX_W]" height="[PX_H]"` (px thực của PNG) + inline style `width:16.0cm; height:auto; border:none; padding:0; mso-width-source:userset; mso-height-source:userset;`
+- [ ] KHÔNG có `border`, `padding`, `alt` trên ảnh sơ đồ; KHÔNG dùng class `diagram-img` cũ có border
+- [ ] Bọc trong `<div style="text-align:center; page-break-inside:avoid; margin:10px 0; overflow:hidden;">`
 - [ ] ⚠️ KHÔNG đặt text/bullet TRƯỚC `<img>`; ghi chú "cách đọc" + nguyên tắc vận hành đặt SAU ảnh
-- [ ] Lưu nguồn tại `diagrams/[tên_flow].svg` + PNG `@2x`, nhúng base64 bằng `<img class="diagram-img">` (xem PHẦN 5)
+- [ ] Nguồn SVG lưu tại `diagrams/[tên_flow]_bpmn.svg`; PNG nhúng base64
 
-### ✅ Luồng nghiệp vụ
+### ✅ Mục C — Cấu trúc luồng
+- [ ] Mỗi luồng là một `<h2>` (tự xuống trang mới)
+- [ ] Ngay dưới `<h2>` có `<p><span class="flow-band">Loại: ... · Nhóm: ...</span> &nbsp; [Mô tả]</p>`
+- [ ] Mỗi luồng có đủ **4 phần**: x.1 Đặc tả chi tiết · x.2 Quy tắc nghiệp vụ · x.3 Đặc tả giao diện · x.4 Edge cases & Mã lỗi
 - [ ] Góc nhìn **Customer Journey** — KH làm gì, KH thấy gì
-- [ ] Quy tắc hệ thống viết dưới dạng **note/BR** không phải step chính
-- [ ] Có đầy đủ: Pre-conditions, Luồng chính, Post-conditions, Luồng ngoại lệ (Alt)
-- [ ] Các ngưỡng cấu hình (giá, **biểu phí**, **giới hạn SL**, **PTTT**, bậc dịch vụ...) ghi rõ **do QLCS/Product Hub khai báo động**, không hardcode; không gài chương trình ưu đãi/khuyến mãi nếu thực tế chưa có
+- [ ] Pre-conditions, Luồng chính (B1, B2...), Post-conditions, Luồng thay thế (Alt 1, Alt 2...)
+- [ ] Có kịch bản đặc thù (`h4`) nếu luồng có nhiều case phức tạp
 
-### ✅ Edge Cases & Error Messages
-- [ ] Mỗi case có: điều kiện xảy ra, hành vi UI, message chính xác, hướng dẫn KH
-- [ ] Message lỗi **cụ thể** theo loại điều kiện (ERR_PTTT, ERR_SKU...) — không generic
-- [ ] Message thành công viết màu xanh lá (`success-inline`)
-- [ ] Message lỗi viết màu đỏ (`error-inline`)
+### ✅ Business Rules
+- [ ] BR viết dạng **bảng 3 cột** (Mã | Tên quy tắc | Nội dung) — KHÔNG dùng `alert-box`
+- [ ] Mã BR theo prefix luồng: `[PREFIX]-BR-01`, `[PREFIX]-BR-02`... liên tục không gãy số
+- [ ] Cập nhật mọi cross-reference khi thêm/xóa rule
 
-### ✅ Business Rules & Revision History
-- [ ] Mã BR **liên tục, không gãy số** (BR-01 → BR-0n); cập nhật mọi cross-reference khi thêm/xóa rule
-- [ ] Cập nhật version + ngày + tác giả + mô tả chi tiết thay đổi sau mỗi lần sửa
+### ✅ Edge Cases & Mã lỗi
+- [ ] Bảng mã lỗi 4 cột: Mã lỗi | Trường hợp | Message hiển thị | Hành vi hệ thống
+- [ ] Message lỗi dùng `<span class="error-inline">"..."</span>` — màu đỏ `#c00000`, italic, bold
+- [ ] Message thành công dùng `<span class="success-inline">"..."</span>` — màu xanh lá `#385723`
+- [ ] Quy ước mã: `ERR_{LUỒNG}_{NN}` cho lỗi; `MSG_{LUỒNG}_OK` cho thành công
+- [ ] Mục D có bảng mã lỗi **dùng chung** (5 cột: Mã | Màn hình | Điều kiện | Message | Hành động)
+
+### ✅ Bảng B.3 — Phân quyền
+- [ ] Bảng chức năng: 4 cột (STT | Luồng/Chức năng | Loại/Nhóm | Mô tả)
+- [ ] Bảng phân quyền: cột role gồm KH vãng lai / KH đăng nhập / Telesales-CSKH / Admin QLCS
+- [ ] Cách nhau bằng `<div style="height:18px; line-height:18px;">&nbsp;</div>`
+
+### ✅ Bảng B.4 — Giao diện dùng chung
+- [ ] 4 cột: Thành phần/Trạng thái | Màn hình áp dụng | Bắt buộc | Yêu cầu hiển thị & hành vi
+- [ ] Bao gồm các trạng thái lỗi hệ thống dùng chung (load fail, tính giá fail, PTTT empty, consent)
+
+### ✅ Revision History & Mã hiệu
+- [ ] Version Bảng 1 = version mới nhất trong Bảng 2
+- [ ] Cập nhật ngày + tác giả + mô tả thay đổi sau mỗi lần sửa
+- [ ] Mã hiệu format: `FPT-URD-[MODULE]-[SỐ]-01`
 
 ---
 
 ## PHẦN 3 — LỆNH LẤY BASE64 LOGO
 
 ```bash
-# Chạy trong thư mục project để lấy base64 của logo
 python3 -c "
 import base64
 with open('docs/images/logoftel.png', 'rb') as f:
@@ -672,106 +854,117 @@ print('data:image/png;base64,' + b64)
 "
 ```
 
-> Copy toàn bộ chuỗi output (bắt đầu bằng `data:image/png;base64,...`) vào thuộc tính `src` của thẻ `<img>` trong trang bìa.
+> Copy toàn bộ chuỗi output (bắt đầu bằng `data:image/png;base64,...`) vào `src` của thẻ `<img>` logo trang bìa.
 
 ---
 
 ## PHẦN 4 — CHUẨN CANH CHỈNH CỘT BẢNG (% WIDTH)
 
-> **Nguyên tắc cốt lõi:** Cột chứa **nội dung mô tả / chi tiết** luôn chiếm tỷ lệ lớn nhất. Cột ID/Code/Flag giữ nhỏ để nhường không gian cho dữ liệu thực chất.
+> **Nguyên tắc cốt lõi:** Cột **mô tả chi tiết / logic** luôn chiếm tỷ lệ lớn nhất. Dùng `%` thay `px` cứng. Tổng cột = 100%.
 
-### Quy tắc chung
-- Dùng **`%` (phần trăm)** thay vì `px` cứng để bảng co giãn đúng trong Word và trình duyệt
-- Tổng các cột phải bằng **100%**
-- `table-layout: auto` kết hợp `%` = Word tự điều chỉnh theo tỷ lệ
-- Cột cuối cùng (detail) có thể để `auto` hoặc đặt % lớn nhất
+### Bảng tỷ lệ chuẩn theo từng loại
 
-### Bảng tỷ lệ chuẩn theo từng loại bảng
-
-#### 1. Revision History (Lịch sử thay đổi)
+#### 1. Revision History (6 cột)
 ```html
-<th style="width: 9%;">Ngày</th>           <!-- Ngắn: DD/MM/YYYY -->
-<th style="width: 6%; text-align:center">Ver.</th>   <!-- Ngắn: V1.0 -->
-<th style="width: 12%;">Tác giả</th>       <!-- Vừa: Tên người -->
-<th style="width: 7%; text-align:center">HĐ</th>     <!-- Ngắn: [A]/[U] -->
-<th style="width: 18%;">Mô tả chung</th>   <!-- Vừa -->
-<th style="width: 48%;">Nội dung chi tiết</th> <!-- ★ LỚN NHẤT -->
+<th style="width:90px;">Date</th>
+<th style="width:75px;">Version</th>
+<th style="width:110px;">Author</th>
+<th style="width:110px;">Reviewer</th>
+<th style="width:110px;">Approver</th>
+<th>Change Description</th>   <!-- chiếm phần còn lại -->
 ```
 
-#### 2. Thông tin chung / Giới thiệu (3 cột)
+#### 2. Thông tin chung / AS-IS vs TO-BE (3 cột)
 ```html
-<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
-<th style="width: 22%;">Hạng mục</th>               <!-- Vừa -->
-<th style="width: 73%;">Mô tả chi tiết</th>         <!-- ★ LỚN NHẤT -->
+<th style="width: 5%; text-align:center">STT</th>
+<th style="width: 22%;">Hạng mục</th>
+<th style="width: 73%;">Mô tả chi tiết</th>   <!-- ★ LỚN NHẤT -->
 ```
 
 #### 3. Thuật ngữ / Định nghĩa (4 cột)
 ```html
-<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
-<th style="width: 13%;">Thuật ngữ</th>              <!-- Vừa -->
-<th style="width: 25%;">Nghĩa tiếng Anh</th>        <!-- Vừa -->
-<th style="width: 57%;">Mô tả ý nghĩa</th>          <!-- ★ LỚN NHẤT -->
+<th style="width: 5%; text-align:center">STT</th>
+<th style="width: 14%;">Thuật ngữ</th>
+<th style="width: 26%;">Tên đầy đủ</th>
+<th style="width: 55%;">Mô tả ý nghĩa</th>   <!-- ★ LỚN NHẤT -->
 ```
 
-#### 4. Functional List / Danh sách chức năng (5 cột)
+#### 4. Danh sách chức năng / Luồng (4 cột)
 ```html
-<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
-<th style="width: 25%;">Module / Chức năng</th>     <!-- Vừa -->
-<th style="width: 7%; text-align:center">Ver.</th>  <!-- Nhỏ -->
-<th style="width: 8%; text-align:center">Loại</th>  <!-- Nhỏ -->
-<th style="width: 55%;">Mô tả hành vi hệ thống</th> <!-- ★ LỚN NHẤT -->
+<th style="width: 5%; text-align:center">STT</th>
+<th style="width: 33%;">Luồng / Chức năng</th>
+<th style="width: 14%; text-align:center">Loại / Nhóm</th>
+<th style="width: 48%;">Mô tả tóm tắt</th>   <!-- ★ LỚN NHẤT -->
 ```
 
-#### 5. Permission Matrix / Phân quyền (6 cột)
+#### 5. Ma trận phân quyền (5 cột)
 ```html
-<th style="width: 5%; text-align:center">STT</th>   <!-- Nhỏ -->
-<th style="width: 55%;">Tên Chức năng / Module</th> <!-- ★ LỚN NHẤT -->
-<th style="width: 10%; text-align:center">KH vãng lai</th>    <!-- Role -->
-<th style="width: 10%; text-align:center">KH đăng nhập</th>   <!-- Role -->
-<th style="width: 10%; text-align:center">Telesales/CSKH</th> <!-- Role -->
-<th style="width: 10%; text-align:center">Admin (CMS)</th>    <!-- Role -->
+<th style="width: 40%;">Chức năng / Module</th>   <!-- ★ LỚN NHẤT -->
+<th style="width: 15%; text-align:center">KH vãng lai</th>
+<th style="width: 15%; text-align:center">KH đăng nhập</th>
+<th style="width: 15%; text-align:center">Telesales/CSKH</th>
+<th style="width: 15%; text-align:center">Admin QLCS</th>
 ```
 
-#### 6. Cart Items / Sản phẩm giỏ hàng (6 cột)
+#### 6. Giao diện dùng chung B.4 (4 cột)
 ```html
-<th style="width: 4%; text-align:center">Chọn</th>          <!-- Checkbox -->
-<th style="width: 40%;">Tên sản phẩm & Đặc tính DV</th>    <!-- ★ LỚN NHẤT -->
-<th style="width: 13%; text-align:center">Đơn giá TB</th>   <!-- Số tiền -->
-<th style="width: 12%; text-align:center">Giá Cloud</th>    <!-- Số tiền -->
-<th style="width: 7%; text-align:center">SL</th>            <!-- Số lượng -->
-<th style="width: 14%; text-align:center">Thành tiền</th>   <!-- Tổng -->
+<th style="width: 18%;">Thành phần / Trạng thái</th>
+<th style="width: 16%;">Màn hình áp dụng</th>
+<th style="width: 12%; text-align:center">Bắt buộc</th>
+<th style="width: 54%;">Yêu cầu hiển thị &amp; hành vi</th>   <!-- ★ LỚN NHẤT -->
 ```
 
-#### 7. Business Rules / Quy tắc nghiệp vụ (3 cột)
+#### 7. Business Rules — bảng 3 cột (KHÔNG alert-box)
 ```html
-<th style="width: 12%; text-align:center">Mã Rule</th>      <!-- Ngắn: BR-01 -->
-<th style="width: 22%;">Tên Quy tắc</th>                   <!-- Vừa -->
-<th style="width: 66%;">Nội dung quy tắc & Logic hệ thống</th> <!-- ★ LỚN NHẤT -->
+<th style="width: 14%; text-align:center">Mã</th>
+<th style="width: 24%;">Tên quy tắc</th>
+<th style="width: 62%;">Nội dung &amp; Logic hệ thống</th>   <!-- ★ LỚN NHẤT -->
 ```
 
-#### 8. Screen Description / Đặc tả màn hình (4 cột)
+#### 8. Đặc tả giao diện — 4 cột
 ```html
-<th style="width: 18%;">Phần tử giao diện</th>  <!-- Tên element -->
-<th style="width: 13%;">Kiểu hiển thị</th>      <!-- Input/Button... -->
-<th style="width: 8%; text-align:center">Bắt buộc</th> <!-- Y/N -->
-<th style="width: 61%;">Mô tả hành vi, ràng buộc & UI/UX</th> <!-- ★ LỚN NHẤT -->
+<th style="width: 20%;">Phần tử</th>
+<th style="width: 16%;">Màn hình</th>
+<th style="width: 8%; text-align:center">Bắt buộc</th>
+<th style="width: 56%;">Ràng buộc &amp; hành vi</th>   <!-- ★ LỚN NHẤT -->
 ```
 
-### Lưu ý khi tạo bảng mới
-| Loại cột | Tỷ lệ gợi ý | Ví dụ |
-|---|---|---|
-| ID / STT / Mã code | 4–7% | STT, Mã Rule, Mã lỗi |
-| Cột cờ (Flag/Status) | 6–10% | Bắt buộc, Loại, HĐ |
-| Tên ngắn / Nhãn | 10–25% | Thuật ngữ, Module, Tác giả |
-| Mô tả vừa | 20–30% | Tên Quy tắc, Hạng mục |
-| **Mô tả chi tiết / Logic** | **40–73%** | Nội dung rule, Hành vi UI |
+#### 9. Edge cases — bảng mã lỗi 4 cột
+```html
+<th style="width: 16%;">Mã lỗi</th>
+<th style="width: 26%;">Trường hợp</th>
+<th style="width: 36%;">Message hiển thị</th>   <!-- ★ LỚN NHẤT -->
+<th style="width: 22%;">Hành vi hệ thống</th>
+```
 
+#### 10. Bảng mã lỗi dùng chung D.3 — 5 cột
+```html
+<th style="width: 15%;">Mã lỗi</th>
+<th style="width: 18%;">Màn hình</th>
+<th style="width: 25%;">Điều kiện</th>
+<th style="width: 28%;">Message thông báo</th>   <!-- ★ LỚN NHẤT -->
+<th style="width: 14%;">Hành động</th>
+```
+
+#### 11. Kịch bản đặc thù — 3 cột
+```html
+<th style="width: 18%;">Kịch bản</th>
+<th style="width: 42%;">Mô tả</th>
+<th style="width: 40%;">Hành vi bắt buộc</th>
+```
+
+### Quy tắc chung
+| Loại cột | Tỷ lệ gợi ý |
+|---|---|
+| ID / STT / Mã lỗi | 5–16% |
+| Cột cờ (Bắt buộc, Loại) | 8–14% |
+| Tên ngắn / Nhãn | 14–26% |
+| Mô tả vừa | 20–33% |
+| **Mô tả chi tiết / Logic / Message** | **40–73%** |
 
 ---
 
-## PHẦN 5 — TẠO SƠ ĐỒ BPMN (SWIMLANE) & NHÚNG VÀO URD
-
-> **Tại sao tự sinh SVG?** Flowchart tự do khó đạt chuẩn BPMN (thiếu pool/lane, event tròn, gateway có ký hiệu). Cách ổn định nhất: viết một generator sinh **SVG swimlane dọc** rồi convert sang PNG nét cao và nhúng base64.
+## PHẦN 5 — TẠO SƠ ĐỒ BPMN & NHÚNG VÀO URD
 
 ### Quy ước ký hiệu BPMN bắt buộc
 | Thành phần | Ký hiệu | Ghi chú |
@@ -780,41 +973,87 @@ print('data:image/png;base64,' + b64)
 | End Event | Vòng tròn **đậm** (đỏ) | Mỗi kết cục một end riêng |
 | Task / Activity | Chữ nhật **bo góc** | Một hành động |
 | Exclusive Gateway | Hình **thoi** gắn ký hiệu **×** | Rẽ nhánh loại trừ (Yes/No) |
-| Text Annotation | Khối **nét đứt** | Gắn mã `[MODULE-BR-xx]` cạnh bước liên quan |
+| Text Annotation | Khối **nét đứt** | Gắn mã `[PREFIX-BR-nn]` cạnh bước liên quan |
 | Sequence Flow | Mũi tên **liền** | Luồng tuần tự |
 | Back / Retry flow | Mũi tên **nét đứt** | Quay về điều chỉnh / thử lại |
-| Pool / Lane | Băng dọc có tiêu đề | 1 lane / tác nhân (KH · FE · BE & Tích hợp) |
+| Pool / Lane | Băng dọc có tiêu đề | 1 lane / tác nhân: KH · FE · BE & Tích hợp |
 
 ### Quy trình 4 bước
 ```bash
-# 1) Viết generator (Python sinh SVG): mỗi node gán (lane, row, kind, label).
-#    Lane = cột dọc; row = bước thời gian; vẽ rect/circle/diamond + connector L.
-python3 diagrams/gen_bpmn.py            # -> diagrams/[flow].svg
+# 1) Viết generator Python sinh SVG swimlane dọc: mỗi node gán (lane, row, kind, label).
+python3 diagrams/gen_[tên]_bpmn.py          # -> diagrams/[tên]_bpmn.svg
 
-# 2) Convert SVG -> PNG @2x cho nét khi in (cần: brew install librsvg)
-rsvg-convert -z 2 -o diagrams/[flow].png diagrams/[flow].svg
+# 2) Convert SVG -> PNG @2x (cần: brew install librsvg)
+rsvg-convert -z 2 -o diagrams/[tên]_bpmn.png diagrams/[tên]_bpmn.svg
 
-# 3) Nhúng base64 vào URD (thay đúng thẻ class="diagram-img")
+# 3) Nhúng base64 vào URD
 python3 - <<'PY'
 import re, base64
-p='thuyttdoc/[urd_file].doc'; html=open(p,encoding='utf-8').read()
-b64='data:image/png;base64,'+base64.b64encode(open('diagrams/[flow].png','rb').read()).decode()
-html=re.sub(r'(<img src=")data:image/png;base64,[^"]*(" class="diagram-img")', r'\g<1>'+b64+r'\g<2>', html, count=1)
-open(p,'w',encoding='utf-8').write(html)
+p='thuyttdoc/[urd_file].doc'
+html = open(p, encoding='utf-8').read()
+b64 = 'data:image/png;base64,' + base64.b64encode(open('diagrams/[tên]_bpmn.png','rb').read()).decode()
+# Thay ảnh tổng quan (diagram-img đầu tiên)
+html = re.sub(r'(<img class="diagram-img"[^>]*src=")[^"]*(")', r'\g<1>' + b64 + r'\g<2>', html, count=1)
+open(p, 'w', encoding='utf-8').write(html)
+print('Done')
 PY
 
-# 4) Verify: render .doc -> PDF, soi trang chứa sơ đồ
-#    (macOS) /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
-#      --headless=new --disable-gpu --print-to-pdf=out.pdf "file://$PWD/thuyttdoc/[urd_file].doc"
+# 4) Verify: render .doc -> PDF, kiểm tra sơ đồ
+# macOS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+#   --headless=new --disable-gpu --print-to-pdf=out.pdf "file://$PWD/thuyttdoc/[urd_file].doc"
 ```
 
-### Khung luồng tham chiếu (Checkout TMĐT FPT) — tái dùng & tinh chỉnh
-- **Lane KH:** Bắt đầu → Chọn cấu hình trên PDP → Thêm giỏ → Điều chỉnh giỏ → Tiếp tục → Nhập SĐT → Chọn hình thức triển khai → Nhập địa chỉ/Voucher/PTTT → Xác nhận & Thanh toán → (End A / End B).
-- **Lane FE:** Tạo/cập nhật dòng giỏ (tách dòng/combo) → Lưu & hiển thị giỏ → GW "Có ≥1 dòng chọn?" → Hiển thị Checkout → GW "Hình thức?" → Thank You (A/B).
-- **Lane BE & Tích hợp:** Tra cứu hợp đồng CRM → GW (đề xuất liên kết) → GW "Thanh toán thành công?" → Tạo đơn SPF & đẩy cước.
-- **Annotation gắn rule:** tách dòng `Line_Key = SKU + Loại Cloud + Chu kỳ`; lưu giỏ theo trạng thái đăng nhập; phí lắp đặt theo biểu phí QLCS (KHÔNG ưu đãi nếu chưa có chương trình); PTTT do QLCS khai báo (COD khóa ở vùng cấm giao vận).
+### Nhúng img chuẩn (lấy W×H px từ rsvg-convert để điền vào width/height)
+```html
+<div style="text-align:center; page-break-inside:avoid; margin:10px 0; overflow:hidden;">
+<img class="diagram-img" width="605" height="493" style="width:16.0cm; height:auto; display:block; margin:0 auto; border:none; padding:0; mso-width-source:userset; mso-height-source:userset;" src="data:image/png;base64,...">
+</div>
+```
+> `width` và `height` (px) điền theo kích thước thực của PNG xuất ra (dùng `file diagrams/[tên].png` hoặc Python `PIL`). `mso-width-source:userset; mso-height-source:userset;` bắt buộc để Word không tự scale sai tỷ lệ khi in A4. KHÔNG dùng `alt` trên ảnh sơ đồ.
+
+### Script lấy kích thước PNG (điền vào width/height px)
+```bash
+# Cách 1: dùng Python Pillow
+python3 -c "from PIL import Image; im=Image.open('diagrams/[tên].png'); print(im.size)"
+# Output: (605, 493)
+
+# Cách 2: dùng file command
+file diagrams/[tên].png
+# Output: PNG image data, 605 x 493, ...
+```
+
+### Script nhúng tất cả ảnh base64 vào URD (thay theo thứ tự)
+```python
+import re, base64
+
+p = 'thuyttdoc/[urd_file].doc'
+html = open(p, encoding='utf-8').read()
+
+diagrams = [
+    'diagrams/[tên_overview]_bpmn.png',   # sơ đồ tổng quan B.1
+    'diagrams/[tên_nhom1]_bpmn.png',      # sơ đồ nhóm 1 B.2.1
+    'diagrams/[tên_nhom2]_bpmn.png',      # sơ đồ nhóm 2 B.2.2 (nếu có)
+]
+
+def b64(path):
+    return 'data:image/png;base64,' + base64.b64encode(open(path,'rb').read()).decode()
+
+# Thay từng src theo thứ tự xuất hiện trong file
+for i, path in enumerate(diagrams):
+    html = re.sub(
+        r'(<img class="diagram-img"[^>]*src=")[^"]*(")',
+        lambda m, b=b64(path): m.group(1) + b + m.group(2),
+        html, count=1
+    )
+
+open(p, 'w', encoding='utf-8').write(html)
+print('Done —', len(diagrams), 'diagrams embedded')
+```
 
 ### Lưu ý quan trọng
-- **Lề & lane co giãn:** chừa lề trái/phải đủ cho Text Annotation, tránh tràn canvas.
-- **Tiêu đề & chú giải (legend)** đặt riêng (đỉnh + đáy), không đè lên lane.
-- File `.doc` (HTML-based) bị tool đọc nhầm là binary do dòng quá dài — chỉnh sửa bằng **Python (đọc/ghi UTF-8)**, không Read trực tiếp; mọi replace nên có `assert count == kỳ vọng`.
+- **File `.doc` (HTML-based)** bị tool đọc nhầm là binary do dòng quá dài — chỉnh sửa bằng **Python (đọc/ghi UTF-8)**, không Read trực tiếp.
+- **`width/height` px**: PHẢI khớp với kích thước thực PNG — nếu để sai, Word scale ảnh lệch tỷ lệ khi in.
+- **`mso-width-source:userset`**: bắt buộc để Word tôn trọng `width:16.0cm` trong CSS thay vì tính lại từ px.
+- **Lề & lane**: chừa lề trái/phải đủ cho Text Annotation, tránh tràn canvas.
+- **Tiêu đề & chú giải (legend)**: đặt riêng ở đỉnh/đáy, không đè lên lane.
+- **Mọi replace** nên có `count=1` hoặc xác nhận số lần thay để tránh replace sai vị trí.
