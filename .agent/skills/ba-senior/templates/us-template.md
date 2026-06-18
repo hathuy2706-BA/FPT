@@ -31,13 +31,13 @@
 
 ## DANH MỤC TỪ VIẾT TẮT
 
-| Từ viết tắt | Ý nghĩa đầy đủ (Tiếng Anh / Tiếng Việt) | Mô tả chi tiết / Bối cảnh sử dụng |
-| :---: | :--- | :--- |
-| **US** | User Story | Câu chuyện người dùng, đơn vị yêu cầu nhỏ nhất trong Agile |
-| **AC** | Acceptance Criteria | Tiêu chí nghiệm thu cho User Story |
-| **BR** | Business Rule | Quy tắc nghiệp vụ bắt buộc hệ thống tuân thủ |
-| **KSNB** | Kiểm soát nội bộ | Bộ phận giám sát quy trình và chất lượng vận hành |
-| **[TỪ MỚI]** | [Ý nghĩa đầy đủ] | [Mô tả chi tiết] |
+| Từ viết tắt  | Ý nghĩa đầy đủ (Tiếng Anh / Tiếng Việt) | Mô tả chi tiết / Bối cảnh sử dụng                          |
+| :------------:| :----------------------------------------| :-----------------------------------------------------------|
+| **US**       | User Story                              | Câu chuyện người dùng, đơn vị yêu cầu nhỏ nhất trong Agile |
+| **AC**       | Acceptance Criteria                     | Tiêu chí nghiệm thu cho User Story                         |
+| **BR**       | Business Rule                           | Quy tắc nghiệp vụ bắt buộc hệ thống tuân thủ               |
+| **KSNB**     | Kiểm soát nội bộ                        | Bộ phận giám sát quy trình và chất lượng vận hành          |
+| **[TỪ MỚI]** | [Ý nghĩa đầy đủ]                        | [Mô tả chi tiết]                                           |
 
 ---
 

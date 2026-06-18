@@ -96,28 +96,14 @@
     table.usecase-table td { border: 1px solid #000000; padding: 8px; vertical-align: top; }
     table.usecase-table td.label { background-color: #f2f2f2; font-weight: bold; width: 150px; }
 
-    /* ===== MỤC LỤC — CLASSIC WORD STYLE ===== */
-    .toc-title {
-        page-break-before: always;
-        mso-page-break-before: always;
-        font-family: 'Arial', sans-serif;
-        font-size: 16pt;
-        font-weight: bold;
-        text-align: center;
-        color: #1f4e78;
-        text-transform: uppercase;
-        margin-bottom: 25px;
-        letter-spacing: 1px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #1f4e78;
-    }
-    table.toc-table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 4px; }
-    table.toc-table td { border: none; padding: 4px 0 2px 0; vertical-align: bottom; line-height: 1.4; }
-    .toc-dots { border-bottom: 1px dotted #888888; min-width: 30px; }
-    .toc-page { text-align: right; font-family: 'Arial', sans-serif; font-size: 11pt; width: 35px; font-weight: bold; color: #1f4e78; white-space: nowrap; }
-    .toc-l1 { font-family: 'Arial', sans-serif; font-weight: bold; color: #1f4e78; font-size: 11.5pt; text-transform: uppercase; padding-left: 0; }
-    .toc-l2 { font-family: 'Times New Roman', serif; padding-left: 22px; font-size: 11pt; color: #000000; }
-    .toc-l3 { font-family: 'Times New Roman', serif; padding-left: 44px; font-size: 10.5pt; font-style: italic; color: #555555; }
+    /* ===== MỤC LỤC — WORD CLASSIC STYLE ===== */
+    .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Times New Roman', Times, serif; font-size: 16pt; font-weight: bold; text-align: center; color: #000000; text-transform: uppercase; margin-bottom: 18px; letter-spacing: 0; padding-bottom: 0; border-bottom: none; }
+    .toc-list { width: 100%; margin-bottom: 2px; }
+    p.toc-entry { font-family: 'Times New Roman', Times, serif; color: #000000; font-size: 12pt; line-height: 1.25; margin-top: 0; margin-bottom: 6px; text-align: left; white-space: normal; overflow-wrap: normal; word-break: normal; mso-tab-count: 1; }
+    p.toc-l1 { font-weight: bold; margin-left: 0; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    p.toc-l2 { font-weight: normal; margin-left: 0.75cm; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    p.toc-l3 { font-weight: normal; margin-left: 1.5cm; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    .toc-tab { mso-tab-count: 1 dotted; }
 
     /* ===== TIỆN ÍCH ===== */
     ul, ol { margin-top: 5px; margin-bottom: 10px; padding-left: 20px; }
@@ -141,67 +127,75 @@
 <!-- ============================================================ -->
 <!-- TRANG BÌA (chuẩn URD)                                         -->
 <!-- Ghi chú:                                                      -->
-<!--  - Logo nhúng base64, kích thước 4cm x 1.4cm, GÓC TRÁI TRÊN  -->
-<!--  - Badge phân loại "LƯU HÀNH NỘI BỘ" ở góc phải              -->
-<!--  - Phiên bản trên bìa PHẢI = phiên bản mới nhất ở Revision   -->
+<!--  - Logo nhúng base64, kích thước 110×39px (≈3cm×1cm)          -->
+<!--  - Dùng width/height px thay cm — Word HTML bỏ qua đơn vị cm  -->
+<!--  - table-layout:fixed + max-width ô logo để logo không giãn   -->
+<!--  - Revision History nằm trên trang bìa (KHÔNG tách thành h2)  -->
 <!-- ============================================================ -->
-<div class="cover-container">
-    <!-- Hàng đầu: Logo (trái) + Badge phân loại (phải) -->
-    <table style="width:100%; border:none; border-collapse:collapse; margin-bottom:24px;">
-        <tr>
-            <td style="border:none; text-align:left; vertical-align:top; padding:0;">
-                <!-- Thay [LOGO_BASE64] bằng chuỗi base64 của logoftel.png -->
-                <!-- Lệnh: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
-                <img src="[LOGO_BASE64]" class="cover-logo" alt="FPT Telecom Logo" style="width:4cm; height:1.4cm; display:block; margin:0;">
-            </td>
-            <td style="border:none; text-align:right; vertical-align:top; padding:0;">
-                <span class="cover-badge">LƯU HÀNH NỘI BỘ</span>
-            </td>
-        </tr>
+
+<!-- Bảng 1: Header tài liệu -->
+<table style="width:100%; border-collapse:collapse; border:2px solid #000000; margin:0; table-layout:fixed;">
+    <tr>
+        <td style="border-right:1.5px solid #000000; border-bottom:1.5px solid #000000; padding:12px 16px; width:120px; max-width:120px; overflow:hidden; text-align:center; vertical-align:middle;">
+            <!-- Thay [LOGO_BASE64] bằng chuỗi data:image/png;base64,... -->
+            <!-- Lệnh lấy base64: python3 -c "import base64; print('data:image/png;base64,'+base64.b64encode(open('docs/images/logoftel.png','rb').read()).decode())" -->
+            <img src="[LOGO_BASE64]" width="110" height="39" style="width:110px; height:39px; max-width:110px; display:block; margin:auto;" alt="FPT Telecom">
+        </td>
+        <td style="border-bottom:1.5px solid #000000; padding:20px 24px; text-align:center; vertical-align:middle;">
+            <div style="font-family:'Arial', sans-serif; font-size:16pt; font-weight:bold; color:#000000; text-transform:uppercase; line-height:1.35;">FPT.VN URD &ndash; USER REQUIREMENTS DOCUMENT</div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding:10px 20px;">
+            <span style="font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold;">Mã hiệu:</span>
+            <span style="font-family:'Times New Roman', serif; font-size:11pt;"> FPT-URD-[MODULE]-[SỐ]-01</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold;">Phiên bản:</span>
+            <span style="font-family:'Times New Roman', serif; font-size:11pt;"> V1.0</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold;">Ngày:</span>
+            <span style="font-family:'Times New Roman', serif; font-size:11pt;"> [DD/MM/YYYY]</span>
+        </td>
+    </tr>
+</table>
+
+<!-- Bảng 2: Revision History — cách bảng header 2cm -->
+<div style="margin-top:2cm;">
+    <p style="font-family:'Arial', sans-serif; font-size:13pt; font-weight:bold; color:#1f4e78; margin:0 0 4px 0; text-transform:uppercase; letter-spacing:0.5px;">Revision History</p>
+    <hr style="border:none; border-top:1.5px solid #1f4e78; margin:0 0 10px 0;">
+    <p style="font-family:'Times New Roman', serif; font-size:10pt; font-style:italic; color:#333333; margin:0 0 10px 0;">
+        [A]: Add &ndash; <u>Thêm mới</u> &nbsp;|&nbsp; [U]: Update &ndash; <u>Cập nhật, thay đổi</u> &nbsp;|&nbsp; [D]: Delete &ndash; <u>Xóa</u>
+    </p>
+    <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
+        <thead>
+            <tr>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center; width:90px;">Date</th>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center; width:75px;">Version</th>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center; width:110px;">Author</th>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center; width:110px;">Reviewer</th>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center; width:110px;">Approver</th>
+                <th style="border:1px solid #000000; padding:8px 10px; font-family:'Arial', sans-serif; font-size:11pt; font-weight:bold; background-color:#dae3f3; text-align:center;">Change Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt; text-align:center;">[DD/MM/YYYY]</td>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt; text-align:center;">V1.0</td>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt; text-align:center;">[Tên tác giả]</td>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt; text-align:center;">[Reviewer]</td>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt; text-align:center;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:8px 10px; font-family:'Times New Roman', serif; font-size:11pt;">[A] Khởi tạo tài liệu URD [Tên hệ thống]</td>
+            </tr>
+            <tr>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+                <td style="border:1px solid #000000; padding:20px 10px;">&nbsp;</td>
+            </tr>
+        </tbody>
     </table>
-
-    <div class="cover-title-box">
-        <div class="cover-org">Công ty Cổ phần Viễn thông FPT &middot; Tài liệu nghiệp vụ</div>
-        <div class="cover-title-main">Tài Liệu Đặc Tả Yêu Cầu Người Dùng</div>
-        <div class="cover-title-en">User Requirements Document (URD)</div>
-        <div class="cover-title-sub">[TÊN HỆ THỐNG / TÍNH NĂNG]</div>
-        <div class="cover-scope">Kênh áp dụng: [KÊNH / PHASE — VD: Website Thương mại điện tử FPT.vn]</div>
-    </div>
-
-    <div class="cover-meta-box">
-        <table class="cover-meta-table">
-            <!-- BỎ dòng "Dự án" theo yêu cầu chuẩn hóa -->
-            <tr>
-                <td class="cover-meta-label">Mã hiệu:</td>
-                <td>FPT-URD-[MODULE]-[SỐ THỨ TỰ]-01</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Phiên bản:</td>
-                <td>V1.0</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Trạng thái:</td>
-                <td>Bản nháp &ndash; Chờ phê duyệt (Draft for Review)</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Người lập:</td>
-                <td>[Tên tác giả — VD: ThuyTT104] &middot; Business Analyst</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Ngày lập:</td>
-                <td>[DD/MM/YYYY]</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Ngày cập nhật:</td>
-                <td>[DD/MM/YYYY]</td>
-            </tr>
-            <tr>
-                <td class="cover-meta-label">Phân loại:</td>
-                <td>Lưu hành nội bộ (Internal Use Only)</td>
-            </tr>
-        </table>
-        <div class="cover-copyright">&copy; [NĂM] Công ty Cổ phần Viễn thông FPT (FPT Telecom). Tài liệu lưu hành nội bộ &ndash; Không phổ biến ra bên ngoài khi chưa được phê duyệt.</div>
-    </div>
 </div>
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
@@ -229,130 +223,36 @@
 </table>
 
 <!-- ============================================================ -->
-<!-- LỊCH SỬ THAY ĐỔI                                             -->
-<!-- ============================================================ -->
-<h2>REVISION HISTORY (LỊCH SỬ THAY ĐỔI)</h2>
-<p><i>Ký hiệu hành động: [A]: Add – Thêm mới | [U]: Update – Cập nhật, thay đổi | [D]: Delete - Xóa</i></p>
-<table class="data-table">
-    <thead>
-        <tr>
-            <th style="width: 15%;">Ngày</th>
-            <th style="width: 10%;">Version</th>
-            <th style="width: 20%;">Tác giả</th>
-            <th style="width: 10%;">Hành động</th>
-            <th style="width: 45%;">Mô tả chi tiết thay đổi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>[DD/MM/YYYY]</td>
-            <td>V1.0</td>
-            <td>[Tên tác giả]</td>
-            <td style="text-align: center;">[A]</td>
-            <td>Khởi tạo tài liệu URD [Tên hệ thống]. Mô tả chi tiết [Mô tả ngắn].</td>
-        </tr>
-    </tbody>
-</table>
-
-<!-- ============================================================ -->
 <!-- MỤC LỤC — class toc-title đã có page-break-before: always   -->
-<!-- ⚠️ ĐIỀN SỐ TRANG THỰC vào các <td class="toc-page">: render bản A4   -->
-<!--    (Chrome --headless --print-to-pdf hoặc Word), dò trang của từng     -->
-<!--    heading rồi thay "X". KHÔNG để trống/để dấu "—" ở bản phát hành.    -->
+<!-- ⚠️ Dùng paragraph + tab leader kiểu Word Classic:
+     - Level 1 sát lề, bold
+     - Level 2 thụt 0.75cm
+     - Level 3 thụt 1.5cm
+     - Tất cả level dùng cùng tab stop phải 16.8cm để số trang thẳng cột
+     - Dòng dài được phép xuống dòng để không tràn viền
+     Render bản A4 bằng Word rồi thay "X" bằng số trang thực.             -->
 <!-- ============================================================ -->
 <div class="toc-title" style="page-break-before: always; mso-page-break-before: always;">MỤC LỤC</div>
-<table class="toc-table">
-    <tr>
-        <td class="toc-l1">A. GIỚI THIỆU</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">1. Mục đích tài liệu</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">3. Thuật ngữ và viết tắt</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l1">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">2. Danh sách các chức năng chính</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">3. Ma trận phân quyền sử dụng</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l1">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">I. [Luồng 1]</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l3">1. Quy trình nghiệp vụ từng bước (Step-by-Step)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l3">2. Quy tắc cấu hình &amp; Business Rules</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l3">3. Mô tả giao diện &amp; Ràng buộc trường</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">II. [Luồng 2] (nếu có)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">III. Đặc tả điều kiện &amp; Edge Cases</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l2">IV. Bảng thông điệp báo lỗi (Error Messages)</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l1">D. YÊU CẦU PHI CHỨC NĂNG</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-    <tr>
-        <td class="toc-l1">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO</td>
-        <td class="toc-dots">&nbsp;</td>
-        <td class="toc-page">X</td>
-    </tr>
-</table>
+<div class="toc-list">
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">A. GIỚI THIỆU<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Mục đích tài liệu<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Thuật ngữ và viết tắt<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. TỔNG QUAN HỆ THỐNG VÀ PHẠM VI<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Sơ đồ luồng nghiệp vụ tổng quan (Flow Diagram)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Danh sách các chức năng chính<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Ma trận phân quyền sử dụng<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. ĐẶC TẢ CHI TIẾT CÁC CHỨC NĂNG NGHIỆP VỤ<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">I. [Luồng 1]<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Quy trình nghiệp vụ từng bước (Step-by-Step)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Quy tắc cấu hình &amp; Business Rules<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Mô tả giao diện &amp; Ràng buộc trường<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">II. [Luồng 2] (nếu có)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">III. Đặc tả điều kiện &amp; Edge Cases<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">IV. Bảng thông điệp báo lỗi (Error Messages)<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">D. YÊU CẦU PHI CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">E. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO<span style="mso-tab-count:1 dotted">	</span>X</p>
+</div>
 
 <!-- ============================================================ -->
 <!-- A. GIỚI THIỆU — h1 tự xuống trang do page-break-before       -->
@@ -710,12 +610,12 @@
 ## PHẦN 2 — CHECKLIST TRƯỚC KHI SUBMIT URD
 
 ### ✅ Trang bìa (chuẩn URD)
-- [ ] Logo FPT Telecom nhúng **base64 Data URI**, kích thước **4cm × 1.4cm**, đặt **góc trái trên**
-- [ ] Badge phân loại **"LƯU HÀNH NỘI BỘ"** ở góc phải trên
-- [ ] Người lập điền tên thực + vai trò (VD: ThuyTT104 · Business Analyst); **BỎ dòng "Dự án"**
-- [ ] Có đầy đủ: Mã hiệu, **Phiên bản**, **Trạng thái** (Draft/Approved...), Ngày lập, Ngày cập nhật, **Phân loại**
-- [ ] ⚠️ **Phiên bản trên bìa = phiên bản mới nhất trong Revision History** (đồng bộ, không để lệch)
-- [ ] Có dòng **Kênh áp dụng** và **footer bản quyền** © FPT Telecom
+- [ ] **Bảng 1** — Header: Logo FPT (ô trái, `width:120px`) | Tiêu đề "FPT.VN URD – USER REQUIREMENTS DOCUMENT" (ô phải, in hoa); Row 2: Mã hiệu · Phiên bản · Ngày inline
+- [ ] Logo nhúng **base64 Data URI**, kích thước **`width="110" height="39"`** (px, không dùng cm — Word bỏ qua cm); `table-layout:fixed` + `max-width:120px` trên ô logo
+- [ ] **Bảng 2** — Revision History: tiêu đề "REVISION HISTORY" màu `#1f4e78`, đường kẻ ngang, chú thích `[A]/[U]/[D]`, bảng 6 cột (Date · Version · Author · Reviewer · Approver · Change Description), header nền `#dae3f3`
+- [ ] ⚠️ **Phiên bản ở Bảng 1 = phiên bản mới nhất trong Bảng 2** (đồng bộ, không lệch)
+- [ ] Cách 2 bảng **2cm** (`margin-top:2cm` trên div bọc Bảng 2)
+- [ ] Kết thúc trang bìa bằng `<div style="page-break-before: always;">&nbsp;</div>`
 
 ### ✅ Phê duyệt tài liệu (Sign-off)
 - [ ] Có bảng **PHÊ DUYỆT TÀI LIỆU** ngay sau bìa: Người lập / Người rà soát / Người phê duyệt (Vai trò · Họ tên · Chức danh · Ngày · Chữ ký)
@@ -731,7 +631,7 @@
 - [ ] Dùng `<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>` trước các `<h2>` phân luồng lớn (I, II, III, IV)
 
 ### ✅ Mục lục (TOC)
-- [ ] **Điền số trang thực** vào mọi `<td class="toc-page">` — render bản A4 (Chrome `--print-to-pdf`/Word) rồi dò trang từng heading. KHÔNG để "X"/"—"
+- [ ] **Điền số trang thực** vào ký tự `X` cuối từng dòng `<p class="toc-entry ...">` sau `<span style="mso-tab-count:1 dotted">	</span>` — render bản A4 bằng Word rồi dò trang từng heading. KHÔNG để "X"/"—"
 - [ ] Số trang khớp với các đầu mục đã ép page-break
 
 ### ✅ Sơ đồ BPMN (thay flowchart cũ)

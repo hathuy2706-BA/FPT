@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1960" height="1596" viewBox="0 0 1960 1596" font-family="Arial, sans-serif">
+<rect x="0" y="0" width="1960" height="1596" fill="#ffffff"/>
+<text x="980.0" y="34" font-size="20" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN TỔNG QUAN — GIỎ HÀNG &amp; CHECKOUT ĐA SẢN PHẨM (FPT.VN)</text>
+<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#444"/></marker></defs>
+<rect x="290" y="84" width="460" height="1490" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.4"/>
+<rect x="290" y="84" width="460" height="46" fill="#1f4e78"/>
+<text x="520.0" y="112.0" font-size="12.5" font-weight="bold" fill="#ffffff" text-anchor="middle">KHÁCH HÀNG (CUSTOMER)</text>
+<rect x="750" y="84" width="460" height="1490" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.4"/>
+<rect x="750" y="84" width="460" height="46" fill="#2e75b6"/>
+<text x="980.0" y="112.0" font-size="12.5" font-weight="bold" fill="#ffffff" text-anchor="middle">WEBSITE FPT.VN (FRONTEND)</text>
+<rect x="1210" y="84" width="460" height="1490" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.4"/>
+<rect x="1210" y="84" width="460" height="46" fill="#7030a0"/>
+<text x="1440.0" y="112.0" font-size="12.5" font-weight="bold" fill="#ffffff" text-anchor="middle">BACKEND &amp; TÍCH HỢP (SPF · CRM · Payment · Product Hub)</text>
+<path d="M520.0,203.0 L520.0,240.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M520.0,302.0 L520.0,318.0 L980.0,318.0 L980.0,334.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M980.0,396.0 L980.0,428.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M980.0,490.0 L980.0,506.0 L520.0,506.0 L520.0,522.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M520.0,584.0 L520.0,598.0 L980.0,598.0 L980.0,612.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M980.0,682.0 L980.0,696.0 L520.0,696.0 L520.0,710.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="739.8" y="682.0" width="20.4" height="15" fill="#ffffff" opacity="0.92"/>
+<text x="750.0" y="694.0" font-size="9.5" fill="#333" text-anchor="middle">Có</text>
+<path d="M520.0,772.0 L520.0,788.0 L980.0,788.0 L980.0,804.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M980.0,866.0 L980.0,882.0 L520.0,882.0 L520.0,898.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M520.0,960.0 L520.0,976.0 L1440.0,976.0 L1440.0,992.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M1440.0,1054.0 L1440.0,1070.0 L520.0,1070.0 L520.0,1086.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M520.0,1148.0 L520.0,1162.0 L1440.0,1162.0 L1440.0,1176.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M1440.0,1246.0 L1440.0,1274.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="1413.0" y="1251.0" width="70.0" height="15" fill="#ffffff" opacity="0.92"/>
+<text x="1448.0" y="1263.0" font-size="9.5" fill="#333" text-anchor="middle">Thành công</text>
+<path d="M1440.0,1336.0 L1440.0,1352.0 L980.0,1352.0 L980.0,1368.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M980.0,1430.0 L980.0,1448.5 L520.0,1448.5 L520.0,1467.0" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M945.0,647.0 L40,647.0 L40,553.0 L385.0,553.0" fill="none" stroke="#c62828" stroke-width="1.4" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+<text x="44" y="600.0" font-size="9.5" fill="#c62828" text-anchor="start" transform="rotate(-90 44 600.0)">Không → nút 'Tiếp tục' mờ</text>
+<path d="M1405.0,1211.0 L726,1211.0 L726,1117.0 L385.0,1117.0" fill="none" stroke="#c62828" stroke-width="1.4" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+<text x="730" y="1164.0" font-size="9.5" fill="#c62828" text-anchor="start" transform="rotate(-90 730 1164.0)">Thất bại → thử lại / đổi PTTT</text>
+<path d="M1210,365.0 L1228,365.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="1228" y="340.0" width="252" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1354.0" y="367.87" font-size="8.2" fill="#7a5b00" font-weight="normal" text-anchor="middle"><tspan x="1354.0" dy="0">[CART-BR-01] Line_Key = SKU/Gói + Thuộc tính + Chu kỳ. Trùng → cộng dồn SL; khác → tách dòng.</tspan></text>
+<path d="M1210,459.0 L1228,459.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="1228" y="434.0" width="252" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1354.0" y="461.87" font-size="8.2" fill="#7a5b00" font-weight="normal" text-anchor="middle"><tspan x="1354.0" dy="0">[CART-BR-04] Giá · chu kỳ · PTTT · biểu phí nạp động từ Product Hub / QLCS, không hardcode FE.</tspan></text>
+<path d="M1670,1023.0 L1688,1023.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="1688" y="998.0" width="252" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1814.0" y="1025.87" font-size="8.2" fill="#7a5b00" font-weight="normal" text-anchor="middle"><tspan x="1814.0" dy="0">[CART-BR-07] Tra cứu hợp đồng dịch vụ FPT trên CRM → đề xuất gộp / liên kết hợp đồng.</tspan></text>
+<path d="M290,929.0 L272,929.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="20" y="904.0" width="252" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="146.0" y="931.87" font-size="8.2" fill="#7a5b00" font-weight="normal" text-anchor="middle"><tspan x="146.0" dy="0">[CART-BR-05] Tick 'Nhận hóa đơn' → bắt buộc Họ tên · Email · Địa chỉ đầy đủ.</tspan></text>
+<path d="M290,1117.0 L272,1117.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="20" y="1092.0" width="252" height="50" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="146.0" y="1119.87" font-size="8.2" fill="#7a5b00" font-weight="normal" text-anchor="middle"><tspan x="146.0" dy="0">[CART-BR-08] Mọi thay đổi đơn → BE re-validate giá &amp; điều kiện trước thanh toán.</tspan></text>
+<circle cx="520.0" cy="177.0" r="26" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="520.0" y="174.57" font-size="9" fill="#1b5e20" font-weight="bold" text-anchor="middle"><tspan x="520.0" dy="0">Bắt đầu</tspan><tspan x="520.0" dy="11.16">Chọn SP trên PDP</tspan></text>
+<rect x="385.0" y="240.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.7"/>
+<text x="520.0" y="262.456" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="520.0" dy="0">Chọn cấu hình SP</tspan><tspan x="520.0" dy="11.904">(SL · Chu kỳ · Cloud/Gói)</tspan><tspan x="520.0" dy="11.904">bấm 'Thêm vào giỏ hàng'</tspan></text>
+<rect x="845.0" y="334.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.7"/>
+<text x="980.0" y="362.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="980.0" dy="0">Tạo / cập nhật dòng giỏ</tspan><tspan x="980.0" dy="11.904">(theo Line_Key)</tspan></text>
+<rect x="845.0" y="428.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.7"/>
+<text x="980.0" y="456.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="980.0" dy="0">Lưu giỏ &amp; hiển thị</tspan><tspan x="980.0" dy="11.904">màn Giỏ hàng</tspan></text>
+<rect x="385.0" y="522.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.7"/>
+<text x="520.0" y="550.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="520.0" dy="0">Điều chỉnh giỏ</tspan><tspan x="520.0" dy="11.904">(Tick · +/- SL · Đổi thuộc tính · Xóa)</tspan></text>
+<polygon points="980.0,612.0 1015.0,647.0 980.0,682.0 945.0,647.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.8"/>
+<text x="980.0" y="606.0" font-size="15" font-weight="bold" fill="#bf8f00" text-anchor="middle">×</text>
+<text x="980.0" y="644.624" font-size="8.8" fill="#5b4500" font-weight="bold" text-anchor="middle"><tspan x="980.0" dy="0">Có ≥ 1 dòng</tspan><tspan x="980.0" dy="10.912">được chọn?</tspan></text>
+<rect x="385.0" y="710.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.7"/>
+<text x="520.0" y="744.36" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="520.0" dy="0">Bấm 'Tiếp tục'</tspan></text>
+<rect x="845.0" y="804.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.7"/>
+<text x="980.0" y="832.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="980.0" dy="0">Hiển thị màn Checkout</tspan><tspan x="980.0" dy="11.904">(B1 Thông tin → B2 Thanh toán)</tspan></text>
+<rect x="385.0" y="898.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.7"/>
+<text x="520.0" y="926.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="520.0" dy="0">Nhập SĐT (bắt buộc) &amp;</tspan><tspan x="520.0" dy="11.904">thông tin nhận hàng / hóa đơn</tspan></text>
+<rect x="1305.0" y="992.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.7"/>
+<text x="1440.0" y="1020.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1440.0" dy="0">Tra cứu hợp đồng CRM &amp;</tspan><tspan x="1440.0" dy="11.904">validate giá (Product Hub)</tspan></text>
+<rect x="385.0" y="1086.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.7"/>
+<text x="520.0" y="1114.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="520.0" dy="0">Chọn triển khai · Ưu đãi · PTTT</tspan><tspan x="520.0" dy="11.904">→ Xác nhận &amp; Thanh toán</tspan></text>
+<polygon points="1440.0,1176.0 1475.0,1211.0 1440.0,1246.0 1405.0,1211.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.8"/>
+<text x="1440.0" y="1170.0" font-size="15" font-weight="bold" fill="#bf8f00" text-anchor="middle">×</text>
+<text x="1440.0" y="1208.624" font-size="8.8" fill="#5b4500" font-weight="bold" text-anchor="middle"><tspan x="1440.0" dy="0">Thanh toán</tspan><tspan x="1440.0" dy="10.912">thành công?</tspan></text>
+<rect x="1305.0" y="1274.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.7"/>
+<text x="1440.0" y="1302.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1440.0" dy="0">Tạo đơn trên SPF &amp;</tspan><tspan x="1440.0" dy="11.904">Kích hoạt / Giao hàng</tspan></text>
+<rect x="845.0" y="1368.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.7"/>
+<text x="980.0" y="1396.408" font-size="9.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="980.0" dy="0">Thank You Page</tspan><tspan x="980.0" dy="11.904">(Mã đơn · Theo dõi ĐH)</tspan></text>
+<circle cx="520.0" cy="1493.0" r="26" fill="#ffebee" stroke="#c62828" stroke-width="3.4"/>
+<text x="520.0" y="1490.705" font-size="8.5" fill="#b71c1c" font-weight="bold" text-anchor="middle"><tspan x="520.0" dy="0">Hoàn tất</tspan><tspan x="520.0" dy="10.54">đơn hàng</tspan></text>
+<text x="980.0" y="1581" font-size="11" fill="#555" text-anchor="middle">Ký hiệu BPMN:  ◯ Start Event   ◉ End Event   ▭ Task   ◇× Exclusive Gateway   ┄┄ Text Annotation   — ▸ Sequence Flow   ┄▸ Luồng quay lui</text>
+</svg>
