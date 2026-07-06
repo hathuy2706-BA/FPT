@@ -41,12 +41,13 @@
     .badge-pending { background-color: #FFF3CD; color: #856404; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
     .badge-error { background-color: #F8D7DA; color: #721C24; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
 
-    /* TOC Styles */
-    .toc-title { font-family: 'Times New Roman', Times, serif; font-size: 16pt; font-weight: bold; text-align: center; color: #103F91; text-transform: uppercase; margin-bottom: 20px; }
-    .toc-list { width: 100%; margin-bottom: 25px; }
-    p.toc-entry { font-family: 'Times New Roman', Times, serif; color: #333333; font-size: 13pt; line-height: 1.5; margin-top: 0; margin-bottom: 8px; text-align: left; mso-tab-count: 1; }
+    /* ===== MỤC LỤC — WORD CLASSIC STYLE ===== */
+    .toc-title { page-break-before: always; mso-page-break-before: always; font-family: 'Times New Roman', Times, serif; font-size: 16pt; font-weight: bold; text-align: center; color: #000000; text-transform: uppercase; margin-bottom: 18px; letter-spacing: 0; padding-bottom: 0; border-bottom: none; }
+    .toc-list { width: 100%; margin-bottom: 2px; }
+    p.toc-entry { font-family: 'Times New Roman', Times, serif; color: #000000; font-size: 12pt; line-height: 1.25; margin-top: 0; margin-bottom: 6px; text-align: left; white-space: normal; overflow-wrap: normal; word-break: normal; mso-tab-count: 1; }
     p.toc-l1 { font-weight: bold; margin-left: 0; text-indent: 0; tab-stops: right dotted 16.8cm; }
     p.toc-l2 { font-weight: normal; margin-left: 0.75cm; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    p.toc-l3 { font-weight: normal; margin-left: 1.5cm; text-indent: 0; tab-stops: right dotted 16.8cm; }
     .toc-tab { mso-tab-count: 1 dotted; }
 
     /* Page settings for MS Word */
@@ -96,28 +97,29 @@
 <!-- TRANG MỤC LỤC -->
 <div class="toc-title">MỤC LỤC</div>
 <div class="toc-list">
-    <p class="toc-entry toc-l1">Danh mục thuật ngữ & Viết tắt<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">1. Tổng quan<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">2. Endpoint<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">3. Body Request<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l2">3.1. Đối tượng transactionInfo<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l2">3.2. Checksum<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">4. Mã trạng thái (status)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">5. Body Response<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">6. Ví dụ Request<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">7. Ví dụ Response<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">8. Cơ chế Retry<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l2">8.1. HTTP Status Code bị ignore (không retry)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">9. Yêu cầu Phi chức năng (Non-functional)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">10. Môi trường & Triển khai (Deployment)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">11. Kiểm thử & Nghiệm thu (Testing)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">12. Vận hành & Hỗ trợ (Operations)<span class="toc-tab">	</span></p>
-    <p class="toc-entry toc-l1">13. Phụ lục (Appendix)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">A. THÔNG TIN CHUNG<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">1. Danh mục thuật ngữ & Viết tắt<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">2. Tổng quan<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l3">2.1. Luồng giao dịch (Business Flow)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">B. ĐẶC TẢ KỸ THUẬT API<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">1. Endpoint<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">2. Body Request<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l3">2.1. Đối tượng transactionInfo<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l3">2.2. Checksum<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">3. Mã trạng thái (status)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">4. Body Response<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">5. Cơ chế Retry<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l3">5.1. HTTP Status Code bị ignore<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">6. Yêu cầu Phi chức năng (Non-functional)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">C. VÍ DỤ MINH HỌA<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">1. Ví dụ Request<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">2. Ví dụ Response<span class="toc-tab">	</span></p>
 </div>
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
-<h1>Danh mục thuật ngữ & Viết tắt</h1>
+<h1>A. THÔNG TIN CHUNG</h1>
+<h2>1. Danh mục thuật ngữ & Viết tắt</h2>
 <table>
     <tr>
         <th style="width: 20%;">Từ viết tắt</th>
@@ -155,10 +157,10 @@
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
-<h1>1. Tổng quan</h1>
+<h2>2. Tổng quan</h2>
 <p>Khi giao dịch thanh toán thành công hoặc có thay đổi trạng thái (duyệt/không duyệt trả góp, duyệt/không duyệt thẻ review, liên kết thẻ thành công,…), đối tác gọi callback (IPN) về URL webhook mà merchant đã khai báo trên trang quản trị để thông báo thông tin giao dịch.</p>
 
-<h2>1.1. Luồng giao dịch (Business Flow)</h2>
+<h3>2.1. Luồng giao dịch (Business Flow)</h3>
 <ul>
     <li><b>Bước 1:</b> Khách hàng thực hiện thanh toán trên hệ thống Đối tác.</li>
     <li><b>Bước 2:</b> Hệ thống Đối tác ghi nhận trạng thái thanh toán và tự động gửi Request (IPN) mang theo <code>checksum</code> về hệ thống Merchant.</li>
@@ -166,7 +168,8 @@
     <li><b>Bước 4:</b> Merchant phản hồi ngay lập tức (HTTP 200) về hệ thống Đối tác để xác nhận đã nhận IPN thành công.</li>
 </ul>
 
-<h1>2. Endpoint</h1>
+<h1>B. ĐẶC TẢ KỸ THUẬT API</h1>
+<h2>1. Endpoint</h2>
 <table>
     <tr>
         <th style="width: 25%;">Thuộc tính</th>
@@ -194,7 +197,7 @@
     </tr>
 </table>
 
-<h1>3. Body Request</h1>
+<h2>2. Body Request</h2>
 <table>
     <tr>
         <th style="width: 25%;">Trường</th>
@@ -216,7 +219,7 @@
     </tr>
 </table>
 
-<h2>3.1. Đối tượng transactionInfo</h2>
+<h3>2.1. Đối tượng transactionInfo</h3>
 <table>
     <tr>
         <th style="width: 25%;">Trường</th>
@@ -334,7 +337,7 @@
     </tr>
 </table>
 
-<h2>3.2. Checksum</h2>
+<h3>2.2. Checksum</h3>
 <p>checksum dùng để kiểm tra tính chính xác của dữ liệu callback.</p>
 <div class="code-block">
 data = orderCode + amount + transactionCode
@@ -344,7 +347,7 @@ checksum = Base64(HMAC-SHA256(data, secretKey))
 <div class="note-box">
     <b>Lưu ý:</b> Sử dụng thuật toán HMAC-SHA256 thay vì MD5 để đảm bảo an ninh bảo mật theo yêu cầu từ TPBank.
 </div>
-<h3>Mã nguồn tham khảo thuật toán (Java)</h3>
+<h4>Mã nguồn tham khảo thuật toán (Java)</h4>
 <div class="code-block">
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -360,7 +363,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
 }
 </div>
 
-<h1>4. Mã trạng thái (status)</h1>
+<h2>3. Mã trạng thái (status)</h2>
 <div class="note-box">
     <b>Lưu ý:</b> Đối tác cần cung cấp đầy đủ danh sách tất cả các trạng thái giao dịch mà đối tác đang có, bao gồm phân loại rõ ràng: trạng thái nào là thành công, trạng thái nào là thất bại, trạng thái nào là pending (đang xử lý).
 </div>
@@ -402,7 +405,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
     </tr>
 </table>
 
-<h1>5. Body Response</h1>
+<h2>4. Body Response</h2>
 <p>Đối tượng trả về cho đối tác: IpnResponse.</p>
 <table>
     <tr>
@@ -445,7 +448,8 @@ public String generateChecksum(String orderCode, String amount, String transCode
     </tr>
 </table>
 
-<h1>6. Ví dụ Request</h1>
+<h1>C. VÍ DỤ MINH HỌA</h1>
+<h2>1. Ví dụ Request</h2>
 <p>Ví dụ Request khớp với bảng spec:</p>
 <div class="code-block">
 {
@@ -498,7 +502,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
 }
 </div>
 
-<h1>7. Ví dụ Response</h1>
+<h2>2. Ví dụ Response</h2>
 <div class="code-block">
 {
   "code": "00",
@@ -506,7 +510,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
 }
 </div>
 
-<h1>8. Cơ chế Retry</h1>
+<h2>5. Cơ chế Retry</h2>
 <p>Đối tác sẽ thực hiện retry gọi lại webhook nếu không nhận được response hợp lệ.</p>
 <table>
     <tr>
@@ -523,7 +527,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
     </tr>
 </table>
 
-<h2>8.1. HTTP Status Code bị ignore (không retry)</h2>
+<h3>5.1. HTTP Status Code bị ignore (không retry)</h3>
 <p>Các status code sau được coi là đã nhận xử lý, đối tác sẽ không retry:</p>
 <table>
     <tr>
@@ -564,7 +568,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
 </table>
 <p>Đối tác chỉ retry khi không nhận được response (timeout, connection refused, DNS failure…) hoặc nhận HTTP status ngoài danh sách trên.</p>
 
-<h1>9. Yêu cầu Phi chức năng (Non-functional Requirements)</h1>
+<h2>6. Yêu cầu Phi chức năng (Non-functional Requirements)</h2>
 <table>
     <tr>
         <th style="width: 30%;">Tham số</th>
@@ -583,44 +587,6 @@ public String generateChecksum(String orderCode, String amount, String transCode
         <td>Bắt buộc kết nối qua giao thức HTTPS (TLS 1.2 trở lên).</td>
     </tr>
 </table>
-
-<h1>10. Môi trường & Triển khai (Deployment & Environment)</h1>
-<h2>10.1. Yêu cầu kết nối</h2>
-<p>Trước khi tích hợp, Đối tác cần thực hiện các bước sau:</p>
-<ol>
-    <li><b>Whitelist IP:</b> Đối tác gửi danh sách các địa chỉ IP Public (Server IPN) để Merchant khai báo lên hệ thống tường lửa (Firewall).</li>
-    <li><b>Cấp phát SecretKey:</b> Merchant cung cấp cho Đối tác 1 <code>secretKey</code> duy nhất cho từng môi trường (Sandbox / Production) qua kênh bảo mật.</li>
-</ol>
-
-<h1>11. Kiểm thử & Nghiệm thu (Testing)</h1>
-<h2>11.1. Môi trường Sandbox</h2>
-<p>Đối tác bắt buộc thực hiện kiểm thử trên môi trường Sandbox (<code>api-sandbox.fpt.vn</code>) trước khi chuyển lên Production.</p>
-<h2>11.2. Kịch bản kiểm thử (UAT Test Cases)</h2>
-<ul>
-    <li><b>Test Case 1:</b> Giả lập gửi IPN với giao dịch thành công (status = 000).</li>
-    <li><b>Test Case 2:</b> Giả lập gửi IPN với sai <code>checksum</code> (status = 101). Merchant phải từ chối xử lý.</li>
-    <li><b>Test Case 3:</b> Giả lập Timeout (Merchant không phản hồi). Đối tác phải gọi lại đúng 3 lần (mỗi lần cách nhau 1 phút).</li>
-</ul>
-
-<h1>12. Vận hành & Hỗ trợ (Operations & Support)</h1>
-<p>Trong quá trình tích hợp hoặc vận hành trên môi trường Production, nếu có sự cố (ví dụ: IPN không phản hồi, mã lỗi lạ), Đối tác có thể liên hệ:</p>
-<table>
-    <tr>
-        <th style="width: 25%;">Kênh Hỗ trợ</th>
-        <th style="width: 75%;">Thông tin liên hệ</th>
-    </tr>
-    <tr>
-        <td><b>IT Support (Kỹ thuật)</b></td>
-        <td>Email: <code>support-payment@fpt.com.vn</code> (SLA phản hồi: 2h làm việc)</td>
-    </tr>
-    <tr>
-        <td><b>Hotline Đối soát</b></td>
-        <td>Hotline: 1800 6601 (Phím 3)</td>
-    </tr>
-</table>
-
-<h1>13. Phụ lục (Appendix)</h1>
-<p>Mọi thắc mắc kỹ thuật chưa được đề cập trong tài liệu này vui lòng liên hệ bộ phận hỗ trợ tích hợp (Operations & Support).</p>
 
 </div>
 </body>
