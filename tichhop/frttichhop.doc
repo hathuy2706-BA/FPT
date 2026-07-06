@@ -41,6 +41,14 @@
     .badge-pending { background-color: #FFF3CD; color: #856404; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
     .badge-error { background-color: #F8D7DA; color: #721C24; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
 
+    /* TOC Styles */
+    .toc-title { font-family: 'Times New Roman', Times, serif; font-size: 16pt; font-weight: bold; text-align: center; color: #103F91; text-transform: uppercase; margin-bottom: 20px; }
+    .toc-list { width: 100%; margin-bottom: 25px; }
+    p.toc-entry { font-family: 'Times New Roman', Times, serif; color: #333333; font-size: 13pt; line-height: 1.5; margin-top: 0; margin-bottom: 8px; text-align: left; mso-tab-count: 1; }
+    p.toc-l1 { font-weight: bold; margin-left: 0; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    p.toc-l2 { font-weight: normal; margin-left: 0.75cm; text-indent: 0; tab-stops: right dotted 16.8cm; }
+    .toc-tab { mso-tab-count: 1 dotted; }
+
     /* Page settings for MS Word */
     div.Section1 { page: Section1; }
     @page Section1 { size: 21.0cm 29.7cm; margin: 2.0cm 2.0cm 2.0cm 2.0cm; }
@@ -81,6 +89,24 @@
             </tr>
         </table>
     </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- TRANG MỤC LỤC -->
+<div class="toc-title">MỤC LỤC</div>
+<div class="toc-list">
+    <p class="toc-entry toc-l1">1. Tổng quan<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">2. Endpoint<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">3. Body Request<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">3.1. Đối tượng transactionInfo<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">3.2. Checksum<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">4. Mã trạng thái (status)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">5. Body Response<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">6. Ví dụ Request<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">7. Ví dụ Response<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">8. Cơ chế Retry<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l2">8.1. HTTP Status Code bị ignore (không retry)<span class="toc-tab">	</span></p>
 </div>
 
 <div class="page-break"></div>
