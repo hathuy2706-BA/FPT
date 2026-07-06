@@ -19,7 +19,7 @@
     .cover-meta { margin-top: 80px; text-align: left; margin-left: auto; margin-right: auto; width: 75%; border: 1px solid #103F91; padding: 25px; background-color: #F8FBFF; border-radius: 8px; box-sizing: border-box; }
     
     /* Table styling for BA Document */
-    table { width: 100%; max-width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; table-layout: fixed; box-sizing: border-box; word-wrap: break-word; mso-table-layout-alt: fixed; }
+    table { border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; word-wrap: break-word; table-layout: auto; mso-table-layout-alt: auto; }
     th, td { border: 1px solid #B0C4DE; padding: 12px; font-size: 13pt; text-align: left; vertical-align: top; overflow-wrap: break-word; word-break: break-word; box-sizing: border-box; }
     th { background-color: #103F91; color: #FFFFFF; font-weight: bold; font-size: 13.5pt; text-align: center; }
     tr:nth-child(even) { background-color: #F5F7FA; }
