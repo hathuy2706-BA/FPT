@@ -107,12 +107,25 @@
     <p class="toc-entry toc-l1">7. Ví dụ Response<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l1">8. Cơ chế Retry<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l2">8.1. HTTP Status Code bị ignore (không retry)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">9. Yêu cầu Phi chức năng (Non-functional)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">10. Môi trường & Triển khai (Deployment)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">11. Kiểm thử & Nghiệm thu (Testing)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">12. Vận hành & Hỗ trợ (Operations)<span class="toc-tab">	</span></p>
+    <p class="toc-entry toc-l1">13. Phụ lục (Appendix)<span class="toc-tab">	</span></p>
 </div>
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>1. Tổng quan</h1>
 <p>Khi giao dịch thanh toán thành công hoặc có thay đổi trạng thái (duyệt/không duyệt trả góp, duyệt/không duyệt thẻ review, liên kết thẻ thành công,…), đối tác gọi callback (IPN) về URL webhook mà merchant đã khai báo trên trang quản trị để thông báo thông tin giao dịch.</p>
+
+<h2>1.1. Luồng giao dịch (Business Flow)</h2>
+<ul>
+    <li><b>Bước 1:</b> Khách hàng thực hiện thanh toán trên hệ thống Đối tác.</li>
+    <li><b>Bước 2:</b> Hệ thống Đối tác ghi nhận trạng thái thanh toán và tự động gửi Request (IPN) mang theo <code>checksum</code> về hệ thống Merchant.</li>
+    <li><b>Bước 3:</b> Merchant tính toán lại <code>checksum</code>. Nếu hợp lệ, tiến hành xử lý đơn hàng (xuất kho, hoàn tất).</li>
+    <li><b>Bước 4:</b> Merchant phản hồi ngay lập tức (HTTP 200) về hệ thống Đối tác để xác nhận đã nhận IPN thành công.</li>
+</ul>
 
 <h1>2. Endpoint</h1>
 <table>
@@ -511,6 +524,86 @@ public String generateChecksum(String orderCode, String amount, String transCode
     </tr>
 </table>
 <p>Đối tác chỉ retry khi không nhận được response (timeout, connection refused, DNS failure…) hoặc nhận HTTP status ngoài danh sách trên.</p>
+
+<h1>9. Yêu cầu Phi chức năng (Non-functional Requirements)</h1>
+<table>
+    <tr>
+        <th style="width: 30%;">Tham số</th>
+        <th style="width: 70%;">Yêu cầu / Đặc tả</th>
+    </tr>
+    <tr>
+        <td><b>Rate Limit (Giới hạn gọi)</b></td>
+        <td>Tối đa 50 TPS (Transactions Per Second) / 1 IP.</td>
+    </tr>
+    <tr>
+        <td><b>Timeout (Thời gian chờ)</b></td>
+        <td>5,000 ms (5 giây). Quá thời gian này, Đối tác coi như Request thất bại và bắt đầu cơ chế Retry.</td>
+    </tr>
+    <tr>
+        <td><b>Mã hóa kênh truyền</b></td>
+        <td>Bắt buộc kết nối qua giao thức HTTPS (TLS 1.2 trở lên).</td>
+    </tr>
+</table>
+
+<h1>10. Môi trường & Triển khai (Deployment & Environment)</h1>
+<h2>10.1. Yêu cầu kết nối</h2>
+<p>Trước khi tích hợp, Đối tác cần thực hiện các bước sau:</p>
+<ol>
+    <li><b>Whitelist IP:</b> Đối tác gửi danh sách các địa chỉ IP Public (Server IPN) để Merchant khai báo lên hệ thống tường lửa (Firewall).</li>
+    <li><b>Cấp phát SecretKey:</b> Merchant cung cấp cho Đối tác 1 <code>secretKey</code> duy nhất cho từng môi trường (Sandbox / Production) qua kênh bảo mật.</li>
+</ol>
+
+<h1>11. Kiểm thử & Nghiệm thu (Testing)</h1>
+<h2>11.1. Môi trường Sandbox</h2>
+<p>Đối tác bắt buộc thực hiện kiểm thử trên môi trường Sandbox (<code>api-sandbox.fpt.vn</code>) trước khi chuyển lên Production.</p>
+<h2>11.2. Kịch bản kiểm thử (UAT Test Cases)</h2>
+<ul>
+    <li><b>Test Case 1:</b> Giả lập gửi IPN với giao dịch thành công (status = 000).</li>
+    <li><b>Test Case 2:</b> Giả lập gửi IPN với sai <code>checksum</code> (status = 101). Merchant phải từ chối xử lý.</li>
+    <li><b>Test Case 3:</b> Giả lập Timeout (Merchant không phản hồi). Đối tác phải gọi lại đúng 3 lần (mỗi lần cách nhau 1 phút).</li>
+</ul>
+
+<h1>12. Vận hành & Hỗ trợ (Operations & Support)</h1>
+<p>Trong quá trình tích hợp hoặc vận hành trên môi trường Production, nếu có sự cố (ví dụ: IPN không phản hồi, mã lỗi lạ), Đối tác có thể liên hệ:</p>
+<table>
+    <tr>
+        <th style="width: 25%;">Kênh Hỗ trợ</th>
+        <th style="width: 75%;">Thông tin liên hệ</th>
+    </tr>
+    <tr>
+        <td><b>IT Support (Kỹ thuật)</b></td>
+        <td>Email: <code>support-payment@fpt.com.vn</code> (SLA phản hồi: 2h làm việc)</td>
+    </tr>
+    <tr>
+        <td><b>Hotline Đối soát</b></td>
+        <td>Hotline: 1800 6601 (Phím 3)</td>
+    </tr>
+</table>
+
+<h1>13. Phụ lục (Appendix)</h1>
+<h2>13.1. Bảng thuật ngữ & Viết tắt</h2>
+<table>
+    <tr>
+        <th style="width: 20%;">Thuật ngữ</th>
+        <th style="width: 80%;">Giải thích</th>
+    </tr>
+    <tr>
+        <td><b>IPN</b></td>
+        <td>Instant Payment Notification. Thông báo thanh toán tức thì từ server đối tác về server Merchant.</td>
+    </tr>
+    <tr>
+        <td><b>Merchant</b></td>
+        <td>Đơn vị bán hàng, hệ thống xử lý giao dịch.</td>
+    </tr>
+    <tr>
+        <td><b>HMAC</b></td>
+        <td>Hash-based Message Authentication Code - Mã xác thực thông điệp sử dụng hàm băm.</td>
+    </tr>
+    <tr>
+        <td><b>UAT</b></td>
+        <td>User Acceptance Testing - Kiểm thử nghiệm thu sản phẩm.</td>
+    </tr>
+</table>
 
 </div>
 </body>
