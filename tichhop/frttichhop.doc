@@ -1,0 +1,465 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tài liệu đặc tả tích hợp API - Đối tác thanh toán</title>
+<style>
+    /* Premium Design & Typography */
+    body { font-family: 'Times New Roman', Times, serif; font-size: 13pt; color: #333333; line-height: 1.6; }
+    
+    /* Headings */
+    h1 { font-size: 16pt; font-weight: bold; color: #103F91; margin-top: 30px; margin-bottom: 15px; text-transform: uppercase; border-bottom: 2px solid #F26F21; padding-bottom: 5px; }
+    h2 { font-size: 15pt; font-weight: bold; color: #103F91; margin-top: 25px; margin-bottom: 12px; }
+    h3 { font-size: 14pt; font-weight: bold; color: #000000; margin-top: 20px; margin-bottom: 8px; }
+    
+    /* Cover Page Elements */
+    .cover { text-align: center; margin-top: 100px; margin-bottom: 150px; }
+    .cover-title { font-size: 28pt; font-weight: bold; color: #103F91; text-transform: uppercase; margin-bottom: 10px; line-height: 1.2; }
+    .cover-subtitle { font-size: 18pt; font-weight: bold; color: #F26F21; margin-bottom: 50px; text-transform: uppercase; }
+    .cover-meta { margin-top: 50px; text-align: left; margin-left: auto; margin-right: auto; width: 60%; border: 1px solid #103F91; padding: 20px; background-color: #F8FBFF; border-radius: 8px; }
+    
+    /* Table styling for BA Document */
+    table { width: 100%; max-width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; table-layout: fixed; word-wrap: break-word; }
+    th, td { border: 1px solid #B0C4DE; padding: 12px; font-size: 13pt; text-align: left; vertical-align: top; overflow-wrap: break-word; word-break: break-word; }
+    th { background-color: #103F91; color: #FFFFFF; font-weight: bold; font-size: 13.5pt; text-align: center; }
+    tr:nth-child(even) { background-color: #F5F7FA; }
+    
+    /* Utility classes */
+    p { margin-top: 0; margin-bottom: 12px; font-size: 13pt; text-align: justify; }
+    ul, ol { margin-top: 0; margin-bottom: 15px; padding-left: 25px; }
+    li { margin-bottom: 8px; font-size: 13pt; text-align: justify; }
+    
+    /* Code snippets & highlighting */
+    .code-block { background-color: #1E1E1E; color: #D4D4D4; border-radius: 6px; padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 11.5pt; white-space: pre-wrap; word-wrap: break-word; margin-bottom: 15px; border-left: 5px solid #F26F21; }
+    .highlight { color: #F26F21; font-weight: bold; }
+    
+    /* Alert / Note boxes */
+    .note-box { background-color: #FFF3CD; border-left: 6px solid #FFC107; padding: 15px; margin: 15px 0; color: #856404; font-size: 13pt; }
+    
+    /* Badge tags for Status */
+    .badge-success { background-color: #D4EDDA; color: #155724; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
+    .badge-pending { background-color: #FFF3CD; color: #856404; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
+    .badge-error { background-color: #F8D7DA; color: #721C24; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11pt; }
+
+    /* Sequence Diagram (CSS based for Word) */
+    .sequence-diagram { width: 100%; border: 1px solid #103F91; padding: 20px; background: #FFFFFF; text-align: center; margin-bottom: 20px; }
+    
+    /* Page settings for MS Word */
+    div.Section1 { page: Section1; }
+    @page Section1 { size: 21.0cm 29.7cm; margin: 2.0cm 2.0cm 2.0cm 2.0cm; }
+    .page-break { page-break-before: always; mso-page-break-before: always; }
+</style>
+</head>
+<body>
+<div class="Section1">
+
+<!-- TRANG BÌA (COVER PAGE) -->
+<div class="cover">
+    <div class="cover-title">TÀI LIỆU ĐẶC TẢ TÍCH HỢP API</div>
+    <div class="cover-subtitle">Kênh Thanh Toán Đối Tác (IPN Webhook)</div>
+    
+    <div class="cover-meta">
+        <table style="border: none; margin: 0; background: transparent;">
+            <tr><td style="border: none; width: 35%; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Dự án:</td><td style="border: none; background: transparent; padding: 8px;">Tích hợp cổng thanh toán TPBank (TPNow)</td></tr>
+            <tr><td style="border: none; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Mã tài liệu:</td><td style="border: none; background: transparent; padding: 8px;">FPT-INT-TPNOW-01</td></tr>
+            <tr><td style="border: none; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Phiên bản:</td><td style="border: none; background: transparent; padding: 8px;">V1.6</td></tr>
+            <tr><td style="border: none; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Ngày cập nhật:</td><td style="border: none; background: transparent; padding: 8px;">06/07/2026</td></tr>
+            <tr><td style="border: none; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Tác giả (BA):</td><td style="border: none; background: transparent; padding: 8px;">FPT Business Analyst Team</td></tr>
+            <tr><td style="border: none; font-weight: bold; color: #103F91; background: transparent; padding: 8px;">Phân loại:</td><td style="border: none; background: transparent; padding: 8px; color: #F26F21; font-weight: bold;">Lưu Hành Nội Bộ & Đối Tác</td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- LỊCH SỬ THAY ĐỔI -->
+<h1>LỊCH SỬ THAY ĐỔI TÀI LIỆU (REVISION HISTORY)</h1>
+<table>
+    <tr>
+        <th style="width: 15%;">Ngày</th>
+        <th style="width: 10%;">Version</th>
+        <th style="width: 15%;">Người thay đổi</th>
+        <th style="width: 60%;">Nội dung cập nhật</th>
+    </tr>
+    <tr>
+        <td>03/07/2026</td>
+        <td style="text-align: center;">1.0</td>
+        <td>FRT BA</td>
+        <td>Khởi tạo tài liệu spec IPN.</td>
+    </tr>
+    <tr>
+        <td>06/07/2026</td>
+        <td style="text-align: center;">1.1 - 1.5</td>
+        <td>FRT BA</td>
+        <td>
+            - Loại bỏ các field thừa (bankType, buyerEmail...).<br/>
+            - Bổ sung BNPL cho field method.<br/>
+            - Đổi thuật toán checksum sang HMAC-SHA256.<br/>
+            - Cập nhật quy tắc xử lý bảng mã lỗi.
+        </td>
+    </tr>
+    <tr>
+        <td>06/07/2026</td>
+        <td style="text-align: center;">1.6</td>
+        <td>FRT BA</td>
+        <td>Thiết kế lại cấu trúc tài liệu, cập nhật sơ đồ luồng dữ liệu (Sequence flow), bổ sung phần giải pháp kỹ thuật xác thực.</td>
+    </tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>1. TỔNG QUAN HỆ THỐNG</h1>
+<h2>1.1. Mục đích tài liệu</h2>
+<p>Tài liệu này được biên soạn bởi đội ngũ <b>Business Analyst (BA)</b> nhằm cung cấp đặc tả kỹ thuật và nghiệp vụ chi tiết cho việc tích hợp hệ thống qua phương thức <b>IPN (Instant Payment Notification) Webhook</b>. Tài liệu là bản thiết kế chuẩn xác để các kỹ sư phát triển (Developers) của đối tác và nội bộ hiểu rõ luồng dữ liệu, các ràng buộc nghiệp vụ và tiến hành lập trình.</p>
+<h2>1.2. Sơ đồ luồng giao dịch (Sequence Flow)</h2>
+<p>Quy trình thanh toán và tích hợp IPN diễn ra theo 4 bước chính như sau:</p>
+<div class="sequence-diagram">
+    <table style="border: none; width: 100%; text-align: center;">
+        <tr>
+            <td style="border: none; width: 25%; font-weight: bold; color: #103F91;">(1) Khách Hàng</td>
+            <td style="border: none; width: 25%; font-weight: bold; color: #103F91;">(2) Hệ Thống Của Đối Tác</td>
+            <td style="border: none; width: 25%; font-weight: bold; color: #103F91;">(3) Webhook (IPN - FRT)</td>
+            <td style="border: none; width: 25%; font-weight: bold; color: #103F91;">(4) Xử Lý Đơn Hàng (FRT BE)</td>
+        </tr>
+        <tr>
+            <td style="border: none;">Thực hiện thanh toán trên cổng / app</td>
+            <td style="border: none;">&#8594; Ghi nhận giao dịch và xác thực</td>
+            <td style="border: none;"></td>
+            <td style="border: none;"></td>
+        </tr>
+        <tr>
+            <td style="border: none;"></td>
+            <td style="border: none;">&#8594; Hệ thống tự động bắn API (POST)</td>
+            <td style="border: none;">Tiếp nhận Payload & Kiểm tra Checksum</td>
+            <td style="border: none;"></td>
+        </tr>
+        <tr>
+            <td style="border: none;"></td>
+            <td style="border: none;"></td>
+            <td style="border: none;">&#8594; Thông báo tính hợp lệ</td>
+            <td style="border: none;">Cập nhật trạng thái đơn (Thành công/Thất bại)</td>
+        </tr>
+        <tr>
+            <td style="border: none;"></td>
+            <td style="border: none;">&#8592; Phản hồi mã (00/01/99) HTTP 200</td>
+            <td style="border: none;"></td>
+            <td style="border: none;"></td>
+        </tr>
+    </table>
+</div>
+<div class="note-box">
+    <b>Chú ý nghiệp vụ:</b> Dữ liệu truyền tải qua IPN mang tính chất quyết định trạng thái đơn hàng. Merchant bắt buộc phải xác thực tính toàn vẹn thông qua <code>checksum</code> trước khi thực hiện các bước gạch nợ / hoàn tất đơn hàng.
+</div>
+
+<h1>2. THÔNG SỐ KẾT NỐI (ENDPOINT CONFIGURATION)</h1>
+<table>
+    <tr>
+        <th style="width: 25%;">Thuộc tính</th>
+        <th style="width: 75%;">Đặc tả kỹ thuật</th>
+    </tr>
+    <tr>
+        <td><b>Môi trường Staging</b></td>
+        <td><code>https://api-sandbox.fpt.vn/webhook/ict-tpnow</code></td>
+    </tr>
+    <tr>
+        <td><b>Môi trường Production</b></td>
+        <td><code>https://api.fpt.vn/webhook/ict-tpnow</code></td>
+    </tr>
+    <tr>
+        <td><b>Phương thức (Method)</b></td>
+        <td><span class="badge-pending">POST</span></td>
+    </tr>
+    <tr>
+        <td><b>Content-Type</b></td>
+        <td><code>application/json</code></td>
+    </tr>
+    <tr>
+        <td><b>Cơ chế Xác thực</b></td>
+        <td>Sử dụng chữ ký điện tử <b>HMAC-SHA256</b> nhúng trực tiếp trong Payload thay vì xác thực qua Header.</td>
+    </tr>
+</table>
+
+<h1>3. BẢO MẬT VÀ XÁC THỰC (SECURITY & CHECKSUM)</h1>
+<h2>3.1. Thuật toán tạo Checksum</h2>
+<p>Để đảm bảo an toàn thông tin chống giả mạo, Đối tác và Merchant thống nhất dùng chung một khóa bí mật <code>SecretKey</code> (Được cấp phát qua kênh mã hóa). <b>Thuật toán:</b> HMAC-SHA256, sau đó encode Base64.</p>
+<div class="code-block">
+// 1. Tạo chuỗi dữ liệu gốc (Nối chuỗi trực tiếp, không có ký tự phân cách)
+DataString = orderCode + amount + transactionCode
+
+// 2. Tạo chữ ký (Hash)
+ChecksumValue = Base64( HMAC-SHA256( DataString, SecretKey ) )
+</div>
+<h2>3.2. Mã nguồn tham khảo thuật toán (Java)</h2>
+<div class="code-block">
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+
+public String generateChecksum(String orderCode, String amount, String transCode, String secretKey) {
+    String data = orderCode + amount + transCode;
+    Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+    SecretKeySpec secret_key = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256");
+    sha256_HMAC.init(secret_key);
+    byte[] hash = sha256_HMAC.doFinal(data.getBytes());
+    return Base64.getEncoder().encodeToString(hash);
+}
+</div>
+
+<h1>4. ĐẶC TẢ REQUEST (INPUT PAYLOAD)</h1>
+<p>Đối tác sẽ gửi một yêu cầu chứa body dạng JSON tới hệ thống Merchant.</p>
+<h2>4.1. Cấu trúc Root Object</h2>
+<table>
+    <tr>
+        <th style="width: 25%;">Thuộc tính</th>
+        <th style="width: 15%;">Kiểu</th>
+        <th style="width: 10%;">Bắt buộc</th>
+        <th style="width: 50%;">Mô tả (Description)</th>
+    </tr>
+    <tr>
+        <td><code>transactionInfo</code></td>
+        <td>Object</td>
+        <td style="text-align:center; color: #155724; font-weight: bold;">Có</td>
+        <td>Đối tượng dữ liệu chứa thông tin chi tiết về giao dịch.</td>
+    </tr>
+    <tr>
+        <td><code>checksum</code></td>
+        <td>String</td>
+        <td style="text-align:center; color: #155724; font-weight: bold;">Có</td>
+        <td>Chữ ký điện tử sinh ra từ thuật toán tại Mục 3.1.</td>
+    </tr>
+</table>
+
+<h2>4.2. Đặc tả đối tượng transactionInfo</h2>
+<table>
+    <tr>
+        <th style="width: 20%;">Trường (Field)</th>
+        <th style="width: 10%;">Kiểu</th>
+        <th style="width: 10%;">Bắt buộc</th>
+        <th style="width: 60%;">Luật Nghiệp Vụ (Business Rule)</th>
+    </tr>
+    <tr>
+        <td><code>amount</code></td>
+        <td>Double</td>
+        <td style="text-align:center;">Có</td>
+        <td>Số tiền giao dịch. Làm tròn đến 1 VND. <b>Ràng buộc:</b> Phải khớp tuyệt đối với số tiền ghi nhận trong hệ thống Merchant.</td>
+    </tr>
+    <tr>
+        <td><code>authenCode</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Không</td>
+        <td>Mã chuẩn chi cấp bởi Ngân hàng / Tổ chức phát hành thẻ (Nếu có).</td>
+    </tr>
+    <tr>
+        <td><code>bankCode</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Không</td>
+        <td>Mã ngân hàng xử lý. Cần thiết khi đối soát các giao dịch trả góp.</td>
+    </tr>
+    <tr>
+        <td><code>bankName</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Không</td>
+        <td>Tên đầy đủ của Ngân hàng.</td>
+    </tr>
+    <tr>
+        <td><code>currency</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Mặc định truyền <code>VND</code>.</td>
+    </tr>
+    <tr>
+        <td><code>customerFeeAmount</code></td>
+        <td>Double</td>
+        <td style="text-align:center;">Có</td>
+        <td>Phí phụ thu của khách hàng (Nếu có áp dụng phí giao dịch thẻ).</td>
+    </tr>
+    <tr>
+        <td><code>installment</code></td>
+        <td>Boolean</td>
+        <td style="text-align:center;">Có</td>
+        <td>Cờ xác định luồng: <code>true</code> (Trả góp), <code>false</code> (Thanh toán thẳng).</td>
+    </tr>
+    <tr>
+        <td><code>merchantFee</code></td>
+        <td>Double</td>
+        <td style="text-align:center;">Có</td>
+        <td>Phí Merchant chi trả. Trả <code>0.0</code> nếu cấu hình phí đối soát ngoài hệ thống.</td>
+    </tr>
+    <tr>
+        <td><code>method</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Phân loại thẻ/phương thức: <code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>BNPL</code>.</td>
+    </tr>
+    <tr>
+        <td><code>month</code></td>
+        <td>Double</td>
+        <td style="text-align:center;">Không</td>
+        <td>Số tháng trả góp (Ví dụ: 3, 6, 9, 12).</td>
+    </tr>
+    <tr>
+        <td><code>orderCode</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Mã định danh đơn hàng trên hệ thống Merchant (Primary key).</td>
+    </tr>
+    <tr>
+        <td><code>paymentRequestCode</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Mã phiên giao dịch thanh toán khởi tạo ban đầu.</td>
+    </tr>
+    <tr>
+        <td><code>status</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Mã trạng thái giao dịch cuối cùng. Đóng vai trò <b>quyết định</b> việc đơn hàng thành công hay thất bại.</td>
+    </tr>
+    <tr>
+        <td><code>successTime</code></td>
+        <td>Long</td>
+        <td style="text-align:center;">Không</td>
+        <td>Thời gian thanh toán (Millisecond epoch UTC+7). Chỉ xuất hiện nếu giao dịch thành công (Status = 000).</td>
+    </tr>
+    <tr>
+        <td><code>transactionCode</code></td>
+        <td>String</td>
+        <td style="text-align:center;">Có</td>
+        <td>Mã giao dịch từ hệ thống Đối tác. Cực kỳ quan trọng để Merchant dùng khi truy vấn hoàn tiền (Refund).</td>
+    </tr>
+    <tr>
+        <td><code>transactionTime</code></td>
+        <td>Long</td>
+        <td style="text-align:center;">Có</td>
+        <td>Thời điểm ghi nhận giao dịch tại Đối tác.</td>
+    </tr>
+</table>
+
+<h1>5. MÃ TRẠNG THÁI & XỬ LÝ LỖI (STATUS CODES)</h1>
+<p>Bảng tổng hợp các mã <code>status</code> mà Đối tác sẽ trả về trong trường <code>transactionInfo</code>. Hệ thống Merchant sẽ dựa vào đây để cập nhật trạng thái đơn hàng.</p>
+<table>
+    <tr>
+        <th style="width: 15%;">Mã Status</th>
+        <th style="width: 35%;">Ý nghĩa / Nguyên nhân</th>
+        <th style="width: 25%;">Phân loại hệ thống</th>
+        <th style="width: 25%;">Hành động của Merchant</th>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">000</td>
+        <td>Giao dịch thanh toán thành công, tiền đã bị trừ.</td>
+        <td style="text-align:center;"><span class="badge-success">Thành công (Success)</span></td>
+        <td>Xuất kho, Gạch nợ, Gửi SMS/Email xác nhận.</td>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">107</td>
+        <td>Giao dịch đang xử lý (Network delay, ngân hàng chưa phản hồi).</td>
+        <td style="text-align:center;"><span class="badge-pending">Đang xử lý (Pending)</span></td>
+        <td>Đánh dấu đơn chờ xử lý, chờ webhook tiếp theo.</td>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">155</td>
+        <td>Đợi người mua xác nhận thủ tục trả góp với ngân hàng.</td>
+        <td style="text-align:center;"><span class="badge-pending">Đang xử lý (Pending)</span></td>
+        <td>Giữ nguyên trạng thái giỏ, cảnh báo CSKH theo dõi.</td>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">111</td>
+        <td>Khách hàng hủy, Không đủ số dư, thẻ bị khóa, hoặc sai OTP.</td>
+        <td style="text-align:center;"><span class="badge-error">Thất bại (Failed)</span></td>
+        <td>Hủy giao dịch, cập nhật đơn hàng thất bại.</td>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">101</td>
+        <td>Lỗi tính toán Checksum không hợp lệ.</td>
+        <td style="text-align:center;"><span class="badge-error">Thất bại (Failed)</span></td>
+        <td>Phát alert lỗi bảo mật, từ chối xử lý đơn.</td>
+    </tr>
+    <tr>
+        <td style="text-align:center; font-weight:bold;">999</td>
+        <td>Lỗi không xác định từ core thanh toán đối tác.</td>
+        <td style="text-align:center;"><span class="badge-error">Thất bại (Failed)</span></td>
+        <td>Hủy đơn, ghi log System Exception.</td>
+    </tr>
+</table>
+
+<h1>6. ĐẶC TẢ RESPONSE & QUY TẮC RETRY (OUTPUT)</h1>
+<h2>6.1. Output từ Merchant</h2>
+<p>Sau khi xử lý Webhook, Merchant phản hồi ngay lập tức với HTTP Status = <code>200 OK</code> và JSON Message như sau:</p>
+<div class="code-block">
+{
+  "code": "00",
+  "message": "Success"
+}
+</div>
+<p><b>Quy chuẩn các mã Code Merchant trả về:</b></p>
+<ul>
+    <li><b>00</b>: Ghi nhận và xử lý thành công.</li>
+    <li><b>01</b>: Xử lý thất bại (Ví dụ: Mã đơn hàng không tồn tại, số tiền không khớp, Checksum sai).</li>
+    <li><b>02</b>: Hệ thống đang quá tải, đã nhận request nhưng chưa thể cập nhật ngay lập tức.</li>
+    <li><b>99</b>: Lỗi Internal Server Error (Database sập, v.v...).</li>
+</ul>
+
+<h2>6.2. Cơ chế Retry của Đối Tác</h2>
+<p>Nếu gặp sự cố mạng (Timeout, 502 Bad Gateway) hoặc các mã phản hồi ngoài <code>200, 401, 403, 422, 500, 503</code>, hệ thống Đối tác tự động gọi lại (Retry):</p>
+<ul>
+    <li><b>Số lần thực hiện tối đa:</b> 03 lần.</li>
+    <li><b>Khoảng thời gian:</b> Mỗi lần cách nhau 60 giây (1 phút).</li>
+    <li><b>Tính Idempotent:</b> Merchant phải xử lý trùng lặp giao dịch (Idempotency). Nếu đơn hàng đã chuyển trạng thái thành công, các lệnh Webhook retry tiếp theo phải trả về HTTP 200 / code "00" thay vì báo lỗi.</li>
+</ul>
+
+<h1>7. VÍ DỤ PAYLOAD THỰC TẾ (EXAMPLES)</h1>
+<h2>7.1. Giao dịch thanh toán thành công thẻ VISA</h2>
+<div class="code-block">
+{
+  "transactionInfo": {
+    "amount": 13740000,
+    "authenCode": "185237",
+    "bankCode": "TPBANK",
+    "bankName": "TPBANK",
+    "currency": "VND",
+    "customerFeeAmount": 398460.0,
+    "installment": false,
+    "merchantFee": 0.0,
+    "message": "Giao dịch thành công",
+    "method": "VISA",
+    "month": 0,
+    "orderCode": "314381048801781055791506",
+    "paymentRequestCode": "ED0651-1781075890187",
+    "status": "000",
+    "successTime": 1501130650759,
+    "transactionCode": "TPN1501130624199",
+    "transactionTime": 1501130648119
+  },
+  "checksum": "1424gg23gaee150113063ff50759"
+}
+</div>
+
+<h2>7.2. Giao dịch trả góp cần chờ xử lý</h2>
+<div class="code-block">
+{
+  "transactionInfo": {
+    "amount": 48990000,
+    "authenCode": "181059",
+    "bankCode": "TECHCOMBANK",
+    "bankName": "NH TMCP Kỹ thương Việt Nam",
+    "currency": "VND",
+    "customerFeeAmount": 0.0,
+    "installment": true,
+    "merchantFee": 0.0,
+    "message": "Đợi người mua xác nhận trả góp.",
+    "method": "VISA",
+    "month": 12,
+    "orderCode": "573A83-1781076656479",
+    "paymentRequestCode": "TPB789-1781076656479",
+    "reason": "Thẻ đã bị trừ tiền, tuy nhiên do một số cảnh báo từ cổng quốc tế, chúng tôi sẽ kiểm tra thông tin trước.",
+    "status": "155",
+    "successTime": 1781076824988,
+    "transactionCode": "FPT*TPN0H4SQZ",
+    "transactionTime": 1781076764988
+  },
+  "checksum": "71e1ab92e889dfc3b5524bc9292d136a"
+}
+</div>
+
+</div>
+</body>
+</html>
