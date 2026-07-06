@@ -52,7 +52,15 @@
 
     /* Page settings for MS Word */
     div.Section1 { page: Section1; }
-    @page Section1 { size: 21.0cm 29.7cm; margin: 2.0cm 2.0cm 2.0cm 2.0cm; }
+    @page Section1 {
+        size: 21.0cm 29.7cm;
+        margin: 2.0cm 2.0cm 2.0cm 2.0cm;
+        mso-header-margin: 1.0cm;
+        mso-footer-margin: 1.0cm;
+        mso-title-page: yes;
+        mso-footer: f1;
+    }
+    p.MsoFooter { margin: 0; font-family: 'Times New Roman', serif; font-size: 9pt; color: #666666; }
     .page-break { page-break-before: always; mso-page-break-before: always; }
 </style>
 </head>
@@ -587,6 +595,14 @@ public String generateChecksum(String orderCode, String amount, String transCode
         <td>Bắt buộc kết nối qua giao thức HTTPS (TLS 1.2 trở lên).</td>
     </tr>
 </table>
+
+
+<!-- FOOTER ĐÁNH SỐ TRANG -->
+<div style='mso-element:footer' id="f1">
+    <p class="MsoFooter" align="center" style="text-align:center; font-family:'Times New Roman', serif; font-size:9pt; color:#666666;">
+        Trang <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--> / <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>NUMPAGES <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->&nbsp;&nbsp;|&nbsp;&nbsp;API Specification &middot; Tích hợp Đối tác &middot; 06/07/2026
+    </p>
+</div>
 
 </div>
 </body>
