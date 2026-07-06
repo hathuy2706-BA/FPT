@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <!-- TRANG MỤC LỤC -->
 <div class="toc-title">MỤC LỤC</div>
@@ -109,7 +109,7 @@
     <p class="toc-entry toc-l2">8.1. HTTP Status Code bị ignore (không retry)<span class="toc-tab">	</span></p>
 </div>
 
-<div class="page-break"></div>
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
 <h1>1. Tổng quan</h1>
 <p>Khi giao dịch thanh toán thành công hoặc có thay đổi trạng thái (duyệt/không duyệt trả góp, duyệt/không duyệt thẻ review, liên kết thẻ thành công,…), đối tác gọi callback (IPN) về URL webhook mà merchant đã khai báo trên trang quản trị để thông báo thông tin giao dịch.</p>
