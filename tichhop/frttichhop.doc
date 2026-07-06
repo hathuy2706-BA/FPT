@@ -96,6 +96,7 @@
 <!-- TRANG MỤC LỤC -->
 <div class="toc-title">MỤC LỤC</div>
 <div class="toc-list">
+    <p class="toc-entry toc-l1">Danh mục thuật ngữ & Viết tắt<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l1">1. Tổng quan<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l1">2. Endpoint<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l1">3. Body Request<span class="toc-tab">	</span></p>
@@ -113,6 +114,44 @@
     <p class="toc-entry toc-l1">12. Vận hành & Hỗ trợ (Operations)<span class="toc-tab">	</span></p>
     <p class="toc-entry toc-l1">13. Phụ lục (Appendix)<span class="toc-tab">	</span></p>
 </div>
+
+<div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
+
+<h1>Danh mục thuật ngữ & Viết tắt</h1>
+<table>
+    <tr>
+        <th style="width: 20%;">Từ viết tắt</th>
+        <th style="width: 80%;">Giải nghĩa</th>
+    </tr>
+    <tr>
+        <td><b>API</b></td>
+        <td>Application Programming Interface - Giao diện lập trình ứng dụng.</td>
+    </tr>
+    <tr>
+        <td><b>IPN</b></td>
+        <td>Instant Payment Notification - Thông báo thanh toán tức thì từ hệ thống đối tác.</td>
+    </tr>
+    <tr>
+        <td><b>HMAC</b></td>
+        <td>Hash-based Message Authentication Code - Mã xác thực thông điệp sử dụng hàm băm.</td>
+    </tr>
+    <tr>
+        <td><b>JSON</b></td>
+        <td>JavaScript Object Notation - Định dạng cấu trúc dữ liệu tiêu chuẩn.</td>
+    </tr>
+    <tr>
+        <td><b>UAT</b></td>
+        <td>User Acceptance Testing - Môi trường / Quá trình kiểm thử nghiệm thu.</td>
+    </tr>
+    <tr>
+        <td><b>Merchant</b></td>
+        <td>Đơn vị bán hàng, hệ thống xử lý giao dịch (trong tài liệu này là FRT).</td>
+    </tr>
+    <tr>
+        <td><b>Đối tác</b></td>
+        <td>Đơn vị cung cấp cổng thanh toán.</td>
+    </tr>
+</table>
 
 <div style="page-break-before: always; mso-page-break-before: always;">&nbsp;</div>
 
@@ -581,29 +620,7 @@ public String generateChecksum(String orderCode, String amount, String transCode
 </table>
 
 <h1>13. Phụ lục (Appendix)</h1>
-<h2>13.1. Bảng thuật ngữ & Viết tắt</h2>
-<table>
-    <tr>
-        <th style="width: 20%;">Thuật ngữ</th>
-        <th style="width: 80%;">Giải thích</th>
-    </tr>
-    <tr>
-        <td><b>IPN</b></td>
-        <td>Instant Payment Notification. Thông báo thanh toán tức thì từ server đối tác về server Merchant.</td>
-    </tr>
-    <tr>
-        <td><b>Merchant</b></td>
-        <td>Đơn vị bán hàng, hệ thống xử lý giao dịch.</td>
-    </tr>
-    <tr>
-        <td><b>HMAC</b></td>
-        <td>Hash-based Message Authentication Code - Mã xác thực thông điệp sử dụng hàm băm.</td>
-    </tr>
-    <tr>
-        <td><b>UAT</b></td>
-        <td>User Acceptance Testing - Kiểm thử nghiệm thu sản phẩm.</td>
-    </tr>
-</table>
+<p>Mọi thắc mắc kỹ thuật chưa được đề cập trong tài liệu này vui lòng liên hệ bộ phận hỗ trợ tích hợp (Operations & Support).</p>
 
 </div>
 </body>
