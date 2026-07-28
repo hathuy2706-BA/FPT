@@ -1,0 +1,361 @@
+<title>Product Roadmap — FCP</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-page:   #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --border:         rgba(11,11,11,0.10);
+    --grid:           #e1e0d9;
+
+    --cms-fg:    #2a78d6;
+    --cms-bg:    #eaf2fc;
+    --web-fg:    #eb6834;
+    --web-bg:    #fdeee7;
+    --cart-fg:   #1baf7a;
+    --cart-bg:   #e6f7f0;
+    --unset-fg:  #5b5850;
+    --unset-bg:  #eeece7;
+
+    --good:    #0ca30c;
+    --good-bg: #e5f6e5;
+    --wip:     #2a78d6;
+    --wip-bg:  #eaf2fc;
+    --queued:  #b8860b;
+    --queued-bg: #fbf1da;
+    --backlog: #898781;
+    --backlog-bg: #efeeea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-page:   #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --border:         rgba(255,255,255,0.10);
+      --grid:           #2c2c2a;
+
+      --cms-fg:    #3987e5;
+      --cms-bg:    #1c2a3a;
+      --web-fg:    #d95926;
+      --web-bg:    #3a2418;
+      --cart-fg:   #199e70;
+      --cart-bg:   #16332a;
+      --unset-fg: #c3c2b7;
+      --unset-bg: #2a2a28;
+
+      --good:    #0ca30c;
+      --good-bg: #143a14;
+      --wip:     #3987e5;
+      --wip-bg:  #1c2a3a;
+      --queued:  #d9a520;
+      --queued-bg: #3a3016;
+      --backlog: #a5a39c;
+      --backlog-bg: #2a2a28;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-page:   #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --border:         rgba(255,255,255,0.10);
+    --grid:           #2c2c2a;
+
+    --cms-fg:    #3987e5;
+    --cms-bg:    #1c2a3a;
+    --web-fg:    #d95926;
+    --web-bg:    #3a2418;
+    --cart-fg:   #199e70;
+    --cart-bg:   #16332a;
+    --unset-fg:  #c3c2b7;
+    --unset-bg:  #2a2a28;
+
+    --good:    #0ca30c;
+    --good-bg: #143a14;
+    --wip:     #3987e5;
+    --wip-bg:  #1c2a3a;
+    --queued:  #d9a520;
+    --queued-bg: #3a3016;
+    --backlog: #a5a39c;
+    --backlog-bg: #2a2a28;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .viz-root {
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    padding-bottom: 48px;
+  }
+
+  .fpt-stripe { height: 6px; display: flex; }
+  .fpt-stripe span { flex: 1; }
+  .fpt-stripe .o { background: #f58220; }
+  .fpt-stripe .g { background: #00954f; }
+  .fpt-stripe .b { background: #005baa; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  header.page { padding: 28px 0 20px; }
+  header.page .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: #f58220; margin: 0 0 6px;
+  }
+  header.page h1 { font-size: 26px; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
+  header.page p.sub { font-size: 14px; color: var(--text-secondary); margin: 0; max-width: 760px; line-height: 1.5; }
+  header.page .meta { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 20px;
+  }
+  .stat-tile {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .stat-tile .value { font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .stat-tile .label { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 5px 10px; border-radius: 999px;
+  }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .legend-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+
+  .timeline-axis {
+    display: flex; align-items: center; margin: 0 0 10px; padding: 0 2px;
+  }
+  .timeline-axis .line { flex: 1; height: 2px; background: var(--grid); }
+  .timeline-axis .arrow { font-size: 11px; color: var(--text-muted); padding: 0 8px; white-space: nowrap; }
+
+  .board {
+    display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px;
+  }
+  .col {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 12px;
+    flex: 1 0 240px; min-width: 240px; max-width: 300px;
+  }
+  .col-head { margin-bottom: 10px; padding: 0 2px; }
+  .col-head .month { font-size: 13px; font-weight: 800; }
+  .col-head .month .bar { display: inline-block; width: 4px; height: 13px; border-radius: 2px; margin-right: 7px; vertical-align: -2px; }
+  .col-head .sub { display: flex; align-items: center; justify-content: space-between; margin-top: 3px; }
+  .col-head .goal { font-size: 11px; color: var(--text-secondary); }
+  .col-head .count {
+    font-size: 11px; font-weight: 700; color: var(--text-secondary);
+    background: var(--surface-page); border: 1px solid var(--border); border-radius: 999px;
+    padding: 1px 8px; white-space: nowrap;
+  }
+
+  /* Compact card: 1 tags-row + 1 title-row + 1 optional meta-row (was up to 4 rows) */
+  .card {
+    background: var(--surface-page); border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 10px 7px 12px; margin-bottom: 7px; position: relative;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 2px;
+  }
+  .card.cms::before    { background: var(--cms-fg); }
+  .card.web::before    { background: var(--web-fg); }
+  .card.cart::before   { background: var(--cart-fg); }
+  .card.unset::before  { background: var(--unset-fg); }
+
+  .card .tags { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+
+  .card .epic-chip {
+    display: inline-block; font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .03em; padding: 1px 6px; border-radius: 4px;
+  }
+  .card.cms .epic-chip    { color: var(--cms-fg);    background: var(--cms-bg); }
+  .card.web .epic-chip    { color: var(--web-fg);    background: var(--web-bg); }
+  .card.cart .epic-chip   { color: var(--cart-fg);   background: var(--cart-bg); }
+  .card.unset .epic-chip  { color: var(--unset-fg);  background: var(--unset-bg); }
+
+  .card .title { font-size: 12.5px; font-weight: 600; line-height: 1.3; margin-bottom: 3px; }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+  .status-pill.done     { color: var(--good);    background: var(--good-bg); }
+  .status-pill.wip       { color: var(--wip);     background: var(--wip-bg); }
+  .status-pill.queued    { color: var(--queued);  background: var(--queued-bg); }
+  .status-pill.backlog   { color: var(--backlog); background: var(--backlog-bg); }
+
+  .card .meta { font-size: 10px; color: var(--text-muted); line-height: 1.4; }
+  .card .meta .dep { font-style: italic; }
+
+  footer.note {
+    max-width: 1280px; margin: 28px auto 0; padding: 0 24px; font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  }
+  footer.note a { color: var(--text-muted); }
+
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<div class="viz-root">
+  <div class="fpt-stripe"><span class="o"></span><span class="g"></span><span class="b"></span></div>
+
+  <div class="wrap">
+    <header class="page">
+      <p class="eyebrow">FPT Telecom · FCP</p>
+      <h1>Product Roadmap theo tháng — Product Backlog FCP</h1>
+    </header>
+
+    <section class="stats">
+      <div class="stat-tile"><div class="value">15</div><div class="label">Tổng số hạng mục</div></div>
+      <div class="stat-tile"><div class="value" style="color:var(--wip)">10</div><div class="label">Đang phân tích</div></div>
+      <div class="stat-tile"><div class="value">4</div><div class="label">Tháng trong lộ trình (T8–T11)</div></div>
+      <div class="stat-tile"><div class="value" style="color:var(--unset-fg)">1</div><div class="label">Mới — chưa phân loại</div></div>
+    </section>
+
+    <div class="legend-row">
+      <div class="legend">
+        <span class="chip" style="color:var(--cms-fg); background:var(--cms-bg)"><span class="dot" style="background:var(--cms-fg)"></span>CMS</span>
+        <span class="chip" style="color:var(--web-fg); background:var(--web-bg)"><span class="dot" style="background:var(--web-fg)"></span>Web</span>
+        <span class="chip" style="color:var(--cart-fg); background:var(--cart-bg)"><span class="dot" style="background:var(--cart-fg)"></span>Cart</span>
+        <span class="chip" style="color:var(--unset-fg); background:var(--unset-bg)"><span class="dot" style="background:var(--unset-fg)"></span>Chưa gán</span>
+      </div>
+      <div class="legend">
+        <span class="chip status-pill done">● Hoàn thành</span>
+        <span class="chip status-pill wip">● Đang phân tích</span>
+        <span class="chip status-pill queued">● Đã tiếp nhận</span>
+        <span class="chip status-pill backlog">● Chưa tiếp nhận</span>
+      </div>
+    </div>
+
+    <div class="timeline-axis">
+      <span class="line"></span><span class="arrow">Thời gian →</span><span class="line"></span>
+    </div>
+
+    <section class="board">
+
+      <!-- THÁNG 8 -->
+      <div class="col">
+        <div class="col-head">
+          <div class="month"><span class="bar" style="background:var(--wip)"></span>Tháng 8/2026</div>
+          <div class="sub"><span class="goal">Nền tảng Cart &amp; Checkout</span><span class="count">4</span></div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Luồng giỏ hàng — add-on nhiều SP/SKU/SA</div>
+          <div class="meta">ThuyTT104</div>
+        </div>
+        <div class="card cart">
+          <div class="tags"><span class="epic-chip">Cart</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">[BE] Luồng giỏ hàng — nhu cầu FE theo kênh</div>
+          <div class="meta">Yennt122</div>
+        </div>
+        <div class="card cart">
+          <div class="tags"><span class="epic-chip">Cart</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">[BE] Luồng giỏ hàng — phân tích chi tiết</div>
+          <div class="meta">Thanhvt58</div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Cấu hình hiển thị checkout theo kênh</div>
+          <div class="meta">LongNH156</div>
+        </div>
+      </div>
+
+      <!-- THÁNG 9 -->
+      <div class="col">
+        <div class="col-head">
+          <div class="month"><span class="bar" style="background:var(--wip)"></span>Tháng 9/2026</div>
+          <div class="sub"><span class="goal">Thanh toán &amp; Voucher</span><span class="count">4</span></div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Phương thức thanh toán — bật/tắt theo kênh</div>
+          <div class="meta">LongNH156</div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Cấu hình nội dung Gói bán / Combo / SA</div>
+          <div class="meta">LongNH156</div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Rule ưu tiên/loại trừ &amp; cấu hình chi tiết Voucher</div>
+          <div class="meta">ThuyTT104 · <span class="dep">Phụ thuộc: Luồng giỏ hàng (T8) hoàn tất</span></div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill queued">● Đã tiếp nhận</span></div>
+          <div class="title">Quản lý bài viết của tác giả (tin tức)</div>
+          <div class="meta">LongNH156</div>
+        </div>
+      </div>
+
+      <!-- THÁNG 10 -->
+      <div class="col">
+        <div class="col-head">
+          <div class="month"><span class="bar" style="background:var(--wip)"></span>Tháng 10/2026</div>
+          <div class="sub"><span class="goal">Trải nghiệm tìm/so sánh SP</span><span class="count">4</span></div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Trang phòng giao dịch — UI tìm kiếm mới</div>
+          <div class="meta">SonLN11</div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Tính năng tìm kiếm sản phẩm trên website</div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill wip">● Đang phân tích</span></div>
+          <div class="title">Tính năng so sánh sản phẩm (PLP/PDP)</div>
+        </div>
+        <div class="card cms">
+          <div class="tags"><span class="epic-chip">CMS</span><span class="status-pill backlog">● Chưa tiếp nhận</span></div>
+          <div class="title">Quản lý ID cho banner page Tin tức</div>
+          <div class="meta">LongNH156</div>
+        </div>
+      </div>
+
+      <!-- THÁNG 11 -->
+      <div class="col">
+        <div class="col-head">
+          <div class="month"><span class="bar" style="background:var(--backlog)"></span>Tháng 11/2026</div>
+          <div class="sub"><span class="goal">Combo &amp; Referral (GTBB)</span><span class="count">2</span></div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill backlog">● Chưa tiếp nhận</span></div>
+          <div class="title">Add Combo Camera tại PDP Camera Only</div>
+          <div class="meta">SonLN11, ThuyTT104 · <span class="dep">Phụ thuộc: Cấu hình Combo/SA (T9) hoàn tất</span></div>
+        </div>
+        <div class="card web">
+          <div class="tags"><span class="epic-chip">Web</span><span class="status-pill backlog">● Chưa tiếp nhận</span></div>
+          <div class="title">CS tặng thiết bị cho GTBB (referral)</div>
+          <div class="meta"><span class="dep">Phụ thuộc: Rule Voucher (T9) hoàn tất</span></div>
+        </div>
+      </div>
+
+      <!-- CHƯA PHÂN LOẠI -->
+      <div class="col" style="border-style: dashed;">
+        <div class="col-head">
+          <div class="month"><span class="bar" style="background:var(--unset-fg)"></span>Chưa phân loại</div>
+          <div class="sub"><span class="goal">Cần grooming</span><span class="count">1</span></div>
+        </div>
+        <div class="card unset">
+          <div class="tags"><span class="epic-chip">Chưa gán</span><span class="status-pill backlog">● Chưa gán</span></div>
+          <div class="title">Thêm điểm chạm cho chat bot Daisy trên HomePage</div>
+          <div class="meta"><span class="dep">Cần gán Epic/PIC/Trạng thái</span></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <footer class="note">
+    Ghi chú: Lộ trình <b>ước tính</b>, chưa phải mốc cam kết chính thức. Chi tiết: xem <a href="./doc">po/doc</a>.
+  </footer>
+</div>

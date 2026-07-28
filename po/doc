@@ -1,0 +1,102 @@
+# Product Backlog FCP — Sync từ Google Sheets
+
+Nguồn: https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM
+Sheet: **📌 Product Backlog FCP** (đã xác nhận đúng tab qua truy vấn theo tên sheet — KHÔNG dùng gid=1740192034, gid đó trỏ nhầm sang tab khác và có lẫn mục Camera không thuộc backlog FCP)
+Lần sync gần nhất: 2026-07-27 (đã điều chỉnh lại sau khi phát hiện sync trước đó bị lẫn sheet)
+
+---
+
+## ⚠️ Điều chỉnh so với bản sync trước
+- **Bỏ mục "Camera — Bổ sung luồng giao hàng Camera trong LDP nâng cấp"**: mục này không có trong sheet "📌 Product Backlog FCP", đã lẫn từ tab khác ("📌 Product Backlog") ở lần sync đầu.
+- **Bổ sung mục mới**: "Thêm điểm chạm cho chat bot Daisy trên HomePage" — hạng mục mới xuất hiện trên sheet, hiện **chưa được gán Epic/PIC/Trạng thái**.
+
+---
+
+## CMS
+
+### 1. Quản lý ID cho banner page Tin tức
+- **AC/Mô tả**: Có thêm 1 tính năng quản lý banner: Banner sẽ được đánh dấu ID (VD: 001, 002). Khi viết bài tin tức, người dùng chọn mã ID hình ảnh hiện có của bộ quản lý banner để load lên. Nếu người dùng thay đổi/update mã ID thì update tất cả bài viết đang sử dụng ID hình ảnh đó.
+- **PIC (BA)**: LongNH156
+- **Trạng thái**: Chưa tiếp nhận yêu cầu
+
+### 2. Quản lý bài viết của tác giả (Quản lý tin tức)
+- **AC/Mô tả**: Tạo mới, chỉnh sửa thông tin tác giả và gán tác giả viết bài khi soạn thảo tin tức.
+- **PIC (BA)**: LongNH156
+- **Trạng thái**: Đã tiếp nhận yêu cầu
+
+### 3. Product Backlog FCP (cấu hình nội dung Gói bán/Combo/SA)
+- **AC/Mô tả**: Cấu hình nội dung của Gói bán, Combo, SA (content trang chi tiết, đặc tính & TB đi kèm,...).
+- **PIC (BA)**: LongNH156
+- **Trạng thái**: Đang phân tích
+- **Ghi chú**: CMS
+
+### 4. Cấu hình hiển thị checkout
+- **AC/Mô tả**: Cấu hình chu kỳ cước, ưu đãi, banner ưu đãi, phí lắp đặt theo kênh bán kế thừa.
+- **PIC (BA)**: LongNH156
+- **Trạng thái**: Đang phân tích
+- **Ghi chú**: CMS
+
+### 5. Phương thức Thanh toán
+- **AC/Mô tả**: Quản lý bật/tắt và cấu hình ưu đãi cho PTTT áp dụng theo từng kênh.
+- **PIC (BA)**: LongNH156
+- **Trạng thái**: Đang phân tích
+- **Ghi chú**: CMS
+
+### 6. Trang phòng giao dịch
+- **AC/Mô tả**: Cập nhật UI mới cho trang tìm kiếm phòng giao dịch.
+- **PIC (BA)**: SonLN11
+- **Trạng thái**: Đang phân tích
+
+## Web
+
+### 7. Luồng giỏ hàng
+- **AC/Mô tả**: Tạo luồng giỏ hàng cho các sản phẩm Sku/SA. Cho phép người dùng add on nhiều sản phẩm cùng 1 giỏ hàng để thực hiện thanh toán.
+- **PIC (BA)**: ThuyTT104
+- **Trạng thái**: Đang phân tích
+
+### 8. Rule ưu tiên Apply Voucher / Rule loại trừ Voucher / Cấu hình trang chi tiết Voucher
+- **AC/Mô tả**: Hiển thị trang chi tiết (điều kiện) của voucher. Hiển thị rule loại trừ tại thời điểm KH tick chọn. Ưu tiên apply voucher có giá trị tốt nhất cho KH. Phân loại ưu tiên loại voucher (Voucher thường/Voucher GTBB). Rule add voucher thứ 2 trở đi: kiểm tra voucher 2 hợp lệ hay không — nếu hợp lệ thì apply và thay thế voucher hiện hữu, nếu không thì thông báo và giữ voucher cũ (không clear).
+- **PIC (BA)**: ThuyTT104
+- **Trạng thái**: Đang phân tích
+
+### 9. Add Combo Cam tại trang chi tiết Camera Only
+- **AC/Mô tả**: Hiển thị Block Combo khi KH vào PDP của 1 sản phẩm Camera lẻ (VD: Camera Play 4) — hệ thống hiển thị thêm block "Ưu Đãi Tiết Kiệm - Combo Camera" ngay dưới thông tin sản phẩm chính. Block chỉ hiển thị các gói Combo chứa cùng chủng loại Camera đó. Mỗi thẻ Combo hiển thị: Tên Combo, Giá trọn gói, % Tiết kiệm, Quà tặng kèm. Khi KH click vào 1 gói Combo, UI tự động cập nhật tổng tiền hoặc mở Drawer/Popup xác nhận; nhấp "Đăng ký Combo này" chuyển thẳng sang luồng Checkout với SKU Combo đã chọn.
+- **PIC (BA)**: SonLN11, ThuyTT104
+- **Trạng thái**: Chưa tiếp nhận yêu cầu
+
+### 10. CS tặng thiết bị cho GTBB
+- **AC/Mô tả**: Nhận diện luồng GTBB qua Link/Mã giới thiệu tại Checkout, validate mã, hiển thị banner đặc quyền. Tại bước Chọn Quà/Khuyến mãi, hiển thị danh sách thiết bị tặng 0đ theo CSGTBB hiện hành; KH chọn 1 thiết bị, hệ thống tự thêm SKU vào giỏ hàng giá 0đ. Business rules: chỉ áp dụng khi đơn hàng đạt điều kiện (trả trước 6/12 tháng); không áp dụng đồng thời với voucher giảm tiền khác (nếu chính sách quy định); ghi nhận Mã GTBB vào Metadata đơn hàng để trả thưởng cho Referrer.
+- **Trạng thái**: Chưa tiếp nhận yêu cầu
+
+### 11. Tính năng so sánh sản phẩm
+- **AC/Mô tả**: Cho phép KH chọn nút "So sánh" tại PLP/PDP; Widget So sánh có auto-suggest; giới hạn tối đa 03 sản phẩm/gói cước cùng phân nhóm. Bảng So sánh: cột thuộc tính cố định bên trái, cột SP so sánh bên phải; gồm Tốc độ, Loại Modem, Giá cước/tháng, Phí hòa mạng, Ưu đãi, Số thiết bị khuyến nghị; có toggle "Chỉ hiển thị điểm khác biệt". Mỗi cột có nút sticky "Đăng ký gói này"; cho phép xóa/thêm SP trực tiếp trên bảng.
+- **Trạng thái**: Đang phân tích
+
+### 12. Tính năng tìm kiếm sản phẩm trên website
+- **AC/Mô tả**: Ô Search trên Header toàn trang; gõ từ 2 ký tự kích hoạt auto-suggest real-time, dropdown chia 3 nhóm: Gói cước, Thiết bị/Sản phẩm, Bài viết. Search Engine Rules: Exact Match đưa lên TOP 1; Fuzzy Match hỗ trợ không dấu/lỗi chính tả; Keyword Mapping map nhu cầu sang tên gói. Trang kết quả (SERP) phân tab: Tất cả/Gói Internet-Combo/Thiết bị/Khuyến mãi; Zero Result hiển thị gói HOT nhất + ô để lại SĐT.
+- **Trạng thái**: Đang phân tích
+
+### 13. (Chưa gán Epic) Thêm điểm chạm cho chat bot Daisy trên HomePage
+- **AC/Mô tả**: Gợi ý gói cho KH và đi vào luồng toàn trình.
+- **Epic**: chưa gán (cần xác nhận: Web / CMS / khác)
+- **PIC (BA)**: chưa gán
+- **Trạng thái**: chưa gán (mới xuất hiện trên sheet, chưa được điền)
+
+## Cart
+
+### 14. [BE] Luồng giỏ hàng
+- **AC/Mô tả**: Xác định các nhu cầu cung cấp FE sử dụng đáp ứng nhu cầu kênh. Phân tích các kịch bản và ảnh hưởng đến luồng Checkout.
+- **PIC (BA)**: Yennt122
+- **Trạng thái**: Đang phân tích
+
+### 15. [BE] Luồng giỏ hàng (phân tích chi tiết)
+- **AC/Mô tả**: Phân tích chi tiết bài toán Cart.
+- **PIC (BA)**: Thanhvt58
+- **Trạng thái**: Đang phân tích
+
+---
+
+### Ghi chú đồng bộ
+- Tổng cộng 15 hạng mục thuộc đúng sheet "📌 Product Backlog FCP" (không còn mục Camera).
+- Mục #13 (chatbot Daisy) mới xuất hiện, chưa đủ thông tin Epic/PIC/Trạng thái — cần hỏi lại team để phân loại trước khi đưa vào roadmap chính thức.
+- Cách fetch chuẩn từ nay: dùng `gviz/tq?tqx=out:csv&sheet=<tên sheet URL-encode>` thay vì `/export?format=csv&gid=...`, để tránh lấy nhầm tab.

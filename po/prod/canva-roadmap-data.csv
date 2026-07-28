@@ -1,0 +1,16 @@
+Month,Epic,Title,Status,PIC,Priority,Dependency
+Thang 8/2026,Web,Luong gio hang - add-on nhieu SP/SKU/SA,Dang phan tich,ThuyTT104,,
+Thang 8/2026,Cart,[BE] Luong gio hang - nhu cau FE theo kenh,Dang phan tich,Yennt122,,
+Thang 8/2026,Cart,[BE] Luong gio hang - phan tich chi tiet,Dang phan tich,Thanhvt58,,
+Thang 8/2026,CMS,Cau hinh hien thi checkout theo kenh,Dang phan tich,LongNH156,,
+Thang 9/2026,CMS,Phuong thuc thanh toan - bat/tat theo kenh,Dang phan tich,LongNH156,,
+Thang 9/2026,CMS,Cau hinh noi dung Goi ban / Combo / SA,Dang phan tich,LongNH156,,
+Thang 9/2026,Web,Rule uu tien/loai tru & cau hinh chi tiet Voucher,Dang phan tich,ThuyTT104,,Phu thuoc: Luong gio hang (T8) hoan tat
+Thang 9/2026,CMS,Quan ly bai viet cua tac gia (tin tuc),Da tiep nhan,LongNH156,,
+Thang 10/2026,CMS,Trang phong giao dich - UI tim kiem moi,Dang phan tich,SonLN11,,
+Thang 10/2026,Web,Tinh nang tim kiem san pham tren website,Dang phan tich,,,
+Thang 10/2026,Web,Tinh nang so sanh san pham (PLP/PDP),Dang phan tich,,,
+Thang 10/2026,CMS,Quan ly ID cho banner page Tin tuc,Chua tiep nhan,LongNH156,,
+Thang 11/2026,Web,Add Combo Camera tai PDP Camera Only,Chua tiep nhan,"SonLN11, ThuyTT104",,Phu thuoc: Cau hinh Combo/SA (T9) hoan tat
+Thang 11/2026,Web,CS tang thiet bi cho GTBB (referral),Chua tiep nhan,,,Phu thuoc: Rule Voucher (T9) hoan tat
+Chua phan loai,Chua gan,Them diem cham cho chat bot Daisy tren HomePage,Chua gan,,,Can gan Epic/PIC/Trang thai
