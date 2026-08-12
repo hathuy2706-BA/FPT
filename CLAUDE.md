@@ -13,6 +13,7 @@
 - Nếu phát hiện đoạn hội thoại hoặc thông tin không chính xác, xóa khỏi bộ nhớ ngay lập tức và không đọc lại.
 - Không giữ lại context sai để tránh lan truyền lỗi.
 - Khi nhận thông tin mới mâu thuẫn với memory cũ, ưu tiên thông tin mới nhất từ user.
+- Luôn đọc file rule này để đảm bảo tuân thủ các quy tắc.
 
 ## Phân tích & Skills
 - Luôn sử dụng skill **ba-senior** và/hoặc **product-owner** khi phân tích yêu cầu, thiết kế tính năng, hoặc đánh giá giải pháp.
