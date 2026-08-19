@@ -1,0 +1,61 @@
+﻿Mã,Tên quy tắc,Nội dung & Logic hệ thống
+CAM-BR-01,Tách dòng SKU + Cloud + Chu kỳ,"Mỗi dòng Camera được định danh bởiLine_Key = SKU_Hardware + Cloud_Storage_Type + Billing_Cycle. Trùng toàn bộ khóa → cộng dồn SL; khác bất kỳ thuộc tính nào → tạo dòng riêng. Khi đổi chu kỳ/Cloud tại giỏ, Backend tính lại và có thể gộp/tách dòng theo khóa mới."
+CAM-BR-02,Ràng buộc gói Cloud đi kèm,"Camera mua lẻ/combo phải gắn 01 gói Cloud hợp lệ theo danh mục QLCS/Product Hub, trừ khi KH tick ""Tôi đã có sẵn gói Cloud"". Không cho tồn tại camera độc lập trong giỏ nếu không có Cloud hoặc xác nhận đã có Cloud."
+CAM-BR-03,Phí lắp đặt theo hình thức triển khai,"KTV FPT lắp → thu phí thi công theo biểu phí QLCS từng khu vực/sản phẩm; KH tự lắp → giao qua đối tác vận chuyển, không phát sinh phí thi công. Checkout không hiển thị ô chọn ngày hẹn/lịch hẹn lắp đặt cho cả hai hình thức."
+CAM-BR-04,Tra cứu hợp đồng & đề xuất liên kết,Nhập SĐT → BE gọi CRM tra cứu hợp đồng dịch vụ FPT đang hoạt động → đề xuất gộp/liên kết hợp đồng; không tìm thấy → tiếp tục bình thường.
+CAM-BR-05,PTTT động & COD vùng cấm,"Danh sách PTTT do QLCS/Backend khai báo; Frontend render theo dữ liệu trả về. Nếu địa chỉ thuộc vùng không hỗ trợ thu hộ, COD được ẩn/disable và KH phải chọn phương thức thanh toán trực tuyến khả dụng."
+CAM-BR-06,Checkbox & điều kiện checkout,"Có checkbox ""Chọn tất cả"" & từng dòng; tiêu đề giỏ hiển thị số dòng đang chọn. Chỉ cho vào Checkout khi ≥ 1 dòng được tick và tổng tiền sản phẩm trước voucher > 0; nếu voucher hợp lệ làm tổng cần thanh toán = 0đ thì vẫn cho tiếp tục theo luồng thanh toán bằng voucher."
+CAM-BR-07,Quản lý Combo Camera,"Combo Camera Only được quản lý theo nhóm; không cho xóa lẻ thiết bị hoặc đổi riêng Cloud/chu kỳ của thành phần combo. Tăng/giảm số lượng và xóa chỉ áp dụng cho toàn bộ combo, đảm bảo không phá vỡ giá ưu đãi gộp."
+CAM-BR-08,Lưu trữ giỏ & điều hướng quay lại,"KH chưa đăng nhập lưu giỏ tạm theo phiên/trình duyệt; KH đã đăng nhập lưu theo tài khoản và đồng bộ đa thiết bị. Khi bấm ""Quay lại"" ở Cart/Checkout, hệ thống điều hướng theo thiết kế hiện hành và bảo toàn dữ liệu giỏ hàng."
+CAM-BR-09,Xử lý sản phẩm đã tồn tại trong giỏ (Modal Popup thay thế),"Khi KH chọn mua/thêm 01 sản phẩm Camera hoặc gói Cloud đã có sẵn trong giỏ hàng, hệ thống không tự động cộng dồn im lặng mà kích hoạt Modal Popup""Sản phẩm đã tồn tại""chứa thông báo token động:""Giỏ hàng của bạn hiện đã có {Camera} với gói {Cloud} chu kỳ {Chu kỳ}. Quý khách sẽ được thay thế bằng {Camera} với gói {Cloud} chu kỳ {chu kỳ}.""- Nút""Hủy"": Đóng popup, giữ nguyên giỏ hàng cũ.- Nút""Đồng ý"": Thay thế cấu hình cũ bằng sản phẩm mới vừa chọn và tính lại giá tạm tính real-time."
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+FPL-BR-01,Quản lý dòng SA theo Gói + Chu kỳ,Line_Key = Gói + Chu kỳ. SA không tăng/giảm SL; KH chọn chu kỳ muốn mua. Không cho add cùng gói SA vào cùng giỏ với chu kỳ khác.
+FPL-BR-02,Cấu hình động gói & chu kỳ,"Danh mục gói, đơn giá, chu kỳ, số thiết bị xem đồng thời nạp động từ Product Hub; không hardcode FE."
+FPL-BR-03,Hình thức kích hoạt dịch vụ,"""Kích hoạt tự động"" (mặc định): gắn gói vào TK FPT Play theo SĐT/tài khoản. ""KH tự kích hoạt"": gửi mã/hướng dẫn để KH tự kích hoạt trên app."
+FPL-BR-04,Điều kiện xuất hóa đơn,"Mặc định chỉ bắt buộc SĐT. Tick ""Nhận hóa đơn"" → bắt buộc Họ tên, Email, Địa chỉ đầy đủ; bỏ tick → ẩn & bỏ ràng buộc địa chỉ."
+FPL-BR-05,Re-validate khi thay đổi đơn,Đổi chu kỳ/PTTT/ưu đãi → BE tính lại giá. Giá đổi giữa phiên → thông báo & yêu cầu xác nhận lại.
+FPL-BR-06,Mã đơn & VAT,"Sau thanh toán, sinh mã đơn duy nhất hiển thị trên Hoàn tất kèm ""Theo dõi ĐH""; tổng đã gồm VAT."
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+AP-BR-01,Tách dòng & cộng dồn SKU,Line_Key = SKU_AP. Thêm trùng SKU → cộng dồn SL trên cùng dòng.
+AP-BR-02,Giá & ưu đãi cấu hình động,"Giá gốc, % giảm, ưu đãi ""tặng cước""... nạp động từ Product Hub/QLCS; không gài ưu đãi nếu chưa khai báo."
+AP-BR-03,Phí giao hàng/lắp đặt,Thiết bị giao qua đối tác VC; phí giao/lắp (nếu có) theo biểu phí QLCS; KTV cấu hình tận nơi là tùy chọn có phí.
+AP-BR-04,Tra cứu hợp đồng & đề xuất liên kết,Nhập SĐT → tra cứu CRM → đề xuất liên kết hợp đồng dịch vụ FPT hiện có (nếu có).
+AP-BR-05,PTTT động & COD vùng cấm,PTTT do QLCS khai báo; COD vô hiệu ở vùng không hỗ trợ thu hộ.
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+HOME-BR-01,Tách dòng & cộng dồn SKU,Line_Key = SKU_SmartPlug; trùng SKU → cộng dồn SL; SKU IoT khác → tách dòng.
+HOME-BR-02,Tự lắp đặt qua app,"Thiết bị giao tận nơi, KH tự lắp & cấu hình qua app thông minh; không phát sinh phí thi công KTV."
+HOME-BR-03,Phí vận chuyển theo biểu phí,Phí vận chuyển/ngưỡng miễn phí (nếu có) theo khai báo QLCS; không gài nếu chưa có.
+HOME-BR-04,PTTT động & COD vùng cấm,PTTT do QLCS khai báo; COD vô hiệu ở vùng không hỗ trợ thu hộ.
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+TV-BR-01,Tách dòng & cộng dồn SKU,Line_Key = SKU_TV; trùng SKU → cộng dồn SL.
+TV-BR-02,Kiểm soát rủi ro đơn giá trị cao,"Với đơn giá trị lớn, QLCS có thể vô hiệu COD hoặc yêu cầu đặt cọc/thanh toán trực tuyến; có thể mở trả góp nếu khai báo."
+TV-BR-03,Giao & lắp hàng cồng kềnh,Kiểm tra vùng hỗ trợ giao lắp; ngoài vùng → chặn đặt & gợi ý liên hệ. Phí giao/lắp theo biểu phí QLCS.
+TV-BR-04,PTTT động,Danh sách PTTT (gồm trả góp nếu có) do QLCS khai báo; FE render theo danh mục trả về.
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+UF-BR-01,Quản lý dòng SA theo Gói + Chu kỳ,Line_Key = Gói Ultrafast + Chu kỳ. SA không tăng/giảm SL; KH chọn chu kỳ muốn mua. Không cho add cùng gói Ultrafast vào cùng giỏ với chu kỳ khác.
+UF-BR-02,Cấp & bảo vệ mã code,"Sau thanh toán thành công, hệ thống cấp mã code Ultrafast cho đơn. Mãchỉ kích hoạt một lần, ràng buộc theo đơn & SĐT; chống brute-force kích hoạt."
+UF-BR-03,Kích hoạt theo hợp đồng,"Bấm ""Kích hoạt code"" → BE tra cứu hợp đồng dịch vụ FPT theo SĐT: có → gắn gói vào hợp đồng theo chu kỳ & tính hiệu lực (từ–đến); không → điều hướng màn kích hoạt hợp đồng."
+UF-BR-04,Cấu hình động giá & chu kỳ,"Giá theo chu kỳ, danh sách chu kỳ, nội dung ưu đãi, PTTT nạp động từ Product Hub/QLCS; không hardcode FE."
+UF-BR-05,Điều kiện xuất hóa đơn,"Mặc định chỉ bắt buộc SĐT. Tick ""Nhận hóa đơn"" → bắt buộc địa chỉ đầy đủ để xuất hóa đơn."
+UF-BR-06,Re-validate & VAT,"Đổi chu kỳ/PTTT/ưu đãi → BE tính lại ""Cần thanh toán"". Tổng đã gồm VAT; mã đơn duy nhất trên màn Hoàn tất."
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+SA-BR-01,Quản lý dòng SA theo Gói + Chu kỳ,Mỗi SA = 1 dòng độc lập theo Line_Key (Gói + Chu kỳ); không tăng/giảm SL và không cộng dồn chéo loại SA. Không cho add cùng 1 sản phẩm SA vào cùng giỏ với chu kỳ khác.
+SA-BR-02,Hợp nhất giỏ guest ↔ tài khoản,"Chưa đăng nhập: giỏ tạm trên trình duyệt. Đăng nhập: hợp nhất vào giỏ tài khoản, đồng bộ đa thiết bị."
+SA-BR-03,Một đơn gộp & tính tiền,"Toàn bộ SA tick → gộp 1 đơn SPF, 1 lần thanh toán. Cần thanh toán = Σ(thành tiền SA tick) − ưu đãi; BE tính, FE hiển thị real-time. Tổng gồm VAT."
+SA-BR-04,Không yêu cầu giao hàng,Giỏ SA-only không có thiết bị → không yêu cầu địa chỉ giao; chỉ yêu cầu địa chỉ khi xuất hóa đơn.
+SA-BR-05,Kích hoạt theo từng SA,"Mỗi SA kích hoạt theo quy tắc riêng: FPT Play (tự động/tự kích hoạt), Ultrafast (mã code & hợp đồng – UF-BR-02/03), Cloud (gắn dịch vụ)."
+
+Mã,Tên quy tắc,Nội dung & Logic hệ thống
+MIX-BR-01,Hợp nhất giỏ guest ↔ tài khoản,"Chưa đăng nhập: giỏ tạm. Đăng nhập: hợp nhất vào giỏ tài khoản, đồng bộ đa thiết bị."
+MIX-BR-02,Tách dòng SKU & SA độc lập,Mỗi SKU/SA = 1 dòng độc lập theo Line_Key. Chỉ SKU được tăng/giảm SL theo Min/Max QLCS; SA chọn chu kỳ và không cho add cùng sản phẩm SA với chu kỳ khác trong cùng giỏ.
+MIX-BR-03,Một đơn tổng hợp SPF,"Toàn bộ dòng tick → gộp 1 đơn SPF, 1 lần thanh toán; SPF tách hạng mục SKU (giao/lắp) & SA (kích hoạt) phục vụ hậu kỳ; tổng gồm VAT."
+MIX-BR-04,"Tính tiền gộp (BE, real-time)","Cần thanh toán = Σ(thành tiền dòng tick) − ưu đãi. BE tính, FE hiển thị real-time; bỏ tick/đổi thuộc tính → tính lại ngay."
+MIX-BR-05,Triển khai theo nhóm SKU/SA,"SKU: yêu cầu địa chỉ giao & hình thức lắp (KTV/tự lắp). SA: kích hoạt tự động/tự kích hoạt hoặc mã code (Ultrafast – UF-BR-02/03), gắn theo SĐT/hợp đồng."
+MIX-BR-06,Ràng buộc Cloud & COD,Camera trong giỏ phải có Cloud (hoặc xác nhận đã có – CAM-BR-02). COD khóa toàn đơn nếu địa chỉ giao SKU thuộc vùng cấm.
+

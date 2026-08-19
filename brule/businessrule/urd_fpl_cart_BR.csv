@@ -1,0 +1,11 @@
+﻿Mã Rule,Tên quy tắc,Nội dung quy tắc & Logic hệ thống
+FPL-BR-01,Tách dòng theo Gói + Chu kỳ,Mỗi dòng giỏ định danh bởiLine_Key = Gói + Chu kỳ. Khi thêm gói: nếu trùng Line_Key →cộng dồn số lượng; nếu khác chu kỳ (hoặc khác gói) →tách thành dòng riêng. Đổi chu kỳ một dòng về trùng key dòng khác → tự gộp.
+FPL-BR-02,Lưu giỏ theo trạng thái đăng nhập,"KHchưa đăng nhập: giỏ lưu tạm trên cache trình duyệt. KHđã đăng nhập: giỏ lưu theo tài khoản, đồng bộ đa thiết bị. Khi đăng nhập, giỏ tạm được hợp nhất vào giỏ tài khoản."
+FPL-BR-03,Quy tắc tính tiền,Thành tiền dòng= Đơn giá gói (theo chu kỳ) × Số lượng.Tạm tính= Σ thành tiền các dòng được tick chọn.Cần thanh toán= Tạm tính − Ưu đãi áp dụng. Toàn bộ phép tính doBEthực hiện & trả về; FE chỉ hiển thị real-time.
+FPL-BR-04,Cấu hình động giá & chu kỳ,"Danh mục gói, đơn giá theo gói, danh sách chu kỳ (3/6/12 tháng...), số thiết bị xem đồng thời đượcnạp động từ Product Hub / QLCS, không hardcode trên FE. Không gài chương trình ưu đãi/khuyến mãi nếu thực tế chưa khai báo."
+FPL-BR-05,Điều kiện xuất hóa đơn,"Mặc định luồng dịch vụ số chỉ bắt buộcSố điện thoại. Khi KH tick""Tôi muốn nhận hóa đơn""→ bắt buộc nhập đầy đủHọ tên, EmailvàĐịa chỉ(Tỉnh/TP, Quận/Huyện, Phường/Xã, Tên đường, Số nhà). Bỏ tick → ẩn & bỏ ràng buộc phần địa chỉ."
+FPL-BR-06,PTTT & ưu đãi cấu hình động,"Danh sách phương thức thanh toán (VietQR, Ví MoMo, Thanh toán tại nhà, Thẻ quốc tế...) doQLCS khai báo. Mỗi PTTT có thể gắn ưu đãi riêng (VD: ""Thanh toán tại nhà — giảm trực tiếp 50% giá trị đơn hàng, tối đa 200.000đ""). Áp/huỷ ưu đãi → BE tính lại tổng cần thanh toán."
+FPL-BR-07,Hình thức kích hoạt dịch vụ,"""Kích hoạt tự động""(mặc định): sau thanh toán thành công, hệ thống tự gắn gói vào tài khoản FPT Play theo SĐT/tài khoản KH.""Khách hàng tự kích hoạt"": hệ thống gửi mã/hướng dẫn để KH tự kích hoạt trên ứng dụng FPT Play."
+FPL-BR-08,Re-validate khi thay đổi đơn,"Mọi thay đổi điều kiện đơn (đổi chu kỳ, số lượng, PTTT, áp/huỷ mã ưu đãi) đềutrigger BE re-validategiá & điều kiện trước khi thanh toán. Nếu giá thay đổi giữa phiên → cập nhật & thông báo cho KH xác nhận lại."
+FPL-BR-09,Mã đơn hàng & VAT,"Sau thanh toán thành công, hệ thống sinhMã đơn hàngduy nhất, hiển thị trên Thank You Page kèm nút ""Theo dõi ĐH"".Tổng thanh toán đã bao gồm VATtheo quy định."
+
