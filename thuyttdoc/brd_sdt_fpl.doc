@@ -317,7 +317,7 @@
             <td><b>Thông báo lỗi Text (chỉ SA)</b></td>
             <td>Màn hình Đăng ký SA</td>
             <td style="text-align:center;">Có</td>
-            <td></td>
+            <td><span class="error-inline">"Quý khách đã có tài khoản FPT Play theo số {}; vui lòng nhập số điện thoại khác để tiếp tục đăng ký dịch vụ online. Nếu bỏ qua bước này, tư vấn viên FPT sẽ liên hệ quý khách để hỗ trợ ngay"</span></td>
         </tr>
         <tr>
             <td><b>Hoàn tất đơn hàng</b></td>
