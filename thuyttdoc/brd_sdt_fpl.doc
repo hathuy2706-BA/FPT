@@ -356,7 +356,7 @@
         <tr>
             <td>ERR_REG_02</td>
             <td>Trùng tài khoản FPT Play (SA)</td>
-            <td><span class="error-inline">"Số điện thoại đã tồn tại tài khoản dịch vụ"</span></td>
+            <td><span class="error-inline">"Quý khách đã có tài khoản FPT Play theo số {}; vui lòng nhập số điện thoại khác để tiếp tục đăng ký dịch vụ online. Nếu bỏ qua bước này, tư vấn viên FPT sẽ liên hệ quý khách để hỗ trợ ngay"</span></td>
             <td>Hiển thị dòng text đỏ, không cho tiếp tục (không mở popup).</td>
         </tr>
         <tr>
@@ -427,7 +427,7 @@
             <td>ERR_REG_02</td>
             <td>Màn hình Đăng ký SA</td>
             <td>Trùng tài khoản FPT Play (SA)</td>
-            <td><span class="error-inline">"Số điện thoại đã tồn tại tài khoản dịch vụ"</span></td>
+            <td><span class="error-inline">"Quý khách đã có tài khoản FPT Play theo số {}; vui lòng nhập số điện thoại khác để tiếp tục đăng ký dịch vụ online. Nếu bỏ qua bước này, tư vấn viên FPT sẽ liên hệ quý khách để hỗ trợ ngay"</span></td>
             <td>Hiển thị dòng text đỏ, không cho tiếp tục (không mở popup).</td>
         </tr>
         <tr>
