@@ -293,6 +293,11 @@
             <td>Luồng SA FPT Play</td>
             <td>Khi KH đăng ký SA bị trùng SĐT, FE chỉ hiển thị thông báo lỗi text chặn như hiện tại, không hiển thị Popup cập nhật SĐT như Combo.</td>
         </tr>
+        <tr>
+            <td style="text-align:center;">BR-04</td>
+            <td>Chỉnh sửa thông tin từ màn hình thanh toán</td>
+            <td>Nếu KH đang ở màn hình thanh toán mà thao tác quay lại (back) về màn hình nhập thông tin thì màn hình sẽ tự động hiển thị thêm trường nhập liệu [Số điện thoại FPT play mới] (kèm dòng thông báo màu xanh) để cho KH có thể chủ động cập nhật lại số điện thoại kích hoạt dịch vụ FPT Play nếu muốn.</td>
+        </tr>
     </tbody>
 </table>
 
