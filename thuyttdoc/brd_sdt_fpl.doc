@@ -469,17 +469,17 @@
     </thead>
     <tbody>
         <tr>
-            <td style="text-align:center;">REG-BR-01</td>
+            <td style="text-align:center;">BR-01</td>
             <td>Kiểm tra trùng TK và xử lý Popup (Combo)</td>
             <td>Nếu SĐT KH đăng ký Combo đã kích hoạt FPT Play = True -> FE bật Popup để cập nhật SĐT. Khi cập nhật xong, check lại SĐT, nếu đủ đk chuyển sang màn hình thanh toán/chọn gói. Nếu trùng, tiếp tục báo lỗi.</td>
         </tr>
         <tr>
-            <td style="text-align:center;">REG-BR-02</td>
+            <td style="text-align:center;">BR-02</td>
             <td>Ghi nhận KHTN</td>
             <td>Cả luồng SA và Combo, khi bị chặn do trùng SĐT ở bước đăng ký, hệ thống tự động đẩy tệp KH này về tệp Khách Hàng Tiềm Năng (KHTN).</td>
         </tr>
         <tr>
-            <td style="text-align:center;">REG-BR-03</td>
+            <td style="text-align:center;">BR-03</td>
             <td>Luồng SA FPT Play</td>
             <td>Khi KH đăng ký SA bị trùng SĐT, FE chỉ hiển thị thông báo lỗi text chặn như hiện tại, không hiển thị Popup cập nhật SĐT như Combo.</td>
         </tr>
@@ -507,7 +507,7 @@
             <td><b>Thông báo lỗi Text (chỉ SA)</b></td>
             <td>Màn hình Đăng ký SA</td>
             <td style="text-align:center;">Có</td>
-            <td>Danh sách động từ QLCS; COD ẩn ở vùng cấm (REG-BR-03).</td>
+            <td>Danh sách động từ QLCS; COD ẩn ở vùng cấm (BR-03).</td>
         </tr>
         <tr>
             <td><b>Hoàn tất đơn hàng</b></td>
