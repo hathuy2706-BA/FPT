@@ -186,7 +186,8 @@
 <!-- ============================================================ -->
 <h1>A. GIỚI THIỆU</h1>
 <h2>1. Mục đích tài liệu</h2>
-<p>Tài liệu Yêu cầu Nghiệp vụ (BRD) này đặc tả chi tiết quy trình, logic xử lý và yêu cầu giao diện đối với việc đăng ký các <b>Dịch vụ Giá trị Gia tăng (SA - Services Add-ons)</b> bao gồm FPT Play, Ultrafast, và HyperFast trên hệ thống <code>beta.fpt.vn</code>.</p>
+<p>Tài liệu Yêu cầu Nghiệp vụ (BRD) này đặc tả chi tiết quy trình, logic xử lý đối với việc đăng ký các <b>Dịch vụ Giá trị Gia tăng (SA - Services Add-ons)</b> bao gồm FPT Play, Ultrafast, và HyperFast trên hệ thống <code>beta.fpt.vn</code>.</p>
+<p>Quy trình được thiết kế tối giản, <b>không yêu cầu khách hàng thực hiện tra cứu Hợp đồng CRM rườm rà</b>.</p>
 
 <h1>B. ĐẶC TẢ GIAO DIỆN VÀ LUỒNG NGHIỆP VỤ</h1>
 <h2>1. Sơ đồ Luồng Nghiệp vụ (Customer Journey)</h2>
@@ -194,8 +195,8 @@
 
 <h2>2. Phân tích UI/UX (Designer Perspective)</h2>
 <ul>
-    <li><b>Tra cứu Hợp đồng:</b> Cung cấp UI trực quan phân tách rõ ràng 2 Tab/Option: "Tra cứu bằng SĐT" và "Tra cứu bằng Mã Hợp Đồng".</li>
-    <li><b>Hiển thị Gói cước hiện tại:</b> Nếu KH đã có hợp đồng, hiển thị rõ badge trạng thái "Đang kích hoạt" màu xanh lá (#385723) giúp KH dễ dàng nhận biết.</li>
+    <li><b>Giao diện Đăng ký Nhanh:</b> Màn hình chỉ yêu cầu nhập thông tin Số Điện Thoại để định danh tự động. Lược bỏ hoàn toàn UI "Tra cứu hợp đồng".</li>
+    <li><b>Luồng Thanh toán (Seamless Checkout):</b> Tích hợp thanh toán liền mạch ngay sau khi xác nhận SĐT.</li>
 </ul>
 
 <h2>3. Step-by-step Luồng Khách hàng</h2>
@@ -207,18 +208,18 @@
     </tr>
     <tr>
         <td>1</td>
-        <td>Tại trang dịch vụ (VD: Ultrafast), bấm "Đăng ký ngay".</td>
-        <td>Hiển thị màn hình tra cứu thông tin (nhập SĐT / Mã HĐ).</td>
+        <td>Tại trang dịch vụ SA (VD: Ultrafast / HyperFast), bấm "Đăng ký ngay".</td>
+        <td>Hiển thị màn hình nhập thông tin cá nhân (SĐT, Tên) nhanh, <b>không có bước tra cứu mã Hợp đồng</b>.</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>Nhập Mã Hợp Đồng hoặc SĐT và nhấn Tìm kiếm.</td>
-        <td>Hệ thống gọi API Contract để lấy danh sách Hợp đồng Internet tương ứng.</td>
+        <td>Khách hàng nhập SĐT và xác nhận.</td>
+        <td>Hệ thống <b>kiểm tra ngầm (Background Validation)</b> để đánh giá xem SĐT có hợp lệ để kích hoạt dịch vụ SA hay không.</td>
     </tr>
     <tr>
         <td>3</td>
-        <td>Khách hàng chọn Hợp đồng cần áp dụng dịch vụ SA và Xác nhận thanh toán.</td>
-        <td>Hệ thống xử lý kích hoạt dịch vụ SA đính kèm vào HĐ đã chọn.</td>
+        <td>Tiến hành thanh toán.</td>
+        <td>Kích hoạt dịch vụ thành công <span class="success-inline">"Đăng ký thành công"</span>.</td>
     </tr>
 </table>
 
@@ -232,18 +233,13 @@
     </tr>
     <tr>
         <td>BR-01</td>
-        <td>Điều kiện đăng ký SA (Ultrafast/HyperFast)</td>
-        <td>Các dịch vụ tối ưu băng thông (Ultrafast, HyperFast) <b>BẮT BUỘC</b> phải được gán trên một đường truyền Internet FPT đang Active. Khách hàng ngoại mạng không được phép đăng ký dịch vụ này đơn lẻ.</td>
+        <td>Không tra cứu hợp đồng CRM (No explicit CRM check)</td>
+        <td>Khách hàng không cần phải tra cứu thủ công qua màn hình. Hệ thống xử lý logic ngầm thông qua SĐT để phân luồng.</td>
     </tr>
     <tr>
         <td>BR-02</td>
         <td>Check trùng gói FPT Play / Nâng cấp gói</td>
-        <td>(Test case: SĐT <b>0939536236</b>)<br/>Nếu KH mua thêm gói FPT Play nhưng tài khoản đã sở hữu gói VVIP1/VVIP2, hệ thống phải:<br/>- Không cho phép mua đè gói thấp hơn (downgrade ngay lập tức).<br/>- Cho phép cộng dồn thời gian nếu mua cùng loại gói.</td>
-    </tr>
-    <tr>
-        <td>BR-03</td>
-        <td>Quy định về Hợp đồng tạm ngưng/khóa</td>
-        <td>Nếu Hợp đồng Internet mà KH chọn đang trong trạng thái Tạm ngưng, Block do nợ cước, không cho phép add-on dịch vụ SA.</td>
+        <td>(Test case: SĐT <b>0939536236</b>)<br/>Nếu KH mua gói FPT Play nhưng tài khoản đã sở hữu gói VVIP1/VVIP2:<br/>- Không cho phép mua đè gói thấp hơn.<br/>- Cho phép cộng dồn thời gian nếu mua cùng loại.</td>
     </tr>
 </table>
 
@@ -257,15 +253,9 @@
     </tr>
     <tr>
         <td>TC-EX-01</td>
-        <td>Tra cứu SĐT ngoại mạng</td>
-        <td>Nhập SĐT không tồn tại HĐ Internet FPT nào.</td>
-        <td><span class="error-inline">Thông báo: "Số điện thoại chưa đăng ký Internet FPT. Vui lòng đăng ký Internet trước để sử dụng dịch vụ này."</span> Gợi ý link chuyển sang luồng mua Internet.</td>
-    </tr>
-    <tr>
-        <td>TC-EX-02</td>
-        <td>Hợp đồng đang nợ cước</td>
-        <td>Mã HĐ nhập vào có status = Blocked/Suspended.</td>
-        <td><span class="error-inline">Thông báo: "Hợp đồng của bạn đang tạm khóa. Vui lòng thanh toán cước để tiếp tục thao tác."</span></td>
+        <td>Lỗi validate SĐT ngầm</td>
+        <td>Hệ thống kiểm tra ngầm phát hiện SĐT không đủ điều kiện đăng ký dịch vụ SA (tùy theo rule nội bộ).</td>
+        <td><span class="error-inline">Thông báo lỗi tinh tế: "Số điện thoại hiện chưa đủ điều kiện đăng ký dịch vụ này."</span> Không chặn cứng luồng trải nghiệm.</td>
     </tr>
 </table>
 
