@@ -259,6 +259,15 @@
     </tr>
 </table>
 
+
+<!-- ============================================================ -->
+<!-- FOOTER ĐÁNH SỐ TRANG (MS WORD)                               -->
+<!-- ============================================================ -->
+<div style='mso-element:footer' id="f1">
+    <p class="MsoFooter" align="center" style="text-align:center; font-family:'Times New Roman', serif; font-size:9pt; color:#666666;">
+        Trang <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--> / <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>NUMPAGES <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->
+    </p>
+</div>
 </div>
 </body>
 </html>

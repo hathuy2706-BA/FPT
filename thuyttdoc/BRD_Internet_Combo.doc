@@ -222,8 +222,8 @@
     </tr>
     <tr>
         <td>3</td>
-        <td>Khách hàng nhập <b>Địa chỉ lắp đặt</b>: Chọn Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và nhập Tên đường/Số nhà.</td>
-        <td>Hệ thống tự động tra cứu API Hạ tầng mạng (Check Port) tại địa chỉ tương ứng. Hiển thị thông báo trạng thái khả dụng.</td>
+        <td>Khách hàng nhập <b>Địa chỉ lắp đặt</b>.</td>
+        <td>Hệ thống tự động tra cứu API Hạ tầng mạng (Check Port).<br/>- Nếu CÓ hạ tầng: Cho phép đi tiếp xuống phần Thanh toán.<br/>- Nếu KHÔNG CÓ hạ tầng: Bỏ qua phần thanh toán, cho phép ghi nhận thông tin và chuyển thẳng sang màn hình Hoàn tất.</td>
     </tr>
     <tr>
         <td>4</td>
@@ -262,8 +262,8 @@
     </tr>
     <tr>
         <td>BR-03</td>
-        <td>Kiểm tra Hạ tầng mạng (Check Port)</td>
-        <td>Khi khách hàng chọn đủ 3 cấp địa chỉ (Tỉnh - Quận - Phường), hệ thống tự động gọi API kiểm tra hạ tầng (Coverage).<br/>- Có hạ tầng: Hiển thị icon Check xanh "Khu vực có hỗ trợ lắp đặt".<br/>- Không có hạ tầng: Chặn đăng ký và hiển thị form "Đăng ký chờ hạ tầng".</td>
+        <td>Xử lý Không có hạ tầng mạng (Out of coverage)</td>
+        <td>Khi khách hàng chọn địa chỉ, hệ thống gọi API kiểm tra hạ tầng.<br/>- Nếu không có hạ tầng/hết Port: Khách hàng không cần chọn gói DV và Phương thức thanh toán nữa. Hệ thống tự động đẩy khách hàng về <b>Page Hoàn tất (Success Page)</b> kèm theo thông báo: <i>"Đã ghi nhận nhu cầu, sẽ có nhân viên liên hệ tư vấn"</i>.</td>
     </tr>
     <tr>
         <td>BR-04</td>
@@ -284,7 +284,7 @@
         <td>TC-EX-01</td>
         <td>Hết Port / Không có hạ tầng</td>
         <td>API Check Port trả về false (hết tập điểm hoặc ngoài vùng phủ).</td>
-        <td><span class="error-inline">Hiển thị thông báo: "Khu vực của quý khách hiện đang chờ nâng cấp hạ tầng."</span> Ngăn khách hàng thanh toán, chuyển sang form thu thập thông tin chờ.</td>
+        <td>Hệ thống bỏ qua block thanh toán, redirect khách hàng thẳng tới Page Hoàn tất với nội dung: "Sẽ có nhân viên liên hệ khảo sát thêm". Tạo lead vào CRM.</td>
     </tr>
     <tr>
         <td>TC-EX-02</td>
@@ -294,6 +294,15 @@
     </tr>
 </table>
 
+
+<!-- ============================================================ -->
+<!-- FOOTER ĐÁNH SỐ TRANG (MS WORD)                               -->
+<!-- ============================================================ -->
+<div style='mso-element:footer' id="f1">
+    <p class="MsoFooter" align="center" style="text-align:center; font-family:'Times New Roman', serif; font-size:9pt; color:#666666;">
+        Trang <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--> / <!--[if supportFields]><span style='mso-element:field-begin'></span><span style='mso-spacerun:yes'> </span>NUMPAGES <span style='mso-element:field-separator'></span><![endif]--><span>1</span><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->
+    </p>
+</div>
 </div>
 </body>
 </html>
