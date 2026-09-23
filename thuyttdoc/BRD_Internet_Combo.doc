@@ -1,0 +1,62 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>BRD - ĐĂNG KÝ COMBO INTERNET</title>
+<style>
+    body { font-family: 'Times New Roman', Times, serif; font-size: 13pt; line-height: 1.5; color: #000000; }
+    h1 { font-size: 16pt; font-weight: bold; }
+    h2 { font-size: 15pt; font-weight: bold; }
+    h3 { font-size: 14pt; font-weight: bold; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+</style>
+</head>
+<body>
+    <h1>TÀI LIỆU YÊU CẦU NGHIỆP VỤ (BRD) - LUỒNG INTERNET / COMBO INTERNET</h1>
+    <h2>1. Giới thiệu</h2>
+    <p>Tài liệu này mô tả các yêu cầu nghiệp vụ cho luồng đăng ký mua Internet và Combo Internet trên trang beta.fpt.vn.</p>
+    
+    <h2>2. Luồng nghiệp vụ (Step-by-step)</h2>
+    <p><b>Bước 1:</b> Khách hàng bấm "Đăng ký ngay" hoặc "Mua ngay" tại gói cước Internet/Combo.</p>
+    <p><b>Bước 2:</b> Hệ thống hiển thị form nhập thông tin (SĐT, Họ tên, Địa chỉ).</p>
+    <p><b>Bước 3:</b> Khách hàng nhập thông tin và xác nhận. Hệ thống kiểm tra rule validation.</p>
+    <p><b>Bước 4:</b> Kiểm tra chính sách địa chỉ (có hạ tầng/chính sách đặc thù không).</p>
+    <p><b>Bước 5:</b> Chuyển sang bước thanh toán/hoàn tất.</p>
+
+    <h2>3. Quy tắc nghiệp vụ (Business Rules)</h2>
+    <table>
+        <tr>
+            <th style="width: 10%">Mã Rule</th>
+            <th style="width: 30%">Tên Quy tắc</th>
+            <th style="width: 60%">Mô tả chi tiết</th>
+        </tr>
+        <tr>
+            <td>BR-01</td>
+            <td>Kiểm tra định dạng SĐT</td>
+            <td>SĐT phải đúng định dạng 10 số, bắt đầu bằng 0. Validate theo các đầu số nhà mạng hợp lệ tại VN.</td>
+        </tr>
+        <tr>
+            <td>BR-02</td>
+            <td>Kiểm tra trùng tài khoản FPT Play</td>
+            <td>Khi nhập SĐT (ví dụ: 0939536236) để mua combo, hệ thống check qua API FPT Play. Nếu SĐT đã có tài khoản, hiển thị cảnh báo/thông báo đồng bộ tài khoản.</td>
+        </tr>
+        <tr>
+            <td>BR-03</td>
+            <td>Xử lý gói VVIP1/2</td>
+            <td>Nếu khách hàng chọn gói VVIP1/VVIP2, áp dụng rule block hoặc yêu cầu nâng cấp nếu tài khoản hiện tại không đủ điều kiện.</td>
+        </tr>
+        <tr>
+            <td>BR-04</td>
+            <td>Kiểm tra hạ tầng địa chỉ</td>
+            <td>Call API check hạ tầng theo Phường/Xã/Quận/Huyện. Nếu không có hạ tầng, chặn đăng ký và báo lỗi.</td>
+        </tr>
+    </table>
+
+    <h2>4. Các trường hợp ngoại lệ (Edge Cases)</h2>
+    <ul>
+        <li>SĐT đã tồn tại nhưng tài khoản bị khóa: Báo lỗi "Tài khoản FPT Play của bạn đang bị khóa".</li>
+        <li>Khu vực hết port: Chuyển sang form lưu thông tin chờ.</li>
+    </ul>
+</body>
+</html>
