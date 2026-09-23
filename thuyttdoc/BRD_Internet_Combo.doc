@@ -191,20 +191,19 @@
 
 <h2>2. Phạm vi và Đối tượng</h2>
 <ul>
-    <li><b>Phạm vi:</b> Từ bước khách hàng chọn gói cước đơn lẻ, nhập thông tin cá nhân trên form đăng ký trực tiếp, kiểm tra tính hợp lệ của dữ liệu, kiểm tra hạ tầng, cho đến khi chuyển qua bước thanh toán.</li>
+    <li><b>Phạm vi:</b> Từ bước khách hàng chọn gói cước đơn lẻ, nhập thông tin cá nhân trên form đăng ký trực tiếp, kiểm tra tính hợp lệ của dữ liệu, kiểm tra hạ tầng, chọn hình thức thanh toán cho đến khi hoàn tất giao dịch.</li>
     <li><b>Đối tượng áp dụng:</b> Khách hàng cá nhân và hộ gia đình có nhu cầu đăng ký mới Internet hoặc Combo Internet & Truyền hình FPT.</li>
 </ul>
 
 <h1>B. ĐẶC TẢ GIAO DIỆN VÀ LUỒNG NGHIỆP VỤ</h1>
-<h2>1. Đặc tả Giao diện (UI/UX Design Spec)</h2>
-<p>Dựa trên phân tích từ góc độ Designer, giao diện được thiết kế theo phong cách hiện đại, tối giản, lược bỏ tối đa các bước thừa (như Giỏ hàng) để đẩy nhanh tỷ lệ chuyển đổi (CRO):</p>
+<h2>1. Phân tích UI/UX (Designer Perspective)</h2>
 <ul>
-    <li><b>Màu sắc chủ đạo:</b> Xanh FPT (#1f4e78) cho các Header/Title, Cam (#ed7d31) cho các nút CTA (Call to Action).</li>
-    <li><b>Luồng đi tắt (Shortcut):</b> Nhấn "Đăng ký ngay" nhảy thẳng vào Form nhập liệu, không qua màn hình trung gian.</li>
-    <li><b>Trạng thái lỗi (Error State):</b> Viền ô input sẽ chuyển sang màu đỏ (#c00000) và xuất hiện inline-text báo lỗi ngay dưới ô nhập liệu mà không cần tải lại trang.</li>
+    <li><b>Giao diện Single Page Checkout:</b> Để tối ưu tỷ lệ chuyển đổi, toàn bộ quá trình nhập thông tin cá nhân, địa chỉ lắp đặt, và chọn thanh toán được gom vào một giao diện liền mạch (Accordion hoặc cuộn dọc).</li>
+    <li><b>Sticky Order Summary:</b> Bảng tổng kết đơn hàng (Tên gói, Tổng tiền thanh toán) được làm sticky bên phải (Desktop) hoặc bottom (Mobile) để khách hàng luôn thấy rõ thông tin chi phí.</li>
+    <li><b>Màu sắc và Validation:</b> Nút CTA màu Cam (#ed7d31). Các trường lỗi viền đỏ (#c00000) với text mô tả ngay bên dưới. Form tự động validate khi user on-blur khỏi input.</li>
 </ul>
 
-<h2>2. Step-by-step Luồng Khách hàng</h2>
+<h2>2. Step-by-step Luồng Khách hàng Đăng ký (Customer Flow)</h2>
 <table class="data-table">
     <tr>
         <th style="width: 5%">STT</th>
@@ -213,23 +212,33 @@
     </tr>
     <tr>
         <td>1</td>
-        <td>Khách hàng lướt xem các gói cước độc lập và nhấn nút "Đăng ký ngay" tại một gói cụ thể.</td>
-        <td>Hệ thống ghi nhận gói cước được chọn và hiển thị ngay màn hình Form nhập liệu thông tin đăng ký (Không dùng Giỏ hàng).</td>
+        <td>Tại trang chủ / trang sản phẩm, khách hàng chọn một gói cước Internet hoặc Combo Internet và bấm nút "Đăng ký ngay".</td>
+        <td>Hệ thống chuyển hướng trực tiếp sang trang Form Đăng ký cho gói cước đó (Bypass giỏ hàng). Bảng tóm tắt đơn hàng hiển thị giá gói cước.</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>Khách hàng nhập <b>Số điện thoại</b> (VD: 0939536236). Nhấn Tab hoặc click ra ngoài.</td>
-        <td>Hệ thống gọi API kiểm tra tức thì (on-blur). Hiển thị icon check xanh nếu hợp lệ, đỏ nếu lỗi định dạng hoặc trùng lặp tài khoản FPT Play.</td>
+        <td>Khách hàng nhập <b>Thông tin cá nhân</b>: Họ và tên, Số điện thoại (VD: 0939536236).</td>
+        <td>Hệ thống validate trực tiếp SĐT. <br/>- Nếu là mua Combo: Kiểm tra trùng SĐT với hệ thống FPT Play.</td>
     </tr>
     <tr>
         <td>3</td>
-        <td>Khách hàng nhập <b>Họ tên</b> và <b>Địa chỉ lắp đặt</b> chi tiết (Tỉnh/Thành, Quận/Huyện, Phường/Xã).</td>
-        <td>Hệ thống tự động suggest địa chỉ thông qua API Location. Kiểm tra năng lực hạ tầng khu vực (Port).</td>
+        <td>Khách hàng nhập <b>Địa chỉ lắp đặt</b>: Chọn Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và nhập Tên đường/Số nhà.</td>
+        <td>Hệ thống tự động tra cứu API Hạ tầng mạng (Check Port) tại địa chỉ tương ứng. Hiển thị thông báo trạng thái khả dụng.</td>
     </tr>
     <tr>
         <td>4</td>
-        <td>Khách hàng nhấn nút "Tiếp tục / Thanh toán".</td>
-        <td>Hệ thống khóa nút bấm, xử lý tạo đơn hàng trực tiếp cho gói cước đã chọn và điều hướng sang trang thanh toán.</td>
+        <td>Khách hàng chọn <b>Kỳ thanh toán</b> (Trả trước 6 tháng / 12 tháng / Trả sau từng tháng) và <b>Hình thức thanh toán</b> (Thanh toán online VNPay, Foxpay, Thẻ tín dụng, ATM nội địa...).</td>
+        <td>Hệ thống tự động tính toán lại Tổng tiền thanh toán dựa trên kỳ thanh toán (bao gồm các ưu đãi tặng tháng nếu có).</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Khách hàng bấm "Hoàn tất / Thanh toán".</td>
+        <td>Hệ thống khóa nút bấm (tránh tạo đơn trùng). Chuyển hướng sang cổng thanh toán đối tác (nếu chọn TT Online) hoặc tạo thành công đơn (nếu TT sau).</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sau khi thanh toán thành công / tạo đơn thành công.</td>
+        <td>Hiển thị màn hình "Đăng ký thành công". Hệ thống tạo Lead/Ticket trên CRM và gửi SMS/Zalo ZNS xác nhận đến KH.</td>
     </tr>
 </table>
 
@@ -243,18 +252,23 @@
     </tr>
     <tr>
         <td>BR-01</td>
-        <td>Luồng Đăng ký Độc lập</td>
-        <td>Mỗi lần ấn "Đăng ký ngay" hệ thống chỉ xử lý 1 phiên đăng ký cho chính xác gói đó, bypass hoàn toàn tính năng Add to Cart.</td>
+        <td>Validate trường dữ liệu bắt buộc</td>
+        <td>Họ tên, SĐT, Tỉnh/Thành, Quận/Huyện, Phường/Xã là các trường mandatory. SĐT phải gồm 10 chữ số, bắt đầu bằng số '0' theo format nhà mạng Việt Nam.</td>
     </tr>
     <tr>
         <td>BR-02</td>
-        <td>Check trùng SĐT Tài khoản FPT Play</td>
-        <td>Khi khách hàng nhập SĐT (VD: <b>0939536236</b>) mua Combo, hệ thống kiểm tra qua FPT Play API. <br/>- Nếu SĐT đã gắn với tài khoản FPT Play đang sử dụng, hệ thống lập tức <span class="error-inline">báo lỗi trùng lặp (Duplicate)</span> và chặn khách hàng đăng ký Combo này (do Combo Internet Truyền hình yêu cầu tạo tài khoản FPT Play mới).</td>
+        <td>Check trùng SĐT đăng ký Combo (FPT Play)</td>
+        <td>Khi khách hàng chọn mua gói Combo Internet + Truyền hình, nhập SĐT (VD: <b>0939536236</b>):<br/>- Hệ thống kiểm tra qua API FPT Play. Nếu SĐT đã có tài khoản FPT Play, hệ thống lập tức <span class="error-inline">báo lỗi trùng lặp (Duplicate)</span> và chặn khách hàng đăng ký Combo này.</td>
     </tr>
     <tr>
         <td>BR-03</td>
-        <td>Check Hạ tầng (Port/Tập điểm)</td>
-        <td>Tại form nhập địa chỉ, sau khi chọn đến cấp Phường/Xã/Đường, hệ thống trigger API Check Capacity.<br/>- Nếu khu vực hết Port hoặc không có hạ tầng: Chặn đăng ký ngay lập tức và gợi ý lưu thông tin "Khách hàng chờ hạ tầng".</td>
+        <td>Kiểm tra Hạ tầng mạng (Check Port)</td>
+        <td>Khi khách hàng chọn đủ 3 cấp địa chỉ (Tỉnh - Quận - Phường), hệ thống tự động gọi API kiểm tra hạ tầng (Coverage).<br/>- Có hạ tầng: Hiển thị icon Check xanh "Khu vực có hỗ trợ lắp đặt".<br/>- Không có hạ tầng: Chặn đăng ký và hiển thị form "Đăng ký chờ hạ tầng".</td>
+    </tr>
+    <tr>
+        <td>BR-04</td>
+        <td>Tính toán Cước phí theo Kỳ thanh toán</td>
+        <td>Nếu khách hàng chọn Trả trước 6 tháng hoặc 12 tháng, hệ thống tự động áp dụng chính sách tặng tháng (ví dụ: tặng 1 tháng, 2 tháng) và cập nhật số tiền hiển thị trên Order Summary tương ứng với số tháng trả trước.</td>
     </tr>
 </table>
 
@@ -268,9 +282,15 @@
     </tr>
     <tr>
         <td>TC-EX-01</td>
-        <td>SĐT FPT Play bị khóa</td>
-        <td>API FPT Play trả về status khóa đối với SĐT (VD: do nợ cước cũ).</td>
-        <td><span class="error-inline">Hiển thị cảnh báo: "Tài khoản FPT Play của SĐT này đang bị tạm khóa."</span> Chặn tiếp tục.</td>
+        <td>Hết Port / Không có hạ tầng</td>
+        <td>API Check Port trả về false (hết tập điểm hoặc ngoài vùng phủ).</td>
+        <td><span class="error-inline">Hiển thị thông báo: "Khu vực của quý khách hiện đang chờ nâng cấp hạ tầng."</span> Ngăn khách hàng thanh toán, chuyển sang form thu thập thông tin chờ.</td>
+    </tr>
+    <tr>
+        <td>TC-EX-02</td>
+        <td>Hủy giao dịch thanh toán</td>
+        <td>Khách hàng được chuyển hướng sang cổng thanh toán (VNPay) nhưng bấm nút "Hủy" hoặc đóng trình duyệt.</td>
+        <td>Hệ thống ghi nhận trạng thái đơn là "Chờ thanh toán". Hỗ trợ trigger kịch bản gửi SMS nhắc nhở thanh toán (Abandon Cart / Drop off).</td>
     </tr>
 </table>
 
