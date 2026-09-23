@@ -249,7 +249,7 @@
     <tr>
         <td>BR-02</td>
         <td>Check trùng SĐT Tài khoản FPT Play</td>
-        <td>Khi khách hàng nhập SĐT (VD: <b>0939536236</b>) mua Combo, hệ thống kiểm tra qua FPT Play API. <br/>- Nếu SĐT đã gắn với tài khoản FPT Play, hiển thị cảnh báo: <i>"SĐT này đã có tài khoản FPT Play. Thời gian gói cước mới sẽ được cộng dồn/đồng bộ. Bạn có muốn tiếp tục?"</i></td>
+        <td>Khi khách hàng nhập SĐT (VD: <b>0939536236</b>) mua Combo, hệ thống kiểm tra qua FPT Play API. <br/>- Nếu SĐT đã gắn với tài khoản FPT Play đang sử dụng, hệ thống lập tức <span class="error-inline">báo lỗi trùng lặp (Duplicate)</span> và chặn khách hàng đăng ký Combo này (do Combo Internet Truyền hình yêu cầu tạo tài khoản FPT Play mới).</td>
     </tr>
     <tr>
         <td>BR-03</td>

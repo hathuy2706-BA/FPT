@@ -239,7 +239,7 @@
     <tr>
         <td>BR-02</td>
         <td>Check trùng gói FPT Play / Nâng cấp gói</td>
-        <td>(Test case: SĐT <b>0939536236</b>)<br/>Nếu KH mua gói FPT Play nhưng tài khoản đã sở hữu gói VVIP1/VVIP2:<br/>- Không cho phép mua đè gói thấp hơn.<br/>- Cho phép cộng dồn thời gian nếu mua cùng loại.</td>
+        <td>(Test case: SĐT <b>0939536236</b>)<br/>Hệ thống kiểm tra trực tiếp trạng thái SĐT trên hệ thống FPT Play.<br/>- Nếu SĐT đang sử dụng FPT Play (bất kể gói VVIP1/VVIP2 hay gói khác), hệ thống lập tức <span class="error-inline">báo trùng lặp</span> và không cho phép đăng ký mới đè lên tài khoản hiện hữu.</td>
     </tr>
 </table>
 
