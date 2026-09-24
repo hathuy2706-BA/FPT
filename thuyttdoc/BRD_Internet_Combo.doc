@@ -223,7 +223,7 @@
     <tr>
         <td>3</td>
         <td>Khách hàng nhập <b>Địa chỉ lắp đặt</b>.</td>
-        <td>Hệ thống tự động tra cứu API Hạ tầng mạng (Check Port).<br/>- Nếu CÓ hạ tầng: Cho phép đi tiếp xuống phần Thanh toán.<br/>- Nếu KHÔNG CÓ hạ tầng: Bỏ qua phần thanh toán, cho phép ghi nhận thông tin và chuyển thẳng sang màn hình Hoàn tất.</td>
+        <td>Hệ thống tự động tra cứu API Hạ tầng mạng (Check Port).<br/>- Nếu <b>CÓ hạ tầng</b>: Cho phép khách hàng tiếp tục sang bước chọn Kỳ thanh toán và PTTT.<br/>- Nếu <b>KHÔNG CÓ hạ tầng</b>: Chuyển thẳng đến <b>Page Hoàn thành</b> — kết thúc quy trình.</td>
     </tr>
     <tr>
         <td>4</td>
@@ -263,7 +263,7 @@
     <tr>
         <td>BR-03</td>
         <td>Xử lý Không có hạ tầng mạng (Out of coverage)</td>
-        <td>Khi khách hàng chọn địa chỉ, hệ thống gọi API kiểm tra hạ tầng.<br/>- Nếu không có hạ tầng/hết Port: Khách hàng không cần chọn gói DV và Phương thức thanh toán nữa. Hệ thống tự động đẩy khách hàng về <b>Page Hoàn tất (Success Page)</b> kèm theo thông báo: <i>"Đã ghi nhận nhu cầu, sẽ có nhân viên liên hệ tư vấn"</i>.</td>
+        <td>Khi khách hàng chọn địa chỉ, hệ thống gọi API kiểm tra hạ tầng.<br/>- Nếu không có hạ tầng/hết Port: Hệ thống bỏ qua bước chọn gói DV và PTTT. Chuyển khách hàng thẳng đến <b>Page Hoàn thành</b> — kết thúc quy trình.</td>
     </tr>
     <tr>
         <td>BR-04</td>
@@ -284,7 +284,7 @@
         <td>TC-EX-01</td>
         <td>Hết Port / Không có hạ tầng</td>
         <td>API Check Port trả về false (hết tập điểm hoặc ngoài vùng phủ).</td>
-        <td>Hệ thống bỏ qua block thanh toán, redirect khách hàng thẳng tới Page Hoàn tất với nội dung: "Sẽ có nhân viên liên hệ khảo sát thêm". Tạo lead vào CRM.</td>
+        <td>Hệ thống bỏ qua block chọn gói DV và PTTT. Redirect thẳng đến Page Hoàn thành — kết thúc quy trình tại đây.</td>
     </tr>
     <tr>
         <td>TC-EX-02</td>
