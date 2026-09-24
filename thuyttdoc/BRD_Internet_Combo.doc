@@ -157,28 +157,15 @@
 <!-- ============================================================ -->
 <div class="toc-title" style="/* page-break removed for h2 */">MỤC LỤC</div>
 <div class="toc-list">
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">A. GIỚI THIỆU<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Mục đích tài liệu<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Thông tin chung &amp; Hiện trạng (AS-IS vs TO-BE)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Thuật ngữ và viết tắt<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. TỔNG QUAN HỆ THỐNG &amp; PHẠM VI<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Sơ đồ luồng nghiệp vụ tổng quan (BPMN)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Phân loại nhóm luồng &amp; sơ đồ luồng chính<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Danh sách chức năng &amp; Ma trận phân quyền<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">4. Đặc tả giao diện dùng chung &amp; trạng thái hệ thống<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. ĐẶC TẢ CHI TIẾT CÁC LUỒNG NGHIỆP VỤ<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Luồng Kiểm tra SĐT (Combo & SA)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.1 Đặc tả chi tiết<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.2 Quy tắc nghiệp vụ<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.3 Đặc tả giao diện<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l3" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 1.5cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1.4 Edge cases &amp; Mã lỗi<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. [Tên Luồng 2] (nếu có)<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">D. TRƯỜNG HỢP LỖI &amp; THÔNG BÁO HỆ THỐNG<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Nguyên tắc hiển thị lỗi &amp; retry<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Trạng thái lỗi dùng chung<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Bảng mã lỗi dùng chung<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">E. YÊU CẦU PHI CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>X</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">F. PHỤ LỤC &amp; TÀI LIỆU THAM KHẢO<span style="mso-tab-count:1 dotted">	</span>X</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">A. GIỚI THIỆU<span style="mso-tab-count:1 dotted">	</span>2</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">1. Mục đích tài liệu<span style="mso-tab-count:1 dotted">	</span>2</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">2. Phạm vi và Đối tượng<span style="mso-tab-count:1 dotted">	</span>2</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">3. Yêu cầu Phi chức năng<span style="mso-tab-count:1 dotted">	</span>2</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. ĐẶC TẢ GIAO DIỆN VÀ CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>3</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">I. Cập nhật thông tin KH & Kiểm tra chính sách<span style="mso-tab-count:1 dotted">	</span>3</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">II. Chọn gói dịch vụ/cập nhật sản phẩm/PTTT<span style="mso-tab-count:1 dotted">	</span>5</p>
+    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">III. Xem ưu đãi tại màn hình đăng ký<span style="mso-tab-count:1 dotted">	</span>7</p>
+    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. KỊCH BẢN KIỂM THỬ NGOẠI LỆ (EDGE CASES)<span style="mso-tab-count:1 dotted">	</span>9</p>
 </div>
 
 <!-- ============================================================ -->
@@ -252,6 +239,7 @@
     <tr><td>BR07</td><td>Khi thay đổi địa chỉ => kiểm tra lại chính sách gói tại địa chỉ mới</td></tr>
     <tr><td>BR08</td><td>Re-call tổng tiền ngay sau khi policy load xong.</td></tr>
     <tr><td>BR09</td><td>Khi thay đổi địa chỉ => reset toàn bộ voucher phù hợp với địa chỉ của khách hàng</td></tr>
+<tr><td>BR14</td><td>Rule Auto Apply Voucher: Hệ thống tự động kiểm tra tất cả các voucher đang hiệu lực mà khách hàng đủ điều kiện áp dụng. Sau đó sẽ tự động chọn và apply voucher mang lại giá trị giảm giá tốt nhất cho khách hàng. Nếu có nhiều voucher cùng giá trị giảm, ưu tiên theo thứ tự hình thức PMH (Giảm tiền trực tiếp > Giảm phí hòa mạng > Giảm x đồng y tháng).</td></tr>
 </table>
 
 <h3>3. Mô tả màn hình</h3>
@@ -401,6 +389,7 @@
     
     <tr><td>BR12</td><td>Tổng tiền không được âm. nếu KH có voucher lớn hơn đơn hàng hệ thống phải giới hạn giá trị để đơn về 0Đ và tiến hành hoàn tất đơn hàng</td></tr>
     <tr><td>BR13</td><td>Không cho phép thanh toán nếu đơn hàng chưa hoàn tất cập nhật.</td></tr>
+<tr><td>BR14</td><td>Rule Auto Apply Voucher: Hệ thống tự động kiểm tra tất cả các voucher đang hiệu lực mà khách hàng đủ điều kiện áp dụng. Sau đó sẽ tự động chọn và apply voucher mang lại giá trị giảm giá tốt nhất cho khách hàng. Nếu có nhiều voucher cùng giá trị giảm, ưu tiên theo thứ tự hình thức PMH (Giảm tiền trực tiếp > Giảm phí hòa mạng > Giảm x đồng y tháng).</td></tr>
 </table>
 
 <h3>3. Mô tả màn hình</h3>
@@ -466,6 +455,56 @@
         <td></td>
         <td>Đối với từng gói DV: Sẽ có text hiển thị mô tả phục vụ cho các gói Main/Extra/Required. Vận hành khai báo content cho các gói DV phục vụ cho truyền thông.</td>
     </tr>
+</table>
+
+<h2>III. Xem ưu đãi tại màn hình đăng ký</h2>
+<h3>1. Business Workflow</h3>
+<ul>
+    <li>Người dùng bấm đăng ký một gói dịch vụ Internet</li>
+    <li>Hệ thống hiển thị màn hình nhập thông tin đăng ký, trên màn hình có thông tin “Xem ưu đãi”</li>
+    <li>Người dùng bấm vào xem ưu đãi</li>
+    <li>Hệ thống hiển thị Popup các ưu đãi đối với DV tương ứng</li>
+</ul>
+
+<h3>2. Business rules</h3>
+<p>Khách hàng thực hiện đăng ký gói dịch vụ trên Fpt.vn, Và xem ưu đãi tại màn hình thông tin đăng ký:</p>
+<ol>
+    <li><b>Xác định loại dịch vụ:</b> Dựa vào thông tin gói SP khách hàng đã chọn. Đối với KH nhập xong Location, dựa vào SP + location để xác định Voucher phù hợp.</li>
+    <li><b>Truy vấn voucher:</b> Truy xuất tất cả voucher thuộc nhánh “Bán hàng” và FPL ở trạng thái “Đang hiệu lực”.</li>
+    <li><b>Lọc và sắp xếp:</b> Chỉ hiển thị tối đa 10 voucher có độ ưu tiên cao nhất. Thứ tự ưu tiên hình thức: Giảm tiền trực tiếp > Giảm phí hòa mạng > Giảm x đồng y tháng > Tặng PMH > Tặng điểm. Cùng hình thức ưu tiên giá trị cao hơn.</li>
+    <li><b>Hiển thị popup:</b> Popup chỉ để xem, không có chức năng áp dụng.
+        <ul>
+            <li>Nếu không có voucher => “Hiện tại không có ưu đãi nào áp dụng cho gói dịch vụ bạn đã chọn.”</li>
+            <li>Nếu có cơ cấu loại trừ (2 voucher đủ ĐK nhưng không áp dụng cùng lúc) => Hiển thị cảnh báo “Không áp dụng đồng thời ưu đãi đang chọn” dưới Voucher B khi dùng Voucher A.</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>3. Mô tả màn hình</h3>
+<table class="data-table">
+    <tr>
+        <th>Trường dữ liệu</th>
+        <th>Mô tả</th>
+    </tr>
+    <tr><td>Tên ưu đãi</td><td>Lấy từ ECP (CMS update được: Tên ưu đãi dành riêng cho Web)</td></tr>
+    <tr><td>Mô tả ngắn gọn</td><td>CMS update được mô tả dành riêng cho Web</td></tr>
+    <tr><td>Hình ảnh ưu đãi</td><td>Hình ảnh ưu đãi cập nhật qua CMS, nếu không có hiển thị mặc định</td></tr>
+    <tr><td>Ngày hết hạn</td><td>Ngày hết hạn của chính sách ưu đãi</td></tr>
+    <tr><td>Label hết hạn (nếu có)</td><td>Tự động hiển thị khi: D-3 (D: Ngày hết hạn)</td></tr>
+    <tr><td>Điều kiện</td><td>Điều hướng KH đến màn hình xem chi tiết ưu đãi</td></tr>
+    <tr><td>Button Đóng</td><td>Đóng popup giữ nguyên màn hình nhập thông tin đăng ký</td></tr>
+</table>
+
+<h3>4. Các trường hợp gặp trong popup</h3>
+<table class="data-table">
+    <tr>
+        <th>Trường hợp</th>
+        <th>Mô tả</th>
+    </tr>
+    <tr><td>1</td><td>Nếu cùng hình thức PMH, nhưng khác giá trị giảm => Ưu tiên voucher có giá trị giảm cao hơn lên trên</td></tr>
+    <tr><td>2</td><td>Nếu cùng hình thức PMH và cùng giá trị giảm => Sắp xếp ngẫu nhiên thứ tự hiển thị</td></tr>
+    <tr><td>3</td><td>Nếu khác hình thức PMH, nhưng cùng giá trị giảm => Ưu tiên voucher có hình thức PMH có độ ưu tiên cao hơn</td></tr>
+    <tr><td>4</td><td>Nếu khác hình thức PMH và khác giá trị giảm => Sắp xếp theo tổng độ ưu tiên của 2 tiêu chí</td></tr>
 </table>
 
 <h1>C. KỊCH BẢN KIỂM THỬ NGOẠI LỆ (EDGE CASES)</h1>
