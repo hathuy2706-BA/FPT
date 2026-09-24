@@ -238,7 +238,7 @@
     <tr>
         <td>6</td>
         <td>Sau khi thanh toán thành công / tạo đơn thành công.</td>
-        <td>Hiển thị màn hình "Đăng ký thành công". Hệ thống tạo Lead/Ticket trên CRM và gửi SMS/Zalo ZNS xác nhận đến KH.</td>
+        <td>Hiển thị màn hình "Đăng ký thành công". Hệ thống ghi nhận Khách hàng tiềm năng (KHTN) và gửi SMS/Zalo ZNS xác nhận đến KH.</td>
     </tr>
 </table>
 
