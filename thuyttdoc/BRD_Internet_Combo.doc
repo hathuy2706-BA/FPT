@@ -302,7 +302,7 @@
         <td>Phường/Xã</td>
         <td>Select</td>
         <td>- Bắt buộc<br>- Phụ thuộc Quận/Huyện</td>
-        <td>Là cấp địa bàn cuối để xác định chính sách giá & slot lắp đặt</td>
+        <td>Là cấp địa bàn cuối để xác định chính sách giá</td>
         <td>User: Chọn giá trị.<br>System: Khi thay đổi => trigger re-check chính sách (giá, thiết bị, voucher, PTTT).</td>
     </tr>
     <tr>
@@ -317,7 +317,7 @@
         <td>Radio</td>
         <td>- Bắt buộc<br>- Mặc định : Nhà riêng<br>- Nếu chọn Chung cư: Hệ thống sẽ load thêm field: Tên chung cư, Tòa nhà,Số tầng, Số Phòng</td>
         <td>Ảnh hưởng quy trình triển khai & một số chính sách thiết bị. Chính sách của Chung cư khác so với Nhà riêng</td>
-        <td>User: Chọn loại.<br>System: Khi thay đổi => có thể load lại slot lắp đặt hoặc rule thiết bị (nếu có cấu hình).</td>
+        <td>User: Chọn loại.<br>System: Khi thay đổi => có thể load lại rule thiết bị (nếu có cấu hình).</td>
     </tr>
     <tr>
         <td>Ghi chú</td>
@@ -357,7 +357,7 @@
     <li>Thay đổi số lượng thiết bị/DV: CS có khai báo Min/Max thì disable tăng giảm tương ứng</li>
     <li>Chọn/đổi PTTT => recheck voucher</li>
     <li>Mở modal Voucher => chọn voucher => chọn “Xác nhận”</li>
-    <li>Chọn/đổi ngày lắp đặt -> hold slot -> update order summary</li>
+    
 </ul>
 <p>Khi mọi thứ OK => bấm “Thanh toán” => validate final => xử lý payment.</p>
 <p>Tại màn hình thanh toán, KH có thể đổi lại gói: 1-3-6-12… tùy chính sách khai báo cho từng địa chỉ:</p>
@@ -393,12 +393,12 @@
     <tr><td>BR03</td><td>PTTT load dựa trên cấu hình chính sách của gói.</td></tr>
     <tr><td>BR04</td><td>Voucher chỉ load nếu gói thỏa điều kiện áp dụng.</td></tr>
     <tr><td>BR05</td><td>Khi thay đổi gói => Khi khách thay gói dịch vụ chính → hệ thống phải gọi để tính lại toàn bộ đơn hàng (giá gói, thiết bị, addon, voucher, PTTT, tổng tiền).</td></tr>
-    <tr><td>BR06</td><td>Thay đổi gói có thể làm mất hiệu lực thiết bị, addon, PTTT, slot đã chọn.</td></tr>
+    <tr><td>BR06</td><td>Thay đổi gói có thể làm mất hiệu lực thiết bị, addon, PTTT.</td></tr>
     <tr><td>BR07</td><td>Nếu PTTT thay đổi => cần kiểm tra lại voucher tương thích.</td></tr>
     <tr><td>BR08</td><td>PTTT hiển thị theo payment_methods_supported của gói.</td></tr>
     <tr><td>BR09</td><td>Mỗi thiết bị/addon có min_qty / max_qty theo policy; UI không cho tăng quá max hoặc giảm dưới min.</td></tr>
-    <tr><td>BR10</td><td>Thời gian lắp đặt được load theo khung thời gian xanh, đủ dkien lắp đặt</td></tr>
-    <tr><td>BR11</td><td>Nếu đã qua thời gian lắp đặt, hệ thống tự disable các khung giờ</td></tr>
+    
+    
     <tr><td>BR12</td><td>Tổng tiền không được âm. nếu KH có voucher lớn hơn đơn hàng hệ thống phải giới hạn giá trị để đơn về 0Đ và tiến hành hoàn tất đơn hàng</td></tr>
     <tr><td>BR13</td><td>Không cho phép thanh toán nếu đơn hàng chưa hoàn tất cập nhật.</td></tr>
 </table>
@@ -447,12 +447,7 @@
         <td>- Voucher phải còn hiệu lực (thời gian)<br>- Thỏa điều kiện sản phẩm/khu vực/PTTT/min_order<br>- Không vi phạm rule exclusive</td>
         <td>Khi người dùng xác nhận voucher => hệ thống kiểm tra toàn bộ điều kiện => nếu hợp lệ => cập nhật discount và total. Nếu không hợp lệ => hiển thị lỗi tương ứng và không áp dụng.</td>
     </tr>
-    <tr>
-        <td>Slot lắp đặt</td>
-        <td>Chọn ngày => chọn khung giờ</td>
-        <td>- Slot phải thuộc available_slots theo region_code<br>- Ngày không nhỏ hơn ngày hiện tại</td>
-        <td>Khi người dùng chọn slot => hệ thống gọi hold_slot(slot_id, ttl) để giữ tạm thời => hiển thị countdown giữ slot. Nếu TTL hết => slot bị release và yêu cầu chọn lại.</td>
-    </tr>
+    
     <tr>
         <td>Tóm tắt đơn hàng (Summary Panel)</td>
         <td>Xem lại line items, discount, total</td>
@@ -462,8 +457,8 @@
     <tr>
         <td>Thanh toán (CTA Pay)</td>
         <td>Bấm “Thanh toán”</td>
-        <td>- Không có validation error<br>- Recalc hoàn tất<br>- Slot còn hiệu lực</td>
-        <td>Khi người dùng bấm thanh toán => hệ thống thực hiện tổng hợp đơn hàng để re-validate voucher và slot => nếu hợp lệ => chuyển sang payment flow. Nếu phát hiện thay đổi => hiển thị lỗi và yêu cầu xử lý trước. Ghi nhận thông tin KHTN.</td>
+        <td>- Không có validation error<br>- Recalc hoàn tất</td>
+        <td>Khi người dùng bấm thanh toán => hệ thống thực hiện tổng hợp đơn hàng để re-validate voucher => nếu hợp lệ => chuyển sang payment flow. Nếu phát hiện thay đổi => hiển thị lỗi và yêu cầu xử lý trước. Ghi nhận thông tin KHTN.</td>
     </tr>
     <tr>
         <td>Text mô tả ở các gói DV</td>
