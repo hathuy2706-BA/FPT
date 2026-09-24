@@ -164,8 +164,7 @@
     <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">B. ĐẶC TẢ GIAO DIỆN VÀ CHỨC NĂNG<span style="mso-tab-count:1 dotted">	</span>3</p>
     <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">I. Cập nhật thông tin KH & Kiểm tra chính sách<span style="mso-tab-count:1 dotted">	</span>3</p>
     <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">II. Chọn gói dịch vụ/cập nhật sản phẩm/PTTT<span style="mso-tab-count:1 dotted">	</span>5</p>
-    <p class="toc-entry toc-l2" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:normal; margin:0 0 6px 0.75cm; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">III. Xem ưu đãi tại màn hình đăng ký<span style="mso-tab-count:1 dotted">	</span>7</p>
-    <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. KỊCH BẢN KIỂM THỬ NGOẠI LỆ (EDGE CASES)<span style="mso-tab-count:1 dotted">	</span>9</p>
+        <p class="toc-entry toc-l1" style="font-family:'Times New Roman', Times, serif; font-size:12pt; font-weight:bold; margin:0 0 6px 0; line-height:1.25; text-align:left; tab-stops:right dotted 16.8cm;">C. KỊCH BẢN KIỂM THỬ NGOẠI LỆ (EDGE CASES)<span style="mso-tab-count:1 dotted">	</span>9</p>
 </div>
 
 <!-- ============================================================ -->
@@ -455,56 +454,6 @@
         <td></td>
         <td>Đối với từng gói DV: Sẽ có text hiển thị mô tả phục vụ cho các gói Main/Extra/Required. Vận hành khai báo content cho các gói DV phục vụ cho truyền thông.</td>
     </tr>
-</table>
-
-<h2>III. Xem ưu đãi tại màn hình đăng ký</h2>
-<h3>1. Business Workflow</h3>
-<ul>
-    <li>Người dùng bấm đăng ký một gói dịch vụ Internet</li>
-    <li>Hệ thống hiển thị màn hình nhập thông tin đăng ký, trên màn hình có thông tin “Xem ưu đãi”</li>
-    <li>Người dùng bấm vào xem ưu đãi</li>
-    <li>Hệ thống hiển thị Popup các ưu đãi đối với DV tương ứng</li>
-</ul>
-
-<h3>2. Business rules</h3>
-<p>Khách hàng thực hiện đăng ký gói dịch vụ trên Fpt.vn, Và xem ưu đãi tại màn hình thông tin đăng ký:</p>
-<ol>
-    <li><b>Xác định loại dịch vụ:</b> Dựa vào thông tin gói SP khách hàng đã chọn. Đối với KH nhập xong Location, dựa vào SP + location để xác định Voucher phù hợp.</li>
-    <li><b>Truy vấn voucher:</b> Truy xuất tất cả voucher thuộc nhánh “Bán hàng” và FPL ở trạng thái “Đang hiệu lực”.</li>
-    <li><b>Lọc và sắp xếp:</b> Chỉ hiển thị tối đa 10 voucher có độ ưu tiên cao nhất. Thứ tự ưu tiên hình thức: Giảm tiền trực tiếp > Giảm phí hòa mạng > Giảm x đồng y tháng > Tặng PMH > Tặng điểm. Cùng hình thức ưu tiên giá trị cao hơn.</li>
-    <li><b>Hiển thị popup:</b> Popup chỉ để xem, không có chức năng áp dụng.
-        <ul>
-            <li>Nếu không có voucher => “Hiện tại không có ưu đãi nào áp dụng cho gói dịch vụ bạn đã chọn.”</li>
-            <li>Nếu có cơ cấu loại trừ (2 voucher đủ ĐK nhưng không áp dụng cùng lúc) => Hiển thị cảnh báo “Không áp dụng đồng thời ưu đãi đang chọn” dưới Voucher B khi dùng Voucher A.</li>
-        </ul>
-    </li>
-</ol>
-
-<h3>3. Mô tả màn hình</h3>
-<table class="data-table">
-    <tr>
-        <th>Trường dữ liệu</th>
-        <th>Mô tả</th>
-    </tr>
-    <tr><td>Tên ưu đãi</td><td>Lấy từ ECP (CMS update được: Tên ưu đãi dành riêng cho Web)</td></tr>
-    <tr><td>Mô tả ngắn gọn</td><td>CMS update được mô tả dành riêng cho Web</td></tr>
-    <tr><td>Hình ảnh ưu đãi</td><td>Hình ảnh ưu đãi cập nhật qua CMS, nếu không có hiển thị mặc định</td></tr>
-    <tr><td>Ngày hết hạn</td><td>Ngày hết hạn của chính sách ưu đãi</td></tr>
-    <tr><td>Label hết hạn (nếu có)</td><td>Tự động hiển thị khi: D-3 (D: Ngày hết hạn)</td></tr>
-    <tr><td>Điều kiện</td><td>Điều hướng KH đến màn hình xem chi tiết ưu đãi</td></tr>
-    <tr><td>Button Đóng</td><td>Đóng popup giữ nguyên màn hình nhập thông tin đăng ký</td></tr>
-</table>
-
-<h3>4. Các trường hợp gặp trong popup</h3>
-<table class="data-table">
-    <tr>
-        <th>Trường hợp</th>
-        <th>Mô tả</th>
-    </tr>
-    <tr><td>1</td><td>Nếu cùng hình thức PMH, nhưng khác giá trị giảm => Ưu tiên voucher có giá trị giảm cao hơn lên trên</td></tr>
-    <tr><td>2</td><td>Nếu cùng hình thức PMH và cùng giá trị giảm => Sắp xếp ngẫu nhiên thứ tự hiển thị</td></tr>
-    <tr><td>3</td><td>Nếu khác hình thức PMH, nhưng cùng giá trị giảm => Ưu tiên voucher có hình thức PMH có độ ưu tiên cao hơn</td></tr>
-    <tr><td>4</td><td>Nếu khác hình thức PMH và khác giá trị giảm => Sắp xếp theo tổng độ ưu tiên của 2 tiêu chí</td></tr>
 </table>
 
 <h1>C. KỊCH BẢN KIỂM THỬ NGOẠI LỆ (EDGE CASES)</h1>
