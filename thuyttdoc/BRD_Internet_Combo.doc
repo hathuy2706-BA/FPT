@@ -205,93 +205,271 @@
 
 <h1>B. ĐẶC TẢ GIAO DIỆN VÀ CHỨC NĂNG (FUNCTIONAL SPECIFICATIONS)</h1>
 
+
 <h2>I. Cập nhật thông tin KH & Kiểm tra chính sách</h2>
-<p><b>1. Business Workflow</b></p>
+
+<h3>1. Business Workflow</h3>
 <ul>
-    <li>Người dùng chọn gói & bấm “Đăng ký ngay” => chuyển tới màn Nhập thông tin.</li>
-    <li>Người dùng điền thông tin và lựa chọn địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã). Khi mất focus hoặc bấm "Tiếp tục", hệ thống gọi backend policy check.</li>
-    <li>Các điều kiện kiểm tra: Kiểm tra khu vực có cung cấp dịch vụ không; bảng giá theo địa bàn; chính sách thiết bị; chính sách ưu đãi.</li>
-    <li>Nếu có thay đổi theo địa chỉ: Update lại giá gói, Re-load voucher.</li>
+    <li>Người dùng chọn gói & bấm “Đăng ký” => chuyển tới màn Nhập thông tin.</li>
+    <li>Người dùng điền Họ tên, SĐT, Tỉnh/Quận/Phường, Địa chỉ chi tiết, Loại nhà. Sau mỗi trường địa chỉ thay đổi => hệ thống gọi backend policy check (không block nhập liên tục).</li>
+    <li>KH nhập hoặc chỉnh sửa:
+        <ul>
+            <li>Họ và tên</li>
+            <li>Tỉnh/TP</li>
+            <li>Quận/Huyện</li>
+            <li>Phường/Xã</li>
+            <li>Địa chỉ chi tiết/Chung cư</li>
+        </ul>
+    </li>
+    <li>Khi mất focus hoặc bấm "Tiếp tục": Hệ thống gọi kiểm tra chính sách:
+        <ul>
+            <li>Kiểm tra khu vực có cung cấp dịch vụ không</li>
+            <li>Kiểm tra bảng giá theo địa bàn</li>
+            <li>Kiểm tra chính sách thiết bị</li>
+            <li>Kiểm tra chính sách ưu đãi</li>
+        </ul>
+    </li>
+    <li>Nếu có thay đổi:
+        <ul>
+            <li>Update lại giá gói</li>
+            <li>Re-load voucher</li>
+        </ul>
+    </li>
 </ul>
 
-<p><b>2. Mô tả Màn hình & Business Rules</b></p>
+<h3>2. Business rules</h3>
 <table class="data-table">
     <tr>
-        <th style="width: 20%">Trường dữ liệu</th>
-        <th style="width: 30%">Ràng buộc / Validation</th>
-        <th style="width: 50%">Hành vi hệ thống (System Action) & Business Rule</th>
+        <th>Code</th>
+        <th>Nội dung</th>
+    </tr>
+    <tr><td>BR01</td><td>Trường Họ & Tên là bắt buộc, tối đa 100 ký tự</td></tr>
+    <tr><td>BR02</td><td>Số điện thoại là bắt buộc; mặc định yêu cầu 10 chữ số (theo policy vùng), chỉ được nhập chữ số; kiểm tra đầu số theo danh sách cấu hình.</td></tr>
+    <tr><td>BR03</td><td>Tỉnh/Thành, Quận/Huyện, Phường/Xã là bắt buộc; thay đổi bất kỳ trường này sẽ trigger re-check chính sách.</td></tr>
+    <tr><td>BR04</td><td>Địa chỉ chi tiết (số nhà, đường) là bắt buộc; tối đa 255 ký tự.</td></tr>
+    <tr><td>BR05</td><td>Giá gói Internet phụ thuộc vào địa bàn triển khai KH đã nhập. Khi cập nhật giá thì hiển thị câu thông báo Warning: ‘Giá có thể được thay đổi theo khu vực mà khách hàng muốn lắp đặt.”</td></tr>
+    <tr><td>BR06</td><td>Nếu địa bàn không hỗ trợ => disable tiếp tục & hiển thị thông báo. Đồng thời đẩy KHTN</td></tr>
+    <tr><td>BR07</td><td>Khi thay đổi địa chỉ => kiểm tra lại chính sách gói tại địa chỉ mới</td></tr>
+    <tr><td>BR08</td><td>Re-call tổng tiền ngay sau khi policy load xong.</td></tr>
+    <tr><td>BR09</td><td>Khi thay đổi địa chỉ => reset toàn bộ voucher phù hợp với địa chỉ của khách hàng</td></tr>
+</table>
+
+<h3>3. Mô tả màn hình</h3>
+<table class="data-table">
+    <tr>
+        <th>Field</th>
+        <th>Kiểu dữ liệu</th>
+        <th>Validation / Ràng buộc dữ liệu</th>
+        <th>Business Rule</th>
+        <th>Thao tác người dùng & Hành vi hệ thống</th>
     </tr>
     <tr>
         <td>Họ và Tên</td>
-        <td>Bắt buộc. Tối đa 100 ký tự. Chỉ cho phép chữ và khoảng trắng.</td>
-        <td>Validate khi mất focus hoặc bấm “Tiếp tục”. Báo lỗi inline nếu vi phạm.</td>
+        <td>Text</td>
+        <td>- Bắt buộc<br>- Tối đa 100 ký tự<br>- Chỉ cho phép chữ và khoảng trắng<br>- Không chứa số hoặc ký tự đặc biệt</td>
+        <td>Thông tin dùng để lập hợp đồng & hồ sơ lắp đặt</td>
+        <td>User: Nhập dữ liệu.<br>System: Validate khi mất focus hoặc khi bấm “Tiếp tục”. Nếu không hợp lệ => hiển thị lỗi và không cho chuyển bước.</td>
     </tr>
     <tr>
         <td>Số điện thoại</td>
-        <td>Bắt buộc. 10 chữ số. Chỉ nhập số.</td>
-        <td>Chặn nhập ký tự không phải số. Báo lỗi định dạng. <br/><b>Rule:</b> Trùng SĐT hệ thống FPT Play khi đăng ký Combo => Báo lỗi trùng lặp (Duplicate) và chặn đăng ký mới đè tài khoản.</td>
+        <td>Numeric string</td>
+        <td>- Bắt buộc<br>- 10 chữ số<br>- Chỉ nhập số<br>- Kiểm tra đầu số hợp lệ theo danh sách cấu hình</td>
+        <td>SĐT là định danh chính để tạo đơn & liên hệ triển khai</td>
+        <td>User: Nhập số.<br>System: Chặn nhập ký tự không phải số. Validate định dạng & đầu số. Nếu sai => hiển thị lỗi. Không cho tiếp tục nếu chưa hợp lệ.</td>
     </tr>
     <tr>
         <td>Email</td>
-        <td>Không bắt buộc. Nếu nhập phải chuẩn định dạng.</td>
-        <td>Validate format, không block nếu để trống.</td>
+        <td>Text</td>
+        <td>- Không bắt buộc<br>- Nếu nhập phải đúng định dạng email chuẩn<br>- Xuất hiện đối với 1 số SPDV KH có tick “Tôi muốn nhận hóa đơn”</td>
+        <td>Dùng để gửi xác nhận đơn & hóa đơn</td>
+        <td>User: Nhập (optional).<br>System: Validate format nếu có dữ liệu. Không block nếu để trống.</td>
     </tr>
     <tr>
-        <td>Địa chỉ (Tỉnh/Quận/Phường)</td>
-        <td>Bắt buộc. Phụ thuộc lẫn nhau từ cấp Tỉnh -> Quận -> Phường.</td>
-        <td><b>Rule:</b> Mỗi khi thay đổi cấp Phường/Xã => Trigger re-check chính sách (giá, thiết bị, voucher, PTTT). <br/><b>Rule Hạ tầng:</b> Nếu không có hạ tầng/hết Port => Chuyển thẳng đến <b>Page Hoàn thành</b> — kết thúc quy trình. Thông tin KH được <b>đẩy vào tệp Khách hàng tiềm năng (KHTN)</b> cho Sale xử lý.</td>
+        <td>Tỉnh/Thành phố</td>
+        <td>Select</td>
+        <td>- Bắt buộc<br>- Danh sách load từ master data<br>- Hiển thị ưu tiên” HCM, HN, Đà Nẵng<br>- Có thể search (Nhập text tìm kiếm)</td>
+        <td>Là tham số xác định vùng phủ & bảng giá</td>
+        <td>User: Chọn giá trị.<br>System: Khi thay đổi => load lại Quận/Huyện tương ứng và trigger kiểm tra chính sách.</td>
+    </tr>
+    <tr>
+        <td>Quận/Huyện</td>
+        <td>Select</td>
+        <td>- Bắt buộc<br>- Phụ thuộc Tỉnh</td>
+        <td>Dùng để xác định chính xác địa bàn triển khai</td>
+        <td>User: Chọn giá trị.<br>System: Khi thay đổi => load lại Phường/Xã và trigger kiểm tra chính sách.</td>
+    </tr>
+    <tr>
+        <td>Phường/Xã</td>
+        <td>Select</td>
+        <td>- Bắt buộc<br>- Phụ thuộc Quận/Huyện</td>
+        <td>Là cấp địa bàn cuối để xác định chính sách giá & slot lắp đặt</td>
+        <td>User: Chọn giá trị.<br>System: Khi thay đổi => trigger re-check chính sách (giá, thiết bị, voucher, PTTT).</td>
     </tr>
     <tr>
         <td>Số nhà (Địa chỉ chi tiết)</td>
-        <td>Bắt buộc. Tối đa 100 ký tự.</td>
-        <td>Dùng để mapping đội triển khai thực tế.</td>
+        <td>Text</td>
+        <td>- Bắt buộc<br>- Tối đa 100 ký tự<br>- Số nhà là của trường hợp Nhà riêng</td>
+        <td>Dùng để triển khai thực tế & mapping nhân sự</td>
+        <td>User: Nhập dữ liệu.<br>System: Validate không rỗng khi chuyển bước.</td>
     </tr>
     <tr>
-        <td>Loại nhà (Riêng/Chung cư)</td>
-        <td>Bắt buộc. Mặc định Nhà riêng.</td>
-        <td>Nếu chọn Chung cư, hệ thống load thêm field: Tên chung cư, Số phòng. Có thể load lại rule thiết bị/slot tùy cấu hình.</td>
+        <td>Loại nhà (Nhà riêng/Chung cư/Khác)</td>
+        <td>Radio</td>
+        <td>- Bắt buộc<br>- Mặc định : Nhà riêng<br>- Nếu chọn Chung cư: Hệ thống sẽ load thêm field: Tên chung cư, Tòa nhà,Số tầng, Số Phòng</td>
+        <td>Ảnh hưởng quy trình triển khai & một số chính sách thiết bị. Chính sách của Chung cư khác so với Nhà riêng</td>
+        <td>User: Chọn loại.<br>System: Khi thay đổi => có thể load lại slot lắp đặt hoặc rule thiết bị (nếu có cấu hình).</td>
+    </tr>
+    <tr>
+        <td>Ghi chú</td>
+        <td>Textarea</td>
+        <td>- Không bắt buộc<br>- Tối đa 500 ký tự</td>
+        <td>Thông tin bổ sung cho đội triển khai</td>
+        <td>User: Nhập tự do.<br>System: Lưu vào payload đơn hàng khi submit.</td>
+    </tr>
+    <tr>
+        <td>Banner truyền thông</td>
+        <td></td>
+        <td>Cấu hình CMS cho phép vận hành bổ sung banner hình ảnh trên màn hình đăng ký</td>
+        <td>Vận hành chủ động cập nhật riêng cho từng gói</td>
+        <td>User: Cấu hình banner trên CMS<br>System: Load hình ảnh từ CMS lên màn hình đăng ký</td>
     </tr>
 </table>
 
-<h2>II. Chọn gói dịch vụ / Cập nhật sản phẩm / PTTT</h2>
-<p><b>1. Business Flow</b></p>
-<ul>
-    <li>Sau khi hoàn tất thông tin cá nhân và địa chỉ khả dụng, khách hàng tiến hành màn Thanh toán (hoặc cuộn xuống block Checkout). Hệ thống thực hiện load: Thiết bị đi kèm, Dịch vụ bổ sung, PTTT, và List Voucher (tự động auto-apply voucher tốt nhất nếu có Rule Engine).</li>
-    <li>Tại bước này, KH có thể thay đổi Chu kỳ cước (1, 3, 6, 12 tháng), thay đổi số lượng thiết bị/DV bổ sung, chọn/đổi PTTT, và áp dụng/gỡ voucher.</li>
-    <li>Khi mọi thông tin hoàn tất (Recalc hợp lệ, không âm tiền), KH bấm "Thanh toán".</li>
-</ul>
-
-<p><b>2. Mô tả Màn hình & Business Rules</b></p>
+<h3>4. Các trường hợp lỗi & thông báo thường gặp</h3>
 <table class="data-table">
     <tr>
-        <th style="width: 20%">Hạng mục</th>
-        <th style="width: 30%">Ràng buộc dữ liệu</th>
-        <th style="width: 50%">Hành vi hệ thống (System Action) & Business Rule</th>
+        <th>Tình huống</th>
+        <th>Thông báo hiển thị</th>
+        <th>Hành vi UI</th>
+    </tr>
+    <tr><td>Họ tên rỗng</td><td>“Vui lòng nhập họ và tên”</td><td>Inline error, disable “Tiếp tục”</td></tr>
+    <tr><td>SĐT sai dịnh dạng</td><td>“Số điện thoại không hợp lệ”</td><td>Inline error</td></tr>
+    <tr><td>Tỉnh/Quận/Phường chưa chọn</td><td>“Vui lòng chọn tỉnh/quận/phường”</td><td>Disable “Tiếp tục”</td></tr>
+    <tr><td>Địa chỉ không hỗ trợ/không có chính sách</td><td></td><td>Show popup thông báo + disable tiếp tục. Redirect thẳng đến Page Hoàn thành — kết thúc quy trình. Đẩy vào tệp KHTN.</td></tr>
+</table>
+
+<h2>II. Chọn gói dịch vụ/cập nhật sản phẩm/PTTT</h2>
+<h3>1. Business Flow</h3>
+<p>Sau khi hoàn tất thông tin, bấm “Tiếp tục” => hệ thống chuyển màn Thanh toán và thực hiện load : thiết bị đi kèm, DV bổ sung, PTTT, list voucher (auto-apply theo rule).</p>
+<p>Tại màn Thanh toán, Có ít nhất 1 gói dịch vụ (product_code) đang được chọn ban đầu (mặc định), Khách hàng có thể:</p>
+<ul>
+    <li>Đổi gói => re-load toàn bộ (confirm warning “thay đổi sẽ làm mất một số lựa chọn trước đó” nếu có, VD: Thiết bị bổ sung, Voucher)</li>
+    <li>Thay đổi số lượng thiết bị/DV: CS có khai báo Min/Max thì disable tăng giảm tương ứng</li>
+    <li>Chọn/đổi PTTT => recheck voucher</li>
+    <li>Mở modal Voucher => chọn voucher => chọn “Xác nhận”</li>
+    <li>Chọn/đổi ngày lắp đặt -> hold slot -> update order summary</li>
+</ul>
+<p>Khi mọi thứ OK => bấm “Thanh toán” => validate final => xử lý payment.</p>
+<p>Tại màn hình thanh toán, KH có thể đổi lại gói: 1-3-6-12… tùy chính sách khai báo cho từng địa chỉ:</p>
+<ul>
+    <li>KH chọn lại gói main.</li>
+    <li>Hệ thống:
+        <ul>
+            <li>Load lại chính sách gói</li>
+            <li>Load thiết bị đi kèm theo gói</li>
+            <li>Load DV bổ sung tương ứng</li>
+            <li>Load PTTT khả dụng</li>
+            <li>Load voucher đủ điều kiện</li>
+        </ul>
+    </li>
+    <li>Reset:
+        <ul>
+            <li>Thiết bị không còn hợp lệ</li>
+            <li>DV bổ sung không còn hợp lệ</li>
+            <li>Voucher không còn đủ điều kiện</li>
+        </ul>
+    </li>
+    <li>Tính lại tổng tiền.</li>
+</ul>
+
+<h3>2. Business Rules</h3>
+<table class="data-table">
+    <tr>
+        <th>Mã</th>
+        <th>Nội dung</th>
+    </tr>
+    <tr><td>BR01</td><td>Thiết bị đi kèm & dịch vụ bổ sung hiển thị dựa trên gói DV chính và địa chỉ KH. Khi đổi gói, các thiết bị/addon không nằm trong danh sách này phải bị unset (bỏ chọn)và load lại dữ liệu mới</td></tr>
+    <tr><td>BR02</td><td>DV bổ sung chỉ hiển thị nếu được khai báo áp dụng cho gói đó.</td></tr>
+    <tr><td>BR03</td><td>PTTT load dựa trên cấu hình chính sách của gói.</td></tr>
+    <tr><td>BR04</td><td>Voucher chỉ load nếu gói thỏa điều kiện áp dụng.</td></tr>
+    <tr><td>BR05</td><td>Khi thay đổi gói => Khi khách thay gói dịch vụ chính → hệ thống phải gọi để tính lại toàn bộ đơn hàng (giá gói, thiết bị, addon, voucher, PTTT, tổng tiền).</td></tr>
+    <tr><td>BR06</td><td>Thay đổi gói có thể làm mất hiệu lực thiết bị, addon, PTTT, slot đã chọn.</td></tr>
+    <tr><td>BR07</td><td>Nếu PTTT thay đổi => cần kiểm tra lại voucher tương thích.</td></tr>
+    <tr><td>BR08</td><td>PTTT hiển thị theo payment_methods_supported của gói.</td></tr>
+    <tr><td>BR09</td><td>Mỗi thiết bị/addon có min_qty / max_qty theo policy; UI không cho tăng quá max hoặc giảm dưới min.</td></tr>
+    <tr><td>BR10</td><td>Thời gian lắp đặt được load theo khung thời gian xanh, đủ dkien lắp đặt</td></tr>
+    <tr><td>BR11</td><td>Nếu đã qua thời gian lắp đặt, hệ thống tự disable các khung giờ</td></tr>
+    <tr><td>BR12</td><td>Tổng tiền không được âm. nếu KH có voucher lớn hơn đơn hàng hệ thống phải giới hạn giá trị để đơn về 0Đ và tiến hành hoàn tất đơn hàng</td></tr>
+    <tr><td>BR13</td><td>Không cho phép thanh toán nếu đơn hàng chưa hoàn tất cập nhật.</td></tr>
+</table>
+
+<h3>3. Mô tả màn hình</h3>
+<p>Lưu ý: Đối với Internet UIUX sẽ được hiển thị theo 3 cụm riêng: Khi khai báo CS - User thực hiện khai báo trên hệ thống thuộc nhánh nào thì hệ thống sẽ load tương ứng.</p>
+<ul>
+    <li>Gói DV chính (Main): Chia thành 2 nhánh: Trả trước/Trả sau</li>
+    <li>Thiết bị đi kèm (nếu có)</li>
+    <li>Dịch vụ/Thiết bị bổ sung (nếu có)</li>
+</ul>
+<table class="data-table">
+    <tr>
+        <th>Hạng mục cập nhật</th>
+        <th>Thao tác người dùng</th>
+        <th>Validation / Ràng buộc dữ liệu</th>
+        <th>Thao tác người dùng & Hành vi hệ thống</th>
     </tr>
     <tr>
-        <td>Gói dịch vụ chính (Main) & Chu kỳ</td>
-        <td>Gói mặc định được tick chọn. Các option chu kỳ cước (VD: Trả trước 6T/12T).</td>
-        <td><b>Rule:</b> Đổi gói/chu kỳ => Re-load toàn bộ (thiết bị, addon, voucher, PTTT, tổng tiền). Hệ thống có thể hiện warning nếu mất quyền lợi.</td>
+        <td>Gói dịch vụ chính (main)</td>
+        <td>Chọn/đổi gói dịch vụ (radio/card)</td>
+        <td>- Bắt buộc phải có 1 gói được chọn (hiển thị mặc định)<br>- Gói mặc định này sẽ có thể khác nhau bởi yc của Biz<br>- Gói phải tồn tại và đang hiệu lực</td>
+        <td>Khi người dùng đổi gói => hệ thống hiển thị confirm nếu có khả năng mất lựa chọn => sau khi xác nhận => cập nhật lại toàn bộ thiết bị, addon, PTTT, voucher và tổng tiền.<br>Có list label cho từng gói DV (1-3-6-12): Được cấu hình màu theo: Khuyến mãi, Đề xuất.</td>
     </tr>
     <tr>
-        <td>Thiết bị đi kèm & DV Bổ sung</td>
-        <td>Không vượt max_qty, không thấp hơn min_qty.</td>
-        <td><b>Rule:</b> Các list thiết bị/Addon phải thuộc eligible_addons của gói đang chọn. Khi đổi gói chính, thiết bị không tương thích sẽ bị bỏ chọn.</td>
+        <td>Thiết bị đi kèm</td>
+        <td>Tăng/giảm số lượng hoặc bỏ chọn thiết bị</td>
+        <td>- Không vượt max_qty<br>- Không thấp hơn min_qty<br>- Nếu device_required = true thì không được bỏ chọn</td>
+        <td>Khi người dùng thay đổi số lượng => hệ thống validate giới hạn => nếu hợp lệ => cập nhật summary và total. Nếu thiết bị không còn hợp lệ do đổi gói => hệ thống tự động bỏ chọn và hiển thị cảnh báo.<br>UX hiển thị: KH tick vào SPDV => tự động + SL. Nhập SL nếu có Min/Max (VD Max 5, nhập 6 => tự động update về 5).</td>
     </tr>
     <tr>
-        <td>Voucher / Ưu đãi</td>
-        <td>Voucher phải còn hiệu lực, thỏa điều kiện sản phẩm/khu vực/PTTT.</td>
-        <td><b>Rule:</b> Hệ thống kiểm tra toàn bộ điều kiện. Nếu Hợp lệ => Cập nhật discount và total. Nếu PTTT hoặc gói thay đổi => Re-check lại Voucher. <br/><b>Lưu ý:</b> Tổng tiền đơn hàng không được < 0Đ. Nếu voucher vượt quá, hệ thống set về 0Đ.</td>
+        <td>Dịch vụ bổ sung (Add-on)</td>
+        <td>Chọn/bỏ chọn addon; chỉnh số lượng</td>
+        <td>- Addon phải thuộc eligible_addons của gói<br>- Không vượt giới hạn số lượng</td>
+        <td>Khi người dùng chọn add on => hệ thống kiểm tra điều kiện gói/khu vực => nếu hợp lệ => cập nhật lại giá và khuyến mãi. Ở các dịch vụ/thiết bị bổ sung: Có thêm dòng text cấu hình trên PDH.</td>
     </tr>
     <tr>
-        <td>PTTT (Phương thức thanh toán)</td>
-        <td>Thuộc payment_methods_supported của gói hiện tại.</td>
-        <td><b>Rule:</b> COD chỉ khả dụng khi total < threshold và khu vực cho phép. Đổi PTTT => Re-check tương thích với Voucher.</td>
+        <td>Phương thức thanh toán (PTTT)</td>
+        <td>Chọn PTTT (radio)</td>
+        <td>- PTTT phải thuộc payment_methods_supported của gói<br>- COD chỉ khả dụng khi total < threshold và khu vực cho phép</td>
+        <td>Khi người dùng đổi PTTT => hệ thống kiểm tra lại tính tương thích voucher => cập nhật voucher khả dụng và tổng tiền. Ở các PTTT: Có thêm dòng text cấu hình trên PDH.</td>
+    </tr>
+    <tr>
+        <td>Voucher</td>
+        <td>Mở modal => chọn voucher => xác nhận</td>
+        <td>- Voucher phải còn hiệu lực (thời gian)<br>- Thỏa điều kiện sản phẩm/khu vực/PTTT/min_order<br>- Không vi phạm rule exclusive</td>
+        <td>Khi người dùng xác nhận voucher => hệ thống kiểm tra toàn bộ điều kiện => nếu hợp lệ => cập nhật discount và total. Nếu không hợp lệ => hiển thị lỗi tương ứng và không áp dụng.</td>
+    </tr>
+    <tr>
+        <td>Slot lắp đặt</td>
+        <td>Chọn ngày => chọn khung giờ</td>
+        <td>- Slot phải thuộc available_slots theo region_code<br>- Ngày không nhỏ hơn ngày hiện tại</td>
+        <td>Khi người dùng chọn slot => hệ thống gọi hold_slot(slot_id, ttl) để giữ tạm thời => hiển thị countdown giữ slot. Nếu TTL hết => slot bị release và yêu cầu chọn lại.</td>
+    </tr>
+    <tr>
+        <td>Tóm tắt đơn hàng (Summary Panel)</td>
+        <td>Xem lại line items, discount, total</td>
+        <td>- Tổng tiền không được âm<br>- Tất cả lựa chọn phải hợp lệ trước khi cho thanh toán</td>
+        <td>Sau mỗi lần cập nhật , hệ thống cập nhật summary theo dữ liệu backend trả về (nguồn dữ liệu cuối cùng).<br>Đối với các Main dịch vụ có giá trị 0Đ => Không hiển thị ở thông tin thanh toán.<br>Đối với Combo FPT Play (có box): UI phải hiển thị được phần Phí Box = Phí lắp đặt.</td>
     </tr>
     <tr>
         <td>Thanh toán (CTA Pay)</td>
-        <td>Không có lỗi validation, slot còn hiệu lực.</td>
-        <td><b>Rule:</b> Bấm "Thanh toán" => Re-validate tổng hợp đơn hàng lần cuối => Chuyển payment flow. Khi thành công => <b>Ghi nhận Khách hàng tiềm năng (KHTN)</b>.</td>
+        <td>Bấm “Thanh toán”</td>
+        <td>- Không có validation error<br>- Recalc hoàn tất<br>- Slot còn hiệu lực</td>
+        <td>Khi người dùng bấm thanh toán => hệ thống thực hiện tổng hợp đơn hàng để re-validate voucher và slot => nếu hợp lệ => chuyển sang payment flow. Nếu phát hiện thay đổi => hiển thị lỗi và yêu cầu xử lý trước. Ghi nhận thông tin KHTN.</td>
+    </tr>
+    <tr>
+        <td>Text mô tả ở các gói DV</td>
+        <td>Được khai báo trên CMS</td>
+        <td></td>
+        <td>Đối với từng gói DV: Sẽ có text hiển thị mô tả phục vụ cho các gói Main/Extra/Required. Vận hành khai báo content cho các gói DV phục vụ cho truyền thông.</td>
     </tr>
 </table>
 
