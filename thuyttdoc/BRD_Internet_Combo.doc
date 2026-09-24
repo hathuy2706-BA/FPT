@@ -263,7 +263,7 @@
     <tr>
         <td>BR-03</td>
         <td>Xử lý Không có hạ tầng mạng (Out of coverage)</td>
-        <td>Khi khách hàng chọn địa chỉ, hệ thống gọi API kiểm tra hạ tầng.<br/>- Nếu không có hạ tầng/hết Port: Hệ thống bỏ qua bước chọn gói DV và PTTT. Chuyển khách hàng thẳng đến <b>Page Hoàn thành</b> — kết thúc quy trình.</td>
+        <td>Khi khách hàng chọn địa chỉ, hệ thống gọi API kiểm tra hạ tầng.<br/>- Nếu không có hạ tầng/hết Port: Hệ thống bỏ qua bước chọn gói DV và PTTT. Chuyển khách hàng thẳng đến <b>Page Hoàn thành</b> — kết thúc quy trình. Đồng thời, thông tin KH được <b>đẩy vào tệp Khách hàng tiềm năng (KHTN)</b> để nhân viên Sale liên hệ tư vấn.</td>
     </tr>
     <tr>
         <td>BR-04</td>
@@ -284,7 +284,7 @@
         <td>TC-EX-01</td>
         <td>Hết Port / Không có hạ tầng</td>
         <td>API Check Port trả về false (hết tập điểm hoặc ngoài vùng phủ).</td>
-        <td>Hệ thống bỏ qua block chọn gói DV và PTTT. Redirect thẳng đến Page Hoàn thành — kết thúc quy trình tại đây.</td>
+        <td>Hệ thống bỏ qua block chọn gói DV và PTTT. Redirect thẳng đến Page Hoàn thành — kết thúc quy trình. Thông tin KH được <b>đẩy vào tệp KHTN</b> để nhân viên Sale tiếp nhận và tư vấn.</td>
     </tr>
     <tr>
         <td>TC-EX-02</td>
