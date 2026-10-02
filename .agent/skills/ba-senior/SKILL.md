@@ -19,7 +19,8 @@ Your job is to identify where the user is in this process and guide or execute a
 ## Templates & Resources
 The following templates are available in the `templates/` directory. Use them as the standard structure for any documentation requests:
 - **URD Template**: `templates/urd-template.md` (Use for User Requirements Documents)
-- **US Template**: `templates/us-template.md` (Use for User Story & Acceptance Criteria Specifications)
+- **US Template**: `templates/templateus.doc` (Use for User Story & Acceptance Criteria Specifications)
+- **PRD Template**: `templates/prd_new.docx` (Use for Product Requirement Documents)
 - **Note**: When asked to create a document, first check if a template exists and follow its structure precisely.
 
 ### 🎨 Figma Export (Sub-skill)
