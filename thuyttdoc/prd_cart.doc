@@ -55,7 +55,6 @@
         
         .toc-title { page-break-before: always; mso-page-break-before: always; font-size: 16pt; font-weight: bold; }
         .toc-table td { border: none; padding: 4px; border-bottom: 1px dotted #ccc; }
-        .toc-page { text-align: right; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -74,7 +73,7 @@
 
 <table style="width: 80%; margin: 0 auto; table-layout: fixed;">
     <tr><th style="width: 40%;">Mã hiệu</th><td>FPT-PRD-CART-001</td></tr>
-    <tr><th>Phiên bản</th><td>3.0 (Cập nhật User Stories theo hành trình Khách hàng)</td></tr>
+    <tr><th>Phiên bản</th><td>4.0 (Hoàn thiện mục lục, Chi tiết US & BR)</td></tr>
     <tr><th>Trạng thái</th><td>Draft</td></tr>
     <tr><th>Người lập</th><td>ThuyTT104 · Business Analyst</td></tr>
     <tr><th>Ngày lập</th><td>02/10/2026</td></tr>
@@ -102,18 +101,26 @@
 <!-- MỤC LỤC -->
 <h1 class="toc-title">MỤC LỤC</h1>
 <table class="toc-table">
-    <tr><td>PART A — BUSINESS CONTEXT & RATIONALE</td><td class="toc-page">4</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1. Executive Summary - Tổng quan sản phẩm</td><td class="toc-page">4</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2. Goals & Success Metrics - Mục tiêu</td><td class="toc-page">4</td></tr>
-    <tr><td>PART B — USERS, SCOPE & REQUIREMENTS</td><td class="toc-page">5</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;3. Personas</td><td class="toc-page">5</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;4. Scopes (In-scope, Out-of-scope, Assumptions)</td><td class="toc-page">5</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;5. User Stories & Acceptance Criteria</td><td class="toc-page">6</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;6. Feature Catalogue - Danh sách chức năng</td><td class="toc-page">8</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;7. Feature Detail - Đặc tả chức năng chi tiết</td><td class="toc-page">9</td></tr>
-    <tr><td>PART C — GOVERNANCE</td><td class="toc-page">20</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;8. Non-Functional Requirements</td><td class="toc-page">20</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;9. Definition of Done (Tiêu chí nghiệm thu)</td><td class="toc-page">20</td></tr>
+    <tr><td>PART A — BUSINESS CONTEXT & RATIONALE</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1. Executive Summary - Tổng quan sản phẩm</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2. Goals & Success Metrics - Mục tiêu</td></tr>
+    <tr><td>PART B — USERS, SCOPE & REQUIREMENTS</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;3. Personas</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;4. Scopes (In-scope, Out-of-scope, Assumptions)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;5. User Stories & Acceptance Criteria</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;6. Feature Catalogue - Danh sách chức năng</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;7. Feature Detail - Đặc tả chức năng chi tiết</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.1 FR01 & FR02 - Giỏ hàng Camera (Lẻ, Combo)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.2 FR03 - Giỏ hàng FPT Play (SA)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.3 FR04 - Giỏ hàng Access Point (SKU)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.4 FR05 - Giỏ hàng Smart Home (SKU)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.5 FR06 - Giỏ hàng Smart TV (SKU cồng kềnh)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.6 FR07 & FR08 - Giỏ hàng UltraFast và HyperFast (SA)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.7 FR09 & FR10 - Logic Gộp Giỏ Hàng (SA+SA, SKU+SA)</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.8 Bảng quy tắc xử lý Edge Cases chung toàn giỏ hàng</td></tr>
+    <tr><td>PART C — GOVERNANCE</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;8. Non-Functional Requirements</td></tr>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;9. Definition of Done (Tiêu chí nghiệm thu cho luồng Cart)</td></tr>
 </table>
 
 <!-- PART A -->
@@ -175,7 +182,7 @@ Hệ thống giỏ hàng tự động phân tách nghiệp vụ vật lý (yêu 
 </p>
 
 <h2>5. USER STORIES & ACCEPTANCE CRITERIA</h2>
-<p>Quy ước ID: <code>US-{MODULE}-{NN}</code>. Cấu trúc đi từ nhu cầu thực tế của Khách hàng với từng sản phẩm lẻ, sau đó là kết hợp sản phẩm.</p>
+<p>Quy ước ID: <code>US-{MODULE}-{NN}</code>. Cấu trúc chi tiết các luồng nhu cầu mua sắm từ cơ bản đến phức tạp của Khách hàng.</p>
 <table>
     <tr>
         <th style="width: 15%;">Story ID</th>
@@ -184,74 +191,95 @@ Hệ thống giỏ hàng tự động phân tách nghiệp vụ vật lý (yêu 
     </tr>
     <tr>
         <td>US-CART-01</td>
-        <td>Là Khách hàng, tôi muốn mua 1 hoặc nhiều Camera (tuỳ chọn kèm gói Cloud) để lắp đặt giám sát.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ phần cứng Camera (Camera Only)</b> mà không mua Cloud để tận dụng Cloud tự có.</td>
         <td>
-            <b>AC1: Mua nhiều Camera</b><br>
-            Given Khách hàng đang ở màn hình Giỏ hàng<br>
-            When KH chọn mua 2 Camera và chọn gói Cloud 6 tháng cho từng mắt<br>
-            Then hệ thống hiển thị tổng tiền thiết bị và tiền Cloud tạm tính<br>
-            And hệ thống <b>hiển thị</b> form thu thập "Địa chỉ lắp đặt".
+            <b>AC1: Mua Camera Only</b><br>
+            Given KH đang chọn Camera<br>
+            When KH chọn checkbox "Tôi đã có Cloud"<br>
+            Then hệ thống đưa sản phẩm vào giỏ hàng dưới dạng Line_Key = Camera_Only<br>
+            And không tính thêm phí Cloud vào tổng tiền<br>
+            And bắt buộc KH chọn hình thức thi công (Tự lắp/FPT Lắp).
         </td>
     </tr>
     <tr>
         <td>US-CART-02</td>
-        <td>Là Khách hàng, tôi muốn mua gói dịch vụ FPT Play để xem truyền hình giải trí mà không cần thủ tục lắp đặt.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>Camera Combo</b> (Camera + Cloud) để đồng bộ lưu trữ.</td>
         <td>
-            <b>AC1: Mua gói SA (Không giao hàng)</b><br>
-            Given Khách hàng đưa gói FPT Play vào giỏ<br>
-            When KH tiến hành thanh toán<br>
-            Then hệ thống <b>ẩn hoàn toàn</b> form "Địa chỉ giao hàng"<br>
-            And chỉ yêu cầu cung cấp SĐT để tạo account kích hoạt dịch vụ.
+            <b>AC1: Mua Camera Combo</b><br>
+            Given KH đang chọn Camera<br>
+            When KH chọn "Mua gói Cloud" và chọn chu kỳ (1/6/12T)<br>
+            Then hệ thống đưa Combo vào giỏ hàng với Line_Key gộp<br>
+            And tính tổng tiền = [Giá Camera] + [Giá Cloud x Chu kỳ].
         </td>
     </tr>
     <tr>
         <td>US-CART-03</td>
-        <td>Là Khách hàng, tôi muốn mua lẻ thiết bị mạng (Access Point) với số lượng tuỳ ý để phủ sóng Wifi.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>gộp cả Camera Only và Camera Combo</b> trong cùng 1 giỏ hàng để linh hoạt vị trí lắp.</td>
         <td>
-            <b>AC1: Mua lẻ AP</b><br>
-            Given Khách hàng đưa Access Point vào giỏ<br>
-            When KH điều chỉnh số lượng (Qty = 3)<br>
-            Then hệ thống cập nhật tồn kho tạm thời<br>
-            And tính cước phí giao hàng (GHN/ViettelPost) dựa trên địa chỉ nhận hàng KH nhập.
+            <b>AC1: Gộp Camera Only và Combo</b><br>
+            Given KH đã có Camera Combo trong giỏ<br>
+            When KH thêm 1 Camera Only vào giỏ<br>
+            Then hệ thống tách hiển thị thành 2 dòng (Line Items) riêng biệt trong giỏ<br>
+            And dòng Camera Only có label "Chưa kèm Cloud".
         </td>
     </tr>
     <tr>
         <td>US-CART-04</td>
-        <td>Là Khách hàng, tôi muốn mua <b>kết hợp nhiều loại thiết bị vật lý</b> (Camera và Access Point) trong 1 lần thanh toán.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ FPT Play</b> để nhận quyền xem truyền hình.</td>
         <td>
-            <b>AC1: Gộp giỏ SKU + SKU</b><br>
-            Given KH có [Camera + Cloud] và [Access Point] trong giỏ<br>
-            When KH vào checkout<br>
-            Then hệ thống hiển thị form yêu cầu nhập "Địa chỉ giao/lắp đặt"<br>
-            And cộng dồn phí thi công Camera và phí ship Access Point vào Tổng tiền.
+            <b>AC1: Mua FPT Play</b><br>
+            Given KH thêm FPT Play vào giỏ<br>
+            When KH vào trang Checkout<br>
+            Then <b>ẨN</b> block nhập Địa chỉ giao hàng<br>
+            And yêu cầu nhập SĐT kích hoạt.
         </td>
     </tr>
     <tr>
         <td>US-CART-05</td>
-        <td>Là Khách hàng, tôi muốn mua <b>kết hợp Thiết bị và Dịch vụ số</b> (Camera và FPT Play) để dùng 1 lần thanh toán.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ UltraFast</b> với số lượng nhiều code.</td>
         <td>
-            <b>AC1: Gộp giỏ SKU + SA</b><br>
-            Given KH có [Camera] và [Gói FPT Play] trong giỏ<br>
-            When KH vào checkout<br>
-            Then hệ thống <b>BẮT BUỘC</b> hiển thị form Địa chỉ (do có Camera)<br>
-            And sinh 1 đơn SPF hợp nhất khi thanh toán xong.
+            <b>AC1: Mua lẻ UltraFast</b><br>
+            Given KH thêm UltraFast vào giỏ<br>
+            When KH bấm nút [+] để tăng số lượng = 3 mã<br>
+            Then tổng tiền cập nhật = Giá 1 mã * 3<br>
+            And Checkout chỉ yêu cầu nhập SĐT nhận SMS Code.
         </td>
     </tr>
     <tr>
         <td>US-CART-06</td>
-        <td>Là Khách hàng, tôi muốn mua <b>nhiều Dịch vụ số</b> (UltraFast và FPT Play) cùng lúc để tối ưu thời gian.</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ HyperFast</b> để nâng cấp luồng mạng.</td>
         <td>
-            <b>AC1: Gộp giỏ SA + SA</b><br>
-            Given KH có [UltraFast] và [FPT Play] trong giỏ<br>
-            When KH vào checkout<br>
-            Then hệ thống <b>không hiển thị</b> form Địa chỉ<br>
-            And thu thập 1 SĐT chung dùng làm tài khoản FPT Play và nhận mã UltraFast qua SMS.
+            <b>AC1: Mua lẻ HyperFast</b><br>
+            Given KH thêm HyperFast vào giỏ<br>
+            When KH checkout<br>
+            Then hệ thống hiển thị ô nhập "Mã Hợp Đồng FPT"<br>
+            And Validate mã hợp đồng qua API trước khi cho thanh toán.
+        </td>
+    </tr>
+    <tr>
+        <td>US-CART-07</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ SmartHome</b>.</td>
+        <td>
+            <b>AC1: Mua lẻ SmartHome</b><br>
+            Given KH thêm thiết bị Khóa cửa vào giỏ<br>
+            When KH checkout<br>
+            Then hiển thị block "Địa chỉ giao hàng/lắp đặt"<br>
+            And hiển thị module "Chọn lịch hẹn KTV (thợ mộc)".
+        </td>
+    </tr>
+    <tr>
+        <td>US-CART-08</td>
+        <td>Là Khách hàng, tôi muốn mua <b>lẻ Smart TV</b>.</td>
+        <td>
+            <b>AC1: Mua Smart TV cồng kềnh</b><br>
+            Given KH thêm TV vào giỏ<br>
+            When KH nhập địa chỉ ngoài vùng phủ <br>
+            Then hiển thị lỗi chặn thanh toán "Rất tiếc TV không hỗ trợ giao tới khu vực này".
         </td>
     </tr>
 </table>
 
 <h2>6. FEATURE CATALOGUE - DANH SÁCH CHỨC NĂNG</h2>
-<p>Liệt kê chi tiết các luồng sản phẩm đơn lẻ và luồng kết hợp khi vào giỏ hàng.</p>
 <table>
     <tr>
         <th style="width: 10%;">ID</th>
@@ -259,7 +287,7 @@ Hệ thống giỏ hàng tự động phân tách nghiệp vụ vật lý (yêu 
         <th style="width: 45%;">Mô tả & Phạm vi chức năng</th>
         <th style="width: 20%;">Loại hàng hoá</th>
     </tr>
-    <tr><td>FR01</td><td>Giỏ hàng Camera Only</td><td>Mua lẻ mắt Camera không kèm Cloud (Ví dụ KH chọn tuỳ chọn "Đã có Cloud"). Bắt buộc chọn hình thức tự lắp/KTV lắp.</td><td>SKU</td></tr>
+    <tr><td>FR01</td><td>Giỏ hàng Camera Only</td><td>Mua lẻ mắt Camera không kèm Cloud. Bắt buộc chọn hình thức tự lắp/KTV lắp.</td><td>SKU</td></tr>
     <tr><td>FR02</td><td>Giỏ hàng Camera Combo</td><td>Mua combo mắt Camera + Gói Cloud + Gói triển khai. Gắn chặt theo chu kỳ.</td><td>SKU + SA</td></tr>
     <tr><td>FR03</td><td>Giỏ hàng FPT Play</td><td>Mua gói dịch vụ truyền hình FPL (SMAX, SVIP). Kích hoạt tự động qua số điện thoại.</td><td>SA</td></tr>
     <tr><td>FR04</td><td>Giỏ hàng Access Point (AP)</td><td>Mua lẻ thiết bị phát Wifi (Router, Mesh). Có tính phí ship theo khoảng cách.</td><td>SKU</td></tr>
@@ -274,106 +302,121 @@ Hệ thống giỏ hàng tự động phân tách nghiệp vụ vật lý (yêu 
 <!-- FEATURE DETAIL -->
 <h1 style="page-break-before: always; mso-page-break-before: always;">7. FEATURE DETAIL - ĐẶC TẢ CHỨC NĂNG CHI TIẾT</h1>
 
-<h2>7.1 FR01 & FR02 - Luồng Camera (Camera Only & Camera Combo)</h2>
-<p><b>Description:</b> Thiết bị Camera có tính chất đặc thù về việc kết nối với gói lưu trữ Cloud và hình thức thi công lắp đặt.</p>
+<h2>7.1 FR01 & FR02 - Giỏ hàng Camera (Lẻ, Combo)</h2>
+<p><b>Description:</b> Thiết bị Camera có quy tắc phức tạp về lưu trữ Cloud và thi công.</p>
 <h3>7.1.1 Business Rules (Quy tắc nghiệp vụ)</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>CAM-BR-01</td><td>Nếu KH mua Camera Only, bắt buộc KH phải check box "Tôi đã có sẵn gói Cloud". Hệ thống sẽ tạo Line_Key = SKU_Hardware_Only.</td></tr>
-    <tr><td>CAM-BR-02</td><td>Nếu KH mua Camera Combo, một dòng giỏ hàng (Line_Key) sẽ bao gồm: SKU Mắt Camera + Mã gói Cloud + Chu kỳ Cloud. Nếu đổi chu kỳ Cloud, toàn bộ Line_Key thay đổi.</td></tr>
-    <tr><td>CAM-BR-03</td><td>Phí lắp đặt: Có 2 tuỳ chọn (1) Tự lắp đặt - Miễn phí; (2) KTV FPT lắp đặt - Tính phí theo bảng giá cấu hình QLCS trên từng mắt Camera.</td></tr>
-    <tr><td>CAM-BR-04</td><td>Tồn kho: Trừ tồn kho tạm thời ngay khi đưa vào giỏ (Hold inventory trong 15 phút).</td></tr>
+    <tr><td>CAM-BR-01</td><td><b>Camera Only:</b> Nếu chọn "Tôi đã có sẵn gói Cloud", Line_Key = `SKU_Camera`. Không có khoản phí Cloud nào được cộng. Nếu có >1 Camera, có thể chọn Camera này có Cloud, Camera kia không có Cloud.</td></tr>
+    <tr><td>CAM-BR-02</td><td><b>Camera Combo:</b> 1 dòng (Line_Key) = SKU Mắt + Mã gói Cloud + Chu kỳ Cloud. Nếu KH chỉnh sửa chu kỳ Cloud trong giỏ, API phải tính lại toàn bộ giá Combo dựa trên bảng giá QLCS.</td></tr>
+    <tr><td>CAM-BR-03</td><td><b>Phí thi công:</b> Tuỳ chọn (1) Tự lắp đặt - Phí = 0đ; (2) KTV FPT lắp đặt - Phí = `Base_Fee * Số lượng mắt`. Base_Fee được lấy từ API Product Hub.</td></tr>
+    <tr><td>CAM-BR-04</td><td><b>Tồn kho:</b> Trừ tồn kho tạm (Hold) 15 phút ngay khi bấm Thanh toán. Nếu hết 15 phút KH chưa hoàn tất TT, huỷ Hold.</td></tr>
 </table>
 <h3>7.1.2 UI & Field Spec</h3>
 <table>
-    <tr><th style="width: 25%;">Field</th><th style="width: 10%;">Bắt buộc</th><th style="width: 15%;">Kiểu</th><th style="width: 50%;">Validation & Mô tả</th></tr>
-    <tr><td>Tuỳ chọn Cloud</td><td>Có</td><td>Radio Group</td><td>Gồm: "Mua gói Cloud" hoặc "Tôi đã có Cloud".</td></tr>
-    <tr><td>Gói Cloud</td><td>Tùy chọn</td><td>Dropdown</td><td>Chỉ hiển thị nếu chọn "Mua gói Cloud". Lấy danh sách từ Product Hub.</td></tr>
-    <tr><td>Hình thức lắp đặt</td><td>Có</td><td>Radio Box</td><td>Mặc định chọn "KTV FPT lắp đặt". Hiển thị rõ số tiền phí thi công.</td></tr>
+    <tr><th style="width: 25%;">Field</th><th style="width: 10%;">Bắt buộc</th><th style="width: 15%;">Kiểu (Max length)</th><th style="width: 50%;">Validation & Mô tả</th></tr>
+    <tr><td>Checkbox "Đã có Cloud"</td><td>Có</td><td>Checkbox</td><td>Default = Unchecked. Nếu Check -> Ẩn Dropdown chọn Gói Cloud.</td></tr>
+    <tr><td>Gói Cloud (Combo)</td><td>Tùy chọn</td><td>Dropdown</td><td>Disable khi Checkbox trên = True. Load API: `GET /api/cloud/packages`.</td></tr>
+    <tr><td>Chu kỳ Cloud</td><td>Tùy chọn</td><td>Radio (1,6,12T)</td><td>Cập nhật giá Real-time khi đổi chu kỳ.</td></tr>
+    <tr><td>Hình thức lắp đặt</td><td>Có</td><td>Radio Box</td><td>Mặc định "KTV FPT lắp đặt". Kèm text hiển thị `(+ X00.000đ)`.</td></tr>
 </table>
 
-<h2>7.2 FR03 - Luồng giỏ hàng FPT Play (SA)</h2>
-<p><b>Description:</b> Dịch vụ số nội dung truyền hình FPT Play.</p>
+<h2>7.2 FR03 - Giỏ hàng FPT Play (SA)</h2>
 <h3>7.2.1 Business Rules</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>FPL-BR-01</td><td>Định dạng sản phẩm trong giỏ: Gói cước (Max, VIP) + Chu kỳ (1 tháng, 6 tháng, 12 tháng).</td></tr>
-    <tr><td>FPL-BR-02</td><td>Số lượng: Bất biến (luôn = 1). Không hiển thị nút (+)/(-) số lượng trong giỏ hàng đối với sản phẩm FPL.</td></tr>
-    <tr><td>FPL-BR-03</td><td>Kích hoạt: Bắt buộc thu thập SĐT để gán quyền. Tự tạo account hệ thống nếu SĐT mới, gửi SMS thông báo account/password.</td></tr>
+    <tr><td>FPL-BR-01</td><td><b>Số lượng:</b> Không cho phép chỉnh sửa số lượng gói (luôn = 1). Khách chỉ có thể đổi gói hoặc chu kỳ.</td></tr>
+    <tr><td>FPL-BR-02</td><td><b>Định danh:</b> Gói (SMAX/SVIP) + Chu kỳ (1,6,12T).</td></tr>
+    <tr><td>FPL-BR-03</td><td><b>Kích hoạt:</b> Kích hoạt hoàn toàn dựa trên "SĐT kích hoạt" khách nhập ở Checkout. API FPT Play sẽ trả về OTP xác minh SĐT đó.</td></tr>
 </table>
 <h3>7.2.2 UI & Field Spec</h3>
 <table>
     <tr><th style="width: 25%;">Field</th><th style="width: 10%;">Bắt buộc</th><th style="width: 15%;">Kiểu</th><th style="width: 50%;">Validation & Mô tả</th></tr>
-    <tr><td>SĐT kích hoạt</td><td>Có</td><td>Text Input</td><td>Validation định dạng số di động Việt Nam (10 số, bắt đầu bằng 0).</td></tr>
+    <tr><td>SĐT kích hoạt</td><td>Có</td><td>Text Input (10 char)</td><td>Chỉ nhận số. Regex: `^0[3|5|7|8|9][0-9]{8}$`. Báo lỗi inline nếu sai định dạng.</td></tr>
+    <tr><td>Nhập mã OTP</td><td>Có</td><td>Text Input (6 char)</td><td>Nhập OTP gửi về SĐT để xác nhận việc kích hoạt (chống đăng ký nhầm số).</td></tr>
 </table>
 
-<h2>7.3 FR04 - Luồng giỏ hàng Access Point (SKU)</h2>
-<p><b>Description:</b> Luồng mua thiết bị phần cứng đơn thuần không dính líu đến dịch vụ số (Router, Mesh).</p>
+<h2>7.3 FR04 - Giỏ hàng Access Point (SKU)</h2>
 <h3>7.3.1 Business Rules</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>AP-BR-01</td><td>Cho phép điều chỉnh số lượng (Qty >= 1).</td></tr>
-    <tr><td>AP-BR-02</td><td>Tính phí vận chuyển qua API đối tác giao hàng (GHN, Viettel Post) dựa trên Tỉnh/Thành, Quận/Huyện, Phường/Xã và Trọng lượng quy đổi của số lượng AP.</td></tr>
+    <tr><td>AP-BR-01</td><td><b>Số lượng:</b> Giới hạn mua tối đa 10 AP/đơn. Nếu > 10 hiển thị cảnh báo "Quá số lượng cho phép, vui lòng liên hệ B2B".</td></tr>
+    <tr><td>AP-BR-02</td><td><b>Vận chuyển:</b> Tính phí ship động qua GHN API dựa vào tổng trọng lượng giỏ.</td></tr>
 </table>
 
-<h2>7.4 FR05 - Luồng giỏ hàng Smart Home (SKU)</h2>
-<p><b>Description:</b> Thiết bị nhà thông minh yêu cầu kỹ năng lắp đặt đặc thù.</p>
-<h3>7.4.1 Business Rules</h3>
+<h2>7.4 FR05 - Giỏ hàng Smart Home (SKU)</h2>
+<h3>7.4.1 Business Rules & Field Spec</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>HOME-BR-01</td><td>Các thiết bị như Khóa cửa thông minh (Door lock) yêu cầu thợ mộc chuyên dụng -> Bắt buộc book lịch KTV chuyên sâu.</td></tr>
-    <tr><td>HOME-BR-02</td><td>Combo: Khách mua Combo (Bundle_Key) sẽ được giảm giá tổng thay vì cộng lẻ từng SKU. API trả về giá Combo ưu tiên.</td></tr>
-    <tr><td>HOME-BR-03</td><td>Đặt lịch: Cung cấp API check slot rảnh của KTV khu vực để KH chọn lịch hẹn.</td></tr>
-</table>
-<h3>7.4.2 UI & Field Spec</h3>
-<table>
-    <tr><th style="width: 25%;">Field</th><th style="width: 10%;">Bắt buộc</th><th style="width: 15%;">Kiểu</th><th style="width: 50%;">Validation & Mô tả</th></tr>
-    <tr><td>Khung giờ hẹn</td><td>Không</td><td>Date/Time Picker</td><td>Hiển thị slot khả dụng từ API Scheduling. Tắt các slot quá khứ hoặc đã full.</td></tr>
+    <tr><td>HOME-BR-01</td><td><b>Kỹ năng thợ:</b> Nếu SKU trong giỏ thuộc nhóm `Door_Lock`, hệ thống tự động filter API book lịch chỉ hiển thị các slot của "Thợ Mộc".</td></tr>
+    <tr><td>HOME-BR-02</td><td><b>Khung giờ hẹn (UI):</b> Date/Time Picker. Chỉ cho phép chọn ngày `T + 1` (ngày mai) trở đi. Các slot đã full bị xám đi (Disabled).</td></tr>
 </table>
 
-<h2>7.5 FR06 - Luồng giỏ hàng Smart TV (SKU cồng kềnh)</h2>
-<p><b>Description:</b> TV Samsung là hàng hoá giá trị cao và khó vận chuyển.</p>
-<h3>7.5.1 Business Rules</h3>
+<h2>7.5 FR06 - Giỏ hàng Smart TV (SKU cồng kềnh)</h2>
+<h3>7.5.1 Business Rules & Field Spec</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>TV-BR-01</td><td>Kiểm tra vùng hỗ trợ: Chỉ cho phép đặt hàng nếu Tỉnh/Huyện khớp với danh sách Vùng hỗ trợ giao hàng cồng kềnh trong QLCS. Ngoài vùng => Block Checkout.</td></tr>
-    <tr><td>TV-BR-02</td><td>Thanh toán: Nếu tổng giá trị TV > 10.000.000đ, ẨN PHƯƠNG THỨC THANH TOÁN KHI NHẬN HÀNG (COD). Bắt buộc thanh toán online 100% hoặc cọc 30% (theo policy).</td></tr>
+    <tr><td>TV-BR-01</td><td><b>Vùng hỗ trợ:</b> Sau khi KH chọn Xã/Phường, gọi API `Check_Zone`. Nếu Xã nằm ngoài vùng hỗ trợ TV, disable nút Thanh Toán, bật Popup cảnh báo.</td></tr>
+    <tr><td>TV-BR-02</td><td><b>Chặn COD:</b> Nếu `Tổng tiền TV > 10.000.000 VNĐ`, tự động ẩn Radio button "Thanh toán khi nhận hàng (COD)". Bắt buộc thanh toán online (VNPAY/Foxpay).</td></tr>
 </table>
 
-<h2>7.6 FR07 & FR08 - Luồng UltraFast và HyperFast (SA)</h2>
-<p><b>Description:</b> Dịch vụ bổ trợ đặc biệt dành riêng cho game thủ và đường truyền cao cấp.</p>
+<h2>7.6 FR07 & FR08 - Giỏ hàng UltraFast và HyperFast (SA)</h2>
 <h3>7.6.1 Business Rules</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>FAST-BR-01</td><td>UltraFast: Khách có thể mua dạng "Mã Code". Hỗ trợ mua số lượng nhiều (VD: 5 mã code 1 tháng).</td></tr>
-    <tr><td>FAST-BR-02</td><td>HyperFast: Kích hoạt thẳng vào hạ tầng mạng. Bắt buộc nhập Mã Hợp Đồng Internet FPT hiện hữu để kiểm tra tính tương thích hạ tầng.</td></tr>
-    <tr><td>FAST-BR-03</td><td>Phân phối: Mã code UltraFast gửi qua SMS ngay khi nhận Webhook thanh toán thành công. Không có luồng giao hàng vật lý.</td></tr>
+    <tr><td>FAST-BR-01</td><td><b>UltraFast (Mã Code):</b> Cho phép [+] số lượng tới tối đa 10 mã. Hệ thống sẽ sinh ra 10 mã code gửi SMS về SĐT khách hàng nhập.</td></tr>
+    <tr><td>FAST-BR-02</td><td><b>HyperFast (Nâng cấp hạ tầng):</b> Buộc thu thập `Mã Hợp Đồng` của đường truyền hiện tại. Gọi API CRM kiểm tra. Nếu đường truyền chưa đáp ứng chuẩn (ví dụ chuẩn Wifi 5), cảnh báo không cho mua.</td></tr>
 </table>
-<h3>7.6.2 Edge Cases</h3>
+<h3>7.6.2 UI & Field Spec</h3>
 <table>
-    <tr><th style="width: 20%;">Trường hợp</th><th style="width: 80%;">Hành vi hệ thống</th></tr>
-    <tr><td>Mã HĐ không hợp lệ (HyperFast)</td><td>API trả lỗi `ERR_CONTRACT_INVALID`, hiển thị "Đường truyền của quý khách hiện không hỗ trợ gói HyperFast."</td></tr>
+    <tr><th style="width: 25%;">Field</th><th style="width: 10%;">Bắt buộc</th><th style="width: 15%;">Kiểu</th><th style="width: 50%;">Validation & Mô tả</th></tr>
+    <tr><td>Mã Hợp Đồng (HyperFast)</td><td>Có</td><td>Text Input</td><td>Format: `[A-Z]{3,4}[0-9]+` (VD: SGDF12345). Báo lỗi nếu API CRM báo HĐ huỷ/tạm ngưng.</td></tr>
 </table>
 
-<h2>7.7 FR09 - Luồng Gộp giỏ (SA + SA)</h2>
-<p><b>Description:</b> Mua đồng thời các dịch vụ số như UltraFast, FPT Play.</p>
+<h2>7.7 FR09 & FR10 - Logic Gộp Giỏ Hàng (SA+SA, SKU+SA)</h2>
 <h3>7.7.1 Business Rules</h3>
 <table>
     <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>SA_MIX-BR-01</td><td>Giao diện: Tự động <b>ẨN</b> block nhập thông tin Tỉnh/Thành/Quận/Huyện (Shipping Address) do toàn bộ giỏ là dịch vụ số.</td></tr>
-    <tr><td>SA_MIX-BR-02</td><td>Chỉ hiển thị 1 block thu thập thông tin "Thông tin liên hệ" (Họ tên, SĐT nhận mã/kích hoạt, Email nhận hoá đơn).</td></tr>
-    <tr><td>SA_MIX-BR-03</td><td>SĐT điền vào sẽ được dùng chung làm account kích hoạt FPT Play và làm số nhận SMS code UltraFast.</td></tr>
+    <tr><td>MIX-BR-01</td><td><b>Gộp SA + SA:</b> Giỏ hàng tự động <b>ẨN</b> block nhập "Địa chỉ giao hàng" (Tỉnh/Quận/Phường/Số nhà). Chỉ hiển thị "Thông tin liên hệ & kích hoạt". SĐT điền vào được dùng làm key kích hoạt cho toàn bộ SA.</td></tr>
+    <tr><td>MIX-BR-02</td><td><b>Gộp SKU + SA:</b> <b>BẮT BUỘC</b> hiển thị block "Địa chỉ giao hàng" do có tồn tại hàng vật lý (SKU).</td></tr>
+    <tr><td>MIX-BR-03</td><td><b>SPF Tách Fulfillment (SKU+SA):</b> Khi đơn SKU+SA thanh toán thành công, hệ thống sinh 1 mã hợp đồng SPF. SPF này kích hoạt 2 luồng: 1 luồng bắn lệnh sang kho để giao SKU, 1 luồng bắn API kích hoạt SA. </td></tr>
+    <tr><td>MIX-BR-04</td><td><b>Pending Activation (COD):</b> Nếu đơn SKU+SA chọn thanh toán COD (trả tiền mặt khi nhận hàng), phần SA sẽ ở trạng thái `Pending`. KTV đi giao SKU thu tiền mặt xong, báo cáo lên hệ thống, thì phần SA mới được trigger API kích hoạt.</td></tr>
 </table>
 
-<h2>7.8 FR10 - Luồng Gộp giỏ (SKU + SA)</h2>
-<p><b>Description:</b> Mua thiết bị vật lý (VD: Camera, AP) chung với dịch vụ số (VD: FPT Play, UltraFast).</p>
-<h3>7.8.1 Business Rules</h3>
+<h2>7.8 Bảng quy tắc xử lý Edge Cases chung toàn giỏ hàng</h2>
 <table>
-    <tr><th style="width: 15%;">BR ID</th><th style="width: 85%;">Mô tả chi tiết</th></tr>
-    <tr><td>MIX-BR-01</td><td>Giao diện: Do tồn tại SKU, hệ thống <b>BẮT BUỘC</b> hiển thị block nhập thông tin Địa chỉ giao hàng.</td></tr>
-    <tr><td>MIX-BR-02</td><td>Thanh toán: Nếu khách chọn thanh toán COD (Nhận hàng trả tiền) -> Mã kích hoạt SA (FPT Play/UltraFast) sẽ ở trạng thái <i>Pending Activation</i>. Dịch vụ số chỉ được kích hoạt khi KTV FPT thu tiền thiết bị thành công và update trạng thái đơn hàng trên app nội bộ.</td></tr>
-    <tr><td>MIX-BR-03</td><td>Bảo lưu: Nếu một phần đơn (SKU) hết hàng, khách hàng có thể chọn tách đơn, thanh toán trước phần dịch vụ SA.</td></tr>
+    <tr>
+        <th style="width: 15%;">Trường hợp lỗi</th>
+        <th style="width: 25%;">Điều kiện xảy ra</th>
+        <th style="width: 40%;">Hành vi hệ thống (System Action)</th>
+        <th style="width: 20%;">Thông báo (UI)</th>
+    </tr>
+    <tr>
+        <td>Voucher hết hạn / Không đủ điều kiện</td>
+        <td>KH nhập voucher lúc T0 hợp lệ, nhưng để treo giỏ tới T1 voucher hết lượt. KH bấm thanh toán.</td>
+        <td>Chặn API Checkout, xoá voucher khỏi tổng tiền, yêu cầu load lại giỏ.</td>
+        <td>"Mã giảm giá đã hết hạn hoặc hết lượt. Vui lòng kiểm tra lại."</td>
+    </tr>
+    <tr>
+        <td>Sản phẩm hết hàng (OOS)</td>
+        <td>SKU vừa hết tồn kho thực tế trong lúc KH đang ở Checkout.</td>
+        <td>Disable nút Thanh Toán. Highlight đỏ dòng sản phẩm bị lỗi. Cung cấp icon [Thùng rác] để KH tự xoá.</td>
+        <td>"Sản phẩm {Ten_SP} hiện đang tạm hết hàng tại kho khu vực này."</td>
+    </tr>
+    <tr>
+        <td>Timeout API Tính giá</td>
+        <td>Hệ thống gọi API Pricing mất > 5s không phản hồi.</td>
+        <td>Giữ nguyên UI giỏ hàng hiện tại, không cho phép Submit, sinh log lỗi Timeout.</td>
+        <td>"Hệ thống đang bận. Chưa thể cập nhật giá và tổng tiền. Vui lòng Thử lại."</td>
+    </tr>
+    <tr>
+        <td>Timeout API SPF</td>
+        <td>KH thanh toán Online thành công nhưng API SPF (tạo hợp đồng) bị chết/timeout.</td>
+        <td>Đưa message về hàng đợi (Queue - RabbitMQ/Kafka). Hệ thống tự động Retry tạo đơn sau 5 phút.</td>
+        <td>"Thanh toán thành công. Đơn hàng đang được hệ thống ghi nhận. Chúng tôi sẽ gửi SMS sau ít phút."</td>
+    </tr>
 </table>
+
 
 <!-- PART C -->
 <h1 style="page-break-before: always; mso-page-break-before: always;">PART C — GOVERNANCE</h1>
@@ -385,25 +428,24 @@ Hệ thống giỏ hàng tự động phân tách nghiệp vụ vật lý (yêu 
         <th style="width: 45%;">Yêu cầu chi tiết</th>
         <th style="width: 20%;">Phương pháp đo lường</th>
     </tr>
-    <tr><td>NFR-01</td><td>Performance</td><td>API tính tạm tính giỏ hàng, áp mã Voucher phải phản hồi < 500ms (p95). Tải được 2000 giao dịch/s.</td><td>JMeter Stress Test, APM</td></tr>
-    <tr><td>NFR-02</td><td>Security</td><td>Mã hoá HTTPS TLS 1.3. Che giấu số thẻ tín dụng và 6 số giữa của SĐT trên giao diện public.</td><td>Pentest Report</td></tr>
-    <tr><td>NFR-03</td><td>Availability</td><td>Chức năng giỏ hàng phải đảm bảo uptime 99.9%. Chuyển sang hàng đợi xử lý off-line nếu API SPF chết.</td><td>Uptime Monitor</td></tr>
+    <tr><td>NFR-01</td><td>Performance</td><td>API Checkout phản hồi < 500ms. Hỗ trợ 2000 CCU.</td><td>JMeter Stress Test</td></tr>
+    <tr><td>NFR-02</td><td>Security</td><td>Không expose API Pricing dạng có thể truyền tham số `Price=0`. Mọi giá trị tính toán phải verify ở Backend.</td><td>Pentest Report</td></tr>
 </table>
 
-<h2>9. DEFINITION OF DONE (TIÊU CHÍ NGHIỆM THU)</h2>
+<h2>9. DEFINITION OF DONE (Tiêu chí nghiệm thu cho luồng Cart)</h2>
+<p>Tài liệu đặc tả (PRD) của hệ thống Giỏ Hàng FPT Cart này chỉ được nghiệm thu và xác nhận bàn giao cho team Dev/QC triển khai khi đáp ứng 100% các tiêu chí dưới đây (Tập trung chính vào việc giải quyết nghiệp vụ luồng của BA):</p>
 <table>
     <tr>
         <th style="width: 8%;">#</th>
-        <th style="width: 52%;">Tiêu chí nghiệm thu (Mức BA)</th>
-        <th style="width: 25%;">Trách nhiệm (Owner)</th>
-        <th style="width: 15%;">Ký duyệt</th>
+        <th style="width: 52%;">Tiêu chí nghiệm thu (Dưới góc độ BA bàn giao)</th>
+        <th style="width: 25%;">Trách nhiệm xác nhận</th>
+        <th style="width: 15%;">Trạng thái</th>
     </tr>
-    <tr><td>1</td><td><b>Kiểm thử SIT:</b> Pass 100% Test Case bao phủ các luồng mua lẻ và gộp giỏ của Khách vãng lai. Ưu tiên test kỹ case thanh toán COD khi giỏ có cả SKU (Vật lý) và SA (Kích hoạt sau).</td><td>Team QC & Dev</td><td>[ ]</td></tr>
-    <tr><td>2</td><td><b>Kiểm thử Pentest:</b> Báo cáo từ CSOC xác nhận không còn lỗi bảo mật Critical/High liên quan đến việc giả mạo giá (Tampering data) trên Client-side.</td><td>CSOC / IS</td><td>[ ]</td></tr>
-    <tr><td>3</td><td><b>Nghiệm thu UAT:</b> PO và BA chạy thực tế trên môi trường UAT, đảm bảo luồng tạo đơn SPF hợp nhất thành công, chia đúng 2 luồng fulfillment (Triển khai & Cấp quyền) mà không bị mất dữ liệu.</td><td>PO & BA (UAT)</td><td>[ ]</td></tr>
-    <tr><td>4</td><td><b>Nghiệm thu Performance:</b> Kết quả Load Test đạt tối thiểu 2000 tx/s, không làm crash server khi hàng loạt khách hàng cùng áp mã Voucher ở màn hình Checkout.</td><td>DevOps / QC</td><td>[ ]</td></tr>
-    <tr><td>5</td><td><b>Data & Tracking:</b> Team Data xác nhận Google Analytics / CDP ghi nhận đúng và đủ các sự kiện: Thêm vào giỏ (Add_to_Cart), Nhập thông tin thanh toán (Add_Payment_Info), Mua thành công (Purchase) cho mọi luồng (đơn, gộp).</td><td>Data Team</td><td>[ ]</td></tr>
-    <tr><td>6</td><td><b>Tài liệu hướng dẫn (User Manual):</b> BA đã cung cấp tài liệu đào tạo cho bộ phận CSKH (Call Center) về cách tra cứu đơn hàng gộp (SPF) để trả lời khách hàng khiếu nại.</td><td>BA</td><td>[ ]</td></tr>
+    <tr><td>1</td><td><b>Bao phủ Test Case Luồng Mua lẻ:</b> Dev/QC xác nhận đã hiểu và có thể viết đủ Test Case cho các US mua lẻ: Camera Only (cho phép mua không có Cloud), Camera Combo (kèm Cloud), FPT Play, UltraFast, Smart TV.</td><td>Lead QC</td><td>[ ]</td></tr>
+    <tr><td>2</td><td><b>Bao phủ Test Case Luồng Gộp Giỏ (Focus chính):</b> BA đã chứng minh được logic UI ẩn form địa chỉ khi Giỏ hàng = 100% Dịch vụ số (SA), và logic bắt buộc hiện form địa chỉ khi Giỏ hàng có Hàng vật lý (SKU). Team Dev đồng ý phương án thiết kế API để xử lý.</td><td>Lead Backend</td><td>[ ]</td></tr>
+    <tr><td>3</td><td><b>Nghiệm thu Luồng Thanh Toán Pending (COD):</b> Team Billing (SPF) xác nhận đồng ý với quy tắc `MIX-BR-04`: Đơn gộp có COD thì Dịch vụ số sẽ phải Pending cho tới khi KTV thu tiền mặt xong.</td><td>PO System SPF</td><td>[ ]</td></tr>
+    <tr><td>4</td><td><b>Nghiệm thu Edge Cases (Luồng Ngoại lệ):</b> Tài liệu đã liệt kê và có giải pháp xử lý UI/UX cho 4 trường hợp lỗi cực đoan: Hết tồn kho, Timeout Pricing, Voucher hết hạn, Timeout SPF.</td><td>PO FPT.vn</td><td>[ ]</td></tr>
+    <tr><td>5</td><td><b>Data Tracking:</b> BA đã list rõ ràng các sự kiện tracking cần có trên giỏ hàng (Add to Cart, Checkout, Purchase) để team Data có thể bắt tay setup Google Analytics.</td><td>Data Team</td><td>[ ]</td></tr>
 </table>
 
 <!-- FOOTER CONFIGURATION cho MS Word -->
