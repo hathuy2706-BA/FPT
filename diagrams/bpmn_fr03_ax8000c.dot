@@ -3,40 +3,40 @@ digraph G {
 
     rankdir=TB;
     splines=ortho;
-    nodesep=0.8;
-    ranksep=0.8;
-    node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.2, width=2.5, height=0.6];
+    nodesep=0.4;
+    ranksep=0.4;
+    newrank=true;
+    compound=true;
+    fontname="Arial";
+    
+    // Default node style
+    node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.0, margin=0.1];
     edge [fontname="Arial", fontsize=9, color="#555555", penwidth=1.0];
 
-
     subgraph cluster_customer {
-        label="KHÁCH HÀNG (CUSTOMER)";
-        style=filled; color="#28547B"; fillcolor="#F0F4F8"; penwidth=2;
-        fontcolor="#28547B"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
-
-        start [label="Bắt đầu", shape=circle, style="filled", fillcolor="white", color="#22C55E", fontcolor="#22C55E", penwidth=2, width=0.7, fixedsize=true];
+        style=filled; color="#CBD5E1"; fillcolor="#F0F4F8"; penwidth=1; label=""; margin=10;
+        h_cust [label="KHÁCH HÀNG (CUSTOMER)", shape=box, style="filled", fillcolor="#28547B", color="#28547B", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.0, height=0.4, fixedsize=false];
+        start [label="Bắt đầu", shape=circle, style="filled", fillcolor="white", color="#22C55E", fontcolor="#22C55E", penwidth=2, width=0.6, fixedsize=true];
         select_ap [label="Chọn Mesh Wi-Fi\nAX8000C"];
         set_qty [label="Chọn số lượng (1..5)"];
         view_cart [label="Kiểm tra Giỏ hàng"];
+        h_cust -> start [style=invis];
     }
-
     subgraph cluster_fe {
-        label="WEBSITE FPT.VN (FRONTEND)";
-        style=filled; color="#4682B4"; fillcolor="#E6F2FF"; penwidth=2;
-        fontcolor="#4682B4"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
-
+        style=filled; color="#CBD5E1"; fillcolor="#E6F2FF"; penwidth=1; label=""; margin=10;
+        h_fe [label="WEBSITE FPT.VN (FRONTEND)", shape=box, style="filled", fillcolor="#4682B4", color="#4682B4", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.0, height=0.4, fixedsize=false];
         render_ap [label="Cập nhật Giỏ hàng"];
+        h_fe -> render_ap [style=invis];
     }
-
     subgraph cluster_be {
-        label="BACKEND & TÍCH HỢP";
-        style=filled; color="#8B008B"; fillcolor="#F8F0F8"; penwidth=2;
-        fontcolor="#8B008B"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
-
+        style=filled; color="#CBD5E1"; fillcolor="#F8F0F8"; penwidth=1; label=""; margin=10;
+        h_be [label="BACKEND & TÍCH HỢP", shape=box, style="filled", fillcolor="#8B008B", color="#8B008B", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.0, height=0.4, fixedsize=false];
         check_stock [label="Check kho phụ kiện\ntheo khu vực"];
-        calc_total [label="Tính Thành tiền =\nĐơn giá x Số lượng"];
-        end [label="Hoàn thành", shape=doublecircle, style="filled", fillcolor="white", color="#EF4444", fontcolor="#EF4444", penwidth=2, width=0.7, fixedsize=true];
+        calc_total [label="Tính Thành tiền"];
+        end [label="Hoàn thành", shape=doublecircle, style="filled", fillcolor="white", color="#EF4444", fontcolor="#EF4444", penwidth=2, width=0.6, fixedsize=true];
+        h_be -> check_stock [style=invis];
     }
-
+    { rank=same; h_cust; h_fe; h_be; }
+    
     start -> select_ap -> set_qty -> check_stock -> calc_total -> render_ap -> view_cart -> end;
 }
