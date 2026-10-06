@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1694" height="1206" viewBox="0 0 1694 1206" font-family="Arial, Helvetica, sans-serif">
+<rect width="1694" height="1206" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#3a3a3a"/></marker><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#c62828"/></marker></defs>
+<text x="847.0" y="32" font-size="19" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN — FR01 · LUỒNG GIỎ HÀNG CAMERA (LẺ · COMBO CLOUD · MIX CAMERA)</text>
+<text x="847.0" y="56" font-size="12" fill="#595959" font-style="italic" text-anchor="middle">Liên kết: 5.1 Tổng quan (S-01 → S-06) · 8.01.1 Business Rules · 8.01.3 Các bước · 8.01.5 Mã lỗi ERR-CAM</text>
+<rect x="14" y="80" width="460" height="1068" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.3"/>
+<rect x="14" y="80" width="460" height="40" fill="#1f4e78"/>
+<text x="244.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">KHÁCH HÀNG (CUSTOMER)</text>
+<rect x="474" y="80" width="460" height="1068" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.3"/>
+<rect x="474" y="80" width="460" height="40" fill="#2e75b6"/>
+<text x="704.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">WEBSITE FPT.VN (FRONT-END)</text>
+<rect x="934" y="80" width="460" height="1068" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
+<rect x="934" y="80" width="460" height="40" fill="#7030a0"/>
+<text x="1164.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">BACKEND &amp; TÍCH HỢP (FID · SPF · CLOUD)</text>
+<path d="M244.0,185.0 L244.0,214.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M379.0,245.0 L704.0,245.0 L704.0,296.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M731.0,323.0 L1164.0,323.0 L1164.0,370.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M677.0,323.0 L32.0,323.0 L32.0,245.0 L109.0,245.0" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
+<path d="M1164.0,432.0 L1164.0,479.0 L839.0,479.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M839.0,479.0 L1164.0,479.0 L1164.0,526.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1164.0,588.0 L1164.0,635.0 L839.0,635.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M569.0,635.0 L244.0,635.0 L244.0,682.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M379.0,713.0 L704.0,713.0 L704.0,764.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M704.0,818.0 L704.0,869.0 L379.0,869.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M677.0,791.0 L32.0,791.0 L32.0,713.0 L109.0,713.0" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
+<path d="M379.0,869.0 L1164.0,869.0 L1164.0,916.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1164.0,978.0 L1164.0,994.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1029.0,1025.0 L244.0,1025.0 L244.0,1085.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M934,323.0 L952,323.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="952" y="293.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="960" y="309.0" font-size="10" fill="#7a5b00">BR-04: Tối đa 10 Camera/mẫu/đơn. ERR-</text>
+<text x="960" y="321.0" font-size="10" fill="#7a5b00">CAM-01: Toast vượt 10, disable nút (+).</text>
+<path d="M1394,557.0 L1412,557.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="1412" y="527.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1420" y="543.0" font-size="10" fill="#7a5b00">BR-02: Đổi gói Cloud → Get_Price reload</text>
+<text x="1420" y="555.0" font-size="10" fill="#7a5b00">Sub-total. ERR-CAM-03: lỗi API → mặc</text>
+<text x="1420" y="567.0" font-size="10" fill="#7a5b00">định Cloud 6T.</text>
+<path d="M934,635.0 L952,635.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="952" y="605.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="960" y="621.0" font-size="10" fill="#7a5b00">BR-01: Có SKU Camera → bắt buộc Form Địa</text>
+<text x="960" y="633.0" font-size="10" fill="#7a5b00">chỉ, KHÔNG hiển thị Lịch KTV.</text>
+<path d="M934,791.0 L952,791.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="952" y="761.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="960" y="777.0" font-size="10" fill="#7a5b00">ERR-CAM-02: Bỏ trống địa chỉ → lỗi</text>
+<text x="960" y="789.0" font-size="10" fill="#7a5b00">inline, disable nút Thanh toán.</text>
+<path d="M1394,947.0 L1412,947.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
+<rect x="1412" y="917.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
+<text x="1420" y="933.0" font-size="10" fill="#7a5b00">BR-03: Tự động tách 1 Camera Combo thành</text>
+<text x="1420" y="945.0" font-size="10" fill="#7a5b00">1 dòng SKU + 1 dòng SA Cloud trong</text>
+<text x="1420" y="957.0" font-size="10" fill="#7a5b00">payload SPF.</text>
+<circle cx="244.0" cy="167.0" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="270.0" y="164.0" font-size="12" fill="#1b5e20" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Bắt đầu</tspan><tspan x="270.0" dy="14.6">(Tổng quan S-01)</tspan></text>
+<rect x="109.0" y="214.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="235.6" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn Camera Indoor/Outdoor</tspan><tspan x="244.0" dy="16.1">+ Gói Cloud (Không/6T/12T)</tspan><tspan x="244.0" dy="16.1">→ 'Thêm vào giỏ'</tspan></text>
+<rect x="115.0" y="206.0" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="217.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<polygon points="704.0,296.0 731.0,323.0 704.0,350.0 677.0,323.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
+<path d="M696.0,315.0 L712.0,331.0 M712.0,315.0 L696.0,331.0" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
+<text x="722.9" y="309.8" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">Số lượng ≤ 10?</tspan></text>
+<rect x="1029.0" y="370.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="399.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Lưu giỏ vào</tspan><tspan x="1164.0" dy="16.1">Redis Session FID</tspan></text>
+<rect x="1035.0" y="362.0" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="373.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<rect x="569.0" y="448.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="704.0" y="477.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Mở /cart → Get_Cart_Metadata</tspan><tspan x="704.0" dy="16.1">count(SKU) ≥ 1</tspan></text>
+<rect x="575.0" y="440.0" width="38" height="15" rx="7" fill="#2e75b6"/>
+<text x="594.0" y="451.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
+<rect x="1029.0" y="526.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="553.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">API Get_Price gói Cloud</tspan><tspan x="1164.0" dy="16.1">reload Sub-total (không reload trang)</tspan></text>
+<rect x="569.0" y="604.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="704.0" y="633.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Render Form Địa chỉ nhận hàng</tspan><tspan x="704.0" dy="16.1">(KHÔNG Lịch KTV) + Sub-total</tspan></text>
+<rect x="575.0" y="596.0" width="38" height="15" rx="7" fill="#2e75b6"/>
+<text x="594.0" y="607.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
+<rect x="109.0" y="682.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="711.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Nhập SĐT, Họ tên,</tspan><tspan x="244.0" dy="16.1">địa chỉ đủ 4 cấp</tspan></text>
+<rect x="115.0" y="674.0" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="685.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-03</text>
+<polygon points="704.0,764.0 731.0,791.0 704.0,818.0 677.0,791.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
+<path d="M696.0,783.0 L712.0,799.0 M712.0,783.0 L696.0,799.0" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
+<text x="722.9" y="777.8" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">Địa chỉ hợp lệ?</tspan></text>
+<rect x="109.0" y="838.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="867.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn PTTT VNPAY / COD</tspan><tspan x="244.0" dy="16.1">→ 'Đặt hàng'</tspan></text>
+<rect x="115.0" y="830.0" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="841.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+<rect x="1029.0" y="916.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="945.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">SPF tạo Order ID — tách Combo</tspan><tspan x="1164.0" dy="16.1">thành SKU Hardware + SA Cloud</tspan></text>
+<rect x="1035.0" y="908.0" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="919.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+<rect x="1029.0" y="994.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="1023.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Chuyển đơn tới</tspan><tspan x="1164.0" dy="16.1">KTV giao lắp</tspan></text>
+<rect x="1035.0" y="986.0" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="997.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+<circle cx="244.0" cy="1103.0" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
+<text x="270.0" y="1100.0" font-size="12" fill="#b71c1c" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Kết thúc</tspan><tspan x="270.0" dy="14.6">(→ Tổng quan S-06)</tspan></text>
+<rect x="737.0" y="306.0" width="20.8" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="741.0" y="317.0" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Có</text>
+<g transform="rotate(-90 32.0 284.0)"><rect x="-28.7" y="275.0" width="121.4" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="286.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không · ERR-CAM-01</text></g>
+<rect x="845.0" y="462.0" width="91.2" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="849.0" y="473.0" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Đổi gói Cloud</text>
+<rect x="707.0" y="822.0" width="46.4" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="711.0" y="833.0" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Hợp lệ</text>
+<g transform="rotate(-90 32.0 752.0)"><rect x="-28.7" y="743.0" width="121.4" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="754.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không · ERR-CAM-02</text></g>
+<line x1="14" y1="1160.0" x2="1682" y2="1160.0" stroke="#d0d0d0"/>
+<circle cx="28" cy="1180.0" r="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.6"/>
+<text x="42" y="1184.0" font-size="11.5" fill="#444">Start Event</text>
+<circle cx="135.3" cy="1180.0" r="8" fill="#ffebee" stroke="#c62828" stroke-width="3"/>
+<text x="149.3" y="1184.0" font-size="11.5" fill="#444">End Event</text>
+<rect x="222.0" y="1172.0" width="26" height="16" rx="4" fill="#fff" stroke="#2e75b6" stroke-width="1.5"/>
+<text x="254.0" y="1184.0" font-size="11.5" fill="#444">Task</text>
+<rect x="295.2" y="1173.0" width="30" height="14" rx="7" fill="#2e75b6"/><text x="310.2" y="1184.0" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<text x="331.2" y="1184.0" font-size="11.5" fill="#444">Mã bước (S-xx)</text>
+<polygon points="444.4,1171.0 453.4,1180.0 444.4,1189.0 435.4,1180.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="444.4" y="1184.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">×</text>
+<text x="459.4" y="1184.0" font-size="11.5" fill="#444">Exclusive Gateway</text>
+<polygon points="591.5,1171.0 600.5,1180.0 591.5,1189.0 582.5,1180.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="591.5" y="1184.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">+</text>
+<text x="606.5" y="1184.0" font-size="11.5" fill="#444">Parallel Gateway</text>
+<path d="M723.3,1180.0 L749.3,1180.0" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="757.3" y="1184.0" font-size="11.5" fill="#444">Sequence Flow</text>
+<path d="M855.1999999999999,1180.0 L881.1999999999999,1180.0" stroke="#c62828" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+<text x="889.1999999999999" y="1184.0" font-size="11.5" fill="#444">Luồng quay lại / lỗi</text>
+<path d="M1039.1999999999998,1172.0 L1031.1999999999998,1172.0 L1031.1999999999998,1188.0 L1039.1999999999998,1188.0" fill="none" stroke="#bf8f00" stroke-width="1.6"/>
+<text x="1045.1999999999998" y="1184.0" font-size="11.5" fill="#444">Text Annotation</text>
+</svg>
