@@ -1,49 +1,47 @@
 
 digraph G {
-    rankdir=LR; bgcolor="white";
-    node [fontname="Arial", fontsize=10, shape=box, style="filled,rounded", fillcolor="#F8FAFC", color="#475569", linewidth=1.5];
-    edge [fontname="Arial", fontsize=9, color="#334155", fontcolor="#0F172A"];
 
-    subgraph cluster_client {
-        label="Khách Hàng (User)"; style=filled; color="#CBD5E1"; fillcolor="#F8FAFC";
-        start [label="Bắt đầu
-(Xem SP)", shape=circle, fillcolor="#22C55E", fontcolor="white", width=0.8, fixedsize=true];
-        add_to_cart [label="Click 'Thêm vào giỏ'
-/ 'Mua ngay'"];
-        view_cart [label="Truy cập Trang Giỏ hàng
-(Cart View)"];
-        update_qty [label="Điều chỉnh Số lượng
-/ Nhập Voucher"];
-        click_checkout [label="Click 'Tiến hành
-thanh toán'"];
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=0.8;
+    node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.2, width=2.5, height=0.6];
+    edge [fontname="Arial", fontsize=9, color="#555555", penwidth=1.0];
+
+
+    subgraph cluster_customer {
+        label="KHÁCH HÀNG (CUSTOMER)";
+        style=filled; color="#28547B"; fillcolor="#F0F4F8"; penwidth=2;
+        fontcolor="#28547B"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
+
+        start [label="Bắt đầu", shape=circle, style="filled", fillcolor="white", color="#22C55E", fontcolor="#22C55E", penwidth=2, width=0.7, fixedsize=true];
+        add_to_cart [label="Chọn SP trên web\nbấm 'Thêm vào giỏ'"];
+        view_cart [label="Truy cập\nTrang Giỏ hàng"];
+        update_qty [label="Điều chỉnh Số lượng\n/ Nhập Voucher"];
+        click_checkout [label="Bấm 'Tiến hành\nthanh toán'"];
     }
 
     subgraph cluster_fe {
-        label="Website FPT.vn Frontend"; style=filled; color="#CBD5E1"; fillcolor="#F8FAFC";
-        render_cart [label="Hiển thị danh sách SP,
-Gói cước & Giá tạm tính"];
-        validate_input [label="Validate Client-side
-(SL, Format Mã)"];
-        store_session [label="Lưu LocalSession
-/ Sync Auth Cookie"];
+        label="WEBSITE FPT.VN (FRONTEND)";
+        style=filled; color="#4682B4"; fillcolor="#E6F2FF"; penwidth=2;
+        fontcolor="#4682B4"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
+
+        render_cart [label="Hiển thị Giỏ hàng\n& Giá tạm tính"];
+        validate_input [label="Validate Client-side\n(SL, Format Mã)"];
+        store_session [label="Lưu LocalSession\n/ Sync Auth Cookie"];
     }
 
     subgraph cluster_be {
-        label="Cart Service & Inventory API"; style=filled; color="#94A3B8"; fillcolor="#EFF6FF";
-        check_inv [label="Check Kho SKU &
-Hạ tầng SA theo Geo"];
-        calc_price [label="Tính Pricing Matrix,
-Discount & Cross-sell"];
-        lock_cart [label="Tạo Draft Order
-& Khóa Session Giỏ"];
+        label="BACKEND & TÍCH HỢP";
+        style=filled; color="#8B008B"; fillcolor="#F8F0F8"; penwidth=2;
+        fontcolor="#8B008B"; fontsize=12; fontname="Arial bold"; labelloc="t"; labeljust="c";
+
+        check_inv [label="Check Kho SKU &\nHạ tầng SA"];
+        calc_price [label="Tính Pricing Matrix,\nDiscount & Cross-sell"];
+        lock_cart [label="Tạo Draft Order\n& Khóa Session"];
+        end [label="Chuyển hướng\nCheckout", shape=doublecircle, style="filled", fillcolor="white", color="#EF4444", fontcolor="#EF4444", penwidth=2, width=0.7, fixedsize=true];
     }
 
-    subgraph cluster_oms {
-        label="Checkout System (OMS)"; style=filled; color="#CBD5E1"; fillcolor="#F0FDF4";
-        end [label="Chuyển hướng
-Checkout Page", shape=doublecircle, fillcolor="#EF4444", fontcolor="white", width=0.8, fixedsize=true];
-    }
-
-    start -> add_to_cart -> validate_input -> check_inv -> calc_price -> render_cart -> view_cart -> update_qty -> calc_price;
+    start -> add_to_cart -> validate_input -> check_inv -> calc_price -> render_cart -> view_cart -> update_qty -> validate_input;
     view_cart -> click_checkout -> store_session -> lock_cart -> end;
 }
