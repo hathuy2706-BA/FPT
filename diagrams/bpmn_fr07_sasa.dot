@@ -1,0 +1,25 @@
+
+digraph G {
+    rankdir=LR; bgcolor="white";
+    node [fontname="Arial", fontsize=10, shape=box, style="filled,rounded", fillcolor="#F8FAFC", color="#475569"];
+    edge [fontname="Arial", fontsize=9, color="#334155"];
+
+    subgraph cluster_user {
+        label="Khách Hàng"; style=filled; fillcolor="#F1F5F9"; color="#CBD5E1";
+        start [label="Bắt đầu", shape=circle, fillcolor="#22C55E", fontcolor="white", width=0.6, fixedsize=true];
+        add_internet [label="Thêm Gói Internet Meta"];
+        add_play [label="Thêm Gói FPT Play VIP"];
+    }
+
+    subgraph cluster_system {
+        label="Hệ Thống Giỏ Hàng"; style=filled; fillcolor="#EFF6FF"; color="#94A3B8";
+        merge_sa [label="Gộp 2 Dịch vụ SA
+vào 1 Hợp đồng Mới"];
+        apply_combo_sa [label="Tự động áp dụng Discount
+Combo Dịch vụ SA+SA"];
+        render_sa_cart [label="Hiển thị Tổng cước Combo"];
+        end [label="Hoàn thành", shape=doublecircle, fillcolor="#EF4444", fontcolor="white", width=0.6, fixedsize=true];
+    }
+
+    start -> add_internet -> add_play -> merge_sa -> apply_combo_sa -> render_sa_cart -> end;
+}

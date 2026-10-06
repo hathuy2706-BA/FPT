@@ -1,0 +1,24 @@
+
+digraph G {
+    rankdir=LR; bgcolor="white";
+    node [fontname="Arial", fontsize=10, shape=box, style="filled,rounded", fillcolor="#F8FAFC", color="#475569"];
+    edge [fontname="Arial", fontsize=9, color="#334155"];
+
+    subgraph cluster_user {
+        label="Khách Hàng"; style=filled; fillcolor="#F1F5F9"; color="#CBD5E1";
+        start [label="Bắt đầu", shape=circle, fillcolor="#22C55E", fontcolor="white", width=0.6, fixedsize=true];
+        select_socket [label="Chọn Ổ cắm thông minh
+FPT Smart Home"];
+        add_cart [label="Thêm vào giỏ"];
+    }
+
+    subgraph cluster_system {
+        label="Hệ Thống Giỏ Hàng"; style=filled; fillcolor="#EFF6FF"; color="#94A3B8";
+        suggest_hub [label="Gợi ý Cross-sell Hub
+Bộ điều khiển trung tâm"];
+        update_cart [label="Lưu vào Giỏ hàng"];
+        end [label="Hoàn thành", shape=doublecircle, fillcolor="#EF4444", fontcolor="white", width=0.6, fixedsize=true];
+    }
+
+    start -> select_socket -> add_cart -> suggest_hub -> update_cart -> end;
+}

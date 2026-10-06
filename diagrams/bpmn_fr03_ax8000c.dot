@@ -1,0 +1,27 @@
+
+digraph G {
+    rankdir=LR; bgcolor="white";
+    node [fontname="Arial", fontsize=10, shape=box, style="filled,rounded", fillcolor="#F8FAFC", color="#475569"];
+    edge [fontname="Arial", fontsize=9, color="#334155"];
+
+    subgraph cluster_user {
+        label="Khách Hàng"; style=filled; fillcolor="#F1F5F9"; color="#CBD5E1";
+        start [label="Bắt đầu", shape=circle, fillcolor="#22C55E", fontcolor="white", width=0.6, fixedsize=true];
+        select_ap [label="Chọn Mesh Wi-Fi
+AX8000C"];
+        set_qty [label="Chọn số lượng (1..5)"];
+        view_cart [label="Kiểm tra Giỏ hàng"];
+    }
+
+    subgraph cluster_system {
+        label="Hệ Thống Giỏ Hàng"; style=filled; fillcolor="#EFF6FF"; color="#94A3B8";
+        check_stock [label="Check kho phụ kiện
+theo khu vực"];
+        calc_total [label="Tính Thành tiền =
+Đơn giá x Số lượng"];
+        render_ap [label="Cập nhật Giỏ hàng"];
+        end [label="Hoàn thành", shape=doublecircle, fillcolor="#EF4444", fontcolor="white", width=0.6, fixedsize=true];
+    }
+
+    start -> select_ap -> set_qty -> check_stock -> calc_total -> render_ap -> view_cart -> end;
+}
