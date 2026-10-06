@@ -1,0 +1,42 @@
+
+digraph G {
+
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.5;
+    ranksep=0.6;
+    newrank=true;
+    compound=true;
+    fontname="Arial";
+    
+    // Default node style for Customer/FE
+    node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.5, margin=0.15];
+    edge [fontname="Arial", fontsize=9, color="#444444", penwidth=1.2];
+
+    subgraph cluster_customer {
+        style=filled; color="#1f4e78"; fillcolor="#eef3fb"; penwidth=1; label=""; margin=10;
+        h_cust [label="KHÁCH HÀNG (CUSTOMER)", shape=box, style="filled", fillcolor="#1f4e78", color="#1f4e78", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.4, height=0.5, fixedsize=false];
+        start [label="Bắt đầu\nChọn TV", shape=circle, style="filled,bold", fillcolor="#e8f5e9", color="#2e7d32", fontcolor="#1b5e20", penwidth=2, width=0.8, fixedsize=true];
+        select_tv [label="Chọn TV Samsung\n(55 inch / 65 inch)"];
+        input_geo [label="Nhập Tỉnh/Thành\ngiao hàng"];
+        view_cart [label="Kiểm tra Giỏ hàng"];
+        h_cust -> start [style=invis];
+    }
+    subgraph cluster_fe {
+        style=filled; color="#2e75b6"; fillcolor="#eef7fd"; penwidth=1; label=""; margin=10;
+        h_fe [label="WEBSITE FPT.VN (FRONTEND)", shape=box, style="filled", fillcolor="#2e75b6", color="#2e75b6", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.4, height=0.5, fixedsize=false];
+        display_discount [label="Hiển thị giá\nđã giảm"];
+        h_fe -> display_discount [style=invis];
+    }
+    subgraph cluster_be {
+        style=filled; color="#7030a0"; fillcolor="#f6f0fb"; penwidth=1; label=""; margin=10;
+        h_be [label="BACKEND & TÍCH HỢP", shape=box, style="filled", fillcolor="#7030a0", color="#7030a0", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.6, height=0.5, fixedsize=false];
+        check_logistics [label="Check Kho vận TV &\nPhí vận chuyển", color="#7030a0"];
+        apply_tv_discount [label="Tính Voucher /\nKhuyến mãi TV", color="#7030a0"];
+        end [label="Hoàn tất\nĐơn hàng", shape=circle, style="filled,bold", fillcolor="#ffebee", color="#c62828", fontcolor="#b71c1c", penwidth=2.5, width=0.8, fixedsize=true];
+        h_be -> check_logistics [style=invis];
+    }
+    { rank=same; h_cust; h_fe; h_be; }
+    
+    start -> select_tv -> input_geo -> check_logistics -> apply_tv_discount -> display_discount -> view_cart -> end;
+}
