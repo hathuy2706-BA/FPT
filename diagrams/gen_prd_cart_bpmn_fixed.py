@@ -168,9 +168,6 @@ def build(key, title, subtitle, lane2, N, E, ANNOT, nrows):
         o.append(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="1.6"{dash} marker-end="url(#{mk})"/>')
         labels.append((lab, lbl, color))
 
-    # annotations (floating) - REMOVED to keep within 3 columns
-
-
     # nodes
     for nid in N:
         cx, cy, kind, label, l, half, opt = info(nid)
@@ -276,7 +273,7 @@ def build(key, title, subtitle, lane2, N, E, ANNOT, nrows):
     print(f"OK {key}: {W}x{H:.0f}")
 
 
-U_KH = lambda dx=18: ("U", "l", 0, dx)     # luồng quay lại theo mép trái lane Khách hàng
+U_KH = lambda dx=40: ("U", "l", 0, dx)     # luồng quay lại theo mép trái lane Khách hàng
 END_LINK = "Kết thúc\n(→ Tổng quan S-06)"
 START_LINK = "Bắt đầu\n(Tổng quan S-01)"
 
@@ -600,9 +597,8 @@ build("fr08",
           "b4": (2, 10, "l", "task", "PENDING: KTV\ngiao lắp & thu\ntiền COD"),
           "b3": (2, 10, "r", "task", "INSTANT: VNPAY OK\n→ FPT Play active\n+ SMS mật khẩu"),
           "g3": (2, 11, "l", "gw", "Thu tiền\nthành công?", {"lp": "tr"}),
-          "b5": (2, 12, "l", "task", "KTV nghiệm thu\n→ kích hoạt\nFPT Play"),
-          "f4": (1, 12, "c", "task", "Cảnh báo ERR-MIX-01: Đơn &\nSA tạm dừng → Cancelled"),
-          "e1": (1, 14, "c", "end", "Hoàn tất\nđơn hàng"),
+                    "end": (1, 14, "c", "end", "Hoàn tất
+đơn hàng"),
       },
       [
           ("start", "k1", ""), ("k1", "b1", ""), ("b1", "f1", "", "VH"), ("f1", "k2", ""),
@@ -610,9 +606,9 @@ build("fr08",
           ("g1", "f3", "VNPAY", ("U", "r", 1, 312)),
           ("f2", "f3", ""), ("f3", "b2", ""), ("b2", "g2", ""),
           ("g2", "b4", "PENDING"), ("g2", "b3", "INSTANT"),
-          ("b3", "e1", "", "VH"), ("b4", "g3", ""),
+          ("b3", "end", "", "VH"), ("b4", "g3", ""),
           ("g3", "b5", "Có"), ("g3", "f4", "Không"),
-          ("b5", "e1", "", "VH"), ("f4", "e1", ""),
+          ("b5", "end", "", "VH"), ("f4", "end", ""),
       ],
       [
           ("BR-01: count(SKU) ≥ 1 → bắt buộc Form Địa chỉ nhận hàng, KHÔNG hiển thị Lịch hẹn KTV.", "f1"),

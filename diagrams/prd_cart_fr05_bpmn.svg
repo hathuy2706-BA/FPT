@@ -1,102 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1694" height="1050" viewBox="0 0 1694 1050" font-family="Arial, Helvetica, sans-serif">
-<rect width="1694" height="1050" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1424" height="907" viewBox="0 0 1424 907" font-family="Arial, Helvetica, sans-serif">
+<rect width="1424" height="907" fill="#ffffff"/>
 <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#3a3a3a"/></marker><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#c62828"/></marker></defs>
-<text x="847.0" y="32" font-size="19" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN — FR05 · LUỒNG GIỎ HÀNG SMART TV SAMSUNG (CỒNG KỀNH · RÀNG BUỘC ĐỊA LÝ)</text>
-<text x="847.0" y="56" font-size="12" fill="#595959" font-style="italic" text-anchor="middle">Liên kết: 5.1 Tổng quan (nhánh có SKU) · 8.05.1 Business Rules · 8.05.3 Các bước · 8.05.5 Mã lỗi ERR-TV</text>
-<rect x="14" y="80" width="460" height="912" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.3"/>
+<text x="712.0" y="32" font-size="19" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN — FR05 · LUỒNG GIỎ HÀNG SMART TV SAMSUNG (CỒNG KỀNH · RÀNG BUỘC ĐỊA LÝ)</text>
+<text x="712.0" y="56" font-size="12" fill="#595959" font-style="italic" text-anchor="middle">Liên kết: 5.1 Tổng quan (nhánh có SKU) · 8.05.1 Business Rules · 8.05.3 Các bước · 8.05.5 Mã lỗi ERR-TV</text>
+<rect x="14" y="80" width="460" height="769" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.3"/>
 <rect x="14" y="80" width="460" height="40" fill="#1f4e78"/>
 <text x="244.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">KHÁCH HÀNG (CUSTOMER)</text>
-<rect x="474" y="80" width="460" height="912" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.3"/>
+<rect x="474" y="80" width="460" height="769" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.3"/>
 <rect x="474" y="80" width="460" height="40" fill="#2e75b6"/>
 <text x="704.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">WEBSITE FPT.VN (FRONT-END)</text>
-<rect x="934" y="80" width="460" height="912" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
+<rect x="934" y="80" width="460" height="769" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
 <rect x="934" y="80" width="460" height="40" fill="#7030a0"/>
 <text x="1164.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">BACKEND &amp; TÍCH HỢP (FID · GEOLOCATION · SPF)</text>
-<path d="M244.0,185.0 L244.0,214.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M379.0,245.0 L1164.0,245.0 L1164.0,292.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1164.0,354.0 L1164.0,401.0 L839.0,401.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M569.0,401.0 L244.0,401.0 L244.0,448.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M379.0,479.0 L704.0,479.0 L704.0,526.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M839.0,557.0 L1164.0,557.0 L1164.0,604.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1164.0,666.0 L1164.0,713.0 L731.0,713.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M704.0,740.0 L704.0,791.0 L379.0,791.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M677.0,713.0 L32.0,713.0 L32.0,479.0 L109.0,479.0" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
-<path d="M379.0,791.0 L1164.0,791.0 L1164.0,838.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1029.0,869.0 L244.0,869.0 L244.0,929.0" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M934,557.0 L952,557.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
-<rect x="952" y="527.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
-<text x="960" y="543.0" font-size="10" fill="#7a5b00">BR-01: Chọn xong Phường/Xã → gọi GET</text>
-<text x="960" y="555.0" font-size="10" fill="#7a5b00">/location/check_oversized xác thực vùng</text>
-<text x="960" y="567.0" font-size="10" fill="#7a5b00">phủ.</text>
-<path d="M1394,635.0 L1412,635.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
-<rect x="1412" y="605.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
-<text x="1420" y="621.0" font-size="10" fill="#7a5b00">ERR-TV-02: Lỗi API Geolocation → Toast</text>
-<text x="1420" y="633.0" font-size="10" fill="#7a5b00">lỗi, cho phép Khách thử lại.</text>
-<path d="M934,713.0 L952,713.0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="3,3"/>
-<rect x="952" y="683.0" width="260" height="60" fill="#fffaf0" stroke="#bf8f00" stroke-width="1.1" stroke-dasharray="5,3" rx="3"/>
-<text x="960" y="699.0" font-size="10" fill="#7a5b00">BR-02: is_supported = false → Popup từ</text>
-<text x="960" y="711.0" font-size="10" fill="#7a5b00">chối, disable 'Đặt hàng' (CTA Đổi địa</text>
-<text x="960" y="723.0" font-size="10" fill="#7a5b00">chỉ / Xóa TV). BR-03: giỏ Mix TV +</text>
-<text x="960" y="735.0" font-size="10" fill="#7a5b00">Camera → xóa TV mới thanh toán tiếp.</text>
-<circle cx="244.0" cy="167.0" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-<text x="270.0" y="164.0" font-size="12" fill="#1b5e20" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Bắt đầu</tspan><tspan x="270.0" dy="14.6">(Tổng quan S-01)</tspan></text>
-<rect x="109.0" y="214.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="244.0" y="243.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn mẫu / kích thước TV</tspan><tspan x="244.0" dy="16.1">→ 'Thêm vào giỏ'</tspan></text>
-<rect x="115.0" y="206.0" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134.0" y="217.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
-<rect x="1029.0" y="292.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="321.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Lưu item TV vào giỏ</tspan><tspan x="1164.0" dy="16.1">(Session FID)</tspan></text>
-<rect x="1035.0" y="284.0" width="38" height="15" rx="7" fill="#7030a0"/>
-<text x="1054.0" y="295.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
-<rect x="569.0" y="370.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="704.0" y="397.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Render Form Địa chỉ giao hàng</tspan><tspan x="704.0" dy="16.1">(KHÔNG lịch hẹn)</tspan></text>
-<rect x="109.0" y="448.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="244.0" y="477.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn Tỉnh → Quận/Huyện</tspan><tspan x="244.0" dy="16.1">→ Phường/Xã</tspan></text>
-<rect x="115.0" y="440.0" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134.0" y="451.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
-<rect x="569.0" y="526.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="704.0" y="555.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">onChange Phường/Xã: loading</tspan><tspan x="704.0" dy="16.1">500ms, gọi check_oversized</tspan></text>
-<rect x="575.0" y="518.0" width="38" height="15" rx="7" fill="#2e75b6"/>
-<text x="594.0" y="529.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
-<rect x="1029.0" y="604.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="633.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Geolocation Engine trả</tspan><tspan x="1164.0" dy="16.1">is_supported (true / false)</tspan></text>
-<rect x="1035.0" y="596.0" width="38" height="15" rx="7" fill="#7030a0"/>
-<text x="1054.0" y="607.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-03</text>
-<polygon points="704.0,686.0 731.0,713.0 704.0,740.0 677.0,713.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
-<path d="M696.0,705.0 L712.0,721.0 M712.0,705.0 L696.0,721.0" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
-<text x="722.9" y="685.0" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">is_supported</tspan><tspan x="722.9" dy="14.6">== true?</tspan></text>
-<rect x="109.0" y="760.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="244.0" y="797.8" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn PTTT → 'Đặt hàng'</tspan></text>
-<rect x="115.0" y="752.0" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134.0" y="763.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
-<rect x="1029.0" y="838.0" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="867.7" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">SPF tạo vận đơn</tspan><tspan x="1164.0" dy="16.1">giao TV cồng kềnh</tspan></text>
-<rect x="1035.0" y="830.0" width="38" height="15" rx="7" fill="#7030a0"/>
-<text x="1054.0" y="841.0" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
-<circle cx="244.0" cy="947.0" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
-<text x="270.0" y="944.0" font-size="12" fill="#b71c1c" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Kết thúc</tspan><tspan x="270.0" dy="14.6">(→ Tổng quan S-06)</tspan></text>
-<rect x="707.0" y="744.0" width="33.6" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
-<text x="711.0" y="755.0" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">True</text>
-<g transform="rotate(-90 32.0 596.0)"><rect x="-44.5" y="587.0" width="152.9" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="598.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">False · Popup ERR-TV-01</text></g>
-<line x1="14" y1="1004.0" x2="1682" y2="1004.0" stroke="#d0d0d0"/>
-<circle cx="28" cy="1024.0" r="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.6"/>
-<text x="42" y="1028.0" font-size="11.5" fill="#444">Start Event</text>
-<circle cx="135.3" cy="1024.0" r="8" fill="#ffebee" stroke="#c62828" stroke-width="3"/>
-<text x="149.3" y="1028.0" font-size="11.5" fill="#444">End Event</text>
-<rect x="222.0" y="1016.0" width="26" height="16" rx="4" fill="#fff" stroke="#2e75b6" stroke-width="1.5"/>
-<text x="254.0" y="1028.0" font-size="11.5" fill="#444">Task</text>
-<rect x="295.2" y="1017.0" width="30" height="14" rx="7" fill="#2e75b6"/><text x="310.2" y="1028.0" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
-<text x="331.2" y="1028.0" font-size="11.5" fill="#444">Mã bước (S-xx)</text>
-<polygon points="444.4,1015.0 453.4,1024.0 444.4,1033.0 435.4,1024.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
-<text x="444.4" y="1028.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">×</text>
-<text x="459.4" y="1028.0" font-size="11.5" fill="#444">Exclusive Gateway</text>
-<polygon points="591.5,1015.0 600.5,1024.0 591.5,1033.0 582.5,1024.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
-<text x="591.5" y="1028.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">+</text>
-<text x="606.5" y="1028.0" font-size="11.5" fill="#444">Parallel Gateway</text>
-<path d="M723.3,1024.0 L749.3,1024.0" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<text x="757.3" y="1028.0" font-size="11.5" fill="#444">Sequence Flow</text>
-<path d="M855.1999999999999,1024.0 L881.1999999999999,1024.0" stroke="#c62828" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#ar)"/>
-<text x="889.1999999999999" y="1028.0" font-size="11.5" fill="#444">Luồng quay lại / lỗi</text>
-<path d="M1039.1999999999998,1016.0 L1031.1999999999998,1016.0 L1031.1999999999998,1032.0 L1039.1999999999998,1032.0" fill="none" stroke="#bf8f00" stroke-width="1.6"/>
-<text x="1045.1999999999998" y="1028.0" font-size="11.5" fill="#444">Text Annotation</text>
+<path d="M244.0,178.5 L244.0,194.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M379.0,225.5 L1164.0,225.5 L1164.0,259.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1164.0,321.5 L1164.0,355.5 L839.0,355.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M569.0,355.5 L244.0,355.5 L244.0,389.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M379.0,420.5 L704.0,420.5 L704.0,454.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M839.0,485.5 L1164.0,485.5 L1164.0,519.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1164.0,581.5 L1164.0,615.5 L731.0,615.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M704.0,642.5 L704.0,680.5 L379.0,680.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M677.0,615.5 L32.0,615.5 L32.0,420.5 L109.0,420.5" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
+<path d="M379.0,680.5 L1164.0,680.5 L1164.0,714.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1029.0,745.5 L244.0,745.5 L244.0,792.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<circle cx="244.0" cy="160.5" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="270.0" y="157.5" font-size="12" fill="#1b5e20" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Bắt đầu</tspan><tspan x="270.0" dy="14.6">(Tổng quan S-01)</tspan></text>
+<rect x="109.0" y="194.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="224.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn mẫu / kích thước TV</tspan><tspan x="244.0" dy="16.1">→ 'Thêm vào giỏ'</tspan></text>
+<rect x="115.0" y="186.5" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="197.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<rect x="1029.0" y="259.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="289.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Lưu item TV vào giỏ</tspan><tspan x="1164.0" dy="16.1">(Session FID)</tspan></text>
+<rect x="1035.0" y="251.5" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="262.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<rect x="569.0" y="324.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="704.0" y="352.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Render Form Địa chỉ giao hàng</tspan><tspan x="704.0" dy="16.1">(KHÔNG lịch hẹn)</tspan></text>
+<rect x="109.0" y="389.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="419.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn Tỉnh → Quận/Huyện</tspan><tspan x="244.0" dy="16.1">→ Phường/Xã</tspan></text>
+<rect x="115.0" y="381.5" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="392.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
+<rect x="569.0" y="454.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="704.0" y="484.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">onChange Phường/Xã: loading</tspan><tspan x="704.0" dy="16.1">500ms, gọi check_oversized</tspan></text>
+<rect x="575.0" y="446.5" width="38" height="15" rx="7" fill="#2e75b6"/>
+<text x="594.0" y="457.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
+<rect x="1029.0" y="519.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="549.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Geolocation Engine trả</tspan><tspan x="1164.0" dy="16.1">is_supported (true / false)</tspan></text>
+<rect x="1035.0" y="511.5" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="522.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-03</text>
+<polygon points="704.0,588.5 731.0,615.5 704.0,642.5 677.0,615.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
+<path d="M696.0,607.5 L712.0,623.5 M712.0,607.5 L696.0,623.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
+<text x="722.9" y="587.5" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">is_supported</tspan><tspan x="722.9" dy="14.6">== true?</tspan></text>
+<rect x="109.0" y="649.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="687.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Chọn PTTT → 'Đặt hàng'</tspan></text>
+<rect x="115.0" y="641.5" width="38" height="15" rx="7" fill="#1f4e78"/>
+<text x="134.0" y="652.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+<rect x="1029.0" y="714.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1164.0" y="744.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">SPF tạo vận đơn</tspan><tspan x="1164.0" dy="16.1">giao TV cồng kềnh</tspan></text>
+<rect x="1035.0" y="706.5" width="38" height="15" rx="7" fill="#7030a0"/>
+<text x="1054.0" y="717.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+<circle cx="244.0" cy="810.5" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
+<text x="270.0" y="807.5" font-size="12" fill="#b71c1c" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Kết thúc</tspan><tspan x="270.0" dy="14.6">(→ Tổng quan S-06)</tspan></text>
+<rect x="707.0" y="646.5" width="33.6" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="711.0" y="657.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">True</text>
+<g transform="rotate(-90 32.0 518.0)"><rect x="-44.5" y="509.0" width="152.9" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="520.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">False · Popup ERR-TV-01</text></g>
+<line x1="14" y1="861.0" x2="1412" y2="861.0" stroke="#d0d0d0"/>
+<circle cx="28" cy="881.0" r="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.6"/>
+<text x="42" y="885.0" font-size="11.5" fill="#444">Start Event</text>
+<circle cx="135.3" cy="881.0" r="8" fill="#ffebee" stroke="#c62828" stroke-width="3"/>
+<text x="149.3" y="885.0" font-size="11.5" fill="#444">End Event</text>
+<rect x="222.0" y="873.0" width="26" height="16" rx="4" fill="#fff" stroke="#2e75b6" stroke-width="1.5"/>
+<text x="254.0" y="885.0" font-size="11.5" fill="#444">Task</text>
+<rect x="295.2" y="874.0" width="30" height="14" rx="7" fill="#2e75b6"/><text x="310.2" y="885.0" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<text x="331.2" y="885.0" font-size="11.5" fill="#444">Mã bước (S-xx)</text>
+<polygon points="444.4,872.0 453.4,881.0 444.4,890.0 435.4,881.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="444.4" y="885.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">×</text>
+<text x="459.4" y="885.0" font-size="11.5" fill="#444">Exclusive Gateway</text>
+<polygon points="591.5,872.0 600.5,881.0 591.5,890.0 582.5,881.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="591.5" y="885.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">+</text>
+<text x="606.5" y="885.0" font-size="11.5" fill="#444">Parallel Gateway</text>
+<path d="M723.3,881.0 L749.3,881.0" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="757.3" y="885.0" font-size="11.5" fill="#444">Sequence Flow</text>
+<path d="M855.1999999999999,881.0 L881.1999999999999,881.0" stroke="#c62828" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+<text x="889.1999999999999" y="885.0" font-size="11.5" fill="#444">Luồng quay lại / lỗi</text>
+<path d="M1039.1999999999998,873.0 L1031.1999999999998,873.0 L1031.1999999999998,889.0 L1039.1999999999998,889.0" fill="none" stroke="#bf8f00" stroke-width="1.6"/>
+<text x="1045.1999999999998" y="885.0" font-size="11.5" fill="#444">Text Annotation</text>
 </svg>
