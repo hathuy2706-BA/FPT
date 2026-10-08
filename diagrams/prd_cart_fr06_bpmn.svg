@@ -11,7 +11,7 @@
 <text x="704.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">WEBSITE FPT.VN (FRONT-END)</text>
 <rect x="934" y="80" width="460" height="834" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
 <rect x="934" y="80" width="460" height="40" fill="#7030a0"/>
-<text x="1164.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">BACKEND &amp; TÍCH HỢP (FID · FCP · RADIUS)</text>
+<text x="1164.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">HỆ THỐNG (XỬ LÝ ĐƠN &amp; DỊCH VỤ)</text>
 <path d="M244.0,178.5 L244.0,194.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M379.0,225.5 L1164.0,225.5 L1164.0,259.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M1164.0,321.5 L1164.0,355.5 L839.0,355.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
@@ -19,10 +19,10 @@
 <path d="M379.0,420.5 L1164.0,420.5 L1164.0,454.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M1164.0,516.5 L1164.0,523.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M1164.0,577.5 L1164.0,615.5 L379.0,615.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1137.0,550.5 L32.0,550.5 L32.0,420.5 L109.0,420.5" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
+<path d="M1137.0,550.5 L54.0,550.5 L54.0,420.5 L109.0,420.5" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
 <path d="M379.0,615.5 L1164.0,615.5 L1164.0,653.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M1164.0,707.5 L1164.0,714.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1137.0,680.5 L32.0,680.5 L32.0,615.5 L109.0,615.5" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
+<path d="M1137.0,680.5 L54.0,680.5 L54.0,615.5 L109.0,615.5" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="7,4" marker-end="url(#ar)"/>
 <path d="M1164.0,776.5 L1164.0,810.5 L839.0,810.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <path d="M569.0,810.5 L244.0,810.5 L244.0,857.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
 <circle cx="244.0" cy="160.5" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
@@ -32,7 +32,7 @@
 <rect x="115.0" y="186.5" width="38" height="15" rx="7" fill="#1f4e78"/>
 <text x="134.0" y="197.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
 <rect x="1029.0" y="259.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="289.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Lưu item SA vào giỏ</tspan><tspan x="1164.0" dy="16.1">(Session FID)</tspan></text>
+<text x="1164.0" y="297.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Lưu gói dịch vụ vào giỏ</tspan></text>
 <rect x="1035.0" y="251.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1054.0" y="262.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
 <rect x="569.0" y="324.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
@@ -42,7 +42,7 @@
 <rect x="115.0" y="381.5" width="38" height="15" rx="7" fill="#1f4e78"/>
 <text x="134.0" y="392.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
 <rect x="1029.0" y="454.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="484.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">FCP: validate SĐT Internet</tspan><tspan x="1164.0" dy="16.1">FPT hiện hữu &amp; gói đã mua</tspan></text>
+<text x="1164.0" y="484.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Kiểm tra điều kiện SĐT</tspan><tspan x="1164.0" dy="16.1">(Đã có Internet FPT?)</tspan></text>
 <rect x="1035.0" y="446.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1054.0" y="457.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
 <polygon points="1164.0,523.5 1191.0,550.5 1164.0,577.5 1137.0,550.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
@@ -56,7 +56,7 @@
 <path d="M1156.0,672.5 L1172.0,688.5 M1172.0,672.5 L1156.0,688.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <text x="1182.9" y="652.5" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="1182.9" dy="0.0">Thanh toán</tspan><tspan x="1182.9" dy="14.6">thành công?</tspan></text>
 <rect x="1029.0" y="714.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="744.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Radius: Activate_Booster</tspan><tspan x="1164.0" dy="16.1">kích hoạt UltraFast</tspan></text>
+<text x="1164.0" y="744.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Kích hoạt tự động</tspan><tspan x="1164.0" dy="16.1">gói UltraFast</tspan></text>
 <rect x="1035.0" y="706.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1054.0" y="717.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-03</text>
 <rect x="569.0" y="779.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
@@ -65,10 +65,10 @@
 <text x="270.0" y="872.5" font-size="12" fill="#b71c1c" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Kết thúc</tspan><tspan x="270.0" dy="14.6">(→ Tổng quan S-06)</tspan></text>
 <rect x="1167.0" y="581.5" width="20.8" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
 <text x="1171.0" y="592.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Có</text>
-<g transform="rotate(-90 32.0 485.5)"><rect x="-35.0" y="476.5" width="134.0" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="488.0" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không · ERR-UF-01/02</text></g>
+<g transform="rotate(-90 54.0 485.5)"><rect x="-13.0" y="476.5" width="134.0" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="54.0" y="488.0" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không · ERR-UF-01/02</text></g>
 <rect x="1167.0" y="711.5" width="20.8" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
 <text x="1171.0" y="722.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Có</text>
-<g transform="rotate(-90 32.0 648.0)"><rect x="-19.2" y="639.0" width="102.5" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="32.0" y="650.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không → thử lại</text></g>
+<g transform="rotate(-90 54.0 648.0)"><rect x="2.8" y="639.0" width="102.5" height="15" fill="#fff" opacity="0.95" rx="2"/><text x="54.0" y="650.5" font-size="11.3" font-weight="bold" fill="#c62828" text-anchor="middle">Không → thử lại</text></g>
 <line x1="14" y1="926.0" x2="1412" y2="926.0" stroke="#d0d0d0"/>
 <circle cx="28" cy="946.0" r="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.6"/>
 <text x="42" y="950.0" font-size="11.5" fill="#444">Start Event</text>

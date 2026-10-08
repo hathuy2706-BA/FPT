@@ -597,8 +597,7 @@ build("fr08",
           "b4": (2, 10, "l", "task", "PENDING: KTV\ngiao lắp & thu\ntiền COD"),
           "b3": (2, 10, "r", "task", "INSTANT: VNPAY OK\n→ FPT Play active\n+ SMS mật khẩu"),
           "g3": (2, 11, "l", "gw", "Thu tiền\nthành công?", {"lp": "tr"}),
-                    "end": (1, 14, "c", "end", "Hoàn tất
-đơn hàng"),
+          "end": (1, 14, "c", "end", "Hoàn tất\\nđơn hàng"),
       },
       [
           ("start", "k1", ""), ("k1", "b1", ""), ("b1", "f1", "", "VH"), ("f1", "k2", ""),
