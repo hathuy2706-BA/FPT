@@ -35,21 +35,21 @@ digraph G {
     start -> add_cart;
     add_cart -> check_type;
 
-    check_type -> req_phone [xlabel=" Có YC địa chỉ\nhoặc Hỗn hợp "];
-    check_type -> req_address [xlabel=" Không YC địa chỉ "];
+    check_type:w -> req_phone:n [label=" Có YC địa chỉ\nhoặc Hỗn hợp "];
+    check_type:e -> req_address:n [label=" Không YC địa chỉ "];
 
-    req_phone -> payment;
-    req_address -> payment;
+    req_phone:s -> payment:n;
+    req_address:s -> payment:n;
 
-    payment -> check_activation [xlabel=" Hoàn tất "];
+    payment:s -> check_activation:n [label=" Hoàn tất "];
 
-    check_activation -> activate [xlabel=" Có "];
-    check_activation -> show_thanks_no_activate [xlabel=" Không "];
+    check_activation:w -> activate:n [label=" Có "];
+    check_activation:e -> show_thanks_no_activate:n [label=" Không "];
     
-    activate -> show_thanks_activate;
+    activate:s -> show_thanks_activate:n;
 
-    show_thanks_activate -> end_node;
-    show_thanks_no_activate -> end_node;
+    show_thanks_activate:s -> end_node:n;
+    show_thanks_no_activate:s -> end_node:n;
 
     { rank=same; req_phone; req_address; }
     { rank=same; activate; show_thanks_no_activate; }
