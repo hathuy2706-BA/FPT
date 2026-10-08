@@ -1,0 +1,66 @@
+digraph G {
+    bgcolor="#FFFFFF";
+    rankdir=TB;
+    splines=ortho;
+    nodesep=1.0;
+    ranksep=0.6;
+    newrank=true;
+    compound=true;
+    fontname="Inter";
+    
+    // Global Edge Style
+    edge [fontname="Inter", fontsize=11, color="#94A3B8", penwidth=2.0, arrowsize=0.7];
+    
+    // Global Node Style
+    node [fontname="Inter", fontsize=13, fontcolor="#1E293B", penwidth=2.0];
+
+    // Circles (Bắt đầu / Kết thúc)
+    node [shape=circle, width=1.1, height=1.1, fixedsize=true, style="filled", fillcolor="#EEF2FF", color="#4564ED"];
+    start [label="Bắt đầu"];
+    
+    node [fillcolor="#ECFDF3", color="#17B26A"];
+    end_node [label="Kết thúc"];
+
+    // Diamonds (Decision Nodes)
+    node [shape=diamond, width=1.8, height=1.8, fixedsize=true, fillcolor="#FFFAEB", color="#F79009"];
+    check_type [label="Loại SPDV?"];
+    check_activation [label="SPDV có\nkích hoạt?"];
+
+    // Boxes (Process Nodes)
+    node [shape=box, style="filled,rounded", width=3.4, height=0.7, fixedsize=true, fillcolor="#FFFFFF", color="#4564ED"];
+    add_cart [label="KH add giỏ mua hàng"];
+    req_phone [label="Yêu cầu nhập SĐT"];
+    req_address [label="Yêu cầu nhập địa chỉ"];
+    payment [label="Thanh toán"];
+    activate [label="Kích hoạt SPDV"];
+    show_thanks_activate [label="Trả thông tin kích hoạt\npage Hoàn tất"];
+    show_thanks_no_activate [label="Hiển thị page Hoàn tất"];
+
+    // ============ ROUTING ============
+    
+    start -> add_cart;
+    add_cart -> check_type;
+
+    // T-Branching from check_type
+    check_type:w -> req_phone:n [xlabel="Có YC địa chỉ\nhoặc Hỗn hợp", fontcolor="#64748B"];
+    check_type:e -> req_address:n [xlabel="Không YC địa chỉ", fontcolor="#64748B"];
+
+    // Merging into payment
+    req_phone:s -> payment:n;
+    req_address:s -> payment:n;
+
+    payment -> check_activation [xlabel="Hoàn tất", fontcolor="#64748B"];
+
+    // T-Branching from check_activation
+    check_activation:w -> activate:n [xlabel="Có", fontcolor="#64748B"];
+    check_activation:e -> show_thanks_no_activate:n [xlabel="Không", fontcolor="#64748B"];
+    
+    // Merging into end_node
+    activate:s -> show_thanks_activate:n;
+    show_thanks_activate:s -> end_node:n;
+    show_thanks_no_activate:s -> end_node:n;
+
+    // Alignment guarantees
+    { rank=same; req_phone; req_address; }
+    { rank=same; activate; show_thanks_no_activate; }
+}
