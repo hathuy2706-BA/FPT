@@ -2,45 +2,54 @@ digraph G {
     bgcolor="white";
     rankdir=TB;
     splines=ortho;
-    nodesep=1.0;
-    ranksep=1.0;
+    nodesep=1.2;
+    ranksep=0.8;
     newrank=true;
     compound=true;
     fontname="Times New Roman";
     
-    node [fontname="Times New Roman", fontsize=13, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.5, margin=0.15];
+    // Default edge style
     edge [fontname="Times New Roman", fontsize=12, color="#555555", penwidth=1.2];
 
-    start [label="Bắt đầu: Mua hàng\n(Luồng Giỏ Hàng)", shape=oval, style="filled,bold", fillcolor="#E6F2FF", color="#2563EB", fontcolor="#1E3A8A", penwidth=2, margin=0.2];
-    
-    check_type [label="Loại Sản phẩm/Dịch vụ (SPDV)?", shape=diamond, width=1.5, height=1.5, color="#D97706", fillcolor="#FFFBEB"];
+    // Circles
+    node [fontname="Times New Roman", fontsize=13, style="filled,bold", shape=circle, width=1.2, height=1.2, fixedsize=true, fillcolor="#E6F2FF", color="#2563EB", fontcolor="#1E3A8A", penwidth=2];
+    start [label="Bắt đầu"];
+    end_node [label="Kết thúc", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#14532D"];
 
+    // Diamonds
+    node [shape=diamond, width=1.8, height=1.8, fixedsize=true, fillcolor="#FFFBEB", color="#D97706", fontcolor="#000000"];
+    check_type [label="Loại SPDV?"];
+    check_activation [label="SPDV có\nkích hoạt?"];
+
+    // Boxes
+    node [shape=box, style="rounded,filled", width=3.0, height=0.7, fixedsize=true, fillcolor="white", color="#4682B4", fontcolor="#000000", penwidth=1.5];
+    add_cart [label="KH add giỏ mua hàng"];
     req_phone [label="Yêu cầu nhập SĐT"];
-    req_address [label="Yêu cầu Địa chỉ"];
-    
+    req_address [label="Yêu cầu nhập địa chỉ"];
     payment [label="Thanh toán"];
-    
-    check_activation [label="Kiểm tra SPDV\ncó kích hoạt?", shape=diamond, width=1.5, height=1.5, color="#D97706", fillcolor="#FFFBEB"];
-    
     activate [label="Kích hoạt SPDV"];
-    
-    show_thanks_activate [label="Trả thông tin hiển thị\nPage Cảm ơn", shape=oval, style="filled,bold", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#14532D", penwidth=2];
-    show_thanks_no_activate [label="Hiển thị Page Cảm ơn", shape=oval, style="filled,bold", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#14532D", penwidth=2];
+    show_thanks_activate [label="Trả thông tin kích hoạt\npage Hoàn tất"];
+    show_thanks_no_activate [label="Hiển thị page Hoàn tất"];
 
-    start -> check_type;
+    // Relationships
+    start -> add_cart;
+    add_cart -> check_type;
 
-    check_type -> req_phone [xlabel=" Nhánh 1: Mua SPDV có YC địa chỉ\nhoặc Hỗn hợp SPDV "];
-    check_type -> req_address [xlabel=" Nhánh 2: Mua SPDV\nkhông YC địa chỉ "];
+    check_type -> req_phone [xlabel=" Có YC địa chỉ\nhoặc Hỗn hợp "];
+    check_type -> req_address [xlabel=" Không YC địa chỉ "];
 
     req_phone -> payment;
     req_address -> payment;
 
-    payment -> check_activation [label=" Hoàn tất thanh toán "];
+    payment -> check_activation [label=" Hoàn tất "];
 
-    check_activation -> activate [xlabel=" Có kích hoạt "];
-    check_activation -> show_thanks_no_activate [xlabel=" Không kích hoạt "];
+    check_activation -> activate [xlabel=" Có "];
+    check_activation -> show_thanks_no_activate [xlabel=" Không "];
     
     activate -> show_thanks_activate;
+
+    show_thanks_activate -> end_node;
+    show_thanks_no_activate -> end_node;
 
     { rank=same; req_phone; req_address; }
     { rank=same; activate; show_thanks_no_activate; }
