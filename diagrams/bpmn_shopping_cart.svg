@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1424" height="777" viewBox="0 0 1424 777" font-family="Arial, Helvetica, sans-serif">
+<rect width="1424" height="777" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#3a3a3a"/></marker><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#c62828"/></marker></defs>
+<text x="712.0" y="32" font-size="19" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN — LUỒNG MUA HÀNG CHUNG</text>
+<text x="712.0" y="56" font-size="12" fill="#595959" font-style="italic" text-anchor="middle">Sơ đồ tổng quát</text>
+<rect x="14" y="80" width="460" height="639" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.3"/>
+<rect x="14" y="80" width="460" height="40" fill="#1f4e78"/>
+<text x="244.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">KHÁCH HÀNG (CUSTOMER)</text>
+<rect x="474" y="80" width="460" height="639" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.3"/>
+<rect x="474" y="80" width="460" height="40" fill="#2e75b6"/>
+<text x="704.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">WEBSITE FPT.VN (FRONT-END)</text>
+<rect x="934" y="80" width="460" height="639" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
+<rect x="934" y="80" width="460" height="40" fill="#7030a0"/>
+<text x="1164.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">BACKEND &amp; TÍCH HỢP</text>
+<path d="M244.0,178.5 L244.0,194.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M244.0,256.5 L244.0,290.5 L677.0,290.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M677.0,290.5 L593.6,290.5 L593.6,324.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M731.0,290.5 L814.4,290.5 L814.4,324.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M593.6,386.5 L593.6,420.5 L379.0,420.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M814.4,386.5 L814.4,420.5 L379.0,420.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M244.0,451.5 L244.0,485.5 L677.0,485.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M704.0,512.5 L704.0,550.5 L950.6,550.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M704.0,512.5 L704.0,550.5 L711.4,550.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M1053.6,581.5 L1053.6,615.5 L696.6,615.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M593.6,646.5 L593.6,680.5 L262.0,680.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M814.4,581.5 L814.4,680.5 L262.0,680.5" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<circle cx="244.0" cy="160.5" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="270.0" y="164.8" font-size="12" fill="#1b5e20" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Bắt đầu</tspan></text>
+<rect x="109.0" y="194.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="230.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">KH add giỏ mua hàng</tspan></text>
+<polygon points="704.0,263.5 731.0,290.5 704.0,317.5 677.0,290.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
+<path d="M696.0,282.5 L712.0,298.5 M712.0,282.5 L696.0,298.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
+<text x="722.9" y="277.3" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">Loại SPDV?</tspan></text>
+<rect x="490.6" y="324.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="593.6" y="360.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Yêu cầu nhập SĐT</tspan></text>
+<rect x="711.4" y="324.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="814.4" y="360.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="814.4" dy="0.0">Yêu cầu nhập địa chỉ</tspan></text>
+<rect x="109.0" y="389.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
+<text x="244.0" y="425.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="244.0" dy="0.0">Thanh toán</tspan></text>
+<polygon points="704.0,458.5 731.0,485.5 704.0,512.5 677.0,485.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
+<path d="M696.0,477.5 L712.0,493.5 M712.0,477.5 L696.0,493.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
+<text x="722.9" y="457.5" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">SPDV có</tspan><tspan x="722.9" dy="14.6">kích hoạt?</tspan></text>
+<rect x="950.5999999999999" y="519.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
+<text x="1053.6" y="555.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1053.6" dy="0.0">Kích hoạt SPDV</tspan></text>
+<rect x="711.4" y="519.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="814.4" y="555.3" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="814.4" dy="0.0">Hiển thị page Hoàn tất</tspan></text>
+<rect x="490.6" y="584.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
+<text x="593.6" y="612.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Trả thông tin kích hoạt</tspan><tspan x="593.6" dy="16.1">page Hoàn tất</tspan></text>
+<circle cx="244.0" cy="680.5" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
+<text x="270.0" y="684.8" font-size="12" fill="#b71c1c" font-weight="bold" text-anchor="start"><tspan x="270.0" dy="0.0">Kết thúc</tspan></text>
+<rect x="528.6" y="273.5" width="142.4" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="667.0" y="284.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="end">Có YC địa chỉ/Hỗn hợp</text>
+<rect x="737.0" y="273.5" width="110.4" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="741.0" y="284.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Không YC địa chỉ</text>
+<rect x="707.0" y="516.5" width="20.8" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="711.0" y="527.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Có</text>
+<rect x="707.0" y="516.5" width="40.0" height="15" fill="#ffffff" opacity="0.95" rx="2"/>
+<text x="711.0" y="527.5" font-size="11.8" font-weight="bold" fill="#3a3a3a" text-anchor="start">Không</text>
+<line x1="14" y1="731.0" x2="1412" y2="731.0" stroke="#d0d0d0"/>
+<circle cx="28" cy="751.0" r="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.6"/>
+<text x="42" y="755.0" font-size="11.5" fill="#444">Start Event</text>
+<circle cx="135.3" cy="751.0" r="8" fill="#ffebee" stroke="#c62828" stroke-width="3"/>
+<text x="149.3" y="755.0" font-size="11.5" fill="#444">End Event</text>
+<rect x="222.0" y="743.0" width="26" height="16" rx="4" fill="#fff" stroke="#2e75b6" stroke-width="1.5"/>
+<text x="254.0" y="755.0" font-size="11.5" fill="#444">Task</text>
+<rect x="295.2" y="744.0" width="30" height="14" rx="7" fill="#2e75b6"/><text x="310.2" y="755.0" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+<text x="331.2" y="755.0" font-size="11.5" fill="#444">Mã bước (S-xx)</text>
+<polygon points="444.4,742.0 453.4,751.0 444.4,760.0 435.4,751.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="444.4" y="755.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">×</text>
+<text x="459.4" y="755.0" font-size="11.5" fill="#444">Exclusive Gateway</text>
+<polygon points="591.5,742.0 600.5,751.0 591.5,760.0 582.5,751.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.5"/>
+<text x="591.5" y="755.5" font-size="12" font-weight="bold" fill="#7a5b00" text-anchor="middle">+</text>
+<text x="606.5" y="755.0" font-size="11.5" fill="#444">Parallel Gateway</text>
+<path d="M723.3,751.0 L749.3,751.0" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="757.3" y="755.0" font-size="11.5" fill="#444">Sequence Flow</text>
+<path d="M855.1999999999999,751.0 L881.1999999999999,751.0" stroke="#c62828" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#ar)"/>
+<text x="889.1999999999999" y="755.0" font-size="11.5" fill="#444">Luồng quay lại / lỗi</text>
+<path d="M1039.1999999999998,743.0 L1031.1999999999998,743.0 L1031.1999999999998,759.0 L1039.1999999999998,759.0" fill="none" stroke="#bf8f00" stroke-width="1.6"/>
+<text x="1045.1999999999998" y="755.0" font-size="11.5" fill="#444">Text Annotation</text>
+</svg>
