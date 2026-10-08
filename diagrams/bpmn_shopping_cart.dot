@@ -1,0 +1,70 @@
+digraph G {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=0.8;
+    newrank=true;
+    compound=true;
+    fontname="Arial";
+    
+    // Default node style for Customer/FE
+    node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor="white", color="#4682B4", penwidth=1.5, margin=0.15];
+    edge [fontname="Arial", fontsize=9, color="#555555", penwidth=1.2];
+
+    subgraph cluster_customer {
+        style=filled; color="#CBD5E1"; fillcolor="#F0F4F8"; penwidth=1; label=""; margin=10;
+        h_cust [label="KHÁCH HÀNG (CUSTOMER)", shape=box, style="filled", fillcolor="#28547B", color="#28547B", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.8, height=0.5, fixedsize=false];
+        
+        start [label="Bắt đầu\nGiỏ hàng", shape=circle, style="filled,bold", fillcolor="white", color="#22C55E", fontcolor="#16A34A", penwidth=2, width=0.8, fixedsize=true];
+        checkout [label="Tiến hành Checkout"];
+        input_phone [label="Nhập Số\nđiện thoại"];
+        input_address [label="Nhập Địa chỉ\nnhận hàng"];
+        payment [label="Thực hiện\nThanh toán"];
+        end_ok [label="Hoàn tất", shape=circle, style="filled,bold", fillcolor="white", color="#10B981", fontcolor="#059669", penwidth=2.5, width=0.8, fixedsize=true];
+        
+        h_cust -> start [style=invis];
+    }
+
+    subgraph cluster_system {
+        style=filled; color="#CBD5E1"; fillcolor="#E6F2FF"; penwidth=1; label=""; margin=10;
+        h_sys [label="HỆ THỐNG BÁN HÀNG", shape=box, style="filled", fillcolor="#4682B4", color="#4682B4", fontcolor="white", fontsize=11, fontname="Arial bold", width=2.8, height=0.5, fixedsize=false];
+        
+        req_phone [label="Yêu cầu\nnhập SĐT"];
+        gw_address [label="Kiểm tra\nYêu cầu Địa chỉ", shape=diamond, width=1.1, height=1.1, color="#D97706", fillcolor="#FFFBEB"];
+        req_address [label="Yêu cầu\nnhập Địa chỉ"];
+        init_payment [label="Khởi tạo\nThanh toán"];
+        gw_post [label="Xử lý sau\nThanh toán", shape=diamond, width=1.1, height=1.1, color="#D97706", fillcolor="#FFFBEB"];
+        activate_sa [label="Kích hoạt Dịch vụ\n(Instant/Pending)"];
+        create_shipping [label="Tạo Vận đơn\nGiao hàng"];
+        
+        h_sys -> req_phone [style=invis];
+    }
+    
+    { rank=same; h_cust; h_sys; }
+
+    { rank=same; checkout; req_phone; }
+    { rank=same; input_phone; gw_address; }
+    { rank=same; input_address; req_address; }
+    { rank=same; payment; init_payment; }
+
+    start -> checkout;
+    checkout -> req_phone;
+    req_phone -> input_phone;
+    input_phone -> gw_address;
+    
+    gw_address -> req_address [xlabel=" Có SP/DV\ncần địa chỉ "];
+    gw_address -> init_payment [xlabel=" Không cần\nđịa chỉ ", tailport=s, headport=n];
+    
+    req_address -> input_address;
+    input_address -> init_payment [tailport=s, headport=n];
+    
+    init_payment -> payment;
+    payment -> gw_post [xlabel=" Thành công "];
+    payment -> init_payment [xlabel=" Thất bại ", constraint=false];
+    
+    gw_post -> activate_sa [xlabel=" Có Dịch vụ (SA) "];
+    gw_post -> create_shipping [xlabel=" Có Thiết bị (SKU) "];
+    
+    activate_sa -> end_ok;
+    create_shipping -> end_ok;
+}
