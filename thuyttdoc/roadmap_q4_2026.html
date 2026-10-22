@@ -2,16 +2,11 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Product Roadmap Q4/2026 - Website & CMS FPT.vn</title>
+<title>Product Roadmap Q4/2026 (Active Scope) - Website & CMS FPT.vn</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #FFFFFF;
@@ -21,11 +16,10 @@
     margin: 0 auto;
   }
 
-  /* Header Section */
   .roadmap-header {
     border-bottom: 2px solid #E2E8F0;
     padding-bottom: 24px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -48,7 +42,15 @@
     border-radius: 6px;
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+  }
+
+  .clean-badge {
+    background: #059669;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
   }
 
   .header-left p {
@@ -57,7 +59,6 @@
     margin-top: 8px;
   }
 
-  /* Metrics Summary */
   .header-metrics {
     display: flex;
     gap: 16px;
@@ -72,21 +73,9 @@
     text-align: center;
   }
 
-  .metric-card .val {
-    font-size: 24px;
-    font-weight: 800;
-    color: #1E293B;
-  }
+  .metric-card .val { font-size: 24px; font-weight: 800; color: #1E293B; }
+  .metric-card .lbl { font-size: 12px; color: #64748B; font-weight: 600; text-transform: uppercase; margin-top: 2px; }
 
-  .metric-card .lbl {
-    font-size: 12px;
-    color: #64748B;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  /* Legend Bar */
   .legend-bar {
     display: flex;
     justify-content: space-between;
@@ -95,21 +84,11 @@
     border: 1px solid #E2E8F0;
     border-radius: 12px;
     padding: 14px 24px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
-  .legend-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .legend-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #475569;
-    text-transform: uppercase;
-  }
+  .legend-group { display: flex; align-items: center; gap: 12px; }
+  .legend-title { font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; }
 
   .badge {
     display: inline-flex;
@@ -121,43 +100,25 @@
     gap: 6px;
   }
 
-  /* Tag EPIC Colors */
-  .tag-cms {
-    background-color: #EEF2FF;
-    color: #4338CA;
-    border: 1px solid #C7D2FE;
-  }
+  .tag-cms { background-color: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
+  .tag-web { background-color: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
+  .tag-both { background-color: #CCFBF1; color: #0F766E; border: 1px solid #99F6E4; }
 
-  .tag-web {
-    background-color: #E0F2FE;
-    color: #0369A1;
-    border: 1px solid #BAE6FD;
-  }
+  .prio-p1 { background: #FEE2E2; color: #991B1B; }
+  .prio-p2 { background: #FEF3C7; color: #92400E; }
+  .prio-p3 { background: #E0E7FF; color: #3730A3; }
+  .prio-p4 { background: #F1F5F9; color: #475569; }
 
-  .tag-both {
-    background-color: #CCFBF1;
-    color: #0F766E;
-    border: 1px solid #99F6E4;
-  }
-
-  /* Priority Badges */
-  .prio-p1 { background: #FEE2E2; color: #991B1B; font-weight: 700; }
-  .prio-p2 { background: #FEF3C7; color: #92400E; font-weight: 700; }
-  .prio-p3 { background: #E0E7FF; color: #3730A3; font-weight: 700; }
-  .prio-p4 { background: #F1F5F9; color: #475569; font-weight: 700; }
-
-  /* Status Badges */
   .status-uat { background: #DCFCE7; color: #166534; }
   .status-dev { background: #DBEAFE; color: #1E40AF; }
   .status-doc { background: #F3E8FF; color: #6B21A8; }
   .status-new { background: #F1F5F9; color: #475569; }
 
-  /* Roadmap Grid */
   .roadmap-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
   .month-column {
@@ -182,24 +143,9 @@
   .month-11 { background: linear-gradient(180deg, #FAF5FF 0%, #FFFFFF 100%); border-top: 4px solid #8B5CF6; }
   .month-12 { background: linear-gradient(180deg, #ECFDF5 0%, #FFFFFF 100%); border-top: 4px solid #10B981; }
 
-  .month-title-wrap h2 {
-    font-size: 20px;
-    font-weight: 800;
-    color: #0F172A;
-  }
-
-  .month-sub {
-    font-size: 13px;
-    color: #64748B;
-    margin-top: 4px;
-    font-weight: 500;
-  }
-
-  .sprint-tags {
-    display: flex;
-    gap: 8px;
-  }
-
+  .month-title-wrap h2 { font-size: 20px; font-weight: 800; color: #0F172A; }
+  .month-sub { font-size: 13px; color: #64748B; margin-top: 4px; font-weight: 500; }
+  .sprint-tags { display: flex; gap: 8px; }
   .sprint-tag {
     background: #FFFFFF;
     border: 1px solid #CBD5E1;
@@ -219,7 +165,6 @@
     background: #F8FAFC;
   }
 
-  /* Story Card */
   .story-card {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
@@ -228,43 +173,17 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    gap: 8px;
   }
 
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .card-tags {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
-
-  .card-id {
-    font-size: 12px;
-    font-weight: 700;
-    color: #94A3B8;
-  }
-
-  .card-title {
-    font-size: 14.5px;
-    font-weight: 700;
-    color: #1E293B;
-    line-height: 1.35;
-  }
-
+  .card-top { display: flex; justify-content: space-between; align-items: center; }
+  .card-tags { display: flex; gap: 6px; align-items: center; }
+  .card-id { font-size: 12px; font-weight: 700; color: #94A3B8; }
+  .card-title { font-size: 14px; font-weight: 700; color: #1E293B; line-height: 1.35; }
   .card-desc {
-    font-size: 12.5px;
+    font-size: 12px;
     color: #64748B;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .card-bottom {
@@ -275,68 +194,36 @@
     border-top: 1px dashed #F1F5F9;
   }
 
-  .pic-badge {
-    font-size: 12px;
-    font-weight: 600;
-    color: #475569;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .pic-badge { font-size: 12px; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 4px; }
+  .progress-wrap { display: flex; align-items: center; gap: 8px; width: 90px; }
+  .progress-bar { flex-grow: 1; height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .progress-text { font-size: 11px; font-weight: 700; color: #64748B; min-width: 28px; text-align: right; }
 
-  .progress-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100px;
-  }
-
-  .progress-bar {
-    flex-grow: 1;
-    height: 6px;
-    background: #E2E8F0;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 3px;
-  }
-
-  .progress-text {
-    font-size: 11px;
-    font-weight: 700;
-    color: #64748B;
-    min-width: 28px;
-    text-align: right;
-  }
-
-  /* Operational Buffer Section */
   .buffer-section {
     background: #FFFBEB;
     border: 2px dashed #F59E0B;
     border-radius: 14px;
-    padding: 20px 24px;
+    padding: 18px 24px;
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
   }
 
   .buffer-icon-wrap {
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    height: 50px;
     background: #FDE68A;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 24px;
     flex-shrink: 0;
   }
 
   .buffer-content h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     color: #92400E;
     display: flex;
@@ -347,41 +234,33 @@
   .buffer-pill {
     background: #F59E0B;
     color: white;
-    padding: 2px 10px;
+    padding: 2px 8px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.5px;
   }
 
   .buffer-content p {
-    font-size: 13.5px;
+    font-size: 13px;
     color: #78350F;
-    margin-top: 6px;
-    line-height: 1.45;
+    margin-top: 4px;
+    line-height: 1.4;
   }
 
-  .buffer-items {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-
+  .buffer-items { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
   .buffer-item-tag {
     background: #FEF3C7;
     border: 1px solid #FCD34D;
     color: #92400E;
-    font-size: 12px;
-    padding: 4px 10px;
+    font-size: 11.5px;
+    padding: 3px 8px;
     border-radius: 6px;
     font-weight: 600;
   }
 
-  /* Footer */
   .roadmap-footer {
-    margin-top: 24px;
-    padding-top: 16px;
+    margin-top: 20px;
+    padding-top: 14px;
     border-top: 1px solid #E2E8F0;
     display: flex;
     justify-content: space-between;
@@ -398,16 +277,17 @@
       <h1>
         <span class="fpt-badge">FPT TELECOM</span>
         PRODUCT ROADMAP — QUÝ 4/2026
+        <span class="clean-badge">ĐÃ LỌC BỎ DONE & PENDING</span>
       </h1>
-      <p>Hệ thống Website FPT.vn & Quản trị Nội dung CMS | Lập lịch theo chuẩn Agile/Scrum & Cơ chế Vận hành Linh hoạt</p>
+      <p>Lộ trình thực thi 29 User Stories Active (Tháng 10, Tháng 11, Tháng 12) | Cơ chế Quỹ dự phòng Vận hành 15-20%</p>
     </div>
     <div class="header-metrics">
       <div class="metric-card">
-        <div class="val">35</div>
-        <div class="lbl">Tổng US Quý 4</div>
+        <div class="val" style="color: #0F172A;">29</div>
+        <div class="lbl">Tổng US Active</div>
       </div>
       <div class="metric-card">
-        <div class="val" style="color: #3B82F6;">12</div>
+        <div class="val" style="color: #3B82F6;">6</div>
         <div class="lbl">Tháng 10 (M1)</div>
       </div>
       <div class="metric-card">
@@ -457,7 +337,7 @@
       <div class="month-header month-10">
         <div class="month-title-wrap">
           <h2>THÁNG 10 / 2026</h2>
-          <div class="month-sub">Foundation & Core Conversion (12 US)</div>
+          <div class="month-sub">Nền tảng Menu & Khung CMS (6 US Active)</div>
         </div>
         <div class="sprint-tags">
           <span class="sprint-tag">Sprint 19 (W1-2)</span>
@@ -467,69 +347,6 @@
       <div class="cards-container">
         
         <!-- US Card 1 -->
-        <div class="story-card">
-          <div class="card-top">
-            <div class="card-tags">
-              <span class="badge tag-cms">[CMS]</span>
-              <span class="badge prio-p1">P1</span>
-              <span class="badge status-uat">UAT</span>
-            </div>
-            <span class="card-id">US-08</span>
-          </div>
-          <div class="card-title">Nội dung hiển thị Gói bán</div>
-          <div class="card-desc">Sync Core Data tự động, Enrich Tên/Thứ tự/Bullet points ưu đãi, Thư viện Badge, Toggle bật/tắt hiển thị gói.</div>
-          <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156</span>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
-              <span class="progress-text">85%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- US Card 2 -->
-        <div class="story-card">
-          <div class="card-top">
-            <div class="card-tags">
-              <span class="badge tag-cms">[CMS]</span>
-              <span class="badge prio-p1">P1</span>
-              <span class="badge status-uat">UAT</span>
-            </div>
-            <span class="card-id">US-09</span>
-          </div>
-          <div class="card-title">Cấu hình hiển thị checkout</div>
-          <div class="card-desc">Cấu hình Form Checkout động (Toggle/Required/Drag-Drop), Validation Regex, Gán Add-ons & Quà tặng 0đ.</div>
-          <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156</span>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
-              <span class="progress-text">85%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- US Card 3 -->
-        <div class="story-card">
-          <div class="card-top">
-            <div class="card-tags">
-              <span class="badge tag-cms">[CMS]</span>
-              <span class="badge prio-p1">P1</span>
-              <span class="badge status-uat">UAT</span>
-            </div>
-            <span class="card-id">US-10</span>
-          </div>
-          <div class="card-title">Phương thức Thanh toán</div>
-          <div class="card-desc">Quản lý cổng FPT Pay, VNPay, MoMo, Visa/ATM, COD. Tích hợp Kill-Switch ngắt khẩn cấp khi gặp sự cố.</div>
-          <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156</span>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
-              <span class="progress-text">85%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- US Card 4 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -550,6 +367,69 @@
           </div>
         </div>
 
+        <!-- US Card 2 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-cms">[CMS]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-uat">UAT</span>
+            </div>
+            <span class="card-id">US-12</span>
+          </div>
+          <div class="card-title">Quản lý trang</div>
+          <div class="card-desc">Module quản trị cấu trúc trang tổng thể, tạo trang mới, cấu hình SEO meta, quản lý trạng thái xuất bản.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
+              <span class="progress-text">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US Card 3 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-cms">[CMS]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-uat">UAT</span>
+            </div>
+            <span class="card-id">US-13</span>
+          </div>
+          <div class="card-title">Quản lý section</div>
+          <div class="card-desc">Tạo và cấu hình các Section nội dung linh hoạt trên CMS phục vụ dựng trang nhanh.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
+              <span class="progress-text">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US Card 4 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-cms">[CMS]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-uat">UAT</span>
+            </div>
+            <span class="card-id">US-14</span>
+          </div>
+          <div class="card-title">Quản lý Block</div>
+          <div class="card-desc">Quản lý các khối thành phần (Block) tái sử dụng cho nhiều layout trang khác nhau.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
+              <span class="progress-text">85%</span>
+            </div>
+          </div>
+        </div>
+
         <!-- US Card 5 -->
         <div class="story-card">
           <div class="card-top">
@@ -558,10 +438,10 @@
               <span class="badge prio-p2">P2</span>
               <span class="badge status-uat">UAT</span>
             </div>
-            <span class="card-id">US-11</span>
+            <span class="card-id">US-15</span>
           </div>
-          <div class="card-title">Quản lý Badge/Tag</div>
-          <div class="card-desc">Thư viện Badge trực quan, gán linh hoạt nhãn Khuyến mãi, Best Seller, New trên các gói cước fpt.vn.</div>
+          <div class="card-title">Quản lý menu</div>
+          <div class="card-desc">Quản trị danh mục menu điều hướng, thứ tự cấp bậc cha-con, liên kết trang trên CMS.</div>
           <div class="card-bottom">
             <span class="pic-badge">👤 LongNH156</span>
             <div class="progress-wrap">
@@ -571,39 +451,13 @@
           </div>
         </div>
 
-        <!-- US Card 6-12 Grouped List -->
+        <!-- US Card 6 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
               <span class="badge tag-cms">[CMS]</span>
               <span class="badge prio-p2">P2</span>
-              <span class="badge status-uat">UAT (6 US)</span>
-            </div>
-            <span class="card-id">CMS-CORE</span>
-          </div>
-          <div class="card-title">Bộ Module Quản trị Nội dung Core CMS</div>
-          <div class="card-desc">
-            • US-12: Quản lý trang (Page Builder & Meta SEO)<br>
-            • US-13: Quản lý Section & US-14: Quản lý Block<br>
-            • US-15: Quản lý Menu & US-16: Quản lý Banner<br>
-            • US-17: Quản lý Popup ngữ cảnh
-          </div>
-          <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156</span>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: #10B981;"></div></div>
-              <span class="progress-text">85%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- US Card 12 -->
-        <div class="story-card">
-          <div class="card-top">
-            <div class="card-tags">
-              <span class="badge tag-cms">[CMS]</span>
-              <span class="badge prio-p2">P2</span>
-              <span class="badge status-new">Chờ xử lý</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
             </div>
             <span class="card-id">US-07</span>
           </div>
@@ -626,7 +480,7 @@
       <div class="month-header month-11">
         <div class="month-title-wrap">
           <h2>THÁNG 11 / 2026</h2>
-          <div class="month-sub">Enhancement & Merchandising (10 US)</div>
+          <div class="month-sub">Bán kèm, SEO & Merchandising (10 US Active)</div>
         </div>
         <div class="sprint-tags">
           <span class="sprint-tag">Sprint 21 (W1-2)</span>
@@ -635,7 +489,7 @@
       </div>
       <div class="cards-container">
 
-        <!-- US Card 1 -->
+        <!-- US 1 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -656,7 +510,28 @@
           </div>
         </div>
 
-        <!-- US Card 2 -->
+        <!-- US 2 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p1">P1</span>
+              <span class="badge status-doc">Phân tích</span>
+            </div>
+            <span class="card-id">US-QC</span>
+          </div>
+          <div class="card-title">Quản lý quảng cáo</div>
+          <div class="card-desc">Cấu hình các vị trí quảng cáo đối tác, banner tài trợ, banner chiến dịch trên website.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 SonLN11</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 30%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">30%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 3 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -667,7 +542,7 @@
             <span class="card-id">US-LDPLOCAL</span>
           </div>
           <div class="card-title">CMS Config LDP Local & SEO Schema</div>
-          <div class="card-desc">Quản trị tạo Landing Page theo Tỉnh/Thành, tự động sinh dữ liệu cấu trúc Schema và tối ưu Local SEO.</div>
+          <div class="card-desc">Tạo trang LDP theo vùng miền/tỉnh thành, tự động gắn Schema JSON-LD và tối ưu hóa SEO local.</div>
           <div class="card-bottom">
             <span class="pic-badge">👤 SonLN11</span>
             <div class="progress-wrap">
@@ -677,28 +552,7 @@
           </div>
         </div>
 
-        <!-- US Card 3 -->
-        <div class="story-card">
-          <div class="card-top">
-            <div class="card-tags">
-              <span class="badge tag-web">[Web]</span>
-              <span class="badge prio-p2">P2</span>
-              <span class="badge status-doc">Tiếp nhận</span>
-            </div>
-            <span class="card-id">US-CHARM</span>
-          </div>
-          <div class="card-title">Luồng bán kèm PK (Charm) Camera Play 4</div>
-          <div class="card-desc">Nghiệp vụ mua kèm phụ kiện: Tỷ lệ 1:1, tách dòng giá ưu đãi 0đ/phụ thu vs giá lẻ, cơ chế Best-deal thông minh.</div>
-          <div class="card-bottom">
-            <span class="pic-badge">👤 ThuyTT104</span>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 40%; background: #8B5CF6;"></div></div>
-              <span class="progress-text">40%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- US Card 4 -->
+        <!-- US 4 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -709,7 +563,7 @@
             <span class="card-id">US-BREADCRUMBS</span>
           </div>
           <div class="card-title">Quản lý Breadcrumbs trên Trang & LDP</div>
-          <div class="card-desc">Cấu hình Breadcrumb động theo cây điều hướng phân cấp, tối ưu trải nghiệm định vị và SEO Google bots.</div>
+          <div class="card-desc">Cấu hình thanh điều hướng Breadcrumb động theo cấu trúc cây thư mục, tối ưu UX và SEO.</div>
           <div class="card-bottom">
             <span class="pic-badge">👤 SonLN11</span>
             <div class="progress-wrap">
@@ -719,50 +573,128 @@
           </div>
         </div>
 
-        <!-- US Card 5 -->
+        <!-- US 5 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
-              <span class="badge tag-both">[CMS, Web]</span>
-              <span class="badge prio-p1">P1</span>
-              <span class="badge status-doc">Phân tích</span>
+              <span class="badge tag-web">[Web]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-doc">Tiếp nhận</span>
             </div>
-            <span class="card-id">US-QC</span>
+            <span class="card-id">US-CHARM</span>
           </div>
-          <div class="card-title">Quản lý Quảng cáo & Banner Đối tác</div>
-          <div class="card-desc">Quản trị các vị trí hiển thị quảng cáo thương mại, đo lường CTR, tích hợp linh hoạt theo chiến dịch.</div>
+          <div class="card-title">Luồng bán kèm PK (Charm) Cam Play 4</div>
+          <div class="card-desc">Nghiệp vụ mua kèm phụ kiện: Tỷ lệ 1:1, tách dòng giá ưu đãi 0đ/phụ thu vs giá lẻ, cơ chế Best-deal.</div>
           <div class="card-bottom">
-            <span class="pic-badge">👤 SonLN11</span>
+            <span class="pic-badge">👤 ThuyTT104</span>
             <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 30%; background: #8B5CF6;"></div></div>
-              <span class="progress-text">30%</span>
+              <div class="progress-bar"><div class="progress-fill" style="width: 40%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">40%</span>
             </div>
           </div>
         </div>
 
-        <!-- US Card 6-10 Summary Group -->
+        <!-- US 6 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
               <span class="badge tag-both">[CMS, Web]</span>
               <span class="badge prio-p2">P2</span>
-              <span class="badge status-doc">Phân tích (5 US)</span>
+              <span class="badge status-doc">Phân tích</span>
             </div>
-            <span class="card-id">TH11-ENHANCE</span>
+            <span class="card-id">US-18</span>
           </div>
-          <div class="card-title">Tối ưu Trải nghiệm & SEO Kéo thả</div>
-          <div class="card-desc">
-            • US-18: Quản lý FAQ & Structured Data<br>
-            • US-URL: Quản lý Friendly URL & 301 Redirect<br>
-            • US-SECTIONLIB: Thư viện Section mở rộng LDP<br>
-            • US-GIFT: Luồng quà tặng Mũ bảo hiểm (P3)<br>
-            • US-28: [NBA Trigger] Phối hợp Popup & Web Push (P4)
-          </div>
+          <div class="card-title">Quản lý FAQ</div>
+          <div class="card-desc">Quản trị danh mục câu hỏi thường gặp theo chủ đề sản phẩm/dịch vụ, hỗ trợ tìm kiếm và FAQ schema.</div>
           <div class="card-bottom">
-            <span class="pic-badge">👤 SonLN11 / ThuyTT104</span>
+            <span class="pic-badge">👤 SonLN11</span>
             <div class="progress-wrap">
               <div class="progress-bar"><div class="progress-fill" style="width: 25%; background: #8B5CF6;"></div></div>
               <span class="progress-text">25%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 7 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-doc">Phân tích</span>
+            </div>
+            <span class="card-id">US-URL</span>
+          </div>
+          <div class="card-title">Quản lý URL</div>
+          <div class="card-desc">Quy hoạch cấu trúc URL thân thiện (Friendly URL), cấu hình 301 Redirect và kiểm soát duplicate URL.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 SonLN11</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 25%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">25%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 8 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-doc">Phân tích</span>
+            </div>
+            <span class="card-id">US-SECTIONLIB</span>
+          </div>
+          <div class="card-title">Thư viện section mở rộng LDP kéo thả</div>
+          <div class="card-desc">Bổ sung kho Section component mẫu (Pricing table, Hero form, Feedback, Video review) để kéo thả LDP.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 SonLN11</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 25%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">25%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 9 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-web">[Web]</span>
+              <span class="badge prio-p3">P3</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
+            </div>
+            <span class="card-id">US-GIFT</span>
+          </div>
+          <div class="card-title">Luồng quà tặng (Mũ bảo hiểm)</div>
+          <div class="card-desc">Tích hợp luồng quà tặng hiện vật theo chương trình kích cầu đăng ký Internet/Camera toàn trình.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 ThuyTT104</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 10%; background: #94A3B8;"></div></div>
+              <span class="progress-text">10%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 10 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-web">[Web]</span>
+              <span class="badge prio-p4">P4</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
+            </div>
+            <span class="card-id">US-28</span>
+          </div>
+          <div class="card-title">[NBA Phase 4] Trigger Popup & Web Push</div>
+          <div class="card-desc">Kết nối API hệ thống Next Best Action (NBA) để kích hoạt popup ngữ cảnh và thông báo Web Push.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 ThuyTT104</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 10%; background: #94A3B8;"></div></div>
+              <span class="progress-text">10%</span>
             </div>
           </div>
         </div>
@@ -775,7 +707,7 @@
       <div class="month-header month-12">
         <div class="month-title-wrap">
           <h2>THÁNG 12 / 2026</h2>
-          <div class="month-sub">Campaigns & Full-Funnel Cart (13 US)</div>
+          <div class="month-sub">Giỏ hàng, Chiến dịch NHA & Ads (13 US Active)</div>
         </div>
         <div class="sprint-tags">
           <span class="sprint-tag">Sprint 23 (W1-2)</span>
@@ -784,7 +716,7 @@
       </div>
       <div class="cards-container">
 
-        <!-- US Card 1 -->
+        <!-- US 1 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -795,7 +727,7 @@
             <span class="card-id">US-47</span>
           </div>
           <div class="card-title">Luồng giỏ hàng trên kênh (Unified Cart)</div>
-          <div class="card-desc">Kiến trúc Giỏ hàng toàn trình fpt.vn: Mua gói cước kèm thiết bị Camera/Access Point, tính toán khuyến mãi real-time.</div>
+          <div class="card-desc">Kiến trúc Giỏ hàng toàn trình fpt.vn: Mua gói cước kèm thiết bị Camera/Access Point, tính khuyến mãi real-time.</div>
           <div class="card-bottom">
             <span class="pic-badge">👤 ThuyTT104</span>
             <div class="progress-wrap">
@@ -805,13 +737,76 @@
           </div>
         </div>
 
-        <!-- US Card 2 -->
+        <!-- US 2 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-doc">Tiếp nhận</span>
+            </div>
+            <span class="card-id">US-NEWS</span>
+          </div>
+          <div class="card-title">Quản lý tin tức</div>
+          <div class="card-desc">Hệ thống tin tức hoàn chỉnh: danh mục tin, bài viết chuyên sâu, tin khuyến mãi, gắn tag sản phẩm.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">20%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 3 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-cms">[CMS]</span>
+              <span class="badge prio-p2">P2</span>
+              <span class="badge status-doc">Tiếp nhận</span>
+            </div>
+            <span class="card-id">US-AUTHOR</span>
+          </div>
+          <div class="card-title">Quản lý Profile Tác giả</div>
+          <div class="card-desc">Quản lý trang hồ sơ chuyên gia / tác giả tin tức (E-E-A-T chuẩn Google), liên kết mạng xã hội và bài viết.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">20%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 4 -->
+        <div class="story-card">
+          <div class="card-top">
+            <div class="card-tags">
+              <span class="badge tag-both">[Web, CMS]</span>
+              <span class="badge prio-p3">P3</span>
+              <span class="badge status-doc">Phân tích</span>
+            </div>
+            <span class="card-id">US-26</span>
+          </div>
+          <div class="card-title">Link chạy Ads Performance về CMS mới</div>
+          <div class="card-desc">Quy hoạch và chuyển giao toàn bộ URL chạy ads của Marketing sang hạ tầng CMS mới để tracking đồng bộ.</div>
+          <div class="card-bottom">
+            <span class="pic-badge">👤 LongNH156 / SonLN11</span>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: #8B5CF6;"></div></div>
+              <span class="progress-text">20%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- US 5 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
               <span class="badge tag-web">[Web]</span>
               <span class="badge prio-p3">P3</span>
-              <span class="badge status-new">Chờ xử lý</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
             </div>
             <span class="card-id">US-48</span>
           </div>
@@ -826,7 +821,7 @@
           </div>
         </div>
 
-        <!-- US Card 3 -->
+        <!-- US 6 - 11: 6 LDP Campaign Group -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
@@ -834,15 +829,13 @@
               <span class="badge prio-p2">P2</span>
               <span class="badge status-new">6 Landing Pages</span>
             </div>
-            <span class="card-id">CAMPAIGN-NHA</span>
+            <span class="card-id">CAMPAIGN-LDP</span>
           </div>
-          <div class="card-title">Hệ thống Landing Page Chiến dịch NHA & Fcitizen</div>
+          <div class="card-title">Chuỗi 6 Landing Pages Chiến dịch NHA & Fcitizen</div>
           <div class="card-desc">
-            • US-40: Trang LDP Ngoại Hạng Anh (NHA)<br>
-            • US-41: Lịch thi đấu NHA & US-42: Bảng xếp hạng NHA<br>
-            • US-43: Trang LDP NHA-SA (Kênh Đại lý Bán hàng)<br>
-            • US-38: Trang LDP Chữ ký số CSCA<br>
-            • US-39: Trang LDP FPT Citizen
+            • US-40: LDP Ngoại Hạng Anh (NHA) & US-41: Lịch thi đấu NHA<br>
+            • US-42: Bảng xếp hạng NHA & US-43: LDP NHA - SA (Kênh đại lý)<br>
+            • US-38: LDP Chữ ký số CSCA & US-39: LDP FPT Citizen
           </div>
           <div class="card-bottom">
             <span class="pic-badge">👤 SonLN11</span>
@@ -853,48 +846,44 @@
           </div>
         </div>
 
-        <!-- US Card 4 -->
+        <!-- US 12 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
-              <span class="badge tag-cms">[CMS]</span>
-              <span class="badge prio-p2">P2</span>
-              <span class="badge status-doc">Tiếp nhận</span>
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p4">P4</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
             </div>
-            <span class="card-id">US-NEWS-AUTH</span>
+            <span class="card-id">US-27</span>
           </div>
-          <div class="card-title">Quản lý Tin tức & Profile Tác giả</div>
-          <div class="card-desc">Quy hoạch phân hệ Tin tức chuyên sâu, bài viết công nghệ và trang Hồ sơ tác giả (Author Profile E-E-A-T).</div>
+          <div class="card-title">Bổ sung trang "Combo Internet Camera"</div>
+          <div class="card-desc">Thiết kế & dựng trang bán hàng chuyên biệt gói tích hợp Internet + FPT Camera trọn gói gia đình.</div>
           <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156</span>
+            <span class="pic-badge">👤 SonLN11</span>
             <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: #8B5CF6;"></div></div>
-              <span class="progress-text">20%</span>
+              <div class="progress-bar"><div class="progress-fill" style="width: 0%; background: #CBD5E1;"></div></div>
+              <span class="progress-text">0%</span>
             </div>
           </div>
         </div>
 
-        <!-- US Card 5 -->
+        <!-- US 13 -->
         <div class="story-card">
           <div class="card-top">
             <div class="card-tags">
-              <span class="badge tag-both">[Web, CMS]</span>
-              <span class="badge prio-p3">P3/P4</span>
-              <span class="badge status-doc">Tối ưu</span>
+              <span class="badge tag-both">[CMS, Web]</span>
+              <span class="badge prio-p4">P4</span>
+              <span class="badge status-new">Chưa tiếp nhận</span>
             </div>
-            <span class="card-id">TH12-OPTIM</span>
+            <span class="card-id">US-19</span>
           </div>
-          <div class="card-title">Tối ưu Chuyển đổi & Performance Ads</div>
-          <div class="card-desc">
-            • US-26: Quy hoạch link chạy Ads Performance về CMS mới<br>
-            • US-27: Bổ sung trang Combo Internet Camera (P4)<br>
-            • US-19: Công cụ Suggest Gói cước thông minh (P4)
-          </div>
+          <div class="card-title">Suggest gói cước thông minh</div>
+          <div class="card-desc">Công cụ gợi ý gói cước thông minh dựa trên nhu cầu người dùng (số lượng thiết bị, diện tích nhà, nhu cầu stream).</div>
           <div class="card-bottom">
-            <span class="pic-badge">👤 LongNH156 / SonLN11</span>
+            <span class="pic-badge">👤 SonLN11</span>
             <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill" style="width: 15%; background: #94A3B8;"></div></div>
-              <span class="progress-text">15%</span>
+              <div class="progress-bar"><div class="progress-fill" style="width: 0%; background: #CBD5E1;"></div></div>
+              <span class="progress-text">0%</span>
             </div>
           </div>
         </div>
@@ -927,7 +916,7 @@
 
   <!-- Footer -->
   <div class="roadmap-footer">
-    <div>Nguồn dữ liệu: Product Backlog Team Website & CMS FPT.vn | Phiên bản Roadmap Q4/2026 v1.0</div>
+    <div>Nguồn dữ liệu: Product Backlog Team Website & CMS FPT.vn | Scope: Active Items (Exclude Done & Pending)</div>
     <div>Cập nhật ngày 22/10/2026 | Phân tích bởi BA Senior & Product Owner & UI/UX Designer</div>
   </div>
 
