@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Product Roadmap Q4/2026 - Timeline Tiến Trình</title>
+<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Tháng</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -88,9 +88,10 @@
     align-items: center;
     padding: 3px 8px;
     border-radius: 5px;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
     gap: 4px;
+    flex-shrink: 0;
   }
 
   .tag-cms { background-color: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
@@ -105,26 +106,22 @@
   /* Status Badges chuẩn 5 trạng thái Google Sheet */
   .status-badge {
     font-size: 11px;
-    padding: 3px 9px;
+    padding: 2.5px 9px;
     border-radius: 5px;
     font-weight: 700;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
   }
-  /* 1. UAT - Xanh lá tươi */
   .st-uat { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
-  /* 2. DEV In Progress - Xanh dương FPT */
   .st-dev { background: #DBEAFE; color: #1E40AF; border: 1px solid #93C5FD; }
-  /* 3. Đang phân tích/Document - Tím sang trọng */
   .st-doc { background: #F3E8FF; color: #6B21A8; border: 1px solid #D8B4FE; }
-  /* 4. Đã tiếp nhận yêu cầu - Cam / Vàng hổ phách */
   .st-received { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
-  /* 5. Chưa tiếp nhận - Xám thanh lịch */
   .st-pending-receipt { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
 
   .pic-badge {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     color: #334155;
     background: #F1F5F9;
@@ -132,6 +129,7 @@
     border-radius: 4px;
     border: 1px solid #E2E8F0;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .cross-pill {
@@ -140,6 +138,7 @@
     padding: 2px 7px;
     border-radius: 4px;
     white-space: nowrap;
+    flex-shrink: 0;
   }
   .pill-10-11 { background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE; }
   .pill-11-12 { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
@@ -153,7 +152,7 @@
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
   }
 
-  /* Header Timeline */
+  /* Header Timeline: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) */
   .gantt-header-timeline {
     display: flex;
     background: #0F172A;
@@ -163,43 +162,24 @@
   .month-header-col {
     flex: 1;
     text-align: center;
-    border-right: 1px solid #334155;
+    border-right: 2px solid #334155;
+    padding: 16px 0;
   }
   .month-header-col:last-child { border-right: none; }
 
-  .month-header-top {
-    padding: 12px 0 10px 0;
-  }
-  .m-title { font-size: 16px; font-weight: 800; letter-spacing: 0.5px; }
-  .m-sub { font-size: 11.5px; color: #94A3B8; margin-top: 3px; font-weight: 600; }
+  .m-title { font-size: 17px; font-weight: 800; letter-spacing: 0.5px; }
+  .m-sub { font-size: 12px; color: #94A3B8; margin-top: 4px; font-weight: 600; }
 
   .h-m10 { background: linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%); }
   .h-m11 { background: linear-gradient(180deg, #581C87 0%, #6B21A8 100%); }
   .h-m12 { background: linear-gradient(180deg, #064E3B 0%, #047857 100%); }
 
-  /* Weeks sub-header */
-  .week-subheaders {
-    display: flex;
-    background: rgba(0, 0, 0, 0.22);
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-  .week-subhead {
-    flex: 1;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #E2E8F0;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .week-subhead:last-child { border-right: none; }
-
-  /* Gantt Rows - Chiều cao 66px */
+  /* Gantt Rows - Tối ưu chiều cao 74px để chữ và tag rộng rãi thoải mái */
   .gantt-row {
     display: flex;
     border-bottom: 1px solid #F1F5F9;
     align-items: center;
-    height: 66px;
+    height: 74px;
     position: relative;
     transition: background 0.15s ease;
   }
@@ -212,45 +192,43 @@
     display: flex;
   }
 
-  /* Guide columns - Nền pastel nhẹ nhàng */
+  /* Guide columns: CHỈ CÒN 3 CỘT THÁNG LỚN (BỎ TUẦN) */
   .month-guide {
     flex: 1;
     height: 100%;
     border-right: 2px solid #CBD5E1;
-    display: flex;
   }
   .month-guide:last-child { border-right: none; }
-  .g-m10 { background: rgba(239, 246, 255, 0.4); }
-  .g-m11 { background: rgba(250, 245, 255, 0.4); }
-  .g-m12 { background: rgba(236, 253, 245, 0.4); }
+  .g-m10 { background: rgba(239, 246, 255, 0.45); }
+  .g-m11 { background: rgba(250, 245, 255, 0.45); }
+  .g-m12 { background: rgba(236, 253, 245, 0.45); }
 
-  .week-col {
-    flex: 1;
-    height: 100%;
-    border-right: 1px dashed #E2E8F0;
-  }
-  .week-col:last-child { border-right: none; }
-
-  /* Gantt Card Bar - 2 Dòng */
+  /* Gantt Card Bar - 2 Dòng, Cố định không tràn viền */
   .gantt-card-wrap {
     position: absolute;
     top: 6px;
-    height: 54px;
+    height: 62px;
     padding: 0 4px;
     z-index: 2;
+    box-sizing: border-box;
   }
 
   .task-card {
     width: 100%;
     height: 100%;
     background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7px 14px;
+    padding: 8px 14px 10px 14px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
     border: 1px solid #CBD5E1;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   /* Viền điểm nhấn từng tháng */
@@ -285,13 +263,15 @@
     border-bottom: 1px solid #A7F3D0;
   }
 
-  /* Dòng 1: Tiêu đề + Độ ưu tiên ở cuối */
+  /* Dòng 1: Tiêu đề + Độ ưu tiên ở cuối (Được neo chặt không bị tràn viền) */
   .card-line-1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
+    min-width: 0;
+    height: 22px;
   }
 
   .line-1-left {
@@ -302,6 +282,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     flex-grow: 1;
+    min-width: 0;
   }
 
   .card-title {
@@ -311,13 +292,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
   }
 
   .line-1-right {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
 
-  /* Dòng 2: PIC + Status ở cuối dòng 2 */
+  /* Dòng 2: PIC + Status ở cuối dòng 2 (Không tràn viền, không bị che chân) */
   .card-line-2 {
     display: flex;
     justify-content: space-between;
@@ -325,21 +309,40 @@
     width: 100%;
     padding-top: 4px;
     border-top: 1px dashed rgba(226, 232, 240, 0.85);
-    gap: 12px;
+    gap: 8px;
+    min-width: 0;
+    height: 22px;
   }
 
   .line-2-left {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
+    gap: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-grow: 1;
+    min-width: 0;
   }
 
   .line-2-right {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
+  }
+
+  /* Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) */
+  .task-progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(226, 232, 240, 0.7);
+  }
+
+  .task-progress-bar {
+    height: 100%;
+    border-radius: 0 3px 3px 0;
   }
 
   /* Footer */
@@ -363,7 +366,7 @@
         <span class="fpt-badge">FPT TELECOM</span>
         PRODUCT ROADMAP — QUÝ 4/2026 (WEBSITE & CMS)
       </h1>
-      <p>Lộ trình thực thi 26 User Stories theo các cột Tháng & Tuần | Trạng thái đồng bộ chính xác với Backlog</p>
+      <p>Lộ trình thực thi 26 User Stories theo các cột Tháng | Thanh tiến độ màu Gradient theo trạng thái</p>
     </div>
     <div class="header-metrics">
       <div class="metric-card">
@@ -406,7 +409,7 @@
       <span class="badge" style="background: #F0FDF4; color: #065F46; border: 1px solid #BBF7D0;">Tháng 12 (8 Task)</span>
     </div>
     <div class="legend-group">
-      <span class="legend-title">Trạng thái Backlog:</span>
+      <span class="legend-title">Trạng thái (Tiến độ Gradient):</span>
       <span class="status-badge st-uat">UAT</span>
       <span class="status-badge st-dev">DEV In Progress</span>
       <span class="status-badge st-doc">Đang phân tích/Document</span>
@@ -415,65 +418,35 @@
     </div>
   </div>
 
-  <!-- Gantt Board -->
+  <!-- Gantt Board: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
   <div class="gantt-board">
     <div class="gantt-header-timeline">
       <div class="month-header-col h-m10">
-        <div class="month-header-top">
-          <div class="m-title">THÁNG 10 / 2026</div>
-          <div class="m-sub">Sprint 19 & Sprint 20</div>
-        </div>
-        <div class="week-subheaders">
-          <div class="week-subhead">Tuần 1</div>
-          <div class="week-subhead">Tuần 2</div>
-          <div class="week-subhead">Tuần 3</div>
-          <div class="week-subhead">Tuần 4</div>
-        </div>
+        <div class="m-title">THÁNG 10 / 2026</div>
+        <div class="m-sub">Sprint 19 & Sprint 20</div>
       </div>
       <div class="month-header-col h-m11">
-        <div class="month-header-top">
-          <div class="m-title">THÁNG 11 / 2026</div>
-          <div class="m-sub">Sprint 21 & Sprint 22</div>
-        </div>
-        <div class="week-subheaders">
-          <div class="week-subhead">Tuần 1</div>
-          <div class="week-subhead">Tuần 2</div>
-          <div class="week-subhead">Tuần 3</div>
-          <div class="week-subhead">Tuần 4</div>
-        </div>
+        <div class="m-title">THÁNG 11 / 2026</div>
+        <div class="m-sub">Sprint 21 & Sprint 22</div>
       </div>
       <div class="month-header-col h-m12">
-        <div class="month-header-top">
-          <div class="m-title">THÁNG 12 / 2026</div>
-          <div class="m-sub">Sprint 23 & Sprint 24</div>
-        </div>
-        <div class="week-subheaders">
-          <div class="week-subhead">Tuần 1</div>
-          <div class="week-subhead">Tuần 2</div>
-          <div class="week-subhead">Tuần 3</div>
-          <div class="week-subhead">Tuần 4</div>
-        </div>
+        <div class="m-title">THÁNG 12 / 2026</div>
+        <div class="m-sub">Sprint 23 & Sprint 24</div>
       </div>
     </div>
 
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 31.7%;">
+            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.45) 88%, rgba(255, 255, 255, 0) 88%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-cms">[CMS]</span>
@@ -484,7 +457,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -494,6 +467,11 @@
                   <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 88%; background: linear-gradient(90deg, #4ADE80, #16A34A);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -501,21 +479,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 31.7%;">
+            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.45) 88%, rgba(255, 255, 255, 0) 88%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-cms">[CMS]</span>
@@ -526,7 +498,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -536,6 +508,11 @@
                   <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 88%; background: linear-gradient(90deg, #4ADE80, #16A34A);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -543,21 +520,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 31.7%;">
+            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.45) 88%, rgba(255, 255, 255, 0) 88%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-cms">[CMS]</span>
@@ -568,7 +539,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -578,6 +549,11 @@
                   <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 88%; background: linear-gradient(90deg, #4ADE80, #16A34A);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -585,21 +561,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 31.7%;">
+            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.22) 0%, rgba(34, 197, 94, 0.45) 88%, rgba(255, 255, 255, 0) 88%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-cms">[CMS]</span>
@@ -610,7 +580,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -620,6 +590,11 @@
                   <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 88%; background: linear-gradient(90deg, #4ADE80, #16A34A);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -627,21 +602,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 31.7%;">
+            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.45) 60%, rgba(255, 255, 255, 0) 60%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -652,7 +621,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -662,6 +631,11 @@
                   <span class="status-badge st-dev">DEV In Progress</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 60%; background: linear-gradient(90deg, #60A5FA, #2563EB);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -669,21 +643,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 65.0%;">
+            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -694,7 +662,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -704,6 +672,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -711,21 +684,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 65.0%;">
+            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -736,7 +703,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156</span>
@@ -746,6 +713,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -753,32 +725,26 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 65.0%;">
+            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.45) 60%, rgba(255, 255, 255, 0) 60%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
-                  <span class="card-title" title="Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL</span>
+                  <span class="card-title" title="Report: Ghi nhận thông tin báo cáo phase 2 – bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáo phase 2 – bộ báo cáo chuẩn cho ĐKOL</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p1">P1</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -788,6 +754,11 @@
                   <span class="status-badge st-dev">DEV In Progress</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 60%; background: linear-gradient(90deg, #60A5FA, #2563EB);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -795,32 +766,26 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 65.0%;">
+            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
-                  <span class="card-title" title="CMS config LDP Local - QT tạo LDP Local, SEO & Schema">CMS config LDP Local - QT tạo LDP Local, SEO & Schema</span>
+                  <span class="card-title" title="CMS config LDP Local – QT tạo LDP Local, SEO & Schema">CMS config LDP Local – QT tạo LDP Local, SEO & Schema</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p1">P1</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
@@ -830,6 +795,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -837,21 +807,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 0.8%; width: 65.0%;">
+            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -862,7 +826,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156, SonLN11</span>
@@ -872,6 +836,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -879,21 +848,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 31.7%;">
+            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -904,7 +867,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156, ThuyTT104</span>
@@ -914,6 +877,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -921,21 +889,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 31.7%;">
+            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
@@ -946,7 +908,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -956,6 +918,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -963,21 +930,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 31.7%;">
+            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
@@ -988,7 +949,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -998,6 +959,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1005,21 +971,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 31.7%;">
+            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -1030,7 +990,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
@@ -1040,6 +1000,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1047,21 +1012,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 31.7%;">
+            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
@@ -1072,7 +1031,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1082,6 +1041,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1089,21 +1053,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 65.0%;">
+            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
@@ -1114,7 +1072,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1124,6 +1082,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1131,21 +1094,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 65.0%;">
+            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.45) 25%, rgba(255, 255, 255, 0) 25%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -1156,7 +1113,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1166,6 +1123,11 @@
                   <span class="status-badge st-received">Đã tiếp nhận yêu cầu</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 25%; background: linear-gradient(90deg, #FBBF24, #D97706);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1173,21 +1135,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 34.1%; width: 65.0%;">
+            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.45) 25%, rgba(255, 255, 255, 0) 25%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-cms">[CMS]</span>
@@ -1198,7 +1154,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1208,6 +1164,11 @@
                   <span class="status-badge st-received">Đã tiếp nhận yêu cầu</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 25%; background: linear-gradient(90deg, #FBBF24, #D97706);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1215,21 +1176,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(168, 85, 247, 0.20) 0%, rgba(168, 85, 247, 0.42) 40%, rgba(255, 255, 255, 0) 40%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1240,7 +1195,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1250,6 +1205,11 @@
                   <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 40%; background: linear-gradient(90deg, #C084FC, #9333EA);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1257,21 +1217,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
@@ -1282,7 +1236,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1292,6 +1246,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1299,21 +1258,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1324,7 +1277,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1334,6 +1287,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1341,21 +1299,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1366,7 +1318,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
@@ -1376,6 +1328,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1383,21 +1340,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1408,7 +1359,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1418,6 +1369,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1425,21 +1381,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1450,7 +1400,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1460,6 +1410,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1467,21 +1422,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1492,7 +1441,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1502,6 +1451,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1509,21 +1463,15 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns -->
-          <div class="month-guide g-m10">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m11">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
-          <div class="month-guide g-m12">
-            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
-          </div>
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <div class="month-guide g-m10"></div>
+          <div class="month-guide g-m11"></div>
+          <div class="month-guide g-m12"></div>
 
-          <!-- Gantt Card Bar (2 Dòng) -->
-          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12">
-              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
+          <!-- Gantt Card Bar (2 Dòng, thanh tiến độ Gradient theo Status, không tràn viền) -->
+          <div class="gantt-card-wrap" style="left: 67.5%; width: 31.7%;">
+            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.35) 10%, rgba(255, 255, 255, 0) 10%);">
+              <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1, KHÔNG TRÀN] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
@@ -1534,7 +1482,7 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) ... [Status chuẩn ở cuối dòng 2] -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
@@ -1544,6 +1492,11 @@
                   <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
+
+              <!-- Thanh tiến độ Gradient ở đáy thẻ (dựa vào trạng thái, không hiện con số %) -->
+              <div class="task-progress-track">
+                <div class="task-progress-bar" style="width: 10%; background: linear-gradient(90deg, #CBD5E1, #94A3B8);"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1551,6 +1504,7 @@
     
   </div>
 
+  <!-- Footer -->
   <div class="roadmap-footer">
     <div>Nguồn dữ liệu: Backlog Website & CMS FPT.vn | Phạm vi Quý 4/2026 | Không bao gồm các task Done / Pending / Khung Buffer</div>
     <div>Cập nhật theo chuẩn UI/UX Designer & Product Owner | FPT Telecom Online Business</div>
