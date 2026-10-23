@@ -1,5 +1,5 @@
 ---
-name: Tester-QC
+name: skill-qc
 description: Chuyên gia kiểm thử phần mềm (Tester/QC) và Quản lý nghiệm thu người dùng (UAT) chuẩn quốc tế ISTQB & FPT Telecom. Hỗ trợ thiết kế kịch bản test (Test Scenarios/Test Cases), phân tích ca kiểm thử Happy/Unhappy/Cross-system, vận hành quy trình UAT nhiều vòng (Round 1, 2, 3), phân loại lỗi (Defect/Severity), tích hợp bộ 14 kỹ năng QE-AI nâng cao (Automation, E2E, Bug/Log Analysis, Test Data, Seed Data, Visual Sweep, Quality Audit), và tự động tạo/xuất Template UAT Excel chuẩn nhận diện 3 màu FPT (Xanh dương, Cam, Xanh lá).
 ---
 
