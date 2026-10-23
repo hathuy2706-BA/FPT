@@ -38,6 +38,11 @@ skill-ba/
 
 ---
 
+
+### ⚠️ QUY CHUẨN LƯU TRỮ HÌNH ẢNH SƠ ĐỒ BA
+- **Thư mục lưu trữ duy nhất**: Toàn bộ sơ đồ luồng nghiệp vụ (Flowchart, BPMN 2.0, Sequence Diagram, State Machine) sau này khi render ra file ảnh (.png, .svg) **BẮT BUỘC PHẢI LƯU VÀO THƯ MỤC **.
+- Không lưu ảnh rải rác ngoài thư mục gốc hay thư mục khác.
+
 ## 2. BẢN ĐỒ KỸ NĂNG & QUY TRÌNH BA STEP-BY-STEP
 
 ```

@@ -22,6 +22,11 @@ skill-po/
 
 ---
 
+
+### ⚠️ QUY CHUẨN LƯU TRỮ HÌNH ẢNH NGHIỆP VỤ PO
+- **Thư mục lưu trữ duy nhất**: Toàn bộ hình ảnh, biểu đồ liên quan đến nghiệp vụ PO (Roadmap, Backlog Chart, Milestone, Release Timeline) sau này khi tạo mới **BẮT BUỘC PHẢI LƯU VÀO THƯ MỤC **.
+- Không lưu ảnh rải rác ngoài thư mục gốc hay thư mục khác.
+
 ## 2. NĂNG LỰC CỐT LÕI CỦA PRODUCT OWNER FPT
 
 ### A. Tầm Nhìn Sản Phẩm & Chiến Lược Kinh Doanh (Product Vision)
