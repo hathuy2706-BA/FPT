@@ -34,7 +34,6 @@ skill-ba/
 │   ├── SKILL.md
 │   ├── plugin/
 │   └── scripts/
-└── ba-us-api                         # Tài liệu / Guideline tích hợp API & Spec cho BA
 ```
 
 ---
