@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Tháng (Đồng Bộ Dữ Liệu Backlog Mới Nhất)</title>
+<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Tháng</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -16,18 +16,18 @@
     margin: 0 auto;
   }
 
-  /* Header */
+  /* Header - Tinh gọn, bỏ dòng text phụ thừa theo yêu cầu */
   .roadmap-header {
     border-bottom: 2px solid #E2E8F0;
-    padding-bottom: 20px;
-    margin-bottom: 22px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
 
   .header-left h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     color: #0F172A;
     letter-spacing: -0.5px;
@@ -43,12 +43,6 @@
     border-radius: 6px;
     font-size: 14px;
     font-weight: 700;
-  }
-
-  .header-left p {
-    font-size: 14.5px;
-    color: #475569;
-    margin-top: 6px;
   }
 
   .header-metrics {
@@ -163,7 +157,7 @@
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
   }
 
-  /* Header Timeline: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) */
+  /* Header Timeline: CHỈ CÒN 3 CỘT THÁNG (ĐÃ BỎ TUẦN VÀ BỎ SPRINT) */
   .gantt-header-timeline {
     display: flex;
     background: #0F172A;
@@ -174,18 +168,17 @@
     flex: 1;
     text-align: center;
     border-right: 2px solid #334155;
-    padding: 16px 0;
+    padding: 18px 0;
   }
   .month-header-col:last-child { border-right: none; }
 
-  .m-title { font-size: 17px; font-weight: 800; letter-spacing: 0.5px; }
-  .m-sub { font-size: 12px; color: #94A3B8; margin-top: 4px; font-weight: 600; }
+  .m-title { font-size: 18px; font-weight: 800; letter-spacing: 0.8px; }
 
   .h-m10 { background: linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%); }
   .h-m11 { background: linear-gradient(180deg, #581C87 0%, #6B21A8 100%); }
   .h-m12 { background: linear-gradient(180deg, #064E3B 0%, #047857 100%); }
 
-  /* Gantt Rows - Chiều cao 74px rộng rãi thoải mái */
+  /* Gantt Rows - Chiều cao 74px */
   .gantt-row {
     display: flex;
     border-bottom: 1px solid #F1F5F9;
@@ -203,7 +196,7 @@
     display: flex;
   }
 
-  /* Guide columns: CHỈ CÒN 3 CỘT THÁNG LỚN (BỎ TUẦN) */
+  /* Guide columns: CHỈ CÒN 3 CỘT THÁNG LỚN */
   .month-guide {
     flex: 1;
     height: 100%;
@@ -312,7 +305,7 @@
     align-items: center;
   }
 
-  /* Dòng 2: PIC + Status ở cuối dòng 2 (Không tràn viền, không bị che chân) */
+  /* Dòng 2: PIC + Status ở cuối dòng 2 */
   .card-line-2 {
     display: flex;
     justify-content: space-between;
@@ -356,28 +349,27 @@
     border-radius: 0 3px 3px 0;
   }
 
-  /* Footer */
+  /* Footer - Rút gọn, thanh lịch, tinh tế theo yêu cầu */
   .roadmap-footer {
-    margin-top: 20px;
-    padding-top: 14px;
+    margin-top: 14px;
+    padding-top: 10px;
     border-top: 1px solid #E2E8F0;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 11.5px;
     color: #64748B;
   }
 </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header: Đã bỏ dòng lộ trình thực thi thừa theo yêu cầu -->
   <div class="roadmap-header">
     <div class="header-left">
       <h1>
         <span class="fpt-badge">FPT TELECOM</span>
         PRODUCT ROADMAP — QUÝ 4/2026 (WEBSITE & CMS)
       </h1>
-      <p>Lộ trình thực thi 26 User Stories | Cập nhật đồng bộ Backlog mới nhất | Sắp xếp ưu tiên P1 ➔ P4 | Tiến độ chia 8 phần bằng nhau</p>
     </div>
     <div class="header-metrics">
       <div class="metric-card">
@@ -451,27 +443,24 @@
     </div>
   </div>
 
-  <!-- Gantt Board: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, P1 XẾP LÊN ĐẦU TRONG MỖI MỐC) -->
+  <!-- Gantt Board: CHỈ CÒN 3 CỘT THÁNG (ĐÃ BỎ TUẦN VÀ BỎ SPRINT) -->
   <div class="gantt-board">
     <div class="gantt-header-timeline">
       <div class="month-header-col h-m10">
         <div class="m-title">THÁNG 10 / 2026</div>
-        <div class="m-sub">Sprint 19 & Sprint 20</div>
       </div>
       <div class="month-header-col h-m11">
         <div class="m-title">THÁNG 11 / 2026</div>
-        <div class="m-sub">Sprint 21 & Sprint 22</div>
       </div>
       <div class="month-header-col h-m12">
         <div class="m-title">THÁNG 12 / 2026</div>
-        <div class="m-sub">Sprint 23 & Sprint 24</div>
       </div>
     </div>
 
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -512,7 +501,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -553,7 +542,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -594,7 +583,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -635,7 +624,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -676,7 +665,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -717,7 +706,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -758,7 +747,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -799,7 +788,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -840,7 +829,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -881,7 +870,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -922,7 +911,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -963,7 +952,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1004,7 +993,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1045,7 +1034,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1086,7 +1075,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1127,7 +1116,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1168,7 +1157,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1209,7 +1198,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1250,7 +1239,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1291,7 +1280,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1332,7 +1321,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1373,7 +1362,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1414,7 +1403,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1455,7 +1444,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1496,7 +1485,7 @@
     
       <div class="gantt-row">
         <div class="timeline-cells">
-          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN) -->
+          <!-- Guide columns: CHỈ CÒN 3 CỘT THÁNG (BỎ TUẦN, BỎ SPRINT) -->
           <div class="month-guide g-m10"></div>
           <div class="month-guide g-m11"></div>
           <div class="month-guide g-m12"></div>
@@ -1537,10 +1526,10 @@
     
   </div>
 
-  <!-- Footer -->
+  <!-- Footer: Đã rút gọn tinh tế theo yêu cầu -->
   <div class="roadmap-footer">
-    <div>Nguồn dữ liệu: Backlog Website & CMS FPT.vn | Phạm vi Quý 4/2026 | Không bao gồm các task Done / Pending / Khung Buffer</div>
-    <div>Cập nhật theo chuẩn UI/UX Designer & Product Owner | FPT Telecom Online Business</div>
+    <div>Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)</div>
+    <div>FPT Telecom Online Business</div>
   </div>
 
 </body>
