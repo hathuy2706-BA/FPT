@@ -363,6 +363,16 @@ Skill này tích hợp sẵn bộ script Python tự động hóa hoàn toàn vi
     └── writing-skills/
 ```
 
+
+### 3. Kho Kịch Bản Kiểm Thử & Nghiệp Vụ Thực Tế FPT (Trong thư mục skills_qc/)
+Toàn bộ kịch bản test case và nghiệp vụ kiểm thử của dự án FPT-1 đã được đưa về tập trung tại :
+- **[Cẩm nang Master Test Cases FPT](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/FPT_TEST_CASES_MASTER_BOOK.md)**: Tra cứu nhanh toàn bộ test case & business rule 4 phân hệ.
+- **[Kịch bản Camera Play 4 & Charm](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/fpt-scenarios-camera-charm/Kich_Ban_Ky_Thuat_Play4_Charm.xlsx)**: 40+ kịch bản test mua kèm tỷ lệ 1:1, tách dòng, best-deal.
+- **[Kịch bản Internet & Truyền hình Combo](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/fpt-scenarios-internet-combo/Kich_Ban_Test_Internet_Combo.md)**: Các test cases ngoại lệ (Hết port, drop-off, đổi địa chỉ).
+- **[Kịch bản Mua Bán Thiết Bị](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/fpt-scenarios-thiet-bi/Kich_Ban_Test_Thiet_Bi.md)**: Giới hạn giỏ hàng, hết tồn kho, phí vận chuyển.
+- **[Kịch bản Dịch Vụ Số Standalone](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/fpt-scenarios-dich-vu-so-sa/Kich_Ban_Test_Dich_Vu_So_SA.md)**: Validate SĐT ngầm, tài khoản FPT Play hiện hữu, OTP retry.
+- **[Script chuẩn hóa kịch bản](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/fpt-test-scripts/update_kich_ban_chuan_biz.py)**: Script tự động validate và cập nhật kịch bản test.
+
 ### 2. Lệnh Tự Động Sinh File Excel Mẫu Mới
 Bất cứ khi nào bắt đầu một dự án mới hoặc cần một file UAT trắng chuẩn mực, chỉ cần chạy lệnh sau từ Terminal:
 
@@ -410,13 +420,13 @@ Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn 
 
 ### TRỤ CỘT 1: CHIẾN LƯỢC & HOẠCH ĐỊNH KIỂM THỬ (STRATEGY & PLANNING)
 
-#### 1. [`designing-test-strategy`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/designing-test-strategy/SKILL.md) — Hoạch Định Chiến Lược Kiểm Thử
+#### 1. [`designing-test-strategy`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/designing-test-strategy/SKILL.md) — Hoạch Định Chiến Lược Kiểm Thử
 - **Mục đích**: Lập chiến lược kiểm thử cho một tính năng lớn, Epic hoặc đợt phát hành mới; xây dựng **Test Charter** cho các buổi kiểm thử thăm dò (Exploratory Testing Session); xác định ma trận ưu tiên: *Những gì bắt buộc phải test sâu, những gì chỉ cần smoke test, và những gì có thể bỏ qua*.
 - **Cách áp dụng trong UAT FPT**:
   - Dùng khi bắt đầu dự án mới hoặc tính năng lớn (Impact High/Medium) để xác định rõ phạm vi cần đưa vào UAT.
   - Ngăn ngừa tình trạng: *"Viết dàn trải hàng trăm test case vụn vặt nhưng bỏ sót các rủi ro chết người liên quan đến tiền bạc, thanh toán và dữ liệu hợp đồng"*.
 
-#### 2. [`planning-e2e-coverage`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/planning-e2e-coverage/SKILL.md) — Hoạch Định Độ Bao Phủ End-to-End
+#### 2. [`planning-e2e-coverage`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/planning-e2e-coverage/SKILL.md) — Hoạch Định Độ Bao Phủ End-to-End
 - **Mục đích**: Quyết định hệ thống cần bao nhiêu ca kiểm thử E2E; phân tầng độ bao phủ (Tier 1: High/P0 - Golden Journeys; Tier 2: Medium/P1 - Branching Journeys; Tier 3: Low/P2 - Edge Cases); đánh giá độ bao phủ thực tế của bộ test hiện có so với toàn bộ luồng nghiệp vụ.
 - **Cách áp dụng trong UAT FPT**:
   - Lập bản đồ các luồng mua hàng và thanh toán trên fpt.vn (Ví dụ: Mua mới Internet, Nâng cấp băng thông, Mua kèm F-Safe/Camera).
@@ -426,21 +436,21 @@ Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn 
 
 ### TRỤ CỘT 2: SINH KỊCH BẢN & QUẢN TRỊ DỮ LIỆU KIỂM THỬ (TEST GENERATION & DATA)
 
-#### 3. [`generating-test-cases`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/generating-test-cases/SKILL.md) — Sinh Test Case Chuẩn Xác Bằng AI
+#### 3. [`generating-test-cases`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/generating-test-cases/SKILL.md) — Sinh Test Case Chuẩn Xác Bằng AI
 - **Mục đích**: Biến tài liệu yêu cầu (URD, PRD, User Story, Acceptance Criteria, API Specs) thành bộ kịch bản test case chuẩn mực với sự trợ giúp của AI.
 - **Cách áp dụng trong UAT FPT**:
   - Sinh trực tiếp các dòng test case để điền vào sheet `Report` theo đúng chuẩn cột: `NO.`, `MODULE`, `STEPS TO EXECUTE`, `EXPECTED RESULT`.
   - Ép cấu trúc sinh đầy đủ 3 nhóm: Happy path, Unhappy path (biên, lỗi người dùng) và Cross-system integration (gọi CRM, Billing, Gateway).
   - Tránh bẫy AI ảo giác: Mọi bước kiểm thử đều bám sát đúng quy tắc nghiệp vụ (BR) của dự án.
 
-#### 4. [`generating-test-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/generating-test-data/SKILL.md) — Sinh Dữ Liệu Kiểm Thử Đa Dạng
+#### 4. [`generating-test-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/generating-test-data/SKILL.md) — Sinh Dữ Liệu Kiểm Thử Đa Dạng
 - **Mục đích**: Sinh dữ liệu test giả lập có tính đại diện cao (Synthetic test data) cho UI, API, DB tests, bulk load datasets.
 - **Cách áp dụng trong UAT FPT**:
   - Sinh danh sách số điện thoại viễn thông Việt Nam hợp lệ (đầu 03, 05, 07, 08, 09) và không hợp lệ.
   - Sinh số CCCD/CMND chuẩn 12 số, email, địa chỉ lắp đặt theo 63 tỉnh thành Việt Nam.
   - Sinh dữ liệu ký tự Unicode tiếng Việt có dấu, khoảng trắng thừa, chuỗi XSS/SQL Injection để kiểm tra tính bảo mật của form nhập liệu fpt.vn.
 
-#### 5. [`managing-seed-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/managing-seed-data/SKILL.md) — Quản Trị Dữ Liệu Khởi Tạo (Seed Data) Idempotent
+#### 5. [`managing-seed-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/managing-seed-data/SKILL.md) — Quản Trị Dữ Liệu Khởi Tạo (Seed Data) Idempotent
 - **Mục đích**: Quản lý thư viện fixture/seed data cục bộ dùng chung cho môi trường dev và E2E; đảm bảo nguyên tắc **Idempotency** (chạy lại nhiều lần không sinh rác dữ liệu, không làm phình bảng dữ liệu, không trùng lặp khóa chính).
 - **Cách áp dụng trong UAT FPT**:
   - Tạo sẵn các gói cước Internet (Giga, Sky, Meta, F-Game), các dịch vụ gia tăng (F-Safe, FPT Play, Cloud Camera) trên môi trường Staging/UAT để mọi vòng test (Round 1, 2, 3) đều có dữ liệu chuẩn sẵn sàng mà không cần nhập tay lại từ đầu.
@@ -449,18 +459,18 @@ Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn 
 
 ### TRỤ CỘT 3: KIỂM THỬ TỰ ĐỘNG & VISUAL QA (AUTOMATION & VISUAL SWEEP)
 
-#### 6. [`writing-automation-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/writing-automation-tests/SKILL.md) — Viết Kịch Bản Test Tự Động (API & UI)
+#### 6. [`writing-automation-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/writing-automation-tests/SKILL.md) — Viết Kịch Bản Test Tự Động (API & UI)
 - **Mục đích**: Xây dựng bộ khung test tự động (Playwright, Cypress, Postman, Jest), chuyển đổi test case thủ công (Manual) thành kịch bản tự động hóa; kiểm thử API endpoints và hợp đồng dữ liệu.
 - **Cách áp dụng trong UAT FPT**:
   - Tự động hóa các API cốt lõi: API gửi SMS OTP, API xác thực số điện thoại, API tính cước khuyến mãi, API tạo Lead sang CRM.
   - Chạy regression tự động trước mỗi vòng UAT để phát hiện sớm các lỗi kỹ thuật trước khi bàn giao cho PO kiểm thử chấp nhận.
 
-#### 7. [`writing-e2e-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/writing-e2e-tests/SKILL.md) — Viết Kịch Bản Kiểm Thử E2E Trực Thực
+#### 7. [`writing-e2e-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/writing-e2e-tests/SKILL.md) — Viết Kịch Bản Kiểm Thử E2E Trực Thực
 - **Mục đích**: Viết các kịch bản End-to-End điều khiển trình duyệt thật (Real Browser) tương tác với backend và cơ sở dữ liệu thật; xử lý cơ chế bypass authentication, deep-link, xử lý triệt để bài toán **Flaky Test** (test lúc pass lúc fail do mạng hoặc timing).
 - **Cách áp dụng trong UAT FPT**:
   - Xây dựng kịch bản Golden Path E2E: Từ trang chủ fpt.vn ➔ Chọn gói cước ➔ Thêm dịch vụ bán kèm ➔ Nhập OTP ➔ Điền địa chỉ ➔ Thanh toán qua cổng thanh toán Sandbox ➔ Xác nhận đơn hàng thành công trên hệ thống.
 
-#### 8. [`capturing-ui-sweep`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/capturing-ui-sweep/SKILL.md) — Quét & Kiểm Tra Giao Diện Toàn Diện (Visual QA Sweep)
+#### 8. [`capturing-ui-sweep`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/capturing-ui-sweep/SKILL.md) — Quét & Kiểm Tra Giao Diện Toàn Diện (Visual QA Sweep)
 - **Mục đích**: Tự động chụp ảnh toàn bộ các màn hình của ứng dụng theo nhóm tính năng; sử dụng AI để quét và phát hiện các lỗi thị giác: vỡ layout, lệch hàng, tràn khung, text bị cắt xén, ảnh broken, empty-state xấu xí, sai lệch so với Design System.
 - **Cách áp dụng trong UAT FPT**:
   - Chụp toàn bộ luồng mua hàng và đăng ký dịch vụ trên cả 2 phiên bản Desktop và Mobile.
@@ -470,13 +480,13 @@ Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn 
 
 ### TRỤ CỘT 4: PHÂN TÍCH LỖI, NHẬT KÝ & THẨM ĐỊNH CHẤT LƯỢNG (DEFECT ANALYSIS & AUDIT)
 
-#### 9. [`analyzing-bugs-and-logs`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/analyzing-bugs-and-logs/SKILL.md) — Phân Tích Lỗi, Stack Trace & Nhật Ký Hệ Thống
+#### 9. [`analyzing-bugs-and-logs`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/analyzing-bugs-and-logs/SKILL.md) — Phân Tích Lỗi, Stack Trace & Nhật Ký Hệ Thống
 - **Mục đích**: Đọc và phân tích error logs, stack trace, mã lỗi 500/502/504; truy vết nguyên nhân gốc rễ (Root Cause Analysis - RCA); xác định chính xác file, hàm và điều kiện gây lỗi; viết Bug Report chuẩn mực có đầy đủ bước tái hiện (Reproduction Steps) và bằng chứng (Evidence).
 - **Cách áp dụng trong UAT FPT**:
   - Khi một test case bị `FAILED` tại cột `STATUS` (Sheet `Report`), kỹ năng này giúp Tester không chỉ ghi nhận *"Tính năng bị lỗi"* mà cung cấp chính xác: *"API `/api/v1/otp/verify` trả về 500 do NullPointerException tại hàm validatePhonePrefix với đầu số 05"*.
   - Giúp đội phát triển (ISC) nắm bắt ngay nguyên nhân và cập nhật cột `ACTION` = `DONE` nhanh chóng.
 
-#### 10. [`auditing-test-quality`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/auditing-test-quality/SKILL.md) — Thẩm Định Chất Lượng Bộ Test
+#### 10. [`auditing-test-quality`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/auditing-test-quality/SKILL.md) — Thẩm Định Chất Lượng Bộ Test
 - **Mục đích**: Đánh giá và kiểm toán chất lượng thực chất của một bộ test suite; vạch trần các ca test vô nghĩa (*Assertionless tests* - test chạy xanh lè nhưng không assert kết quả thực tế); phát hiện các lỗ hổng logic kiểm thử còn thiếu sót.
 - **Cách áp dụng trong UAT FPT**:
   - Kiểm toán lại toàn bộ sheet `Report` trước khi gửi cho PO: Đảm bảo không có dòng test case nào ghi chung chung kiểu *"Kiểm tra màn hình hoạt động bình thường"*, mà phải có điều kiện kiểm tra rõ ràng, có số liệu cụ thể.
@@ -485,22 +495,22 @@ Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn 
 
 ### TRỤ CỘT 5: CÔNG CỤ AI, PROMPTING & ĐÀO TẠO QE (AI TOOLING & COACHING)
 
-#### 11. [`prompting-for-qe`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/prompting-for-qe/SKILL.md) — Kỹ Thuật Viết Prompt Chuyên Biệt Cho QE/Tester
+#### 11. [`prompting-for-qe`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/prompting-for-qe/SKILL.md) — Kỹ Thuật Viết Prompt Chuyên Biệt Cho QE/Tester
 - **Mục đích**: Kỹ thuật xây dựng câu lệnh (Prompt Construction) chuẩn xác dành riêng cho các tác vụ kiểm thử phần mềm; chống lan man, chống bịa đặt dữ liệu, ép đầu ra theo bảng biểu có cấu trúc.
 - **Cách áp dụng trong UAT FPT**:
   - Dùng để tương tác với AI khi cần phân tích URD phức tạp và chuyển đổi thành bảng test case FPT: Cung cấp đầy đủ Role, Context, Constraints, Few-shot Examples và Output Format chuẩn Sheet `Report`.
 
-#### 12. [`building-test-tools-with-api`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/building-test-tools-with-api/SKILL.md) — Xây Dựng Công Cụ Kiểm Thử Tự Động Hóa Với API
+#### 12. [`building-test-tools-with-api`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/building-test-tools-with-api/SKILL.md) — Xây Dựng Công Cụ Kiểm Thử Tự Động Hóa Với API
 - **Mục đích**: Viết các script tự động hóa gọi API mô hình ngôn ngữ lớn (LLM API) từ mã nguồn để tự động phân tích tài liệu yêu cầu, sinh checklist kiểm thử hoặc triage logs số lượng lớn trong CI/CD pipeline.
 - **Cách áp dụng trong UAT FPT**:
   - Kết hợp với script `generate_uat_template.py` để tạo tool đọc file URD `.doc` trong thư mục `thuyttdoc/` và tự động điền sẵn các kịch bản test vào file Excel UAT Template chuẩn FPT.
 
-#### 13. [`coaching-qe-learners`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/coaching-qe-learners/SKILL.md) — Đào Tạo & Nâng Cao Năng Lực Đội Ngũ Tester/QC
+#### 13. [`coaching-qe-learners`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/coaching-qe-learners/SKILL.md) — Đào Tạo & Nâng Cao Năng Lực Đội Ngũ Tester/QC
 - **Mục đích**: Huấn luyện đội ngũ theo lộ trình đào tạo chuẩn; thực hiện phỏng vấn thử (Mock Interview) đánh giá năng lực theo từng cấp bậc (Level Gate); chấm bài dựa trên bằng chứng thực tế theo nguyên tắc nghiêm ngặt: *"Luật không làm hộ"*.
 - **Cách áp dụng trong UAT FPT**:
   - Đào tạo nội bộ cho Tester mới tham gia dự án FPT: Nắm vững quy trình UAT, cách dùng template, cách log bug và văn hóa phối hợp giữa PO - BA - Tester - Dev.
 
-#### 14. [`writing-skills`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills/writing-skills/SKILL.md) — Đóng Gói & Chuẩn Hóa Kỹ Năng Mới
+#### 14. [`writing-skills`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/skills_qc/writing-skills/SKILL.md) — Đóng Gói & Chuẩn Hóa Kỹ Năng Mới
 - **Mục đích**: Quy trình chuẩn hóa và đóng gói một kỹ thuật kiểm thử thực tế lặp đi lặp lại thành một skill có thể tái sử dụng cho toàn bộ tổ chức hoặc dự án.
 - **Cách áp dụng trong UAT FPT**:
   - Khi phát sinh một quy trình kiểm thử mới (ví dụ: Quy trình UAT thanh toán sinh trắc học FacePay FPT), kỹ năng này giúp đóng gói thành module chuẩn mực đưa vào bộ kỹ năng dùng chung.
