@@ -102,24 +102,33 @@
   .prio-p3 { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
   .prio-p4 { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
 
+  /* Status Badges chuẩn 5 trạng thái Google Sheet */
   .status-badge {
     font-size: 11px;
-    padding: 2px 7px;
-    border-radius: 4px;
+    padding: 3px 9px;
+    border-radius: 5px;
     font-weight: 700;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
   }
-  .status-uat { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
-  .status-dev { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
-  .status-doc { background: #F3E8FF; color: #6B21A8; border: 1px solid #E9D5FF; }
-  .status-new { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+  /* 1. UAT - Xanh lá tươi */
+  .st-uat { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+  /* 2. DEV In Progress - Xanh dương FPT */
+  .st-dev { background: #DBEAFE; color: #1E40AF; border: 1px solid #93C5FD; }
+  /* 3. Đang phân tích/Document - Tím sang trọng */
+  .st-doc { background: #F3E8FF; color: #6B21A8; border: 1px solid #D8B4FE; }
+  /* 4. Đã tiếp nhận yêu cầu - Cam / Vàng hổ phách */
+  .st-received { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+  /* 5. Chưa tiếp nhận - Xám thanh lịch */
+  .st-pending-receipt { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
 
   .pic-badge {
     font-size: 11.5px;
     font-weight: 600;
     color: #334155;
     background: #F1F5F9;
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 4px;
     border: 1px solid #E2E8F0;
     white-space: nowrap;
@@ -185,12 +194,12 @@
   }
   .week-subhead:last-child { border-right: none; }
 
-  /* Gantt Rows - Chiều cao 68px chứa 2 dòng thoải mái */
+  /* Gantt Rows - Chiều cao 66px */
   .gantt-row {
     display: flex;
     border-bottom: 1px solid #F1F5F9;
     align-items: center;
-    height: 68px;
+    height: 66px;
     position: relative;
     transition: background 0.15s ease;
   }
@@ -203,7 +212,7 @@
     display: flex;
   }
 
-  /* Guide columns */
+  /* Guide columns - Nền pastel nhẹ nhàng */
   .month-guide {
     flex: 1;
     height: 100%;
@@ -226,7 +235,7 @@
   .gantt-card-wrap {
     position: absolute;
     top: 6px;
-    height: 56px;
+    height: 54px;
     padding: 0 4px;
     z-index: 2;
   }
@@ -235,13 +244,11 @@
     width: 100%;
     height: 100%;
     background-color: #FFFFFF;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7px 12px;
+    padding: 7px 14px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
     border: 1px solid #CBD5E1;
   }
@@ -298,7 +305,7 @@
   }
 
   .card-title {
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 700;
     color: #0F172A;
     white-space: nowrap;
@@ -310,14 +317,14 @@
     flex-shrink: 0;
   }
 
-  /* Dòng 2: PIC + Thanh Gradient Tiến độ % + Status */
+  /* Dòng 2: PIC + Status ở cuối dòng 2 */
   .card-line-2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding-top: 4px;
-    border-top: 1px dashed rgba(226, 232, 240, 0.8);
+    border-top: 1px dashed rgba(226, 232, 240, 0.85);
     gap: 12px;
   }
 
@@ -331,37 +338,8 @@
   .line-2-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-shrink: 0;
-  }
-
-  /* Progress bar gradient */
-  .progress-container {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .progress-bar-bg {
-    width: 90px;
-    height: 6px;
-    background: #E2E8F0;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .progress-bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.3s ease;
-  }
-
-  .progress-pct-text {
-    font-size: 11px;
-    font-weight: 800;
-    color: #475569;
-    min-width: 28px;
-    text-align: right;
   }
 
   /* Footer */
@@ -385,7 +363,7 @@
         <span class="fpt-badge">FPT TELECOM</span>
         PRODUCT ROADMAP — QUÝ 4/2026 (WEBSITE & CMS)
       </h1>
-      <p>Lộ trình thực thi 26 User Stories theo các cột Tháng & Tuần | Tiến độ % trực quan bằng dải màu Gradient</p>
+      <p>Lộ trình thực thi 26 User Stories theo các cột Tháng & Tuần | Trạng thái đồng bộ chính xác với Backlog</p>
     </div>
     <div class="header-metrics">
       <div class="metric-card">
@@ -428,11 +406,12 @@
       <span class="badge" style="background: #F0FDF4; color: #065F46; border: 1px solid #BBF7D0;">Tháng 12 (8 Task)</span>
     </div>
     <div class="legend-group">
-      <span class="legend-title">Tiến độ Gradient:</span>
-      <span class="status-badge status-uat">UAT: ~90%</span>
-      <span class="status-badge status-dev">DEV / Đang làm: ~50-60%</span>
-      <span class="status-badge status-doc">Phân tích: ~30%</span>
-      <span class="status-badge status-new">Mới: ~15%</span>
+      <span class="legend-title">Trạng thái Backlog:</span>
+      <span class="status-badge st-uat">UAT</span>
+      <span class="status-badge st-dev">DEV In Progress</span>
+      <span class="status-badge st-doc">Đang phân tích/Document</span>
+      <span class="status-badge st-received">Đã tiếp nhận yêu cầu</span>
+      <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
     </div>
   </div>
 
@@ -493,7 +472,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.16) 0%, rgba(59, 130, 246, 0.28) 90%, rgba(255, 255, 255, 0) 90%);">
+            <div class="task-card card-t10">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -505,20 +484,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #3B82F6, #2563EB);"></div>
-                    </div>
-                    <span class="progress-pct-text">90%</span>
-                  </div>
-                  <span class="status-badge status-uat">UAT</span>
+                  <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
             </div>
@@ -541,7 +514,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.16) 0%, rgba(59, 130, 246, 0.28) 90%, rgba(255, 255, 255, 0) 90%);">
+            <div class="task-card card-t10">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -553,20 +526,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #3B82F6, #2563EB);"></div>
-                    </div>
-                    <span class="progress-pct-text">90%</span>
-                  </div>
-                  <span class="status-badge status-uat">UAT</span>
+                  <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
             </div>
@@ -589,7 +556,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.16) 0%, rgba(59, 130, 246, 0.28) 90%, rgba(255, 255, 255, 0) 90%);">
+            <div class="task-card card-t10">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -601,20 +568,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #3B82F6, #2563EB);"></div>
-                    </div>
-                    <span class="progress-pct-text">90%</span>
-                  </div>
-                  <span class="status-badge status-uat">UAT</span>
+                  <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
             </div>
@@ -637,7 +598,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.16) 0%, rgba(59, 130, 246, 0.28) 90%, rgba(255, 255, 255, 0) 90%);">
+            <div class="task-card card-t10">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -649,20 +610,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #3B82F6, #2563EB);"></div>
-                    </div>
-                    <span class="progress-pct-text">90%</span>
-                  </div>
-                  <span class="status-badge status-uat">UAT</span>
+                  <span class="status-badge st-uat">UAT</span>
                 </div>
               </div>
             </div>
@@ -685,32 +640,26 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="task-card card-t10" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.16) 0%, rgba(59, 130, 246, 0.28) 60%, rgba(255, 255, 255, 0) 60%);">
+            <div class="task-card card-t10">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
-                  <span class="card-title" title="MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)">MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)</span>
+                  <span class="card-title" title="MENU (Cấp API Đa kênh & Đồng bộ SPDV)">MENU (Cấp API Đa kênh & Đồng bộ SPDV)</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p1">P1</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 60%; background: linear-gradient(90deg, #3B82F6, #2563EB);"></div>
-                    </div>
-                    <span class="progress-pct-text">60%</span>
-                  </div>
-                  <span class="status-badge status-dev">DEV</span>
+                  <span class="status-badge st-dev">DEV In Progress</span>
                 </div>
               </div>
             </div>
@@ -733,32 +682,26 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(139, 92, 246, 0.26) 35%, rgba(255, 255, 255, 0) 35%);">
+            <div class="task-card card-span-10-11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[CMS, Web]</span>
-                  <span class="card-title" title="Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)">Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)</span>
+                  <span class="card-title" title="Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình danh sách/danh mục FAQ">Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình danh sách/danh mục FAQ</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 35%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
-                    </div>
-                    <span class="progress-pct-text">35%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -781,7 +724,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(139, 92, 246, 0.26) 30%, rgba(255, 255, 255, 0) 30%);">
+            <div class="task-card card-span-10-11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -793,20 +736,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156</span>
                   <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 30%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
-                    </div>
-                    <span class="progress-pct-text">30%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -829,7 +766,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(139, 92, 246, 0.26) 55%, rgba(255, 255, 255, 0) 55%);">
+            <div class="task-card card-span-10-11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -841,20 +778,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 55%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
-                    </div>
-                    <span class="progress-pct-text">55%</span>
-                  </div>
-                  <span class="status-badge status-dev">Đang làm</span>
+                  <span class="status-badge st-dev">DEV In Progress</span>
                 </div>
               </div>
             </div>
@@ -877,32 +808,26 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(139, 92, 246, 0.26) 35%, rgba(255, 255, 255, 0) 35%);">
+            <div class="task-card card-span-10-11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-both">[Web, CMS]</span>
-                  <span class="card-title" title="CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema">CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema</span>
+                  <span class="card-title" title="CMS config LDP Local - QT tạo LDP Local, SEO & Schema">CMS config LDP Local - QT tạo LDP Local, SEO & Schema</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p1">P1</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
                   <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 35%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
-                    </div>
-                    <span class="progress-pct-text">35%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -925,7 +850,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="task-card card-span-10-11" style="background-image: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(139, 92, 246, 0.26) 30%, rgba(255, 255, 255, 0) 30%);">
+            <div class="task-card card-span-10-11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -937,20 +862,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156, SonLN11</span>
                   <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 30%; background: linear-gradient(90deg, #3B82F6, #8B5CF6);"></div>
-                    </div>
-                    <span class="progress-pct-text">30%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -973,7 +892,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(124, 58, 237, 0.26) 30%, rgba(255, 255, 255, 0) 30%);">
+            <div class="task-card card-t11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -985,20 +904,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 LongNH156, ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 30%; background: linear-gradient(90deg, #8B5CF6, #7C3AED);"></div>
-                    </div>
-                    <span class="progress-pct-text">30%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -1021,32 +934,26 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(124, 58, 237, 0.26) 55%, rgba(255, 255, 255, 0) 55%);">
+            <div class="task-card card-t11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
                   <span class="badge tag-web">[Web]</span>
-                  <span class="card-title" title="Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn">Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn</span>
+                  <span class="card-title" title="Luồng bán kèm PK (charm) trên website fpt.vn">Luồng bán kèm PK (charm) trên website fpt.vn</span>
                 </div>
                 <div class="line-1-right">
                   <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 55%; background: linear-gradient(90deg, #8B5CF6, #7C3AED);"></div>
-                    </div>
-                    <span class="progress-pct-text">55%</span>
-                  </div>
-                  <span class="status-badge status-dev">Đang làm</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1069,7 +976,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(124, 58, 237, 0.26) 50%, rgba(255, 255, 255, 0) 50%);">
+            <div class="task-card card-t11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1081,20 +988,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 50%; background: linear-gradient(90deg, #8B5CF6, #7C3AED);"></div>
-                    </div>
-                    <span class="progress-pct-text">50%</span>
-                  </div>
-                  <span class="status-badge status-dev">Đang làm</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1117,7 +1018,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(124, 58, 237, 0.26) 50%, rgba(255, 255, 255, 0) 50%);">
+            <div class="task-card card-t11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1125,24 +1026,18 @@
                   <span class="card-title" title="Xây dựng thư viện section mở rộng cho tạo LDP kéo thả">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p3">P3</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 50%; background: linear-gradient(90deg, #8B5CF6, #7C3AED);"></div>
-                    </div>
-                    <span class="progress-pct-text">50%</span>
-                  </div>
-                  <span class="status-badge status-dev">Đang làm</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -1165,7 +1060,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="task-card card-t11" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(124, 58, 237, 0.26) 25%, rgba(255, 255, 255, 0) 25%);">
+            <div class="task-card card-t11">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1177,20 +1072,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 25%; background: linear-gradient(90deg, #8B5CF6, #7C3AED);"></div>
-                    </div>
-                    <span class="progress-pct-text">25%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1213,7 +1102,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(16, 185, 129, 0.26) 35%, rgba(255, 255, 255, 0) 35%);">
+            <div class="task-card card-span-11-12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1225,20 +1114,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 35%; background: linear-gradient(90deg, #8B5CF6, #10B981);"></div>
-                    </div>
-                    <span class="progress-pct-text">35%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -1261,7 +1144,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(16, 185, 129, 0.26) 30%, rgba(255, 255, 255, 0) 30%);">
+            <div class="task-card card-span-11-12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1273,20 +1156,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 30%; background: linear-gradient(90deg, #8B5CF6, #10B981);"></div>
-                    </div>
-                    <span class="progress-pct-text">30%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-received">Đã tiếp nhận yêu cầu</span>
                 </div>
               </div>
             </div>
@@ -1309,7 +1186,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="task-card card-span-11-12" style="background-image: linear-gradient(90deg, rgba(139, 92, 246, 0.14) 0%, rgba(16, 185, 129, 0.26) 30%, rgba(255, 255, 255, 0) 30%);">
+            <div class="task-card card-span-11-12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1321,20 +1198,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 30%; background: linear-gradient(90deg, #8B5CF6, #10B981);"></div>
-                    </div>
-                    <span class="progress-pct-text">30%</span>
-                  </div>
-                  <span class="status-badge status-doc">Phân tích</span>
+                  <span class="status-badge st-received">Đã tiếp nhận yêu cầu</span>
                 </div>
               </div>
             </div>
@@ -1357,7 +1228,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1365,24 +1236,18 @@
                   <span class="card-title" title="Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p2">P2</span>
+                  <span class="badge prio-p3">P3</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-doc">Đang phân tích/Document</span>
                 </div>
               </div>
             </div>
@@ -1405,7 +1270,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1417,20 +1282,14 @@
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1453,7 +1312,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1461,24 +1320,18 @@
                   <span class="card-title" title="Trang LDP CSCA">Trang LDP CSCA</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p3">P3</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1501,7 +1354,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1509,24 +1362,18 @@
                   <span class="card-title" title="Trang LDP Fcitizen">Trang LDP Fcitizen</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p3">P3</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 ThuyTT104</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1549,7 +1396,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1557,24 +1404,18 @@
                   <span class="card-title" title="Trang LDP Ngoại Hạng Anh (NHA)">Trang LDP Ngoại Hạng Anh (NHA)</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p1">P1</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1597,7 +1438,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1605,24 +1446,18 @@
                   <span class="card-title" title="Trang LDP NHA - Lịch thi đấu">Trang LDP NHA - Lịch thi đấu</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p1">P1</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1645,7 +1480,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1653,24 +1488,18 @@
                   <span class="card-title" title="Trang LDP NHA - Bảng xếp hạng">Trang LDP NHA - Bảng xếp hạng</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p1">P1</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
@@ -1693,7 +1522,7 @@
 
           <!-- Gantt Card Bar (2 Dòng) -->
           <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="task-card card-t12" style="background-image: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.26) 15%, rgba(255, 255, 255, 0) 15%);">
+            <div class="task-card card-t12">
               <!-- Dòng 1: [Tag Epic] Tên Task ... [Độ ưu tiên ở cuối dòng 1] -->
               <div class="card-line-1">
                 <div class="line-1-left">
@@ -1701,24 +1530,18 @@
                   <span class="card-title" title="Trang LDP NHA - SA">Trang LDP NHA - SA</span>
                 </div>
                 <div class="line-1-right">
-                  <span class="badge prio-p1">P1</span>
+                  <span class="badge prio-p2">P2</span>
                 </div>
               </div>
 
-              <!-- Dòng 2: PIC xuống dòng + Thanh tỷ lệ Gradient % + Status -->
+              <!-- Dòng 2: PIC + Tag vắt tháng (nếu có) + Status chuẩn theo file chính -->
               <div class="card-line-2">
                 <div class="line-2-left">
                   <span class="pic-badge">👤 SonLN11</span>
                   
                 </div>
                 <div class="line-2-right">
-                  <div class="progress-container">
-                    <div class="progress-bar-bg">
-                      <div class="progress-bar-fill" style="width: 15%; background: linear-gradient(90deg, #10B981, #059669);"></div>
-                    </div>
-                    <span class="progress-pct-text">15%</span>
-                  </div>
-                  <span class="status-badge status-new">Mới</span>
+                  <span class="status-badge st-pending-receipt">Chưa tiếp nhận</span>
                 </div>
               </div>
             </div>
