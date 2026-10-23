@@ -1,34 +1,26 @@
 /**
  * =========================================================================================
  * FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)
- * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V7 (DYNAMIC PROGRESS BAR & COLOR BADGES)
+ * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V8 (PIXEL PERFECT AS DESIGN IMAGE)
  * =========================================================================================
  * Tự động đồng bộ 100% dữ liệu Realtime từ Google Sheet Backlog gốc:
  * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=954545565
  * 
- * Các nâng cấp V7 chuẩn xác 100% theo hình ảnh người dùng gửi:
- * 1. THANH TIẾN TRÌNH THEO TRẠNG THÁI (DYNAMIC PROGRESS BAR):
- *    - Mỗi tháng chia làm 8 nấc (8 cột con x 75px = 600px).
- *    - Chiều dài thanh màu chạy từ trái sang phải theo đúng tỷ lệ % trạng thái:
- *      * 1. Chưa tiếp nhận: 1/8 = 12.5% (1 cột màu, 7 cột trắng)
- *      * 2. Đã tiếp nhận: 2/8 = 25.0% (2 cột màu, 6 cột trắng)
- *      * 3. Đang phân tích: 3/8 = 37.5% (3 cột màu, 5 cột trắng)
- *      * 4. PO reviewed: 4/8 = 50.0% (4 cột màu, 4 cột trắng)
- *      * 5. DEV In Progress: 5/8 = 62.5% (5 cột màu vàng, 3 cột trắng) -> như task MENU trong hình
- *      * 6. UAT: 6/8 = 75.0% (6 cột màu tím, 2 cột trắng) -> như task Quản lý trang trong hình
- *      * 7. QC/CSOC: 7/8 = 87.5% (7 cột màu xanh, 1 cột trắng)
- *      * 8. Done: 8/8 = 100.0% (8 cột màu xanh lá)
- *    - Vùng màu bên trái chứa: [Hệ thống] Tên Task & 👤 PIC.
- *    - Vùng nền trắng bên phải chứa: Độ ưu tiên ở góc trên, Trạng thái ở góc dưới.
- * 2. TÔ MÀU ĐỒNG BỘ CHO HỆ THỐNG & ĐỘ ƯU TIÊN:
- *    - [Web, CMS]: Màu xanh ngọc đậm #059669
- *    - [CMS]: Màu xanh tím #4F46E5
- *    - [Web]: Màu xanh da trời #0284C7
- *    - [P1]: Màu đỏ rực #DC2626
- *    - [P2]: Màu cam đậm #EA580C
- *    - [P3]: Màu xanh dương #2563EB
- *    - [P4]: Màu xám #64748B
- * 3. TẮT HOÀN TOÀN TẤT CẢ ĐƯỜNG CHỈ LƯỚI TRONG TOÀN BỘ SHEET.
+ * Các nâng cấp V8 chuẩn xác 100% theo phản hồi người dùng:
+ * 1. THANH MÀU XANH ĐẦU MỖI TASK:
+ *    - Sử dụng viền trái SOLID_THICK màu xanh dương đậm #2563EB ở đầu mỗi task (như hình mẫu).
+ * 2. ĐƯA DETAIL RÚT GỌN VÀO DÒNG 2 BÊN TRÁI:
+ *    - Dòng 1 (Trái): [Hệ thống] Tên Task.
+ *    - Dòng 2 (Trái): Detail rút gọn (chữ nghiêng, xám ghi, không icon).
+ * 3. ĐƯA PIC RA GẦN TRẠNG THÁI Ở GÓC PHẢI DƯỚI:
+ *    - Dòng 1 (Phải): Độ ưu tiên [🔴 P1], [🟠 P2]... (căn lề phải).
+ *    - Dòng 2 (Phải): 👤 PIC  ● Trạng thái (căn lề phải, sát mép ngoài cùng).
+ * 4. TÔ MÀU NỔI BẬT CHO HỆ THỐNG VÀ ĐỘ ƯU TIÊN:
+ *    - Hệ thống: [Web, CMS] xanh ngọc #059669, [CMS] xanh tím #4F46E5, [Web] xanh da trời #0284C7.
+ *    - Độ ưu tiên: [🔴 P1] đỏ rực #DC2626, [🟠 P2] cam đậm #EA580C, [🔵 P3] xanh #2563EB, [⚪ P4] xám.
+ * 5. THANH TIẾN TRÌNH DYNAMIC THEO % TRẠNG THÁI:
+ *    - 1 task chia 8 nấc (12.5% mỗi nấc), thanh màu lấp đầy theo tiến độ, phần còn lại nền trắng.
+ * 6. TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ LƯỚI TRONG SHEET.
  * =========================================================================================
  */
 
@@ -52,10 +44,10 @@ const STATUS_STEPS = {
 
 // Màu phân biệt độ ưu tiên chuẩn hình ảnh
 const PRIO_STYLE = {
-  'P1': { color: '#DC2626', label: 'P1', weight: 1 }, // Đỏ rực
-  'P2': { color: '#EA580C', label: 'P2', weight: 2 }, // Cam
-  'P3': { color: '#2563EB', label: 'P3', weight: 3 }, // Xanh dương
-  'P4': { color: '#64748B', label: 'P4', weight: 4 }  // Xám
+  'P1': { color: '#DC2626', label: '[🔴 P1]', weight: 1 }, // Đỏ rực
+  'P2': { color: '#EA580C', label: '[🟠 P2]', weight: 2 }, // Cam
+  'P3': { color: '#2563EB', label: '[🔵 P3]', weight: 3 }, // Xanh dương
+  'P4': { color: '#64748B', label: '[⚪ P4]', weight: 4 }  // Xám
 };
 
 // Màu Hệ thống chuẩn hình ảnh
@@ -185,9 +177,23 @@ function syncRoadmapFromBacklog() {
         startM = 12; endM = 12;
       }
 
+      // Detail rút gọn (Bỏ icon, lấy 1 câu súc tích)
+      let cleanDesc = rawDesc.split('\n')[0].trim();
+      if (cleanDesc.startsWith('Tài liệu:')) {
+        cleanDesc = 'Quy chuẩn tài liệu phân tích kỹ thuật và nghiệm thu UAT/CSOC';
+      } else if (cleanDesc.startsWith('http')) {
+        cleanDesc = 'Quy chuẩn cấu hình trang landing page và tích hợp hệ thống';
+      } else if (!cleanDesc) {
+        cleanDesc = 'Triển khai tính năng và phối hợp tích hợp theo yêu cầu';
+      }
+      if (cleanDesc.length > 55) {
+        cleanDesc = cleanDesc.substring(0, 52) + '...';
+      }
+
       q4Tasks.push({
         title: titleFull.split('\n')[0].trim(),
         epic: epic,
+        desc: cleanDesc,
         prio: prio,
         pic: pic,
         status: status,
@@ -243,7 +249,7 @@ function syncRoadmapFromBacklog() {
   noteRange.setBackground("#FFFFFF");
   roadmapSheet.setRowHeight(2, 24);
 
-  // ===== DÒNG 3: TIÊU ĐỀ 3 CỘT THÁNG (MỖI THÁNG MERGE 8 CỘT) =====
+  // ===== DÒNG 3: TIÊU ĐỀ 3 CỘT THÁNG =====
   // Tháng 10: Cột 1 đến 8 (A đến H)
   const m10Header = roadmapSheet.getRange(3, 1, 1, 8);
   m10Header.merge();
@@ -270,8 +276,7 @@ function syncRoadmapFromBacklog() {
   const startRow = 4;
   const numTasks = sortedTasks.length;
 
-  // 1. TÔ NỀN PASTEL MỜ PHẲNG LÌ CHO TOÀN BỘ 3 THÁNG
-  // Xóa toàn bộ đường chỉ bên trong, chỉ giữ ranh giới phân định giữa 3 tháng
+  // 1. TÔ NỀN PASTEL MỜ PHẲNG LÌ CHO TOÀN BỘ 3 THÁNG (BỎ ĐƯỜNG KẺ CHỈ BÊN TRONG)
   const m10Body = roadmapSheet.getRange(startRow, 1, numTasks, 8);
   m10Body.setBackground(MONTH_BG.m10)
     .setBorder(false, true, true, true, false, false, "#94A3B8", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
@@ -284,10 +289,10 @@ function syncRoadmapFromBacklog() {
   m12Body.setBackground(MONTH_BG.m12)
     .setBorder(false, true, true, true, false, false, "#94A3B8", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // 2. Render từng task với THANH TIẾN TRÌNH THEO % TRẠNG THÁI
+  // 2. Render từng task với THANH MÀU XANH ĐẦU MỖI TASK + THANH TIẾN TRÌNH THEO % TRẠNG THÁI
   let curRow = startRow;
   sortedTasks.forEach(t => {
-    roadmapSheet.setRowHeight(curRow, 38);
+    roadmapSheet.setRowHeight(curRow, 42); // Chiều cao 42px thoải mái cho 2 dòng
 
     const cfg = STATUS_STEPS[t.status] || STATUS_STEPS['Chưa tiếp nhận'];
     const prioCfg = PRIO_STYLE[t.prio] || PRIO_STYLE['P2'];
@@ -308,7 +313,6 @@ function syncRoadmapFromBacklog() {
     }
 
     // TÍNH TOÁN SỐ CỘT CÓ MÀU THEO % TRẠNG THÁI:
-    // 1 task = 100% chia 8 nấc (12.5% mỗi nấc)
     let coloredCols = Math.round((cfg.step / 8) * totalCols);
     if (coloredCols < 1) coloredCols = 1;
     if (coloredCols > totalCols) coloredCols = totalCols;
@@ -316,14 +320,14 @@ function syncRoadmapFromBacklog() {
 
     // NỘI DUNG VÙNG TRÁI (VÙNG CÓ MÀU TIẾN TRÌNH):
     // Dòng 1: [Hệ thống] Tên Task
-    // Dòng 2: 👤 PIC
+    // Dòng 2: Detail rút gọn
     const epicTag = `[${t.epic}]`;
     const leftLine1 = `${epicTag} ${t.title}`;
-    const leftLine2 = `👤 ${t.pic}`;
+    const leftLine2 = t.desc; // Không icon
     const leftText = `${leftLine1}\n${leftLine2}`;
 
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
-    // Tô màu Hệ thống: Màu đặc trưng (Xanh ngọc / Xanh tím / Xanh dương), Bold
+    // Tô màu Hệ thống: Xanh ngọc / Xanh tím / Xanh dương, Bold
     leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(epicColor).build()
     );
@@ -331,30 +335,37 @@ function syncRoadmapFromBacklog() {
     leftBuilder.setTextStyle(epicTag.length + 1, leftLine1.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#0F172A").build()
     );
-    // PIC: Xám than
-    const picStart = leftLine1.length + 1;
-    leftBuilder.setTextStyle(picStart, picStart + leftLine2.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(8.5).setForegroundColor("#334155").build()
+    // Detail rút gọn: Nghiêng, Xám ghi #475569
+    const detailStart = leftLine1.length + 1;
+    leftBuilder.setTextStyle(detailStart, detailStart + leftLine2.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8).setForegroundColor("#475569").build()
     );
     const leftRichText = leftBuilder.build();
 
-    // NỘI DUNG VÙNG PHẢI (VÙNG NỀN TRẮNG CHƯA HOÀN THÀNH):
-    // Dòng 1: [P1] (Tô màu độ ưu tiên: Đỏ P1 / Cam P2 / Xanh P3)
-    // Dòng 2: Trạng thái (Tô màu badge trạng thái)
+    // NỘI DUNG VÙNG PHẢI (VÙNG NỀN TRẮNG):
+    // Dòng 1: Độ ưu tiên [🔴 P1] (Tô màu đỏ/cam/xanh)
+    // Dòng 2: 👤 PIC  ● Trạng thái (Đưa PIC ra gần trạng thái theo yêu cầu 3)
     const rightLine1 = prioCfg.label;
-    const rightLine2 = t.status;
+    const rightLine2 = `👤 ${t.pic}  ● ${t.status}`;
     const rightText = `${rightLine1}\n${rightLine2}`;
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
-    // Tô màu Độ ưu tiên
+    // Độ ưu tiên
     rightBuilder.setTextStyle(0, rightLine1.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(prioCfg.color).build()
     );
-    // Tô màu Trạng thái
-    const statusStart = rightLine1.length + 1;
-    rightBuilder.setTextStyle(statusStart, statusStart + rightLine2.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
+    // PIC & Trạng thái
+    const rLine2Start = rightLine1.length + 1;
+    rightBuilder.setTextStyle(rLine2Start, rLine2Start + rightLine2.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(8).setForegroundColor("#334155").build()
     );
+    // Nhấn màu Trạng thái
+    const statusStart = rightText.lastIndexOf(t.status);
+    if (statusStart !== -1) {
+      rightBuilder.setTextStyle(statusStart, statusStart + t.status.length,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8).setForegroundColor(cfg.badgeColor).build()
+      );
+    }
     const rightRichText = rightBuilder.build();
 
     // RENDER LÊN SHEET:
@@ -366,7 +377,11 @@ function syncRoadmapFromBacklog() {
       leftRange.setWrap(false);
       leftRange.setBackground(cfg.bg);
       leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-      leftRange.setBorder(true, true, true, false, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+      
+      // Viền Top, Bottom: màu borderColor
+      leftRange.setBorder(true, false, true, false, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+      // THANH MÀU XANH DƯƠNG ĐẬM Ở ĐẦU MỖI TASK (THEO YÊU CẦU 1):
+      leftRange.setBorder(null, true, null, null, false, false, "#2563EB", SpreadsheetApp.BorderStyle.SOLID_THICK);
 
       // 2. Vùng nền trắng (góc phải):
       const rightRange = roadmapSheet.getRange(curRow, startCol + coloredCols, 1, whiteCols);
@@ -377,16 +392,16 @@ function syncRoadmapFromBacklog() {
       rightRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
       rightRange.setBorder(true, false, true, true, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
     } else {
-      // Đã hoàn thành 100% (Done): Toàn bộ có màu xanh
+      // Đã hoàn thành 100% (Done):
       const fullRange = roadmapSheet.getRange(curRow, startCol, 1, totalCols);
       fullRange.merge();
-      // Hiển thị cả 2 bên
       const combinedText = `${leftLine1}    ${rightLine1}\n${leftLine2}    ${rightLine2}`;
       fullRange.setValue(combinedText);
       fullRange.setFontFamily("Times New Roman").setFontSize(9).setWrap(false);
       fullRange.setBackground(cfg.bg);
       fullRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-      fullRange.setBorder(true, true, true, true, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+      fullRange.setBorder(true, false, true, true, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+      fullRange.setBorder(null, true, null, null, false, false, "#2563EB", SpreadsheetApp.BorderStyle.SOLID_THICK);
     }
 
     curRow++;
