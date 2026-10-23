@@ -1,6 +1,6 @@
 ---
 name: Tester-QC
-description: Chuyên gia kiểm thử phần mềm (Tester/QC) và Quản lý nghiệm thu người dùng (UAT) chuẩn quốc tế ISTQB & FPT Telecom. Hỗ trợ thiết kế kịch bản test (Test Scenarios/Test Cases), phân tích ca kiểm thử Happy/Unhappy/Cross-system, vận hành quy trình UAT nhiều vòng (Round 1, 2, 3), phân loại lỗi (Defect/Severity), và tự động tạo/xuất Template UAT Excel chuẩn nhận diện 3 màu FPT (Xanh dương, Cam, Xanh lá).
+description: Chuyên gia kiểm thử phần mềm (Tester/QC) và Quản lý nghiệm thu người dùng (UAT) chuẩn quốc tế ISTQB & FPT Telecom. Hỗ trợ thiết kế kịch bản test (Test Scenarios/Test Cases), phân tích ca kiểm thử Happy/Unhappy/Cross-system, vận hành quy trình UAT nhiều vòng (Round 1, 2, 3), phân loại lỗi (Defect/Severity), tích hợp bộ 14 kỹ năng QE-AI nâng cao (Automation, E2E, Bug/Log Analysis, Test Data, Seed Data, Visual Sweep, Quality Audit), và tự động tạo/xuất Template UAT Excel chuẩn nhận diện 3 màu FPT (Xanh dương, Cam, Xanh lá).
 ---
 
 # KỸ NĂNG TESTER & QUALITY CONTROL (TESTER-QC)
@@ -19,6 +19,7 @@ description: Chuyên gia kiểm thử phần mềm (Tester/QC) và Quản lý ng
 3. [Mục III: Ứng Dụng Skill Designer & Bộ Nhận Diện Thương Hiệu 3 Màu FPT](#mục-iii-ứng-dụng-skill-designer--nhận-diện-thương-hiệu-3-màu-fpt)
 4. [Mục IV: Quy Trình Triển Khai UAT Step-by-Step](#mục-iv-quy-trình-triển-khai-uat-step-by-step)
 5. [Mục V: Hướng Dẫn Tự Động Sinh & Quản Lý Template Excel](#mục-v-hướng-dẫn-tự-động-sinh--quản-lý-template-excel)
+6. [Mục VI: Ma Trận 14 Kỹ Năng QE-AI Chuyên Sâu (QE-AI Skills Matrix)](#mục-vi-ma-trận-14-kỹ-năng-qe-ai-chuyên-sâu)
 
 ---
 
@@ -343,8 +344,23 @@ Skill này tích hợp sẵn bộ script Python tự động hóa hoàn toàn vi
 ├── templates/
 │   ├── uat_template_raw.xlsx                # File gốc nguyên bản từ Google Sheets dự án
 │   └── uat_template_fpt_standard.xlsx       # File chuẩn hóa 3 màu FPT + công thức + validation
-└── scripts/
-    └── generate_uat_template.py             # Script Python sinh file Excel chuẩn tự động
+├── scripts/
+│   └── generate_uat_template.py             # Script Python sinh file Excel chuẩn tự động
+└── qe-skills/                               # 14 Kỹ năng QE-AI chuyên sâu tích hợp từ repo QE-AI
+    ├── analyzing-bugs-and-logs/
+    ├── auditing-test-quality/
+    ├── building-test-tools-with-api/
+    ├── capturing-ui-sweep/
+    ├── coaching-qe-learners/
+    ├── designing-test-strategy/
+    ├── generating-test-cases/
+    ├── generating-test-data/
+    ├── managing-seed-data/
+    ├── planning-e2e-coverage/
+    ├── prompting-for-qe/
+    ├── writing-automation-tests/
+    ├── writing-e2e-tests/
+    └── writing-qe-skills/
 ```
 
 ### 2. Lệnh Tự Động Sinh File Excel Mẫu Mới
@@ -365,3 +381,141 @@ Script sẽ tự động:
 3. Thiết lập sẵn công thức thống kê tự động `=SUM(...)` và `=COUNTIF(...)`.
 4. Cài đặt sẵn Dropdown Data Validation cho cột `STATUS` và `ACTION`.
 5. Thiết lập Conditional Formatting tự động highlight màu khi người dùng chọn kết quả test.
+
+---
+
+# MỤC VI: MA TRẬN 14 KỸ NĂNG QE-AI CHUYÊN SÂU
+
+Bộ 14 kỹ năng QE-AI cao cấp được kế thừa từ repository chuẩn [QE-AI](https://github.com/huyphan13189/QE-AI/tree/main/.claude/skills) và được tổ chức nằm ngay trong thư mục `qe-skills/` của `Tester-QC`. Bộ kỹ năng này hỗ trợ đắc lực cho Tester/QC và PO trong mọi công đoạn từ thiết kế, sinh test case, tự động hóa, phân tích log lỗi đến nghiệm thu:
+
+```
+                               ┌────────────────────────────────────────────────┐
+                               │           HỆ THỐNG NĂNG LỰC QE-AI              │
+                               └──────────────────────┬─────────────────────────┘
+                                                      │
+         ┌───────────────────┬────────────────────────┼────────────────────────┬───────────────────┐
+         ▼                   ▼                        ▼                        ▼                   ▼
+┌─────────────────┐ ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐ ┌─────────────────┐
+│  1. CHIẾN LƯỢC  │ │ 2. SINH CASE    │      │ 3. TEST TỰ ĐỘNG │      │ 4. PHÂN TÍCH    │ │ 5. CÔNG CỤ &    │
+│  & HOẠCH ĐỊNH   │ │ & DỮ LIỆU TEST  │      │ & VISUAL SWEEP  │      │ LỖI & AUDIT     │ │ ĐÀO TẠO QE      │
+├─────────────────┤ ├─────────────────┤      ├─────────────────┤      ├─────────────────┤ ├─────────────────┤
+│• test-strategy  │ │• gen-test-cases │      │• write-auto-test│      │• bug-and-log    │ │• prompting-qe   │
+│• e2e-coverage   │ │• gen-test-data  │      │• write-e2e-tests│      │• audit-quality  │ │• build-test-tool│
+│                 │ │• seed-data      │      │• ui-sweep       │      │                 │ │• coach-learners │
+│                 │ │                 │      │                 │      │                 │ │• write-qe-skills│
+└─────────────────┘ └─────────────────┘      └─────────────────┘      └─────────────────┘ └─────────────────┘
+```
+
+---
+
+### TRỤ CỘT 1: CHIẾN LƯỢC & HOẠCH ĐỊNH KIỂM THỬ (STRATEGY & PLANNING)
+
+#### 1. [`designing-test-strategy`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/designing-test-strategy/SKILL.md) — Hoạch Định Chiến Lược Kiểm Thử
+- **Mục đích**: Lập chiến lược kiểm thử cho một tính năng lớn, Epic hoặc đợt phát hành mới; xây dựng **Test Charter** cho các buổi kiểm thử thăm dò (Exploratory Testing Session); xác định ma trận ưu tiên: *Những gì bắt buộc phải test sâu, những gì chỉ cần smoke test, và những gì có thể bỏ qua*.
+- **Cách áp dụng trong UAT FPT**:
+  - Dùng khi bắt đầu dự án mới hoặc tính năng lớn (Impact High/Medium) để xác định rõ phạm vi cần đưa vào UAT.
+  - Ngăn ngừa tình trạng: *"Viết dàn trải hàng trăm test case vụn vặt nhưng bỏ sót các rủi ro chết người liên quan đến tiền bạc, thanh toán và dữ liệu hợp đồng"*.
+
+#### 2. [`planning-e2e-coverage`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/planning-e2e-coverage/SKILL.md) — Hoạch Định Độ Bao Phủ End-to-End
+- **Mục đích**: Quyết định hệ thống cần bao nhiêu ca kiểm thử E2E; phân tầng độ bao phủ (Tier 1: High/P0 - Golden Journeys; Tier 2: Medium/P1 - Branching Journeys; Tier 3: Low/P2 - Edge Cases); đánh giá độ bao phủ thực tế của bộ test hiện có so với toàn bộ luồng nghiệp vụ.
+- **Cách áp dụng trong UAT FPT**:
+  - Lập bản đồ các luồng mua hàng và thanh toán trên fpt.vn (Ví dụ: Mua mới Internet, Nâng cấp băng thông, Mua kèm F-Safe/Camera).
+  - Đảm bảo 100% Golden Path của FPT có mặt trong danh sách UAT trước khi chốt lịch kiểm thử với PO.
+
+---
+
+### TRỤ CỘT 2: SINH KỊCH BẢN & QUẢN TRỊ DỮ LIỆU KIỂM THỬ (TEST GENERATION & DATA)
+
+#### 3. [`generating-test-cases`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/generating-test-cases/SKILL.md) — Sinh Test Case Chuẩn Xác Bằng AI
+- **Mục đích**: Biến tài liệu yêu cầu (URD, PRD, User Story, Acceptance Criteria, API Specs) thành bộ kịch bản test case chuẩn mực với sự trợ giúp của AI.
+- **Cách áp dụng trong UAT FPT**:
+  - Sinh trực tiếp các dòng test case để điền vào sheet `Report` theo đúng chuẩn cột: `NO.`, `MODULE`, `STEPS TO EXECUTE`, `EXPECTED RESULT`.
+  - Ép cấu trúc sinh đầy đủ 3 nhóm: Happy path, Unhappy path (biên, lỗi người dùng) và Cross-system integration (gọi CRM, Billing, Gateway).
+  - Tránh bẫy AI ảo giác: Mọi bước kiểm thử đều bám sát đúng quy tắc nghiệp vụ (BR) của dự án.
+
+#### 4. [`generating-test-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/generating-test-data/SKILL.md) — Sinh Dữ Liệu Kiểm Thử Đa Dạng
+- **Mục đích**: Sinh dữ liệu test giả lập có tính đại diện cao (Synthetic test data) cho UI, API, DB tests, bulk load datasets.
+- **Cách áp dụng trong UAT FPT**:
+  - Sinh danh sách số điện thoại viễn thông Việt Nam hợp lệ (đầu 03, 05, 07, 08, 09) và không hợp lệ.
+  - Sinh số CCCD/CMND chuẩn 12 số, email, địa chỉ lắp đặt theo 63 tỉnh thành Việt Nam.
+  - Sinh dữ liệu ký tự Unicode tiếng Việt có dấu, khoảng trắng thừa, chuỗi XSS/SQL Injection để kiểm tra tính bảo mật của form nhập liệu fpt.vn.
+
+#### 5. [`managing-seed-data`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/managing-seed-data/SKILL.md) — Quản Trị Dữ Liệu Khởi Tạo (Seed Data) Idempotent
+- **Mục đích**: Quản lý thư viện fixture/seed data cục bộ dùng chung cho môi trường dev và E2E; đảm bảo nguyên tắc **Idempotency** (chạy lại nhiều lần không sinh rác dữ liệu, không làm phình bảng dữ liệu, không trùng lặp khóa chính).
+- **Cách áp dụng trong UAT FPT**:
+  - Tạo sẵn các gói cước Internet (Giga, Sky, Meta, F-Game), các dịch vụ gia tăng (F-Safe, FPT Play, Cloud Camera) trên môi trường Staging/UAT để mọi vòng test (Round 1, 2, 3) đều có dữ liệu chuẩn sẵn sàng mà không cần nhập tay lại từ đầu.
+
+---
+
+### TRỤ CỘT 3: KIỂM THỬ TỰ ĐỘNG & VISUAL QA (AUTOMATION & VISUAL SWEEP)
+
+#### 6. [`writing-automation-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/writing-automation-tests/SKILL.md) — Viết Kịch Bản Test Tự Động (API & UI)
+- **Mục đích**: Xây dựng bộ khung test tự động (Playwright, Cypress, Postman, Jest), chuyển đổi test case thủ công (Manual) thành kịch bản tự động hóa; kiểm thử API endpoints và hợp đồng dữ liệu.
+- **Cách áp dụng trong UAT FPT**:
+  - Tự động hóa các API cốt lõi: API gửi SMS OTP, API xác thực số điện thoại, API tính cước khuyến mãi, API tạo Lead sang CRM.
+  - Chạy regression tự động trước mỗi vòng UAT để phát hiện sớm các lỗi kỹ thuật trước khi bàn giao cho PO kiểm thử chấp nhận.
+
+#### 7. [`writing-e2e-tests`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/writing-e2e-tests/SKILL.md) — Viết Kịch Bản Kiểm Thử E2E Trực Thực
+- **Mục đích**: Viết các kịch bản End-to-End điều khiển trình duyệt thật (Real Browser) tương tác với backend và cơ sở dữ liệu thật; xử lý cơ chế bypass authentication, deep-link, xử lý triệt để bài toán **Flaky Test** (test lúc pass lúc fail do mạng hoặc timing).
+- **Cách áp dụng trong UAT FPT**:
+  - Xây dựng kịch bản Golden Path E2E: Từ trang chủ fpt.vn ➔ Chọn gói cước ➔ Thêm dịch vụ bán kèm ➔ Nhập OTP ➔ Điền địa chỉ ➔ Thanh toán qua cổng thanh toán Sandbox ➔ Xác nhận đơn hàng thành công trên hệ thống.
+
+#### 8. [`capturing-ui-sweep`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/capturing-ui-sweep/SKILL.md) — Quét & Kiểm Tra Giao Diện Toàn Diện (Visual QA Sweep)
+- **Mục đích**: Tự động chụp ảnh toàn bộ các màn hình của ứng dụng theo nhóm tính năng; sử dụng AI để quét và phát hiện các lỗi thị giác: vỡ layout, lệch hàng, tràn khung, text bị cắt xén, ảnh broken, empty-state xấu xí, sai lệch so với Design System.
+- **Cách áp dụng trong UAT FPT**:
+  - Chụp toàn bộ luồng mua hàng và đăng ký dịch vụ trên cả 2 phiên bản Desktop và Mobile.
+  - Đối chiếu với tiêu chuẩn Design System FPT (3 màu nhận diện, font Times New Roman, khoảng cách padding, độ tương phản WCAG AA) trước khi trình PO nghiệm thu giao diện.
+
+---
+
+### TRỤ CỘT 4: PHÂN TÍCH LỖI, NHẬT KÝ & THẨM ĐỊNH CHẤT LƯỢNG (DEFECT ANALYSIS & AUDIT)
+
+#### 9. [`analyzing-bugs-and-logs`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/analyzing-bugs-and-logs/SKILL.md) — Phân Tích Lỗi, Stack Trace & Nhật Ký Hệ Thống
+- **Mục đích**: Đọc và phân tích error logs, stack trace, mã lỗi 500/502/504; truy vết nguyên nhân gốc rễ (Root Cause Analysis - RCA); xác định chính xác file, hàm và điều kiện gây lỗi; viết Bug Report chuẩn mực có đầy đủ bước tái hiện (Reproduction Steps) và bằng chứng (Evidence).
+- **Cách áp dụng trong UAT FPT**:
+  - Khi một test case bị `FAILED` tại cột `STATUS` (Sheet `Report`), kỹ năng này giúp Tester không chỉ ghi nhận *"Tính năng bị lỗi"* mà cung cấp chính xác: *"API `/api/v1/otp/verify` trả về 500 do NullPointerException tại hàm validatePhonePrefix với đầu số 05"*.
+  - Giúp đội phát triển (ISC) nắm bắt ngay nguyên nhân và cập nhật cột `ACTION` = `DONE` nhanh chóng.
+
+#### 10. [`auditing-test-quality`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/auditing-test-quality/SKILL.md) — Thẩm Định Chất Lượng Bộ Test
+- **Mục đích**: Đánh giá và kiểm toán chất lượng thực chất của một bộ test suite; vạch trần các ca test vô nghĩa (*Assertionless tests* - test chạy xanh lè nhưng không assert kết quả thực tế); phát hiện các lỗ hổng logic kiểm thử còn thiếu sót.
+- **Cách áp dụng trong UAT FPT**:
+  - Kiểm toán lại toàn bộ sheet `Report` trước khi gửi cho PO: Đảm bảo không có dòng test case nào ghi chung chung kiểu *"Kiểm tra màn hình hoạt động bình thường"*, mà phải có điều kiện kiểm tra rõ ràng, có số liệu cụ thể.
+
+---
+
+### TRỤ CỘT 5: CÔNG CỤ AI, PROMPTING & ĐÀO TẠO QE (AI TOOLING & COACHING)
+
+#### 11. [`prompting-for-qe`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/prompting-for-qe/SKILL.md) — Kỹ Thuật Viết Prompt Chuyên Biệt Cho QE/Tester
+- **Mục đích**: Kỹ thuật xây dựng câu lệnh (Prompt Construction) chuẩn xác dành riêng cho các tác vụ kiểm thử phần mềm; chống lan man, chống bịa đặt dữ liệu, ép đầu ra theo bảng biểu có cấu trúc.
+- **Cách áp dụng trong UAT FPT**:
+  - Dùng để tương tác với AI khi cần phân tích URD phức tạp và chuyển đổi thành bảng test case FPT: Cung cấp đầy đủ Role, Context, Constraints, Few-shot Examples và Output Format chuẩn Sheet `Report`.
+
+#### 12. [`building-test-tools-with-api`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/building-test-tools-with-api/SKILL.md) — Xây Dựng Công Cụ Kiểm Thử Tự Động Hóa Với API
+- **Mục đích**: Viết các script tự động hóa gọi API mô hình ngôn ngữ lớn (LLM API) từ mã nguồn để tự động phân tích tài liệu yêu cầu, sinh checklist kiểm thử hoặc triage logs số lượng lớn trong CI/CD pipeline.
+- **Cách áp dụng trong UAT FPT**:
+  - Kết hợp với script `generate_uat_template.py` để tạo tool đọc file URD `.doc` trong thư mục `thuyttdoc/` và tự động điền sẵn các kịch bản test vào file Excel UAT Template chuẩn FPT.
+
+#### 13. [`coaching-qe-learners`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/coaching-qe-learners/SKILL.md) — Đào Tạo & Nâng Cao Năng Lực Đội Ngũ Tester/QC
+- **Mục đích**: Huấn luyện đội ngũ theo lộ trình đào tạo chuẩn; thực hiện phỏng vấn thử (Mock Interview) đánh giá năng lực theo từng cấp bậc (Level Gate); chấm bài dựa trên bằng chứng thực tế theo nguyên tắc nghiêm ngặt: *"Luật không làm hộ"*.
+- **Cách áp dụng trong UAT FPT**:
+  - Đào tạo nội bộ cho Tester mới tham gia dự án FPT: Nắm vững quy trình UAT, cách dùng template, cách log bug và văn hóa phối hợp giữa PO - BA - Tester - Dev.
+
+#### 14. [`writing-qe-skills`](file:///Users/hathuy/Documents/FPT-1/.agent/skills/Tester-QC/qe-skills/writing-qe-skills/SKILL.md) — Đóng Gói & Chuẩn Hóa Kỹ Năng Mới
+- **Mục đích**: Quy trình chuẩn hóa và đóng gói một kỹ thuật kiểm thử thực tế lặp đi lặp lại thành một skill có thể tái sử dụng cho toàn bộ tổ chức hoặc dự án.
+- **Cách áp dụng trong UAT FPT**:
+  - Khi phát sinh một quy trình kiểm thử mới (ví dụ: Quy trình UAT thanh toán sinh trắc học FacePay FPT), kỹ năng này giúp đóng gói thành module chuẩn mực đưa vào bộ kỹ năng dùng chung.
+
+---
+
+## TỔNG KẾT BẢNG ÁNH XẠ NHIỆM VỤ THỰC TẾ
+
+| Nhiệm vụ thực tế của Tester / PO | Kỹ năng QE-AI được triệu hồi | Sản phẩm đầu ra |
+|:---|:---|:---|
+| **Lập kế hoạch UAT cho đợt release mới** | `designing-test-strategy`<br>`planning-e2e-coverage` | Test Charter, Ma trận phạm vi UAT |
+| **Sinh kịch bản test từ URD/User Story** | `generating-test-cases`<br>`prompting-for-qe` | Danh sách test case điền vào Sheet `Report` |
+| **Chuẩn bị dữ liệu tài khoản, gói cước test** | `generating-test-data`<br>`managing-seed-data` | Tập dữ liệu kiểm thử (Số ĐT, CCCD, Gói cước) |
+| **Chạy kiểm tra giao diện trước đợt UAT** | `capturing-ui-sweep` | Báo cáo kiểm tra Visual layout & Design system |
+| **Phát hiện lỗi 500, lỗi API trong lúc UAT** | `analyzing-bugs-and-logs` | Bug report chuẩn có stack trace và file/hàm lỗi |
+| **Rà soát lại bộ test case trước khi trình PO** | `auditing-test-quality` | Báo cáo thẩm định chất lượng bộ test |
+| **Xuất file Excel UAT Template chuẩn FPT** | `generate_uat_template.py` | File `.xlsx` chuẩn 4 sheet, 3 màu FPT, công thức tự động |
+| **Chạy kiểm thử hồi quy tự động** | `writing-automation-tests`<br>`writing-e2e-tests` | Bộ kịch bản E2E Playwright/Cypress tự động |
