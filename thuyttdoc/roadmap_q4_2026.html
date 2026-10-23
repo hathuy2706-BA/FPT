@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Đa Tháng</title>
+<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Tháng</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -12,7 +12,7 @@
     background-color: #FFFFFF;
     color: #0F172A;
     padding: 30px 40px;
-    width: 2560px;
+    width: 2400px;
     margin: 0 auto;
   }
 
@@ -85,9 +85,9 @@
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
     font-weight: 700;
     gap: 4px;
   }
@@ -96,99 +96,69 @@
   .tag-web { background-color: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
   .tag-both { background-color: #CCFBF1; color: #0F766E; border: 1px solid #99F6E4; }
 
-  .prio-p1 { background: #FEE2E2; color: #991B1B; }
-  .prio-p2 { background: #FEF3C7; color: #92400E; }
-  .prio-p3 { background: #E0E7FF; color: #3730A3; }
-  .prio-p4 { background: #F1F5F9; color: #475569; }
-
-  .status-badge { font-size: 10.5px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-  .st-uat { background: #DCFCE7; color: #166534; }
-  .st-dev { background: #DBEAFE; color: #1E40AF; }
-  .st-doc { background: #F3E8FF; color: #6B21A8; }
-  .st-new { background: #F1F5F9; color: #475569; }
-
   /* Gantt Container */
   .gantt-board {
-    border: 1px solid #E2E8F0;
+    border: 1px solid #CBD5E1;
     border-radius: 12px;
     background: #FFFFFF;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
   }
 
   /* Header Timeline */
-  .gantt-header-row {
+  .gantt-header-timeline {
     display: flex;
     background: #0F172A;
     color: white;
-  }
-
-  .gantt-header-left {
-    width: 680px;
-    padding: 12px 18px;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid #334155;
-  }
-
-  .gantt-header-timeline {
-    flex: 1;
-    display: flex;
   }
 
   .month-header-col {
     flex: 1;
     text-align: center;
     border-right: 1px solid #334155;
-    padding: 10px 0;
   }
   .month-header-col:last-child { border-right: none; }
 
-  .m-title { font-size: 13.5px; font-weight: 800; }
-  .m-sub { font-size: 10.5px; color: #94A3B8; margin-top: 2px; }
+  .month-header-top {
+    padding: 10px 0;
+  }
+  .m-title { font-size: 15px; font-weight: 800; letter-spacing: 0.5px; }
+  .m-sub { font-size: 11px; color: #94A3B8; margin-top: 2px; }
 
   .h-m10 { background: #1E3A8A; }
   .h-m11 { background: #581C87; }
   .h-m12 { background: #064E3B; }
+
+  /* Weeks sub-header */
+  .week-subheaders {
+    display: flex;
+    background: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .week-subhead {
+    flex: 1;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: #E2E8F0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .week-subhead:last-child { border-right: none; }
 
   /* Gantt Rows */
   .gantt-row {
     display: flex;
     border-bottom: 1px solid #F1F5F9;
     align-items: center;
-    height: 40px;
+    height: 44px;
+    position: relative;
     transition: background 0.15s ease;
   }
   .gantt-row:hover { background: #F8FAFC; }
 
-  .task-info {
-    width: 680px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-right: 1px solid #E2E8F0;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .task-id { font-size: 11px; font-weight: 700; color: #64748B; width: 62px; flex-shrink: 0; }
-  .task-title {
-    font-size: 12.5px;
-    font-weight: 700;
-    color: #1E293B;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-  }
-  .task-pic { font-size: 11px; color: #475569; font-weight: 600; width: 140px; flex-shrink: 0; }
-
   .timeline-cells {
-    flex: 1;
+    width: 100%;
     position: relative;
     height: 100%;
     display: flex;
@@ -198,18 +168,26 @@
   .month-guide {
     flex: 1;
     height: 100%;
-    border-right: 1px dashed #E2E8F0;
+    border-right: 2px solid #CBD5E1;
+    display: flex;
   }
   .month-guide:last-child { border-right: none; }
-  .g-m10 { background: rgba(239, 246, 255, 0.25); }
-  .g-m11 { background: rgba(250, 245, 255, 0.25); }
-  .g-m12 { background: rgba(236, 253, 245, 0.25); }
+  .g-m10 { background: rgba(239, 246, 255, 0.35); }
+  .g-m11 { background: rgba(250, 245, 255, 0.35); }
+  .g-m12 { background: rgba(236, 253, 245, 0.35); }
+
+  .week-col {
+    flex: 1;
+    height: 100%;
+    border-right: 1px dashed #E2E8F0;
+  }
+  .week-col:last-child { border-right: none; }
 
   /* Gantt Bar Pill */
   .gantt-bar-wrap {
     position: absolute;
     top: 5px;
-    height: 30px;
+    height: 34px;
     padding: 0 4px;
     z-index: 2;
   }
@@ -221,12 +199,42 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    padding: 0 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .bar-left-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .bar-id {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+  }
+
+  .bar-epic {
+    background: rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
   }
 
   .bar-title {
-    font-size: 11px;
+    font-size: 12.5px;
     font-weight: 700;
     color: white;
     white-space: nowrap;
@@ -234,21 +242,32 @@
     text-overflow: ellipsis;
   }
 
-  .bar-done-badge {
-    background: #F59E0B;
-    color: #78350F;
-    font-size: 10px;
-    font-weight: 800;
+  .bar-pic {
+    font-size: 11px;
+    color: #F1F5F9;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.15);
     padding: 2px 6px;
     border-radius: 4px;
     flex-shrink: 0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .bar-done-badge {
+    background: #F59E0B;
+    color: #78350F;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    margin-left: 10px;
   }
 
   /* Bar Themes */
-  .bar-t10 { background: linear-gradient(90deg, #3B82F6, #2563EB); }
-  .bar-t11 { background: linear-gradient(90deg, #8B5CF6, #7C3AED); }
-  .bar-t12 { background: linear-gradient(90deg, #10B981, #059669); }
+  .bar-t10 { background: linear-gradient(90deg, #3B82F6, #2563EB); border: 1px solid #1D4ED8; }
+  .bar-t11 { background: linear-gradient(90deg, #8B5CF6, #7C3AED); border: 1px solid #6D28D9; }
+  .bar-t12 { background: linear-gradient(90deg, #10B981, #059669); border: 1px solid #047857; }
 
   /* Cross Month Spans (Thanh vắt ngang 2 tháng) */
   .bar-span-10-11 {
@@ -280,9 +299,9 @@
     <div class="header-left">
       <h1>
         <span class="fpt-badge">FPT TELECOM</span>
-        PRODUCT ROADMAP — QUÝ 4/2026 (GANTT TIẾN TRÌNH)
+        PRODUCT ROADMAP — QUÝ 4/2026 (TIMELINE TIẾN TRÌNH)
       </h1>
-      <p>Lộ trình thực thi 26 User Stories | Các thanh ngang thể hiện rõ các task chạy liên tục từ tháng này sang tháng khác</p>
+      <p>Lộ trình thực thi 26 User Stories theo các cột Tháng & Tuần | Từng dòng thể hiện thanh tiến trình chạy liên tục qua các tháng</p>
     </div>
     <div class="header-metrics">
       <div class="metric-card">
@@ -329,606 +348,779 @@
 
   <!-- Gantt Board -->
   <div class="gantt-board">
-    <div class="gantt-header-row">
-      <div class="gantt-header-left">
-        Danh sách User Stories (Mã US / Epic / Tiêu đề / Ưu tiên / Trạng thái / PIC)
-      </div>
-      <div class="gantt-header-timeline">
-        <div class="month-header-col h-m10">
+    <div class="gantt-header-timeline">
+      <div class="month-header-col h-m10">
+        <div class="month-header-top">
           <div class="m-title">THÁNG 10 / 2026</div>
-          <div class="m-sub">Tuần 1 - Tuần 4 (Sprint 19 & Sprint 20)</div>
+          <div class="m-sub">Sprint 19 & Sprint 20</div>
         </div>
-        <div class="month-header-col h-m11">
+        <div class="week-subheaders">
+          <div class="week-subhead">Tuần 1</div>
+          <div class="week-subhead">Tuần 2</div>
+          <div class="week-subhead">Tuần 3</div>
+          <div class="week-subhead">Tuần 4</div>
+        </div>
+      </div>
+      <div class="month-header-col h-m11">
+        <div class="month-header-top">
           <div class="m-title">THÁNG 11 / 2026</div>
-          <div class="m-sub">Tuần 1 - Tuần 4 (Sprint 21 & Sprint 22)</div>
+          <div class="m-sub">Sprint 21 & Sprint 22</div>
         </div>
-        <div class="month-header-col h-m12">
+        <div class="week-subheaders">
+          <div class="week-subhead">Tuần 1</div>
+          <div class="week-subhead">Tuần 2</div>
+          <div class="week-subhead">Tuần 3</div>
+          <div class="week-subhead">Tuần 4</div>
+        </div>
+      </div>
+      <div class="month-header-col h-m12">
+        <div class="month-header-top">
           <div class="m-title">THÁNG 12 / 2026</div>
-          <div class="m-sub">Tuần 1 - Tuần 4 (Sprint 23 & Sprint 24)</div>
+          <div class="m-sub">Sprint 23 & Sprint 24</div>
+        </div>
+        <div class="week-subheaders">
+          <div class="week-subhead">Tuần 1</div>
+          <div class="week-subhead">Tuần 2</div>
+          <div class="week-subhead">Tuần 3</div>
+          <div class="week-subhead">Tuần 4</div>
         </div>
       </div>
     </div>
 
     
       <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-12</span>
-          <span class="badge tag-cms">[CMS]</span>
-          <span class="task-title" title="Quản lý trang">Quản lý trang</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-uat">UAT</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
         <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 33.33%;">
-            <div class="gantt-bar bar-t10">
-              <span class="bar-title">Quản lý trang</span>
-              <span class="bar-done-badge">🎯 Xong T10</span>
-            </div>
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-13</span>
-          <span class="badge tag-cms">[CMS]</span>
-          <span class="task-title" title="Quản lý section">Quản lý section</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-uat">UAT</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 33.33%;">
-            <div class="gantt-bar bar-t10">
-              <span class="bar-title">Quản lý section</span>
-              <span class="bar-done-badge">🎯 Xong T10</span>
-            </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-14</span>
-          <span class="badge tag-cms">[CMS]</span>
-          <span class="task-title" title="Quản lý Block">Quản lý Block</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-uat">UAT</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 33.33%;">
-            <div class="gantt-bar bar-t10">
-              <span class="bar-title">Quản lý Block</span>
-              <span class="bar-done-badge">🎯 Xong T10</span>
-            </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-15</span>
-          <span class="badge tag-cms">[CMS]</span>
-          <span class="task-title" title="Quản lý menu">Quản lý menu</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-uat">UAT</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 33.33%;">
-            <div class="gantt-bar bar-t10">
-              <span class="bar-title">Quản lý menu</span>
-              <span class="bar-done-badge">🎯 Xong T10</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-MENU</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="MENU (API Đa kênh & Đồng bộ SPDV)">MENU (API Đa kênh & Đồng bộ SPDV)</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-dev">DEV</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 33.33%;">
-            <div class="gantt-bar bar-t10">
-              <span class="bar-title">MENU (API Đa kênh & Đồng bộ SPDV)</span>
-              <span class="bar-done-badge">🎯 Xong T10</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-18</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Quản lý FAQ">Quản lý FAQ</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 66.67%;">
-            <div class="gantt-bar bar-span-10-11">
-              <span class="bar-title">Quản lý FAQ</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-20</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Quản lý quảng cáo">Quản lý quảng cáo</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 LongNH156</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 66.67%;">
-            <div class="gantt-bar bar-span-10-11">
-              <span class="bar-title">Quản lý quảng cáo</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-21</span>
-          <span class="badge tag-web">[Web]</span>
-          <span class="task-title" title="Report: Ghi nhận thông tin báo cáophase 2 - quy hoạch bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáophase 2 - quy hoạch bộ báo cáo chuẩn cho ĐKOL</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-dev">DEV</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 66.67%;">
-            <div class="gantt-bar bar-span-10-11">
-              <span class="bar-title">Report: Ghi nhận thông tin báo cáophase 2 - quy hoạch bộ báo cáo chuẩn cho ĐKOL</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-LDPLOCAL</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="CMS config LDP Local">CMS config LDP Local</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 ThuyTT104, LongNH156</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 66.67%;">
-            <div class="gantt-bar bar-span-10-11">
-              <span class="bar-title">CMS config LDP Local</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-29</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Quản lý URL">Quản lý URL</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 LongNH156, ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 33.33%;">
-            <div class="gantt-bar bar-t11">
-              <span class="bar-title">Quản lý URL</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-30</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Quản lý Breadcrums trên trang/ landing Page">Quản lý Breadcrums trên trang/ landing Page</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 LongNH156, SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 0.00%; width: 66.67%;">
-            <div class="gantt-bar bar-span-10-11">
-              <span class="bar-title">Quản lý Breadcrums trên trang/ landing Page</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-31</span>
-          <span class="badge tag-web">[Web]</span>
-          <span class="task-title" title="Luồng bán kèm PK (charm) trên website fpt.vn">Luồng bán kèm PK (charm) trên website fpt.vn</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Tiếp nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 33.33%;">
-            <div class="gantt-bar bar-t11">
-              <span class="bar-title">Luồng bán kèm PK (charm) trên website fpt.vn</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-32</span>
-          <span class="badge tag-web">[Web]</span>
-          <span class="task-title" title="Luồng quà tặng (Mũ bảo hiểm) trên website">Luồng quà tặng (Mũ bảo hiểm) trên website</span>
-          <span class="badge prio-p3">P3</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 33.33%;">
-            <div class="gantt-bar bar-t11">
-              <span class="bar-title">Luồng quà tặng (Mũ bảo hiểm) trên website</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-33</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Xây dựng thư viện section mở rộng cho tạo LDP kéo thả">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 ThuyTT104, LongNH156</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 33.33%;">
-            <div class="gantt-bar bar-t11">
-              <span class="bar-title">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-28</span>
-          <span class="badge tag-web">[Web]</span>
-          <span class="task-title" title="[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fptvn.vn">[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fptvn.vn</span>
-          <span class="badge prio-p4">P4</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 33.33%;">
-            <div class="gantt-bar bar-t11">
-              <span class="bar-title">[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fptvn.vn</span>
-              <span class="bar-done-badge">🎯 Xong T11</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-47</span>
-          <span class="badge tag-web">[Web]</span>
-          <span class="task-title" title="Luồng giỏ hàng trên kênh">Luồng giỏ hàng trên kênh</span>
-          <span class="badge prio-p1">P1</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 66.67%;">
-            <div class="gantt-bar bar-span-11-12">
-              <span class="bar-title">Luồng giỏ hàng trên kênh</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-36</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Quản lý tin tức">Quản lý tin tức</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Tiếp nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 66.67%;">
-            <div class="gantt-bar bar-span-11-12">
-              <span class="bar-title">Quản lý tin tức</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-37</span>
-          <span class="badge tag-cms">[CMS]</span>
-          <span class="task-title" title="Quản lý Profile Tác giả">Quản lý Profile Tác giả</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-doc">Tiếp nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 33.33%; width: 66.67%;">
-            <div class="gantt-bar bar-span-11-12">
-              <span class="bar-title">Quản lý Profile Tác giả</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-26</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
-          <span class="badge prio-p3">P3</span>
-          <span class="status-badge st-doc">Phân tích</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-27</span>
-          <span class="badge tag-both">[CMS, Web]</span>
-          <span class="task-title" title="Bổ sung trang "Combo Internet Camera"">Bổ sung trang "Combo Internet Camera"</span>
-          <span class="badge prio-p4">P4</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Bổ sung trang "Combo Internet Camera"</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-38</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP CSCA">Trang LDP CSCA</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP CSCA</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-39</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP Fcitizen">Trang LDP Fcitizen</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 ThuyTT104</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP Fcitizen</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-40</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP NHA">Trang LDP NHA</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP NHA</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-41</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP NHA lịch thi đấu">Trang LDP NHA lịch thi đấu</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP NHA lịch thi đấu</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-42</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP NHA bảng xếp hạng">Trang LDP NHA bảng xếp hạng</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP NHA bảng xếp hạng</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="gantt-row">
-        <div class="task-info">
-          <span class="task-id">US-43</span>
-          <span class="badge tag-both">[Web, CMS]</span>
-          <span class="task-title" title="Trang LDP NHA -SA">Trang LDP NHA -SA</span>
-          <span class="badge prio-p2">P2</span>
-          <span class="status-badge st-new">Chưa nhận</span>
-          <span class="task-pic">👤 SonLN11</span>
-        </div>
-        <div class="timeline-cells">
-          <div class="month-guide g-m10"></div>
-          <div class="month-guide g-m11"></div>
-          <div class="month-guide g-m12"></div>
-          <div class="gantt-bar-wrap" style="left: 66.67%; width: 33.33%;">
-            <div class="gantt-bar bar-t12">
-              <span class="bar-title">Trang LDP NHA -SA</span>
-              <span class="bar-done-badge">🎯 Xong T12</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    
 
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="gantt-bar bar-t10">
+              <div class="bar-left-content">
+                <span class="bar-id">US-12</span>
+                <span class="bar-epic">[CMS]</span>
+                <span class="bar-title" title="Quản lý trang">Quản lý trang</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="gantt-bar bar-t10">
+              <div class="bar-left-content">
+                <span class="bar-id">US-13</span>
+                <span class="bar-epic">[CMS]</span>
+                <span class="bar-title" title="Quản lý section">Quản lý section</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="gantt-bar bar-t10">
+              <div class="bar-left-content">
+                <span class="bar-id">US-14</span>
+                <span class="bar-epic">[CMS]</span>
+                <span class="bar-title" title="Quản lý Block">Quản lý Block</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="gantt-bar bar-t10">
+              <div class="bar-left-content">
+                <span class="bar-id">US-15</span>
+                <span class="bar-epic">[CMS]</span>
+                <span class="bar-title" title="Quản lý menu">Quản lý menu</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="gantt-bar bar-t10">
+              <div class="bar-left-content">
+                <span class="bar-id">US-MENU</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)">MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="gantt-bar bar-span-10-11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-18</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)">Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="gantt-bar bar-span-10-11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-20</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Quản lý quảng cáo">Quản lý quảng cáo</span>
+                <span class="bar-pic">👤 LongNH156</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="gantt-bar bar-span-10-11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-21</span>
+                <span class="bar-epic">[Web]</span>
+                <span class="bar-title" title="Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="gantt-bar bar-span-10-11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-LDPLOCAL</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema">CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema</span>
+                <span class="bar-pic">👤 ThuyTT104, LongNH156</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="gantt-bar bar-span-10-11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-30</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Quản lý Breadcrumbs trên trang / Landing Page">Quản lý Breadcrumbs trên trang / Landing Page</span>
+                <span class="bar-pic">👤 LongNH156, SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="gantt-bar bar-t11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-29</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Quản lý URL">Quản lý URL</span>
+                <span class="bar-pic">👤 LongNH156, ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="gantt-bar bar-t11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-31</span>
+                <span class="bar-epic">[Web]</span>
+                <span class="bar-title" title="Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn">Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="gantt-bar bar-t11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-32</span>
+                <span class="bar-epic">[Web]</span>
+                <span class="bar-title" title="Luồng quà tặng (Mũ bảo hiểm) trên website">Luồng quà tặng (Mũ bảo hiểm) trên website</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="gantt-bar bar-t11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-33</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Xây dựng thư viện section mở rộng cho tạo LDP kéo thả">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
+                <span class="bar-pic">👤 ThuyTT104, LongNH156</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="gantt-bar bar-t11">
+              <div class="bar-left-content">
+                <span class="bar-id">US-28</span>
+                <span class="bar-epic">[Web]</span>
+                <span class="bar-title" title="[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn">[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="gantt-bar bar-span-11-12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-47</span>
+                <span class="bar-epic">[Web]</span>
+                <span class="bar-title" title="Luồng giỏ hàng trên kênh (Unified Cart)">Luồng giỏ hàng trên kênh (Unified Cart)</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="gantt-bar bar-span-11-12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-36</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Quản lý tin tức">Quản lý tin tức</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="gantt-bar bar-span-11-12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-37</span>
+                <span class="bar-epic">[CMS]</span>
+                <span class="bar-title" title="Quản lý Profile Tác giả">Quản lý Profile Tác giả</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-26</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-27</span>
+                <span class="bar-epic">[CMS, Web]</span>
+                <span class="bar-title" title="Bổ sung trang Combo Internet Camera">Bổ sung trang Combo Internet Camera</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-38</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP CSCA">Trang LDP CSCA</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-39</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP Fcitizen">Trang LDP Fcitizen</span>
+                <span class="bar-pic">👤 ThuyTT104</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-40</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP Ngoại Hạng Anh (NHA)">Trang LDP Ngoại Hạng Anh (NHA)</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-41</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP NHA - Lịch thi đấu">Trang LDP NHA - Lịch thi đấu</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-42</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP NHA - Bảng xếp hạng">Trang LDP NHA - Bảng xếp hạng</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="gantt-row">
+        <div class="timeline-cells">
+          <!-- Guide columns -->
+          <div class="month-guide g-m10">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m11">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+          <div class="month-guide g-m12">
+            <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
+          </div>
+
+          <!-- Gantt Bar Pill -->
+          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="gantt-bar bar-t12">
+              <div class="bar-left-content">
+                <span class="bar-id">US-43</span>
+                <span class="bar-epic">[Web, CMS]</span>
+                <span class="bar-title" title="Trang LDP NHA - SA">Trang LDP NHA - SA</span>
+                <span class="bar-pic">👤 SonLN11</span>
+              </div>
+              <span class="bar-done-badge">🎯 Xong T12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
   </div>
 
-  <!-- Footer -->
   <div class="roadmap-footer">
-    <div>Nguồn dữ liệu: Product Backlog Team Website & CMS FPT.vn | Thiết kế chuẩn Gantt Timeline trực quan đa tháng</div>
-    <div>Cập nhật ngày 23/10/2026 | Phân tích bởi BA Senior & Product Owner & UI/UX Designer</div>
+    <div>Nguồn dữ liệu: Backlog Website & CMS FPT.vn | Phạm vi Quý 4/2026 | Không bao gồm các task Done / Pending / Khung Buffer</div>
+    <div>Cập nhật theo chuẩn UI/UX Designer & Product Owner | FPT Telecom Online Business</div>
   </div>
 
 </body>
