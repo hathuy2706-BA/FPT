@@ -1,22 +1,25 @@
 /**
  * =========================================================================================
  * FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)
- * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V5 (ULTRA CLEAN DASHBOARD)
+ * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V6 (PERFECT POSITIONING & ZERO GRIDLINES)
  * =========================================================================================
  * Tự động đồng bộ 100% dữ liệu Realtime từ Google Sheet Backlog gốc:
  * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=954545565
  * 
- * Các nâng cấp V5:
- * 1. HỢP NHẤT DÒNG TOÀN DIỆN CHO TỪNG TASK:
- *    - Task Tháng 10: Merge toàn bộ Cột A:B (rộng 600px), không bị cắt chữ.
- *    - Task Tháng 10-11: Merge toàn bộ Cột A:D (rộng 1200px).
- *    - Task Tháng 11: Merge toàn bộ Cột C:D (rộng 600px).
- *    - Task Tháng 11-12: Merge toàn bộ Cột C:F (rộng 1200px).
- *    - Task Tháng 12: Merge toàn bộ Cột E:F (rộng 600px).
- * 2. BỎ ICON ở dòng detail (chỉ giữ text detail thuần túy).
- * 3. BÔI ĐEN NỔI BẬT cho Hệ thống và Độ ưu tiên (Màu đen tuyền #000000, Bold).
- * 4. BỎ HẾT ĐƯỜNG CHỈ trong phạm vi các cột tháng (nền pastel phẳng mượt, không có kẻ ô bên trong,
- *    chỉ giữ lại viền ranh giới phân định giữa 3 tháng và viền hộp của từng thanh task).
+ * Các nâng cấp V6 giải quyết triệt để yêu cầu người dùng:
+ * 1. ĐƯA ĐỘ ƯU TIÊN VỀ GÓC PHẢI TRÊN NGOÀI CÙNG & PIC/TRẠNG THÁI VỀ GÓC PHẢI DƯỚI NGOÀI CÙNG:
+ *    - Sử dụng cấu trúc 2 phân vùng trong mỗi thanh task:
+ *      + Vùng Trái (Nội dung: [Hệ thống] + Tên task + Detail) rộng tới 460px (hoặc 1120px khi vắt tháng)
+ *        -> Không bao giờ bị cắt chữ hay tràn lề!
+ *      + Vùng Phải (Meta) rộng 200px, căn lề PHẢI (right):
+ *        * Dòng 1: [P1] nằm sát góc phải trên ngoài cùng (màu đen tuyền #000000 bold).
+ *        * Dòng 2: 👤 PIC  ● Trạng thái nằm sát góc phải dưới ngoài cùng.
+ *      + Hai vùng nối liền mạch không có đường kẻ ở giữa, tạo thành 1 thanh task thống nhất!
+ * 2. TẮT HOÀN TOÀN TẤT CẢ ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRONG TOÀN BỘ SHEET:
+ *    - Sử dụng roadmapSheet.setHiddenGridlines(true) chuẩn Google Apps Script API.
+ *    - Xóa toàn bộ viền ô bên trong các tháng, chỉ giữ lại viền ranh giới phân định giữa 3 tháng.
+ * 3. BỎ ICON ở dòng detail (text thuần túy).
+ * 4. BÔI ĐEN NỀN NỔI BẬT cho Hệ thống và Độ ưu tiên (#000000 bold).
  * =========================================================================================
  */
 
@@ -214,7 +217,7 @@ function syncRoadmapFromBacklog() {
         startM = 12; endM = 12;
       }
 
-      // Xử lý detail rút gọn (BỎ ICON theo yêu cầu 2)
+      // Xử lý detail rút gọn (BỎ ICON)
       let cleanDesc = rawDesc.split('\n')[0].trim();
       if (cleanDesc.startsWith('Tài liệu:')) {
         cleanDesc = 'Quy chuẩn tài liệu phân tích kỹ thuật và nghiệm thu UAT/CSOC';
@@ -222,9 +225,6 @@ function syncRoadmapFromBacklog() {
         cleanDesc = 'Quy chuẩn cấu hình trang landing page và tích hợp hệ thống';
       } else if (!cleanDesc) {
         cleanDesc = 'Triển khai tính năng và phối hợp tích hợp theo yêu cầu';
-      }
-      if (cleanDesc.length > 55) {
-        cleanDesc = cleanDesc.substring(0, 52) + '...';
       }
 
       q4Tasks.push({
@@ -260,13 +260,19 @@ function syncRoadmapFromBacklog() {
   }
   roadmapSheet.activate();
 
-  // Đặt chiều rộng cột (300px mỗi cột => mỗi tháng rộng 600px, task 2 tháng rộng 1200px)
-  roadmapSheet.setColumnWidth(1, 300); // A
-  roadmapSheet.setColumnWidth(2, 300); // B
-  roadmapSheet.setColumnWidth(3, 300); // C
-  roadmapSheet.setColumnWidth(4, 300); // D
-  roadmapSheet.setColumnWidth(5, 300); // E
-  roadmapSheet.setColumnWidth(6, 300); // F
+  // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET (CHUẨN APPS SCRIPT API)
+  roadmapSheet.setHiddenGridlines(true);
+
+  // ĐẶT ĐỘ RỘNG CỘT TỐI ƯU:
+  // Cột A (Nội dung T10): 460px | Cột B (Meta T10): 200px  -> Tổng T10 = 660px
+  // Cột C (Nội dung T11): 460px | Cột D (Meta T11): 200px  -> Tổng T11 = 660px
+  // Cột E (Nội dung T12): 460px | Cột F (Meta T12): 200px  -> Tổng T12 = 660px
+  roadmapSheet.setColumnWidth(1, 460); // A: Nội dung T10
+  roadmapSheet.setColumnWidth(2, 200); // B: Meta T10
+  roadmapSheet.setColumnWidth(3, 460); // C: Nội dung T11
+  roadmapSheet.setColumnWidth(4, 200); // D: Meta T11
+  roadmapSheet.setColumnWidth(5, 460); // E: Nội dung T12
+  roadmapSheet.setColumnWidth(6, 200); // F: Meta T12
 
   // ===== DÒNG 1: TIÊU ĐỀ BẢNG =====
   const titleRange = roadmapSheet.getRange("A1:F1");
@@ -277,7 +283,7 @@ function syncRoadmapFromBacklog() {
   titleRange.setBackground("#FFFFFF");
   roadmapSheet.setRowHeight(1, 38);
 
-  // ===== DÒNG 2: DÒNG GHI CHÚ DUY NHẤT =====
+  // ===== DÒNG 2: GHI CHÚ DUY NHẤT =====
   const noteRange = roadmapSheet.getRange("A2:F2");
   noteRange.merge();
   noteRange.setValue("(*) Lưu ý: Roadmap này chưa tính task phát sinh phục vụ vận hành/kinh doanh triển khai các chiến dịch/sự kiện/hot request");
@@ -286,7 +292,7 @@ function syncRoadmapFromBacklog() {
   noteRange.setBackground("#FFFFFF");
   roadmapSheet.setRowHeight(2, 24);
 
-  // ===== DÒNG 3: TIÊU ĐỀ 3 CỘT THÁNG (MÀU ĐẬM TƯƠNG ỨNG CỘT, CHỮ TRẮNG) =====
+  // ===== DÒNG 3: TIÊU ĐỀ 3 CỘT THÁNG (MÀU ĐẬM TƯƠNG ỨNG CỘT, CHỮ TRẮNG BOLD) =====
   // Tháng 10 (Cột A-B): Xanh đậm
   const m10Header = roadmapSheet.getRange("A3:B3");
   m10Header.merge();
@@ -313,112 +319,117 @@ function syncRoadmapFromBacklog() {
   const startRow = 4;
   const numTasks = sortedTasks.length;
 
-  // 1. TÔ NỀN PASTEL MỜ PHẲNG LÌ CHO TOÀN BỘ 3 THÁNG (BỎ HẾT ĐƯỜNG KẺ CHỈ BÊN TRONG CÁC THÁNG)
-  // Cột A-B: Tháng 10 (Chỉ có viền trái Cột A và viền phải Cột B để phân cách Tháng 11)
+  // 1. TÔ NỀN PASTEL MỜ PHẲNG LÌ CHO TOÀN BỘ 3 THÁNG
+  // XÓA SẠCH MỌI ĐƯỜNG KẺ CHỈ BÊN TRONG, CHỈ GIỮ LẠI RANH GIỚI PHÂN BIỆT 3 THÁNG
+  // Tháng 10: Viền trái Cột A, viền phải Cột B (ngăn cách T11)
   const m10Body = roadmapSheet.getRange(startRow, 1, numTasks, 2);
   m10Body.setBackground(MONTH_BG.m10)
     .setBorder(false, true, true, true, false, false, "#94A3B8", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // Cột C-D: Tháng 11 (Chỉ có viền trái Cột C và viền phải Cột D)
+  // Tháng 11: Viền trái Cột C, viền phải Cột D (ngăn cách T12)
   const m11Body = roadmapSheet.getRange(startRow, 3, numTasks, 2);
   m11Body.setBackground(MONTH_BG.m11)
     .setBorder(false, true, true, true, false, false, "#94A3B8", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // Cột E-F: Tháng 12 (Chỉ có viền trái Cột E và viền phải Cột F)
+  // Tháng 12: Viền trái Cột E, viền phải Cột F
   const m12Body = roadmapSheet.getRange(startRow, 5, numTasks, 2);
   m12Body.setBackground(MONTH_BG.m12)
     .setBorder(false, true, true, true, false, false, "#94A3B8", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // 2. Render từng task với HỢP NHẤT DÒNG TOÀN DIỆN (Merge toàn bộ cột của task)
+  // 2. Render từng task với 2 VÙNG CHUẨN XÁC 100%:
+  // - VÙNG TRÁI: Tên Task & Detail rút gọn (Căn trái)
+  // - VÙNG PHẢI: Góc trên [P1], Góc dưới 👤 PIC  ● Trạng thái (Căn phải)
   let curRow = startRow;
   sortedTasks.forEach(t => {
     roadmapSheet.setRowHeight(curRow, 38);
 
     const cfg = STATUS_CONFIG[t.status] || STATUS_CONFIG['Chưa tiếp nhận'];
-    const prioLabel = `[${t.prio}]`;
     const epicTag = `[${t.epic}]`;
+    const prioTag = `[${t.prio}]`;
 
-    // Xác định số cột merge và độ dài mục tiêu (Target Length) để căn lề 2 bên
-    let startCol = 1, numCols = 2, targetWidthChars = 85;
-    if (t.timeGroup === 't10') {
-      startCol = 1; numCols = 2; targetWidthChars = 85;  // Cột A:B (600px)
-    } else if (t.timeGroup === 'span-10-11') {
-      startCol = 1; numCols = 4; targetWidthChars = 175; // Cột A:D (1200px)
-    } else if (t.timeGroup === 't11') {
-      startCol = 3; numCols = 2; targetWidthChars = 85;  // Cột C:D (600px)
-    } else if (t.timeGroup === 'span-11-12') {
-      startCol = 3; numCols = 4; targetWidthChars = 175; // Cột C:F (1200px)
-    } else if (t.timeGroup === 't12') {
-      startCol = 5; numCols = 2; targetWidthChars = 85;  // Cột E:F (600px)
-    }
-
-    // Dòng 1: [Hệ thống] Tên Task .............. [P1] (Góc phải trên)
+    // PHẦN BÊN TRÁI: Hệ thống + Tên Task & Detail rút gọn
     const leftLine1 = `${epicTag} ${t.title}`;
-    const rightLine1 = prioLabel;
-    const pad1 = Math.max(4, targetWidthChars - leftLine1.length - rightLine1.length);
-    const line1 = leftLine1 + " ".repeat(pad1) + rightLine1;
+    const leftLine2 = t.desc; // Không icon
+    const leftFullText = `${leftLine1}\n${leftLine2}`;
 
-    // Dòng 2: Detail rút gọn (BỎ ICON) .......... 👤 PIC  ● Trạng thái (Góc phải dưới)
-    const leftLine2 = t.desc;
-    const rightLine2 = `👤 ${t.pic}  ● ${t.status}`;
-    const pad2 = Math.max(4, targetWidthChars - leftLine2.length - rightLine2.length);
-    const line2 = leftLine2 + " ".repeat(pad2) + rightLine2;
-
-    const fullText = `${line1}\n${line2}`;
-
-    // Xây dựng RichTextValue
-    const builder = SpreadsheetApp.newRichTextValue().setText(fullText);
-
-    // Style 1: Hệ thống [EPIC] -> BÔI ĐEN NỔI BẬT: Đen tuyền #000000, Bold, 9.5pt
-    builder.setTextStyle(0, epicTag.length,
+    const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftFullText);
+    // Hệ thống [EPIC]: BÔI ĐEN NỔI BẬT #000000, Bold, 9.5pt
+    leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#000000").build()
     );
-
-    // Style 2: Tên Task -> Đen than #0F172A, Bold, 9.5pt
-    builder.setTextStyle(epicTag.length + 1, leftLine1.length,
+    // Tên Task: Đen than #0F172A, Bold, 9.5pt
+    leftBuilder.setTextStyle(epicTag.length + 1, leftLine1.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#0F172A").build()
     );
-
-    // Style 3: Độ ưu tiên [P1] -> BÔI ĐEN NỔI BẬT: Đen tuyền #000000, Bold, 10pt (Góc phải trên)
-    const prioIdx = line1.lastIndexOf(prioLabel);
-    if (prioIdx !== -1) {
-      builder.setTextStyle(prioIdx, prioIdx + prioLabel.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor("#000000").build()
-      );
-    }
-
-    // Style 4: Detail rút gọn (Không icon) -> Nghiêng, Xám ghi #475569, 8pt
-    const line2Start = line1.length + 1;
-    builder.setTextStyle(line2Start, line2Start + leftLine2.length,
+    // Detail rút gọn: Nghiêng, Xám ghi #475569, 8pt
+    const detailStart = leftLine1.length + 1;
+    leftBuilder.setTextStyle(detailStart, detailStart + leftLine2.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8).setForegroundColor("#475569").build()
     );
+    const leftRichText = leftBuilder.build();
 
-    // Style 5: PIC & Trạng thái -> Size 8, Xám than #334155 (Góc phải dưới)
-    const metaStart = fullText.lastIndexOf(rightLine2);
-    if (metaStart !== -1) {
-      builder.setTextStyle(metaStart, metaStart + rightLine2.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(8).setForegroundColor("#334155").build()
+    // PHẦN BÊN PHẢI (GÓC PHẢI TRÊN & GÓC PHẢI DƯỚI - CĂN PHẢI RIGHT):
+    // Dòng 1: [P1] -> BÔI ĐEN NỔI BẬT #000000, Bold, 10pt
+    // Dòng 2: 👤 PIC  ● Trạng thái -> Size 8, Xám than #334155
+    const rightLine1 = prioTag;
+    const rightLine2 = `👤 ${t.pic}  ● ${t.status}`;
+    const rightFullText = `${rightLine1}\n${rightLine2}`;
+
+    const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightFullText);
+    // Dòng 1: [P1] bôi đen
+    rightBuilder.setTextStyle(0, rightLine1.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor("#000000").build()
+    );
+    // Dòng 2: PIC & Trạng thái
+    const rLine2Start = rightLine1.length + 1;
+    rightBuilder.setTextStyle(rLine2Start, rLine2Start + rightLine2.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(8).setForegroundColor("#334155").build()
+    );
+    // Nhấn màu trạng thái
+    const statusStart = rightFullText.lastIndexOf(t.status);
+    if (statusStart !== -1) {
+      rightBuilder.setTextStyle(statusStart, statusStart + t.status.length,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8).setForegroundColor(cfg.badgeColor).build()
       );
-      // Nhấn màu cho Trạng thái
-      const statusIdx = fullText.lastIndexOf(t.status);
-      if (statusIdx !== -1) {
-        builder.setTextStyle(statusIdx, statusIdx + t.status.length,
-          SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8).setForegroundColor(cfg.badgeColor).build()
-        );
-      }
+    }
+    const rightRichText = rightBuilder.build();
+
+    // XÁC ĐỊNH VÙNG TRÁI VÀ PHẢI THEO THỜI GIAN THỰC THI:
+    let leftRange, rightRange;
+    if (t.timeGroup === 't10') {
+      leftRange = roadmapSheet.getRange(curRow, 1, 1, 1);  // Cột A (460px)
+      rightRange = roadmapSheet.getRange(curRow, 2, 1, 1); // Cột B (200px)
+    } else if (t.timeGroup === 'span-10-11') {
+      roadmapSheet.getRange(curRow, 1, 1, 3).merge();
+      leftRange = roadmapSheet.getRange(curRow, 1, 1, 3);  // Cột A:C (460 + 200 + 460 = 1120px)
+      rightRange = roadmapSheet.getRange(curRow, 4, 1, 1); // Cột D (200px)
+    } else if (t.timeGroup === 't11') {
+      leftRange = roadmapSheet.getRange(curRow, 3, 1, 1);  // Cột C (460px)
+      rightRange = roadmapSheet.getRange(curRow, 4, 1, 1); // Cột D (200px)
+    } else if (t.timeGroup === 'span-11-12') {
+      roadmapSheet.getRange(curRow, 3, 1, 3).merge();
+      leftRange = roadmapSheet.getRange(curRow, 3, 1, 3);  // Cột C:E (1120px)
+      rightRange = roadmapSheet.getRange(curRow, 6, 1, 1); // Cột F (200px)
+    } else if (t.timeGroup === 't12') {
+      leftRange = roadmapSheet.getRange(curRow, 5, 1, 1);  // Cột E (460px)
+      rightRange = roadmapSheet.getRange(curRow, 6, 1, 1); // Cột F (200px)
     }
 
-    const taskRichText = builder.build();
+    // ĐỊNH DẠNG VÙNG TRÁI (NỘI DUNG)
+    leftRange.setRichTextValue(leftRichText);
+    leftRange.setWrap(false);
+    leftRange.setBackground(cfg.bg);
+    leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
+    // Viền bao ngoài: Top, Left, Bottom (Bỏ viền Right để nối liền sang Vùng Phải)
+    leftRange.setBorder(true, true, true, false, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-    // HỢP NHẤT TOÀN BỘ CỘT CỦA TASK THÀNH 1 Ô DUY NHẤT (THEO YÊU CẦU 1)
-    const taskRange = roadmapSheet.getRange(curRow, startCol, 1, numCols);
-    taskRange.merge();
-    taskRange.setRichTextValue(taskRichText);
-    taskRange.setWrap(false);
-    taskRange.setBackground(cfg.bg);
-    taskRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-    // Viền bao quanh thanh task
-    taskRange.setBorder(true, true, true, true, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+    // ĐỊNH DẠNG VÙNG PHẢI (GÓC PHẢI TRÊN & GÓC PHẢI DƯỚI NGOÀI CÙNG)
+    rightRange.setRichTextValue(rightRichText);
+    rightRange.setWrap(false);
+    rightRange.setBackground(cfg.bg);
+    rightRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
+    // Viền bao ngoài: Top, Right, Bottom (Bỏ viền Left để nối liền sang Vùng Trái)
+    rightRange.setBorder(true, false, true, true, false, false, cfg.borderColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
     curRow++;
   });
