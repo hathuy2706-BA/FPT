@@ -461,6 +461,98 @@ modules_biz = [
                 "biz_question": "Giỏ hàng mua kèm phụ kiện lưu trên tài khoản khách hàng nên được lưu giữ tối đa bao nhiêu ngày trước khi tự động làm mới?"
             }
         ]
+    },
+    {
+        "module": "14. Mua Nhanh (Buy Now) & Khối Bán Kèm trên Trang Sản Phẩm (PDP)",
+        "cases": [
+            {
+                "br": "BR-01",
+                "scenario": "Khách bấm nút 'MUA NGAY' (Express Checkout) trên trang Camera Play 4",
+                "pre": "Khách đang xem trang chi tiết Camera Play 4 và bấm nút 'MUA NGAY' để đi thẳng đến bước thanh toán.",
+                "rule": "Bật Pop-up nhanh (Quick Add-on Modal) trước khi chuyển hướng: 'Bạn được tặng 01 suất mua kèm Charm ưu đãi 0đ. Bạn có muốn nhận ngay không?' kèm danh sách mẫu Charm còn hàng và 2 nút: [Nhận phụ kiện 0đ & Thanh toán] hoặc [Bỏ qua & Đến thanh toán].",
+                "alt": "Nếu khách bấm 'Bỏ qua': Hệ thống chuyển thẳng sang Checkout chỉ với Camera Play 4, không ép buộc chọn phụ kiện.",
+                "biz_question": "Kinh doanh muốn bật Pop-up chọn nhanh phụ kiện khi bấm 'Mua ngay' hay chuyển thẳng sang Checkout rồi nhắc chọn phụ kiện tại trang Checkout?"
+            },
+            {
+                "br": "BR-02",
+                "scenario": "Khối hiển thị mua kèm (Attached Deal Widget) trên trang chi tiết sản phẩm",
+                "pre": "Khách xem Camera Play 4, bên dưới có khối 'Ưu đãi mua kèm phụ kiện độc quyền'.",
+                "rule": "Mặc định KHÔNG tick sẵn phụ kiện để tránh khách không có nhu cầu hoặc chọn nhầm màu. Khách tick chọn mẫu Charm mong muốn thì nút 'Thêm vào giỏ' sẽ tự động gom cả Camera và Charm vào giỏ hàng trong 1 lần bấm.",
+                "alt": "Nếu khách tăng số lượng Camera lên 2 tại PDP: Hiển thị tooltip 'Bạn được mua kèm 2 Charm giá ưu đãi! Bạn có thể chọn thêm mẫu khác trong giỏ hàng'.",
+                "biz_question": "Kinh doanh muốn mặc định tick sẵn 1 mẫu phụ kiện hay để trống cho khách tự chủ động chọn?"
+            },
+            {
+                "br": "BR-03",
+                "scenario": "Biến thể phụ kiện mua kèm bị Hết hàng (Out of Stock) tại trang sản phẩm",
+                "pre": "Charm Mẫu A (Màu Hồng) hết hàng trong kho, các mẫu B và C vẫn còn hàng.",
+                "rule": "Tại khối mua kèm trên PDP: Mẫu A hiển thị dưới dạng làm mờ (Grey-out), gắn nhãn 'Tạm hết hàng' và khóa không cho tick chọn. Các mẫu còn hàng hiển thị bình thường kèm nhãn 'Giá ưu đãi 0đ'.",
+                "alt": "Nếu tất cả các mẫu Charm đều hết hàng: Khối mua kèm tự động ẩn khỏi trang PDP để tránh gây bức xúc cho khách hàng.",
+                "biz_question": "Khi một mẫu phụ kiện hết hàng, Kinh doanh muốn làm mờ gắn nhãn 'Tạm hết' hay ẩn hoàn toàn mẫu đó khỏi trang sản phẩm?"
+            }
+        ]
+    },
+    {
+        "module": "15. Thao tác Bán kèm trên Giỏ Hàng Trượt (Mini-Cart / Drawer Cart)",
+        "cases": [
+            {
+                "br": "BR-01",
+                "scenario": "Đổi mẫu phụ kiện mua kèm trực tiếp trên ngăn kéo Mini-Cart",
+                "pre": "Khách thêm Camera + 1 Charm A vào giỏ. Mini-cart bên phải màn hình trượt ra.",
+                "rule": "Tại dòng Charm A trên Mini-cart, hiển thị nút bấm nhỏ '[Đổi mẫu]'. Khi khách bấm, mở danh sách popover các mẫu Charm còn hàng để khách chuyển đổi sang Charm B ngay trên Mini-cart mà không cần chuyển trang.",
+                "alt": "Nếu khách chọn đổi sang Charm Premium (+50k): Subtotal của Mini-cart tự động cập nhật cộng thêm 50.000đ ngay lập tức.",
+                "biz_question": "Kinh doanh có đồng ý cho khách đổi mẫu phụ kiện ngay trên Mini-cart không hay bắt buộc phải vào trang Giỏ hàng chi tiết (/cart)?"
+            },
+            {
+                "br": "BR-02",
+                "scenario": "Tăng số lượng Camera trực tiếp trên Mini-Cart",
+                "pre": "Mini-cart đang có 1 Camera + 1 Charm A (0đ). Khách bấm nút [+] tăng Camera lên 2.",
+                "rule": "Hạn mức ưu đãi tăng lên 2. Giữ nguyên 1 Charm A đã chọn, đồng thời bên dưới xuất hiện 1 dòng slot trống nổi bật: '+ Thêm 1 Charm ưu đãi 0đ [Chọn ngay]'.",
+                "alt": "Nếu khách bấm 'Thanh toán' mà chưa chọn slot thứ 2: Đơn hàng vẫn tiếp tục bình thường với 2 Camera + 1 Charm A.",
+                "biz_question": "Khi tăng Camera trên Mini-cart, Kinh doanh muốn hệ thống tự động nhân đôi mẫu Charm hiện tại hay mở slot trống để khách tự chọn?"
+            }
+        ]
+    },
+    {
+        "module": "16. Ràng buộc Khuyến mãi & Kho tại Trang Thanh Toán (Checkout)",
+        "cases": [
+            {
+                "br": "BR-01",
+                "scenario": "Lời nhắc cuối (Last Reminder) tại Trang Thanh toán khi chưa chọn phụ kiện",
+                "pre": "Khách mua Camera Play 4 nhưng chưa chọn phụ kiện mua kèm nào và đã đến trang Checkout điền địa chỉ.",
+                "rule": "Ngay phía trên nút 'Đặt hàng', hiển thị Banner ưu đãi 1 chạm: 'Bạn đang bỏ lỡ 01 Charm Play 4 giá ưu đãi 0đ! [Nhận Charm ngay]'. Khách click chọn mẫu là hệ thống tự add vào đơn ngay tại Checkout mà không reload trang.",
+                "alt": "Khách có quyền bấm 'Bỏ qua' hoặc nhấn thẳng nút 'Đặt hàng' nếu không có nhu cầu.",
+                "biz_question": "Có cần hiển thị Banner nhắc nhận phụ kiện 0đ ngay tại bước Thanh toán cuối cùng để tối ưu tỷ lệ gắn kèm sản phẩm không?"
+            },
+            {
+                "br": "BR-02",
+                "scenario": "Khách nhập Mã giảm giá (Coupon Code) xung đột với suất mua kèm",
+                "pre": "Khách có Camera và Charm (0đ) trong đơn, khách nhập mã voucher toàn sàn (VD: Mã GIAM50K cho đơn từ 1.000.000đ).",
+                "rule": "Giá trị của Charm 0đ KHÔNG được tính vào điều kiện giá trị đơn hàng tối thiểu (Min Basket Size) để kích hoạt voucher. Voucher chỉ giảm trên số tiền thực thu của Camera và phần phụ thu mua kèm (nếu có).",
+                "alt": "Nếu khách nhập voucher chuyên biệt dành cho phụ kiện: Hệ thống áp dụng quy tắc ưu đãi tốt nhất, không cộng dồn hai mức giảm giá cho cùng 1 món.",
+                "biz_question": "Phụ kiện mua kèm giá 0đ có được tính vào tổng giá trị đơn hàng để xét điều kiện áp dụng mã voucher toàn sàn không?"
+            },
+            {
+                "br": "BR-03",
+                "scenario": "Khách đổi Địa chỉ nhận hàng tại Checkout dẫn đến Lệch kho tồn phụ kiện",
+                "pre": "Khách đổi địa chỉ giao hàng từ Hà Nội (kho còn Charm) sang tỉnh khác (kho tỉnh hết Charm, chỉ còn kho trung tâm).",
+                "rule": "Không tự ý gỡ Charm của khách: Hệ thống hiển thị thông báo thời gian giao hàng: 'Phụ kiện mua kèm sẽ được điều chuyển từ kho trung tâm, đơn hàng dự kiến giao sau 2-3 ngày làm việc (Miễn phí vận chuyển)'.",
+                "alt": "Nếu khách cần nhận gấp Camera trong 2h: Cho phép khách tick chọn 'Tách giao Camera trước, phụ kiện giao sau'.",
+                "biz_question": "Khi kho giao hàng tại địa chỉ của khách hết phụ kiện mua kèm, Kinh doanh muốn điều chuyển kho miễn phí hay thông báo khách đổi mẫu khác?"
+            }
+        ]
+    },
+    {
+        "module": "17. Bán kèm Sau Đặt Hàng (Post-Purchase One-Click Upsell) tại Trang Thành Công",
+        "cases": [
+            {
+                "br": "BR-01",
+                "scenario": "Khách hoàn tất thanh toán Camera mà quên chọn phụ kiện mua kèm",
+                "pre": "Khách đã bấm Đặt hàng thành công đơn Camera Play 4 và chuyển đến trang 'Cảm ơn / Đặt hàng thành công'.",
+                "rule": "Kích hoạt đồng hồ đếm ngược 5 phút tại trang Cảm ơn: 'Đặc quyền của bạn: Thêm 01 Charm Play 4 với giá ưu đãi 0đ vào đơn hàng vừa tạo (Miễn phí vận chuyển)'. Khách click [Thêm ngay], hệ thống tự động gộp vào đơn hàng vừa tạo trước khi đẩy sang kho WMS.",
+                "alt": "Sau 5 phút hoặc khi đơn hàng đã chuyển trạng thái 'Đang đóng gói', ưu đãi bổ sung này tự động hết hiệu lực.",
+                "biz_question": "Kinh doanh có đồng ý cho phép khách bổ sung phụ kiện mua kèm vào đơn hàng vừa tạo trong vòng 5 phút tại màn hình Cảm ơn không?"
+            }
+        ]
     }
 ]
 
