@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Product Roadmap Q4/2026 - Timeline Tiến Trình Tháng</title>
+<title>Product Roadmap Q4/2026 - Timeline Tiến Trình</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -12,7 +12,7 @@
     background-color: #FFFFFF;
     color: #0F172A;
     padding: 30px 40px;
-    width: 2400px;
+    width: 2500px;
     margin: 0 auto;
   }
 
@@ -20,16 +20,17 @@
   .roadmap-header {
     border-bottom: 2px solid #E2E8F0;
     padding-bottom: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
   }
 
   .header-left h1 {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
     color: #0F172A;
+    letter-spacing: -0.5px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -45,14 +46,14 @@
   }
 
   .header-left p {
-    font-size: 14px;
+    font-size: 14.5px;
     color: #475569;
     margin-top: 6px;
   }
 
   .header-metrics {
     display: flex;
-    gap: 14px;
+    gap: 16px;
   }
 
   .metric-card {
@@ -60,12 +61,12 @@
     border: 1px solid #E2E8F0;
     border-radius: 10px;
     padding: 10px 18px;
-    min-width: 140px;
+    min-width: 150px;
     text-align: center;
   }
 
-  .metric-card .val { font-size: 22px; font-weight: 800; color: #1E293B; }
-  .metric-card .lbl { font-size: 11px; color: #64748B; font-weight: 600; text-transform: uppercase; margin-top: 2px; }
+  .metric-card .val { font-size: 24px; font-weight: 800; color: #1E293B; }
+  .metric-card .lbl { font-size: 11.5px; color: #64748B; font-weight: 600; text-transform: uppercase; margin-top: 2px; }
 
   /* Legend Bar */
   .legend-bar {
@@ -74,32 +75,69 @@
     align-items: center;
     background: #F8FAFC;
     border: 1px solid #E2E8F0;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
+    border-radius: 12px;
+    padding: 12px 22px;
+    margin-bottom: 24px;
   }
 
-  .legend-group { display: flex; align-items: center; gap: 8px; }
-  .legend-title { font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; }
+  .legend-group { display: flex; align-items: center; gap: 10px; }
+  .legend-title { font-size: 12.5px; font-weight: 700; color: #475569; text-transform: uppercase; }
 
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    padding: 4px 9px;
     border-radius: 6px;
     font-size: 11.5px;
     font-weight: 700;
-    gap: 4px;
+    gap: 5px;
   }
 
   .tag-cms { background-color: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
   .tag-web { background-color: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD; }
   .tag-both { background-color: #CCFBF1; color: #0F766E; border: 1px solid #99F6E4; }
 
+  .prio-p1 { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+  .prio-p2 { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+  .prio-p3 { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
+  .prio-p4 { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+  .status-uat { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+  .status-dev { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+  .status-doc { background: #F3E8FF; color: #6B21A8; border: 1px solid #E9D5FF; }
+  .status-new { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+
+  .pic-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #334155;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid #E2E8F0;
+    white-space: nowrap;
+  }
+
+  .cross-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  .pill-10-11 { background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE; }
+  .pill-11-12 { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+
   /* Gantt Container */
   .gantt-board {
     border: 1px solid #CBD5E1;
-    border-radius: 12px;
+    border-radius: 14px;
     background: #FFFFFF;
     overflow: hidden;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
@@ -120,38 +158,38 @@
   .month-header-col:last-child { border-right: none; }
 
   .month-header-top {
-    padding: 10px 0;
+    padding: 12px 0 10px 0;
   }
-  .m-title { font-size: 15px; font-weight: 800; letter-spacing: 0.5px; }
-  .m-sub { font-size: 11px; color: #94A3B8; margin-top: 2px; }
+  .m-title { font-size: 16px; font-weight: 800; letter-spacing: 0.5px; }
+  .m-sub { font-size: 11.5px; color: #94A3B8; margin-top: 3px; font-weight: 600; }
 
-  .h-m10 { background: #1E3A8A; }
-  .h-m11 { background: #581C87; }
-  .h-m12 { background: #064E3B; }
+  .h-m10 { background: linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%); }
+  .h-m11 { background: linear-gradient(180deg, #581C87 0%, #6B21A8 100%); }
+  .h-m12 { background: linear-gradient(180deg, #064E3B 0%, #047857 100%); }
 
   /* Weeks sub-header */
   .week-subheaders {
     display: flex;
-    background: rgba(0, 0, 0, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
   .week-subhead {
     flex: 1;
     text-align: center;
-    padding: 5px 0;
-    font-size: 11px;
+    padding: 6px 0;
+    font-size: 11.5px;
     font-weight: 600;
     color: #E2E8F0;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
   }
   .week-subhead:last-child { border-right: none; }
 
-  /* Gantt Rows */
+  /* Gantt Rows - Tăng chiều cao để task thoáng đẹp */
   .gantt-row {
     display: flex;
     border-bottom: 1px solid #F1F5F9;
     align-items: center;
-    height: 44px;
+    height: 54px;
     position: relative;
     transition: background 0.15s ease;
   }
@@ -164,7 +202,7 @@
     display: flex;
   }
 
-  /* Guide columns */
+  /* Guide columns - Nền pastel nhẹ nhàng */
   .month-guide {
     flex: 1;
     height: 100%;
@@ -172,9 +210,9 @@
     display: flex;
   }
   .month-guide:last-child { border-right: none; }
-  .g-m10 { background: rgba(239, 246, 255, 0.35); }
-  .g-m11 { background: rgba(250, 245, 255, 0.35); }
-  .g-m12 { background: rgba(236, 253, 245, 0.35); }
+  .g-m10 { background: rgba(239, 246, 255, 0.4); }
+  .g-m11 { background: rgba(250, 245, 255, 0.4); }
+  .g-m12 { background: rgba(236, 253, 245, 0.4); }
 
   .week-col {
     flex: 1;
@@ -183,112 +221,110 @@
   }
   .week-col:last-child { border-right: none; }
 
-  /* Gantt Bar Pill */
-  .gantt-bar-wrap {
+  /* Gantt Card Bar - Chuẩn style Card bản cũ */
+  .gantt-card-wrap {
     position: absolute;
-    top: 5px;
-    height: 34px;
+    top: 6px;
+    height: 42px;
     padding: 0 4px;
     z-index: 2;
   }
 
-  .gantt-bar {
+  .task-card {
     width: 100%;
     height: 100%;
-    border-radius: 6px;
+    background: #FFFFFF;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 0 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+    border: 1px solid #CBD5E1;
   }
 
-  .bar-left-content {
+  /* Viền và điểm nhấn phân phối màu theo từng tháng */
+  .card-t10 {
+    border-left: 6px solid #2563EB;
+    border-top: 1px solid #BFDBFE;
+    border-right: 1px solid #BFDBFE;
+    border-bottom: 1px solid #BFDBFE;
+  }
+  .card-t11 {
+    border-left: 6px solid #8B5CF6;
+    border-top: 1px solid #DDD6FE;
+    border-right: 1px solid #DDD6FE;
+    border-bottom: 1px solid #DDD6FE;
+  }
+  .card-t12 {
+    border-left: 6px solid #10B981;
+    border-top: 1px solid #A7F3D0;
+    border-right: 1px solid #A7F3D0;
+    border-bottom: 1px solid #A7F3D0;
+  }
+  .card-span-10-11 {
+    border-left: 6px solid #2563EB;
+    border-right: 6px solid #8B5CF6;
+    border-top: 1px solid #C7D2FE;
+    border-bottom: 1px solid #C7D2FE;
+    background: linear-gradient(90deg, #FFFFFF 0%, #FAF5FF 100%);
+  }
+  .card-span-11-12 {
+    border-left: 6px solid #8B5CF6;
+    border-right: 6px solid #10B981;
+    border-top: 1px solid #A7F3D0;
+    border-bottom: 1px solid #A7F3D0;
+    background: linear-gradient(90deg, #FFFFFF 0%, #F0FDF4 100%);
+  }
+
+  .card-left {
     display: flex;
     align-items: center;
     gap: 10px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    flex-grow: 1;
   }
 
-  .bar-id {
-    background: rgba(255, 255, 255, 0.25);
-    color: #FFFFFF;
-    font-size: 11px;
+  .card-id {
+    font-size: 12px;
     font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 4px;
+    color: #475569;
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    padding: 3px 8px;
+    border-radius: 5px;
     letter-spacing: 0.3px;
     flex-shrink: 0;
   }
 
-  .bar-epic {
-    background: rgba(0, 0, 0, 0.2);
-    color: #FFFFFF;
-    font-size: 11px;
+  .card-title {
+    font-size: 13.5px;
     font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-
-  .bar-title {
-    font-size: 12.5px;
-    font-weight: 700;
-    color: white;
+    color: #0F172A;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .bar-pic {
-    font-size: 11px;
-    color: #F1F5F9;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.15);
-    padding: 2px 6px;
-    border-radius: 4px;
+  .card-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     flex-shrink: 0;
-  }
-
-  .bar-done-badge {
-    background: #F59E0B;
-    color: #78350F;
-    font-size: 10.5px;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 4px;
-    flex-shrink: 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    margin-left: 10px;
-  }
-
-  /* Bar Themes */
-  .bar-t10 { background: linear-gradient(90deg, #3B82F6, #2563EB); border: 1px solid #1D4ED8; }
-  .bar-t11 { background: linear-gradient(90deg, #8B5CF6, #7C3AED); border: 1px solid #6D28D9; }
-  .bar-t12 { background: linear-gradient(90deg, #10B981, #059669); border: 1px solid #047857; }
-
-  /* Cross Month Spans (Thanh vắt ngang 2 tháng) */
-  .bar-span-10-11 {
-    background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);
-    border: 1px solid #7C3AED;
-  }
-
-  .bar-span-11-12 {
-    background: linear-gradient(90deg, #8B5CF6 0%, #10B981 100%);
-    border: 1px solid #059669;
+    margin-left: 12px;
   }
 
   /* Footer */
   .roadmap-footer {
-    margin-top: 18px;
-    padding-top: 12px;
+    margin-top: 20px;
+    padding-top: 14px;
     border-top: 1px solid #E2E8F0;
     display: flex;
     justify-content: space-between;
-    font-size: 11.5px;
-    color: #94A3B8;
+    font-size: 12px;
+    color: #64748B;
   }
 </style>
 </head>
@@ -299,7 +335,7 @@
     <div class="header-left">
       <h1>
         <span class="fpt-badge">FPT TELECOM</span>
-        PRODUCT ROADMAP — QUÝ 4/2026 (TIMELINE TIẾN TRÌNH)
+        PRODUCT ROADMAP — QUÝ 4/2026 (WEBSITE & CMS)
       </h1>
       <p>Lộ trình thực thi 26 User Stories theo các cột Tháng & Tuần | Từng dòng thể hiện thanh tiến trình chạy liên tục qua các tháng</p>
     </div>
@@ -313,7 +349,7 @@
         <div class="lbl">Task Chạy Đa Tháng</div>
       </div>
       <div class="metric-card">
-        <div class="val" style="color: #3B82F6;">5</div>
+        <div class="val" style="color: #2563EB;">5</div>
         <div class="lbl">Hạn Tháng 10</div>
       </div>
       <div class="metric-card">
@@ -336,13 +372,12 @@
       <span class="badge tag-both">[Web, CMS] Toàn trình</span>
     </div>
     <div class="legend-group">
-      <span class="legend-title">Tiến trình Thanh ngang:</span>
-      <span class="badge" style="background: linear-gradient(90deg, #3B82F6, #2563EB); color: white;">Tháng 10</span>
-      <span class="badge" style="background: linear-gradient(90deg, #3B82F6, #8B5CF6); color: white;">Vắt từ T10 sang T11 (5 Task)</span>
-      <span class="badge" style="background: linear-gradient(90deg, #8B5CF6, #7C3AED); color: white;">Tháng 11</span>
-      <span class="badge" style="background: linear-gradient(90deg, #8B5CF6, #10B981); color: white;">Vắt từ T11 sang T12 (3 Task)</span>
-      <span class="badge" style="background: linear-gradient(90deg, #10B981, #059669); color: white;">Tháng 12</span>
-      <span class="badge" style="background: #F59E0B; color: #78350F;">🎯 XONG (Mốc Nghiệm thu)</span>
+      <span class="legend-title">Nhận diện Cột Tháng:</span>
+      <span class="badge" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE;">Tháng 10 (5 Task)</span>
+      <span class="badge" style="background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE;">Vắt T10 ➔ T11 (5 Task)</span>
+      <span class="badge" style="background: #FAF5FF; color: #6B21A8; border: 1px solid #DDD6FE;">Tháng 11 (5 Task)</span>
+      <span class="badge" style="background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0;">Vắt T11 ➔ T12 (3 Task)</span>
+      <span class="badge" style="background: #F0FDF4; color: #065F46; border: 1px solid #BBF7D0;">Tháng 12 (8 Task)</span>
     </div>
   </div>
 
@@ -401,16 +436,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="gantt-bar bar-t10">
-              <div class="bar-left-content">
-                <span class="bar-id">US-12</span>
-                <span class="bar-epic">[CMS]</span>
-                <span class="bar-title" title="Quản lý trang">Quản lý trang</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="task-card card-t10">
+              <div class="card-left">
+                <span class="card-id">US-12</span>
+                <span class="badge tag-cms">[CMS]</span>
+                <span class="card-title" title="Quản lý trang">Quản lý trang</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T10</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-uat">UAT</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -429,16 +468,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="gantt-bar bar-t10">
-              <div class="bar-left-content">
-                <span class="bar-id">US-13</span>
-                <span class="bar-epic">[CMS]</span>
-                <span class="bar-title" title="Quản lý section">Quản lý section</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="task-card card-t10">
+              <div class="card-left">
+                <span class="card-id">US-13</span>
+                <span class="badge tag-cms">[CMS]</span>
+                <span class="card-title" title="Quản lý section">Quản lý section</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T10</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-uat">UAT</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -457,16 +500,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="gantt-bar bar-t10">
-              <div class="bar-left-content">
-                <span class="bar-id">US-14</span>
-                <span class="bar-epic">[CMS]</span>
-                <span class="bar-title" title="Quản lý Block">Quản lý Block</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="task-card card-t10">
+              <div class="card-left">
+                <span class="card-id">US-14</span>
+                <span class="badge tag-cms">[CMS]</span>
+                <span class="card-title" title="Quản lý Block">Quản lý Block</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T10</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-uat">UAT</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -485,16 +532,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="gantt-bar bar-t10">
-              <div class="bar-left-content">
-                <span class="bar-id">US-15</span>
-                <span class="bar-epic">[CMS]</span>
-                <span class="bar-title" title="Quản lý menu">Quản lý menu</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="task-card card-t10">
+              <div class="card-left">
+                <span class="card-id">US-15</span>
+                <span class="badge tag-cms">[CMS]</span>
+                <span class="card-title" title="Quản lý menu">Quản lý menu</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T10</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-uat">UAT</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -513,16 +564,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 32.33%;">
-            <div class="gantt-bar bar-t10">
-              <div class="bar-left-content">
-                <span class="bar-id">US-MENU</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)">MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 32.33%;">
+            <div class="task-card card-t10">
+              <div class="card-left">
+                <span class="card-id">US-MENU</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)">MENU (Cấp API Web/HiFPT & Đồng bộ SPDV)</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T10</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-dev">DEV</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -541,16 +596,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="gantt-bar bar-span-10-11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-18</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)">Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="task-card card-span-10-11">
+              <div class="card-left">
+                <span class="card-id">US-18</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)">Quản lý FAQ: Quy hoạch lại UI/UX & luồng cấu hình (Danh sách/Danh mục FAQ)</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -569,16 +628,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="gantt-bar bar-span-10-11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-20</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Quản lý quảng cáo">Quản lý quảng cáo</span>
-                <span class="bar-pic">👤 LongNH156</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="task-card card-span-10-11">
+              <div class="card-left">
+                <span class="card-id">US-20</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Quản lý quảng cáo">Quản lý quảng cáo</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 LongNH156</span>
+              </div>
             </div>
           </div>
         </div>
@@ -597,16 +660,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="gantt-bar bar-span-10-11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-21</span>
-                <span class="bar-epic">[Web]</span>
-                <span class="bar-title" title="Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="task-card card-span-10-11">
+              <div class="card-left">
+                <span class="card-id">US-21</span>
+                <span class="badge tag-web">[Web]</span>
+                <span class="card-title" title="Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL">Report: Ghi nhận thông tin báo cáo phase 2 - bộ báo cáo chuẩn cho ĐKOL</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-dev">Đang làm</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -625,16 +692,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="gantt-bar bar-span-10-11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-LDPLOCAL</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema">CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema</span>
-                <span class="bar-pic">👤 ThuyTT104, LongNH156</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="task-card card-span-10-11">
+              <div class="card-left">
+                <span class="card-id">US-LDPLOCAL</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema">CMS config LDP Local: Gắn location Tỉnh/Huyện, SEO & Schema</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
+              </div>
             </div>
           </div>
         </div>
@@ -653,16 +724,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 0.5%; width: 65.66%;">
-            <div class="gantt-bar bar-span-10-11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-30</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Quản lý Breadcrumbs trên trang / Landing Page">Quản lý Breadcrumbs trên trang / Landing Page</span>
-                <span class="bar-pic">👤 LongNH156, SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 0.5%; width: 65.66%;">
+            <div class="task-card card-span-10-11">
+              <div class="card-left">
+                <span class="card-id">US-30</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Quản lý Breadcrumbs trên trang / Landing Page">Quản lý Breadcrumbs trên trang / Landing Page</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                <span class="cross-pill pill-10-11">Tháng 10 ➔ 11</span>
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 LongNH156, SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -681,16 +756,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="gantt-bar bar-t11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-29</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Quản lý URL">Quản lý URL</span>
-                <span class="bar-pic">👤 LongNH156, ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="task-card card-t11">
+              <div class="card-left">
+                <span class="card-id">US-29</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Quản lý URL">Quản lý URL</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 LongNH156, ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -709,16 +788,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="gantt-bar bar-t11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-31</span>
-                <span class="bar-epic">[Web]</span>
-                <span class="bar-title" title="Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn">Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="task-card card-t11">
+              <div class="card-left">
+                <span class="card-id">US-31</span>
+                <span class="badge tag-web">[Web]</span>
+                <span class="card-title" title="Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn">Luồng bán kèm PK (charm) Camera Play 4 trên website fpt.vn</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-dev">Đang làm</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -737,16 +820,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="gantt-bar bar-t11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-32</span>
-                <span class="bar-epic">[Web]</span>
-                <span class="bar-title" title="Luồng quà tặng (Mũ bảo hiểm) trên website">Luồng quà tặng (Mũ bảo hiểm) trên website</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="task-card card-t11">
+              <div class="card-left">
+                <span class="card-id">US-32</span>
+                <span class="badge tag-web">[Web]</span>
+                <span class="card-title" title="Luồng quà tặng (Mũ bảo hiểm) trên website">Luồng quà tặng (Mũ bảo hiểm) trên website</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p3">P3</span>
+                <span class="status-badge status-dev">Đang làm</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -765,16 +852,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="gantt-bar bar-t11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-33</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Xây dựng thư viện section mở rộng cho tạo LDP kéo thả">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
-                <span class="bar-pic">👤 ThuyTT104, LongNH156</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="task-card card-t11">
+              <div class="card-left">
+                <span class="card-id">US-33</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Xây dựng thư viện section mở rộng cho tạo LDP kéo thả">Xây dựng thư viện section mở rộng cho tạo LDP kéo thả</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p3">P3</span>
+                <span class="status-badge status-dev">Đang làm</span>
+                <span class="pic-badge">👤 ThuyTT104, LongNH156</span>
+              </div>
             </div>
           </div>
         </div>
@@ -793,16 +884,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 32.33%;">
-            <div class="gantt-bar bar-t11">
-              <div class="bar-left-content">
-                <span class="bar-id">US-28</span>
-                <span class="bar-epic">[Web]</span>
-                <span class="bar-title" title="[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn">[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 32.33%;">
+            <div class="task-card card-t11">
+              <div class="card-left">
+                <span class="card-id">US-28</span>
+                <span class="badge tag-web">[Web]</span>
+                <span class="card-title" title="[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn">[FMI Phase 4 | NBA] Phối hợp tích hợp Trigger Popup & Web Push trên fpt.vn</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T11</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p4">P4</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -821,16 +916,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="gantt-bar bar-span-11-12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-47</span>
-                <span class="bar-epic">[Web]</span>
-                <span class="bar-title" title="Luồng giỏ hàng trên kênh (Unified Cart)">Luồng giỏ hàng trên kênh (Unified Cart)</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="task-card card-span-11-12">
+              <div class="card-left">
+                <span class="card-id">US-47</span>
+                <span class="badge tag-web">[Web]</span>
+                <span class="card-title" title="Luồng giỏ hàng trên kênh (Unified Cart)">Luồng giỏ hàng trên kênh (Unified Cart)</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -849,16 +948,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="gantt-bar bar-span-11-12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-36</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Quản lý tin tức">Quản lý tin tức</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="task-card card-span-11-12">
+              <div class="card-left">
+                <span class="card-id">US-36</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Quản lý tin tức">Quản lý tin tức</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -877,16 +980,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 33.83%; width: 65.66%;">
-            <div class="gantt-bar bar-span-11-12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-37</span>
-                <span class="bar-epic">[CMS]</span>
-                <span class="bar-title" title="Quản lý Profile Tác giả">Quản lý Profile Tác giả</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 33.83%; width: 65.66%;">
+            <div class="task-card card-span-11-12">
+              <div class="card-left">
+                <span class="card-id">US-37</span>
+                <span class="badge tag-cms">[CMS]</span>
+                <span class="card-title" title="Quản lý Profile Tác giả">Quản lý Profile Tác giả</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                <span class="cross-pill pill-11-12">Tháng 11 ➔ 12</span>
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-doc">Phân tích</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -905,16 +1012,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-26</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-26</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới">Các link chạy ads team Performance chạy ads - quy hoạch về CMS mới</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p2">P2</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -933,16 +1044,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-27</span>
-                <span class="bar-epic">[CMS, Web]</span>
-                <span class="bar-title" title="Bổ sung trang Combo Internet Camera">Bổ sung trang Combo Internet Camera</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-27</span>
+                <span class="badge tag-both">[CMS, Web]</span>
+                <span class="card-title" title="Bổ sung trang Combo Internet Camera">Bổ sung trang Combo Internet Camera</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p4">P4</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -961,16 +1076,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-38</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP CSCA">Trang LDP CSCA</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-38</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP CSCA">Trang LDP CSCA</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p3">P3</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -989,16 +1108,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-39</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP Fcitizen">Trang LDP Fcitizen</span>
-                <span class="bar-pic">👤 ThuyTT104</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-39</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP Fcitizen">Trang LDP Fcitizen</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p3">P3</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 ThuyTT104</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1017,16 +1140,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-40</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP Ngoại Hạng Anh (NHA)">Trang LDP Ngoại Hạng Anh (NHA)</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-40</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP Ngoại Hạng Anh (NHA)">Trang LDP Ngoại Hạng Anh (NHA)</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1045,16 +1172,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-41</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP NHA - Lịch thi đấu">Trang LDP NHA - Lịch thi đấu</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-41</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP NHA - Lịch thi đấu">Trang LDP NHA - Lịch thi đấu</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1073,16 +1204,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-42</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP NHA - Bảng xếp hạng">Trang LDP NHA - Bảng xếp hạng</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-42</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP NHA - Bảng xếp hạng">Trang LDP NHA - Bảng xếp hạng</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1101,16 +1236,20 @@
             <div class="week-col"></div><div class="week-col"></div><div class="week-col"></div><div class="week-col"></div>
           </div>
 
-          <!-- Gantt Bar Pill -->
-          <div class="gantt-bar-wrap" style="left: 67.16%; width: 32.33%;">
-            <div class="gantt-bar bar-t12">
-              <div class="bar-left-content">
-                <span class="bar-id">US-43</span>
-                <span class="bar-epic">[Web, CMS]</span>
-                <span class="bar-title" title="Trang LDP NHA - SA">Trang LDP NHA - SA</span>
-                <span class="bar-pic">👤 SonLN11</span>
+          <!-- Gantt Card Bar -->
+          <div class="gantt-card-wrap" style="left: 67.16%; width: 32.33%;">
+            <div class="task-card card-t12">
+              <div class="card-left">
+                <span class="card-id">US-43</span>
+                <span class="badge tag-both">[Web, CMS]</span>
+                <span class="card-title" title="Trang LDP NHA - SA">Trang LDP NHA - SA</span>
               </div>
-              <span class="bar-done-badge">🎯 Xong T12</span>
+              <div class="card-right">
+                
+                <span class="badge prio-p1">P1</span>
+                <span class="status-badge status-new">Mới</span>
+                <span class="pic-badge">👤 SonLN11</span>
+              </div>
             </div>
           </div>
         </div>
