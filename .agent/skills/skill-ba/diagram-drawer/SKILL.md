@@ -373,13 +373,13 @@ Skill này đi kèm thư mục `templates/` chứa các file mẫu sẵn sàng d
 
 | File | Mô tả |
 |------|--------|
-| [bpmn_template/SKILL.md](templates/bpmn_template/SKILL.md) | **Hướng dẫn đầy đủ** BPMN: ký hiệu, quy trình 5 bước, cấu trúc node, điều chỉnh layout, checklist. |
+| [bpmn_template/BPMN_GUIDE.md](templates/bpmn_template/BPMN_GUIDE.md) | **Hướng dẫn đầy đủ** BPMN: ký hiệu, quy trình 5 bước, cấu trúc node, điều chỉnh layout, checklist. |
 | [bpmn_template/gen_bpmn_template.py](templates/bpmn_template/gen_bpmn_template.py) | **Generator template** — copy → `diagrams/gen_[tên]_bpmn.py`, thay placeholder, chạy ngay. |
 
 **Quy trình nhanh:**
 ```bash
 # 1. Copy template
-cp .agent/skills/diagram-drawer/templates/bpmn_template/gen_bpmn_template.py \
+cp .agent/skills/skill-ba/diagram-drawer/templates/bpmn_template/gen_bpmn_template.py \
    diagrams/gen_[module]_bpmn.py
 
 # 2. Chỉnh sửa node/edge/annotation trong file vừa copy
