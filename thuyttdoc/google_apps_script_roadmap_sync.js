@@ -350,14 +350,24 @@ function syncRoadmapFromBacklog() {
       rightCols = 5;
     }
 
-    // --- TÍNH TOÁN DYNAMIC FONT SIZING & PHÂN BỔ CỘT ĐẢM BẢO 100% KHÔNG CẮT CHỮ ---
+    // --- TÍNH TOÁN DYNAMIC FONT SIZING ĐẢM BẢO 100% KHÔNG CẮT CHỮ TRÊN MỌI TASK ---
     const fullTitle = `${epicTag} ${t.title}`;
     const fullTitleLen = fullTitle.length;
     let titleFontSize = 10;
-    if (fullTitleLen > 65) {
-      titleFontSize = 8.2;
-    } else if (fullTitleLen > 48) {
-      titleFontSize = 9.0;
+    if (leftCols === 4) {
+      // Ô trái 4 cột (288px): co chữ thông minh cho task dài
+      if (fullTitleLen > 40) {
+        titleFontSize = 8.2;
+      } else if (fullTitleLen > 30) {
+        titleFontSize = 9.0;
+      }
+    } else {
+      // Ô trái 5 cột (360px): co chữ thông minh cho task siêu dài (>65 ký tự)
+      if (fullTitleLen > 65) {
+        titleFontSize = 7.8;
+      } else if (fullTitleLen > 45) {
+        titleFontSize = 8.8;
+      }
     }
 
     // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK | DÒNG 2 DETAIL ---
