@@ -69,6 +69,15 @@ const MONTH_BG = {
   m12: '#F0FDF4'  // Xanh ngọc nhạt mờ
 };
 
+// Màu Pastel của thẻ Task (Đậm hơn màu nền 1 chút theo yêu cầu)
+const TASK_BG_BY_MONTH = {
+  't10': { bg: '#DBEAFE', border: '#93C5FD' },        // Xanh dương pastel đậm hơn nền T10
+  'span-10-11': { bg: '#E0E7FF', border: '#A5B4FC' }, // Xanh tím pastel chuyển tiếp T10-T11
+  't11': { bg: '#EDE9FE', border: '#C4B5FD' },        // Tím pastel đậm hơn nền T11
+  'span-11-12': { bg: '#E0F2FE', border: '#7DD3FC' }, // Xanh sky pastel chuyển tiếp T11-T12
+  't12': { bg: '#D1FAE5', border: '#6EE7B7' }         // Xanh ngọc pastel đậm hơn nền T12
+};
+
 /**
  * Menu tùy chỉnh khi mở Google Sheet
  */
@@ -385,18 +394,21 @@ function syncRoadmapFromBacklog() {
 
     const cardRichText = builder.build();
 
+    // Theme màu pastel của task đậm hơn màu nền tháng 1 chút
+    const taskTheme = TASK_BG_BY_MONTH[t.timeGroup] || TASK_BG_BY_MONTH['t10'];
+
     // HỢP NHẤT TOÀN BỘ CỘT CỦA THẺ TASK (KHÔNG CHIA CỘT LÀM CẮT CHỮ!)
     const cardRange = roadmapSheet.getRange(curRow, startCol, 1, totalCols);
     cardRange.merge();
     cardRange.setRichTextValue(cardRichText);
     cardRange.setWrap(false);
-    cardRange.setBackground(cfg.bg); // Nền pastel dịu nhẹ của Card
+    cardRange.setBackground(taskTheme.bg); // Nền pastel đậm hơn màu nền tháng 1 chút
     cardRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
 
     // VIỀN CARD:
-    // - Viền Top, Right: Màu viền card #CBD5E1 (mảnh, tinh tế)
+    // - Viền Top, Right: Màu viền card pastel đậm tinh tế
     // - Viền Bottom = false (để nối liền xuống thanh tiến trình ở đáy)
-    cardRange.setBorder(true, false, false, true, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+    cardRange.setBorder(true, false, false, true, false, false, taskTheme.border, SpreadsheetApp.BorderStyle.SOLID);
     // - VIỀN TÍM-XANH ĐẦU MỖI TASK ĐƯỢC BO TRỌN TRONG KHUNG TASK (#7C3AED / SOLID_THICK):
     cardRange.setBorder(null, true, null, null, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
 
@@ -426,8 +438,8 @@ function syncRoadmapFromBacklog() {
     if (whiteCols > 0) {
       const progWhiteRange = roadmapSheet.getRange(curRow, startCol + coloredCols, 1, whiteCols);
       progWhiteRange.merge();
-      progWhiteRange.setBackground("#F1F5F9"); // Track nền xám nhạt
-      progWhiteRange.setBorder(false, false, true, true, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+      progWhiteRange.setBackground("#F8FAFC"); // Track nền xám nhạt
+      progWhiteRange.setBorder(false, false, true, true, false, false, taskTheme.border, SpreadsheetApp.BorderStyle.SOLID);
     }
 
     // 3. DÒNG ĐỆM PHÂN CÁCH GIỮA CÁC TASK (ROW HEIGHT = 8px)
