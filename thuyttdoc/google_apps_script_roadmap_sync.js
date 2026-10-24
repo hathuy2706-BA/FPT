@@ -330,11 +330,25 @@ function syncRoadmapFromBacklog() {
     const cardBg = cfg.taskBg;
     const cardBorder = cfg.border;
 
-    // Chia tỷ lệ 2 khu vực hoàn hảo:
-    // Task 1 tháng (8 cột = 760px): Trái 5 cột (475px) rộng rãi cho tên task dài, Phải 3 cột (285px) rộng rãi cho 2 PIC dài
-    // Task 2 tháng (16 cột = 1520px): Trái 11 cột (1045px), Phải 5 cột (475px)
-    const leftCols = (totalCols === 8) ? 5 : 11;
-    const rightCols = totalCols - leftCols;
+    // PHÂN BỔ CỘT ĐỘNG THÔNG MINH (ADAPTIVE COLUMN SPAN):
+    // - Nếu PIC dài (>= 15 ký tự, có 2 PIC) và tên task ngắn/vừa (<= 48 ký tự): chia 4 cột trái - 4 cột phải (292px mỗi bên).
+    //   Đảm bảo 2 PIC + Status dài hiển thị 100% trọn vẹn ở ô phải, không bao giờ bị cắt chữ "Lon" của LongNH156!
+    // - Nếu tên task dài (> 48 ký tự): những task này chỉ có 1 PIC, nên chia 5 cột trái (365px) - 3 cột phải (219px).
+    //   Đảm bảo tên task dài hiển thị 100% trọn vẹn ở ô trái, không bao giờ bị cắt chữ!
+    let leftCols = 5;
+    let rightCols = 3;
+    if (totalCols === 8) {
+      if ((t.pic.length >= 15 || t.status.length > 20) && (t.title.length <= 48)) {
+        leftCols = 4;
+        rightCols = 4;
+      } else {
+        leftCols = 5;
+        rightCols = 3;
+      }
+    } else {
+      leftCols = 11;
+      rightCols = 5;
+    }
 
     // --- TÍNH TOÁN DYNAMIC FONT SIZING & PHÂN BỔ CỘT ĐẢM BẢO 100% KHÔNG CẮT CHỮ ---
     const fullTitle = `${epicTag} ${t.title}`;
