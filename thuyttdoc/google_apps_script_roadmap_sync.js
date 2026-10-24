@@ -246,9 +246,9 @@ function syncRoadmapFromBacklog() {
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
   roadmapSheet.setHiddenGridlines(true);
 
-  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ (8 CỘT/THÁNG x 80px = 640px/THÁNG)
+  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ (8 CỘT/THÁNG x 95px = 760px/THÁNG ĐẢM BẢO 100% KHÔNG CẮT CHỮ)
   for (let c = 1; c <= 24; c++) {
-    roadmapSheet.setColumnWidth(c, 80);
+    roadmapSheet.setColumnWidth(c, 95);
   }
 
   // ===== DÒNG 1: TIÊU ĐỀ BẢNG =====
@@ -322,17 +322,17 @@ function syncRoadmapFromBacklog() {
     roadmapSheet.getRange(curRow, 9, 1, 8).setBackground(MONTH_BG.m11);
     roadmapSheet.getRange(curRow, 17, 1, 8).setBackground(MONTH_BG.m12);
 
-    // 1. DÒNG THÂN CARD (ROW HEIGHT = 50px, TIÊU ĐỀ TASK SIZE 12 TO RÕ SANG TRỌNG)
-    roadmapSheet.setRowHeight(curRow, 50);
+    // 1. DÒNG THÂN CARD (ROW HEIGHT = 46px, TIÊU ĐỀ TASK SIZE 11 CHUẨN ĐẸP KHÔNG CẮT CHỮ)
+    roadmapSheet.setRowHeight(curRow, 46);
 
     // Màu Pastel của thanh task DỰA VÀO BỘ MÀU CỦA TRẠNG THÁI để hiển thị (nổi hơn màu nền)
     const cardBg = cfg.taskBg;
     const cardBorder = cfg.border;
 
-    // Chia tỷ lệ 2 khu vực:
-    // Task 1 tháng (8 cột = 640px): Trái 4 cột (320px), Phải 4 cột (320px) -> Cực kỳ rộng rãi cho PIC dài
-    // Task 2 tháng (16 cột = 1280px): Trái 9 cột (720px), Phải 7 cột (560px)
-    const leftCols = (totalCols === 8) ? 4 : 9;
+    // Chia tỷ lệ 2 khu vực hoàn hảo:
+    // Task 1 tháng (8 cột = 760px): Trái 5 cột (475px) rộng rãi cho tên task dài, Phải 3 cột (285px) rộng rãi cho 2 PIC dài
+    // Task 2 tháng (16 cột = 1520px): Trái 11 cột (1045px), Phải 5 cột (475px)
+    const leftCols = (totalCols === 8) ? 5 : 11;
     const rightCols = totalCols - leftCols;
 
     // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK | DÒNG 2 DETAIL ---
@@ -340,18 +340,18 @@ function syncRoadmapFromBacklog() {
     const leftText = `${epicTag} ${t.title}\n${t.desc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
-    // Style Dòng 1: Hệ thống (Size 11.5)
+    // Style Dòng 1: Hệ thống (Size 11)
     leftBuilder.setTextStyle(0, epicTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11.5).setForegroundColor(epicColor).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11).setForegroundColor(epicColor).build()
     );
-    // Style Dòng 1: Tên Task (Size 12 theo yêu cầu)
+    // Style Dòng 1: Tên Task (Size 11 theo yêu cầu)
     leftBuilder.setTextStyle(epicTag.length + 1, epicTag.length + 1 + t.title.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(12).setForegroundColor("#0F172A").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11).setForegroundColor("#0F172A").build()
     );
-    // Style Dòng 2: Detail (Size 9)
+    // Style Dòng 2: Detail (Size 8.5)
     const descStart = epicTag.length + 1 + t.title.length + 1;
     leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(9).setForegroundColor("#475569").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
     );
 
     const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
@@ -373,20 +373,20 @@ function syncRoadmapFromBacklog() {
     const rightText = `${prioTag}\n${rightBottomLine}`;
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
-    // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 11)
+    // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 10.5)
     rightBuilder.setTextStyle(0, prioTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11).setForegroundColor(prioCfg.color).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10.5).setForegroundColor(prioCfg.color).build()
     );
-    // Style Dòng 2: PIC & Trạng thái (CÙNG HÀNG VỚI DETAIL Ở DÒNG 2, Size 9)
+    // Style Dòng 2: PIC & Trạng thái (CÙNG HÀNG VỚI DETAIL Ở DÒNG 2, Size 8.5)
     const rightBottomStart = prioTag.length + 1; // sau "\n"
     const picStart = rightBottomStart;
     rightBuilder.setTextStyle(picStart, picStart + picText.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9).setForegroundColor("#334155").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
     );
     const statusStart = rightText.indexOf(statusTag, picStart);
     if (statusStart !== -1) {
       rightBuilder.setTextStyle(statusStart, statusStart + statusTag.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9).setForegroundColor(cfg.badgeColor).build()
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
       );
     }
 
