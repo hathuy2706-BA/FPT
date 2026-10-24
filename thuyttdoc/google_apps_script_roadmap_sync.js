@@ -336,21 +336,30 @@ function syncRoadmapFromBacklog() {
     const leftCols = (totalCols === 8) ? 5 : 11;
     const rightCols = totalCols - leftCols;
 
+    // --- TÍNH TOÁN DYNAMIC FONT SIZING & PHÂN BỔ CỘT ĐẢM BẢO 100% KHÔNG CẮT CHỮ ---
+    const fullTitle = `${epicTag} ${t.title}`;
+    const fullTitleLen = fullTitle.length;
+    let titleFontSize = 10;
+    if (fullTitleLen > 65) {
+      titleFontSize = 8.2;
+    } else if (fullTitleLen > 48) {
+      titleFontSize = 9.0;
+    }
+
     // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK | DÒNG 2 DETAIL ---
-    const epicTag = `[${t.epic}]`;
-    const leftText = `${epicTag} ${t.title}\n${t.desc}`;
+    const leftText = `${fullTitle}\n${t.desc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
-    // Style Dòng 1: Hệ thống (Size 10)
+    // Style Dòng 1: Hệ thống
     leftBuilder.setTextStyle(0, epicTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor(epicColor).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(epicColor).build()
     );
-    // Style Dòng 1: Tên Task (Size 10 theo yêu cầu)
-    leftBuilder.setTextStyle(epicTag.length + 1, epicTag.length + 1 + t.title.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor("#0F172A").build()
+    // Style Dòng 1: Tên Task (Tự động co nhẹ nếu quá dài, bình thường = 10)
+    leftBuilder.setTextStyle(epicTag.length + 1, fullTitle.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor("#0F172A").build()
     );
     // Style Dòng 2: Detail (Size 8)
-    const descStart = epicTag.length + 1 + t.title.length + 1;
+    const descStart = fullTitle.length + 1;
     leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8).setForegroundColor("#475569").build()
     );
@@ -370,24 +379,33 @@ function syncRoadmapFromBacklog() {
     const prioTag = `[${t.prio}]`;
     const picText = `👤 ${t.pic}`;
     const statusTag = `[${t.status}]`;
-    const rightBottomLine = `${picText}  •  ${statusTag}`;
+    const rightBottomLine = `${picText} • ${statusTag}`;
     const rightText = `${prioTag}\n${rightBottomLine}`;
+
+    // Dynamic font sizing cho dòng PIC & Trạng thái để không bị cắt chữ
+    const rightBottomLen = rightBottomLine.length;
+    let rightBottomFontSize = 7.5;
+    if (rightBottomLen > 45) {
+      rightBottomFontSize = 6.8;
+    } else if (rightBottomLen > 35) {
+      rightBottomFontSize = 7.2;
+    }
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
     // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 9.5)
     rightBuilder.setTextStyle(0, prioTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(prioCfg.color).build()
     );
-    // Style Dòng 2: PIC & Trạng thái (GIẢM SIZE PIC = 7.5 THEO YÊU CẦU)
+    // Style Dòng 2: PIC & Trạng thái (Tự động co giãn theo độ dài PIC, không bị cắt chữ)
     const rightBottomStart = prioTag.length + 1; // sau "\n"
     const picStart = rightBottomStart;
     rightBuilder.setTextStyle(picStart, picStart + picText.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(7.5).setForegroundColor("#334155").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(rightBottomFontSize).setForegroundColor("#334155").build()
     );
     const statusStart = rightText.indexOf(statusTag, picStart);
     if (statusStart !== -1) {
       rightBuilder.setTextStyle(statusStart, statusStart + statusTag.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(7.5).setForegroundColor(cfg.badgeColor).build()
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(rightBottomFontSize).setForegroundColor(cfg.badgeColor).build()
       );
     }
 
