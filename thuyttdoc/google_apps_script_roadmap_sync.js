@@ -340,18 +340,18 @@ function syncRoadmapFromBacklog() {
     const leftText = `${epicTag} ${t.title}\n${t.desc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
-    // Style Dòng 1: Hệ thống (Size 11)
+    // Style Dòng 1: Hệ thống (Size 10)
     leftBuilder.setTextStyle(0, epicTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11).setForegroundColor(epicColor).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor(epicColor).build()
     );
-    // Style Dòng 1: Tên Task (Size 11 theo yêu cầu)
+    // Style Dòng 1: Tên Task (Size 10 theo yêu cầu)
     leftBuilder.setTextStyle(epicTag.length + 1, epicTag.length + 1 + t.title.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(11).setForegroundColor("#0F172A").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor("#0F172A").build()
     );
-    // Style Dòng 2: Detail (Size 8.5)
+    // Style Dòng 2: Detail (Size 8)
     const descStart = epicTag.length + 1 + t.title.length + 1;
     leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8).setForegroundColor("#475569").build()
     );
 
     const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
@@ -373,20 +373,20 @@ function syncRoadmapFromBacklog() {
     const rightText = `${prioTag}\n${rightBottomLine}`;
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
-    // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 10.5)
+    // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 9.5)
     rightBuilder.setTextStyle(0, prioTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10.5).setForegroundColor(prioCfg.color).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(prioCfg.color).build()
     );
-    // Style Dòng 2: PIC & Trạng thái (CÙNG HÀNG VỚI DETAIL Ở DÒNG 2, Size 8.5)
+    // Style Dòng 2: PIC & Trạng thái (GIẢM SIZE PIC = 7.5 THEO YÊU CẦU)
     const rightBottomStart = prioTag.length + 1; // sau "\n"
     const picStart = rightBottomStart;
     rightBuilder.setTextStyle(picStart, picStart + picText.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(7.5).setForegroundColor("#334155").build()
     );
     const statusStart = rightText.indexOf(statusTag, picStart);
     if (statusStart !== -1) {
       rightBuilder.setTextStyle(statusStart, statusStart + statusTag.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(7.5).setForegroundColor(cfg.badgeColor).build()
       );
     }
 
