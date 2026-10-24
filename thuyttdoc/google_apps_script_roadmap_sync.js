@@ -246,9 +246,9 @@ function syncRoadmapFromBacklog() {
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
   roadmapSheet.setHiddenGridlines(true);
 
-  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ (8 CỘT/THÁNG x 95px = 760px/THÁNG ĐẢM BẢO 100% KHÔNG CẮT CHỮ)
+  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ (8 CỘT/THÁNG x 125px = 1000px/THÁNG CỰC KỲ RỘNG RÃI & THOÁNG ĐẸP)
   for (let c = 1; c <= 24; c++) {
-    roadmapSheet.setColumnWidth(c, 95);
+    roadmapSheet.setColumnWidth(c, 125);
   }
 
   // ===== DÒNG 1: TIÊU ĐỀ BẢNG =====
