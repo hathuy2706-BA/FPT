@@ -246,9 +246,10 @@ function syncRoadmapFromBacklog() {
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
   roadmapSheet.setHiddenGridlines(true);
 
-  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ (8 CỘT/THÁNG x 100px = 800px/THÁNG — TĂNG NHẸ 5px SO VỚI BẢN TRƯỚC ĐỂ VỪA VẶN, KHÔNG DÀI QUÁ LỐ)
+  // ĐẶT ĐỘ RỘNG CHO 24 CỘT TIẾN ĐỘ: 72px/CỘT x 24 CỘT = 1728px
+  // HIỂN THỊ VỪA KHÍT 100% TOÀN DIỆN ROADMAP CẢ 3 THÁNG (T10, T11, T12) TRÊN MÀN HÌNH CHUẨN Ở TỶ LỆ ZOOM 100%
   for (let c = 1; c <= 24; c++) {
-    roadmapSheet.setColumnWidth(c, 100);
+    roadmapSheet.setColumnWidth(c, 72);
   }
 
   // ===== DÒNG 1: TIÊU ĐỀ BẢNG =====
