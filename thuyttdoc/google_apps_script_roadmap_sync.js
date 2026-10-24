@@ -316,101 +316,87 @@ function syncRoadmapFromBacklog() {
     roadmapSheet.getRange(curRow, 9, 1, 8).setBackground(MONTH_BG.m11);
     roadmapSheet.getRange(curRow, 17, 1, 8).setBackground(MONTH_BG.m12);
 
-    // 1. DÒNG THÂN CARD (ROW HEIGHT = 52px, CHỨA 3 DÒNG TEXT ĐẦY ĐỦ KHÔNG BỊ CẮT CHỮ)
+    // 1. DÒNG THÂN CARD (ROW HEIGHT = 52px)
     roadmapSheet.setRowHeight(curRow, 52);
-
-    // Tính toán số ký tự đệm để căn lề 2 bên chuẩn xác
-    // 8 cột = 600px (~80 ký tự font Times New Roman 9.5pt) | 16 cột = 1200px (~165 ký tự)
-    const targetWidth = (totalCols === 8) ? 80 : 165;
-
-    // Dòng 1: [Hệ thống] Tên Task .............................. [P2] (Góc trên phải ngoài cùng)
-    const epicTag = `[${t.epic}]`;
-    const leftLine1 = `${epicTag} ${t.title}`;
-    const rightLine1 = `[${t.prio}]`;
-    const pad1 = Math.max(3, targetWidth - leftLine1.length - rightLine1.length);
-    const line1 = leftLine1 + " ".repeat(pad1) + rightLine1;
-
-    // Dòng 2: Detail rút gọn (Nghiêng, xám ghi thanh lịch)
-    const line2 = t.desc;
-
-    // Dòng 3: .............................. 👤 PIC  •  [Trạng thái] (Góc dưới phải ngoài cùng theo yêu cầu)
-    const timeTag = t.timeGroup.startsWith('span') ? `[T${t.startM}➔T${t.endM}] ` : '';
-    const picText = `👤 ${t.pic}`;
-    const statusTag = `[${t.status}]`;
-    const rightLine3 = `${timeTag}${picText}  •  ${statusTag}`;
-    const pad3 = Math.max(3, targetWidth - rightLine3.length);
-    const line3 = " ".repeat(pad3) + rightLine3;
-
-    const fullCardText = `${line1}\n${line2}\n${line3}`;
-
-    // Xây dựng RichTextValue
-    const builder = SpreadsheetApp.newRichTextValue().setText(fullCardText);
-
-    // Style 1: Hệ thống [EPIC] -> Tô màu xanh ngọc / tím / xanh da trời, Bold
-    builder.setTextStyle(0, epicTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(epicColor).build()
-    );
-    // Style 2: Tên Task -> Đen than sang trọng #0F172A, Bold
-    builder.setTextStyle(epicTag.length + 1, leftLine1.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#0F172A").build()
-    );
-    // Style 3: Độ ưu tiên [P1]/[P2] -> Nổi bật ở góc trên bên phải ngoài cùng
-    const prioIdx = line1.lastIndexOf(rightLine1);
-    if (prioIdx !== -1) {
-      builder.setTextStyle(prioIdx, prioIdx + rightLine1.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(prioCfg.color).build()
-      );
-    }
-    // Style 4: Detail rút gọn -> Nghiêng, Xám ghi #475569
-    const line2Start = line1.length + 1;
-    builder.setTextStyle(line2Start, line2Start + line2.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
-    );
-
-    // Style 5: PIC ở góc dưới phải -> Icon xanh/xám, Chữ Xám than #334155
-    const line3Start = line2Start + line2.length + 1;
-    const picIdx = fullCardText.indexOf(picText, line3Start);
-    if (picIdx !== -1) {
-      builder.setTextStyle(picIdx, picIdx + picText.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
-      );
-    }
-    // Style 6: Trạng thái ở góc dưới phải -> Màu nhận diện trạng thái chuẩn hình ảnh
-    const statusIdx = fullCardText.indexOf(statusTag, line3Start);
-    if (statusIdx !== -1) {
-      builder.setTextStyle(statusIdx, statusIdx + statusTag.length,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
-      );
-    }
-    // Style 7: Thẻ tháng vắt nếu có
-    if (timeTag) {
-      const timeIdx = fullCardText.indexOf(timeTag.trim(), line3Start);
-      if (timeIdx !== -1) {
-        builder.setTextStyle(timeIdx, timeIdx + timeTag.trim().length,
-          SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#059669").build()
-        );
-      }
-    }
-
-    const cardRichText = builder.build();
 
     // Theme màu pastel của task đậm hơn màu nền tháng 1 chút
     const taskTheme = TASK_BG_BY_MONTH[t.timeGroup] || TASK_BG_BY_MONTH['t10'];
 
-    // HỢP NHẤT TOÀN BỘ CỘT CỦA THẺ TASK (KHÔNG CHIA CỘT LÀM CẮT CHỮ!)
-    const cardRange = roadmapSheet.getRange(curRow, startCol, 1, totalCols);
-    cardRange.merge();
-    cardRange.setRichTextValue(cardRichText);
-    cardRange.setWrap(false);
-    cardRange.setBackground(taskTheme.bg); // Nền pastel đậm hơn màu nền tháng 1 chút
-    cardRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
+    // Chia tỷ lệ 2 khu vực:
+    // Task 1 tháng (8 cột = 600px): Trái 5 cột (375px), Phải 3 cột (225px)
+    // Task 2 tháng (16 cột = 1200px): Trái 10 cột (750px), Phải 6 cột (450px)
+    const leftCols = (totalCols === 8) ? 5 : 10;
+    const rightCols = totalCols - leftCols;
 
-    // VIỀN CARD:
-    // - Viền Top, Right: Màu viền card pastel đậm tinh tế
-    // - Viền Bottom = false (để nối liền xuống thanh tiến trình ở đáy)
-    cardRange.setBorder(true, false, false, true, false, false, taskTheme.border, SpreadsheetApp.BorderStyle.SOLID);
-    // - VIỀN TÍM-XANH ĐẦU MỖI TASK ĐƯỢC BO TRỌN TRONG KHUNG TASK (#7C3AED / SOLID_THICK):
-    cardRange.setBorder(null, true, null, null, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
+    // --- KHU VỰC BÊN TRÁI: HỆ THỐNG + TÊN TASK + DETAIL ---
+    const epicTag = `[${t.epic}]`;
+    const leftText = `${epicTag} ${t.title}\n${t.desc}\n `;
+    const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
+    
+    // Style Hệ thống
+    leftBuilder.setTextStyle(0, epicTag.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(epicColor).build()
+    );
+    // Style Tên Task
+    leftBuilder.setTextStyle(epicTag.length + 1, epicTag.length + 1 + t.title.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#0F172A").build()
+    );
+    // Style Detail
+    const descStart = epicTag.length + 1 + t.title.length + 1;
+    leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
+    );
+
+    const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
+    leftRange.merge();
+    leftRange.setRichTextValue(leftBuilder.build());
+    leftRange.setWrap(false);
+    leftRange.setBackground(taskTheme.bg);
+    leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
+    // Viền ô trái: Top = border, Left = SOLID_THICK (#7C3AED), Bottom = false, Right = false (nối liền ô phải)
+    leftRange.setBorder(true, false, false, false, false, false, taskTheme.border, SpreadsheetApp.BorderStyle.SOLID);
+    leftRange.setBorder(null, true, null, null, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
+
+    // --- KHU VỰC BÊN PHẢI: ĐỘ ƯU TIÊN (GÓC TRÊN PHẢI) + PIC & TRẠNG THÁI (GÓC DƯỚI PHẢI) ---
+    // NẰM Ở CUỐI THANH TASK SÁT MÉP NGOÀI CÙNG BÊN PHẢI (CĂN LỀ PHẢI)
+    const timeTag = t.timeGroup.startsWith('span') ? `[T${t.startM}➔T${t.endM}] ` : '';
+    const prioTag = `[${t.prio}]`;
+    const picText = `👤 ${t.pic}`;
+    const statusTag = `[${t.status}]`;
+    const rightBottomLine = `${timeTag}${picText}  •  ${statusTag}`;
+    const rightText = `${prioTag}\n \n${rightBottomLine}`;
+
+    const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
+    // Style Độ ưu tiên ở dòng 1
+    rightBuilder.setTextStyle(0, prioTag.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor(prioCfg.color).build()
+    );
+    // Style Dòng 3 (PIC & Trạng thái)
+    const rightBottomStart = prioTag.length + 3; // sau "\n \n"
+    if (timeTag) {
+      rightBuilder.setTextStyle(rightBottomStart, rightBottomStart + timeTag.length,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#059669").build()
+      );
+    }
+    const picStart = rightBottomStart + timeTag.length;
+    rightBuilder.setTextStyle(picStart, picStart + picText.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
+    );
+    const statusStart = rightText.indexOf(statusTag, picStart);
+    if (statusStart !== -1) {
+      rightBuilder.setTextStyle(statusStart, statusStart + statusTag.length,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
+      );
+    }
+
+    const rightRange = roadmapSheet.getRange(curRow, startCol + leftCols, 1, rightCols);
+    rightRange.merge();
+    rightRange.setRichTextValue(rightBuilder.build());
+    rightRange.setWrap(false);
+    rightRange.setBackground(taskTheme.bg);
+    rightRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
+    // Viền ô phải: Top = border, Right = border, Left = false (nối liền ô trái), Bottom = false
+    rightRange.setBorder(true, false, false, true, false, false, taskTheme.border, SpreadsheetApp.BorderStyle.SOLID);
 
     // 2. DÒNG THANH TIẾN TRÌNH % ĐÁY CARD (ROW HEIGHT = 6px)
     curRow++;
