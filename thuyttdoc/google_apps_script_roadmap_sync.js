@@ -75,28 +75,43 @@ const MONTH_BG = {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('🚀 PRODUCT ROADMAP')
-    .addItem('🔄 Cập nhật Roadmap Realtime Ngay', 'syncRoadmapFromBacklog')
+    .addItem('🔄 Cập nhật Roadmap Realtime Ngay (Thủ công)', 'syncRoadmapFromBacklog')
     .addSeparator()
-    .addItem('⏰ Kích hoạt Tự Động Cập Nhật Định Kỳ (Mỗi 10 phút)', 'setupAutoTrigger')
+    .addItem('⏰ Kích hoạt Tự Động Cập Nhật Hàng Ngày (1 ngày / 1 lần vào 7:00 AM)', 'setupDailyAutoTrigger')
+    .addItem('❌ Hủy bỏ Lịch Tự Động Cập Nhật', 'cancelAutoTriggers')
     .addToUi();
 }
 
 /**
- * Thiết lập Trigger chạy tự động định kỳ
+ * Thiết lập Trigger chạy tự động định kỳ 1 ngày 1 lần vào lúc 7:00 - 8:00 sáng
  */
-function setupAutoTrigger() {
+function setupDailyAutoTrigger() {
+  cancelAutoTriggers(false);
+  
+  ScriptApp.newTrigger('syncRoadmapFromBacklog')
+    .timeBased()
+    .everyDays(1)
+    .atHour(7)
+    .create();
+  
+  SpreadsheetApp.getActiveSpreadsheet().toast('Đã cài đặt thành công: Tự động cập nhật 1 ngày 1 lần vào lúc 7:00 AM!', 'Thành công', 8);
+}
+
+/**
+ * Hủy bỏ các trigger tự động đồng bộ cũ để tránh trùng lặp
+ */
+function cancelAutoTriggers(showToast) {
   const triggers = ScriptApp.getProjectTriggers();
+  let count = 0;
   for (let i = 0; i < triggers.length; i++) {
     if (triggers[i].getHandlerFunction() === 'syncRoadmapFromBacklog') {
       ScriptApp.deleteTrigger(triggers[i]);
+      count++;
     }
   }
-  ScriptApp.newTrigger('syncRoadmapFromBacklog')
-    .timeBased()
-    .everyMinutes(10)
-    .create();
-  
-  SpreadsheetApp.getActiveSpreadsheet().toast('Đã kích hoạt tự động đồng bộ mỗi 10 phút!', 'Thành công', 5);
+  if (showToast !== false) {
+    SpreadsheetApp.getActiveSpreadsheet().toast('Đã xóa ' + count + ' lịch tự động cũ.', 'Thông báo', 5);
+  }
 }
 
 /**
