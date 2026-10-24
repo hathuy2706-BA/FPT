@@ -314,7 +314,7 @@ function syncRoadmapFromBacklog() {
     // 8 cột = 600px (~80 ký tự font Times New Roman 9.5pt) | 16 cột = 1200px (~165 ký tự)
     const targetWidth = (totalCols === 8) ? 80 : 165;
 
-    // Dòng 1: [Hệ thống] Tên Task .............................. [P2] (Góc trên phải)
+    // Dòng 1: [Hệ thống] Tên Task .............................. [P2] (Góc trên phải ngoài cùng)
     const epicTag = `[${t.epic}]`;
     const leftLine1 = `${epicTag} ${t.title}`;
     const rightLine1 = `[${t.prio}]`;
@@ -324,11 +324,13 @@ function syncRoadmapFromBacklog() {
     // Dòng 2: Detail rút gọn (Nghiêng, xám ghi thanh lịch)
     const line2 = t.desc;
 
-    // Dòng 3: [👤 PIC] (Góc dưới trái) ...................... [Trạng thái] (Góc dưới phải)
-    const leftLine3 = `👤 ${t.pic}`;
-    const rightLine3 = `[${t.status}]`;
-    const pad3 = Math.max(3, targetWidth - leftLine3.length - rightLine3.length);
-    const line3 = leftLine3 + " ".repeat(pad3) + rightLine3;
+    // Dòng 3: .............................. 👤 PIC  •  [Trạng thái] (Góc dưới phải ngoài cùng theo yêu cầu)
+    const timeTag = t.timeGroup.startsWith('span') ? `[T${t.startM}➔T${t.endM}] ` : '';
+    const picText = `👤 ${t.pic}`;
+    const statusTag = `[${t.status}]`;
+    const rightLine3 = `${timeTag}${picText}  •  ${statusTag}`;
+    const pad3 = Math.max(3, targetWidth - rightLine3.length);
+    const line3 = " ".repeat(pad3) + rightLine3;
 
     const fullCardText = `${line1}\n${line2}\n${line3}`;
 
@@ -343,7 +345,7 @@ function syncRoadmapFromBacklog() {
     builder.setTextStyle(epicTag.length + 1, leftLine1.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9.5).setForegroundColor("#0F172A").build()
     );
-    // Style 3: Độ ưu tiên [P1]/[P2] -> Nổi bật ở góc trên bên phải
+    // Style 3: Độ ưu tiên [P1]/[P2] -> Nổi bật ở góc trên bên phải ngoài cùng
     const prioIdx = line1.lastIndexOf(rightLine1);
     if (prioIdx !== -1) {
       builder.setTextStyle(prioIdx, prioIdx + rightLine1.length,
@@ -355,17 +357,30 @@ function syncRoadmapFromBacklog() {
     builder.setTextStyle(line2Start, line2Start + line2.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
     );
-    // Style 5: PIC ở góc dưới trái -> Icon xanh/xám, Chữ Xám than #334155
+
+    // Style 5: PIC ở góc dưới phải -> Icon xanh/xám, Chữ Xám than #334155
     const line3Start = line2Start + line2.length + 1;
-    builder.setTextStyle(line3Start, line3Start + leftLine3.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
-    );
+    const picIdx = fullCardText.indexOf(picText, line3Start);
+    if (picIdx !== -1) {
+      builder.setTextStyle(picIdx, picIdx + picText.length,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#334155").build()
+      );
+    }
     // Style 6: Trạng thái ở góc dưới phải -> Màu nhận diện trạng thái chuẩn hình ảnh
-    const statusIdx = fullCardText.lastIndexOf(rightLine3);
+    const statusIdx = fullCardText.indexOf(statusTag, line3Start);
     if (statusIdx !== -1) {
-      builder.setTextStyle(statusIdx, statusIdx + rightLine3.length,
+      builder.setTextStyle(statusIdx, statusIdx + statusTag.length,
         SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
       );
+    }
+    // Style 7: Thẻ tháng vắt nếu có
+    if (timeTag) {
+      const timeIdx = fullCardText.indexOf(timeTag.trim(), line3Start);
+      if (timeIdx !== -1) {
+        builder.setTextStyle(timeIdx, timeIdx + timeTag.trim().length,
+          SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor("#059669").build()
+        );
+      }
     }
 
     const cardRichText = builder.build();
