@@ -12,7 +12,7 @@ Tài liệu quy chuẩn dành cho **Product Owner (PO)**, **Tech Lead** và **Sc
 | **1** | **Chưa tiếp nhận** | `12.5%` | `#F1F5F9` (Xám phấn nhạt) | `#94A3B8` (Xám Slate) | `#475569` | ⚪ | Đầu mục mới ghi nhận vào Backlog, chưa gán Sprint |
 | **2** | **Đã tiếp nhận yêu cầu** | `25.0%` | `#DBEAFE` (Xanh baby dịu) | `#3B82F6` (Xanh dương FPT) | `#1D4ED8` | 🔵 | PO đã tiếp nhận, đưa vào danh sách phân tích của Quý |
 | **3** | **Đang phân tích / Document** | `37.5%` | `#FFEDD5` (Cam đào dịu mắt) | `#F97316` (Cam rực rỡ) | `#C2410C` | 🟠 | BA đang viết URD / BRD / SRS, thiết kế UI/UX luồng |
-| **4** | **Transfer DEV / PO reviewed** | `50.0%` | `#DCFCE7` (Xanh lá non dịu) | `#22C55E` (Xanh lá nhận diện) | `#15803D` | 🟢 | PO đã review URD, bàn giao requirement và kickoff cùng DEV |
+| **4** | **Transfer DEV / PO reviewed** | `50.0%` | `#FEE2E2` (Hồng đào Pastel) | `#EF4444` (Đỏ cam rực rỡ) | `#941F10` | 🔴 | PO đã review URD, bàn giao requirement và kickoff cùng DEV |
 | **5** | **DEV In Progress** | `62.5%` | `#FEF9C3` (Vàng bơ phấn dịu) | `#EAB308` (Vàng nghệ đậm) | `#A16207` | 🟡 | Đội ngũ lập trình đang triển khai code frontend / backend / API |
 | **6** | **UAT** | `75.0%` | `#F3E8FF` (Tím pastel dịu) | `#A855F7` (Tím đậm nổi bật) | `#6B21A8` | 🟣 | Bàn giao môi trường Staging, Tester & PO thực hiện nghiệm thu |
 | **7** | **Done** | `100.0%` | `#D1FAE5` (Xanh ngọc bích nhạt)| `#10B981` (Xanh ngọc bích full)| `#047857` | ✅ | Tính năng đã Deploy Production thành công, đóng task |

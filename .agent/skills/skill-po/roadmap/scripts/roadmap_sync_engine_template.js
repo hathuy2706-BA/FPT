@@ -41,13 +41,13 @@ const STATUS_STEPS = {
   },
   'Transfer DEV/PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
-    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
+    taskBg: '#FEE2E2', border: '#FCA5A5', barColor: '#EF4444', badgeColor: '#941F10',
+    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🔴'
   },
   'PO reviewed/Transfer DEV': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
-    isDark: false, name: 'PO reviewed/Transfer DEV', icon: '🟢'
+    taskBg: '#FEE2E2', border: '#FCA5A5', barColor: '#EF4444', badgeColor: '#941F10',
+    isDark: false, name: 'PO reviewed/Transfer DEV', icon: '🔴'
   },
   'DEV In Progress': { 
     step: 5, percent: '62.5%', 
