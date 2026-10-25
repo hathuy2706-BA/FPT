@@ -694,10 +694,10 @@ function syncRoadmapFromBacklog() {
   roadmapSheet.getRange(curRow, 1, 1, 12).setBackground("#FFFFFF");
   curRow++;
 
-  // Footer ghi rõ cơ chế tự động cập nhật màu task theo trạng thái
+  // Footer chỉ để Nguồn theo yêu cầu
   const footerRange = roadmapSheet.getRange(curRow, 1, 1, 12);
   footerRange.merge();
-  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  Hệ thống tự động cập nhật số lượng task, tên task, detail, timeline và màu sắc realtime (7:00 AM & Thủ công)  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
+  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)");
   footerRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B");
   footerRange.setHorizontalAlignment("center").setVerticalAlignment("middle").setBackground("#FFFFFF");
   roadmapSheet.setRowHeight(curRow, 22);
