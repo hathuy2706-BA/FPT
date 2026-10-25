@@ -273,10 +273,10 @@ function syncRoadmapFromBacklog() {
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
   roadmapSheet.setHiddenGridlines(true);
 
-  // ĐẶT ĐỘ RỘNG CHO 12 CỘT TIẾN ĐỘ: 4 CỘT / THÁNG (W1-W4) x 105px = 420px/THÁNG
-  // TỔNG BẢNG 12 CỘT = 1.260px (GỌN GÀNG, TẬP TRUNG, KHÔNG DÀN TRẢI DÀI DÒNG)
+  // ĐẶT ĐỘ RỘNG CHO 12 CỘT TIẾN ĐỘ: 125px/CỘT (TĂNG THÊM 0.5cm = ~20px THEO YÊU CẦU)
+  // MỖI THÁNG 4 CỘT = 500px, TỔNG BẢNG 12 CỘT = 1.500px VỪA KHÍT MÀN HÌNH Ở ZOOM 100%
   for (let c = 1; c <= 12; c++) {
-    roadmapSheet.setColumnWidth(c, 105);
+    roadmapSheet.setColumnWidth(c, 125);
   }
   // Xóa các cột thừa từ cột 13 trở đi để bảng đóng khung gọn gàng
   if (roadmapSheet.getMaxColumns() > 12) {
