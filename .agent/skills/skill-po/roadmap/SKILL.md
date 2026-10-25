@@ -26,7 +26,7 @@ Một Product Roadmap đạt chuẩn cao cấp tại FPT Telecom phải giải q
 ## 2. CẤU TRÚC BỘ KỸ NĂNG TRONG `skill-roadmap`
 
 ```
-skill-roadmap/
+skill-po/roadmap/
 ├── SKILL.md                                     # Cổng hướng dẫn toàn diện vai trò PO & Roadmap Engine
 ├── scripts/
 │   └── roadmap_sync_engine_template.js          # Mã nguồn Google Apps Script chuẩn chỉnh nhất
@@ -141,7 +141,7 @@ graph TD
 ### Bước 2: Cài đặt Google Apps Script
 1. Trên Google Sheets, vào menu **Tiện ích mở rộng** (Extensions) ➔ chọn **Apps Script**.
 2. Sao chép toàn bộ mã nguồn mẫu tại file:
-   [roadmap_sync_engine_template.js](file:///Users/hathuy/Documents/FPT-1/.agent/skills/skill-roadmap/scripts/roadmap_sync_engine_template.js)
+   [roadmap_sync_engine_template.js](file:///Users/hathuy/Documents/FPT-1/.agent/skills/skill-po/roadmap/scripts/roadmap_sync_engine_template.js)
 3. Dán vào file `Mã.gs` trong trình soạn thảo Apps Script.
 4. Điều chỉnh 2 hằng số liên kết nguồn ở đầu file:
    - `SOURCE_SPREADSHEET_ID`: ID của file Google Sheet Product Backlog gốc.
