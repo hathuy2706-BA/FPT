@@ -225,6 +225,33 @@ function syncRoadmapFromBacklog() {
     }
   }
 
+  // 2.1 Gom nhóm các task LDP NHA theo yêu cầu:
+  // [Web, CMS] Trang LDP NHA, Trang LDP NHA lịch thi đấu, Trang LDP NHA bảng xếp hạng, Trang LDP NHA -SA
+  // => Gom chung thành: [Web, CMS] Trang LDP NHA
+  // Detail: Trang lịch thi đấu, trang BXH, trang SA NHA
+  const nhaTasks = q4Tasks.filter(t => t.title.includes('NHA') || t.title.includes('Ngoại Hạng Anh'));
+  if (nhaTasks.length > 0) {
+    const baseNha = nhaTasks[0];
+    const mergedNhaTask = {
+      title: 'Trang LDP NHA',
+      epic: 'Web, CMS',
+      desc: 'Trang lịch thi đấu, trang BXH, trang SA NHA',
+      prio: 'P2',
+      pic: 'ThuyTT104',
+      status: baseNha.status || 'Chưa tiếp nhận',
+      timeline: 'Tháng 12',
+      timeGroup: 't12',
+      startM: 12,
+      endM: 12
+    };
+
+    // Loại bỏ các task NHA con riêng lẻ và thay bằng 1 task đã gom duy nhất
+    const nonNhaTasks = q4Tasks.filter(t => !t.title.includes('NHA') && !t.title.includes('Ngoại Hạng Anh'));
+    nonNhaTasks.push(mergedNhaTask);
+    q4Tasks.length = 0;
+    q4Tasks.push(...nonNhaTasks);
+  }
+
   // 3. Sắp xếp ưu tiên P1 ➔ P2 ➔ P3 ➔ P4 trong từng nhóm mốc thời gian
   const timeOrder = ['t10', 'span-10-11', 't11', 'span-11-12', 't12'];
   const sortedTasks = [];
