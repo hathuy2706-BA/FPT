@@ -39,3 +39,14 @@ Tài liệu quy định chi tiết kích thước, tỷ lệ, kiểu chữ và b
   - Detail (Acceptance Criteria): `8.5pt - Italic`
   - Badge trạng thái & Priority: `8.5pt - Bold`
   - Ghi chú & Footer: `9pt - Italic`
+
+---
+
+## 4. QUY ĐỊNH MÀU SẮC CHO HỆ THỐNG (SYSTEM TAG COLORS)
+
+| Phân hệ / Hệ thống | Mã màu Hex | Nhận diện thị giác | Quy tắc hiển thị |
+|:---|:---:|:---:|:---|
+| **CMS** | **`#1E40AF`** | **Xanh dương đậm** | Hiển thị tiền tố `[CMS]` in đậm Times New Roman màu xanh dương đậm ở đầu tên thẻ task. |
+| **Web** | **`#047857`** | **Xanh lá đậm** | Hiển thị tiền tố `[Web]` in đậm Times New Roman màu xanh lá đậm ở đầu tên thẻ task. |
+| **Đa hệ thống (CMS & Web)** | `#1E40AF` & `#047857` | **Tô độc lập từng từ** | Đối với task liên hệ thống như `[CMS, Web]` hay `[Web, CMS]`, từ `CMS` giữ màu Xanh dương đậm, từ `Web` giữ màu Xanh lá đậm, dấu phẩy màu trung tính. |
+

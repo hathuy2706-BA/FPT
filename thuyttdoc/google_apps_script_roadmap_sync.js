@@ -104,12 +104,21 @@ const PRIO_STYLE = {
   'P4': { color: '#64748B', label: '[⚪ P4]', weight: 4 }  // Xám
 };
 
-// Màu Hệ thống chuẩn hình ảnh
+// QUY ĐỊNH MÀU CHO HỆ THỐNG:
+// - CMS: Màu xanh dương đậm (#1E40AF)
+// - Web: Màu xanh lá đậm (#047857)
+const COLOR_SYSTEM_CMS = '#1E40AF'; // Xanh dương đậm
+const COLOR_SYSTEM_WEB = '#047857'; // Xanh lá đậm
+
 function getEpicColor(epic) {
-  if (!epic) return '#0284C7';                                       // Fallback mặc định
-  if (epic.includes('Web') && epic.includes('CMS')) return '#059669'; // Xanh ngọc
-  if (epic.includes('CMS')) return '#4F46E5';                         // Xanh tím Indigo
-  return '#0284C7';                                                   // Xanh da trời
+  if (!epic) return COLOR_SYSTEM_CMS;
+  const ep = String(epic).toLowerCase();
+  if (ep.includes('cms') && ep.includes('web')) {
+    return ep.startsWith('web') ? COLOR_SYSTEM_WEB : COLOR_SYSTEM_CMS;
+  }
+  if (ep.includes('cms')) return COLOR_SYSTEM_CMS; // CMS: Màu xanh dương đậm
+  if (ep.includes('web')) return COLOR_SYSTEM_WEB; // Web: Màu xanh lá đậm
+  return COLOR_SYSTEM_CMS;
 }
 
 // Màu Pastel mờ nhẹ của 3 cột tháng (Background Canvas mờ nhẹ)
@@ -609,10 +618,22 @@ function syncRoadmapFromBacklog() {
     const leftText = `${fullTitle}\n${finalDesc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
-    // Style Dòng 1: Hệ thống
+    // Style Dòng 1: Hệ thống (CMS: Xanh dương đậm #1E40AF | Web: Xanh lá đậm #047857)
     leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(finalEpicColor).build()
     );
+    const cmsIdx = epicTag.indexOf('CMS');
+    if (cmsIdx !== -1) {
+      leftBuilder.setTextStyle(cmsIdx, cmsIdx + 3,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(isDone ? "#047857" : COLOR_SYSTEM_CMS).build()
+      );
+    }
+    const webIdx = epicTag.indexOf('Web');
+    if (webIdx !== -1) {
+      leftBuilder.setTextStyle(webIdx, webIdx + 3,
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(isDone ? "#047857" : COLOR_SYSTEM_WEB).build()
+      );
+    }
     // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, tương phản chuẩn trên nền pastel)
     leftBuilder.setTextStyle(epicTag.length + 1, fullTitle.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(titleColor).build()

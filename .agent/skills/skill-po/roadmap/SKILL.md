@@ -53,16 +53,12 @@ skill-po/roadmap/
 * **Chiều cao**: Cố định chính xác **32 px** (đảm bảo không bị quá to, giữ nguyên tỷ lệ thẩm mỹ của bảng tính).
 * **Chữ Tiêu Đề**: `FPT TELECOM — PRODUCT ROADMAP QUÝ X/202X (TÊN DỰ ÁN)`, chữ Trắng (`#FFFFFF`), cỡ chữ 14pt Bold, Font Times New Roman, căn giữa hoàn hảo.
 * **Tích hợp Logo FPT Telecom**:
-  - Logo FPT Telecom được thiết kế sẵn dưới dạng badge bo góc thanh lịch (tỷ lệ 76px × 24px).
-  - **Tuyệt đối không dùng link bên ngoài qua hàm `=IMAGE("http...")`** vì sẽ kích hoạt chính sách bảo mật của Google Workspace tổ chức chặn kết nối ngoài gây lỗi `#REF!` hoặc thanh cảnh báo vàng.
-  - **Phương thức nhúng chuẩn**: Dùng Blob nội bộ mã hóa Base64 (`Utilities.newBlob(Utilities.base64Decode(...))`) và chèn qua `roadmapSheet.insertImage(blob, 1, 1, 15, 4)` với chiều cao 24px, lọt lòng thanh banner 32px.
-
-### C. Cấu Trúc Thẻ Task 2 Tầng Độc Quyền (2-Row Card System)
-Mỗi task trên Roadmap là một module gồm 2 dòng gắn liền nhau:
-1. **Dòng 1: Thân Thẻ Task (Chiều cao 36px)**
-   - Nền mang màu **Pastel cấp độ 100** dịu mắt, trang nhã.
-   - Text 2 dòng RichText chuyên nghiệp:
-     - Dòng 1: `[Hệ thống] Tên Task` (Font Times New Roman 10pt Bold, màu đen `#1E293B`).
+  - Logo FPT Telecom được thiết kế sẵn d   - Text 2 dòng RichText chuyên nghiệp:
+     - Dòng 1: `[Hệ thống] Tên Task` (Font Times New Roman 10pt Bold):
+       * `[CMS]`: **Màu Xanh dương đậm (`#1E40AF`)**
+       * `[Web]`: **Màu Xanh lá đậm (`#047857`)**
+       * Đa hệ thống (`[CMS, Web]` / `[Web, CMS]`): Tô độc lập từng từ `CMS` (xanh dương đậm) và `Web` (xanh lá đậm)
+       * Tên Task: Màu đen sắc nét (`#1E293B`)
      - Dòng 2: `Detail (Acceptance Criteria / Mô tả)` (Font Times New Roman 8.5pt Italic, màu xám xanh `#475569`).
    - Badge bên phải: Nhãn độ ưu tiên `[P1] / [P2]` (Đỏ / Cam) và Nhãn trạng thái `[DEV In Progress] / [UAT]` (Vàng / Tím).
    - **Tối ưu hiển thị text**: Mở rộng không gian hiển thị linh hoạt (Task 1 tháng: 85 ký tự; Task 2 tháng: 170 ký tự), tuyệt đối không để dấu ba chấm `...` khi diện tích thẻ còn trống.
@@ -79,6 +75,28 @@ Mỗi task trên Roadmap là một module gồm 2 dòng gắn liền nhau:
      - Các cột chưa đạt đến: Giữ màu nền Canvas xám nhẹ `#F8FAFC`.
 3. **Dòng 3: Khoảng đệm (Spacer - 8px)**
    - Nền trống màu trắng, giúp các thẻ tách bạch rõ ràng, không dính chùm vào nhau.
+
+---
+
+## 4. BẢNG MA TRẬN 8 MỐC TRẠNG THÁI & MÃ MÀU CHUẨN
+
+| Mốc Trạng thái | Tỷ lệ % | Màu Thân Thẻ (Pastel) | Màu Thanh Đáy (Accent 6px) | Màu Badge | Icon | Ý nghĩa PO |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| **Chưa tiếp nhận** | `12.5%` | `#F1F5F9` | `#94A3B8` | `#475569` | ⚪ | Ghi nhận Backlog, chưa xếp Sprint |
+| **Đã tiếp nhận yêu cầu** | `25.0%` | `#DBEAFE` | `#3B82F6` | `#1D4ED8` | 🔵 | Đã tiếp nhận vào phạm vi Quý |
+| **Đang phân tích/Document**| `37.5%` | `#FFEDD5` | `#F97316` | `#C2410C` | 🟠 | BA đang viết URD/BRD, làm UI/UX |
+| **Transfer DEV/PO reviewed**| `50.0%` | `#FEE2E2` | `#EF4444` | `#941F10` | 🔴 | Chip màu hồng đào, PO duyệt bàn giao DEV |
+| **DEV In Progress** | `62.5%` | `#FEF9C3` | `#EAB308` | `#A16207` | 🟡 | Đang code frontend/backend/API |
+| **UAT** | `75.0%` | `#F3E8FF` | `#A855F7` | `#6B21A8` | 🟣 | Đang test Staging & Nghiệm thu |
+| **Done** | `100.0%` | `#D1FAE5` | `#10B981` | `#047857` | ✅ | Deploy Production thành công |
+| **Pending** | `0.0%` | `#F3F4F6` | `#9CA3AF` | `#6B7280` | ⏸️ | Đang tạm dừng chờ làm rõ |
+
+---
+
+## 4.1. QUY ĐỊNH MÀU SẮC CHO PHÂN HỆ HỆ THỐNG
+* **CMS**: **Màu Xanh dương đậm (`#1E40AF`)**
+* **Web**: **Màu Xanh lá đậm (`#047857`)**
+* **Đa hệ thống**: Tô màu độc lập cho từng từ viết tắt để người xem dễ dàng phân biệt ngay trên timeline.
 
 ---
 
