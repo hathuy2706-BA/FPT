@@ -361,15 +361,15 @@ function syncRoadmapFromBacklog() {
     let titleFontSize = 9.5;
     if (leftCols === 2) {
       if (fullTitleLen > 38) {
-        titleFontSize = 8.0;
+        titleFontSize = 7.5;
       } else if (fullTitleLen > 25) {
-        titleFontSize = 8.8;
+        titleFontSize = 8.5;
       }
     } else if (leftCols === 3) {
       if (fullTitleLen > 65) {
-        titleFontSize = 7.8;
+        titleFontSize = 7.2;
       } else if (fullTitleLen > 45) {
-        titleFontSize = 8.8;
+        titleFontSize = 8.5;
       } else {
         titleFontSize = 9.5;
       }
