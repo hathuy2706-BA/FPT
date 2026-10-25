@@ -213,17 +213,16 @@ function cleanDetailText(rawDesc) {
   desc = desc.replace(/^Tài liệu:\s*Thiết kế:\s*/i, '').trim();
   desc = desc.replace(/^Tài liệu:\s*/i, '').trim();
   desc = desc.replace(/^Thiết kế:\s*/i, '').trim();
+  desc = desc.replace(/^-\s*/, '').trim();
   // Gộp các dòng thành 1 dòng phân cách bằng ' - '
-  desc = desc.split('\n').map(l => l.trim()).filter(l => l.length > 0).join(' - ');
+  desc = desc.split('\n').map(l => l.trim().replace(/^-\s*/, '')).filter(l => l.length > 0).join(' - ');
+  desc = desc.replace(/\s*-\s*-\s*/g, ' - ').replace(/\s{2,}/g, ' ').trim();
   if (!desc || desc === '-' || desc.length < 3) {
     if (String(rawDesc).includes('document') || String(rawDesc).includes('Tài liệu')) {
       desc = 'Quy chuẩn tài liệu phân tích kỹ thuật và nghiệm thu UAT';
     } else {
       desc = 'Quy chuẩn cấu hình trang landing page và tích hợp hệ thống';
     }
-  }
-  if (desc.length > 60) {
-    desc = desc.substring(0, 57) + '...';
   }
   return desc;
 }
@@ -574,8 +573,17 @@ function syncRoadmapFromBacklog() {
     const prioColor = prioCfg.color;
     const statusColor = cfg.badgeColor;
 
+    // Tận dụng tối đa diện tích thực tế của thẻ để hiển thị trọn vẹn nội dung Detail (KHÔNG BỊ ... KHI CÒN CHỖ):
+    // - Task 1 tháng (leftCols = 3 cột = 435px): Chứa thoải mái đến 80-85 ký tự
+    // - Task 2 tháng (leftCols = 6 cột = 870px): Chứa thoải mái đến 160-180 ký tự
+    const maxDescLen = (leftCols >= 6) ? 170 : 85;
+    let finalDesc = t.desc;
+    if (finalDesc.length > maxDescLen) {
+      finalDesc = finalDesc.substring(0, maxDescLen - 3).trim() + '...';
+    }
+
     // --- KHU VỰC TEXT BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK (TO RÕ) | DÒNG 2 DETAIL ---
-    const leftText = `${fullTitle}\n${t.desc}`;
+    const leftText = `${fullTitle}\n${finalDesc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
     // Style Dòng 1: Hệ thống
@@ -588,7 +596,7 @@ function syncRoadmapFromBacklog() {
     );
     // Style Dòng 2: Detail (Size 8.5 nghiêng)
     const descStart = fullTitle.length + 1;
-    leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
+    leftBuilder.setTextStyle(descStart, descStart + finalDesc.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor(descColor).build()
     );
 
