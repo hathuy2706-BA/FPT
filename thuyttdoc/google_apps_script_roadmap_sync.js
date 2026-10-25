@@ -459,25 +459,25 @@ function syncRoadmapFromBacklog() {
   }
 
   // ===== DÒNG 1: TIÊU ĐỀ BẢNG (MÀU CAM FPT TELECOM NỔI BẬT + LOGO CHUẨN KÍCH THƯỚC) =====
-  // 1. Tách merge cũ nếu có để chia Ô A1 chứa Logo và B1:L1 chứa Tiêu đề
-  try {
-    roadmapSheet.getRange(1, 1, 1, 12).breakApart();
-  } catch (e) {}
-
-  // 2. Ô A1: Chèn Logo FPT Telecom (Badge bo góc gọn gàng, tự động fit vừa ô cao 32px, không bị quá to)
-  const logoCell = roadmapSheet.getRange(1, 1);
-  logoCell.setBackground("#F37021"); // Nền cam FPT
-  logoCell.setHorizontalAlignment("center").setVerticalAlignment("middle");
-  logoCell.setFormula('=IMAGE("https://cdn.jsdelivr.net/gh/hathuy2706-BA/FPT@main/docs/images/logo_ftel_badge.png", 1)');
-
-  // 3. Ô B1 đến L1: Tiêu đề Road map (Merge 11 cột, nền cam chữ trắng in đậm)
-  const titleRange = roadmapSheet.getRange(1, 2, 1, 11);
+  // 1. Gộp toàn bộ dòng 1 (A1:L1 = 12 cột = 1.740px) thành một dải banner màu cam FPT
+  const titleRange = roadmapSheet.getRange(1, 1, 1, 12);
+  titleRange.clearContent(); // Xóa công thức hoặc text cũ
   titleRange.merge();
   titleRange.setValue("FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)");
   titleRange.setFontFamily("Times New Roman").setFontSize(14).setFontWeight("bold").setFontColor("#FFFFFF");
   titleRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
   titleRange.setBackground("#F37021"); // Màu cam thương hiệu FPT Telecom chuẩn
   roadmapSheet.setRowHeight(1, 32);
+
+  // 2. Chèn logo FPT Telecom vào góc trái dòng 1 (Kích thước nhỏ gọn 76x24px, giữ nguyên layout)
+  try {
+    const logoBlob = Utilities.newBlob(Utilities.base64Decode(FPT_TELECOM_LOGO_BASE64), 'image/png', 'fpt_telecom_logo.png');
+    const logoImg = roadmapSheet.insertImage(logoBlob, 1, 1, 15, 4);
+    logoImg.setWidth(76);
+    logoImg.setHeight(24);
+  } catch (err) {
+    Logger.log("Chèn logo base64 lỗi: " + err);
+  }
 
   // ===== DÒNG 2: GHI CHÚ HOT REQUEST =====
   const noteRange = roadmapSheet.getRange(2, 1, 1, 12);
