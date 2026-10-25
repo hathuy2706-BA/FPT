@@ -307,6 +307,7 @@ function syncRoadmapFromBacklog() {
     const cfg = STATUS_STEPS[t.status] || STATUS_STEPS['Chưa tiếp nhận'];
     const prioCfg = PRIO_STYLE[t.prio] || PRIO_STYLE['P2'];
     const epicColor = getEpicColor(t.epic);
+    const epicTag = `[${t.epic}]`;
 
     // Xác định phạm vi cột của task (1 tháng = 4 cột; 2 tháng = 8 cột)
     let startCol = 1, totalCols = 4;
