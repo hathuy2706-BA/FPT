@@ -1,31 +1,30 @@
 /**
  * =========================================================================================
  * FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)
- * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V9 (DESIGNER PIXEL PERFECT EDITION)
+ * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V10 (PREMIUM PIXEL PERFECT & REALTIME SOURCE SYNC)
  * =========================================================================================
  * Tự động đồng bộ 100% dữ liệu Realtime từ Google Sheet Backlog gốc:
  * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=954545565
  * 
- * Các cải tiến vượt bậc chuẩn xác theo hình ảnh mẫu của người dùng:
- * 1. VIỀN XANH ĐẦU MỖI TASK ĐƯỢC BO TRỌN TRONG KHUNG TASK:
- *    - Chèn dòng đệm phân cách 8px giữa các task, giúp mỗi task là một Card độc lập.
- *    - Dải viền xanh dương đậm #2563EB (SOLID_THICK) nằm trọn vẹn trong chiều cao của Card,
- *      tách biệt hoàn toàn, không chạy dính liền từ trên xuống dưới.
- * 2. ĐƯA DETAIL RÚT GỌN VÀO GIỮA THẺ (DÒNG 2):
- *    - Dòng 1: [Hệ thống] Tên Task (trái) .................... Độ ưu tiên (phải).
- *    - Dòng 2: Detail rút gọn (chữ nghiêng xám ghi thanh lịch).
- *    - Dòng 3: 👤 PIC (góc dưới trái) ........................ Trạng thái (góc dưới phải).
- * 3. ĐỔ MÀU NỀN & MÀU CHỮ NỔI BẬT CHO HỆ THỐNG, PIC, ĐỘ ƯU TIÊN, TRẠNG THÁI:
- *    - Hệ thống: [Web, CMS] xanh ngọc #059669, [CMS] xanh tím #4F46E5, [Web] xanh da trời #0284C7.
- *    - PIC: Badge [👤 Tên PIC] xám đậm #334155 ở góc dưới bên trái.
- *    - Độ ưu tiên: [🔴 P1] đỏ rực, [🟠 P2] cam đậm, [🔵 P3] xanh, [⚪ P4] xám ở góc trên bên phải.
- *    - Trạng thái: Badge màu nhận diện vòng đời ở góc dưới bên phải.
- * 4. NỘI DUNG TASK, DETAIL, PIC KHÔNG BAO GIỜ BỊ CẮT CHỮ:
- *    - Thẻ task chiếm trọn chiều rộng của tháng (600px) hoặc 2 tháng (1200px), không gian thênh thang.
- * 5. THANH TIẾN TRÌNH DYNAMIC THEO % TRẠNG THÁI Ở ĐÁY MỖI CARD:
- *    - Nằm ngay sát mép đáy của Card (cao 5px), chia chuẩn 8 nấc (12.5% mỗi nấc).
- *    - Tô màu gradient tiến độ đúng theo trạng thái (vàng 62.5% cho DEV In Progress, tím 75% cho UAT...).
- * 6. TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ LƯỚI TRONG TOÀN BỘ SHEET.
+ * ĐỒNG BỘ CHUẨN XÁC THEO YÊU CẦU:
+ * 1. SỐ LƯỢNG TASK: Đọc toàn diện từ sheet gốc 'Product Backlog VH' / 'Product Backlog FCP'.
+ * 2. TÊN TASK: Lấy trọn vẹn từ cột US Title (Đầu mục công việc), không cắt chữ, font size 10-11 rõ nét.
+ * 3. BỘ TRẠNG THÁI MỚI NHẤT:
+ *    - 'UAT' ➔ Nền Tím đậm (#581C87), chữ TRẮNG (#FFFFFF) sắc nét nổi bật.
+ *    - 'DEV In Progress' ➔ Nền Vàng bơ (#FEEFC3), chữ nâu (#594400).
+ *    - 'Transfer DEV/PO reviewed' ➔ Nền Xanh lá non (#C4EED0), chữ xanh đậm (#0F5132).
+ *    - 'BA/Document' / 'Đang phân tích' ➔ Nền Cam đào (#FFD8B4), chữ cam nâu (#8A3800).
+ *    - 'To do' / 'Chưa tiếp nhận' ➔ Nền Xám bạc (#E8EAED), chữ xám đen (#3C4043).
+ *    - 'Đã tiếp nhận yêu cầu' ➔ Nền Xanh baby (#C2E7FF), chữ xanh đậm (#004A77).
+ * 4. MÀU THANH TASK: Đồng bộ 100% toàn bộ thân card, viền card và dải điểm nhấn theo màu trạng thái.
+ * 5. DETAIL (ACCEPTANCE CRITERIA / MÔ TẢ): Đồng bộ trực tiếp nội dung nghiệp vụ từ file gốc, lược bỏ URL thừa.
+ * 6. THÁNG ĐƯỢC ĐIỀN (TIMELINE): 
+ *    - Nhận diện chuẩn xác các task vắt 2 tháng (Tháng 10 - Tháng 11: 8 cột A-H; Tháng 11 - Tháng 12: 8 cột E-L).
+ *    - Các task 1 tháng chiếm 4 cột (Tháng 10: A-D; Tháng 11: E-H; Tháng 12: I-L).
+ * 7. QUY TẮC ĐỒNG BỘ:
+ *    - Tự động quét và cập nhật mỗi ngày lúc 7:00 AM.
+ *    - Tự động OnEdit khi chỉnh sửa trực tiếp trên file Roadmap / Sync.
+ *    - Hỗ trợ đồng bộ thủ công 1-click qua Menu Google Sheets.
  * =========================================================================================
  */
 
@@ -34,16 +33,7 @@ const SOURCE_GID = 954545565;
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
 const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
 
-// BỘ MÀU NHẬN DIỆN CHUẨN XÁC 100% THEO DROPDOWN GOOGLE SHEETS CỦA NGƯỜI DÙNG:
-// - Chưa tiếp nhận: Xám (#E8EAED), chữ đen (#3C4043)
-// - Đã tiếp nhận yêu cầu: Xanh dương nhạt (#C2E7FF), chữ xanh đậm (#004A77)
-// - Đang phân tích/Document: Cam đào (#FFD8B4), chữ cam nâu (#8A3800)
-// - Transfer DEV/PO reviewed: Xanh lá non (#C4EED0), chữ xanh lá đậm (#0F5132)
-// - DEV In Progress: Vàng bơ (#FEEFC3), chữ nâu (#594400)
-// - UAT: Tím đậm (#581C87), chữ trắng (#FFFFFF)
-// - QC/CSOC: Xanh dương đậm (#005696), chữ trắng (#FFFFFF)
-// - Done: Xanh lá đậm (#0F5132), chữ trắng (#FFFFFF)
-// - Pending: Xám đen (#343A40), chữ trắng (#FFFFFF)
+// BỘ MÀU NHẬN DIỆN CHUẨN XÁC 100% THEO DROPDOWN CHIP TRÊN GOOGLE SHEETS GỐC
 const STATUS_STEPS = {
   'Chưa tiếp nhận': { 
     step: 1, percent: '12.5%', 
@@ -127,14 +117,19 @@ const MONTH_BG = {
 
 /**
  * Chuẩn hóa linh hoạt trạng thái task để luôn khớp chính xác 100% với bộ màu và tiến trình
- * LƯU Ý ĐẶC BIỆT: Phải ưu tiên kiểm tra "Transfer DEV" và "PO reviewed" TRƯỚC từ khóa "dev"
- * để tránh bị nhận diện nhầm Transfer DEV thành DEV In Progress!
+ * LẤY ĐÚNG BỘ TRẠNG THÁI MỚI NHẤT TỪ FILE GỐC:
+ * - 'UAT' ➔ 'UAT' (Tím đậm #581C87, chữ trắng)
+ * - 'DEV In Progress' ➔ 'DEV In Progress' (Vàng bơ #FEEFC3, chữ nâu)
+ * - 'Transfer DEV/PO reviewed' ➔ 'Transfer DEV/PO reviewed' (Xanh lá non #C4EED0)
+ * - 'BA/Document' / 'Đang phân tích' ➔ 'Đang phân tích/Document' (Cam đào #FFD8B4)
+ * - 'To do' / 'Chưa tiếp nhận' ➔ 'Chưa tiếp nhận' (Xám bạc #E8EAED)
+ * - 'Đã tiếp nhận yêu cầu' / 'Tiếp nhận' ➔ 'Đã tiếp nhận yêu cầu' (Xanh baby #C2E7FF)
  */
 function normalizeStatus(raw) {
   if (!raw) return 'Chưa tiếp nhận';
   const s = String(raw).trim().toLowerCase();
   
-  // 1. Nhóm Transfer DEV / PO reviewed (Phải check TRƯỚC 'dev' đơn lẻ!)
+  // 1. Nhóm Transfer DEV / PO reviewed (Ưu tiên kiểm tra trước từ khóa 'dev' đơn lẻ)
   if (s.includes('transfer') || s.includes('po reviewed') || s.includes('po') || (s.includes('review') && !s.includes('in progress'))) {
     return 'Transfer DEV/PO reviewed';
   }
@@ -149,13 +144,13 @@ function normalizeStatus(raw) {
     return 'UAT';
   }
   
-  // 4. Nhóm Đang phân tích / Document
-  if (s.includes('phân tích') || s.includes('document') || s.includes('analysis') || s.includes('doc')) {
+  // 4. Nhóm BA/Document / Đang phân tích (Trên file gốc ghi là "BA/Document")
+  if (s.includes('ba/document') || s.includes('ba') || s.includes('phân tích') || s.includes('document') || s.includes('analysis') || s.includes('doc')) {
     return 'Đang phân tích/Document';
   }
   
-  // 5. Nhóm Tiếp nhận
-  if (s.includes('chưa tiếp nhận') || s.includes('to do') || s.includes('new') || s.includes('open')) {
+  // 5. Nhóm To do / Chưa tiếp nhận (Trên file gốc ghi là "To do")
+  if (s.includes('to do') || s.includes('todo') || s.includes('chưa tiếp nhận') || s.includes('new') || s.includes('open')) {
     return 'Chưa tiếp nhận';
   }
   if (s.includes('tiếp nhận') || s.includes('nhận yêu cầu') || s.includes('received')) {
@@ -173,6 +168,63 @@ function normalizeStatus(raw) {
   }
   
   return String(raw).trim();
+}
+
+/**
+ * Phân tích và nhận diện chính xác mốc thời gian (Timeline) được điền trên file gốc
+ * Hỗ trợ nhận diện các task vắt 2 tháng: Tháng 10 - Tháng 11, Tháng 11 - Tháng 12
+ */
+function parseTimeline(timelineRaw) {
+  if (!timelineRaw) return null;
+  const tl = String(timelineRaw).trim().toLowerCase();
+  
+  const has10 = tl.includes('10') || tl.includes('tháng 10') || tl.includes('t10');
+  const has11 = tl.includes('11') || tl.includes('tháng 11') || tl.includes('t11');
+  const has12 = tl.includes('12') || tl.includes('tháng 12') || tl.includes('t12');
+  
+  if (has10 && has11) {
+    return { timeGroup: 'span-10-11', startM: 10, endM: 11, startCol: 1, totalCols: 8, label: 'Tháng 10 - Tháng 11' };
+  }
+  if (has11 && has12) {
+    return { timeGroup: 'span-11-12', startM: 11, endM: 12, startCol: 5, totalCols: 8, label: 'Tháng 11 - Tháng 12' };
+  }
+  if (has10) {
+    return { timeGroup: 't10', startM: 10, endM: 10, startCol: 1, totalCols: 4, label: 'Tháng 10' };
+  }
+  if (has11) {
+    return { timeGroup: 't11', startM: 11, endM: 11, startCol: 5, totalCols: 4, label: 'Tháng 11' };
+  }
+  if (has12) {
+    return { timeGroup: 't12', startM: 12, endM: 12, startCol: 9, totalCols: 4, label: 'Tháng 12' };
+  }
+  return null;
+}
+
+/**
+ * Làm sạch mô tả Detail lấy trực tiếp từ file gốc (giữ nguyên ngữ nghĩa nghiệp vụ, lược bỏ link URL rườm rà)
+ */
+function cleanDetailText(rawDesc) {
+  if (!rawDesc) return 'Triển khai tính năng và phối hợp tích hợp theo yêu cầu';
+  let desc = String(rawDesc).trim();
+  // Bỏ các link URL http/https dài dòng
+  desc = desc.replace(/https?:\/\/[^\s]+/g, '').trim();
+  // Bỏ tiền tố Tài liệu / Thiết kế nếu bị thừa
+  desc = desc.replace(/^Tài liệu:\s*Thiết kế:\s*/i, '').trim();
+  desc = desc.replace(/^Tài liệu:\s*/i, '').trim();
+  desc = desc.replace(/^Thiết kế:\s*/i, '').trim();
+  // Gộp các dòng thành 1 dòng phân cách bằng ' - '
+  desc = desc.split('\n').map(l => l.trim()).filter(l => l.length > 0).join(' - ');
+  if (!desc || desc === '-' || desc.length < 3) {
+    if (String(rawDesc).includes('document') || String(rawDesc).includes('Tài liệu')) {
+      desc = 'Quy chuẩn tài liệu phân tích kỹ thuật và nghiệm thu UAT';
+    } else {
+      desc = 'Quy chuẩn cấu hình trang landing page và tích hợp hệ thống';
+    }
+  }
+  if (desc.length > 60) {
+    desc = desc.substring(0, 57) + '...';
+  }
+  return desc;
 }
 
 /**
@@ -201,9 +253,9 @@ function showColorRulesDialog() {
     "1. 🟡 DEV In Progress ➔ Màu Vàng bơ (#FEEFC3) | Chữ nâu (#594400) | Tiến độ 62.5%\n" +
     "2. 🟣 UAT ➔ Màu Tím đậm (#581C87) | Chữ TRẮNG (#FFFFFF) nổi bật | Tiến độ 75.0%\n" +
     "3. 🟢 Transfer DEV / PO reviewed ➔ Màu Xanh lá non (#C4EED0) | Chữ xanh đậm (#0F5132) | Tiến độ 50.0%\n" +
-    "4. 🟠 Đang phân tích / Document ➔ Màu Cam đào (#FFD8B4) | Chữ cam nâu (#8A3800) | Tiến độ 37.5%\n" +
+    "4. 🟠 Đang phân tích / Document (BA/Doc) ➔ Màu Cam đào (#FFD8B4) | Chữ cam nâu (#8A3800) | Tiến độ 37.5%\n" +
     "5. 🔵 Đã tiếp nhận yêu cầu ➔ Màu Xanh dương nhạt (#C2E7FF) | Chữ xanh đậm (#004A77) | Tiến độ 25.0%\n" +
-    "6. ⚪ Chưa tiếp nhận ➔ Màu Xám (#E8EAED) | Chữ xám đen (#3C4043) | Tiến độ 12.5%\n" +
+    "6. ⚪ Chưa tiếp nhận (To do) ➔ Màu Xám (#E8EAED) | Chữ xám đen (#3C4043) | Tiến độ 12.5%\n" +
     "7. 🔷 QC/CSOC ➔ Màu Xanh dương đậm (#005696) | Chữ trắng | Tiến độ 87.5%\n" +
     "8. ✅ Done ➔ Màu Xanh lá đậm (#0F5132) | Chữ trắng | Tiến độ 100%\n\n" +
     "⏰ Lịch tự động: 1 ngày / 1 lần vào lúc 7:00 AM.\n" +
@@ -258,8 +310,12 @@ function syncRoadmapFromBacklog() {
     return;
   }
 
+  // ƯU TIÊN MỞ TAB CÓ DỮ LIỆU THỰC TẾ: 'Product Backlog VH' hoặc 'Product Backlog FCP'
   const sheets = sourceSS.getSheets();
-  const sourceSheet = sheets.find(s => s.getSheetId() === SOURCE_GID) || sheets[0];
+  let sourceSheet = sourceSS.getSheetByName('Product Backlog VH');
+  if (!sourceSheet) {
+    sourceSheet = sheets.find(s => s.getSheetId() === SOURCE_GID) || sourceSS.getSheetByName('Product Backlog FCP') || sheets[0];
+  }
   const sourceData = sourceSheet.getDataRange().getValues();
 
   // 1. Tìm dòng tiêu đề (Header row)
@@ -297,6 +353,9 @@ function syncRoadmapFromBacklog() {
     if (!titleFull) continue;
 
     const timeline = String(row[colMap['timeline']] || '').trim();
+    const tlParsed = parseTimeline(timeline);
+    if (!tlParsed) continue; // Bỏ qua các task không thuộc Quý 4 hoặc chưa điền tháng
+
     const rawStatus = String(row[colMap['status']] || '').trim();
     const status = normalizeStatus(rawStatus);
     const epic = String(row[colMap['epic']] || '').trim();
@@ -304,55 +363,27 @@ function syncRoadmapFromBacklog() {
     const pic = String(row[colMap['pic']] || '').trim();
     const rawDesc = String(row[colMap['desc']] || '').trim();
 
-    const isQ4 = timeline.includes('Tháng 10') || timeline.includes('Tháng 11') || timeline.includes('Tháng 12');
     const isExcluded = status.toLowerCase() === 'done' || status.toLowerCase() === 'pending';
+    if (isExcluded) continue;
 
-    if (isQ4 && !isExcluded) {
-      let timeGroup = '';
-      let startM = 10, endM = 10;
-      if (timeline.includes('Tháng 10') && timeline.includes('Tháng 11')) {
-        timeGroup = 'span-10-11';
-        startM = 10; endM = 11;
-      } else if (timeline.includes('Tháng 11') && timeline.includes('Tháng 12')) {
-        timeGroup = 'span-11-12';
-        startM = 11; endM = 12;
-      } else if (timeline.includes('Tháng 10')) {
-        timeGroup = 't10';
-        startM = 10; endM = 10;
-      } else if (timeline.includes('Tháng 11')) {
-        timeGroup = 't11';
-        startM = 11; endM = 11;
-      } else if (timeline.includes('Tháng 12')) {
-        timeGroup = 't12';
-        startM = 12; endM = 12;
-      }
+    // Detail làm sạch từ dữ liệu gốc
+    const cleanDesc = cleanDetailText(rawDesc);
 
-      // Detail rút gọn (Bỏ icon, lấy 1 câu súc tích)
-      let cleanDesc = rawDesc.split('\n')[0].trim();
-      if (cleanDesc.startsWith('Tài liệu:')) {
-        cleanDesc = 'Quy chuẩn tài liệu phân tích kỹ thuật và nghiệm thu UAT/CSOC';
-      } else if (cleanDesc.startsWith('http')) {
-        cleanDesc = 'Quy chuẩn cấu hình trang landing page và tích hợp hệ thống';
-      } else if (!cleanDesc) {
-        cleanDesc = 'Triển khai tính năng và phối hợp tích hợp theo yêu cầu';
-      }
-      if (cleanDesc.length > 55) {
-        cleanDesc = cleanDesc.substring(0, 52) + '...';
-      }
-
-      q4Tasks.push({
-        title: titleFull.split('\n')[0].trim(),
-        epic: epic,
-        desc: cleanDesc,
-        prio: prio,
-        pic: pic,
-        status: status,
-        timeline: timeline,
-        timeGroup: timeGroup,
-        startM: startM,
-        endM: endM
-      });
-    }
+    q4Tasks.push({
+      title: titleFull.split('\n')[0].trim(),
+      epic: epic,
+      desc: cleanDesc,
+      prio: prio,
+      pic: pic,
+      status: status,
+      rawStatus: rawStatus,
+      timeline: timeline,
+      timeGroup: tlParsed.timeGroup,
+      startM: tlParsed.startM,
+      endM: tlParsed.endM,
+      startCol: tlParsed.startCol,
+      totalCols: tlParsed.totalCols
+    });
   }
 
   // 2.1 Gom nhóm các task LDP NHA theo yêu cầu:
@@ -369,10 +400,13 @@ function syncRoadmapFromBacklog() {
       prio: 'P2',
       pic: 'ThuyTT104',
       status: baseNha.status || 'Chưa tiếp nhận',
+      rawStatus: baseNha.rawStatus || 'To do',
       timeline: 'Tháng 12',
       timeGroup: 't12',
       startM: 12,
-      endM: 12
+      endM: 12,
+      startCol: 9,
+      totalCols: 4
     };
 
     // Loại bỏ các task NHA con riêng lẻ và thay bằng 1 task đã gom duy nhất
@@ -403,7 +437,7 @@ function syncRoadmapFromBacklog() {
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
   roadmapSheet.setHiddenGridlines(true);
 
-  // ĐẶT ĐỘ RỘNG CHO 12 CỘT TIẾN ĐỘ: 145px/CỘT (TIẾP TỤC TĂNG THÊM 0.5cm = ~20px THEO YÊU CẦU)
+  // ĐẶT ĐỘ RỘNG CHO 12 CỘT TIẾN ĐỘ: 145px/CỘT
   // MỖI THÁNG 4 CỘT = 580px, TỔNG BẢNG 12 CỘT = 1.740px VỪA KHÍT MÀN HÌNH Ở ZOOM 100%
   for (let c = 1; c <= 12; c++) {
     roadmapSheet.setColumnWidth(c, 145);
@@ -456,9 +490,9 @@ function syncRoadmapFromBacklog() {
 
   // ===== TÍNH TOÁN VÀ VẼ CÁC TASK DÒNG =====
   // Mỗi task chiếm 2 dòng:
-  // - Dòng 1: Card Thân Task (chiều cao 46px)
-  // - Dòng 2: Thanh Tiến Trình % Đáy Card (chiều cao 6px)
-  // - Sau đó là 1 dòng đệm trống 8px phân cách giữa các task
+  // - Dòng 1: Card Thân Task (chiều cao 34px)
+  // - Dòng 2: Thanh Tiến Trình % Đáy Card (chiều cao 4px)
+  // - Sau đó là 1 dòng đệm trống 3px phân cách giữa các task
   let curRow = 4;
   sortedTasks.forEach(t => {
     const cfg = STATUS_STEPS[t.status] || STATUS_STEPS['Chưa tiếp nhận'];
@@ -466,19 +500,9 @@ function syncRoadmapFromBacklog() {
     const epicColor = getEpicColor(t.epic);
     const epicTag = `[${t.epic}]`;
 
-    // Xác định phạm vi cột của task (1 tháng = 4 cột; 2 tháng = 8 cột)
-    let startCol = 1, totalCols = 4;
-    if (t.timeGroup === 't10') {
-      startCol = 1; totalCols = 4;
-    } else if (t.timeGroup === 'span-10-11') {
-      startCol = 1; totalCols = 8;
-    } else if (t.timeGroup === 't11') {
-      startCol = 5; totalCols = 4;
-    } else if (t.timeGroup === 'span-11-12') {
-      startCol = 5; totalCols = 8;
-    } else if (t.timeGroup === 't12') {
-      startCol = 9; totalCols = 4;
-    }
+    // Xác định phạm vi cột của task từ dữ liệu đã phân tích
+    const startCol = t.startCol;
+    const totalCols = t.totalCols;
 
     // Tô nền Canvas mờ nhẹ cho cả 12 cột ở dòng này
     roadmapSheet.getRange(curRow, 1, 1, 4).setBackground(MONTH_BG.m10);
@@ -488,13 +512,13 @@ function syncRoadmapFromBacklog() {
     // 1. DÒNG THÂN CARD (ROW HEIGHT = 34px GỌN GÀNG, TIẾT KIỆM CHIỀU CAO)
     roadmapSheet.setRowHeight(curRow, 34);
 
-    // Màu Pastel của thanh task DỰA VÀO BỘ MÀU CỦA TRẠNG THÁI để hiển thị
+    // Màu của thanh task DỰA VÀO BỘ MÀU CHUẨN CỦA TRẠNG THÁI để hiển thị
     const cardBg = cfg.taskBg;
     const cardBorder = cfg.border;
 
     // BỎ PIC THEO YÊU CẦU: DÀNH TOÀN BỘ DIỆN TÍCH CHO TÊN TASK (SIZE 11 TO RÕ) VÀ TRẠNG THÁI ĐẦY ĐỦ
-    // Task 1 tháng (4 cột = 420px): Trái 3 cột (315px) cho tên task to rõ, Phải 1 cột (105px) cho Prio & Trạng thái
-    // Task 2 tháng (8 cột = 840px): Trái 6 cột (630px), Phải 2 cột (210px)
+    // Task 1 tháng (4 cột = 580px): Trái 3 cột (435px) cho tên task to rõ, Phải 1 cột (145px) cho Prio & Trạng thái
+    // Task 2 tháng (8 cột = 1.160px): Trái 6 cột (870px), Phải 2 cột (290px)
     const leftCols = (totalCols === 4) ? 3 : 6;
     const rightCols = totalCols - leftCols;
 
@@ -551,8 +575,9 @@ function syncRoadmapFromBacklog() {
     let displayStatus = t.status;
     if (displayStatus === 'PO reviewed/Transfer DEV') displayStatus = 'Transfer DEV';
     if (displayStatus === 'Transfer DEV/PO reviewed') displayStatus = 'Transfer DEV';
-    if (displayStatus === 'Đang phân tích/Document') displayStatus = 'Đang phân tích';
+    if (displayStatus === 'Đang phân tích/Document') displayStatus = 'BA/Doc';
     if (displayStatus === 'Đã tiếp nhận yêu cầu') displayStatus = 'Đã tiếp nhận';
+    if (displayStatus === 'Chưa tiếp nhận') displayStatus = 'To do';
     const statusTag = `[${displayStatus}]`;
     const rightText = `${prioTag}\n${statusTag}`;
 
@@ -623,9 +648,9 @@ function syncRoadmapFromBacklog() {
     { label: 'DEV In Progress (62.5%)', bg: '#FEEFC3', border: '#FDD663', color: '#594400' },
     { label: 'UAT (75.0%)', bg: '#581C87', border: '#3B0764', color: '#FFFFFF' },
     { label: 'Transfer DEV (50.0%)', bg: '#C4EED0', border: '#8CE0A7', color: '#0F5132' },
-    { label: 'Đang phân tích (37.5%)', bg: '#FFD8B4', border: '#FFB787', color: '#8A3800' },
+    { label: 'BA / Document (37.5%)', bg: '#FFD8B4', border: '#FFB787', color: '#8A3800' },
     { label: 'Đã tiếp nhận (25.0%)', bg: '#C2E7FF', border: '#7FCFFF', color: '#004A77' },
-    { label: 'Chưa tiếp nhận (12.5%)', bg: '#E8EAED', border: '#BDC1C6', color: '#3C4043' }
+    { label: 'To do / Chưa nhận (12.5%)', bg: '#E8EAED', border: '#BDC1C6', color: '#3C4043' }
   ];
 
   legendItems.forEach((item, idx) => {
@@ -647,7 +672,7 @@ function syncRoadmapFromBacklog() {
   // Footer ghi rõ cơ chế tự động cập nhật màu task theo trạng thái
   const footerRange = roadmapSheet.getRange(curRow, 1, 1, 12);
   footerRange.merge();
-  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  Hệ thống tự động cập nhật màu sắc task & tiến trình realtime theo trạng thái (7:00 AM hàng ngày & Thủ công)  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
+  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  Hệ thống tự động cập nhật số lượng task, tên task, detail, timeline và màu sắc realtime (7:00 AM & Thủ công)  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
   footerRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B");
   footerRange.setHorizontalAlignment("center").setVerticalAlignment("middle").setBackground("#FFFFFF");
   roadmapSheet.setRowHeight(curRow, 22);
@@ -687,7 +712,7 @@ function syncRoadmapFromBacklog() {
       const prioVal = syncRows[r][4];
       const prioCfg = PRIO_STYLE[prioVal] || PRIO_STYLE['P2'];
 
-      syncSheet.getRange(r + 4, 7).setBackground(cfg.taskBg).setFontColor(cfg.badgeColor).setFontWeight("bold").setHorizontalAlignment("center");
+      syncSheet.getRange(r + 4, 7).setBackground(cfg.taskBg).setFontColor(cfg.isDark ? '#FFFFFF' : cfg.badgeColor).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 5).setFontColor(prioCfg.color).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 4).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 1).setHorizontalAlignment("center");
@@ -697,7 +722,7 @@ function syncRoadmapFromBacklog() {
   }
 
   syncSheet.autoResizeColumns(1, 9);
-  activeSS.toast(`Đã đồng bộ thành công ${q4Tasks.length} task từ Backlog gốc và cập nhật màu thanh task!`, 'Hoàn tất', 5);
+  activeSS.toast(`Đã đồng bộ thành công ${sortedTasks.length} task từ Backlog gốc và cập nhật màu thanh task!`, 'Hoàn tất', 5);
 }
 
 /**
