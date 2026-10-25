@@ -56,18 +56,18 @@ const STATUS_STEPS = {
   },
   'Transfer DEV/PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#FEE2E2', border: '#FCA5A5', barColor: '#EF4444', badgeColor: '#941F10',
-    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🔴'
+    taskBg: '#FFF1F2', border: '#FECDD3', barColor: '#FB7185', badgeColor: '#BE123C',
+    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🌸'
   },
   'PO reviewed/Transfer DEV': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#FEE2E2', border: '#FCA5A5', barColor: '#EF4444', badgeColor: '#941F10',
-    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🔴'
+    taskBg: '#FFF1F2', border: '#FECDD3', barColor: '#FB7185', badgeColor: '#BE123C',
+    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🌸'
   },
   'PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#FEE2E2', border: '#FCA5A5', barColor: '#EF4444', badgeColor: '#941F10',
-    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🔴'
+    taskBg: '#FFF1F2', border: '#FECDD3', barColor: '#FB7185', badgeColor: '#BE123C',
+    isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🌸'
   },
   'DEV In Progress': { 
     step: 5, percent: '62.5%', 
@@ -725,7 +725,7 @@ function syncRoadmapFromBacklog() {
     { label: 'Done (100% Full)', bg: '#D1FAE5', border: '#10B981', color: '#065F46' },
     { label: 'UAT (75.0%)', bg: '#F3E8FF', border: '#9333EA', color: '#6B21A8' },
     { label: 'DEV In Progress (62.5%)', bg: '#FEF9C3', border: '#EAB308', color: '#A16207' },
-    { label: 'Transfer DEV (50.0%)', bg: '#FEE2E2', border: '#EF4444', color: '#941F10' },
+    { label: 'Transfer DEV (50.0%)', bg: '#FFF1F2', border: '#FB7185', color: '#BE123C' },
     { label: 'BA / Document (37.5%)', bg: '#FFEDD5', border: '#F97316', color: '#C2410C' },
     { label: 'To do / Tiếp nhận (12.5-25%)', bg: '#F1F5F9', border: '#94A3B8', color: '#475569' }
   ];

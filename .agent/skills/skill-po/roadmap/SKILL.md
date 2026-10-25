@@ -85,7 +85,7 @@ skill-po/roadmap/
 | **Chưa tiếp nhận** | `12.5%` | `#F1F5F9` | `#94A3B8` | `#475569` | ⚪ | Ghi nhận Backlog, chưa xếp Sprint |
 | **Đã tiếp nhận yêu cầu** | `25.0%` | `#DBEAFE` | `#3B82F6` | `#1D4ED8` | 🔵 | Đã tiếp nhận vào phạm vi Quý |
 | **Đang phân tích/Document**| `37.5%` | `#FFEDD5` | `#F97316` | `#C2410C` | 🟠 | BA đang viết URD/BRD, làm UI/UX |
-| **Transfer DEV/PO reviewed**| `50.0%` | `#FEE2E2` | `#EF4444` | `#941F10` | 🔴 | Chip màu hồng đào, PO duyệt bàn giao DEV |
+| **Transfer DEV/PO reviewed**| `50.0%` | `#FFF1F2` | `#FB7185` | `#BE123C` | 🌸 | Chip màu hồng phớt nhẹ, thanh đáy hồng đào dịu mắt |
 | **DEV In Progress** | `62.5%` | `#FEF9C3` | `#EAB308` | `#A16207` | 🟡 | Đang code frontend/backend/API |
 | **UAT** | `75.0%` | `#F3E8FF` | `#A855F7` | `#6B21A8` | 🟣 | Đang test Staging & Nghiệm thu |
 | **Done** | `100.0%` | `#D1FAE5` | `#10B981` | `#047857` | ✅ | Deploy Production thành công |
@@ -98,20 +98,6 @@ skill-po/roadmap/
 * **Web**: **Màu Xanh lá đậm (`#047857`)**
 * **Đa hệ thống**: Tô màu độc lập cho từng từ viết tắt để người xem dễ dàng phân biệt ngay trên timeline.
 
----
-
-## 4. BẢNG MA TRẬN 8 MỐC TRẠNG THÁI & MÃ MÀU CHUẨN
-
-| Mốc Trạng thái | Tỷ lệ % | Màu Thân Thẻ (Pastel) | Màu Thanh Đáy (Accent 6px) | Màu Badge | Icon | Ý nghĩa PO |
-|:---|:---:|:---:|:---:|:---:|:---:|:---|
-| **Chưa tiếp nhận** | `12.5%` | `#F1F5F9` | `#94A3B8` | `#475569` | ⚪ | Ghi nhận Backlog, chưa xếp Sprint |
-| **Đã tiếp nhận yêu cầu** | `25.0%` | `#DBEAFE` | `#3B82F6` | `#1D4ED8` | 🔵 | Đã tiếp nhận vào phạm vi Quý |
-| **Đang phân tích/Document**| `37.5%` | `#FFEDD5` | `#F97316` | `#C2410C` | 🟠 | BA đang viết URD/BRD, làm UI/UX |
-| **Transfer DEV/PO reviewed**| `50.0%` | `#DCFCE7` | `#22C55E` | `#15803D` | 🟢 | PO duyệt spec, bàn giao DEV |
-| **DEV In Progress** | `62.5%` | `#FEF9C3` | `#EAB308` | `#A16207` | 🟡 | Đang code frontend/backend/API |
-| **UAT** | `75.0%` | `#F3E8FF` | `#A855F7` | `#6B21A8` | 🟣 | Đang test Staging & Nghiệm thu |
-| **Done** | `100.0%` | `#D1FAE5` | `#10B981` | `#047857` | ✅ | Deploy Production thành công |
-| **Pending** | `0.0%` | `#F3F4F6` | `#9CA3AF` | `#6B7280` | ⏸️ | Đang tạm dừng chờ làm rõ |
 
 ---
 
