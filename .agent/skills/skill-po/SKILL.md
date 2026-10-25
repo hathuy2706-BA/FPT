@@ -18,13 +18,17 @@ skill-po/
 ├── SKILL.md                          # Tài liệu cổng điều phối vai trò PO
 └── core-po/                          # Kỹ năng Product Owner cốt lõi (Chiến lược, Backlog, Roadmap)
     └── SKILL.md
+../skill-roadmap/                     # Kỹ năng chuyên sâu: Thiết kế Roadmap Pixel-Perfect & Luồng Đồng Bộ Data Realtime
+├── SKILL.md
+├── scripts/                          # Script Google Apps Script mẫu chuẩn
+├── templates/                        # Đặc tả kỹ thuật Google Sheets (12 cột, 1.740px)
+└── references/                       # Bảng ma trận 8 mốc trạng thái & màu sắc
 ```
 
 ---
 
-
 ### ⚠️ QUY CHUẨN LƯU TRỮ HÌNH ẢNH NGHIỆP VỤ PO
-- **Thư mục lưu trữ duy nhất**: Toàn bộ hình ảnh, biểu đồ liên quan đến nghiệp vụ PO (Roadmap, Backlog Chart, Milestone, Release Timeline) sau này khi tạo mới **BẮT BUỘC PHẢI LƯU VÀO THƯ MỤC **.
+- **Thư mục lưu trữ duy nhất**: Toàn bộ hình ảnh, biểu đồ liên quan đến nghiệp vụ PO (Roadmap, Backlog Chart, Milestone, Release Timeline) sau này khi tạo mới **BẮT BUỘC PHẢI LƯU VÀO THƯ MỤC `docs/images/po/`**.
 - Không lưu ảnh rải rác ngoài thư mục gốc hay thư mục khác.
 
 ## 2. NĂNG LỰC CỐT LÕI CỦA PRODUCT OWNER FPT
@@ -48,3 +52,8 @@ skill-po/
   - Xác nhận điều kiện mở UAT (Entry Criteria).
   - Xác nhận kết quả kiểm thử tại Sheet `Summary` của Template UAT FPT.
   - Phê duyệt bảng *“PO UAT Decision by System”* cho từng phân hệ và ký chốt *“Overall UAT Decision”* để phát hành sản phẩm.
+
+### E. Thiết Kế Product Roadmap & Luồng Đồng Bộ Tự Động Data (Skill-Roadmap)
+- Chi tiết quy chuẩn và mã nguồn xem tại: [skill-roadmap](file:///Users/hathuy/Documents/FPT-1/.agent/skills/skill-roadmap/SKILL.md).
+- **Quy chuẩn thiết kế Pixel-Perfect**: Banner Cam FPT (`#F37021`), Logo FPT Telecom chuẩn tỷ lệ, Lưới 12 cột (1.740px), Cấu trúc thẻ 2 dòng (Thân thẻ Pastel & Thanh đáy Accent 6px theo 8 mốc trạng thái).
+- **Thiết lập Google Apps Script Realtime Engine**: Đồng bộ tự động 100% dữ liệu từ Product Backlog gốc sang Roadmap Timeline, tự động tối ưu diện tích thẻ hiển thị trọn vẹn Acceptance Criteria không bị cắt chữ, hỗ trợ 3 chế độ đồng bộ (OnEdit, Daily Timer 7:00 AM, 1-Click Menu).
