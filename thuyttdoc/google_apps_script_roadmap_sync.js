@@ -260,42 +260,42 @@ function syncRoadmapFromBacklog() {
   const titleRange = roadmapSheet.getRange(1, 1, 1, 12);
   titleRange.merge();
   titleRange.setValue("FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)");
-  titleRange.setFontFamily("Times New Roman").setFontSize(16).setFontWeight("bold").setFontColor("#005696");
+  titleRange.setFontFamily("Times New Roman").setFontSize(15).setFontWeight("bold").setFontColor("#005696");
   titleRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
   titleRange.setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(1, 38);
+  roadmapSheet.setRowHeight(1, 30);
 
   // ===== DÒNG 2: GHI CHÚ HOT REQUEST =====
   const noteRange = roadmapSheet.getRange(2, 1, 1, 12);
   noteRange.merge();
   noteRange.setValue("(*) Lưu ý: Roadmap này chưa tính task phát sinh phục vụ vận hành/kinh doanh triển khai các chiến dịch/sự kiện/hot request");
-  noteRange.setFontFamily("Times New Roman").setFontSize(9.5).setFontStyle("italic").setFontColor("#DC2626");
+  noteRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#DC2626");
   noteRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
   noteRange.setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(2, 24);
+  roadmapSheet.setRowHeight(2, 20);
 
   // ===== DÒNG 3: TIÊU ĐỀ 3 CỘT THÁNG (MỖI THÁNG 4 CỘT W1-W4) =====
   // Tháng 10: Cột 1 đến 4 (A đến D)
   const m10Header = roadmapSheet.getRange(3, 1, 1, 4);
   m10Header.merge();
-  m10Header.setValue("THÁNG 10 / 2026").setFontFamily("Times New Roman").setFontSize(12).setFontWeight("bold").setFontColor("#FFFFFF");
+  m10Header.setValue("THÁNG 10 / 2026").setFontFamily("Times New Roman").setFontSize(11).setFontWeight("bold").setFontColor("#FFFFFF");
   m10Header.setBackground("#1E40AF").setHorizontalAlignment("center").setVerticalAlignment("middle")
     .setBorder(true, true, true, true, false, false, "#1E3A8A", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
   // Tháng 11: Cột 5 đến 8 (E đến H)
   const m11Header = roadmapSheet.getRange(3, 5, 1, 4);
   m11Header.merge();
-  m11Header.setValue("THÁNG 11 / 2026").setFontFamily("Times New Roman").setFontSize(12).setFontWeight("bold").setFontColor("#FFFFFF");
+  m11Header.setValue("THÁNG 11 / 2026").setFontFamily("Times New Roman").setFontSize(11).setFontWeight("bold").setFontColor("#FFFFFF");
   m11Header.setBackground("#6B21A8").setHorizontalAlignment("center").setVerticalAlignment("middle")
     .setBorder(true, true, true, true, false, false, "#581C87", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
   // Tháng 12: Cột 9 đến 12 (I đến L)
   const m12Header = roadmapSheet.getRange(3, 9, 1, 4);
   m12Header.merge();
-  m12Header.setValue("THÁNG 12 / 2026").setFontFamily("Times New Roman").setFontSize(12).setFontWeight("bold").setFontColor("#FFFFFF");
+  m12Header.setValue("THÁNG 12 / 2026").setFontFamily("Times New Roman").setFontSize(11).setFontWeight("bold").setFontColor("#FFFFFF");
   m12Header.setBackground("#047857").setHorizontalAlignment("center").setVerticalAlignment("middle")
     .setBorder(true, true, true, true, false, false, "#065F46", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  roadmapSheet.setRowHeight(3, 32);
+  roadmapSheet.setRowHeight(3, 26);
 
   // ===== TÍNH TOÁN VÀ VẼ CÁC TASK DÒNG =====
   // Mỗi task chiếm 2 dòng:
@@ -328,8 +328,8 @@ function syncRoadmapFromBacklog() {
     roadmapSheet.getRange(curRow, 5, 1, 4).setBackground(MONTH_BG.m11);
     roadmapSheet.getRange(curRow, 9, 1, 4).setBackground(MONTH_BG.m12);
 
-    // 1. DÒNG THÂN CARD (ROW HEIGHT = 46px)
-    roadmapSheet.setRowHeight(curRow, 46);
+    // 1. DÒNG THÂN CARD (ROW HEIGHT = 34px GỌN GÀNG, TIẾT KIỆM CHIỀU CAO)
+    roadmapSheet.setRowHeight(curRow, 34);
 
     // Màu Pastel của thanh task DỰA VÀO BỘ MÀU CỦA TRẠNG THÁI để hiển thị
     const cardBg = cfg.taskBg;
@@ -408,9 +408,9 @@ function syncRoadmapFromBacklog() {
     // Viền ô phải: Top = border, Right = border, Left = false (nối liền ô trái), Bottom = false
     rightRange.setBorder(true, false, false, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
 
-    // 2. DÒNG THANH TIẾN TRÌNH % ĐÁY CARD (ROW HEIGHT = 6px)
+    // 2. DÒNG THANH TIẾN TRÌNH % ĐÁY CARD (ROW HEIGHT = 4px THANH MẢNH)
     curRow++;
-    roadmapSheet.setRowHeight(curRow, 6);
+    roadmapSheet.setRowHeight(curRow, 4);
 
     // Nền Canvas mờ nhẹ
     roadmapSheet.getRange(curRow, 1, 1, 4).setBackground(MONTH_BG.m10);
@@ -438,9 +438,9 @@ function syncRoadmapFromBacklog() {
       progWhiteRange.setBorder(false, false, true, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
     }
 
-    // 3. DÒNG ĐỆM PHÂN CÁCH GIỮA CÁC TASK (ROW HEIGHT = 8px)
+    // 3. DÒNG ĐỆM PHÂN CÁCH GIỮA CÁC TASK (ROW HEIGHT = 3px TINH TẾ)
     curRow++;
-    roadmapSheet.setRowHeight(curRow, 8);
+    roadmapSheet.setRowHeight(curRow, 3);
     roadmapSheet.getRange(curRow, 1, 1, 4).setBackground(MONTH_BG.m10);
     roadmapSheet.getRange(curRow, 5, 1, 4).setBackground(MONTH_BG.m11);
     roadmapSheet.getRange(curRow, 9, 1, 4).setBackground(MONTH_BG.m12);
@@ -454,7 +454,7 @@ function syncRoadmapFromBacklog() {
   footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  FPT Telecom Online Business  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
   footerRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B");
   footerRange.setHorizontalAlignment("center").setVerticalAlignment("middle").setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(curRow, 24);
+  roadmapSheet.setRowHeight(curRow, 20);
 
   // 5. Cập nhật Sheet Dữ Liệu Đồng Bộ Backlog (Tra cứu chi tiết)
   let syncSheet = activeSS.getSheetByName(BACKLOG_SYNC_SHEET_NAME);
