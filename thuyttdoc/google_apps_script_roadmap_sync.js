@@ -334,63 +334,38 @@ function syncRoadmapFromBacklog() {
     const cardBg = cfg.taskBg;
     const cardBorder = cfg.border;
 
-    // PHÂN BỔ CỘT ĐỘNG THÔNG MINH CHO BẢNG 12 CỘT COMPACT:
-    let leftCols = 2;
-    let rightCols = 2;
-    if (totalCols === 4) {
-      if (t.pic && t.pic.length >= 15) {
-        // Có 2 PIC dài: Trái 2 cột (210px), Phải 2 cột (210px) để chứa đủ 2 PIC
-        leftCols = 2;
-        rightCols = 2;
-      } else {
-        // Có 1 PIC ngắn: Trái 3 cột (315px) cho tên task dài, Phải 1 cột (105px) cho Prio & 1 PIC
-        leftCols = 3;
-        rightCols = 1;
-      }
-    } else if (totalCols === 8) {
-      leftCols = 5;
-      rightCols = 3;
-    } else {
-      leftCols = 8;
-      rightCols = 4;
-    }
+    // BỎ PIC THEO YÊU CẦU: DÀNH TOÀN BỘ DIỆN TÍCH CHO TÊN TASK (SIZE 11 TO RÕ) VÀ TRẠNG THÁI ĐẦY ĐỦ
+    // Task 1 tháng (4 cột = 420px): Trái 3 cột (315px) cho tên task to rõ, Phải 1 cột (105px) cho Prio & Trạng thái
+    // Task 2 tháng (8 cột = 840px): Trái 6 cột (630px), Phải 2 cột (210px)
+    const leftCols = (totalCols === 4) ? 3 : 6;
+    const rightCols = totalCols - leftCols;
 
-    // --- TÍNH TOÁN DYNAMIC FONT SIZING ĐẢM BẢO 100% KHÔNG CẮT CHỮ TRÊN MỌI TASK ---
+    // --- TÍNH TOÁN FONT SIZING CHO TÊN TASK TO RÕ (SIZE 11) ---
     const fullTitle = `${epicTag} ${t.title}`;
     const fullTitleLen = fullTitle.length;
-    let titleFontSize = 9.5;
-    if (leftCols === 2) {
-      if (fullTitleLen > 38) {
-        titleFontSize = 7.5;
-      } else if (fullTitleLen > 25) {
-        titleFontSize = 8.5;
-      }
-    } else if (leftCols === 3) {
-      if (fullTitleLen > 65) {
-        titleFontSize = 7.2;
-      } else if (fullTitleLen > 45) {
-        titleFontSize = 8.5;
-      } else {
-        titleFontSize = 9.5;
-      }
+    let titleFontSize = 11;
+    if (fullTitleLen > 65) {
+      titleFontSize = 9.2;
+    } else if (fullTitleLen > 48) {
+      titleFontSize = 10.0;
     }
 
-    // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK | DÒNG 2 DETAIL ---
+    // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK (TO RÕ) | DÒNG 2 DETAIL ---
     const leftText = `${fullTitle}\n${t.desc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
-    // Style Dòng 1: Hệ thống
+    // Style Dòng 1: Hệ thống (Size 11)
     leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(epicColor).build()
     );
-    // Style Dòng 1: Tên Task (Tự động co nhẹ nếu quá dài, bình thường = 9.5)
+    // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, dễ đọc)
     leftBuilder.setTextStyle(epicTag.length + 1, fullTitle.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor("#0F172A").build()
     );
-    // Style Dòng 2: Detail (Size 8)
+    // Style Dòng 2: Detail (Size 8.5)
     const descStart = fullTitle.length + 1;
     leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8).setForegroundColor("#475569").build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor("#475569").build()
     );
 
     const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
@@ -403,41 +378,25 @@ function syncRoadmapFromBacklog() {
     leftRange.setBorder(true, false, false, false, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
     leftRange.setBorder(null, true, null, null, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
 
-    // --- KHU VỰC BÊN PHẢI: DÒNG 1 ĐỘ ƯU TIÊN | DÒNG 2 PIC & TRẠNG THÁI ---
+    // --- KHU VỰC BÊN PHẢI: DÒNG 1 ĐỘ ƯU TIÊN | DÒNG 2 TRẠNG THÁI ĐẦY ĐỦ 100% ---
     const prioTag = `[${t.prio}]`;
-    const picText = `👤 ${t.pic}`;
-    const statusTag = `[${t.status}]`;
-    const rightBottomLine = (rightCols === 1) ? picText : `${picText} • ${statusTag}`;
-    const rightText = `${prioTag}\n${rightBottomLine}`;
-
-    // Dynamic font sizing cho dòng PIC & Trạng thái để không bị cắt chữ
-    const rightBottomLen = rightBottomLine.length;
-    let rightBottomFontSize = 7.2;
-    if (rightBottomLen > 40) {
-      rightBottomFontSize = 6.8;
-    } else if (rightBottomLen > 25) {
-      rightBottomFontSize = 7.0;
-    }
+    let displayStatus = t.status;
+    if (displayStatus === 'PO reviewed/Transfer DEV') displayStatus = 'PO reviewed';
+    if (displayStatus === 'Đang phân tích/Document') displayStatus = 'Đang phân tích';
+    if (displayStatus === 'Đã tiếp nhận yêu cầu') displayStatus = 'Đã tiếp nhận';
+    const statusTag = `[${displayStatus}]`;
+    const rightText = `${prioTag}\n${statusTag}`;
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
-    // Style Dòng 1: Độ ưu tiên ở góc trên phải ngoài cùng (Size 9)
+    // Style Dòng 1: Độ ưu tiên (Size 10 In Đậm, màu đỏ cam)
     rightBuilder.setTextStyle(0, prioTag.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(9).setForegroundColor(prioCfg.color).build()
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor(prioCfg.color).build()
     );
-    // Style Dòng 2: PIC & Trạng thái
-    const rightBottomStart = prioTag.length + 1; // sau "\n"
-    const picStart = rightBottomStart;
-    rightBuilder.setTextStyle(picStart, picStart + picText.length,
-      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(rightBottomFontSize).setForegroundColor("#334155").build()
+    // Style Dòng 2: Trạng thái (Size 8.5 In Đậm, màu sắc nhận diện chuẩn, không bao giờ thiếu trạng thái)
+    const statusStart = prioTag.length + 1;
+    rightBuilder.setTextStyle(statusStart, rightText.length,
+      SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(cfg.badgeColor).build()
     );
-    if (rightCols > 1) {
-      const statusStart = rightText.indexOf(statusTag, picStart);
-      if (statusStart !== -1) {
-        rightBuilder.setTextStyle(statusStart, statusStart + statusTag.length,
-          SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(rightBottomFontSize).setForegroundColor(cfg.badgeColor).build()
-        );
-      }
-    }
 
     const rightRange = roadmapSheet.getRange(curRow, startCol + leftCols, 1, rightCols);
     rightRange.merge();
