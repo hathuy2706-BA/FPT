@@ -57,6 +57,7 @@ const PRIO_STYLE = {
 
 // Màu Hệ thống chuẩn hình ảnh
 function getEpicColor(epic) {
+  if (!epic) return '#0284C7';                                       // Fallback mặc định
   if (epic.includes('Web') && epic.includes('CMS')) return '#059669'; // Xanh ngọc
   if (epic.includes('CMS')) return '#4F46E5';                         // Xanh tím Indigo
   return '#0284C7';                                                   // Xanh da trời
