@@ -70,16 +70,54 @@ const MONTH_BG = {
 };
 
 /**
+ * Chuẩn hóa linh hoạt trạng thái task để luôn khớp chính xác với bộ màu pastel và tiến trình
+ */
+function normalizeStatus(raw) {
+  if (!raw) return 'Chưa tiếp nhận';
+  const s = String(raw).trim().toLowerCase();
+  if (s.includes('dev') || s.includes('in progress')) return 'DEV In Progress';
+  if (s.includes('uat') || s.includes('test')) return 'UAT';
+  if (s.includes('po') || s.includes('review') || s.includes('transfer')) return 'PO reviewed/Transfer DEV';
+  if (s.includes('phân tích') || s.includes('document') || s.includes('analysis')) return 'Đang phân tích/Document';
+  if (s.includes('chưa tiếp nhận') || s.includes('to do') || s.includes('new')) return 'Chưa tiếp nhận';
+  if (s.includes('tiếp nhận')) return 'Đã tiếp nhận yêu cầu';
+  if (s.includes('done') || s.includes('hoàn thành')) return 'Done';
+  return String(raw).trim();
+}
+
+/**
  * Menu tùy chỉnh khi mở Google Sheet
  */
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('🚀 PRODUCT ROADMAP')
-    .addItem('🔄 Cập nhật Roadmap Realtime Ngay (Thủ công)', 'syncRoadmapFromBacklog')
+    .addItem('🔄 Cập nhật Roadmap & Màu Sắc Task (Thủ công)', 'syncRoadmapFromBacklog')
     .addSeparator()
-    .addItem('⏰ Kích hoạt Tự Động Cập Nhật Hàng Ngày (1 ngày / 1 lần vào 7:00 AM)', 'setupDailyAutoTrigger')
+    .addItem('⏰ Kích hoạt Tự Động Đồng Bộ 1 Ngày / 1 Lần (7:00 AM)', 'setupDailyAutoTrigger')
     .addItem('❌ Hủy bỏ Lịch Tự Động Cập Nhật', 'cancelAutoTriggers')
+    .addSeparator()
+    .addItem('🎨 Xem Bảng Quy Tắc Tự Động Đổi Màu Thanh Task', 'showColorRulesDialog')
     .addToUi();
+}
+
+/**
+ * Hiển thị popup Bảng Quy Tắc Tự Động Cập Nhật Màu Sắc Thanh Task
+ */
+function showColorRulesDialog() {
+  const ui = SpreadsheetApp.getUi();
+  const msg = 
+    "🎨 QUY TẮC TỰ ĐỘNG CẬP NHẬT MÀU SẮC THANH TASK:\n\n" +
+    "Khi thay đổi trạng thái ở Backlog gốc hoặc chạy đồng bộ (thủ công / tự động 7:00 AM), màu thanh task và tiến trình sẽ tự động chuyển màu tương ứng:\n\n" +
+    "1. 🟡 DEV In Progress ➔ Màu Vàng Pastel (#FEF9C3) | Tiến độ 62.5%\n" +
+    "2. 🟣 UAT ➔ Màu Tím Pastel (#EDE9FE) | Tiến độ 75.0%\n" +
+    "3. 🟢 PO reviewed / Transfer DEV ➔ Màu Xanh Lá Pastel (#DCFCE7) | Tiến độ 50.0%\n" +
+    "4. 🟠 Đang phân tích / Document ➔ Màu Cam Pastel (#FFEDD5) | Tiến độ 37.5%\n" +
+    "5. 🟪 Đã tiếp nhận yêu cầu ➔ Màu Tím Nhạt Pastel (#F3E8FF) | Tiến độ 25.0%\n" +
+    "6. ⚪ Chưa tiếp nhận ➔ Màu Xám Xanh Pastel (#F1F5F9) | Tiến độ 12.5%\n" +
+    "7. 🟢 Done ➔ Màu Xanh Ngọc Pastel (#D1FAE5) | Tiến độ 100%\n\n" +
+    "⏰ Tự động cập nhật: 1 ngày / 1 lần vào lúc 7:00 AM.\n" +
+    "🔄 Đồng bộ thủ công: Bấm menu '🚀 PRODUCT ROADMAP' ➔ '🔄 Cập nhật Roadmap & Màu Sắc Task'.";
+  ui.alert("Bảng Quy Tắc Tự Động Cập Nhật Màu Thanh Task", msg, ui.ButtonSet.OK);
 }
 
 /**
@@ -168,7 +206,8 @@ function syncRoadmapFromBacklog() {
     if (!titleFull) continue;
 
     const timeline = String(row[colMap['timeline']] || '').trim();
-    const status = String(row[colMap['status']] || '').trim();
+    const rawStatus = String(row[colMap['status']] || '').trim();
+    const status = normalizeStatus(rawStatus);
     const epic = String(row[colMap['epic']] || '').trim();
     const prio = String(row[colMap['prio']] || 'P2').trim();
     const pic = String(row[colMap['pic']] || '').trim();
@@ -475,13 +514,41 @@ function syncRoadmapFromBacklog() {
     curRow++;
   });
 
-  // Footer
+  // ===== BẢNG QUY TẮC MÀU SẮC TRẠNG THÁI (COLOR RULES LEGEND) =====
+  // Hiển thị trực quan quy tắc màu sắc thanh task và tiến trình tự động cập nhật theo trạng thái
+  roadmapSheet.setRowHeight(curRow, 22);
+  const legendItems = [
+    { label: 'DEV In Progress (62.5%)', bg: '#FEF9C3', border: '#FDE047', color: '#854D0E' },
+    { label: 'UAT (75.0%)', bg: '#EDE9FE', border: '#C4B5FD', color: '#581C87' },
+    { label: 'PO reviewed (50.0%)', bg: '#DCFCE7', border: '#86EFAC', color: '#15803D' },
+    { label: 'Đang phân tích (37.5%)', bg: '#FFEDD5', border: '#FDBA74', color: '#C2410C' },
+    { label: 'Đã tiếp nhận (25.0%)', bg: '#F3E8FF', border: '#D8B4FE', color: '#6B21A8' },
+    { label: 'Chưa tiếp nhận (12.5%)', bg: '#F1F5F9', border: '#CBD5E1', color: '#475569' }
+  ];
+
+  legendItems.forEach((item, idx) => {
+    const colStart = idx * 2 + 1;
+    const legRange = roadmapSheet.getRange(curRow, colStart, 1, 2);
+    legRange.merge();
+    legRange.setValue(`■ ${item.label}`);
+    legRange.setFontFamily("Times New Roman").setFontSize(8.5).setFontWeight("bold").setFontColor(item.color);
+    legRange.setBackground(item.bg).setHorizontalAlignment("center").setVerticalAlignment("middle");
+    legRange.setBorder(true, true, true, true, false, false, item.border, SpreadsheetApp.BorderStyle.SOLID);
+  });
+  curRow++;
+
+  // Dòng đệm nhẹ 4px
+  roadmapSheet.setRowHeight(curRow, 4);
+  roadmapSheet.getRange(curRow, 1, 1, 12).setBackground("#FFFFFF");
+  curRow++;
+
+  // Footer ghi rõ cơ chế tự động cập nhật màu task theo trạng thái
   const footerRange = roadmapSheet.getRange(curRow, 1, 1, 12);
   footerRange.merge();
-  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  FPT Telecom Online Business  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
+  footerRange.setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026)  |  Hệ thống tự động cập nhật màu sắc task & tiến trình realtime theo trạng thái (7:00 AM hàng ngày & Thủ công)  |  Cập nhật: " + Utilities.formatDate(new Date(), "GMT+7", "HH:mm dd/MM/yyyy"));
   footerRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B");
   footerRange.setHorizontalAlignment("center").setVerticalAlignment("middle").setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(curRow, 20);
+  roadmapSheet.setRowHeight(curRow, 22);
 
   // 5. Cập nhật Sheet Dữ Liệu Đồng Bộ Backlog (Tra cứu chi tiết)
   let syncSheet = activeSS.getSheetByName(BACKLOG_SYNC_SHEET_NAME);
