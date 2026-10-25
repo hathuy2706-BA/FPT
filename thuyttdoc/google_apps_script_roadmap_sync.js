@@ -37,58 +37,58 @@ const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
 const STATUS_STEPS = {
   'Chưa tiếp nhận': { 
     step: 1, percent: '12.5%', 
-    taskBg: '#E8EAED', border: '#BDC1C6', barColor: '#64748B', badgeColor: '#3C4043',
+    taskBg: '#F1F5F9', border: '#CBD5E1', barColor: '#94A3B8', badgeColor: '#475569',
     isDark: false, name: 'Chưa tiếp nhận', icon: '⚪'
   },
   'Đã tiếp nhận yêu cầu': { 
     step: 2, percent: '25.0%', 
-    taskBg: '#C2E7FF', border: '#7FCFFF', barColor: '#2563EB', badgeColor: '#004A77',
+    taskBg: '#EFF6FF', border: '#BFDBFE', barColor: '#3B82F6', badgeColor: '#1D4ED8',
     isDark: false, name: 'Đã tiếp nhận yêu cầu', icon: '🔵'
   },
   'Đang phân tích/Document': { 
     step: 3, percent: '37.5%', 
-    taskBg: '#FFD8B4', border: '#FFB787', barColor: '#EA580C', badgeColor: '#8A3800',
+    taskBg: '#FFF7ED', border: '#FED7AA', barColor: '#F97316', badgeColor: '#C2410C',
     isDark: false, name: 'Đang phân tích/Document', icon: '🟠'
   },
   'Transfer DEV/PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#C4EED0', border: '#8CE0A7', barColor: '#16A34A', badgeColor: '#0F5132',
+    taskBg: '#F0FDF4', border: '#BBF7D0', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'PO reviewed/Transfer DEV': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#C4EED0', border: '#8CE0A7', barColor: '#16A34A', badgeColor: '#0F5132',
+    taskBg: '#F0FDF4', border: '#BBF7D0', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#C4EED0', border: '#8CE0A7', barColor: '#16A34A', badgeColor: '#0F5132',
+    taskBg: '#F0FDF4', border: '#BBF7D0', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'DEV In Progress': { 
     step: 5, percent: '62.5%', 
-    taskBg: '#FEEFC3', border: '#FDD663', barColor: '#EAB308', badgeColor: '#594400',
+    taskBg: '#FEFCE8', border: '#FEF08A', barColor: '#EAB308', badgeColor: '#A16207',
     isDark: false, name: 'DEV In Progress', icon: '🟡'
   },
   'UAT': { 
     step: 6, percent: '75.0%', 
-    taskBg: '#581C87', border: '#3B0764', barColor: '#C084FC', badgeColor: '#FFFFFF',
-    isDark: true, name: 'UAT', icon: '🟣'
+    taskBg: '#FAF5FF', border: '#E9D5FF', barColor: '#9333EA', badgeColor: '#6B21A8',
+    isDark: false, name: 'UAT', icon: '🟣'
   },
   'QC/CSOC': { 
     step: 7, percent: '87.5%', 
-    taskBg: '#005696', border: '#004A77', barColor: '#38BDF8', badgeColor: '#FFFFFF',
-    isDark: true, name: 'QC/CSOC', icon: '🔷'
+    taskBg: '#F0F9FF', border: '#BAE6FD', barColor: '#0284C7', badgeColor: '#0369A1',
+    isDark: false, name: 'QC/CSOC', icon: '🔷'
   },
   'Done': { 
     step: 8, percent: '100.0%', 
-    taskBg: '#0F5132', border: '#0B3D26', barColor: '#4ADE80', badgeColor: '#FFFFFF',
-    isDark: true, name: 'Done', icon: '✅'
+    taskBg: '#D1FAE5', border: '#6EE7B7', barColor: '#10B981', badgeColor: '#047857',
+    isDark: false, name: 'Done', icon: '✅'
   },
   'Pending': { 
     step: 0, percent: '0%', 
-    taskBg: '#343A40', border: '#212529', barColor: '#6C757D', badgeColor: '#FFFFFF',
-    isDark: true, name: 'Pending', icon: '⚫'
+    taskBg: '#F8FAFC', border: '#E2E8F0', barColor: '#64748B', badgeColor: '#334155',
+    isDark: false, name: 'Pending', icon: '⚫'
   }
 };
 
@@ -512,9 +512,16 @@ function syncRoadmapFromBacklog() {
     // 1. DÒNG THÂN CARD (ROW HEIGHT = 34px GỌN GÀNG, TIẾT KIỆM CHIỀU CAO)
     roadmapSheet.setRowHeight(curRow, 34);
 
-    // Màu của thanh task DỰA VÀO BỘ MÀU CHUẨN CỦA TRẠNG THÁI để hiển thị
-    const cardBg = cfg.taskBg;
-    const cardBorder = cfg.border;
+    // QUY TẮC HIỂN THỊ MÀU SẮC CHUẨN XÁC THEO YÊU CẦU:
+    // - CHỈ CÓ TASK 'DONE' MỚI ĐƯỢC HIỂN THỊ FULL MÀU (100% CẢ THÂN THẺ & THANH TIẾN TRÌNH) VÀ MANG MÀU CỦA TRẠNG THÁI DONE (#D1FAE5)
+    // - CÁC TRẠNG THÁI KHÁC TUYỆT ĐỐI KHÔNG ĐƯỢC HIỂN THỊ FULL TASK:
+    //   + Thân thẻ Dòng 1: Nền TRẮNG (#FFFFFF) thanh lịch, sạch sẽ, viền mỏng #CBD5E1.
+    //   + Mép trái: Dải màu nhận diện dày (SOLID_THICK) mang màu chuẩn của trạng thái.
+    //   + Dòng 2: Thanh tiến trình màu (Color Progress Bar) chia đúng tỷ lệ theo 8 mốc trạng thái (12.5% - 87.5%), phần còn lại là track rỗng #F8FAFC.
+    const isDone = (t.status === 'Done');
+    const cardBg = isDone ? cfg.taskBg : "#FFFFFF";
+    const cardBorder = isDone ? cfg.border : "#CBD5E1";
+    const leftAccentBorder = cfg.barColor;
 
     // BỎ PIC THEO YÊU CẦU: DÀNH TOÀN BỘ DIỆN TÍCH CHO TÊN TASK (SIZE 11 TO RÕ) VÀ TRẠNG THÁI ĐẦY ĐỦ
     // Task 1 tháng (4 cột = 580px): Trái 3 cột (435px) cho tên task to rõ, Phải 1 cột (145px) cho Prio & Trạng thái
@@ -532,15 +539,12 @@ function syncRoadmapFromBacklog() {
       titleFontSize = 10.0;
     }
 
-    // --- TÍNH TOÁN MÀU CHỮ TƯƠNG PHẢN THEO ĐÚNG MÀU TRẠNG THÁI ---
-    // Trạng thái nền tối (như UAT tím đậm #581C87): Toàn bộ chữ trắng & sáng cực nét!
-    // Trạng thái nền sáng (DEV vàng bơ, Transfer xanh non, Cam đào, Xanh baby, Xám): Chữ đen & đậm nét!
-    const titleColor = cfg.isDark ? "#FFFFFF" : "#0F172A";
-    const finalEpicColor = cfg.isDark ? "#F3E8FF" : epicColor;
-    const descColor = cfg.isDark ? "#E9D5FF" : "#475569";
-    const prioColor = cfg.isDark ? "#FDBA74" : prioCfg.color;
-    const statusColor = cfg.badgeColor; // UAT: #FFFFFF, DEV: #594400, Transfer: #0F5132...
-    const leftAccentBorder = cfg.isDark ? "#C084FC" : cfg.badgeColor;
+    // --- TÍNH TOÁN MÀU CHỮ TƯƠNG PHẢN CHUẨN ---
+    const titleColor = isDone ? "#065F46" : "#0F172A";
+    const finalEpicColor = isDone ? "#047857" : epicColor;
+    const descColor = isDone ? "#047857" : "#64748B";
+    const prioColor = prioCfg.color;
+    const statusColor = cfg.badgeColor;
 
     // --- KHU VỰC BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK (TO RÕ) | DÒNG 2 DETAIL ---
     const leftText = `${fullTitle}\n${t.desc}`;
@@ -550,7 +554,7 @@ function syncRoadmapFromBacklog() {
     leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(finalEpicColor).build()
     );
-    // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, tương phản chuẩn)
+    // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, tương phản chuẩn trên nền trắng)
     leftBuilder.setTextStyle(epicTag.length + 1, fullTitle.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(titleColor).build()
     );
@@ -582,11 +586,11 @@ function syncRoadmapFromBacklog() {
     const rightText = `${prioTag}\n${statusTag}`;
 
     const rightBuilder = SpreadsheetApp.newRichTextValue().setText(rightText);
-    // Style Dòng 1: Độ ưu tiên (Size 10 In Đậm, màu đỏ cam hoặc cam sáng nổi bật)
+    // Style Dòng 1: Độ ưu tiên (Size 10 In Đậm)
     rightBuilder.setTextStyle(0, prioTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(10).setForegroundColor(prioColor).build()
     );
-    // Style Dòng 2: Trạng thái (Size 8.5 In Đậm, màu sắc nhận diện chuẩn, không bao giờ thiếu trạng thái)
+    // Style Dòng 2: Trạng thái (Size 8.5 In Đậm, màu sắc nhận diện chuẩn theo dropdown)
     const statusStart = prioTag.length + 1;
     rightBuilder.setTextStyle(statusStart, rightText.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(statusColor).build()
@@ -601,33 +605,57 @@ function syncRoadmapFromBacklog() {
     // Viền ô phải: Top = border, Right = border, Left = false (nối liền ô trái), Bottom = false
     rightRange.setBorder(true, false, false, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
 
-    // 2. DÒNG THANH TIẾN TRÌNH % ĐÁY CARD (ROW HEIGHT = 4px THANH MẢNH)
+    // 2. DÒNG THANH TIẾN TRÌNH MÀU Ở ĐÁY CARD (ROW HEIGHT = 6px RÕ NÉT)
+    // ĐÂY LÀ THANH MÀU THỂ HIỆN TỶ LỆ TIẾN ĐỘ THEO TỪNG MỐC TRẠNG THÁI!
     curRow++;
-    roadmapSheet.setRowHeight(curRow, 4);
+    roadmapSheet.setRowHeight(curRow, 6);
 
     // Nền Canvas mờ nhẹ
     roadmapSheet.getRange(curRow, 1, 1, 4).setBackground(MONTH_BG.m10);
     roadmapSheet.getRange(curRow, 5, 1, 4).setBackground(MONTH_BG.m11);
     roadmapSheet.getRange(curRow, 9, 1, 4).setBackground(MONTH_BG.m12);
 
-    // Tính toán số cột tiến độ:
-    let coloredCols = Math.round((cfg.step / 8) * totalCols);
-    if (coloredCols < 1) coloredCols = 1;
-    if (coloredCols > totalCols) coloredCols = totalCols;
+    // TÍNH TOÁN TỶ LỆ MÀU THEO TỪNG MỐC TRẠNG THÁI:
+    // - CHỈ 'Done' MỚI ĐƯỢC FULL CẢ THANH (100% số cột)
+    // - CÁC TRẠNG THÁI KHÁC: Chia theo đúng 8 mốc trạng thái (12.5% mỗi nấc) và TUYỆT ĐỐI KHÔNG ĐƯỢC FULL TASK!
+    let coloredCols = 0;
+    if (isDone) {
+      coloredCols = totalCols; // Duy nhất Done mới hiển thị full màu toàn bộ cây task!
+    } else {
+      if (totalCols === 8) {
+        // Task vắt 2 tháng (8 cột): Khớp chuẩn xác 8 nấc từ 1 đến 7 cột!
+        coloredCols = cfg.step; 
+      } else {
+        // Task 1 tháng (4 cột):
+        // Step 1-3 (<50%): 1 cột | Step 4-5 (50%-62.5%): 2 cột | Step 6-7 (75%-87.5%): 3 cột
+        if (cfg.step <= 3) {
+          coloredCols = 1;
+        } else if (cfg.step <= 5) {
+          coloredCols = 2; // Đúng 50%
+        } else {
+          coloredCols = 3; // Đúng 75%
+        }
+      }
+      if (coloredCols < 1) coloredCols = 1;
+      // Khóa cứng: Chưa Done thì coloredCols không bao giờ được bằng totalCols!
+      if (coloredCols >= totalCols) {
+        coloredCols = totalCols - 1;
+      }
+    }
     const whiteCols = totalCols - coloredCols;
 
-    // Tô màu tiến độ rực rỡ ở đáy card
+    // Tô màu tiến độ rực rỡ mang màu của trạng thái
     const progColorRange = roadmapSheet.getRange(curRow, startCol, 1, coloredCols);
     progColorRange.merge();
     progColorRange.setBackground(cfg.barColor);
     // Viền trái dày đồng bộ theo màu trạng thái của task
     progColorRange.setBorder(false, true, true, false, false, false, leftAccentBorder, SpreadsheetApp.BorderStyle.SOLID_THICK);
-    progColorRange.setBorder(false, false, true, false, false, false, cfg.isDark ? "#FFFFFF" : cfg.badgeColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+    progColorRange.setBorder(false, false, true, false, false, false, isDone ? "#059669" : cfg.barColor, SpreadsheetApp.BorderStyle.SOLID);
 
     if (whiteCols > 0) {
       const progWhiteRange = roadmapSheet.getRange(curRow, startCol + coloredCols, 1, whiteCols);
       progWhiteRange.merge();
-      progWhiteRange.setBackground("#F8FAFC"); // Track nền xám nhạt
+      progWhiteRange.setBackground("#F8FAFC"); // Track rỗng xám nhạt thể hiện phần chưa hoàn thành
       progWhiteRange.setBorder(false, false, true, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
     }
 
@@ -645,12 +673,12 @@ function syncRoadmapFromBacklog() {
   // Hiển thị trực quan quy tắc màu sắc thanh task và tiến trình tự động cập nhật theo trạng thái chuẩn Google Sheets
   roadmapSheet.setRowHeight(curRow, 22);
   const legendItems = [
-    { label: 'DEV In Progress (62.5%)', bg: '#FEEFC3', border: '#FDD663', color: '#594400' },
-    { label: 'UAT (75.0%)', bg: '#581C87', border: '#3B0764', color: '#FFFFFF' },
-    { label: 'Transfer DEV (50.0%)', bg: '#C4EED0', border: '#8CE0A7', color: '#0F5132' },
-    { label: 'BA / Document (37.5%)', bg: '#FFD8B4', border: '#FFB787', color: '#8A3800' },
-    { label: 'Đã tiếp nhận (25.0%)', bg: '#C2E7FF', border: '#7FCFFF', color: '#004A77' },
-    { label: 'To do / Chưa nhận (12.5%)', bg: '#E8EAED', border: '#BDC1C6', color: '#3C4043' }
+    { label: 'Done (100% Full)', bg: '#D1FAE5', border: '#10B981', color: '#065F46' },
+    { label: 'UAT (75.0%)', bg: '#FAF5FF', border: '#9333EA', color: '#6B21A8' },
+    { label: 'DEV In Progress (62.5%)', bg: '#FEFCE8', border: '#EAB308', color: '#A16207' },
+    { label: 'Transfer DEV (50.0%)', bg: '#F0FDF4', border: '#22C55E', color: '#15803D' },
+    { label: 'BA / Document (37.5%)', bg: '#FFF7ED', border: '#F97316', color: '#C2410C' },
+    { label: 'To do / Tiếp nhận (12.5-25%)', bg: '#F1F5F9', border: '#94A3B8', color: '#475569' }
   ];
 
   legendItems.forEach((item, idx) => {
