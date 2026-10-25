@@ -33,6 +33,9 @@ const SOURCE_GID = 954545565;
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
 const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
 
+// LOGO FPT TELECOM CHUẨN NHẬN DIỆN THƯƠNG HIỆU (NHÚNG DẠNG BASE64 KHÔNG CẦN TẢI NGOÀI)
+const FPT_TELECOM_LOGO_BASE64 = "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";
+
 // BỘ MÀU NHẬN DIỆN CHUẨN XÁC 100% THEO DROPDOWN CHIP TRÊN GOOGLE SHEETS GỐC
 // Màu taskBg là MÀU PASTEL NHẸ NHÀNG (Cấp độ 100 dịu mắt, thanh lịch, không bị chói hay đậm gắt)
 const STATUS_STEPS = {
@@ -447,14 +450,38 @@ function syncRoadmapFromBacklog() {
     roadmapSheet.deleteColumns(13, roadmapSheet.getMaxColumns() - 12);
   }
 
-  // ===== DÒNG 1: TIÊU ĐỀ BẢNG =====
+  // ===== XÓA HÌNH ẢNH CŨ TRÊN SHEET ĐỂ TRÁNH TRÙNG LẶP =====
+  const oldImages = roadmapSheet.getImages();
+  for (let i = 0; i < oldImages.length; i++) {
+    try {
+      oldImages[i].remove();
+    } catch (e) {}
+  }
+
+  // ===== DÒNG 1: TIÊU ĐỀ BẢNG (MÀU CAM FPT TELECOM NỔI BẬT + LOGO CHUẨN KÍCH THƯỚC) =====
   const titleRange = roadmapSheet.getRange(1, 1, 1, 12);
   titleRange.merge();
   titleRange.setValue("FPT TELECOM — PRODUCT ROADMAP QUÝ 4/2026 (WEBSITE & CMS)");
-  titleRange.setFontFamily("Times New Roman").setFontSize(15).setFontWeight("bold").setFontColor("#005696");
+  titleRange.setFontFamily("Times New Roman").setFontSize(14).setFontWeight("bold").setFontColor("#FFFFFF");
   titleRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
-  titleRange.setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(1, 30);
+  titleRange.setBackground("#F37021"); // Màu cam thương hiệu FPT Telecom chuẩn
+  roadmapSheet.setRowHeight(1, 32);
+
+  // Chèn logo FPT Telecom vào góc trái dòng 1 (Kích thước nhỏ gọn 76x24px, giữ nguyên layout)
+  try {
+    const logoBlob = Utilities.newBlob(Utilities.base64Decode(FPT_TELECOM_LOGO_BASE64), 'image/png', 'fpt_telecom_logo.png');
+    const logoImg = roadmapSheet.insertImage(logoBlob, 1, 1, 15, 4);
+    logoImg.setWidth(76);
+    logoImg.setHeight(24);
+  } catch (err) {
+    try {
+      const logoImg = roadmapSheet.insertImage("https://raw.githubusercontent.com/hathuy2706-BA/FPT/main/docs/images/logo_ftel_badge.png", 1, 1, 15, 4);
+      logoImg.setWidth(76);
+      logoImg.setHeight(24);
+    } catch (e2) {
+      Logger.log("Chèn logo lỗi: " + e2);
+    }
+  }
 
   // ===== DÒNG 2: GHI CHÚ HOT REQUEST =====
   const noteRange = roadmapSheet.getRange(2, 1, 1, 12);
