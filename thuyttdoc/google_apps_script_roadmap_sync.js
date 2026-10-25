@@ -34,61 +34,61 @@ const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
 const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
 
 // BỘ MÀU NHẬN DIỆN CHUẨN XÁC 100% THEO DROPDOWN CHIP TRÊN GOOGLE SHEETS GỐC
-// Màu taskBg là MÀU PASTEL tương ứng: Đậm hơn màu nền tháng, nhưng nhạt hơn màu thanh tiến trình
+// Màu taskBg là MÀU PASTEL NHẸ NHÀNG (Cấp độ 100 dịu mắt, thanh lịch, không bị chói hay đậm gắt)
 const STATUS_STEPS = {
   'Chưa tiếp nhận': { 
     step: 1, percent: '12.5%', 
-    taskBg: '#E2E8F0', border: '#CBD5E1', barColor: '#94A3B8', badgeColor: '#475569',
+    taskBg: '#F1F5F9', border: '#CBD5E1', barColor: '#94A3B8', badgeColor: '#475569',
     isDark: false, name: 'Chưa tiếp nhận', icon: '⚪'
   },
   'Đã tiếp nhận yêu cầu': { 
     step: 2, percent: '25.0%', 
-    taskBg: '#BFDBFE', border: '#93C5FD', barColor: '#3B82F6', badgeColor: '#1D4ED8',
+    taskBg: '#DBEAFE', border: '#93C5FD', barColor: '#3B82F6', badgeColor: '#1D4ED8',
     isDark: false, name: 'Đã tiếp nhận yêu cầu', icon: '🔵'
   },
   'Đang phân tích/Document': { 
     step: 3, percent: '37.5%', 
-    taskBg: '#FED7AA', border: '#FDBA74', barColor: '#F97316', badgeColor: '#C2410C',
+    taskBg: '#FFEDD5', border: '#FDBA74', barColor: '#F97316', badgeColor: '#C2410C',
     isDark: false, name: 'Đang phân tích/Document', icon: '🟠'
   },
   'Transfer DEV/PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#BBF7D0', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
+    taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'PO reviewed/Transfer DEV': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#BBF7D0', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
+    taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'PO reviewed': { 
     step: 4, percent: '50.0%', 
-    taskBg: '#BBF7D0', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
+    taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#22C55E', badgeColor: '#15803D',
     isDark: false, name: 'Transfer DEV/PO reviewed', icon: '🟢'
   },
   'DEV In Progress': { 
     step: 5, percent: '62.5%', 
-    taskBg: '#FEF08A', border: '#FDE047', barColor: '#EAB308', badgeColor: '#A16207',
+    taskBg: '#FEF9C3', border: '#FDE047', barColor: '#EAB308', badgeColor: '#A16207',
     isDark: false, name: 'DEV In Progress', icon: '🟡'
   },
   'UAT': { 
     step: 6, percent: '75.0%', 
-    taskBg: '#E9D5FF', border: '#D8B4FE', barColor: '#9333EA', badgeColor: '#6B21A8',
+    taskBg: '#F3E8FF', border: '#D8B4FE', barColor: '#9333EA', badgeColor: '#6B21A8',
     isDark: false, name: 'UAT', icon: '🟣'
   },
   'QC/CSOC': { 
     step: 7, percent: '87.5%', 
-    taskBg: '#BAE6FD', border: '#7DD3FC', barColor: '#0284C7', badgeColor: '#0369A1',
+    taskBg: '#E0F2FE', border: '#7DD3FC', barColor: '#0284C7', badgeColor: '#0369A1',
     isDark: false, name: 'QC/CSOC', icon: '🔷'
   },
   'Done': { 
     step: 8, percent: '100.0%', 
-    taskBg: '#A7F3D0', border: '#6EE7B7', barColor: '#10B981', badgeColor: '#047857',
+    taskBg: '#D1FAE5', border: '#6EE7B7', barColor: '#10B981', badgeColor: '#047857',
     isDark: false, name: 'Done', icon: '✅'
   },
   'Pending': { 
     step: 0, percent: '0%', 
-    taskBg: '#E2E8F0', border: '#CBD5E1', barColor: '#64748B', badgeColor: '#334155',
+    taskBg: '#F1F5F9', border: '#CBD5E1', barColor: '#64748B', badgeColor: '#334155',
     isDark: false, name: 'Pending', icon: '⚫'
   }
 };
@@ -671,10 +671,10 @@ function syncRoadmapFromBacklog() {
   roadmapSheet.setRowHeight(curRow, 22);
   const legendItems = [
     { label: 'Done (100% Full)', bg: '#D1FAE5', border: '#10B981', color: '#065F46' },
-    { label: 'UAT (75.0%)', bg: '#FAF5FF', border: '#9333EA', color: '#6B21A8' },
-    { label: 'DEV In Progress (62.5%)', bg: '#FEFCE8', border: '#EAB308', color: '#A16207' },
-    { label: 'Transfer DEV (50.0%)', bg: '#F0FDF4', border: '#22C55E', color: '#15803D' },
-    { label: 'BA / Document (37.5%)', bg: '#FFF7ED', border: '#F97316', color: '#C2410C' },
+    { label: 'UAT (75.0%)', bg: '#F3E8FF', border: '#9333EA', color: '#6B21A8' },
+    { label: 'DEV In Progress (62.5%)', bg: '#FEF9C3', border: '#EAB308', color: '#A16207' },
+    { label: 'Transfer DEV (50.0%)', bg: '#DCFCE7', border: '#22C55E', color: '#15803D' },
+    { label: 'BA / Document (37.5%)', bg: '#FFEDD5', border: '#F97316', color: '#C2410C' },
     { label: 'To do / Tiếp nhận (12.5-25%)', bg: '#F1F5F9', border: '#94A3B8', color: '#475569' }
   ];
 
