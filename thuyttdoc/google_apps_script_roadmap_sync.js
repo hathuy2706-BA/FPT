@@ -34,17 +34,58 @@ const SOURCE_GID = 954545565;
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
 const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
 
-// 8 nấc trạng thái chuẩn vòng đời (12.5% mỗi nấc) với BỘ MÀU PASTEL CỦA TASK NỔI HƠN NỀN
+// BỘ MÀU NHẬN DIỆN CHUẨN CỦA TRẠNG THÁI — ĐỒNG BỘ 100% TỪ TRẠNG THÁI SANG MÀU THANH TASK & TIẾN TRÌNH
 const STATUS_STEPS = {
-  'Chưa tiếp nhận': { step: 1, percent: '12.5%', taskBg: '#E2E8F0', border: '#CBD5E1', barColor: '#94A3B8', badgeColor: '#475569' },
-  'Đã tiếp nhận yêu cầu': { step: 2, percent: '25.0%', taskBg: '#F3E8FF', border: '#D8B4FE', barColor: '#A855F7', badgeColor: '#6B21A8' },
-  'Đang phân tích/Document': { step: 3, percent: '37.5%', taskBg: '#FFEDD5', border: '#FDBA74', barColor: '#FB923C', badgeColor: '#C2410C' },
-  'PO reviewed/Transfer DEV': { step: 4, percent: '50.0%', taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#4ADE80', badgeColor: '#15803D' },
-  'PO reviewed': { step: 4, percent: '50.0%', taskBg: '#DCFCE7', border: '#86EFAC', barColor: '#4ADE80', badgeColor: '#15803D' },
-  'DEV In Progress': { step: 5, percent: '62.5%', taskBg: '#FEF9C3', border: '#FDE047', barColor: '#EAB308', badgeColor: '#854D0E' },
-  'UAT': { step: 6, percent: '75.0%', taskBg: '#EDE9FE', border: '#C4B5FD', barColor: '#8B5CF6', badgeColor: '#581C87' },
-  'QC/CSOC': { step: 7, percent: '87.5%', taskBg: '#E0F2FE', border: '#7DD3FC', barColor: '#38BDF8', badgeColor: '#0284C7' },
-  'Done': { step: 8, percent: '100.0%', taskBg: '#D1FAE5', border: '#6EE7B7', barColor: '#10B981', badgeColor: '#059669' }
+  'Chưa tiếp nhận': { 
+    step: 1, percent: '12.5%', 
+    taskBg: '#F1F5F9', border: '#94A3B8', barColor: '#64748B', badgeColor: '#475569',
+    name: 'Chưa tiếp nhận', icon: '⚪'
+  },
+  'Đã tiếp nhận yêu cầu': { 
+    step: 2, percent: '25.0%', 
+    taskBg: '#DBEAFE', border: '#60A5FA', barColor: '#2563EB', badgeColor: '#1D4ED8',
+    name: 'Đã tiếp nhận yêu cầu', icon: '🔵'
+  },
+  'Đang phân tích/Document': { 
+    step: 3, percent: '37.5%', 
+    taskBg: '#FFEDD5', border: '#FB923C', barColor: '#EA580C', badgeColor: '#C2410C',
+    name: 'Đang phân tích/Document', icon: '🟠'
+  },
+  'Transfer DEV/PO reviewed': { 
+    step: 4, percent: '50.0%', 
+    taskBg: '#DCFCE7', border: '#4ADE80', barColor: '#16A34A', badgeColor: '#15803D',
+    name: 'Transfer DEV/PO reviewed', icon: '🟢'
+  },
+  'PO reviewed/Transfer DEV': { 
+    step: 4, percent: '50.0%', 
+    taskBg: '#DCFCE7', border: '#4ADE80', barColor: '#16A34A', badgeColor: '#15803D',
+    name: 'Transfer DEV/PO reviewed', icon: '🟢'
+  },
+  'PO reviewed': { 
+    step: 4, percent: '50.0%', 
+    taskBg: '#DCFCE7', border: '#4ADE80', barColor: '#16A34A', badgeColor: '#15803D',
+    name: 'Transfer DEV/PO reviewed', icon: '🟢'
+  },
+  'DEV In Progress': { 
+    step: 5, percent: '62.5%', 
+    taskBg: '#FEF9C3', border: '#FACC15', barColor: '#EAB308', badgeColor: '#854D0E',
+    name: 'DEV In Progress', icon: '🟡'
+  },
+  'UAT': { 
+    step: 6, percent: '75.0%', 
+    taskBg: '#EDE9FE', border: '#C084FC', barColor: '#8B5CF6', badgeColor: '#581C87',
+    name: 'UAT', icon: '🟣'
+  },
+  'QC/CSOC': { 
+    step: 7, percent: '87.5%', 
+    taskBg: '#E0F2FE', border: '#38BDF8', barColor: '#0284C7', badgeColor: '#0369A1',
+    name: 'QC/CSOC', icon: '🔷'
+  },
+  'Done': { 
+    step: 8, percent: '100.0%', 
+    taskBg: '#D1FAE5', border: '#34D399', barColor: '#10B981', badgeColor: '#047857',
+    name: 'Done', icon: '✅'
+  }
 };
 
 // Màu phân biệt độ ưu tiên chuẩn hình ảnh
@@ -71,18 +112,52 @@ const MONTH_BG = {
 };
 
 /**
- * Chuẩn hóa linh hoạt trạng thái task để luôn khớp chính xác với bộ màu pastel và tiến trình
+ * Chuẩn hóa linh hoạt trạng thái task để luôn khớp chính xác 100% với bộ màu và tiến trình
+ * LƯU Ý ĐẶC BIỆT: Phải ưu tiên kiểm tra "Transfer DEV" và "PO reviewed" TRƯỚC từ khóa "dev"
+ * để tránh bị nhận diện nhầm Transfer DEV thành DEV In Progress!
  */
 function normalizeStatus(raw) {
   if (!raw) return 'Chưa tiếp nhận';
   const s = String(raw).trim().toLowerCase();
-  if (s.includes('dev') || s.includes('in progress')) return 'DEV In Progress';
-  if (s.includes('uat') || s.includes('test')) return 'UAT';
-  if (s.includes('po') || s.includes('review') || s.includes('transfer')) return 'PO reviewed/Transfer DEV';
-  if (s.includes('phân tích') || s.includes('document') || s.includes('analysis')) return 'Đang phân tích/Document';
-  if (s.includes('chưa tiếp nhận') || s.includes('to do') || s.includes('new')) return 'Chưa tiếp nhận';
-  if (s.includes('tiếp nhận')) return 'Đã tiếp nhận yêu cầu';
-  if (s.includes('done') || s.includes('hoàn thành')) return 'Done';
+  
+  // 1. Nhóm Transfer DEV / PO reviewed (Phải check TRƯỚC 'dev' đơn lẻ!)
+  if (s.includes('transfer') || s.includes('po reviewed') || s.includes('po') || (s.includes('review') && !s.includes('in progress'))) {
+    return 'Transfer DEV/PO reviewed';
+  }
+  
+  // 2. Nhóm DEV In Progress
+  if (s.includes('in progress') || s.includes('dev') || s.includes('phát triển')) {
+    return 'DEV In Progress';
+  }
+  
+  // 3. Nhóm UAT / Test
+  if (s.includes('uat') || s.includes('test') || s.includes('nghiệm thu')) {
+    return 'UAT';
+  }
+  
+  // 4. Nhóm Đang phân tích / Document
+  if (s.includes('phân tích') || s.includes('document') || s.includes('analysis') || s.includes('doc')) {
+    return 'Đang phân tích/Document';
+  }
+  
+  // 5. Nhóm Tiếp nhận
+  if (s.includes('chưa tiếp nhận') || s.includes('to do') || s.includes('new') || s.includes('open')) {
+    return 'Chưa tiếp nhận';
+  }
+  if (s.includes('tiếp nhận') || s.includes('nhận yêu cầu') || s.includes('received')) {
+    return 'Đã tiếp nhận yêu cầu';
+  }
+  
+  // 6. Nhóm QC / CSOC
+  if (s.includes('qc') || s.includes('csoc')) {
+    return 'QC/CSOC';
+  }
+  
+  // 7. Nhóm Done
+  if (s.includes('done') || s.includes('hoàn thành') || s.includes('closed')) {
+    return 'Done';
+  }
+  
   return String(raw).trim();
 }
 
@@ -92,10 +167,10 @@ function normalizeStatus(raw) {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('🚀 PRODUCT ROADMAP')
-    .addItem('🔄 Cập nhật Roadmap & Màu Sắc Task (Thủ công)', 'syncRoadmapFromBacklog')
+    .addItem('🔄 Đồng Bộ Backlog & Đổi Màu Thanh Task Theo Trạng Thái', 'syncRoadmapFromBacklog')
     .addSeparator()
-    .addItem('⏰ Kích hoạt Tự Động Đồng Bộ 1 Ngày / 1 Lần (7:00 AM)', 'setupDailyAutoTrigger')
-    .addItem('❌ Hủy bỏ Lịch Tự Động Cập Nhật', 'cancelAutoTriggers')
+    .addItem('⏰ Kích Hoạt Tự Động Đồng Bộ 1 Ngày / 1 Lần (7:00 AM)', 'setupDailyAutoTrigger')
+    .addItem('❌ Hủy Bỏ Lịch Tự Động Cập Nhật', 'cancelAutoTriggers')
     .addSeparator()
     .addItem('🎨 Xem Bảng Quy Tắc Tự Động Đổi Màu Thanh Task', 'showColorRulesDialog')
     .addToUi();
@@ -107,17 +182,17 @@ function onOpen() {
 function showColorRulesDialog() {
   const ui = SpreadsheetApp.getUi();
   const msg = 
-    "🎨 QUY TẮC TỰ ĐỘNG CẬP NHẬT MÀU SẮC THANH TASK:\n\n" +
-    "Khi thay đổi trạng thái ở Backlog gốc hoặc chạy đồng bộ (thủ công / tự động 7:00 AM), màu thanh task và tiến trình sẽ tự động chuyển màu tương ứng:\n\n" +
-    "1. 🟡 DEV In Progress ➔ Màu Vàng Pastel (#FEF9C3) | Tiến độ 62.5%\n" +
-    "2. 🟣 UAT ➔ Màu Tím Pastel (#EDE9FE) | Tiến độ 75.0%\n" +
-    "3. 🟢 PO reviewed / Transfer DEV ➔ Màu Xanh Lá Pastel (#DCFCE7) | Tiến độ 50.0%\n" +
-    "4. 🟠 Đang phân tích / Document ➔ Màu Cam Pastel (#FFEDD5) | Tiến độ 37.5%\n" +
-    "5. 🟪 Đã tiếp nhận yêu cầu ➔ Màu Tím Nhạt Pastel (#F3E8FF) | Tiến độ 25.0%\n" +
-    "6. ⚪ Chưa tiếp nhận ➔ Màu Xám Xanh Pastel (#F1F5F9) | Tiến độ 12.5%\n" +
-    "7. 🟢 Done ➔ Màu Xanh Ngọc Pastel (#D1FAE5) | Tiến độ 100%\n\n" +
-    "⏰ Tự động cập nhật: 1 ngày / 1 lần vào lúc 7:00 AM.\n" +
-    "🔄 Đồng bộ thủ công: Bấm menu '🚀 PRODUCT ROADMAP' ➔ '🔄 Cập nhật Roadmap & Màu Sắc Task'.";
+    "🎨 QUY TẮC TỰ ĐỘNG CẬP NHẬT MÀU SẮC THANH TASK THEO TRẠNG THÁI:\n\n" +
+    "Khi trạng thái ở Backlog gốc thay đổi hoặc chạy đồng bộ (thủ công / tự động 7:00 AM hàng ngày), toàn bộ thanh task và thanh tiến trình sẽ tự động đồng bộ sang màu tương ứng:\n\n" +
+    "1. 🟡 DEV In Progress ➔ Màu Vàng (#FEF9C3) | Viền nâu vàng (#854D0E) | Tiến độ 62.5%\n" +
+    "2. 🟣 UAT ➔ Màu Tím (#EDE9FE) | Viền tím đậm (#581C87) | Tiến độ 75.0%\n" +
+    "3. 🟢 Transfer DEV / PO reviewed ➔ Màu Xanh Lá (#DCFCE7) | Viền xanh đậm (#15803D) | Tiến độ 50.0%\n" +
+    "4. 🟠 Đang phân tích / Document ➔ Màu Cam (#FFEDD5) | Viền cam đậm (#C2410C) | Tiến độ 37.5%\n" +
+    "5. 🔵 Đã tiếp nhận yêu cầu ➔ Màu Xanh Dương (#DBEAFE) | Viền xanh đậm (#1D4ED8) | Tiến độ 25.0%\n" +
+    "6. ⚪ Chưa tiếp nhận ➔ Màu Xám (#F1F5F9) | Viền xám (#475569) | Tiến độ 12.5%\n" +
+    "7. ✅ Done ➔ Màu Xanh Ngọc (#D1FAE5) | Viền xanh lá đậm (#047857) | Tiến độ 100%\n\n" +
+    "⏰ Lịch tự động: 1 ngày / 1 lần vào lúc 7:00 AM.\n" +
+    "🔄 Đồng bộ thủ công: Menu '🚀 PRODUCT ROADMAP' ➔ '🔄 Đồng Bộ Backlog & Đổi Màu Thanh Task Theo Trạng Thái'.";
   ui.alert("Bảng Quy Tắc Tự Động Cập Nhật Màu Thanh Task", msg, ui.ButtonSet.OK);
 }
 
@@ -133,7 +208,7 @@ function setupDailyAutoTrigger() {
     .atHour(7)
     .create();
   
-  SpreadsheetApp.getActiveSpreadsheet().toast('Đã cài đặt thành công: Tự động cập nhật 1 ngày 1 lần vào lúc 7:00 AM!', 'Thành công', 8);
+  SpreadsheetApp.getActiveSpreadsheet().toast('Đã kích hoạt thành công: Tự động đồng bộ & cập nhật màu thanh task 1 ngày 1 lần lúc 7:00 AM!', 'Thành công', 8);
 }
 
 /**
@@ -442,14 +517,15 @@ function syncRoadmapFromBacklog() {
     leftRange.setWrap(false);
     leftRange.setBackground(cardBg);
     leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-    // Viền ô trái: Top = border, Left = SOLID_THICK (#7C3AED), Bottom = false, Right = false (nối liền ô phải)
+    // Viền ô trái: Top = border, Left = SOLID_THICK (Màu nhận diện chuẩn của Trạng thái), Bottom = false, Right = false (nối liền ô phải)
     leftRange.setBorder(true, false, false, false, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
-    leftRange.setBorder(null, true, null, null, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
+    leftRange.setBorder(null, true, null, null, false, false, cfg.badgeColor, SpreadsheetApp.BorderStyle.SOLID_THICK);
 
     // --- KHU VỰC BÊN PHẢI: DÒNG 1 ĐỘ ƯU TIÊN | DÒNG 2 TRẠNG THÁI ĐẦY ĐỦ 100% ---
     const prioTag = `[${t.prio}]`;
     let displayStatus = t.status;
-    if (displayStatus === 'PO reviewed/Transfer DEV') displayStatus = 'PO reviewed';
+    if (displayStatus === 'PO reviewed/Transfer DEV') displayStatus = 'Transfer DEV';
+    if (displayStatus === 'Transfer DEV/PO reviewed') displayStatus = 'Transfer DEV';
     if (displayStatus === 'Đang phân tích/Document') displayStatus = 'Đang phân tích';
     if (displayStatus === 'Đã tiếp nhận yêu cầu') displayStatus = 'Đã tiếp nhận';
     const statusTag = `[${displayStatus}]`;
@@ -494,8 +570,8 @@ function syncRoadmapFromBacklog() {
     const progColorRange = roadmapSheet.getRange(curRow, startCol, 1, coloredCols);
     progColorRange.merge();
     progColorRange.setBackground(cfg.barColor);
-    // Viền trái tím dày nối tiếp trong cùng khung card
-    progColorRange.setBorder(false, true, true, false, false, false, "#7C3AED", SpreadsheetApp.BorderStyle.SOLID_THICK);
+    // Viền trái dày đồng bộ theo màu trạng thái của task
+    progColorRange.setBorder(false, true, true, false, false, false, cfg.badgeColor, SpreadsheetApp.BorderStyle.SOLID_THICK);
     progColorRange.setBorder(false, false, true, false, false, false, cfg.badgeColor, SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
     if (whiteCols > 0) {
@@ -519,12 +595,12 @@ function syncRoadmapFromBacklog() {
   // Hiển thị trực quan quy tắc màu sắc thanh task và tiến trình tự động cập nhật theo trạng thái
   roadmapSheet.setRowHeight(curRow, 22);
   const legendItems = [
-    { label: 'DEV In Progress (62.5%)', bg: '#FEF9C3', border: '#FDE047', color: '#854D0E' },
-    { label: 'UAT (75.0%)', bg: '#EDE9FE', border: '#C4B5FD', color: '#581C87' },
-    { label: 'PO reviewed (50.0%)', bg: '#DCFCE7', border: '#86EFAC', color: '#15803D' },
-    { label: 'Đang phân tích (37.5%)', bg: '#FFEDD5', border: '#FDBA74', color: '#C2410C' },
-    { label: 'Đã tiếp nhận (25.0%)', bg: '#F3E8FF', border: '#D8B4FE', color: '#6B21A8' },
-    { label: 'Chưa tiếp nhận (12.5%)', bg: '#F1F5F9', border: '#CBD5E1', color: '#475569' }
+    { label: 'DEV In Progress (62.5%)', bg: '#FEF9C3', border: '#FACC15', color: '#854D0E' },
+    { label: 'UAT (75.0%)', bg: '#EDE9FE', border: '#C084FC', color: '#581C87' },
+    { label: 'Transfer DEV (50.0%)', bg: '#DCFCE7', border: '#4ADE80', color: '#15803D' },
+    { label: 'Đang phân tích (37.5%)', bg: '#FFEDD5', border: '#FB923C', color: '#C2410C' },
+    { label: 'Đã tiếp nhận (25.0%)', bg: '#DBEAFE', border: '#60A5FA', color: '#1D4ED8' },
+    { label: 'Chưa tiếp nhận (12.5%)', bg: '#F1F5F9', border: '#94A3B8', color: '#475569' }
   ];
 
   legendItems.forEach((item, idx) => {
@@ -586,7 +662,7 @@ function syncRoadmapFromBacklog() {
       const prioVal = syncRows[r][4];
       const prioCfg = PRIO_STYLE[prioVal] || PRIO_STYLE['P2'];
 
-      syncSheet.getRange(r + 4, 7).setBackground(cfg.bg).setFontColor(cfg.badgeColor).setFontWeight("bold").setHorizontalAlignment("center");
+      syncSheet.getRange(r + 4, 7).setBackground(cfg.taskBg).setFontColor(cfg.badgeColor).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 5).setFontColor(prioCfg.color).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 4).setFontWeight("bold").setHorizontalAlignment("center");
       syncSheet.getRange(r + 4, 1).setHorizontalAlignment("center");
@@ -596,5 +672,21 @@ function syncRoadmapFromBacklog() {
   }
 
   syncSheet.autoResizeColumns(1, 9);
-  activeSS.toast(`Đã đồng bộ thành công ${q4Tasks.length} task từ Backlog gốc!`, 'Hoàn tất', 5);
+  activeSS.toast(`Đã đồng bộ thành công ${q4Tasks.length} task từ Backlog gốc và cập nhật màu thanh task!`, 'Hoàn tất', 5);
+}
+
+/**
+ * Trigger tự động OnEdit khi có chỉnh sửa trực tiếp trên file Roadmap hoặc sheet Sync
+ */
+function onEdit(e) {
+  if (!e || !e.range) return;
+  const sheet = e.range.getSheet();
+  const sheetName = sheet.getName();
+  
+  // Nếu chỉnh sửa cột Trạng thái trên tab Backlog_Data_Sync (Cột 7)
+  if (sheetName === BACKLOG_SYNC_SHEET_NAME && e.range.getColumn() === 7 && e.range.getRow() >= 4) {
+    const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+    activeSS.toast('Phát hiện thay đổi trạng thái! Đang tự động cập nhật lại màu thanh task trên Roadmap...', 'Đồng bộ Realtime', 4);
+    syncRoadmapFromBacklog();
+  }
 }
