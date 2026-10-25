@@ -552,18 +552,20 @@ function syncRoadmapFromBacklog() {
     const cardBorder = "#CBD5E1";
     const leftAccentBorder = cfg.barColor;
 
-    // --- TÍNH TOÁN FONT SIZING CHO TÊN TASK TO RÕ ---
+    // BỎ PIC: DÀNH TOÀN BỘ DIỆN TÍCH CHO TÊN TASK (SIZE 11 TO RÕ) VÀ TRẠNG THÁI ĐẦY ĐỦ
+    // Task 1 tháng (4 cột = 580px): Trái 3 cột (435px) cho Tên task to rõ không bao giờ cắt chữ, Phải 1 cột (145px) cho Prio & Trạng thái
+    // Task 2 tháng (8 cột = 1.160px): Trái 6 cột (870px), Phải 2 cột (290px)
+    const leftCols = (totalCols === 4) ? 3 : 6;
+    const rightCols = totalCols - leftCols;
+
+    // --- TÍNH TOÁN FONT SIZING CHO TÊN TASK TO RÕ, SẮC NÉT, KHÔNG CẮT CHỮ ---
     const fullTitle = `${epicTag} ${t.title}`;
     const fullTitleLen = fullTitle.length;
     let titleFontSize = 11;
-    if (coloredCols === 1) {
-      titleFontSize = 8.8;
-    } else if (coloredCols === 2) {
-      titleFontSize = 10.0;
-    } else {
-      if (fullTitleLen > 65) titleFontSize = 9.5;
-      else if (fullTitleLen > 48) titleFontSize = 10.5;
-      else titleFontSize = 11.0;
+    if (fullTitleLen > 65) {
+      titleFontSize = 9.5;
+    } else if (fullTitleLen > 48) {
+      titleFontSize = 10.2;
     }
 
     const titleColor = isDone ? "#065F46" : "#0F172A";
@@ -572,7 +574,7 @@ function syncRoadmapFromBacklog() {
     const prioColor = prioCfg.color;
     const statusColor = cfg.badgeColor;
 
-    // --- KHU VỰC TEXT BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK | DÒNG 2 DETAIL ---
+    // --- KHU VỰC TEXT BÊN TRÁI: DÒNG 1 HỆ THỐNG + TÊN TASK (TO RÕ) | DÒNG 2 DETAIL ---
     const leftText = `${fullTitle}\n${t.desc}`;
     const leftBuilder = SpreadsheetApp.newRichTextValue().setText(leftText);
     
@@ -580,17 +582,17 @@ function syncRoadmapFromBacklog() {
     leftBuilder.setTextStyle(0, epicTag.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(finalEpicColor).build()
     );
-    // Style Dòng 1: Tên Task
+    // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, tương phản chuẩn trên nền pastel)
     leftBuilder.setTextStyle(epicTag.length + 1, fullTitle.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(titleColor).build()
     );
-    // Style Dòng 2: Detail
+    // Style Dòng 2: Detail (Size 8.5 nghiêng)
     const descStart = fullTitle.length + 1;
     leftBuilder.setTextStyle(descStart, descStart + t.desc.length,
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setItalic(true).setFontSize(8.5).setForegroundColor(descColor).build()
     );
 
-    // --- KHU VỰC TEXT BÊN PHẢI: DÒNG 1 ĐỘ ƯU TIÊN | DÒNG 2 TRẠNG THÁI ---
+    // --- KHU VỰC TEXT BÊN PHẢI: DÒNG 1 ĐỘ ƯU TIÊN | DÒNG 2 TRẠNG THÁI ĐẦY ĐỦ 100% ---
     const prioTag = `[${t.prio}]`;
     let displayStatus = t.status;
     if (displayStatus === 'PO reviewed/Transfer DEV') displayStatus = 'Transfer DEV';
@@ -610,47 +612,24 @@ function syncRoadmapFromBacklog() {
       SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(8.5).setForegroundColor(statusColor).build()
     );
 
-    if (isDone || whiteCols === 0) {
-      // TASK DONE: FULL MÀU PASTEL 100% CẢ CÂY TASK
-      const leftCols = (totalCols === 4) ? 3 : 6;
-      const rightCols = totalCols - leftCols;
+    // VẼ KHU VỰC TRÁI (3 CỘT / 6 CỘT): MÀU PASTEL CHUẨN, KHÔNG ẢNH HƯỞNG ĐẾN TEXT TASK
+    const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
+    leftRange.merge();
+    leftRange.setRichTextValue(leftBuilder.build());
+    leftRange.setWrap(false);
+    leftRange.setBackground(pastelBg);
+    leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
+    leftRange.setBorder(true, false, false, false, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
+    leftRange.setBorder(null, true, null, null, false, false, leftAccentBorder, SpreadsheetApp.BorderStyle.SOLID_THICK);
 
-      const leftRange = roadmapSheet.getRange(curRow, startCol, 1, leftCols);
-      leftRange.merge();
-      leftRange.setRichTextValue(leftBuilder.build());
-      leftRange.setWrap(false);
-      leftRange.setBackground(pastelBg);
-      leftRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-      leftRange.setBorder(true, false, false, false, false, false, "#6EE7B7", SpreadsheetApp.BorderStyle.SOLID);
-      leftRange.setBorder(null, true, null, null, false, false, leftAccentBorder, SpreadsheetApp.BorderStyle.SOLID_THICK);
-
-      const rightRange = roadmapSheet.getRange(curRow, startCol + leftCols, 1, rightCols);
-      rightRange.merge();
-      rightRange.setRichTextValue(rightBuilder.build());
-      rightRange.setWrap(false);
-      rightRange.setBackground(pastelBg);
-      rightRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
-      rightRange.setBorder(true, false, false, true, false, false, "#6EE7B7", SpreadsheetApp.BorderStyle.SOLID);
-    } else {
-      // TASK CHƯA DONE: MÀU PASTEL HIỂN THỊ ĐÚNG BẰNG THANH TIẾN TRÌNH HIỆN HỮU (coloredCols CỘT), PHẦN CÒN LẠI NỀN TRẮNG (whiteCols CỘT)
-      const pastelRange = roadmapSheet.getRange(curRow, startCol, 1, coloredCols);
-      pastelRange.merge();
-      pastelRange.setRichTextValue(leftBuilder.build());
-      pastelRange.setWrap(false);
-      pastelRange.setBackground(pastelBg);
-      pastelRange.setHorizontalAlignment("left").setVerticalAlignment("middle");
-      pastelRange.setBorder(true, false, false, false, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
-      pastelRange.setBorder(null, true, null, null, false, false, leftAccentBorder, SpreadsheetApp.BorderStyle.SOLID_THICK);
-
-      const whiteRange = roadmapSheet.getRange(curRow, startCol + coloredCols, 1, whiteCols);
-      whiteRange.merge();
-      whiteRange.setRichTextValue(rightBuilder.build());
-      whiteRange.setWrap(false);
-      whiteRange.setBackground("#FFFFFF");
-      whiteRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
-      whiteRange.setBorder(true, false, false, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
-      whiteRange.setBorder(null, null, null, false, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
-    }
+    // VẼ KHU VỰC PHẢI (1 CỘT / 2 CỘT): MÀU PASTEL ĐỒNG BỘ, CHỨA PRIO VÀ STATUS
+    const rightRange = roadmapSheet.getRange(curRow, startCol + leftCols, 1, rightCols);
+    rightRange.merge();
+    rightRange.setRichTextValue(rightBuilder.build());
+    rightRange.setWrap(false);
+    rightRange.setBackground(pastelBg);
+    rightRange.setHorizontalAlignment("right").setVerticalAlignment("middle");
+    rightRange.setBorder(true, false, false, true, false, false, cardBorder, SpreadsheetApp.BorderStyle.SOLID);
 
     // 2. DÒNG THANH TIẾN TRÌNH MÀU Ở ĐÁY CARD (ROW HEIGHT = 6px RÕ NÉT)
     // ĐÂY LÀ THANH MÀU THỂ HIỆN TỶ LỆ TIẾN ĐỘ THEO TỪNG MỐC TRẠNG THÁI!
