@@ -41,7 +41,7 @@
 <rect x="115.0" y="381.5" width="38" height="15" rx="7" fill="#1f4e78"/>
 <text x="134.0" y="392.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
 <rect x="1029.0" y="454.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="484.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Kiểm tra tồn kho</tspan><tspan x="1164.0" dy="16.1">tại khu vực Khách hàng</tspan></text>
+<text x="1164.0" y="484.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Xác thực sản phẩm</tspan><tspan x="1164.0" dy="16.1">theo danh mục thiết bị</tspan></text>
 <rect x="1035.0" y="446.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1054.0" y="457.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
 <polygon points="1164.0,523.5 1191.0,550.5 1164.0,577.5 1137.0,550.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>

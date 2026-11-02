@@ -65,7 +65,7 @@
 <g id="node9" class="node">
 <title>check_logistics</title>
 <path fill="white" stroke="#7030a0" stroke-width="1.5" d="M193.93,-420.4C193.93,-420.4 104.08,-420.4 104.08,-420.4 98.08,-420.4 92.08,-414.4 92.08,-408.4 92.08,-408.4 92.08,-386.8 92.08,-386.8 92.08,-380.8 98.08,-374.8 104.08,-374.8 104.08,-374.8 193.93,-374.8 193.93,-374.8 199.93,-374.8 205.93,-380.8 205.93,-386.8 205.93,-386.8 205.93,-408.4 205.93,-408.4 205.93,-414.4 199.93,-420.4 193.93,-420.4"/>
-<text xml:space="preserve" text-anchor="middle" x="149" y="-400.1" font-family="Arial" font-size="10.00">Check Kho vận TV &amp;</text>
+<text xml:space="preserve" text-anchor="middle" x="149" y="-400.1" font-family="Arial" font-size="10.00">Kiểm tra giao hàng &amp;</text>
 <text xml:space="preserve" text-anchor="middle" x="149" y="-388.1" font-family="Arial" font-size="10.00">Phí vận chuyển</text>
 </g>
 <!-- input_geo&#45;&gt;check_logistics -->

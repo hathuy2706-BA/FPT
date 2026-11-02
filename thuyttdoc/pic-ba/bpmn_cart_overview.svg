@@ -120,16 +120,16 @@
 <text xml:space="preserve" text-anchor="middle" x="335" y="-1030.9" font-family="Arial bold" font-size="11.00" fill="white">WEBSITE FPT.VN (FRONTEND)</text>
 </g>
 <!-- h_fe&#45;&gt;validate_input -->
-<!-- check_inv -->
+<!-- validate_sku_sa -->
 <g id="node12" class="node">
-<title>check_inv</title>
+<title>validate_sku_sa</title>
 <path fill="white" stroke="#7030a0" stroke-width="1.5" d="M187.05,-695.8C187.05,-695.8 106.95,-695.8 106.95,-695.8 100.95,-695.8 94.95,-689.8 94.95,-683.8 94.95,-683.8 94.95,-662.2 94.95,-662.2 94.95,-656.2 100.95,-650.2 106.95,-650.2 106.95,-650.2 187.05,-650.2 187.05,-650.2 193.05,-650.2 199.05,-656.2 199.05,-662.2 199.05,-662.2 199.05,-683.8 199.05,-683.8 199.05,-689.8 193.05,-695.8 187.05,-695.8"/>
-<text xml:space="preserve" text-anchor="middle" x="147" y="-675.5" font-family="Arial" font-size="10.00">Check Kho SKU &amp;</text>
+<text xml:space="preserve" text-anchor="middle" x="147" y="-675.5" font-family="Arial" font-size="10.00">Xác thực SKU &amp;</text>
 <text xml:space="preserve" text-anchor="middle" x="147" y="-663.5" font-family="Arial" font-size="10.00">Hạ tầng SA</text>
 </g>
-<!-- validate_input&#45;&gt;check_inv -->
+<!-- validate_input&#45;&gt;validate_sku_sa -->
 <g id="edge6" class="edge">
-<title>validate_input&#45;&gt;check_inv</title>
+<title>validate_input&#45;&gt;validate_sku_sa</title>
 <path fill="none" stroke="#444444" stroke-width="1.2" d="M326.44,-738.32C326.44,-712.07 326.44,-673 326.44,-673 326.44,-673 211.2,-673 211.2,-673"/>
 <polygon fill="#444444" stroke="#444444" stroke-width="1.2" points="211.2,-669.5 201.2,-673 211.2,-676.5 211.2,-669.5"/>
 </g>
@@ -165,7 +165,7 @@
 <polygon fill="#7030a0" stroke="#7030a0" stroke-width="1.5" points="205.6,-1052.6 18.4,-1052.6 18.4,-1016.6 205.6,-1016.6 205.6,-1052.6"/>
 <text xml:space="preserve" text-anchor="middle" x="112" y="-1030.9" font-family="Arial bold" font-size="11.00" fill="white">BACKEND &amp; TÍCH HỢP</text>
 </g>
-<!-- h_be&#45;&gt;check_inv -->
+<!-- h_be&#45;&gt;validate_sku_sa -->
 <!-- calc_price -->
 <g id="node13" class="node">
 <title>calc_price</title>
@@ -173,9 +173,9 @@
 <text xml:space="preserve" text-anchor="middle" x="147" y="-586.9" font-family="Arial" font-size="10.00">Tính Pricing Matrix,</text>
 <text xml:space="preserve" text-anchor="middle" x="147" y="-574.9" font-family="Arial" font-size="10.00">Discount &amp; Cross&#45;sell</text>
 </g>
-<!-- check_inv&#45;&gt;calc_price -->
+<!-- validate_sku_sa&#45;&gt;calc_price -->
 <g id="edge7" class="edge">
-<title>check_inv&#45;&gt;calc_price</title>
+<title>validate_sku_sa&#45;&gt;calc_price</title>
 <path fill="none" stroke="#444444" stroke-width="1.2" d="M147,-649.72C147,-649.72 147,-619.65 147,-619.65"/>
 <polygon fill="#444444" stroke="#444444" stroke-width="1.2" points="150.5,-619.65 147,-609.65 143.5,-619.65 150.5,-619.65"/>
 </g>
