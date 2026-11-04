@@ -36,7 +36,7 @@
 <path d="M696.0,282.5 L712.0,298.5 M712.0,282.5 L696.0,298.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <text x="722.9" y="277.3" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="722.9" dy="0.0">Số lượng ≤ 5?</tspan></text>
 <rect x="1029.0" y="324.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1164.0" y="354.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Xác thực sản phẩm &amp;</tspan><tspan x="1164.0" dy="16.1">lưu item IoT vào giỏ</tspan></text>
+<text x="1164.0" y="354.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1164.0" dy="0.0">Kiểm tra tồn kho &amp;</tspan><tspan x="1164.0" dy="16.1">lưu item IoT vào giỏ</tspan></text>
 <rect x="1035.0" y="316.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1054.0" y="327.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
 <polygon points="1164.0,393.5 1191.0,420.5 1164.0,447.5 1137.0,420.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>

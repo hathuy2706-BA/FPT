@@ -62,16 +62,16 @@
 <polygon points="1164.0,653.5 1191.0,680.5 1164.0,707.5 1137.0,680.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1153.0,680.5 L1175.0,680.5 M1164.0,669.5 L1164.0,691.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <rect x="950.5999999999999" y="714.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1053.6" y="742.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1053.6" dy="0.0">Kích hoạt</tspan><tspan x="1053.6" dy="16.1">FPT Play</tspan></text>
+<text x="1053.6" y="742.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1053.6" dy="0.0">Kích hoạt tức thì</tspan><tspan x="1053.6" dy="16.1">FPT Play qua SMS</tspan></text>
 <rect x="1171.4" y="714.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1274.4" y="742.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1274.4" dy="0.0">Kích hoạt</tspan><tspan x="1274.4" dy="16.1">UltraFast</tspan></text>
+<text x="1274.4" y="742.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1274.4" dy="0.0">Cấp Mã kích hoạt</tspan><tspan x="1274.4" dy="16.1">UltraFast + 2 Actions</tspan></text>
 <polygon points="1164.0,783.5 1191.0,810.5 1164.0,837.5 1137.0,810.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1153.0,810.5 L1175.0,810.5 M1164.0,799.5 L1164.0,821.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <polygon points="1164.0,848.5 1191.0,875.5 1164.0,902.5 1137.0,875.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1156.0,867.5 L1172.0,883.5 M1172.0,867.5 L1156.0,883.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <text x="1182.9" y="847.5" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="1182.9" dy="0.0">Cả 2 SA</tspan><tspan x="1182.9" dy="14.6">thành công?</tspan></text>
 <rect x="490.6" y="909.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="593.6" y="937.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Thank You</tspan><tspan x="593.6" dy="16.1">+ SMS kích hoạt</tspan></text>
+<text x="593.6" y="937.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Thank You: FPT Play OK</tspan><tspan x="593.6" dy="16.1">+ Mã UltraFast (2 Actions)</tspan></text>
 <rect x="711.4" y="909.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
 <text x="814.4" y="937.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="814.4" dy="0.0">Cảnh báo 1 SA lỗi</tspan><tspan x="814.4" dy="16.1">+ tạo ticket KT</tspan></text>
 <circle cx="244.0" cy="1005.5" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
