@@ -1,0 +1,10 @@
+{
+  "preAction": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "python3 /Users/hathuy/Documents/FPT-1/.agent/scripts/pre_action_hook.py"
+      }
+    ]
+  }
+}
