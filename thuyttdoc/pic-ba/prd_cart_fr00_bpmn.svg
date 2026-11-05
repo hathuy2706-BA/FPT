@@ -1,126 +1,262 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1474" height="1150" viewBox="0 0 1474 1150" font-family="Arial, Helvetica, sans-serif">
-<rect width="1474" height="1150" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1650" height="1380" viewBox="0 0 1650 1380" font-family="'Segoe UI', Arial, Helvetica, sans-serif">
+<rect width="1650" height="1380" fill="#ffffff"/>
 <defs>
-  <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#3a3a3a"/></marker>
-  <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#c62828"/></marker>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#3a3a3a"/></marker>
+  <marker id="arr-blue" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#0054A6"/></marker>
+  <marker id="arr-orange" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#F26522"/></marker>
+  <marker id="arr-green" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#009E49"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feOffset dx="1" dy="2"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.1"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
 </defs>
-<text x="737.0" y="32" font-size="18.5" font-weight="bold" fill="#1f4e78" text-anchor="middle">SƠ ĐỒ BPMN — FR00 · QUY TẮC NỀN TẢNG GIỎ HÀNG (SELECTION · DELETION · ORDER LIFECYCLE)</text>
-<text x="737.0" y="55" font-size="12" fill="#595959" font-style="italic" text-anchor="middle">Liên kết: 8.00.1 Business Rules (BR-01 → BR-05) · 8.00.3 Các bước (S-01 → S-05) · 8.00.5 Mã lỗi ERR-CART / WRN-CART</text>
 
-<!-- Swimlanes -->
-<rect x="14" y="80" width="480" height="1010" fill="#eef3fb" stroke="#1f4e78" stroke-width="1.3"/>
-<rect x="14" y="80" width="480" height="40" fill="#1f4e78"/>
-<text x="254.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">KHÁCH HÀNG (CUSTOMER)</text>
+<!-- Header Title Banner -->
+<rect x="25" y="15" width="1600" height="50" rx="6" fill="#0054A6"/>
+<text x="45" y="47" font-size="20" font-weight="bold" fill="#ffffff">QUY TRÌNH NGHIỆP VỤ NỀN TẢNG GIỎ HÀNG FPT.VN (BPMN 2.0 - FR00 CART CORE &amp; CMS INTERACTIONS)</text>
+<text x="1350" y="46" font-size="13" font-weight="600" fill="#FFF2CC">FPT Telecom • Business Standard</text>
 
-<rect x="494" y="80" width="480" height="1010" fill="#eef7fd" stroke="#2e75b6" stroke-width="1.3"/>
-<rect x="494" y="80" width="480" height="40" fill="#2e75b6"/>
-<text x="734.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">WEBSITE FPT.VN (FRONT-END)</text>
+<!-- Swimlane Frame -->
+<rect x="25" y="75" width="1600" height="1285" fill="#ffffff" stroke="#0054A6" stroke-width="2"/>
 
-<rect x="974" y="80" width="480" height="1010" fill="#f6f0fb" stroke="#7030a0" stroke-width="1.3"/>
-<rect x="974" y="80" width="480" height="40" fill="#7030a0"/>
-<text x="1214.0" y="104.5" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">HỆ THỐNG XỬ LÝ (SESSION · FID · SPF)</text>
+<!-- Lanes Background & Separators -->
+<!-- Lane 1: Khách hàng (Shopper) -->
+<rect x="25" y="75" width="70" height="300" fill="#0054A6"/>
+<text x="-225" y="68" transform="rotate(-90)" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">KHÁCH HÀNG (SHOPPER)</text>
+<rect x="95" y="75" width="1530" height="300" fill="#fcfdff"/>
+<line x1="25" y1="375" x2="1625" y2="375" stroke="#0054A6" stroke-width="1.5"/>
 
-<!-- Flow Connections -->
-<path d="M254,185 L254,215" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M399,244 L734,244 L734,285" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M734,343 L734,375" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M708,401 L399,401" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M760,401 L1069,401" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<!-- Lane 2: Frontend FPT.vn -->
+<rect x="25" y="375" width="70" height="380" fill="#F26522"/>
+<text x="-565" y="68" transform="rotate(-90)" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">FRONTEND FPT.VN (CART &amp; UI)</text>
+<rect x="95" y="375" width="1530" height="380" fill="#fffdfa"/>
+<line x1="25" y1="755" x2="1625" y2="755" stroke="#F26522" stroke-width="1.5"/>
 
-<path d="M254,430 L254,475" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M399,504 L734,504 L734,545" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M734,603 L734,635" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<!-- Lane 3: CMS & Backend Giỏ Hàng -->
+<rect x="25" y="755" width="70" height="330" fill="#009E49"/>
+<text x="-920" y="68" transform="rotate(-90)" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">CMS &amp; BACKEND GIỎ HÀNG</text>
+<rect x="95" y="755" width="1530" height="330" fill="#fafffc"/>
+<line x1="25" y1="1085" x2="1625" y2="1085" stroke="#009E49" stroke-width="1.5"/>
 
-<!-- Gateway xung đột -->
-<path d="M708,661 L614,661 L614,705" fill="none" stroke="#c62828" stroke-width="1.6" stroke-dasharray="6,3" marker-end="url(#ar)"/>
-<path d="M760,661 L854,661 L854,705" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<!-- Lane 4: Hệ Thống Đặt Hàng SPF -->
+<rect x="25" y="1085" width="70" height="275" fill="#5c6b73"/>
+<text x="-1220" y="68" transform="rotate(-90)" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">SPF CHECKOUT &amp; CỔNG TT</text>
+<rect x="95" y="1085" width="1530" height="275" fill="#f8f9fa"/>
 
-<path d="M854,763 L854,800 L399,800" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M254,829 L254,865" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M399,894 L1069,894" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M1214,923 L1214,960 L734,960 L734,990" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
-<path d="M734,1048 L734,1065 L272,1065" fill="none" stroke="#3a3a3a" stroke-width="1.6" marker-end="url(#a)"/>
+<!-- ========================================== -->
+<!-- 1. LUỒNG THÊM MỚI SP & AUTO-TICK (Yêu cầu 5) -->
+<!-- ========================================== -->
+<g filter="url(#shadow)">
+  <!-- Start Event -->
+  <circle cx="150" cy="140" r="18" fill="#e8f5e9" stroke="#009E49" stroke-width="2.5"/>
+  <polygon points="144,131 160,140 144,149" fill="#009E49"/>
+  <text x="150" y="175" font-size="11" font-weight="bold" fill="#2d3748" text-anchor="middle">Khách chọn SP tại</text>
+  <text x="150" y="190" font-size="11" fill="#4a5568" text-anchor="middle">PDP/Home/Listing</text>
 
-<!-- Start Event -->
-<circle cx="254" cy="167" r="18" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-<text x="280" y="172" font-size="12" fill="#1b5e20" font-weight="bold">Bắt đầu phiên Giỏ hàng</text>
+  <!-- Step 1.1: Bấm thêm vào giỏ -->
+  <rect x="230" y="115" width="150" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="305" y="137" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Chọn SL = N &amp; Bấm</text>
+  <text x="305" y="153" font-size="11" fill="#2d3748" text-anchor="middle">"Thêm vào giỏ hàng"</text>
 
-<!-- S-01 -->
-<rect x="109" y="215" width="290" height="58" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="254" y="240" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="254" dy="0">Truy cập /cart hoặc Click Icon Giỏ hàng</tspan><tspan x="254" dy="16">trên thanh Header</tspan></text>
-<rect x="115" y="207" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134" y="218" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">S-01</text>
+  <!-- Step 1.2: Bấm Xem giỏ hàng -->
+  <rect x="420" y="115" width="140" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="490" y="137" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Bấm CTA</text>
+  <text x="490" y="153" font-size="11" fill="#2d3748" text-anchor="middle">"Xem giỏ hàng"</text>
 
-<!-- Front-End Check Giỏ -->
-<rect x="589" y="285" width="290" height="58" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="734" y="310" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="734" dy="0">Tải danh sách SP từ Local / FID</tspan><tspan x="734" dy="16">và đếm tổng số lượng (total_qty)</tspan></text>
+  <!-- Frontend 1.3: Mở /cart, auto-tick & count -->
+  <rect x="360" y="410" width="220" height="65" rx="6" fill="#ffffff" stroke="#F26522" stroke-width="2"/>
+  <text x="470" y="433" font-size="12" font-weight="bold" fill="#F26522" text-anchor="middle">Frontend Mở Trang /cart</text>
+  <text x="470" y="449" font-size="11" font-weight="bold" fill="#009E49" text-anchor="middle">• Tự động TICK CHỌN SP vừa thêm</text>
+  <text x="470" y="463" font-size="10.5" fill="#2d3748" text-anchor="middle">• Hiển thị Stepper SL = N đã chọn</text>
 
-<!-- Gateway Check Rỗng -->
-<polygon points="734,375 760,401 734,427 708,401" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
-<path d="M725,392 L743,410 M743,392 L725,410" stroke="#7a5b00" stroke-width="2.5"/>
+  <!-- Frontend 1.4: Tính lại tổng tiền -->
+  <rect x="375" y="505" width="190" height="50" rx="6" fill="#ffffff" stroke="#F26522" stroke-width="1.8"/>
+  <text x="470" y="526" font-size="11.5" font-weight="bold" fill="#2d3748" text-anchor="middle">Cộng thành tiền SP mới</text>
+  <text x="470" y="542" font-size="11" fill="#0054A6" text-anchor="middle">vào Khối Tổng tiền tạm tính</text>
+</g>
 
-<!-- Nhánh Rỗng (Left) -->
-<rect x="109" y="372" width="290" height="58" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="254" y="397" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="254" dy="0">Giỏ hàng rỗng (count == 0):</tspan><tspan x="254" dy="16">Hiện Empty State + Ẩn Badge Header</tspan></text>
+<!-- Connectors Luồng 1 -->
+<path d="M168,140 L230,140" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M380,140 L420,140" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M490,170 L490,410" stroke="#F26522" stroke-width="1.8" marker-end="url(#arr-orange)"/>
+<path d="M470,475 L470,505" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#arr)"/>
 
-<!-- Nhánh Có SP (Right) -->
-<rect x="1069" y="372" width="290" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1214" y="397" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="1214" dy="0">Hiển thị danh sách SPDV &amp;</tspan><tspan x="1214" dy="16">đồng bộ Badge counter Header (BR-01)</tspan></text>
+<!-- ========================================== -->
+<!-- 2. LUỒNG ĐIỀU HƯỚNG QUAY LẠI BACK (Yêu cầu 3) -->
+<!-- ========================================== -->
+<g filter="url(#shadow)">
+  <!-- Action: Bấm nút Quay lại -->
+  <rect x="630" y="115" width="145" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="702" y="137" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Bấm nút</text>
+  <text x="702" y="153" font-size="11" fill="#2d3748" text-anchor="middle">"&lt; Quay lại" tại /cart</text>
 
-<!-- S-02: Tick chọn SP -->
-<rect x="109" y="475" width="290" height="58" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="254" y="500" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="254" dy="0">Tick chọn 1, nhiều hoặc tất cả SP</tspan><tspan x="254" dy="16">(hoặc thao tác Xóa sản phẩm)</tspan></text>
-<rect x="115" y="467" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134" y="478" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">S-02</text>
+  <!-- Gateway: Check Referrer -->
+  <polygon points="702,410 755,445 702,480 649,445" fill="#fff9db" stroke="#f59f00" stroke-width="2"/>
+  <text x="702" y="442" font-size="11" font-weight="bold" fill="#2d3748" text-anchor="middle">Referrer</text>
+  <text x="702" y="456" font-size="10" fill="#d9480f" text-anchor="middle">Nội bộ fpt.vn?</text>
 
-<!-- Front-End Validation -->
-<rect x="589" y="545" width="290" height="58" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="734" y="570" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="734" dy="0">Kiểm tra ràng buộc chống xung đột</tspan><tspan x="734" dy="16">(trùng Cam khác Cloud / trùng SA chu kỳ)</tspan></text>
+  <!-- Step: Quay về trang trước -->
+  <rect x="620" y="520" width="165" height="55" rx="6" fill="#e8f5e9" stroke="#009E49" stroke-width="1.8"/>
+  <text x="702" y="542" font-size="11.5" font-weight="bold" fill="#009E49" text-anchor="middle">Điều hướng về trang trước</text>
+  <text x="702" y="558" font-size="10.5" fill="#2d3748" text-anchor="middle">(Bảo lưu scroll &amp; giỏ hàng)</text>
 
-<!-- Gateway Xung Đột -->
-<polygon points="734,635 760,661 734,687 708,661" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
-<path d="M725,652 L743,670 M743,652 L725,670" stroke="#7a5b00" stroke-width="2.5"/>
+  <!-- Step: Fallback Trang chủ -->
+  <rect x="810" y="520" width="160" height="55" rx="6" fill="#fff3bf" stroke="#f59f00" stroke-width="1.8"/>
+  <text x="890" y="542" font-size="11.5" font-weight="bold" fill="#d9480f" text-anchor="middle">Fallback Trang chủ</text>
+  <text x="890" y="558" font-size="10.5" fill="#2d3748" text-anchor="middle">(https://fpt.vn an toàn)</text>
+</g>
 
-<!-- Cảnh báo Xung Đột (Left) -->
-<rect x="499" y="705" width="230" height="58" rx="9" fill="#fff" stroke="#c62828" stroke-width="1.8"/>
-<text x="614" y="730" font-size="11.5" fill="#c62828" font-weight="bold" text-anchor="middle"><tspan x="614" dy="0">Xung đột: Cảnh báo Warning</tspan><tspan x="614" dy="15">inline &amp; Tự động Bỏ tick (BR-04)</tspan></text>
+<!-- Connectors Luồng 2 -->
+<path d="M702,170 L702,410" stroke="#0054A6" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+<path d="M702,480 L702,520" stroke="#009E49" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<text x="710" y="500" font-size="10" font-weight="bold" fill="#009E49">Có (True)</text>
+<path d="M755,445 L890,445 L890,520" stroke="#d9480f" stroke-width="1.8" marker-end="url(#arr-orange)"/>
+<text x="785" y="438" font-size="10" font-weight="bold" fill="#d9480f">Không / Rỗng</text>
 
-<!-- Hợp lệ (Right) -->
-<rect x="739" y="705" width="230" height="58" rx="9" fill="#fff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="854" y="730" font-size="11.5" fill="#1a1a1a" text-anchor="middle"><tspan x="854" dy="0">Hợp lệ: Tính Tổng tiền SP tick</tspan><tspan x="854" dy="15">&amp; Enable nút 'Tiến hành đặt hàng'</tspan></text>
+<!-- ========================================== -->
+<!-- 3. LUỒNG CHECKBOX CHỌN TẤT CẢ (Yêu cầu 4) -->
+<!-- ========================================== -->
+<g filter="url(#shadow)">
+  <!-- Action: Tick / Bỏ tick Chọn tất cả -->
+  <rect x="990" y="115" width="170" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="1075" y="137" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Thao tác Checkbox</text>
+  <text x="1075" y="153" font-size="11" fill="#2d3748" text-anchor="middle">"Chọn tất cả" tại /cart</text>
 
-<!-- S-03 & S-04 -->
-<rect x="109" y="865" width="290" height="58" rx="9" fill="#ffffff" stroke="#1f4e78" stroke-width="1.8"/>
-<text x="254" y="890" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="254" dy="0">Bấm 'Tiến hành đặt hàng' (Checkout)</tspan><tspan x="254" dy="16">với nhóm sản phẩm đã tick chọn</tspan></text>
-<rect x="115" y="857" width="38" height="15" rx="7" fill="#1f4e78"/>
-<text x="134" y="868" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">S-04</text>
+  <!-- Gateway: Action là Tick hay Uncheck? -->
+  <polygon points="1075,410 1125,445 1075,480 1025,445" fill="#fff9db" stroke="#f59f00" stroke-width="2"/>
+  <text x="1075" y="442" font-size="10.5" font-weight="bold" fill="#2d3748" text-anchor="middle">Thao tác</text>
+  <text x="1075" y="456" font-size="10" fill="#2d3748" text-anchor="middle">là gì?</text>
 
-<!-- SPF Tạo Đơn -->
-<rect x="1069" y="865" width="290" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1214" y="890" font-size="12.5" fill="#1a1a1a" text-anchor="middle"><tspan x="1214" dy="0">Tạo đơn hàng chính thức trên SPF</tspan><tspan x="1214" dy="16">(Giao dịch thành công HOẶC thất bại)</tspan></text>
+  <!-- Nhánh Uncheck: Bỏ chọn tất cả -->
+  <rect x="975" y="515" width="160" height="55" rx="6" fill="#fff5f5" stroke="#e03131" stroke-width="1.8"/>
+  <text x="1055" y="536" font-size="11" font-weight="bold" fill="#e03131" text-anchor="middle">Bỏ chọn tất cả SP</text>
+  <text x="1055" y="552" font-size="10" fill="#2d3748" text-anchor="middle">Tổng = 0 đ &amp; Disable Đặt hàng</text>
 
-<!-- S-05: Clear SP đã tạo đơn & Giữ lại SP chưa tick -->
-<rect x="589" y="990" width="290" height="58" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="734" y="1013" font-size="12" fill="#1a1a1a" text-anchor="middle"><tspan x="734" dy="0">CLEAR các SP đã tạo đơn khỏi giỏ;</tspan><tspan x="734" dy="15">GIỮ NGUYÊN các SP chưa tick chọn &amp;</tspan><tspan x="734" dy="15">cập nhật lại Badge Header (BR-05)</tspan></text>
-<rect x="595" y="982" width="38" height="15" rx="7" fill="#2e75b6"/>
-<text x="614" y="993" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">S-05</text>
+  <!-- Nhánh Tick: Check xung đột -->
+  <polygon points="1210,410 1260,445 1210,480 1160,445" fill="#fff9db" stroke="#f59f00" stroke-width="2"/>
+  <text x="1210" y="442" font-size="10.5" font-weight="bold" fill="#2d3748" text-anchor="middle">Có SP</text>
+  <text x="1210" y="456" font-size="10" fill="#d9480f" text-anchor="middle">Xung đột?</text>
 
-<!-- End Event -->
-<circle cx="254" cy="1065" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
-<text x="280" y="1070" font-size="12" fill="#b71c1c" font-weight="bold">Kết thúc vòng đời đặt hàng</text>
+  <!-- Xung đột: Bỏ tick SP thứ 2 & Warning -->
+  <rect x="1155" y="515" width="170" height="55" rx="6" fill="#fff3bf" stroke="#f59f00" stroke-width="1.8"/>
+  <text x="1240" y="536" font-size="11" font-weight="bold" fill="#d9480f" text-anchor="middle">Warning Xung Đột</text>
+  <text x="1240" y="552" font-size="10" fill="#2d3748" text-anchor="middle">Giữ SP 1, Tự bỏ tick SP 2</text>
 
-<!-- Footer Legend -->
-<line x1="14" y1="1105" x2="1460" y2="1105" stroke="#d0d0d0"/>
-<circle cx="28" cy="1125" r="7" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-<text x="42" y="1129" font-size="11" fill="#444">Start</text>
-<circle cx="95" cy="1125" r="7" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
-<text x="109" y="1129" font-size="11" fill="#444">End</text>
-<rect x="155" y="1118" width="20" height="14" rx="3" fill="#fff" stroke="#2e75b6" stroke-width="1.2"/>
-<text x="182" y="1129" font-size="11" fill="#444">Task</text>
-<polygon points="230,1118 238,1125 230,1132 222,1125" fill="#fff2cc" stroke="#bf8f00" stroke-width="1.2"/>
-<text x="245" y="1129" font-size="11" fill="#444">Gateway</text>
-<path d="M310,1125 L330,1125" stroke="#3a3a3a" stroke-width="1.5" marker-end="url(#a)"/>
-<text x="338" y="1129" font-size="11" fill="#444">Sequence Flow</text>
-<path d="M435,1125 L455,1125" stroke="#c62828" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ar)"/>
-<text x="463" y="1129" font-size="11" fill="#444">Cảnh báo / Exception</text>
+  <!-- Hợp lệ: Tick toàn bộ & Tính tiền -->
+  <rect x="1340" y="417" width="165" height="55" rx="6" fill="#e8f5e9" stroke="#009E49" stroke-width="1.8"/>
+  <text x="1422" y="439" font-size="11" font-weight="bold" fill="#009E49" text-anchor="middle">Tick toàn bộ SP hợp lệ</text>
+  <text x="1422" y="455" font-size="10" fill="#2d3748" text-anchor="middle">Tính tổng tiền &amp; Active Đặt hàng</text>
+</g>
+
+<!-- Connectors Luồng 3 -->
+<path d="M1075,170 L1075,410" stroke="#0054A6" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+<path d="M1050,465 L1050,515" stroke="#e03131" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="990" y="490" font-size="10" font-weight="bold" fill="#e03131">Bỏ tick</text>
+<path d="M1125,445 L1160,445" stroke="#009E49" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<text x="1130" y="438" font-size="10" font-weight="bold" fill="#009E49">Tick</text>
+<path d="M1210,480 L1210,515" stroke="#f59f00" stroke-width="1.8" marker-end="url(#arr-orange)"/>
+<text x="1215" y="500" font-size="10" font-weight="bold" fill="#d9480f">Có</text>
+<path d="M1260,445 L1340,445" stroke="#009E49" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<text x="1275" y="438" font-size="10" font-weight="bold" fill="#009E49">Không</text>
+
+<!-- ========================================== -->
+<!-- 4. LUỒNG TOOLTIP CMS TRIỂN KHAI & KÍCH HOẠT (Yêu cầu 1 & 2) -->
+<!-- ========================================== -->
+<g filter="url(#shadow)">
+  <!-- Action: Hover / Tap icon Tooltip -->
+  <rect x="230" y="235" width="230" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="345" y="257" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Hover/Tap icon Tooltip [(i)]</text>
+  <text x="345" y="273" font-size="11" fill="#2d3748" text-anchor="middle">Cạnh Hình thức triển khai / Kích hoạt</text>
+
+  <!-- Frontend: Gọi CMS Tooltip Service -->
+  <rect x="230" y="620" width="230" height="55" rx="6" fill="#ffffff" stroke="#F26522" stroke-width="1.8"/>
+  <text x="345" y="642" font-size="11.5" font-weight="bold" fill="#F26522" text-anchor="middle">Lấy thông tin Tooltip</text>
+  <text x="345" y="658" font-size="10.5" fill="#2d3748" text-anchor="middle">theo Mã method (Fulfillment/Activation)</text>
+
+  <!-- CMS Backend: Truy vấn cấu hình động -->
+  <rect x="230" y="790" width="230" height="65" rx="6" fill="#e8f5e9" stroke="#009E49" stroke-width="2"/>
+  <text x="345" y="813" font-size="12" font-weight="bold" fill="#009E49" text-anchor="middle">CMS Content Engine</text>
+  <text x="345" y="829" font-size="11" fill="#2d3748" text-anchor="middle">Trả về text mô tả chi tiết quy trình,</text>
+  <text x="345" y="843" font-size="10.5" fill="#2d3748" text-anchor="middle">thời gian, chi phí &amp; lưu ý</text>
+
+  <!-- Frontend: Hiển thị Popover Tooltip -->
+  <rect x="500" y="620" width="190" height="55" rx="6" fill="#e7f5ff" stroke="#1971c2" stroke-width="1.8"/>
+  <text x="595" y="642" font-size="11.5" font-weight="bold" fill="#1971c2" text-anchor="middle">Hiển thị Popover Tooltip</text>
+  <text x="595" y="658" font-size="10.5" fill="#2d3748" text-anchor="middle">Trực quan ngay tại vị trí tùy chọn</text>
+</g>
+
+<!-- Connectors Luồng 4 -->
+<path d="M345,290 L345,620" stroke="#0054A6" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+<path d="M345,675 L345,790" stroke="#009E49" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<path d="M460,820 L595,820 L595,675" stroke="#1971c2" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+
+<!-- ========================================== -->
+<!-- 5. LUỒNG XÓA SP & VÒNG ĐỜI TẠO ĐƠN CHECKOUT -->
+<!-- ========================================== -->
+<g filter="url(#shadow)">
+  <!-- Action: Bấm icon Xóa SP -->
+  <rect x="1340" y="235" width="165" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="1422" y="257" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Bấm icon Thùng Rác [Xóa]</text>
+  <text x="1422" y="273" font-size="11" fill="#2d3748" text-anchor="middle">tại 1 dòng sản phẩm</text>
+
+  <!-- Frontend: Xóa dòng, trừ SL & cập nhật Badge -->
+  <rect x="1335" y="620" width="175" height="65" rx="6" fill="#ffffff" stroke="#F26522" stroke-width="1.8"/>
+  <text x="1422" y="642" font-size="11.5" font-weight="bold" fill="#F26522" text-anchor="middle">Loại bỏ SP khỏi giỏ</text>
+  <text x="1422" y="658" font-size="10.5" fill="#2d3748" text-anchor="middle">• Trừ tổng số lượng</text>
+  <text x="1422" y="672" font-size="10.5" fill="#009E49" text-anchor="middle">• Đồng bộ Badge icon Header</text>
+
+  <!-- Khách bấm Đặt hàng -->
+  <rect x="800" y="620" width="180" height="55" rx="6" fill="#ffffff" stroke="#0054A6" stroke-width="1.8"/>
+  <text x="890" y="642" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">Bấm "Tiến hành đặt hàng"</text>
+  <text x="890" y="658" font-size="10.5" fill="#2d3748" text-anchor="middle">Gửi các SP ĐƯỢC TICK CHỌN</text>
+
+  <!-- Backend / SPF: Tạo Checkout & Thanh toán -->
+  <rect x="790" y="880" width="200" height="60" rx="6" fill="#ffffff" stroke="#009E49" stroke-width="1.8"/>
+  <text x="890" y="904" font-size="12" font-weight="bold" fill="#009E49" text-anchor="middle">SPF Khởi Tạo Đơn Hàng</text>
+  <text x="890" y="922" font-size="11" fill="#2d3748" text-anchor="middle">Ghi nhận Session &amp; ID Đơn</text>
+
+  <!-- Step 4: Hoàn tất đơn hàng -->
+  <rect x="780" y="1120" width="220" height="65" rx="6" fill="#e8f5e9" stroke="#2b8a3e" stroke-width="2"/>
+  <text x="890" y="1144" font-size="12" font-weight="bold" fill="#2b8a3e" text-anchor="middle">Hoàn Tất Tạo Đơn SPF</text>
+  <text x="890" y="1160" font-size="11" fill="#2d3748" text-anchor="middle">(Thành công hoặc Thất bại/Hủy)</text>
+
+  <!-- Clear SP đã tạo đơn & Giữ lại SP chưa tick -->
+  <rect x="1070" y="1120" width="240" height="65" rx="6" fill="#f8f9fa" stroke="#0054A6" stroke-width="2"/>
+  <text x="1190" y="1144" font-size="12" font-weight="bold" fill="#0054A6" text-anchor="middle">ĐỒNG BỘ SESSION GIỎ HÀNG</text>
+  <text x="1190" y="1160" font-size="11" font-weight="bold" fill="#d9480f" text-anchor="middle">• XÓA các SP đã đưa vào đơn</text>
+  <text x="1190" y="1174" font-size="10.5" font-weight="bold" fill="#009E49" text-anchor="middle">• GIỮ NGUYÊN các SP chưa tick</text>
+
+  <!-- End Event -->
+  <circle cx="1400" cy="1152" r="18" fill="#e8f5e9" stroke="#2b8a3e" stroke-width="3"/>
+  <rect x="1392" y="1144" width="16" height="16" fill="#2b8a3e"/>
+  <text x="1400" y="1187" font-size="11" font-weight="bold" fill="#2d3748" text-anchor="middle">Kết thúc luồng</text>
+</g>
+
+<!-- Connectors Luồng 5 -->
+<path d="M1422,290 L1422,620" stroke="#0054A6" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+<path d="M890,675 L890,880" stroke="#0054A6" stroke-width="1.8" marker-end="url(#arr-blue)"/>
+<path d="M890,940 L890,1120" stroke="#2b8a3e" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<path d="M1000,1152 L1070,1152" stroke="#3a3a3a" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M1310,1152 L1382,1152" stroke="#2b8a3e" stroke-width="1.8" marker-end="url(#arr-green)"/>
+
+<!-- Annotation Rule Tags -->
+<g font-size="10" font-weight="bold">
+  <rect x="420" y="385" width="105" height="18" rx="3" fill="#009E49"/>
+  <text x="472" y="398" fill="#ffffff" text-anchor="middle">BR-10: Auto-tick</text>
+
+  <rect x="655" y="385" width="95" height="18" rx="3" fill="#0054A6"/>
+  <text x="702" y="398" fill="#ffffff" text-anchor="middle">BR-08: Back</text>
+
+  <rect x="1025" y="385" width="105" height="18" rx="3" fill="#f59f00"/>
+  <text x="1077" y="398" fill="#ffffff" text-anchor="middle">BR-09: Select All</text>
+
+  <rect x="290" y="595" width="115" height="18" rx="3" fill="#1971c2"/>
+  <text x="347" y="608" fill="#ffffff" text-anchor="middle">BR-06/07: Tooltip</text>
+
+  <rect x="1135" y="1095" width="115" height="18" rx="3" fill="#0054A6"/>
+  <text x="1192" y="1108" fill="#ffffff" text-anchor="middle">BR-05: Clean Cart</text>
+</g>
+
 </svg>
