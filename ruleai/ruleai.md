@@ -6,7 +6,7 @@
 7. Khi phân tích nghiệp vụ sử dụng skills ba-senior/ product-owner để phân tích
 8. Khi phân tích UI/UX phải dùng skills designer
 10. Khi làm luôn đọc file gobal rule này
-11. Khi mở đoạn hội thoại mới luôn phải đọc file gobal rule
+11. Khi thực hiện điều chỉnh format thì không được cập nhật nội dung tài liệu, yêu cầu cập nhật nội dung thì không được ảnh hưởng format, và nhất là không được cập nhật các thông tin không liên quan
 12. Tự động xóa các file dư thừa sau khi làm xong, không được tự ý tạo thêm file dup với file tài liệu gốc - phải sử dụng file gốc và update nó (ngoại trừ yêu cầu trực tiếp tạo mới) 
 13. Cho phép mở bằng browser mỗi khi có yêu cầu cần review qua trang web
 14. Các dữ liệu trả lời đều phải chi tiết cụ thể cho từng step by step 
@@ -15,3 +15,4 @@
 17. Khi sử dụng template về các phần format hãy sử dụng skill để thực hiện tài liệu cho giống template mẫu
 18. Sau khi thực hiện yêu cầu, kiểm tra các file rác và xoá bỏ dữ liệu rác 
 19. Toàn bộ tài liệu URD, BRD,PRD (Các tài liệu liên quan của BA) hãy sử dụng Fonts "Times new roman",font size 13 cho detail, còn các tiêu đề sẽ tăng dần theo, VD: Tiêu đề 1 size 16, tiêu đề level 2 tiêu đề 15, level 3 size 14, các tiêu đề phải bold
+20. Các bảng trong 1 tài liệu doc phải được đồng đều về canh lề trang (không được thụt ra/vào) và cũng không được tràn lề 
