@@ -14,5 +14,5 @@
 16. Các sơ đồ phải sử dụng skill diagram/vẽ flow diagram hoặc sequence để vẽ cho đúng tiêu chuẩn (sử dụng nền trắng)
 17. Khi sử dụng template về các phần format hãy sử dụng skill để thực hiện tài liệu cho giống template mẫu
 18. Sau khi thực hiện yêu cầu, kiểm tra các file rác và xoá bỏ dữ liệu rác 
-19. Toàn bộ tài liệu URD, BRD,PRD (Các tài liệu liên quan của BA) hãy sử dụng Fonts "Times new roman",font size 13 cho detail, còn các tiêu đề sẽ tăng dần theo, VD: Tiêu đề 1 size 16, tiêu đề level 2 tiêu đề 15, level 3 size 14, các tiêu đề phải bold
+19. Toàn bộ tài liệu URD, BRD,PRD (Các tài liệu liên quan của BA) hãy sử dụng Fonts "Times new roman",font size 13 cho detail, còn các tiêu đề sẽ tăng dần theo, VD: Tiêu đề 1 size 16, tiêu đề level 2 tiêu đề 15, level 3 size 14, các tiêu đề phải phải in đậm (Bold)
 20. Các bảng trong 1 tài liệu doc phải được đồng đều về canh lề trang (không được thụt ra/vào) và cũng không được tràn lề 
