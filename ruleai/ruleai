@@ -1,7 +1,5 @@
 1. Tất cả phản hồi đều trả lời bằng tiếng Việt
 2. Sau khi chỉnh sửa code thì tự động push code lên Git Hub 
-3. Tự động cho phép accept change file mà không cần phải hỏi lại
-4. Luôn tự alllow mà không cần hỏi lại quyền
 5. Tự động accept all file mà không cần hỏi lại
 6. Nếu đoạn hội thoại nào bị sai sẽ tự động xóa khỏi bộ nhớ và không đọc lại các đoạn hội thoại bị sai
 7. Luôn dùng skills ba-senior/ product-owner để phân tích
