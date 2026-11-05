@@ -64,7 +64,7 @@
 <polygon points="1214.0,735.0 1240.0,761.0 1214.0,787.0 1188.0,761.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1203.0,761.0 L1225.0,761.0 M1214.0,750.0 L1214.0,772.0" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <rect x="986.0" y="806.0" width="216" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1094.0" y="831.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1094.0" dy="0.0">FPT Play V.VIP:</tspan><tspan x="1094.0" dy="15.6">Instant SA + gửi SMS</tspan></text>
+<text x="1094.0" y="831.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1094.0" dy="0.0">FPT Play V.VIP:</tspan><tspan x="1094.0" dy="15.6">Theo PT chọn (Active/SMS mã)</tspan></text>
 <rect x="1226.0" y="806.0" width="216" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
 <text x="1334.0" y="831.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1334.0" dy="0.0">UltraFast: Sinh Mã code</tspan><tspan x="1334.0" dy="15.6">+ 2 Next Actions Step 4</tspan></text>
 <polygon points="1214.0,883.0 1240.0,909.0 1214.0,935.0 1188.0,909.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>

@@ -75,7 +75,7 @@
 <rect x="986.0" y="954.0" width="216" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
 <text x="1094.0" y="979.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1094.0" dy="0.0">SKU: Điều phối giao</tspan><tspan x="1094.0" dy="15.6">hàng theo địa chỉ</tspan></text>
 <rect x="1226.0" y="954.0" width="216" height="58" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1334.0" y="979.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1334.0" dy="0.0">SA: Kích hoạt Instant</tspan><tspan x="1334.0" dy="15.6">/ Cấp mã tại Step 4</tspan></text>
+<text x="1334.0" y="979.6" font-size="12.6" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1334.0" dy="0.0">SA: Theo PT chọn</tspan><tspan x="1334.0" dy="15.6">(Active/SMS mã/Step 4)</tspan></text>
 <polygon points="1214.0,1031.0 1240.0,1057.0 1214.0,1083.0 1188.0,1057.0" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1203.0,1057.0 L1225.0,1057.0 M1214.0,1046.0 L1214.0,1068.0" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <circle cx="254.0" cy="1131.0" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
