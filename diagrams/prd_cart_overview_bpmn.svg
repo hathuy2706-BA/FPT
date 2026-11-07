@@ -60,7 +60,7 @@
 <path d="M696.0,477.5 L712.0,493.5 M712.0,477.5 L696.0,493.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <text x="685.1" y="472.3" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="end"><tspan x="685.1" dy="0.0">count(SKU) ≥ 1 ?</tspan></text>
 <rect x="490.6" y="519.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="593.6" y="541.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Ẩn Form Địa chỉ</tspan><tspan x="593.6" dy="16.1">&amp; Lịch KTV</tspan><tspan x="593.6" dy="16.1">→ FR02 · FR06 · FR07</tspan></text>
+<text x="593.6" y="541.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="593.6" dy="0.0">Ẩn 100% Form Địa chỉ</tspan><tspan x="593.6" dy="16.1">(Đơn 100% dịch vụ số)</tspan><tspan x="593.6" dy="16.1">→ FR02 · FR06 · FR07</tspan></text>
 <rect x="496.6" y="511.5" width="38" height="15" rx="7" fill="#2e75b6"/>
 <text x="515.6" y="522.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-03</text>
 <rect x="711.4" y="519.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
@@ -90,17 +90,17 @@
 <path d="M1156.0,932.5 L1172.0,948.5 M1172.0,932.5 L1156.0,948.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <text x="1182.9" y="927.3" font-size="12" fill="#5b4500" font-weight="bold" text-anchor="start"><tspan x="1182.9" dy="0.0">PTTT ?</tspan></text>
 <rect x="950.5999999999999" y="974.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1053.6" y="996.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1053.6" dy="0.0">VNPAY thành công</tspan><tspan x="1053.6" dy="16.1">→ Instant SA active</tspan><tspan x="1053.6" dy="16.1">+ KTV book lịch SKU</tspan></text>
+<text x="1053.6" y="996.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1053.6" dy="0.0">Thanh toán thành công</tspan><tspan x="1053.6" dy="16.1">→ Instant SA active</tspan><tspan x="1053.6" dy="16.1">+ Điều phối giao hàng SKU</tspan></text>
 <rect x="956.5999999999999" y="966.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="975.5999999999999" y="977.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-06</text>
 <rect x="1171.4" y="974.5" width="206" height="62" rx="9" fill="#ffffff" stroke="#7030a0" stroke-width="1.8"/>
-<text x="1274.4" y="996.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1274.4" dy="0.0">COD → Pending SA</tspan><tspan x="1274.4" dy="16.1">KTV thu tiền xong</tspan><tspan x="1274.4" dy="16.1">mới active SA</tspan></text>
+<text x="1274.4" y="996.1" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="1274.4" dy="0.0">COD (Đơn 100% SKU)</tspan><tspan x="1274.4" dy="16.1">→ Điều phối giao hàng</tspan><tspan x="1274.4" dy="16.1">&amp; thu tiền tận nơi</tspan></text>
 <rect x="1177.4" y="966.5" width="38" height="15" rx="7" fill="#7030a0"/>
 <text x="1196.4" y="977.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-06</text>
 <polygon points="1164.0,1043.5 1191.0,1070.5 1164.0,1097.5 1137.0,1070.5" fill="#fff2cc" stroke="#bf8f00" stroke-width="2"/>
 <path d="M1156.0,1062.5 L1172.0,1078.5 M1172.0,1062.5 L1156.0,1078.5" stroke="#7a5b00" stroke-width="3.2" stroke-linecap="round"/>
 <rect x="569.0" y="1104.5" width="270" height="62" rx="9" fill="#ffffff" stroke="#2e75b6" stroke-width="1.8"/>
-<text x="704.0" y="1134.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Trang Thank You</tspan><tspan x="704.0" dy="16.1">+ gửi SMS xác nhận đơn</tspan></text>
+<text x="704.0" y="1134.2" font-size="13.2" fill="#1a1a1a" font-weight="normal" text-anchor="middle"><tspan x="704.0" dy="0.0">Màn hình Hoàn tất Step 4</tspan><tspan x="704.0" dy="16.1">Block phân tách triển khai + SMS</tspan></text>
 <rect x="575.0" y="1096.5" width="38" height="15" rx="7" fill="#2e75b6"/>
 <text x="594.0" y="1107.5" font-size="10.5" font-weight="bold" fill="#fff" text-anchor="middle">S-06</text>
 <circle cx="244.0" cy="1200.5" r="18" fill="#ffebee" stroke="#c62828" stroke-width="4"/>
