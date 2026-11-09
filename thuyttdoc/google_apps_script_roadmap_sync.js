@@ -204,10 +204,10 @@ function parseTimeline(timelineRaw) {
   const tl = String(timelineRaw).trim().toLowerCase();
   if (!tl || tl === '-' || tl === 'n/a') return null;
   
-  // 2. Nhận diện các từ khóa tháng (hỗ trợ cả tiếng Việt và tiếng Anh)
-  const has10 = tl.includes('10') || tl.includes('tháng 10') || tl.includes('t10') || tl.includes('oct');
-  const has11 = tl.includes('11') || tl.includes('tháng 11') || tl.includes('t11') || tl.includes('nov');
-  const has12 = tl.includes('12') || tl.includes('tháng 12') || tl.includes('t12') || tl.includes('dec');
+  // 2. Nhận diện các từ khóa tháng chuẩn xác (tránh match nhầm username/mã số như SonLN11, ThuyTT104)
+  const has10 = /(?:tháng\s*10|thg\s*10|\bt10\b|oct|\b10\b)/i.test(tl);
+  const has11 = /(?:tháng\s*11|thg\s*11|\bt11\b|nov|\b11\b)/i.test(tl);
+  const has12 = /(?:tháng\s*12|thg\s*12|\bt12\b|dec|\b12\b)/i.test(tl);
   
   if (has10 && has11) {
     return { timeGroup: 'span-10-11', startM: 10, endM: 11, startCol: 1, totalCols: 8, label: 'Tháng 10 - Tháng 11' };
@@ -370,10 +370,9 @@ function syncRoadmapFromBacklog() {
 
   const headers = sourceData[headerRowIdx].map(h => String(h).trim());
   const colMap = {};
-  const timelineColIndices = [];
 
   headers.forEach((h, idx) => {
-    const hl = h.toLowerCase();
+    const hl = h.toLowerCase().replace(/\s+/g, ' ');
     if (hl.includes('us title') || hl.includes('đầu mục') || hl.includes('tên tính năng') || hl.includes('user story')) colMap['title'] = idx;
     else if (hl.includes('epic') || hl.includes('phân hệ')) colMap['epic'] = idx;
     else if (hl.includes('acceptance') || hl.includes('mô tả') || hl.includes('chi tiết')) colMap['desc'] = idx;
@@ -381,11 +380,15 @@ function syncRoadmapFromBacklog() {
     else if (hl.includes('pic') || hl.includes('ba')) colMap['pic'] = idx;
     else if (hl.includes('trạng thái') || hl.includes('status')) colMap['status'] = idx;
 
-    // Thu thập TẤT CẢ các cột có khả năng chứa mốc thời gian (Timeline mong muốn, Timeline ISC, Thời gian, Tháng...)
-    if (hl.includes('timeline') || hl.includes('thời gian') || hl.includes('tháng') || hl.includes('kế hoạch') || hl.includes('target') || hl.includes('release')) {
-      timelineColIndices.push(idx);
+    // Nhận diện CHÍNH XÁC cột "Timeline mong muốn" theo yêu cầu người dùng
+    if (hl.includes('timeline') && (hl.includes('mong') || hl.includes('muốn'))) {
+      colMap['timeline_desired'] = idx;
+    } else if (hl.includes('timeline') && colMap['timeline'] === undefined) {
+      colMap['timeline'] = idx;
     }
   });
+
+  const desiredTimelineIdx = colMap['timeline_desired'] !== undefined ? colMap['timeline_desired'] : colMap['timeline'];
 
   if (colMap['title'] === undefined) {
     const tIdx = headers.findIndex(h => h.toLowerCase().includes('title') || h.toLowerCase().includes('đầu mục'));
@@ -406,70 +409,47 @@ function syncRoadmapFromBacklog() {
     const cleanTitleKey = titleFull.split('\n')[0].trim().toLowerCase();
     if (seenTitles.has(cleanTitleKey)) continue;
 
-    // Quét tìm mốc thời gian Timeline Quý 4 từ các cột Timeline đã nhận diện
-    let timeline = '';
-    let tlParsed = null;
-    for (let cIdx of timelineColIndices) {
-      const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][cIdx] || '').trim() : '';
-      const rawVal = row[cIdx];
-
+    // CHỈ ĐỌC MỐC THỜI GIAN TRỰC TIẾP TỪ CỘT "Timeline mong muốn" THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+    // TUYỆT ĐỐI KHÔNG QUÉT LAN SANG CÁC CỘT KHÁC (Acceptance, Link, PIC...)
+    let timelineRaw = '';
+    if (desiredTimelineIdx !== -1 && desiredTimelineIdx !== undefined) {
+      const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][desiredTimelineIdx] || '').trim() : '';
+      const rawVal = row[desiredTimelineIdx];
       if (dispVal && dispVal !== '-' && dispVal.toLowerCase() !== 'n/a') {
-        const parsed = parseTimeline(dispVal);
-        if (parsed) {
-          timeline = dispVal;
-          tlParsed = parsed;
-          break;
-        }
-      }
-      if (rawVal) {
-        const parsed = parseTimeline(rawVal);
-        if (parsed) {
-          timeline = String(rawVal);
-          tlParsed = parsed;
-          break;
-        }
+        timelineRaw = dispVal;
+      } else if (rawVal && String(rawVal).trim() !== '-' && String(rawVal).trim().toLowerCase() !== 'n/a') {
+        timelineRaw = String(rawVal).trim();
       }
     }
 
-    // Fallback: Quét toàn bộ dòng nếu các cột timeline chưa tìm thấy mốc Quý 4
-    if (!tlParsed) {
-      for (let c = 0; c < row.length; c++) {
-        const dVal = sourceDisplayData[r] ? String(sourceDisplayData[r][c] || '').trim() : '';
-        const rVal = row[c];
-        if (dVal && dVal !== '-' && dVal.toLowerCase() !== 'n/a') {
-          const parsed = parseTimeline(dVal);
-          if (parsed) {
-            timeline = dVal;
-            tlParsed = parsed;
-            break;
-          }
-        }
-        if (rVal) {
-          const parsed = parseTimeline(rVal);
-          if (parsed) {
-            timeline = String(rVal);
-            tlParsed = parsed;
-            break;
-          }
-        }
-      }
-    }
-
-    // RÀNG BUỘC NGHIỆP VỤ: Cột Timeline PHẢI CÓ VALUE hợp lệ trong Quý 4 (VD: Tháng 10..) mới lấy
-    if (!tlParsed) continue;
+    const tlParsed = parseTimeline(timelineRaw);
 
     const rawStatus = String(sourceDisplayData[r] && colMap['status'] !== undefined && sourceDisplayData[r][colMap['status']] 
       ? sourceDisplayData[r][colMap['status']] 
       : (colMap['status'] !== undefined ? row[colMap['status']] : '') || '').trim();
     const status = normalizeStatus(rawStatus);
+
+    // 1. Loại bỏ Pending
+    const isExcluded = status.toLowerCase() === 'pending';
+    if (isExcluded) continue;
+
+    // 2. RÀNG BUỘC NGHIỆP VỤ BẮT BUỘC:
+    // "Chỉ lấy các task trạng thái Done - với điều kiện Phải có Timeline (Tức cột Timeline mong muốn phải có value)"
+    // Nếu trạng thái là Done mà cột Timeline mong muốn KHÔNG CÓ VALUE (hoặc không thuộc Quý 4) => LOẠI BỎ NGAY
+    const isDone = (status === 'Done');
+    if (isDone && (!timelineRaw || !tlParsed)) {
+      continue;
+    }
+
+    // 3. Đối với mọi task khác muốn lên Roadmap Q4: Cột Timeline mong muốn cũng PHẢI CÓ VALUE hợp lệ trong Quý 4
+    if (!timelineRaw || !tlParsed) {
+      continue;
+    }
+
     const epic = String(colMap['epic'] !== undefined ? row[colMap['epic']] : '').trim();
     const prio = String(colMap['prio'] !== undefined ? row[colMap['prio']] : 'P2').trim();
     const pic = String(colMap['pic'] !== undefined ? row[colMap['pic']] : '').trim();
     const rawDesc = String(colMap['desc'] !== undefined ? row[colMap['desc']] : '').trim();
-
-    // Loại bỏ Pending
-    const isExcluded = status.toLowerCase() === 'pending';
-    if (isExcluded) continue;
 
     seenTitles.add(cleanTitleKey);
     const cleanDesc = cleanDetailText(rawDesc);
