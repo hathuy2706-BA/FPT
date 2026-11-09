@@ -4,12 +4,14 @@
  * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V10 (PREMIUM PIXEL PERFECT & REALTIME SOURCE SYNC)
  * =========================================================================================
  * Tự động đồng bộ 100% dữ liệu Realtime từ Google Sheet Backlog gốc:
- * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=954545565
+ * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=795863231
  * 
  * ĐỒNG BỘ CHUẨN XÁC THEO YÊU CẦU:
- * 1. SỐ LƯỢNG TASK: Đọc duy nhất từ sheet gốc '📌 Product Backlog FCP'.
+ * 1. SỐ LƯỢNG TASK: Đọc DUY NHẤT từ sheet gốc '📌 Product Backlog FCP' (GID: 795863231).
  * 2. TÊN TASK: Lấy trọn vẹn từ cột US Title (Đầu mục công việc), không cắt chữ, font size 10-11 rõ nét.
  * 3. BỘ TRẠNG THÁI MỚI NHẤT:
+ *    - 'Done' (Hoàn thành) ➔ Nền Xanh lá đậm (#D1FAE5/Full), chữ xanh đậm (#047857), thanh tiến trình 100% full.
+ *      ĐIỀU KIỆN TIÊN QUYẾT: Chỉ lấy task Done khi cột 'Timeline mong muốn' ĐƯỢC ĐIỀN GIÁ TRỊ THÁNG (VD: Tháng 10, Tháng 11, Tháng 12).
  *    - 'UAT' ➔ Nền Tím đậm (#581C87), chữ TRẮNG (#FFFFFF) sắc nét nổi bật.
  *    - 'DEV In Progress' ➔ Nền Vàng bơ (#FEEFC3), chữ nâu (#594400).
  *    - 'Transfer DEV/PO reviewed' ➔ Nền Xanh lá non (#C4EED0), chữ xanh đậm (#0F5132).
@@ -29,7 +31,7 @@
  */
 
 const SOURCE_SPREADSHEET_ID = "18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM";
-const SOURCE_GID = 954545565;
+const SOURCE_GID = 795863231; // GID chuẩn xác của sheet 📌 Product Backlog FCP
 const SOURCE_TAB_NAME = "📌 Product Backlog FCP";
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
 const BACKLOG_SYNC_SHEET_NAME = "Backlog_Data_Sync";
@@ -336,14 +338,15 @@ function syncRoadmapFromBacklog() {
     return;
   }
 
-  // CHỈ LẤY CÁC TASK Ở SHEET: 📌 Product Backlog FCP THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+  // CHỈ LẤY CÁC TASK Ở SHEET: 📌 Product Backlog FCP (GID 795863231) THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+  // TUYỆT ĐỐI KHÔNG ĐƯỢC LẤY SANG CÁC SHEET KHÁC NHƯ Product Backlog VH
   const sheets = sourceSS.getSheets();
-  let sourceSheet = sheets.find(s => s.getName().trim() === SOURCE_TAB_NAME)
-    || sheets.find(s => s.getName().trim().toLowerCase().includes('fcp'))
-    || sheets.find(s => s.getSheetId() === SOURCE_GID);
+  let sourceSheet = sheets.find(s => s.getSheetId() === SOURCE_GID)
+    || sheets.find(s => s.getName().trim() === SOURCE_TAB_NAME)
+    || sheets.find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
 
   if (!sourceSheet) {
-    activeSS.toast('Không tìm thấy sheet "' + SOURCE_TAB_NAME + '" trong file Backlog!', 'Lỗi', 10);
+    activeSS.toast('Không tìm thấy sheet "📌 Product Backlog FCP" (GID ' + SOURCE_GID + ') trong file Backlog!', 'Lỗi', 10);
     return;
   }
 
