@@ -357,16 +357,19 @@ function syncRoadmapFromBacklog() {
     else if (h.includes('Timeline')) colMap['timeline'] = idx;
   });
 
-  // 2. Trích xuất và lọc các task Quý 4 (Không lấy Done / Pending)
+  // 2. Trích xuất và lọc các task Quý 4 (Lấy thêm Done có Timeline; Loại bỏ Pending)
   const q4Tasks = [];
   for (let r = headerRowIdx + 1; r < sourceData.length; r++) {
     const row = sourceData[r];
     const titleFull = String(row[colMap['title']] || '').trim();
     if (!titleFull) continue;
 
+    // RÀNG BUỘC NGHIỆP VỤ: Cột Timeline PHẢI CÓ VALUE mới lấy, nếu không có value sẽ KHÔNG hiển thị (VD: Tháng 10..)
     const timeline = String(row[colMap['timeline']] || '').trim();
+    if (!timeline || timeline === '-' || timeline.toLowerCase() === 'n/a') continue;
+
     const tlParsed = parseTimeline(timeline);
-    if (!tlParsed) continue; // Bỏ qua các task không thuộc Quý 4 hoặc chưa điền tháng
+    if (!tlParsed) continue; // Bỏ qua các task không thuộc Quý 4 hoặc chưa điền tháng (VD: Tháng 10..)
 
     const rawStatus = String(row[colMap['status']] || '').trim();
     const status = normalizeStatus(rawStatus);
@@ -375,7 +378,8 @@ function syncRoadmapFromBacklog() {
     const pic = String(row[colMap['pic']] || '').trim();
     const rawDesc = String(row[colMap['desc']] || '').trim();
 
-    const isExcluded = status.toLowerCase() === 'done' || status.toLowerCase() === 'pending';
+    // LẤY THÊM TRẠNG THÁI "DONE" THEO YÊU CẦU PO (CHỈ LOẠI BỎ PENDING)
+    const isExcluded = status.toLowerCase() === 'pending';
     if (isExcluded) continue;
 
     // Detail làm sạch từ dữ liệu gốc
@@ -625,13 +629,13 @@ function syncRoadmapFromBacklog() {
     const cmsIdx = epicTag.indexOf('CMS');
     if (cmsIdx !== -1) {
       leftBuilder.setTextStyle(cmsIdx, cmsIdx + 3,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(isDone ? "#047857" : COLOR_SYSTEM_CMS).build()
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(COLOR_SYSTEM_CMS).build()
       );
     }
     const webIdx = epicTag.indexOf('Web');
     if (webIdx !== -1) {
       leftBuilder.setTextStyle(webIdx, webIdx + 3,
-        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(isDone ? "#047857" : COLOR_SYSTEM_WEB).build()
+        SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setBold(true).setFontSize(titleFontSize).setForegroundColor(COLOR_SYSTEM_WEB).build()
       );
     }
     // Style Dòng 1: Tên Task (Size 11 to rõ, sắc nét, tương phản chuẩn trên nền pastel)
