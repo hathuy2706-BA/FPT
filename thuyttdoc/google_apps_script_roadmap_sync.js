@@ -359,18 +359,23 @@ function syncRoadmapFromBacklog() {
       sourceSS = SpreadsheetApp.openById(SOURCE_SPREADSHEET_ID);
       sourceSheet = sourceSS.getSheetByName(SOURCE_TAB_NAME)
         || sourceSS.getSheetByName("Product Backlog FCP")
+        || sourceSS.getSheets().find(s => s.getName().replace(/[\s\u200B-\u200D\uFEFF]/g, '').toLowerCase().includes('productbacklogfcp'))
         || sourceSS.getSheets().find(s => s.getSheetId() === SOURCE_GID)
         || sourceSS.getSheets().find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
     } catch (e) {
       activeSS.toast('Không thể mở file Backlog nguồn: ' + e.message, 'Lỗi', 10);
+      Logger.log('Không thể mở file Backlog nguồn: ' + e);
       return;
     }
   }
 
   if (!sourceSheet) {
     activeSS.toast('Không tìm thấy duy nhất sheet "📌 Product Backlog FCP"!', 'Lỗi', 10);
+    Logger.log('Không tìm thấy sheet 📌 Product Backlog FCP');
     return;
   }
+
+  activeSS.toast(`Tìm thấy sheet "${sourceSheet.getName()}". Đang lọc các task có Value = Tháng +{}...`, 'Đang xử lý', 4);
 
   const q4Tasks = [];
   const seenTitles = new Set();
@@ -541,13 +546,17 @@ function syncRoadmapFromBacklog() {
     }
   });
 
-  // 4. Chuẩn bị Sheet Roadmap
+  // 4. Chuẩn bị Sheet Roadmap: Ưu tiên cập nhật chính xác tab Roadmap mà người dùng đang mở hoặc tab ROADMAP_SHEET_NAME
   let roadmapSheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
   if (!roadmapSheet) {
-    roadmapSheet = activeSS.insertSheet(ROADMAP_SHEET_NAME, 0);
-  } else {
-    roadmapSheet.clear();
+    const activeTab = activeSS.getActiveSheet();
+    if (activeTab && activeTab.getName() !== BACKLOG_SYNC_SHEET_NAME) {
+      roadmapSheet = activeTab;
+    } else {
+      roadmapSheet = activeSS.getSheets()[0];
+    }
   }
+  roadmapSheet.clear();
   roadmapSheet.activate();
 
   // TẮT HOÀN TOÀN CÁC ĐƯỜNG CHỈ / ĐƯỜNG LƯỚI TRÊN SHEET
