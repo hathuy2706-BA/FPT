@@ -188,33 +188,40 @@ function normalizeStatus(raw) {
 
 /**
  * Phân tích và nhận diện chính xác mốc thời gian (Timeline) được điền trên file gốc
- * Hỗ trợ nhận diện các task vắt 2 tháng: Tháng 10 - Tháng 11, Tháng 11 - Tháng 12
- * Hỗ trợ cả Date Object từ Google Sheets và chuỗi text
+ * ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC THEO YÊU CẦU PO: Value = Tháng + {}
+ * - Chỉ chấp nhận các ô có định dạng "Tháng " + {số tháng trong Quý 4: 10, 11, 12} (ví dụ: Tháng 10, Tháng 11, Tháng 12, Tháng 10 - Tháng 11, Tháng 11 - Tháng 12)
+ * - Bất kỳ giá trị nào KHÔNG CÓ chữ "Tháng " + {10, 11, 12} (ví dụ: chữ placeholder "Timeline mong muốn", ô trống, dấu gạch ngang "-", số trần 10, tên người...)
+ *   đều được coi là KHÔNG CÓ VALUE (trả về null) và LOẠI BỎ KHỎI PRODUCT ROADMAP.
  */
 function parseTimeline(timelineRaw) {
   if (!timelineRaw) return null;
   
   // 1. Xử lý nếu ô là Date Object thực tế trong Google Sheets
+  let tl = '';
   if (timelineRaw instanceof Date || Object.prototype.toString.call(timelineRaw) === '[object Date]') {
     const m = timelineRaw.getMonth() + 1;
-    if (m === 10) return { timeGroup: 't10', startM: 10, endM: 10, startCol: 1, totalCols: 4, label: 'Tháng 10' };
-    if (m === 11) return { timeGroup: 't11', startM: 11, endM: 11, startCol: 5, totalCols: 4, label: 'Tháng 11' };
-    if (m === 12) return { timeGroup: 't12', startM: 12, endM: 12, startCol: 9, totalCols: 4, label: 'Tháng 12' };
-    return null;
+    if (m >= 10 && m <= 12) {
+      tl = 'tháng ' + m;
+    } else {
+      return null;
+    }
+  } else {
+    tl = String(timelineRaw).trim().toLowerCase().replace(/\s+/g, ' ');
   }
 
-  const tl = String(timelineRaw).trim().toLowerCase().replace(/\s+/g, ' ');
   if (!tl || tl === '-' || tl === 'n/a') return null;
   
-  // ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC THEO YÊU CẦU PO:
-  // Nếu ô chỉ chứa chữ placeholder "Timeline mong muốn" hoặc "Timeline" (không có số tháng thực tế) => coi như KHÔNG CÓ VALUE (null)
-  const cleanTl = tl.replace(/timeline\s*mong\s*mu[ốo]n/gi, '').replace(/timeline/gi, '').trim();
-  if (!cleanTl) return null;
+  // 2. ĐIỀU KIỆN TIÊN QUYẾT: Value BẮT BUỘC phải có chữ "Tháng" hoặc "Thg"
+  // Nếu chỉ có chữ placeholder "Timeline mong muốn" hoặc "Timeline" mà không có số tháng => return null
+  const hasThang = /(?:tháng|thg)/i.test(tl);
+  if (!hasThang) {
+    return null; // Không thỏa mãn định dạng "Value = Tháng +{}"
+  }
   
-  // 2. Nhận diện các từ khóa tháng chuẩn xác (tránh match nhầm username/mã số như SonLN11, ThuyTT104)
-  const has10 = /(?:tháng\s*10|thg\s*10|\bt10\b|oct|\b10\b)/i.test(tl);
-  const has11 = /(?:tháng\s*11|thg\s*11|\bt11\b|nov|\b11\b)/i.test(tl);
-  const has12 = /(?:tháng\s*12|thg\s*12|\bt12\b|dec|\b12\b)/i.test(tl);
+  // 3. Nhận diện các mốc tháng Quý 4 chuẩn xác theo cú pháp "Tháng + {số tháng}"
+  const has10 = /(?:tháng|thg)\s*10/i.test(tl);
+  const has11 = /(?:tháng|thg)\s*11/i.test(tl);
+  const has12 = /(?:tháng|thg)\s*12/i.test(tl);
   
   if (has10 && has11) {
     return { timeGroup: 'span-10-11', startM: 10, endM: 11, startCol: 1, totalCols: 8, label: 'Tháng 10 - Tháng 11' };
@@ -231,6 +238,7 @@ function parseTimeline(timelineRaw) {
   if (has12) {
     return { timeGroup: 't12', startM: 12, endM: 12, startCol: 9, totalCols: 4, label: 'Tháng 12' };
   }
+  
   return null;
 }
 
@@ -335,23 +343,32 @@ function syncRoadmapFromBacklog() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   activeSS.toast('Đang kết nối và đồng bộ dữ liệu từ Backlog gốc...', 'Đang xử lý', 5);
 
-  let sourceSS;
-  try {
-    sourceSS = SpreadsheetApp.openById(SOURCE_SPREADSHEET_ID);
-  } catch (e) {
-    activeSS.toast('Không thể mở file Backlog gốc: ' + e.message, 'Lỗi', 10);
-    return;
+  // CHỈ LẤY DUY NHẤT 1 SHEET: "📌 Product Backlog FCP" THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+  // TUYỆT ĐỐI KHÔNG ĐƯỢC LẤY SANG BẤT KỲ SHEET NÀO KHÁC (NHƯ Product Backlog VH, v.v.)
+  let sourceSheet = null;
+
+  // 1. Kiểm tra ưu tiên ngay trong chính Spreadsheet hiện tại (activeSS)
+  sourceSheet = activeSS.getSheetByName(SOURCE_TAB_NAME)
+    || activeSS.getSheetByName("Product Backlog FCP")
+    || activeSS.getSheets().find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
+
+  // 2. Nếu trong file hiện tại không có, mở file Backlog nguồn
+  if (!sourceSheet) {
+    let sourceSS;
+    try {
+      sourceSS = SpreadsheetApp.openById(SOURCE_SPREADSHEET_ID);
+      sourceSheet = sourceSS.getSheetByName(SOURCE_TAB_NAME)
+        || sourceSS.getSheetByName("Product Backlog FCP")
+        || sourceSS.getSheets().find(s => s.getSheetId() === SOURCE_GID)
+        || sourceSS.getSheets().find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
+    } catch (e) {
+      activeSS.toast('Không thể mở file Backlog nguồn: ' + e.message, 'Lỗi', 10);
+      return;
+    }
   }
 
-  // CHỈ LẤY CÁC TASK Ở SHEET: 📌 Product Backlog FCP (GID 795863231) THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
-  // TUYỆT ĐỐI KHÔNG ĐƯỢC LẤY SANG CÁC SHEET KHÁC NHƯ Product Backlog VH
-  const sheets = sourceSS.getSheets();
-  let sourceSheet = sheets.find(s => s.getSheetId() === SOURCE_GID)
-    || sheets.find(s => s.getName().trim() === SOURCE_TAB_NAME)
-    || sheets.find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
-
   if (!sourceSheet) {
-    activeSS.toast('Không tìm thấy sheet "📌 Product Backlog FCP" (GID ' + SOURCE_GID + ') trong file Backlog!', 'Lỗi', 10);
+    activeSS.toast('Không tìm thấy duy nhất sheet "📌 Product Backlog FCP"!', 'Lỗi', 10);
     return;
   }
 
@@ -430,9 +447,9 @@ function syncRoadmapFromBacklog() {
         valToTest = String(rawVal).trim();
       }
 
-      // Nếu ô chỉ chứa placeholder "Timeline mong muốn" (không điền số tháng) => coi như RỖNG (không có value)
-      const cleanCheck = valToTest.toLowerCase().replace(/\s+/g, ' ').replace(/timeline\s*mong\s*mu[ốo]n/gi, '').replace(/timeline/gi, '').trim();
-      if (cleanCheck) {
+      // ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC: Value = Tháng + {}
+      // Nếu ô không chứa chữ "tháng" hoặc "thg" (ví dụ chỉ chứa chữ placeholder "Timeline mong muốn", ô trống, số lẻ...) => coi như KHÔNG CÓ VALUE (timelineRaw = '')
+      if (valToTest && /(?:tháng|thg)/i.test(valToTest)) {
         timelineRaw = valToTest;
       } else {
         timelineRaw = ''; // Không có value tháng thực tế
@@ -450,15 +467,9 @@ function syncRoadmapFromBacklog() {
     const isExcluded = status.toLowerCase() === 'pending';
     if (isExcluded) continue;
 
-    // 2. RÀNG BUỘC NGHIỆP VỤ BẮT BUỘC:
-    // "Chỉ lấy các task trạng thái Done - với điều kiện Phải có Timeline (Tức cột Timeline mong muốn phải có value)"
-    // Nếu trạng thái là Done mà cột Timeline mong muốn KHÔNG CÓ VALUE (hoặc không thuộc Quý 4) => LOẠI BỎ NGAY
-    const isDone = (status === 'Done');
-    if (isDone && (!timelineRaw || !tlParsed)) {
-      continue;
-    }
-
-    // 3. Đối với mọi task khác muốn lên Roadmap Q4: Cột Timeline mong muốn cũng PHẢI CÓ VALUE hợp lệ trong Quý 4
+    // 2. RÀNG BUỘC NGHIỆP VỤ BẮT BUỘC THEO ĐẶC TẢ CỦA PO:
+    // "Timeline không có value (Value = Tháng +{}) => sẽ không lấy vào Product Roadmap"
+    // BẤT KỲ TASK NÀO (DÙ LÀ Done, UAT, DEV In Progress, To do...) NẾU CỘT Timeline mong muốn KHÔNG CÓ VALUE (Tháng +{}) => LOẠI BỎ NGAY
     if (!timelineRaw || !tlParsed) {
       continue;
     }
