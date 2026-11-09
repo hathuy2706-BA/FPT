@@ -370,8 +370,12 @@ function syncRoadmapFromBacklog() {
   }
 
   if (!sourceSheet) {
-    activeSS.toast('Không tìm thấy duy nhất sheet "📌 Product Backlog FCP"!', 'Lỗi', 10);
-    Logger.log('Không tìm thấy sheet 📌 Product Backlog FCP');
+    SpreadsheetApp.getUi().alert(
+      "Lỗi Đồng Bộ",
+      'Không tìm thấy sheet "📌 Product Backlog FCP" trong file Backlog nguồn (ID: ' + SOURCE_SPREADSHEET_ID + ')!\n' +
+      'Vui lòng kiểm tra lại tên sheet hoặc quyền truy cập của tài khoản.',
+      SpreadsheetApp.getUi().ButtonSet.OK
+    );
     return;
   }
 
@@ -546,16 +550,10 @@ function syncRoadmapFromBacklog() {
     }
   });
 
-  // 4. Chuẩn bị Sheet Roadmap: Ưu tiên cập nhật chính xác tab Roadmap mà người dùng đang mở hoặc tab ROADMAP_SHEET_NAME
-  let roadmapSheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (!roadmapSheet) {
-    const activeTab = activeSS.getActiveSheet();
-    if (activeTab && activeTab.getName() !== BACKLOG_SYNC_SHEET_NAME) {
-      roadmapSheet = activeTab;
-    } else {
-      roadmapSheet = activeSS.getSheets()[0];
-    }
-  }
+  // 4. Chuẩn bị Sheet Roadmap: Ưu tiên cập nhật chính xác tab Roadmap mà người dùng đang mở (GID: 1531584370) hoặc tab ROADMAP_SHEET_NAME
+  let roadmapSheet = activeSS.getSheets().find(s => s.getSheetId() === 1531584370)
+    || activeSS.getSheetByName(ROADMAP_SHEET_NAME)
+    || activeSS.getActiveSheet();
   roadmapSheet.clear();
   roadmapSheet.activate();
 
@@ -913,6 +911,18 @@ function syncRoadmapFromBacklog() {
 
   syncSheet.autoResizeColumns(1, 9);
   activeSS.toast(`Đã đồng bộ thành công ${sortedTasks.length} task từ Backlog gốc và cập nhật màu thanh task!`, 'Hoàn tất', 5);
+
+  // Hiển thị thông báo Popup hoàn tất ngay giữa màn hình
+  const ui = SpreadsheetApp.getUi();
+  ui.alert(
+    "Đồng Bộ Hoàn Tất",
+    "✅ ĐÃ ĐỒNG BỘ THÀNH CÔNG VÀO PRODUCT ROADMAP!\n\n" +
+    "• Sheet nguồn: " + sourceSheet.getName() + "\n" +
+    "• Sheet đích: " + roadmapSheet.getName() + " (GID: " + roadmapSheet.getSheetId() + ")\n" +
+    "• Số lượng task hiển thị (có Timeline Tháng +{}): " + sortedTasks.length + " task\n\n" +
+    "Toàn bộ các dòng không có số tháng thực tế (chữ placeholder Timeline mong muốn, để trống...) đã được loại bỏ hoàn toàn.",
+    ui.ButtonSet.OK
+  );
 }
 
 /**
