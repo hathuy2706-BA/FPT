@@ -335,131 +335,171 @@ function syncRoadmapFromBacklog() {
     return;
   }
 
-  // ƯU TIÊN MỞ TAB CHUẨN XÁC: Ưu tiên tìm theo GID người dùng cung cấp (954545565), sau đó tìm theo tên tab
+  // ƯU TIÊN MỞ VÀ QUÉT TOÀN BỘ CÁC TAB BACKLOG: Đọc toàn diện từ các tab Backlog (Product Backlog VH, Product Backlog FCP...)
   const sheets = sourceSS.getSheets();
-  let sourceSheet = sheets.find(s => s.getSheetId() === SOURCE_GID);
-  if (!sourceSheet) {
-    sourceSheet = sourceSS.getSheetByName('Product Backlog VH') 
-               || sourceSS.getSheetByName('Product Backlog FCP') 
-               || sourceSS.getSheetByName('Product Backlog Team') 
-               || sheets[0];
-  }
-  const sourceData = sourceSheet.getDataRange().getValues();
-  const sourceDisplayData = sourceSheet.getDataRange().getDisplayValues();
+  const sheetsToScan = [];
+  
+  // 1. Thêm tab theo GID người dùng cung cấp
+  const primarySheet = sheets.find(s => s.getSheetId() === SOURCE_GID);
+  if (primarySheet) sheetsToScan.push(primarySheet);
 
-  // 1. Tìm dòng tiêu đề (Header row)
-  let headerRowIdx = -1;
-  for (let r = 0; r < Math.min(10, sourceData.length); r++) {
-    const rowStr = sourceData[r].map(c => String(c).trim()).join('|');
-    if (rowStr.includes('US Title') && (rowStr.includes('Timeline') || rowStr.includes('Trạng thái'))) {
-      headerRowIdx = r;
-      break;
-    }
-  }
-
-  if (headerRowIdx === -1) {
-    activeSS.toast('Không tìm thấy dòng tiêu đề trong sheet gốc!', 'Lỗi', 10);
-    return;
-  }
-
-  const headers = sourceData[headerRowIdx].map(h => String(h).trim());
-  const colMap = {};
-  const timelineColIndices = [];
-
-  headers.forEach((h, idx) => {
-    const hl = h.toLowerCase();
-    if (hl.includes('us title') || hl.includes('đầu mục')) colMap['title'] = idx;
-    else if (hl.includes('epic') || hl.includes('phân hệ')) colMap['epic'] = idx;
-    else if (hl.includes('acceptance') || hl.includes('mô tả') || hl.includes('chi tiết')) colMap['desc'] = idx;
-    else if (hl.includes('ưu tiên') || hl.includes('priority')) colMap['prio'] = idx;
-    else if (hl.includes('pic') || hl.includes('ba')) colMap['pic'] = idx;
-    else if (hl.includes('trạng thái') || hl.includes('status')) colMap['status'] = idx;
-
-    // Thu thập TẤT CẢ các cột có khả năng chứa mốc thời gian (Timeline mong muốn, Timeline ISC, Thời gian, Tháng...)
-    if (hl.includes('timeline') || hl.includes('thời gian') || hl.includes('tháng') || hl.includes('kế hoạch')) {
-      timelineColIndices.push(idx);
+  // 2. Thêm tất cả các tab liên quan đến Backlog nếu có
+  sheets.forEach(s => {
+    const sName = s.getName().trim().toLowerCase();
+    if (sName.includes('product backlog') || sName.includes('backlog') || sName.includes('vh') || sName.includes('fcp')) {
+      if (!sheetsToScan.includes(s)) sheetsToScan.push(s);
     }
   });
 
-  // Nếu không nhận diện được cột status cụ thể, gán mặc định an toàn
-  if (colMap['status'] === undefined) {
-    const stIdx = headers.findIndex(h => h.toLowerCase().includes('trạng thái'));
-    if (stIdx !== -1) colMap['status'] = stIdx;
-  }
+  if (sheetsToScan.length === 0) sheetsToScan.push(sheets[0]);
 
-  // 2. Trích xuất và lọc các task Quý 4 (Lấy thêm Done có Timeline; Loại bỏ Pending)
   const q4Tasks = [];
-  for (let r = headerRowIdx + 1; r < sourceData.length; r++) {
-    const row = sourceData[r];
-    const titleFull = String(row[colMap['title']] || '').trim();
-    if (!titleFull) continue;
+  const seenTitles = new Set();
 
-    // RÀNG BUỘC NGHIỆP VỤ: Quét tất cả các cột Timeline khả dĩ để tìm mốc thời gian Quý 4 hợp lệ
-    let timeline = '';
-    let tlParsed = null;
-    for (let cIdx of timelineColIndices) {
-      const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][cIdx] || '').trim() : '';
-      const rawVal = row[cIdx];
+  sheetsToScan.forEach(sourceSheet => {
+    const sourceData = sourceSheet.getDataRange().getValues();
+    const sourceDisplayData = sourceSheet.getDataRange().getDisplayValues();
 
-      if (dispVal && dispVal !== '-' && dispVal.toLowerCase() !== 'n/a') {
-        const parsed = parseTimeline(dispVal);
-        if (parsed) {
-          timeline = dispVal;
-          tlParsed = parsed;
-          break;
-        }
-      }
-      if (rawVal) {
-        const parsed = parseTimeline(rawVal);
-        if (parsed) {
-          timeline = String(rawVal);
-          tlParsed = parsed;
-          break;
-        }
+    // 1. Tìm dòng tiêu đề (Header row)
+    let headerRowIdx = -1;
+    for (let r = 0; r < Math.min(10, sourceData.length); r++) {
+      const rowStr = sourceData[r].map(c => String(c).trim()).join('|');
+      if (rowStr.includes('US Title') || (rowStr.includes('Đầu mục') && rowStr.includes('Trạng thái'))) {
+        headerRowIdx = r;
+        break;
       }
     }
 
-    // Nếu không tìm thấy bất kỳ giá trị timeline nào hợp lệ trong Quý 4 (VD: Tháng 10..) thì BỎ QUA không hiển thị
-    if (!tlParsed) continue;
+    if (headerRowIdx === -1) return; // Bỏ qua nếu tab không có cấu trúc header chuẩn
 
-    const rawStatus = String(sourceDisplayData[r] && sourceDisplayData[r][colMap['status']] ? sourceDisplayData[r][colMap['status']] : row[colMap['status']] || '').trim();
-    const status = normalizeStatus(rawStatus);
-    const epic = String(row[colMap['epic']] || '').trim();
-    const prio = String(row[colMap['prio']] || 'P2').trim();
-    const pic = String(row[colMap['pic']] || '').trim();
-    const rawDesc = String(row[colMap['desc']] || '').trim();
+    const headers = sourceData[headerRowIdx].map(h => String(h).trim());
+    const colMap = {};
+    const timelineColIndices = [];
 
-    // LẤY THÊM TRẠNG THÁI "DONE" THEO YÊU CẦU PO (CHỈ LOẠI BỎ PENDING)
-    const isExcluded = status.toLowerCase() === 'pending';
-    if (isExcluded) continue;
+    headers.forEach((h, idx) => {
+      const hl = h.toLowerCase();
+      if (hl.includes('us title') || hl.includes('đầu mục') || hl.includes('tên tính năng') || hl.includes('user story')) colMap['title'] = idx;
+      else if (hl.includes('epic') || hl.includes('phân hệ')) colMap['epic'] = idx;
+      else if (hl.includes('acceptance') || hl.includes('mô tả') || hl.includes('chi tiết')) colMap['desc'] = idx;
+      else if (hl.includes('ưu tiên') || hl.includes('priority')) colMap['prio'] = idx;
+      else if (hl.includes('pic') || hl.includes('ba')) colMap['pic'] = idx;
+      else if (hl.includes('trạng thái') || hl.includes('status')) colMap['status'] = idx;
 
-    // Detail làm sạch từ dữ liệu gốc
-    const cleanDesc = cleanDetailText(rawDesc);
-
-    q4Tasks.push({
-      title: titleFull.split('\n')[0].trim(),
-      epic: epic,
-      desc: cleanDesc,
-      prio: prio,
-      pic: pic,
-      status: status,
-      rawStatus: rawStatus,
-      timeline: timeline,
-      timeGroup: tlParsed.timeGroup,
-      startM: tlParsed.startM,
-      endM: tlParsed.endM,
-      startCol: tlParsed.startCol,
-      totalCols: tlParsed.totalCols
+      // Thu thập TẤT CẢ các cột có khả năng chứa mốc thời gian (Timeline mong muốn, Timeline ISC, Thời gian, Tháng...)
+      if (hl.includes('timeline') || hl.includes('thời gian') || hl.includes('tháng') || hl.includes('kế hoạch') || hl.includes('target') || hl.includes('release')) {
+        timelineColIndices.push(idx);
+      }
     });
-  }
 
-  // 2.1 Gom nhóm các task LDP NHA theo yêu cầu:
-  // [Web, CMS] Trang LDP NHA, Trang LDP NHA lịch thi đấu, Trang LDP NHA bảng xếp hạng, Trang LDP NHA -SA
-  // => Gom chung thành: [Web, CMS] Trang LDP NHA
-  // Detail: Trang lịch thi đấu, trang BXH, trang SA NHA
-  const nhaTasks = q4Tasks.filter(t => t.title.includes('NHA') || t.title.includes('Ngoại Hạng Anh'));
-  if (nhaTasks.length > 0) {
-    const baseNha = nhaTasks[0];
+    if (colMap['title'] === undefined) {
+      const tIdx = headers.findIndex(h => h.toLowerCase().includes('title') || h.toLowerCase().includes('đầu mục'));
+      if (tIdx !== -1) colMap['title'] = tIdx;
+    }
+    if (colMap['status'] === undefined) {
+      const stIdx = headers.findIndex(h => h.toLowerCase().includes('trạng thái') || h.toLowerCase().includes('status'));
+      if (stIdx !== -1) colMap['status'] = stIdx;
+    }
+
+    // 2. Trích xuất và lọc các task Quý 4 từ sheet hiện tại
+    for (let r = headerRowIdx + 1; r < sourceData.length; r++) {
+      const row = sourceData[r];
+      const titleFull = String(row[colMap['title']] || '').trim();
+      if (!titleFull || titleFull.length < 2) continue;
+
+      // Chống trùng lặp task giữa các sheet
+      const cleanTitleKey = titleFull.split('\n')[0].trim().toLowerCase();
+      if (seenTitles.has(cleanTitleKey)) continue;
+
+      // Quét tìm mốc thời gian Timeline Quý 4 từ các cột Timeline đã nhận diện
+      let timeline = '';
+      let tlParsed = null;
+      for (let cIdx of timelineColIndices) {
+        const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][cIdx] || '').trim() : '';
+        const rawVal = row[cIdx];
+
+        if (dispVal && dispVal !== '-' && dispVal.toLowerCase() !== 'n/a') {
+          const parsed = parseTimeline(dispVal);
+          if (parsed) {
+            timeline = dispVal;
+            tlParsed = parsed;
+            break;
+          }
+        }
+        if (rawVal) {
+          const parsed = parseTimeline(rawVal);
+          if (parsed) {
+            timeline = String(rawVal);
+            tlParsed = parsed;
+            break;
+          }
+        }
+      }
+
+      // Fallback: Quét toàn bộ dòng nếu các cột timeline chưa tìm thấy mốc Quý 4
+      if (!tlParsed) {
+        for (let c = 0; c < row.length; c++) {
+          const dVal = sourceDisplayData[r] ? String(sourceDisplayData[r][c] || '').trim() : '';
+          const rVal = row[c];
+          if (dVal && dVal !== '-' && dVal.toLowerCase() !== 'n/a') {
+            const parsed = parseTimeline(dVal);
+            if (parsed) {
+              timeline = dVal;
+              tlParsed = parsed;
+              break;
+            }
+          }
+          if (rVal) {
+            const parsed = parseTimeline(rVal);
+            if (parsed) {
+              timeline = String(rVal);
+              tlParsed = parsed;
+              break;
+            }
+          }
+        }
+      }
+
+      // RÀNG BUỘC NGHIỆP VỤ: Cột Timeline PHẢI CÓ VALUE hợp lệ trong Quý 4 (VD: Tháng 10..) mới lấy
+      if (!tlParsed) continue;
+
+      const rawStatus = String(sourceDisplayData[r] && colMap['status'] !== undefined && sourceDisplayData[r][colMap['status']] 
+        ? sourceDisplayData[r][colMap['status']] 
+        : (colMap['status'] !== undefined ? row[colMap['status']] : '') || '').trim();
+      const status = normalizeStatus(rawStatus);
+      const epic = String(colMap['epic'] !== undefined ? row[colMap['epic']] : '').trim();
+      const prio = String(colMap['prio'] !== undefined ? row[colMap['prio']] : 'P2').trim();
+      const pic = String(colMap['pic'] !== undefined ? row[colMap['pic']] : '').trim();
+      const rawDesc = String(colMap['desc'] !== undefined ? row[colMap['desc']] : '').trim();
+
+      // Loại bỏ Pending
+      const isExcluded = status.toLowerCase() === 'pending';
+      if (isExcluded) continue;
+
+      seenTitles.add(cleanTitleKey);
+      const cleanDesc = cleanDetailText(rawDesc);
+
+      q4Tasks.push({
+        title: titleFull.split('\n')[0].trim(),
+        epic: epic,
+        desc: cleanDesc,
+        prio: prio,
+        pic: pic,
+        status: status,
+        rawStatus: rawStatus,
+        timeline: timeline,
+        timeGroup: tlParsed.timeGroup,
+        startM: tlParsed.startM,
+        endM: tlParsed.endM,
+        startCol: tlParsed.startCol,
+        totalCols: tlParsed.totalCols
+      });
+    }
+  });
+
+  // 2.1 Gom nhóm các task LDP NHA (Chỉ áp dụng với các task NHA thuộc Tháng 12; Tuyệt đối không di chuyển các task Tháng 10)
+  const nhaMonth12Tasks = q4Tasks.filter(t => (t.title.includes('NHA') || t.title.includes('Ngoại Hạng Anh')) && t.timeGroup === 't12');
+  if (nhaMonth12Tasks.length > 1) {
+    const baseNha = nhaMonth12Tasks[0];
     const mergedNhaTask = {
       title: 'Trang LDP NHA',
       epic: 'Web, CMS',
@@ -476,11 +516,11 @@ function syncRoadmapFromBacklog() {
       totalCols: 4
     };
 
-    // Loại bỏ các task NHA con riêng lẻ và thay bằng 1 task đã gom duy nhất
-    const nonNhaTasks = q4Tasks.filter(t => !t.title.includes('NHA') && !t.title.includes('Ngoại Hạng Anh'));
-    nonNhaTasks.push(mergedNhaTask);
+    // Loại bỏ các task NHA con riêng lẻ trong Tháng 12 và thay bằng 1 task gom duy nhất
+    const nonNhaM12Tasks = q4Tasks.filter(t => !((t.title.includes('NHA') || t.title.includes('Ngoại Hạng Anh')) && t.timeGroup === 't12'));
+    nonNhaM12Tasks.push(mergedNhaTask);
     q4Tasks.length = 0;
-    q4Tasks.push(...nonNhaTasks);
+    q4Tasks.push(...nonNhaM12Tasks);
   }
 
   // 3. Sắp xếp ưu tiên P1 ➔ P2 ➔ P3 ➔ P4 trong từng nhóm mốc thời gian
