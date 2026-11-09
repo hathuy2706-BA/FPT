@@ -203,8 +203,13 @@ function parseTimeline(timelineRaw) {
     return null;
   }
 
-  const tl = String(timelineRaw).trim().toLowerCase();
+  const tl = String(timelineRaw).trim().toLowerCase().replace(/\s+/g, ' ');
   if (!tl || tl === '-' || tl === 'n/a') return null;
+  
+  // ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC THEO YÊU CẦU PO:
+  // Nếu ô chỉ chứa chữ placeholder "Timeline mong muốn" hoặc "Timeline" (không có số tháng thực tế) => coi như KHÔNG CÓ VALUE (null)
+  const cleanTl = tl.replace(/timeline\s*mong\s*mu[ốo]n/gi, '').replace(/timeline/gi, '').trim();
+  if (!cleanTl) return null;
   
   // 2. Nhận diện các từ khóa tháng chuẩn xác (tránh match nhầm username/mã số như SonLN11, ThuyTT104)
   const has10 = /(?:tháng\s*10|thg\s*10|\bt10\b|oct|\b10\b)/i.test(tl);
@@ -418,10 +423,19 @@ function syncRoadmapFromBacklog() {
     if (desiredTimelineIdx !== -1 && desiredTimelineIdx !== undefined) {
       const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][desiredTimelineIdx] || '').trim() : '';
       const rawVal = row[desiredTimelineIdx];
+      let valToTest = '';
       if (dispVal && dispVal !== '-' && dispVal.toLowerCase() !== 'n/a') {
-        timelineRaw = dispVal;
+        valToTest = dispVal;
       } else if (rawVal && String(rawVal).trim() !== '-' && String(rawVal).trim().toLowerCase() !== 'n/a') {
-        timelineRaw = String(rawVal).trim();
+        valToTest = String(rawVal).trim();
+      }
+
+      // Nếu ô chỉ chứa placeholder "Timeline mong muốn" (không điền số tháng) => coi như RỖNG (không có value)
+      const cleanCheck = valToTest.toLowerCase().replace(/\s+/g, ' ').replace(/timeline\s*mong\s*mu[ốo]n/gi, '').replace(/timeline/gi, '').trim();
+      if (cleanCheck) {
+        timelineRaw = valToTest;
+      } else {
+        timelineRaw = ''; // Không có value tháng thực tế
       }
     }
 
