@@ -34,8 +34,8 @@
  */
 
 const SOURCE_SPREADSHEET_ID = "18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM";
-const SOURCE_GID = 954545565; // GID chuẩn xác của sheet Backlog nguồn theo link người dùng (954545565)
-const SOURCE_TAB_NAME = "Product Backlog VH";
+const SOURCE_GID = 954545565; // GID chuẩn xác của sheet Backlog nguồn theo link người dùng (📌 Product Backlog FCP)
+const SOURCE_TAB_NAME = "📌 Product Backlog FCP";
 const ROADMAP_SPREADSHEET_ID = "1RN2dglTLMsSvXQLQTiBLZ0TmhN0hPESZyV5pr6Gjgwc";
 const ROADMAP_GID = 1531584370; // GID chuẩn xác của sheet Product Roadmap đích
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
@@ -399,18 +399,18 @@ function syncRoadmapFromBacklog() {
   // Ưu tiên 1: Tìm đúng GID 954545565 của sheet nguồn theo link người dùng
   sourceSheet = allSourceSheets.find(s => s.getSheetId() === SOURCE_GID || s.getSheetId() === 954545565);
 
-  // Ưu tiên 2: Tìm theo tên sheet chứa 'vh' hoặc 'vận hành' nếu GID thay đổi
+  // Ưu tiên 2: Tìm theo tên sheet chứa 'fcp' nếu GID thay đổi
   if (!sourceSheet) {
     sourceSheet = allSourceSheets.find(s => {
       const n = s.getName().trim().toLowerCase();
-      return n.includes('vh') || n.includes('vận hành');
+      return n.includes('fcp');
     });
   }
 
   // Ưu tiên 3: Tên sheet cấu hình hoặc sheet đầu tiên
   if (!sourceSheet) {
     sourceSheet = sourceSS.getSheetByName(SOURCE_TAB_NAME)
-      || sourceSS.getSheetByName("Product Backlog VH")
+      || sourceSS.getSheetByName("📌 Product Backlog FCP")
       || allSourceSheets[0];
   }
 
