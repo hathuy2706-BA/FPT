@@ -382,7 +382,7 @@ function syncRoadmapWaterfall() {
  * @param {string} layoutMode - 'parallel' (Mặc định: Bố cục Song Song 3 Cột) hoặc 'waterfall' (Thác Nước Gantt)
  */
 function syncRoadmapFromBacklog(layoutMode) {
-  if (!layoutMode) layoutMode = 'parallel';
+  if (!layoutMode) layoutMode = 'waterfall';
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   
   // 1. MỞ CHÍNH XÁC FILE VÀ TAB ROADMAP ĐÍCH (ID: 1RN2dglTLMsSvXQLQTiBLZ0TmhN0hPESZyV5pr6Gjgwc | GID: 1531584370)
@@ -612,6 +612,7 @@ function syncRoadmapFromBacklog(layoutMode) {
   roadmapSheet.clearContents();
   roadmapSheet.clearFormats();
   roadmapSheet.setHiddenGridlines(true);
+  roadmapSheet.setFrozenRows(3);
 
   for (let c = 1; c <= 12; c++) {
     roadmapSheet.setColumnWidth(c, 145);
