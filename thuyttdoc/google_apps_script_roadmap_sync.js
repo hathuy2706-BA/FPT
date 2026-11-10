@@ -565,10 +565,10 @@ function syncRoadmapFromBacklog(layoutMode) {
     let colLane = "t10";
     if (tlParsed.timeGroup === 'span-10-11') {
       colLane = "t10";
-      badge = " [Vắt T10 ➔ T11]";
+      badge = "";
     } else if (tlParsed.timeGroup === 'span-11-12') {
       colLane = "t11";
-      badge = " [Vắt T11 ➔ T12]";
+      badge = "";
     } else if (tlParsed.timeGroup === 't10') {
       colLane = "t10";
     } else if (tlParsed.timeGroup === 't11') {
@@ -790,10 +790,10 @@ function syncRoadmapFromBacklog(layoutMode) {
 
   const syncRows = allSortedTasks.map((t, idx) => {
     const cfg = STATUS_STEPS[t.status] || STATUS_STEPS['Chưa tiếp nhận'];
-    const note = t.colLane === 't10' && !t.badge ? "Hoàn thành trong T10" : (
-      t.badge.includes('Vắt T10') ? "Vắt từ T10 sang T11" : (
-        t.colLane === 't11' && !t.badge ? "Hoàn thành trong T11" : (
-          t.badge.includes('Vắt T11') ? "Vắt từ T11 sang T12" : "Hoàn thành trong T12"
+    const note = t.timeGroup === 'span-10-11' ? "Tháng 10 - Tháng 11" : (
+      t.timeGroup === 'span-11-12' ? "Tháng 11 - Tháng 12" : (
+        t.timeGroup === 't10' ? "Hoàn thành trong T10" : (
+          t.timeGroup === 't11' ? "Hoàn thành trong T11" : "Hoàn thành trong T12"
         )
       )
     );
