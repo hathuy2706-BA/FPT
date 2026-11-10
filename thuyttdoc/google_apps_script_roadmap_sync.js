@@ -4,11 +4,14 @@
  * GOOGLE APPS SCRIPT REALTIME SYNC ENGINE V10 (PREMIUM PIXEL PERFECT & REALTIME SOURCE SYNC)
  * =========================================================================================
  * Tự động đồng bộ 100% dữ liệu Realtime từ Google Sheet Backlog gốc:
- * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=795863231
+ * https://docs.google.com/spreadsheets/d/18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM/edit?gid=954545565
  * 
  * ĐỒNG BỘ CHUẨN XÁC THEO YÊU CẦU:
- * 1. SỐ LƯỢNG TASK: Đọc DUY NHẤT từ sheet gốc '📌 Product Backlog FCP' (GID: 795863231).
+ * 1. SỐ LƯỢNG TASK: Đọc từ sheet nguồn Backlog (GID: 954545565).
  * 2. TÊN TASK: Lấy trọn vẹn từ cột US Title (Đầu mục công việc), không cắt chữ, font size 10-11 rõ nét.
+ * 3. BỘ TRẠNG THÁI: Lấy HẾT TẤT CẢ TRẠNG THÁI (Done, UAT, DEV In Progress, Transfer DEV, BA/Doc, Tiếp nhận, To do...) - TRỪ DUY NHẤT 'Pending'.
+ * 4. TIMELINE MONG MUỐN: Chỉ lấy các task có mốc thời gian thực tế (Tháng 10, Tháng 11, Tháng 12, Tháng 10 - Tháng 11...).
+ *    TUYỆT ĐỐI LOẠI BỎ các dòng dữ liệu auto fill bị trùng với dòng Title cột (ví dụ: chữ 'Timeline mong muốn', 'Timeline', tiêu đề cột).
  * 3. BỘ TRẠNG THÁI MỚI NHẤT:
  *    - 'Done' (Hoàn thành) ➔ Nền Xanh lá đậm (#D1FAE5/Full), chữ xanh đậm (#047857), thanh tiến trình 100% full.
  *      ĐIỀU KIỆN TIÊN QUYẾT: Chỉ lấy task Done khi cột 'Timeline mong muốn' ĐƯỢC ĐIỀN GIÁ TRỊ THÁNG (VD: Tháng 10, Tháng 11, Tháng 12).
@@ -31,8 +34,8 @@
  */
 
 const SOURCE_SPREADSHEET_ID = "18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM";
-const SOURCE_GID = 795863231; // GID chuẩn xác của sheet 📌 Product Backlog FCP
-const SOURCE_TAB_NAME = "📌 Product Backlog FCP";
+const SOURCE_GID = 954545565; // GID chuẩn xác của sheet Backlog nguồn theo link người dùng (954545565)
+const SOURCE_TAB_NAME = "Product Backlog VH";
 const ROADMAP_SPREADSHEET_ID = "1RN2dglTLMsSvXQLQTiBLZ0TmhN0hPESZyV5pr6Gjgwc";
 const ROADMAP_GID = 1531584370; // GID chuẩn xác của sheet Product Roadmap đích
 const ROADMAP_SHEET_NAME = "Roadmap_Timeline_Q4";
@@ -190,12 +193,12 @@ function normalizeStatus(raw) {
 
 /**
  * Phân tích và nhận diện chính xác mốc thời gian (Timeline) được điền trên file gốc
- * ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC THEO YÊU CẦU PO: Value = Tháng + {}
- * - Chỉ chấp nhận các ô có định dạng "Tháng " + {số tháng trong Quý 4: 10, 11, 12} (ví dụ: Tháng 10, Tháng 11, Tháng 12, Tháng 10 - Tháng 11, Tháng 11 - Tháng 12)
- * - Bất kỳ giá trị nào KHÔNG CÓ chữ "Tháng " + {10, 11, 12} (ví dụ: chữ placeholder "Timeline mong muốn", ô trống, dấu gạch ngang "-", số trần 10, tên người...)
- *   đều được coi là KHÔNG CÓ VALUE (trả về null) và LOẠI BỎ KHỎI PRODUCT ROADMAP.
+ * ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC THEO YÊU CẦU PO:
+ * - Chỉ chấp nhận các task có Timeline mong muốn thực tế: Tháng 10, Tháng 11, Tháng 12 (hoặc vắt 2 tháng: Tháng 10 - Tháng 11, Tháng 11 - Tháng 12).
+ * - TUYỆT ĐỐI LOẠI BỎ dữ liệu auto fill bị trùng với dòng Title cột (ví dụ: chữ 'Timeline mong muốn', 'Timeline', tiêu đề cột).
+ * - Bất kỳ giá trị nào không chứa mốc tháng thực tế (ô trống, dấu '-', 'n/a', placeholder...) đều trả về null và loại bỏ khỏi Roadmap.
  */
-function parseTimeline(timelineRaw) {
+function parseTimeline(timelineRaw, headerTitle) {
   if (!timelineRaw) return null;
   
   // 1. Xử lý nếu ô là Date Object thực tế trong Google Sheets
@@ -213,17 +216,41 @@ function parseTimeline(timelineRaw) {
 
   if (!tl || tl === '-' || tl === 'n/a') return null;
   
-  // 2. ĐIỀU KIỆN TIÊN QUYẾT: Value BẮT BUỘC phải có chữ "Tháng" hoặc "Thg"
-  // Nếu chỉ có chữ placeholder "Timeline mong muốn" hoặc "Timeline" mà không có số tháng => return null
-  const hasThang = /(?:tháng|thg)/i.test(tl);
+  // 2. LOẠI TRỪ DỮ LIỆU AUTO FILL TRÙNG VỚI TITLE CỦA CỘT:
+  // Nếu giá trị ô trùng với tiêu đề cột (ví dụ: "Timeline mong muốn", "Timeline", "Timeline mong muốn hoàn thành", ...)
+  if (headerTitle && typeof headerTitle === 'string') {
+    const cleanHeader = headerTitle.trim().toLowerCase().replace(/\s+/g, ' ');
+    if (cleanHeader && (tl === cleanHeader || tl.includes(cleanHeader))) {
+      // Trừ khi có chứa từ khóa tháng thực tế (Tháng 10, Tháng 11, Tháng 12)
+      if (!/(?:tháng|thg|\bt)\s*(?:10|11|12)/i.test(tl)) {
+        return null;
+      }
+    }
+  }
+
+  // Loại trừ các trường hợp placeholder phổ biến dù header có viết hoa hay biến thể:
+  if (
+    tl === 'timeline mong muốn' ||
+    tl === 'timeline mong muon' ||
+    tl === 'timeline' ||
+    tl === 'thời gian' ||
+    tl === 'kế hoạch' ||
+    tl === 'target' ||
+    tl === 'deadline'
+  ) {
+    return null;
+  }
+
+  // 3. ĐIỀU KIỆN TIÊN QUYẾT: Value BẮT BUỘC phải có chữ "Tháng" hoặc "Thg" hoặc mốc tháng thực tế
+  const hasThang = /(?:tháng|thg|\bt10\b|\bt11\b|\bt12\b)/i.test(tl);
   if (!hasThang) {
-    return null; // Không thỏa mãn định dạng "Value = Tháng +{}"
+    return null; // Không thỏa mãn định dạng mốc tháng thực tế
   }
   
-  // 3. Nhận diện các mốc tháng Quý 4 chuẩn xác theo cú pháp "Tháng + {số tháng}"
-  const has10 = /(?:tháng|thg)\s*10/i.test(tl);
-  const has11 = /(?:tháng|thg)\s*11/i.test(tl);
-  const has12 = /(?:tháng|thg)\s*12/i.test(tl);
+  // 4. Nhận diện các mốc tháng Quý 4 chuẩn xác theo cú pháp "Tháng + {số tháng}"
+  const has10 = /(?:tháng|thg|\bt)\s*10|october|\boct\b|\b10\s*[\/\-]\s*202/i.test(tl);
+  const has11 = /(?:tháng|thg|\bt)\s*11|november|\bnov\b|\b11\s*[\/\-]\s*202/i.test(tl);
+  const has12 = /(?:tháng|thg|\bt)\s*12|december|\bdec\b|\b12\s*[\/\-]\s*202/i.test(tl);
   
   if (has10 && has11) {
     return { timeGroup: 'span-10-11', startM: 10, endM: 11, startCol: 1, totalCols: 8, label: 'Tháng 10 - Tháng 11' };
@@ -358,8 +385,7 @@ function syncRoadmapFromBacklog() {
 
   roadmapSS.toast('Đang kết nối và đồng bộ dữ liệu từ Backlog gốc...', 'Đang xử lý', 5);
 
-  // 2. MỞ CHÍNH XÁC FILE VÀ TAB BACKLOG NGUỒN (ID: 18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM)
-  // CHỈ LẤY DUY NHẤT 1 SHEET: "📌 Product Backlog FCP" THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
+  // 2. MỞ CHÍNH XÁC FILE VÀ TAB BACKLOG NGUỒN (ID: 18_hHoMf_QrZFRYfB_x1fuvWO-Svmjo-a1-xwej-JqOM | GID: 954545565)
   let sourceSS;
   try {
     sourceSS = SpreadsheetApp.openById(SOURCE_SPREADSHEET_ID);
@@ -367,29 +393,38 @@ function syncRoadmapFromBacklog() {
     sourceSS = roadmapSS;
   }
 
-  let sourceSheet = sourceSS.getSheetByName(SOURCE_TAB_NAME)
-    || sourceSS.getSheetByName("Product Backlog FCP")
-    || sourceSS.getSheets().find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'))
-    || sourceSS.getSheets().find(s => s.getSheetId() === 954545565 && !s.getName().toLowerCase().includes('vh'))
-    || sourceSS.getSheets().find(s => s.getSheetId() === SOURCE_GID);
+  const allSourceSheets = sourceSS.getSheets();
+  let sourceSheet = null;
 
+  // Ưu tiên 1: Tìm đúng GID 954545565 của sheet nguồn theo link người dùng
+  sourceSheet = allSourceSheets.find(s => s.getSheetId() === SOURCE_GID || s.getSheetId() === 954545565);
+
+  // Ưu tiên 2: Tìm theo tên sheet chứa 'vh' hoặc 'vận hành' nếu GID thay đổi
   if (!sourceSheet) {
-    sourceSheet = roadmapSS.getSheetByName(SOURCE_TAB_NAME)
-      || roadmapSS.getSheetByName("Product Backlog FCP")
-      || roadmapSS.getSheets().find(s => s.getName().trim().toLowerCase().includes('fcp') && !s.getName().toLowerCase().includes('vh'));
+    sourceSheet = allSourceSheets.find(s => {
+      const n = s.getName().trim().toLowerCase();
+      return n.includes('vh') || n.includes('vận hành');
+    });
+  }
+
+  // Ưu tiên 3: Tên sheet cấu hình hoặc sheet đầu tiên
+  if (!sourceSheet) {
+    sourceSheet = sourceSS.getSheetByName(SOURCE_TAB_NAME)
+      || sourceSS.getSheetByName("Product Backlog VH")
+      || allSourceSheets[0];
   }
 
   if (!sourceSheet) {
     SpreadsheetApp.getUi().alert(
       "Lỗi Đồng Bộ",
-      'Không tìm thấy sheet "📌 Product Backlog FCP" trong file Backlog nguồn (ID: ' + SOURCE_SPREADSHEET_ID + ')!\n' +
-      'Vui lòng kiểm tra lại tên sheet hoặc quyền truy cập của tài khoản.',
+      'Không tìm thấy sheet nguồn (GID: ' + SOURCE_GID + ') trong file Backlog nguồn (ID: ' + SOURCE_SPREADSHEET_ID + ')!\n' +
+      'Vui lòng kiểm tra lại quyền truy cập của tài khoản.',
       SpreadsheetApp.getUi().ButtonSet.OK
     );
     return;
   }
 
-  roadmapSS.toast(`Tìm thấy sheet "${sourceSheet.getName()}". Đang lọc các task có Value = Tháng +{}...`, 'Đang xử lý', 4);
+  roadmapSS.toast(`Tìm thấy sheet "${sourceSheet.getName()}". Đang lọc các task theo Timeline mong muốn...`, 'Đang xử lý', 4);
 
   const q4Tasks = [];
   const seenTitles = new Set();
@@ -429,10 +464,15 @@ function syncRoadmapFromBacklog() {
       colMap['timeline_desired'] = idx;
     } else if (hl.includes('timeline') && colMap['timeline'] === undefined) {
       colMap['timeline'] = idx;
+    } else if ((hl.includes('thời gian') || hl.includes('kế hoạch') || hl.includes('tháng')) && colMap['timeline_general'] === undefined) {
+      colMap['timeline_general'] = idx;
     }
   });
 
-  const desiredTimelineIdx = colMap['timeline_desired'] !== undefined ? colMap['timeline_desired'] : colMap['timeline'];
+  const desiredTimelineIdx = colMap['timeline_desired'] !== undefined 
+    ? colMap['timeline_desired'] 
+    : (colMap['timeline'] !== undefined ? colMap['timeline'] : colMap['timeline_general']);
+  const timelineHeaderTitle = (desiredTimelineIdx !== undefined && headers[desiredTimelineIdx]) ? headers[desiredTimelineIdx] : 'Timeline mong muốn';
 
   if (colMap['title'] === undefined) {
     const tIdx = headers.findIndex(h => h.toLowerCase().includes('title') || h.toLowerCase().includes('đầu mục'));
@@ -443,7 +483,7 @@ function syncRoadmapFromBacklog() {
     if (stIdx !== -1) colMap['status'] = stIdx;
   }
 
-  // 2. Trích xuất và lọc các task Quý 4 từ duy nhất sheet 📌 Product Backlog FCP
+  // 2. Trích xuất và lọc các task từ sheet Backlog nguồn (GID: 954545565)
   for (let r = headerRowIdx + 1; r < sourceData.length; r++) {
     const row = sourceData[r];
     const titleFull = String(row[colMap['title']] || '').trim();
@@ -454,7 +494,7 @@ function syncRoadmapFromBacklog() {
     if (seenTitles.has(cleanTitleKey)) continue;
 
     // CHỈ ĐỌC MỐC THỜI GIAN TRỰC TIẾP TỪ CỘT "Timeline mong muốn" THEO ĐÚNG YÊU CẦU NGƯỜI DÙNG
-    // TUYỆT ĐỐI KHÔNG QUÉT LAN SANG CÁC CỘT KHÁC (Acceptance, Link, PIC...)
+    // LOẠI TRỪ DỮ LIỆU AUTO FILL BỊ TRÙNG VỚI DÒNG TITLE CỦA CỘT
     let timelineRaw = '';
     if (desiredTimelineIdx !== -1 && desiredTimelineIdx !== undefined) {
       const dispVal = sourceDisplayData[r] ? String(sourceDisplayData[r][desiredTimelineIdx] || '').trim() : '';
@@ -466,29 +506,35 @@ function syncRoadmapFromBacklog() {
         valToTest = String(rawVal).trim();
       }
 
-      // ĐẶC TẢ NGHIỆP VỤ BẮT BUỘC: Value = Tháng + {}
-      // Nếu ô không chứa chữ "tháng" hoặc "thg" (ví dụ chỉ chứa chữ placeholder "Timeline mong muốn", ô trống, số lẻ...) => coi như KHÔNG CÓ VALUE (timelineRaw = '')
-      if (valToTest && /(?:tháng|thg)/i.test(valToTest)) {
-        timelineRaw = valToTest;
-      } else {
-        timelineRaw = ''; // Không có value tháng thực tế
+      if (valToTest) {
+        // Loại bỏ trường hợp auto fill bị lặp lại đúng dòng Title của cột đó
+        const cleanVal = valToTest.trim().toLowerCase().replace(/\s+/g, ' ');
+        const cleanHeader = timelineHeaderTitle.trim().toLowerCase().replace(/\s+/g, ' ');
+        const isHeaderAutofill = cleanHeader && (cleanVal === cleanHeader);
+        const isCommonPlaceholder = cleanVal === 'timeline mong muốn' || cleanVal === 'timeline' || cleanVal === 'thời gian' || cleanVal === 'kế hoạch' || cleanVal === 'target';
+        const isTaskTitleAutofill = cleanVal === titleFull.trim().toLowerCase().replace(/\s+/g, ' ');
+
+        if (!isHeaderAutofill && !isCommonPlaceholder && !isTaskTitleAutofill) {
+          timelineRaw = valToTest;
+        } else {
+          timelineRaw = ''; // Bị auto fill trùng Title => coi như rỗng
+        }
       }
     }
 
-    const tlParsed = parseTimeline(timelineRaw);
+    const tlParsed = parseTimeline(timelineRaw, timelineHeaderTitle);
 
     const rawStatus = String(sourceDisplayData[r] && colMap['status'] !== undefined && sourceDisplayData[r][colMap['status']] 
       ? sourceDisplayData[r][colMap['status']] 
       : (colMap['status'] !== undefined ? row[colMap['status']] : '') || '').trim();
     const status = normalizeStatus(rawStatus);
 
-    // 1. Loại bỏ Pending
-    const isExcluded = status.toLowerCase() === 'pending';
+    // 1. LẤY HẾT TẤT CẢ TRẠNG THÁI : TRỪ PENDING
+    const isExcluded = status.toLowerCase() === 'pending' || rawStatus.toLowerCase().includes('pending');
     if (isExcluded) continue;
 
-    // 2. RÀNG BUỘC NGHIỆP VỤ BẮT BUỘC THEO ĐẶC TẢ CỦA PO:
-    // "Timeline không có value (Value = Tháng +{}) => sẽ không lấy vào Product Roadmap"
-    // BẤT KỲ TASK NÀO (DÙ LÀ Done, UAT, DEV In Progress, To do...) NẾU CỘT Timeline mong muốn KHÔNG CÓ VALUE (Tháng +{}) => LOẠI BỎ NGAY
+    // 2. RÀNG BUỘC NGHIỆP VỤ BẮT BUỘC:
+    // "Timeline mong muốn phải có value thực tế (Tháng 10, Tháng 11, Tháng 12...) chứ không phải data auto fill trùng dòng Title"
     if (!timelineRaw || !tlParsed) {
       continue;
     }
@@ -937,10 +983,13 @@ function syncRoadmapFromBacklog() {
   ui.alert(
     "Đồng Bộ Hoàn Tất",
     "✅ ĐÃ ĐỒNG BỘ THÀNH CÔNG VÀO PRODUCT ROADMAP!\n\n" +
-    "• Sheet nguồn: " + sourceSheet.getName() + "\n" +
+    "• Sheet nguồn: " + sourceSheet.getName() + " (GID: " + sourceSheet.getSheetId() + ")\n" +
     "• Sheet đích: " + roadmapSheet.getName() + " (GID: " + roadmapSheet.getSheetId() + ")\n" +
-    "• Số lượng task hiển thị (có Timeline Tháng +{}): " + sortedTasks.length + " task\n\n" +
-    "Toàn bộ các dòng không có số tháng thực tế (chữ placeholder Timeline mong muốn, để trống...) đã được loại bỏ hoàn toàn.",
+    "• Tổng số task được lấy vào Roadmap: " + sortedTasks.length + " task\n\n" +
+    "Quy tắc đã áp dụng:\n" +
+    "- Lấy đầy đủ tất cả trạng thái: Trừ duy nhất trạng thái Pending.\n" +
+    "- Lấy các task có Timeline mong muốn thực tế (Tháng 10, Tháng 11, Tháng 12, Tháng 10 - Tháng 11...).\n" +
+    "- Loại bỏ 100% các dòng dữ liệu auto fill bị trùng với dòng Title cột (chữ 'Timeline mong muốn'...) hoặc để trống.",
     ui.ButtonSet.OK
   );
 }
