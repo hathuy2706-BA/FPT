@@ -382,7 +382,7 @@ function syncRoadmapWaterfall() {
  * @param {string} layoutMode - 'parallel' (Mặc định: Bố cục Song Song 3 Cột) hoặc 'waterfall' (Thác Nước Gantt)
  */
 function syncRoadmapFromBacklog(layoutMode) {
-  if (!layoutMode) layoutMode = 'parallel';
+  if (!layoutMode) layoutMode = 'waterfall';
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   
   // 1. MỞ CHÍNH XÁC FILE VÀ TAB ROADMAP ĐÍCH (ID: 1RN2dglTLMsSvXQLQTiBLZ0TmhN0hPESZyV5pr6Gjgwc | GID: 1531584370)
@@ -762,6 +762,134 @@ function syncRoadmapFromBacklog(layoutMode) {
 
     const footerR = roadmapSheet.getRange(rLegend + 2, 1, 1, 12);
     footerR.merge().setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026) — Bố cục Song song 3 Cột (Parallel 3 Columns Matrix)")
+      .setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B")
+      .setBackground("#FFFFFF").setHorizontalAlignment("center").setVerticalAlignment("middle");
+    roadmapSheet.setRowHeight(rLegend + 2, 22);
+  } else {
+    // BỐ CỤC THÁC NƯỚC GANTT (WATERFALL GANTT TIMELINE)
+    // Các task vắt tháng kéo dài chạy vắt ngang qua 2 cột tháng
+    noteRange.setValue("📍 THÁNG 10 (Hàng 4..36)  ➔  🔄 THÁNG 10 - 11 (Hàng 37..54)  ➔  📍 THÁNG 11 (Hàng 55..72)  ➔  🔄 THÁNG 11 - 12 (Hàng 73..87)  ➔  📍 THÁNG 12 (Hàng 88..108)");
+    noteRange.setFontColor("#C2410C").setBackground("#FFF7ED");
+
+    let curR = 4;
+    for (let i = 0; i < allSortedTasks.length; i++) {
+      const task = allSortedTasks[i];
+      const cfg = STATUS_STEPS[task.status] || STATUS_STEPS['Chưa tiếp nhận'];
+      const prioCfg = PRIO_STYLE[task.prio] || PRIO_STYLE['P2'];
+      const isDone = (task.status === 'Done');
+
+      const startCol = task.startCol + 1; // 1-based
+      const totalCols = task.totalCols;
+      const leftCols = totalCols === 4 ? 3 : 6;
+      const rightCols = totalCols - leftCols;
+
+      const rCard = curR;
+      const rBar = curR + 1;
+      const rSpacer = curR + 2;
+
+      roadmapSheet.setRowHeight(rCard, 34);
+      roadmapSheet.setRowHeight(rBar, 6);
+      roadmapSheet.setRowHeight(rSpacer, 4);
+
+      // Default backgrounds for 3 lanes
+      roadmapSheet.getRange(rCard, 1, 3, 4).setBackground(MONTH_BG.m10);
+      roadmapSheet.getRange(rCard, 5, 3, 4).setBackground(MONTH_BG.m11);
+      roadmapSheet.getRange(rCard, 9, 3, 4).setBackground(MONTH_BG.m12);
+
+      const epicTag = `[${task.epic}]`;
+      const fullTitle = `${epicTag} ${task.title}`;
+
+      // Left Card
+      const leftRange = roadmapSheet.getRange(rCard, startCol, 1, leftCols);
+      leftRange.merge();
+      leftRange.setBackground(cfg.taskBg);
+      leftRange.setBorder(true, true, true, false, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+      roadmapSheet.getRange(rCard, startCol).setBorder(null, true, null, null, null, null, cfg.barColor, SpreadsheetApp.BorderStyle.SOLID_THICK);
+
+      let shortDesc = task.desc;
+      const maxDescLen = leftCols >= 6 ? 150 : 75;
+      if (shortDesc.length > maxDescLen) shortDesc = shortDesc.substring(0, maxDescLen - 3).trim() + '...';
+
+      const richText = SpreadsheetApp.newRichTextValue()
+        .setText(`${fullTitle}\n${shortDesc}`)
+        .setTextStyle(0, epicTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(10).setBold(true).setForegroundColor(getEpicColor(task.epic)).build())
+        .setTextStyle(epicTag.length + 1, epicTag.length + 1 + task.title.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(10).setBold(true).setForegroundColor(isDone ? "#065F46" : "#0F172A").build())
+        .setTextStyle(fullTitle.length + 1, fullTitle.length + 1 + shortDesc.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(9).setItalic(true).setForegroundColor(isDone ? "#047857" : "#475569").build())
+        .build();
+      leftRange.setRichTextValue(richText).setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+
+      // Right Card
+      const rightRange = roadmapSheet.getRange(rCard, startCol + leftCols, 1, rightCols);
+      if (rightCols > 1) rightRange.merge();
+      rightRange.setBackground(cfg.taskBg);
+      rightRange.setBorder(true, false, true, true, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+
+      let dispStatus = task.status;
+      if (dispStatus.includes('Transfer')) dispStatus = 'Transfer DEV';
+      else if (dispStatus.includes('phân tích') || dispStatus.includes('Document')) dispStatus = 'BA/Doc';
+      else if (dispStatus.includes('tiếp nhận')) dispStatus = 'Đã nhận';
+      else if (dispStatus.includes('Chưa tiếp nhận')) dispStatus = 'To do';
+
+      const prioTag = `[${task.prio}]`;
+      const statusTag = `[${dispStatus}]`;
+      const rightRich = SpreadsheetApp.newRichTextValue()
+        .setText(`${prioTag}\n${statusTag}`)
+        .setTextStyle(0, prioTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(10).setBold(true).setForegroundColor(prioCfg.color).build())
+        .setTextStyle(prioTag.length + 1, prioTag.length + 1 + statusTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(9).setBold(true).setForegroundColor(cfg.badgeColor).build())
+        .build();
+      rightRange.setRichTextValue(rightRich).setHorizontalAlignment("right").setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+
+      // Progress bar
+      let coloredCols;
+      if (isDone) {
+        coloredCols = totalCols;
+      } else {
+        if (totalCols === 8) {
+          coloredCols = cfg.step;
+        } else {
+          coloredCols = cfg.step <= 2 ? 1 : (cfg.step <= 5 ? 2 : 3);
+        }
+        if (coloredCols < 1) coloredCols = 1;
+        if (coloredCols >= totalCols) coloredCols = totalCols - 1;
+      }
+      const progRange = roadmapSheet.getRange(rBar, startCol, 1, coloredCols);
+      if (coloredCols > 1) progRange.merge();
+      progRange.setBackground(cfg.barColor);
+
+      if (coloredCols < totalCols) {
+        const whiteRange = roadmapSheet.getRange(rBar, startCol + coloredCols, 1, totalCols - coloredCols);
+        if (totalCols - coloredCols > 1) whiteRange.merge();
+        whiteRange.setBackground("#F8FAFC").setBorder(null, null, true, true, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+      }
+
+      curR += 3;
+    }
+
+    // Legend Row
+    const rLegend = curR;
+    roadmapSheet.setRowHeight(rLegend, 24);
+    const legendDefs = [
+      ['Done (100% Full)', '#D1FAE5', '#10B981', '#065F46'],
+      ['UAT (75.0%)', '#F3E8FF', '#9333EA', '#6B21A8'],
+      ['DEV In Progress (62.5%)', '#FEF9C3', '#EAB308', '#A16207'],
+      ['Transfer DEV (50.0%)', '#FFF1F2', '#FB7185', '#BE123C'],
+      ['BA / Document (37.5%)', '#FFEDD5', '#F97316', '#C2410C'],
+      ['To do / Tiếp nhận (12.5-25%)', '#F1F5F9', '#94A3B8', '#475569']
+    ];
+    for (let j = 0; j < 6; j++) {
+      const def = legendDefs[j];
+      const legR = roadmapSheet.getRange(rLegend, j * 2 + 1, 1, 2);
+      legR.merge().setValue(`■ ${def[0]}`).setFontFamily("Times New Roman").setFontSize(9).setFontWeight("bold").setFontColor(def[3])
+        .setBackground(def[1]).setHorizontalAlignment("center").setVerticalAlignment("middle")
+        .setBorder(true, true, true, true, false, false, def[2], SpreadsheetApp.BorderStyle.SOLID);
+    }
+
+    // Footer Row
+    roadmapSheet.setRowHeight(rLegend + 1, 4);
+    roadmapSheet.getRange(rLegend + 1, 1, 1, 12).setBackground("#FFFFFF");
+
+    const footerR = roadmapSheet.getRange(rLegend + 2, 1, 1, 12);
+    footerR.merge().setValue("Nguồn: Backlog Website & CMS FPT.vn (Q4/2026) — Bố cục Thác nước Gantt (Waterfall Timeline)")
       .setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#64748B")
       .setBackground("#FFFFFF").setHorizontalAlignment("center").setVerticalAlignment("middle");
     roadmapSheet.setRowHeight(rLegend + 2, 22);
