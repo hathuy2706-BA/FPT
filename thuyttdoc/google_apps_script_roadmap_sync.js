@@ -605,7 +605,16 @@ function syncRoadmapFromBacklog(layoutMode) {
   tasksT11.sort((a, b) => ((PRIO_STYLE[a.prio] ? PRIO_STYLE[a.prio].weight : 99) - (PRIO_STYLE[b.prio] ? PRIO_STYLE[b.prio].weight : 99)));
   tasksT12.sort((a, b) => ((PRIO_STYLE[a.prio] ? PRIO_STYLE[a.prio].weight : 99) - (PRIO_STYLE[b.prio] ? PRIO_STYLE[b.prio].weight : 99)));
 
-  const allSortedTasks = [...tasksT10, ...tasksT11, ...tasksT12];
+  // Sắp xếp theo trục thời gian Thác Nước Gantt (5 giai đoạn nối tiếp nhau)
+  let waterfallTasks = [];
+  const timeOrder = ['t10', 'span-10-11', 't11', 'span-11-12', 't12'];
+  for (let grp of timeOrder) {
+    let sub = q4Tasks.filter(t => t.timeGroup === grp);
+    sub.sort((a, b) => ((PRIO_STYLE[a.prio] ? PRIO_STYLE[a.prio].weight : 99) - (PRIO_STYLE[b.prio] ? PRIO_STYLE[b.prio].weight : 99)));
+    waterfallTasks = waterfallTasks.concat(sub);
+  }
+
+  const allSortedTasks = layoutMode === 'parallel' ? [...tasksT10, ...tasksT11, ...tasksT12] : waterfallTasks;
 
   // 4. Chuẩn bị Sheet Roadmap đích
   roadmapSheet.clear();
@@ -772,13 +781,13 @@ function syncRoadmapFromBacklog(layoutMode) {
     noteRange.setFontColor("#C2410C").setBackground("#FFF7ED");
 
     let curR = 4;
-    for (let i = 0; i < allSortedTasks.length; i++) {
-      const task = allSortedTasks[i];
+    for (let i = 0; i < waterfallTasks.length; i++) {
+      const task = waterfallTasks[i];
       const cfg = STATUS_STEPS[task.status] || STATUS_STEPS['Chưa tiếp nhận'];
       const prioCfg = PRIO_STYLE[task.prio] || PRIO_STYLE['P2'];
       const isDone = (task.status === 'Done');
 
-      const startCol = task.startCol + 1; // 1-based
+      const startCol = task.startCol; // 1-based (Cột A = 1, Cột E = 5, Cột I = 9)
       const totalCols = task.totalCols;
       const leftCols = totalCols === 4 ? 3 : 6;
       const rightCols = totalCols - leftCols;
@@ -837,7 +846,7 @@ function syncRoadmapFromBacklog(layoutMode) {
         .setTextStyle(0, prioTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(10).setBold(true).setForegroundColor(prioCfg.color).build())
         .setTextStyle(prioTag.length + 1, prioTag.length + 1 + statusTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(9).setBold(true).setForegroundColor(cfg.badgeColor).build())
         .build();
-      rightRange.setRichTextValue(rightRich).setHorizontalAlignment("right").setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+      rightRange.setRichTextValue(rightRich).setHorizontalAlignment("center").setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
 
       // Progress bar
       let coloredCols;
