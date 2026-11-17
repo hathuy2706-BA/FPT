@@ -620,6 +620,9 @@ function syncRoadmapFromBacklog(layoutMode) {
   roadmapSheet.clear();
   roadmapSheet.clearContents();
   roadmapSheet.clearFormats();
+  try {
+    roadmapSheet.getRange(1, 1, roadmapSheet.getMaxRows(), roadmapSheet.getMaxColumns()).breakApart();
+  } catch (e) {}
   roadmapSheet.setHiddenGridlines(true);
   roadmapSheet.setFrozenRows(3);
 
@@ -702,8 +705,8 @@ function syncRoadmapFromBacklog(layoutMode) {
       let dispStatus = task.status;
       if (dispStatus.includes('Transfer')) dispStatus = 'Transfer DEV';
       else if (dispStatus.includes('phân tích') || dispStatus.includes('Document')) dispStatus = 'BA/Doc';
-      else if (dispStatus.includes('tiếp nhận')) dispStatus = 'Đã nhận';
       else if (dispStatus.includes('Chưa tiếp nhận')) dispStatus = 'To do';
+      else if (dispStatus.includes('tiếp nhận')) dispStatus = 'Đã nhận';
 
       const prioTag = `[${task.prio}]`;
       const statusTag = `[${dispStatus}]`;
@@ -836,8 +839,8 @@ function syncRoadmapFromBacklog(layoutMode) {
       let dispStatus = task.status;
       if (dispStatus.includes('Transfer')) dispStatus = 'Transfer DEV';
       else if (dispStatus.includes('phân tích') || dispStatus.includes('Document')) dispStatus = 'BA/Doc';
-      else if (dispStatus.includes('tiếp nhận')) dispStatus = 'Đã nhận';
       else if (dispStatus.includes('Chưa tiếp nhận')) dispStatus = 'To do';
+      else if (dispStatus.includes('tiếp nhận')) dispStatus = 'Đã nhận';
 
       const prioTag = `[${task.prio}]`;
       const statusTag = `[${dispStatus}]`;
@@ -846,7 +849,7 @@ function syncRoadmapFromBacklog(layoutMode) {
         .setTextStyle(0, prioTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(10).setBold(true).setForegroundColor(prioCfg.color).build())
         .setTextStyle(prioTag.length + 1, prioTag.length + 1 + statusTag.length, SpreadsheetApp.newTextStyle().setFontFamily("Times New Roman").setFontSize(9).setBold(true).setForegroundColor(cfg.badgeColor).build())
         .build();
-      rightRange.setRichTextValue(rightRich).setHorizontalAlignment("center").setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+      rightRange.setRichTextValue(rightRich).setHorizontalAlignment("right").setVerticalAlignment("middle").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
 
       // Progress bar
       let coloredCols;
