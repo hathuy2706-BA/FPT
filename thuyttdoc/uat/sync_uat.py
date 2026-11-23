@@ -53,7 +53,6 @@ def get_valid_token():
                 json.dump(data, f_out, indent=2)
             return token
     except Exception as e:
-        # Nếu refresh thất bại, thử dùng token hiện có
         print(f"[Cảnh báo] Refresh token lỗi ({e}), sử dụng access_token hiện tại.")
         return data.get('token', {}).get('access_token')
 
@@ -67,7 +66,6 @@ def pull_from_online():
     try:
         with urllib.request.urlopen(req) as resp:
             content = resp.read()
-            # Sao lưu file cũ nếu tồn tại
             if os.path.exists(LOCAL_XLSX_PATH):
                 backup_path = LOCAL_XLSX_PATH + f".bak_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
                 os.rename(LOCAL_XLSX_PATH, backup_path)
@@ -89,10 +87,10 @@ def push_to_online():
     print(f"[*] Đang đọc file local: {LOCAL_XLSX_PATH}...")
     wb = openpyxl.load_workbook(LOCAL_XLSX_PATH, data_only=False)
     
-    # 1. Đọc dữ liệu Report từ local
+    # 1. Đọc dữ liệu Report từ local (bắt đầu từ hàng 10)
     ws_report = wb['Report']
     test_rows = []
-    r = 11
+    r = 10
     while r <= ws_report.max_row:
         no_val = ws_report.cell(r, 2).value
         if not no_val:
@@ -112,13 +110,13 @@ def push_to_online():
         test_rows.append(row_data)
         r += 1
 
-    end_row = 10 + len(test_rows)
-    print(f"[*] Đã đọc được {len(test_rows)} kịch bản test (Row 11 đến Row {end_row}).")
+    end_row = 9 + len(test_rows)
+    print(f"[*] Đã đọc được {len(test_rows)} kịch bản test (Row 10 đến Row {end_row}).")
     
     # 2. Đọc dữ liệu Summary từ local
     ws_summary = wb['Summary']
     summary_rows = []
-    for sr in range(10, 20):
+    for sr in range(10, 25):
         mod_no = ws_summary.cell(sr, 2).value
         if mod_no:
             summary_rows.append([
@@ -134,7 +132,7 @@ def push_to_online():
         "valueInputOption": "USER_ENTERED",
         "data": [
             {
-                "range": f"Report!B11:M{end_row}",
+                "range": f"Report!B10:M{end_row}",
                 "values": test_rows
             },
             {
@@ -173,7 +171,7 @@ def show_status():
         ws = wb['Report']
         tc_count = 0
         passed_count = 0
-        for r in range(11, ws.max_row + 1):
+        for r in range(10, ws.max_row + 1):
             if ws.cell(r, 2).value:
                 tc_count += 1
                 if ws.cell(r, 10).value == 'PASSED':
