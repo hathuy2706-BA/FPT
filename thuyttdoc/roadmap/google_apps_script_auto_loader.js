@@ -3,7 +3,7 @@
  * FPT TELECOM — PRODUCT ROADMAP AUTO-LOADER & REALTIME GITHUB SYNC ENGINE
  * =========================================================================================
  * Script này tự động kết nối và tải mã nguồn xử lý mới nhất trực tiếp từ GitHub Repository:
- * https://raw.githubusercontent.com/hathuy2706-BA/FPT/main/thuyttdoc/google_apps_script_roadmap_sync.js
+ * https://raw.githubusercontent.com/hathuy2706-BA/FPT/main/thuyttdoc/roadmap/google_apps_script_roadmap_sync.js
  * 
  * ĐẶC TÍNH NỔI BẬT:
  * 1. TỰ ĐỘNG CẬP NHẬT (ZERO-MAINTENANCE):
@@ -17,7 +17,7 @@
  * =========================================================================================
  */
 
-const GITHUB_CODE_URL = "https://raw.githubusercontent.com/hathuy2706-BA/FPT/main/thuyttdoc/google_apps_script_roadmap_sync.js";
+const GITHUB_CODE_URL = "https://raw.githubusercontent.com/hathuy2706-BA/FPT/main/thuyttdoc/roadmap/google_apps_script_roadmap_sync.js";
 
 /**
  * Menu tùy chỉnh khi mở Google Sheet
