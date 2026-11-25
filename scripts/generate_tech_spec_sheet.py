@@ -642,12 +642,12 @@ for col_letter, width in col_widths.items():
     ws.column_dimensions[col_letter].width = width
 
 # Xuất ra file Excel
-xlsx_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.xlsx"
+xlsx_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.xlsx"
 wb.save(xlsx_path)
 print(f"Exported Excel to {xlsx_path}")
 
 # Xuất ra file TSV (Tab Separated Values để paste trực tiếp vào Google Sheets cực mượt)
-tsv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.tsv"
+tsv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.tsv"
 with open(tsv_path, "w", encoding="utf-8") as f:
     for r in tsv_rows:
         # Làm sạch newline bên trong cell để không bị gãy dòng khi paste vào Google Sheets
@@ -656,7 +656,7 @@ with open(tsv_path, "w", encoding="utf-8") as f:
 print(f"Exported TSV to {tsv_path}")
 
 # Xuất ra file CSV
-csv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.csv"
+csv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.csv"
 with open(csv_path, "w", encoding="utf-8", newline="") as f:
     writer = csv.writer(f)
     for r in csv_rows:

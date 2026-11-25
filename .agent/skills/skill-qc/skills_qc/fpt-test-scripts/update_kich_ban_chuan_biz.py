@@ -556,10 +556,10 @@ modules_biz = [
     }
 ]
 
-xlsx_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.xlsx"
-tsv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.tsv"
-csv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm_utf8.csv"
-csv_std_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/Kich_Ban_Ky_Thuat_Play4_Charm.csv"
+xlsx_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.xlsx"
+tsv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.tsv"
+csv_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm_utf8.csv"
+csv_std_path = "/Users/hathuy/Documents/FPT-1/thuyttdoc/doc/Kich_Ban_Ky_Thuat_Play4_Charm.csv"
 
 wb = openpyxl.Workbook()
 ws_default = wb.active
