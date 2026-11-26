@@ -765,21 +765,16 @@ batch_requests.append({
     }
 })
 
-# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12) với các tùy chọn CHỌN THẲNG NHIỀU TRẠNG THÁI
+# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12) — Giữ nguyên danh sách các trạng thái ban đầu
 filter_options = [
-    '🔘 Tất cả trạng thái',
-    '🎯 [UAT + DEV In Progress] — Đang triển khai',
-    '⏳ [UAT + DEV + BA + To do] — Chưa hoàn thành',
-    '🟢🟣 [Done + UAT] — Đã xong & Nghiệm thu',
-    '🟡🌸 [DEV + Transfer DEV] — Đang code & Review',
-    '🟠⚪ [BA/Doc + To do] — Giai đoạn chuẩn bị',
-    '🟢 Chỉ xem: Done (Hoàn thành)',
-    '🟣 Chỉ xem: UAT',
-    '🟡 Chỉ xem: DEV In Progress',
-    '🌸 Chỉ xem: Transfer DEV',
-    '🟠 Chỉ xem: BA/Doc (Đang phân tích)',
-    '⚪ Chỉ xem: To do / Tiếp nhận',
-    '☑️ Mở Hộp Thoại Checkbox Tùy Chọn...'
+    'Tất cả trạng thái',
+    'Done (Hoàn thành)',
+    'UAT',
+    'DEV In Progress',
+    'Transfer DEV',
+    'BA/Doc (Đang phân tích)',
+    'To do / Tiếp nhận',
+    'Chưa hoàn thành (Chưa Done)'
 ]
 batch_requests.append({
     'setDataValidation': {

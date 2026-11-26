@@ -306,20 +306,12 @@ function onOpen() {
     .addItem('📈 Đồng Bộ Bố Cục Thác Nước Gantt (Waterfall)', 'syncRoadmapWaterfall')
     .addItem('📊 Đồng Bộ Bố Cục Song Song 3 Cột (Parallel)', 'syncRoadmapParallel')
     .addSeparator()
-    .addSubMenu(ui.createMenu('🎯 CHỌN THẲNG NHIỀU TRẠNG THÁI (1-CLICK)')
-      .addItem('🎯 Xem Đang Triển Khai: UAT + DEV In Progress', 'filterShowUatAndDev')
-      .addItem('⏳ Xem Chưa Hoàn Thành: UAT + DEV + BA + To do', 'filterShowUnfinished')
-      .addItem('🟢🟣 Xem Đã Xong & Nghiệm Thu: Done + UAT', 'filterShowDoneAndUat')
-      .addItem('🟡🌸 Xem DEV & Transfer DEV', 'filterShowDevAndTransfer')
-      .addItem('🟠⚪ Xem Giai Đoạn Chuẩn Bị: BA/Doc + To do', 'filterShowBaAndTodo')
-      .addItem('👁️ Xem Tất Cả Trạng Thái (42 tasks)', 'filterShowAll'))
-    .addSeparator()
-    .addItem('☑️ Mở Hộp Thoại Checkbox Tùy Chọn (Sidebar)', 'showFilterSidebar')
-    .addSeparator()
-    .addSubMenu(ui.createMenu('🔍 CHỌN TỪNG TRẠNG THÁI ĐƠN LẺ')
+    .addSubMenu(ui.createMenu('🔍 BỘ LỌC TRẠNG THÁI')
+      .addItem('👁️ Hiển Thị Tất Cả (42 tasks)', 'filterShowAll')
       .addItem('🟢 Chỉ Xem Hoàn Thành (Done)', 'filterShowDone')
       .addItem('🟣 Chỉ Xem UAT', 'filterShowUAT')
       .addItem('🟡 Chỉ Xem DEV In Progress', 'filterShowDEV')
+      .addItem('⏳ Chỉ Xem Chưa Hoàn Thành (Chưa Done)', 'filterShowUnfinished')
       .addItem('🟢 Chỉ Xem Transfer DEV', 'filterShowTransferDEV')
       .addItem('🟠 Chỉ Xem Đang Phân Tích (BA/Doc)', 'filterShowBADoc')
       .addItem('🔵 Chỉ Xem To Do / Đã Tiếp Nhận', 'filterShowToDo'))
@@ -694,21 +686,16 @@ function syncRoadmapFromBacklog(layoutMode) {
   filterCell.setBackground("#E0F2FE");
   filterCell.setBorder(true, true, true, true, false, false, "#0284C7", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // Thiết lập Data Validation cho Ô K2:L2 với các tùy chọn CHỌN THẲNG NHIỀU TRẠNG THÁI
+  // Thiết lập Data Validation cho Ô K2:L2 với 8 trạng thái gốc ban đầu (cho phép chọn tích lũy nhiều trạng thái)
   const filterList = [
-    "🔘 Tất cả trạng thái",
-    "🎯 [UAT + DEV In Progress] — Đang triển khai",
-    "⏳ [UAT + DEV + BA + To do] — Chưa hoàn thành",
-    "🟢🟣 [Done + UAT] — Đã xong & Nghiệm thu",
-    "🟡🌸 [DEV + Transfer DEV] — Đang code & Review",
-    "🟠⚪ [BA/Doc + To do] — Giai đoạn chuẩn bị",
-    "🟢 Chỉ xem: Done (Hoàn thành)",
-    "🟣 Chỉ xem: UAT",
-    "🟡 Chỉ xem: DEV In Progress",
-    "🌸 Chỉ xem: Transfer DEV",
-    "🟠 Chỉ xem: BA/Doc (Đang phân tích)",
-    "⚪ Chỉ xem: To do / Tiếp nhận",
-    "☑️ Mở Hộp Thoại Checkbox Tùy Chọn..."
+    "Tất cả trạng thái",
+    "Done (Hoàn thành)",
+    "UAT",
+    "DEV In Progress",
+    "Transfer DEV",
+    "BA/Doc (Đang phân tích)",
+    "To do / Tiếp nhận",
+    "Chưa hoàn thành (Chưa Done)"
   ];
   const rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(filterList, true)
@@ -1322,7 +1309,7 @@ function filterRoadmapByString(filterString) {
   if (!roadmapSheet) return;
 
   if (!filterString) {
-    filterString = String(roadmapSheet.getRange(2, 11).getValue() || "🔘 Tất cả trạng thái");
+    filterString = String(roadmapSheet.getRange(2, 11).getValue() || "Tất cả trạng thái");
   }
 
   const maxRows = roadmapSheet.getMaxRows();
@@ -1334,22 +1321,37 @@ function filterRoadmapByString(filterString) {
     return;
   }
 
-  // Nhận diện các nhóm trạng thái được yêu cầu
-  let wantDone = cleanLower.includes("done") || cleanLower.includes("hoàn thành");
-  let wantUat = cleanLower.includes("uat");
-  let wantDev = cleanLower.includes("dev");
-  let wantTrans = cleanLower.includes("transfer");
-  let wantBa = cleanLower.includes("ba") || cleanLower.includes("doc") || cleanLower.includes("phân tích");
-  let wantTodo = cleanLower.includes("to do") || cleanLower.includes("tiếp nhận") || cleanLower.includes("đã nhận");
+  // Tách các token trạng thái được người dùng chọn (hỗ trợ chọn nhiều trạng thái cùng lúc)
+  const tokens = filterString.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
 
-  // Nếu là tổ hợp Chưa hoàn thành (Chưa Done):
-  if (cleanLower.includes("chưa hoàn thành") || cleanLower.includes("chưa done")) {
-    wantUat = true;
-    wantDev = true;
-    wantTrans = true;
-    wantBa = true;
-    wantTodo = true;
-    wantDone = false;
+  let wantDone = false;
+  let wantUat = false;
+  let wantDev = false;
+  let wantTrans = false;
+  let wantBa = false;
+  let wantTodo = false;
+
+  for (let tok of tokens) {
+    if (tok.includes("tất cả")) {
+      wantDone = wantUat = wantDev = wantTrans = wantBa = wantTodo = true;
+      break;
+    }
+    if (tok.includes("chưa hoàn thành") || tok.includes("chưa done")) {
+      wantUat = true;
+      wantDev = true;
+      wantTrans = true;
+      wantBa = true;
+      wantTodo = true;
+    }
+    if (tok.includes("done") || tok.includes("hoàn thành")) wantDone = true;
+    if (tok.includes("uat")) wantUat = true;
+    if (tok.includes("transfer")) {
+      wantTrans = true;
+    } else if (tok.includes("dev")) {
+      wantDev = true;
+    }
+    if (tok.includes("ba") || tok.includes("doc") || tok.includes("phân tích")) wantBa = true;
+    if (tok.includes("to do") || tok.includes("tiếp nhận") || tok.includes("đã nhận")) wantTodo = true;
   }
 
   const cardValues = roadmapSheet.getRange(4, 1, maxRows - 3, 12).getValues();
@@ -1373,7 +1375,7 @@ function filterRoadmapByString(filterString) {
       const val = String(rowVals[c] || "");
       if (val.includes("[Done]") || val.includes("[UAT]") || val.includes("[DEV") || 
           val.includes("[Transfer") || val.includes("[BA/Doc]") || val.includes("[To do]") || 
-          val.includes("[Đã nhận]")) {
+          val.includes("[Đã nhận]") || val.includes("[QC/CSOC]")) {
         taskStatusText = val;
         break;
       }
@@ -1382,7 +1384,7 @@ function filterRoadmapByString(filterString) {
     // Đánh giá task có thỏa mãn ít nhất 1 nhóm trạng thái được chọn hay không
     let isMatch = false;
     if (wantDone && taskStatusText.includes("[Done]")) isMatch = true;
-    if (wantUat && taskStatusText.includes("[UAT]")) isMatch = true;
+    if (wantUat && (taskStatusText.includes("[UAT]") || taskStatusText.includes("[QC/CSOC]"))) isMatch = true;
     if (wantDev && taskStatusText.includes("[DEV")) isMatch = true;
     if (wantTrans && taskStatusText.includes("[Transfer")) isMatch = true;
     if (wantBa && taskStatusText.includes("[BA/Doc]")) isMatch = true;
@@ -1421,88 +1423,69 @@ function filterRoadmapByString(filterString) {
   activeSS.toast(`Đã lọc: [${filterString}] — Hiển thị ${visibleCount} task (Đã ẩn ${hiddenCount} task)`, "Bộ Lọc Trạng Thái", 5);
 }
 
-// Các hàm menu chọn thẳng nhiều trạng thái
+// Các hàm menu chọn trạng thái
 function filterShowAll() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🔘 Tất cả trạng thái");
-  filterRoadmapByString("🔘 Tất cả trạng thái");
-}
-
-function filterShowUatAndDev() {
-  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🎯 [UAT + DEV In Progress] — Đang triển khai");
-  filterRoadmapByString("🎯 [UAT + DEV In Progress] — Đang triển khai");
-}
-
-function filterShowUnfinished() {
-  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("⏳ [UAT + DEV + BA + To do] — Chưa hoàn thành");
-  filterRoadmapByString("⏳ [UAT + DEV + BA + To do] — Chưa hoàn thành");
-}
-
-function filterShowDoneAndUat() {
-  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟢🟣 [Done + UAT] — Đã xong & Nghiệm thu");
-  filterRoadmapByString("🟢🟣 [Done + UAT] — Đã xong & Nghiệm thu");
-}
-
-function filterShowDevAndTransfer() {
-  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟡🌸 [DEV + Transfer DEV] — Đang code & Review");
-  filterRoadmapByString("🟡🌸 [DEV + Transfer DEV] — Đang code & Review");
-}
-
-function filterShowBaAndTodo() {
-  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟠⚪ [BA/Doc + To do] — Giai đoạn chuẩn bị");
-  filterRoadmapByString("🟠⚪ [BA/Doc + To do] — Giai đoạn chuẩn bị");
+  if (sheet) sheet.getRange(2, 11).setValue("Tất cả trạng thái");
+  filterRoadmapByString("Tất cả trạng thái");
 }
 
 function filterShowDone() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟢 Chỉ xem: Done (Hoàn thành)");
+  if (sheet) sheet.getRange(2, 11).setValue("Done (Hoàn thành)");
   filterRoadmapByString("Done (Hoàn thành)");
 }
+
 function filterShowUAT() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟣 Chỉ xem: UAT");
+  if (sheet) sheet.getRange(2, 11).setValue("UAT");
   filterRoadmapByString("UAT");
 }
+
 function filterShowDEV() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟡 Chỉ xem: DEV In Progress");
+  if (sheet) sheet.getRange(2, 11).setValue("DEV In Progress");
   filterRoadmapByString("DEV In Progress");
 }
+
 function filterShowTransferDEV() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🌸 Chỉ xem: Transfer DEV");
+  if (sheet) sheet.getRange(2, 11).setValue("Transfer DEV");
   filterRoadmapByString("Transfer DEV");
 }
+
 function filterShowBADoc() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("🟠 Chỉ xem: BA/Doc (Đang phân tích)");
+  if (sheet) sheet.getRange(2, 11).setValue("BA/Doc (Đang phân tích)");
   filterRoadmapByString("BA/Doc (Đang phân tích)");
 }
+
 function filterShowToDo() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (sheet) sheet.getRange(2, 11).setValue("⚪ Chỉ xem: To do / Tiếp nhận");
+  if (sheet) sheet.getRange(2, 11).setValue("To do / Tiếp nhận");
   filterRoadmapByString("To do / Tiếp nhận");
 }
 
+function filterShowUnfinished() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("Chưa hoàn thành (Chưa Done)");
+  filterRoadmapByString("Chưa hoàn thành (Chưa Done)");
+}
+
 /**
- * Trigger tự động OnEdit khi người dùng chỉnh sửa trên Google Sheets
+ * Trigger tự động OnEdit khi người dùng thao tác trên Google Sheets
+ * Hỗ trợ CHỌN NHIỀU TRẠNG THÁI CÙNG LÚC từ menu Dropdown gốc ban đầu:
+ * - Khi ô đang có 1 trạng thái và người dùng chọn thêm trạng thái khác từ Dropdown -> Tự động cộng dồn (Multi-select)
+ * - Nếu click lại trạng thái đã có -> Tự động gỡ bỏ (Toggle OFF)
+ * - Nếu chọn "Tất cả trạng thái" hoặc xóa ô -> Reset về hiển thị toàn bộ
  */
 function onEdit(e) {
   if (!e || !e.range) return;
@@ -1514,20 +1497,41 @@ function onEdit(e) {
   // 1. Nếu thao tác tại Ô Dropdown Bộ Lọc Trạng Thái trên tab Roadmap (Hàng 2, Cột 10 đến 12)
   if (sheetName === ROADMAP_SHEET_NAME && row === 2 && col >= 10 && col <= 12) {
     const rawVal = String(e.range.getValue() || "").trim();
+    const oldVal = String(e.oldValue || "").trim();
+    const newVal = String(e.value || rawVal).trim();
 
-    // Nếu người dùng chọn mục mở Sidebar Checkbox
-    if (rawVal.includes("Mở Hộp Thoại Checkbox")) {
-      e.range.setValue(e.oldValue || "🔘 Tất cả trạng thái");
-      showFilterSidebar();
+    // 1.1. Nếu chọn Tất cả trạng thái hoặc để trống -> Reset về Tất cả trạng thái
+    if (!newVal || newVal === "Tất cả trạng thái" || newVal.toLowerCase().includes("tất cả")) {
+      e.range.setValue("Tất cả trạng thái");
+      filterRoadmapByString("Tất cả trạng thái");
       return;
     }
 
-    // Nếu chọn Tất cả
-    if (rawVal.includes("Tất cả trạng thái") || rawVal.includes("Tất cả")) {
-      filterRoadmapByString("🔘 Tất cả trạng thái");
+    // 1.2. Nếu trước đó là Tất cả trạng thái hoặc rỗng -> Nhận trực tiếp trạng thái mới
+    if (!oldVal || oldVal === "Tất cả trạng thái" || oldVal.toLowerCase().includes("tất cả")) {
+      e.range.setValue(newVal);
+      filterRoadmapByString(newVal);
       return;
     }
 
+    // 1.3. Nếu người dùng click thêm 1 trạng thái từ menu dropdown khi ô đã có giá trị cũ
+    if (oldVal && newVal && !newVal.includes(",")) {
+      let currentItems = oldVal.split(',').map(s => s.trim()).filter(Boolean);
+      const existIdx = currentItems.indexOf(newVal);
+      if (existIdx !== -1) {
+        // Đã có -> Bỏ chọn (Toggle OFF)
+        currentItems.splice(existIdx, 1);
+      } else {
+        // Chưa có -> Chọn thêm (Toggle ON)
+        currentItems.push(newVal);
+      }
+      const finalStr = currentItems.length === 0 ? "Tất cả trạng thái" : currentItems.join(", ");
+      e.range.setValue(finalStr);
+      filterRoadmapByString(finalStr);
+      return;
+    }
+
+    // 1.4. Mặc định lọc theo giá trị hiện thời
     filterRoadmapByString(rawVal);
     return;
   }
