@@ -303,8 +303,18 @@ function cleanDetailText(rawDesc) {
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('🚀 PRODUCT ROADMAP')
-    .addItem('📊 Đồng Bộ Bố Cục Song Song 3 Cột (Khuyến nghị - Xem cả 3 Tháng cùng lúc)', 'syncRoadmapParallel')
     .addItem('📈 Đồng Bộ Bố Cục Thác Nước Gantt (Waterfall)', 'syncRoadmapWaterfall')
+    .addItem('📊 Đồng Bộ Bố Cục Song Song 3 Cột (Parallel)', 'syncRoadmapParallel')
+    .addSeparator()
+    .addSubMenu(ui.createMenu('🔍 BỘ LỌC TRẠNG THÁI')
+      .addItem('👁️ Hiển Thị Tất Cả (Bỏ Lọc)', 'filterShowAll')
+      .addItem('🟢 Chỉ Xem Hoàn Thành (Done)', 'filterShowDone')
+      .addItem('🟣 Chỉ Xem UAT', 'filterShowUAT')
+      .addItem('🟡 Chỉ Xem DEV In Progress', 'filterShowDEV')
+      .addItem('⏳ Chỉ Xem Chưa Hoàn Thành (Chưa Done)', 'filterShowUnfinished')
+      .addItem('🟢 Chỉ Xem Transfer DEV', 'filterShowTransferDEV')
+      .addItem('🟠 Chỉ Xem Đang Phân Tích (BA/Doc)', 'filterShowBADoc')
+      .addItem('🔵 Chỉ Xem To Do / Đã Tiếp Nhận', 'filterShowToDo'))
     .addSeparator()
     .addItem('⏰ Kích Hoạt Tự Động Đồng Bộ 1 Ngày / 1 Lần (7:00 AM)', 'setupDailyAutoTrigger')
     .addItem('❌ Hủy Bỏ Lịch Tự Động Cập Nhật', 'cancelAutoTriggers')
@@ -642,14 +652,54 @@ function syncRoadmapFromBacklog(layoutMode) {
   titleRange.setBackground("#F37021");
   roadmapSheet.setRowHeight(1, 34);
 
-  // Dòng 2: Ghi chú Hot Request
-  const noteRange = roadmapSheet.getRange(2, 1, 1, 12);
-  noteRange.merge();
-  noteRange.setValue("(*) Lưu ý: Roadmap này chưa tính task phát sinh phục vụ vận hành/kinh doanh triển khai các chiến dịch/sự kiện/hot request");
-  noteRange.setFontFamily("Times New Roman").setFontSize(9).setFontStyle("italic").setFontColor("#DC2626");
-  noteRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
-  noteRange.setBackground("#FFFFFF");
-  roadmapSheet.setRowHeight(2, 22);
+  // Dòng 2: Bố cục kép — Bên trái Điều hướng Milestone (A2:H2) | Bên phải Bộ Lọc Trạng Thái Dropdown (I2:L2)
+  const navRange = roadmapSheet.getRange(2, 1, 1, 8);
+  navRange.merge();
+  if (layoutMode === 'waterfall') {
+    navRange.setValue("📍 T10 (Hàng 4..36)  ➔  🔄 T10-11 (Hàng 37..54)  ➔  📍 T11 (Hàng 55..72)  ➔  🔄 T11-12 (Hàng 73..87)  ➔  📍 T12 (Hàng 88..108)");
+    navRange.setFontColor("#C2410C").setBackground("#FFF7ED");
+  } else {
+    navRange.setValue("(*) Bố cục Song song 3 Cột — Xem toàn cảnh cả 3 tháng Quý 4/2026 ngay từ màn hình đầu tiên");
+    navRange.setFontColor("#1E40AF").setBackground("#EFF6FF");
+  }
+  navRange.setFontFamily("Times New Roman").setFontSize(9).setFontWeight("bold");
+  navRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
+  navRange.setBorder(true, true, true, false, false, false, "#FDBA74", SpreadsheetApp.BorderStyle.SOLID);
+
+  // Phải 1: Nhãn Bộ Lọc (I2:J2 - 2 cột)
+  const filterLbl = roadmapSheet.getRange(2, 9, 1, 2);
+  filterLbl.merge();
+  filterLbl.setValue("🔍 LỌC TRẠNG THÁI:");
+  filterLbl.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor("#005696");
+  filterLbl.setHorizontalAlignment("right").setVerticalAlignment("middle");
+  filterLbl.setBackground("#F1F5F9");
+  filterLbl.setBorder(true, false, true, false, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+
+  // Phải 2: Ô Dropdown Chọn Trạng Thái (K2:L2 - 2 cột)
+  const filterCell = roadmapSheet.getRange(2, 11, 1, 2);
+  filterCell.merge();
+  filterCell.setValue("Tất cả trạng thái");
+  filterCell.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor("#0369A1");
+  filterCell.setHorizontalAlignment("center").setVerticalAlignment("middle");
+  filterCell.setBackground("#E0F2FE");
+  filterCell.setBorder(true, true, true, true, false, false, "#0284C7", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+
+  const filterList = [
+    "Tất cả trạng thái",
+    "Done (Hoàn thành)",
+    "UAT",
+    "DEV In Progress",
+    "Transfer DEV",
+    "BA/Doc (Đang phân tích)",
+    "To do / Tiếp nhận",
+    "Chưa hoàn thành (Chưa Done)"
+  ];
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(filterList, true)
+    .setAllowInvalid(false)
+    .build();
+  filterCell.setDataValidation(rule);
+  roadmapSheet.setRowHeight(2, 24);
 
   // Dòng 3: Tiêu đề 3 Cột Tháng
   const m10Header = roadmapSheet.getRange(3, 1, 1, 4);
@@ -780,8 +830,6 @@ function syncRoadmapFromBacklog(layoutMode) {
   } else {
     // BỐ CỤC THÁC NƯỚC GANTT (WATERFALL GANTT TIMELINE)
     // Các task vắt tháng kéo dài chạy vắt ngang qua 2 cột tháng
-    noteRange.setValue("📍 THÁNG 10 (Hàng 4..36)  ➔  🔄 THÁNG 10 - 11 (Hàng 37..54)  ➔  📍 THÁNG 11 (Hàng 55..72)  ➔  🔄 THÁNG 11 - 12 (Hàng 73..87)  ➔  📍 THÁNG 12 (Hàng 88..108)");
-    noteRange.setFontColor("#C2410C").setBackground("#FFF7ED");
 
     let curR = 4;
     for (let i = 0; i < waterfallTasks.length; i++) {
@@ -978,13 +1026,137 @@ function syncRoadmapFromBacklog(layoutMode) {
   );
 }
 
+/**
+ * Lọc các task trên Sheet Roadmap theo trạng thái
+ * @param {string} statusFilter - Giá trị trạng thái cần lọc
+ */
+function filterRoadmapByStatus(statusFilter) {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  let roadmapSheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (!roadmapSheet) return;
+
+  if (!statusFilter) {
+    statusFilter = roadmapSheet.getRange(2, 11).getValue();
+  }
+  if (!statusFilter) statusFilter = "Tất cả trạng thái";
+
+  const maxRows = roadmapSheet.getMaxRows();
+  roadmapSheet.showRows(4, maxRows - 3);
+
+  const filterCell = roadmapSheet.getRange(2, 11);
+  if (filterCell.getValue() !== statusFilter) {
+    filterCell.setValue(statusFilter);
+  }
+
+  if (statusFilter === "Tất cả trạng thái" || statusFilter === "Tất cả") {
+    activeSS.toast("Hiển thị đầy đủ tất cả các task trên Roadmap!", "Bộ Lọc Trạng Thái", 3);
+    return;
+  }
+
+  const cardValues = roadmapSheet.getRange(4, 1, maxRows - 3, 12).getValues();
+  let hiddenCount = 0;
+  let visibleCount = 0;
+
+  let hideRanges = [];
+  let currentHideStart = -1;
+  let currentHideCount = 0;
+
+  for (let idx = 0; idx < cardValues.length; idx += 3) {
+    const rowNum = 4 + idx;
+    const rowVals = cardValues[idx];
+    const firstCell = String(rowVals[0] || "");
+    if (firstCell.startsWith("■") || firstCell.startsWith("Nguồn:")) {
+      break;
+    }
+
+    let taskStatusText = "";
+    for (let c of [3, 6, 7, 10, 11]) {
+      const val = String(rowVals[c] || "");
+      if (val.includes("[Done]") || val.includes("[UAT]") || val.includes("[DEV") || 
+          val.includes("[Transfer") || val.includes("[BA/Doc]") || val.includes("[To do]") || 
+          val.includes("[Đã nhận]")) {
+        taskStatusText = val;
+        break;
+      }
+    }
+
+    let isMatch = false;
+    const filterLower = statusFilter.toLowerCase();
+
+    if (filterLower.includes("done") || filterLower.includes("hoàn thành")) {
+      isMatch = taskStatusText.includes("[Done]");
+    } else if (filterLower.includes("uat")) {
+      isMatch = taskStatusText.includes("[UAT]");
+    } else if (filterLower.includes("dev")) {
+      isMatch = taskStatusText.includes("[DEV");
+    } else if (filterLower.includes("transfer")) {
+      isMatch = taskStatusText.includes("[Transfer");
+    } else if (filterLower.includes("ba") || filterLower.includes("doc") || filterLower.includes("phân tích")) {
+      isMatch = taskStatusText.includes("[BA/Doc]");
+    } else if (filterLower.includes("to do") || filterLower.includes("chưa tiếp nhận") || filterLower.includes("tiếp nhận") || filterLower.includes("đã nhận")) {
+      isMatch = taskStatusText.includes("[To do]") || taskStatusText.includes("[Đã nhận]");
+    } else if (filterLower.includes("chưa hoàn thành") || filterLower.includes("chưa done")) {
+      isMatch = !taskStatusText.includes("[Done]") && taskStatusText.length > 0;
+    }
+
+    if (!isMatch) {
+      if (currentHideStart === -1) {
+        currentHideStart = rowNum;
+        currentHideCount = 3;
+      } else if (currentHideStart + currentHideCount === rowNum) {
+        currentHideCount += 3;
+      } else {
+        hideRanges.push([currentHideStart, currentHideCount]);
+        currentHideStart = rowNum;
+        currentHideCount = 3;
+      }
+      hiddenCount++;
+    } else {
+      if (currentHideStart !== -1) {
+        hideRanges.push([currentHideStart, currentHideCount]);
+        currentHideStart = -1;
+        currentHideCount = 0;
+      }
+      visibleCount++;
+    }
+  }
+
+  if (currentHideStart !== -1) {
+    hideRanges.push([currentHideStart, currentHideCount]);
+  }
+
+  for (let r of hideRanges) {
+    roadmapSheet.hideRows(r[0], r[1]);
+  }
+
+  activeSS.toast(`Đã lọc: [${statusFilter}] — Hiển thị ${visibleCount} task (Đã ẩn ${hiddenCount} task)`, "Bộ Lọc Trạng Thái", 5);
+}
+
+function filterShowAll() { filterRoadmapByStatus("Tất cả trạng thái"); }
+function filterShowDone() { filterRoadmapByStatus("Done (Hoàn thành)"); }
+function filterShowUAT() { filterRoadmapByStatus("UAT"); }
+function filterShowDEV() { filterRoadmapByStatus("DEV In Progress"); }
+function filterShowTransferDEV() { filterRoadmapByStatus("Transfer DEV"); }
+function filterShowBADoc() { filterRoadmapByStatus("BA/Doc (Đang phân tích)"); }
+function filterShowToDo() { filterRoadmapByStatus("To do / Tiếp nhận"); }
+function filterShowUnfinished() { filterRoadmapByStatus("Chưa hoàn thành (Chưa Done)"); }
+
 function onEdit(e) {
   if (!e || !e.range) return;
   const sheet = e.range.getSheet();
   const sheetName = sheet.getName();
+  const row = e.range.getRow();
+  const col = e.range.getColumn();
+
+  // 1. Nếu chỉnh sửa Dropdown Bộ Lọc Trạng Thái trên tab Roadmap (Hàng 2, Cột 10 đến 12)
+  if (sheetName === ROADMAP_SHEET_NAME && row === 2 && col >= 10 && col <= 12) {
+    const selectedVal = e.range.getValue();
+    filterRoadmapByStatus(selectedVal);
+    return;
+  }
   
-  // Nếu chỉnh sửa cột Trạng thái trên tab Backlog_Data_Sync (Cột 7)
-  if (sheetName === BACKLOG_SYNC_SHEET_NAME && e.range.getColumn() === 7 && e.range.getRow() >= 4) {
+  // 2. Nếu chỉnh sửa cột Trạng thái trên tab Backlog_Data_Sync (Cột 7)
+  if (sheetName === BACKLOG_SYNC_SHEET_NAME && col === 7 && row >= 4) {
     const activeSS = SpreadsheetApp.getActiveSpreadsheet();
     activeSS.toast('Phát hiện thay đổi trạng thái! Đang tự động cập nhật lại màu thanh task trên Roadmap...', 'Đồng bộ Realtime', 4);
     syncRoadmapFromBacklog();

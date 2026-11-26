@@ -332,7 +332,9 @@ merges = [
     # Banner
     {'sheetId': ROADMAP_GID, 'startRowIndex': 0, 'endRowIndex': 1, 'startColumnIndex': 0, 'endColumnIndex': 12},
     # Nav Note
-    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 0, 'endColumnIndex': 12},
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 0, 'endColumnIndex': 8},
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 8, 'endColumnIndex': 10},
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 10, 'endColumnIndex': 12},
     # Month 10
     {'sheetId': ROADMAP_GID, 'startRowIndex': 2, 'endRowIndex': 3, 'startColumnIndex': 0, 'endColumnIndex': 4},
     # Month 11
@@ -410,8 +412,8 @@ banner_cell = {
 }
 row_data_list.append({'values': [banner_cell] + [{}] * 11})
 
-# Row 1: Nav Note (Chỉ dẫn điều hướng cuộn chuột rõ ràng)
-nav_text = "📍 THÁNG 10 (Hàng 4..36)  ➔  🔄 THÁNG 10 - 11 (Hàng 37..54)  ➔  📍 THÁNG 11 (Hàng 55..72)  ➔  🔄 THÁNG 11 - 12 (Hàng 73..87)  ➔  📍 THÁNG 12 (Hàng 88..108)"
+# Row 1: Nav Note (Cột A..H) + Bộ Lọc Trạng Thái Dropdown (Cột I..L)
+nav_text = "📍 T10 (Hàng 4..36)  ➔  🔄 T10-11 (Hàng 37..54)  ➔  📍 T11 (Hàng 55..72)  ➔  🔄 T11-12 (Hàng 73..87)  ➔  📍 T12 (Hàng 88..108)"
 nav_cell = {
     'userEnteredValue': {'stringValue': nav_text},
     'userEnteredFormat': {
@@ -425,11 +427,53 @@ nav_cell = {
             'foregroundColorStyle': {'rgbColor': hex_to_rgb('#C2410C')}
         },
         'borders': {
-            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FED7AA')}}
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}},
+            'left': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}}
         }
     }
 }
-row_data_list.append({'values': [nav_cell] + [{}] * 11})
+filter_lbl_cell = {
+    'userEnteredValue': {'stringValue': '🔍 LỌC TRẠNG THÁI:'},
+    'userEnteredFormat': {
+        'backgroundColorStyle': {'rgbColor': hex_to_rgb('#F1F5F9')},
+        'horizontalAlignment': 'RIGHT',
+        'verticalAlignment': 'MIDDLE',
+        'textFormat': {
+            'fontFamily': 'Times New Roman',
+            'fontSize': 10,
+            'bold': True,
+            'foregroundColorStyle': {'rgbColor': hex_to_rgb('#005696')}
+        },
+        'borders': {
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#CBD5E1')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#CBD5E1')}}
+        }
+    }
+}
+filter_val_cell = {
+    'userEnteredValue': {'stringValue': 'Tất cả trạng thái'},
+    'userEnteredFormat': {
+        'backgroundColorStyle': {'rgbColor': hex_to_rgb('#E0F2FE')},
+        'horizontalAlignment': 'CENTER',
+        'verticalAlignment': 'MIDDLE',
+        'textFormat': {
+            'fontFamily': 'Times New Roman',
+            'fontSize': 10,
+            'bold': True,
+            'foregroundColorStyle': {'rgbColor': hex_to_rgb('#0369A1')}
+        },
+        'borders': {
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'right': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'left': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}}
+        }
+    }
+}
+
+row1_values = [nav_cell] + [{}] * 7 + [filter_lbl_cell, {}] + [filter_val_cell, {}]
+row_data_list.append({'values': row1_values})
 
 # Row 2: Month Headers
 m10_cell = {
@@ -703,6 +747,37 @@ batch_requests.append({
         },
         'rows': row_data_list,
         'fields': 'userEnteredValue,userEnteredFormat,textFormatRuns'
+    }
+})
+
+# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12)
+filter_options = [
+    'Tất cả trạng thái',
+    'Done (Hoàn thành)',
+    'UAT',
+    'DEV In Progress',
+    'Transfer DEV',
+    'BA/Doc (Đang phân tích)',
+    'To do / Tiếp nhận',
+    'Chưa hoàn thành (Chưa Done)'
+]
+batch_requests.append({
+    'setDataValidation': {
+        'range': {
+            'sheetId': ROADMAP_GID,
+            'startRowIndex': 1,
+            'endRowIndex': 2,
+            'startColumnIndex': 10,
+            'endColumnIndex': 12
+        },
+        'rule': {
+            'condition': {
+                'type': 'ONE_OF_LIST',
+                'values': [{'userEnteredValue': opt} for opt in filter_options]
+            },
+            'showCustomUi': True,
+            'strict': True
+        }
     }
 })
 
