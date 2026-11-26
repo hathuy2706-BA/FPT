@@ -686,22 +686,26 @@ function syncRoadmapFromBacklog(layoutMode) {
   filterCell.setBackground("#E0F2FE");
   filterCell.setBorder(true, true, true, true, false, false, "#0284C7", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  // Thiết lập Data Validation cho Ô K2:L2 với 8 trạng thái gốc ban đầu (cho phép chọn tích lũy nhiều trạng thái)
-  const filterList = [
-    "Tất cả trạng thái",
-    "Done (Hoàn thành)",
-    "UAT",
-    "DEV In Progress",
-    "Transfer DEV",
-    "BA/Doc (Đang phân tích)",
-    "To do / Tiếp nhận",
-    "Chưa hoàn thành (Chưa Done)"
-  ];
-  const rule = SpreadsheetApp.newDataValidation()
-    .requireValueInList(filterList, true)
-    .setAllowInvalid(true)
-    .build();
-  filterCell.setDataValidation(rule);
+  // Thiết lập Data Validation cho Ô K2:L2 với 8 trạng thái gốc ban đầu (nếu ô chưa có rule)
+  // Bảo toàn cấu hình Dropdown Chip & Allow multiple selections do người dùng tự thiết lập trên UI
+  const existingRule = filterCell.getDataValidation();
+  if (!existingRule) {
+    const filterList = [
+      "Tất cả trạng thái",
+      "Done (Hoàn thành)",
+      "UAT",
+      "DEV In Progress",
+      "Transfer DEV",
+      "BA/Doc (Đang phân tích)",
+      "To do / Tiếp nhận",
+      "Chưa hoàn thành (Chưa Done)"
+    ];
+    const rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(filterList, true)
+      .setAllowInvalid(true)
+      .build();
+    filterCell.setDataValidation(rule);
+  }
   roadmapSheet.setRowHeight(2, 26);
 
   // Dòng 3: Tiêu đề 3 Cột Tháng

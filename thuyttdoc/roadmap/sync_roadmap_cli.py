@@ -765,36 +765,8 @@ batch_requests.append({
     }
 })
 
-# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12) — Giữ nguyên danh sách các trạng thái ban đầu
-filter_options = [
-    'Tất cả trạng thái',
-    'Done (Hoàn thành)',
-    'UAT',
-    'DEV In Progress',
-    'Transfer DEV',
-    'BA/Doc (Đang phân tích)',
-    'To do / Tiếp nhận',
-    'Chưa hoàn thành (Chưa Done)'
-]
-batch_requests.append({
-    'setDataValidation': {
-        'range': {
-            'sheetId': ROADMAP_GID,
-            'startRowIndex': 1,
-            'endRowIndex': 2,
-            'startColumnIndex': 10,
-            'endColumnIndex': 12
-        },
-        'rule': {
-            'condition': {
-                'type': 'ONE_OF_LIST',
-                'values': [{'userEnteredValue': opt} for opt in filter_options]
-            },
-            'showCustomUi': True,
-            'strict': False
-        }
-    }
-})
+# Lưu ý: Không ghi đè setDataValidation lên Ô K2:L2 để bảo toàn cấu hình Dropdown Chip & Allow multiple selections
+# mà người dùng thiết lập trực tiếp trên giao diện Google Sheets (tránh bị reset về Arrow đơn lẻ).
 
 print(f"Executing batch update on Roadmap_Timeline_Q4 with {len(batch_requests)} operations...")
 batch_url = f"https://sheets.googleapis.com/v4/spreadsheets/{ROADMAP_SPREADSHEET_ID}:batchUpdate"
