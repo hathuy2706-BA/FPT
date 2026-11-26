@@ -752,7 +752,7 @@ batch_requests.append({
     }
 })
 
-# Xóa Data Validation cũ trên toàn bộ Hàng 2
+# Xóa Data Validation cũ trên Cột A..J Hàng 2 (giữ nguyên K2:L2 để bảo toàn cấu hình Dropdown Multi-Select của người dùng)
 batch_requests.append({
     'setDataValidation': {
         'range': {
@@ -760,39 +760,7 @@ batch_requests.append({
             'startRowIndex': 1,
             'endRowIndex': 2,
             'startColumnIndex': 0,
-            'endColumnIndex': 12
-        }
-    }
-})
-
-# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12)
-filter_options = [
-    'Tất cả trạng thái',
-    'Done (Hoàn thành)',
-    'UAT',
-    'DEV In Progress',
-    'Transfer DEV',
-    'BA/Doc (Đang phân tích)',
-    'To do / Tiếp nhận',
-    'Chưa hoàn thành (Chưa Done)',
-    '☑️ Mở Hộp Thoại Checkbox...'
-]
-batch_requests.append({
-    'setDataValidation': {
-        'range': {
-            'sheetId': ROADMAP_GID,
-            'startRowIndex': 1,
-            'endRowIndex': 2,
-            'startColumnIndex': 10,
-            'endColumnIndex': 12
-        },
-        'rule': {
-            'condition': {
-                'type': 'ONE_OF_LIST',
-                'values': [{'userEnteredValue': opt} for opt in filter_options]
-            },
-            'showCustomUi': True,
-            'strict': False
+            'endColumnIndex': 10
         }
     }
 })

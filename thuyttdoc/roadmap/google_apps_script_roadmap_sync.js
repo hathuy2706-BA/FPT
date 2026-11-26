@@ -680,28 +680,33 @@ function syncRoadmapFromBacklog(layoutMode) {
   // Phải 2: Ô Dropdown List Đa Lựa Chọn (K2:L2 - 2 cột)
   const filterCell = roadmapSheet.getRange(2, 11, 1, 2);
   filterCell.merge();
-  filterCell.setValue("Tất cả trạng thái");
+  if (!filterCell.getValue()) {
+    filterCell.setValue("Tất cả trạng thái");
+  }
   filterCell.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor("#0369A1");
   filterCell.setHorizontalAlignment("center").setVerticalAlignment("middle");
   filterCell.setBackground("#E0F2FE");
   filterCell.setBorder(true, true, true, true, false, false, "#0284C7", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
 
-  const filterList = [
-    "Tất cả trạng thái",
-    "Done (Hoàn thành)",
-    "UAT",
-    "DEV In Progress",
-    "Transfer DEV",
-    "BA/Doc (Đang phân tích)",
-    "To do / Tiếp nhận",
-    "Chưa hoàn thành (Chưa Done)",
-    "☑️ Mở Hộp Thoại Checkbox..."
-  ];
-  const rule = SpreadsheetApp.newDataValidation()
-    .requireValueInList(filterList, true)
-    .setAllowInvalid(true)
-    .build();
-  filterCell.setDataValidation(rule);
+  // Chỉ thiết lập Data Validation nếu ô chưa có quy tắc, để bảo toàn vĩnh viễn cấu hình "Cho phép chọn nhiều giá trị" (Allow multiple selections) mà người dùng đã bật trên UI!
+  if (!filterCell.getDataValidation()) {
+    const filterList = [
+      "Tất cả trạng thái",
+      "Done (Hoàn thành)",
+      "UAT",
+      "DEV In Progress",
+      "Transfer DEV",
+      "BA/Doc (Đang phân tích)",
+      "To do / Tiếp nhận",
+      "Chưa hoàn thành (Chưa Done)",
+      "☑️ Mở Hộp Thoại Checkbox..."
+    ];
+    const rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(filterList, true)
+      .setAllowInvalid(true)
+      .build();
+    filterCell.setDataValidation(rule);
+  }
   roadmapSheet.setRowHeight(2, 26);
 
   // Dòng 3: Tiêu đề 3 Cột Tháng
