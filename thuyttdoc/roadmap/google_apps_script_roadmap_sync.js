@@ -306,6 +306,8 @@ function onOpen() {
     .addItem('📈 Đồng Bộ Bố Cục Thác Nước Gantt (Waterfall)', 'syncRoadmapWaterfall')
     .addItem('📊 Đồng Bộ Bố Cục Song Song 3 Cột (Parallel)', 'syncRoadmapParallel')
     .addSeparator()
+    .addItem('☑️ Mở Hộp Thoại Checkbox Bộ Lọc (Sidebar)', 'showFilterSidebar')
+    .addSeparator()
     .addSubMenu(ui.createMenu('🔍 BỘ LỌC TRẠNG THÁI')
       .addItem('👁️ Hiển Thị Tất Cả (Bỏ Lọc)', 'filterShowAll')
       .addItem('🟢 Chỉ Xem Hoàn Thành (Done)', 'filterShowDone')
@@ -652,38 +654,55 @@ function syncRoadmapFromBacklog(layoutMode) {
   titleRange.setBackground("#F37021");
   roadmapSheet.setRowHeight(1, 34);
 
-  // Dòng 2: Thanh Lọc Đa Trạng Thái Checkbox (12 Cột = 6 Cặp Checkbox + Nhãn)
-  roadmapSheet.setRowHeight(2, 26);
-  roadmapSheet.getRange(2, 1, 1, 12).clearDataValidations();
-  const filterConfigs = [
-    { col: 1, labelCol: 2, label: '🔘 TẤT CẢ', bg: '#EFF6FF', text: '#1D4ED8', border: '#BFDBFE' },
-    { col: 3, labelCol: 4, label: '🟢 DONE', bg: '#DCFCE7', text: '#15803D', border: '#BBF7D0' },
-    { col: 5, labelCol: 6, label: '🟣 UAT', bg: '#F3E8FF', text: '#7E22CE', border: '#E9D5FF' },
-    { col: 7, labelCol: 8, label: '🟡 DEV IN PROG', bg: '#FEF9C3', text: '#A16207', border: '#FEF08A' },
-    { col: 9, labelCol: 10, label: '🟠 BA & TRANS', bg: '#FFEDD5', text: '#C2410C', border: '#FED7AA' },
-    { col: 11, labelCol: 12, label: '⚪ TO DO', bg: '#F1F5F9', text: '#475569', border: '#CBD5E1' }
+  // Dòng 2: Bố cục kép — Bên trái Điều hướng Milestone (A2:H2) | Bên phải Bộ Lọc Trạng Thái Dropdown List (I2:L2)
+  const navRange = roadmapSheet.getRange(2, 1, 1, 8);
+  navRange.merge();
+  if (layoutMode === 'waterfall') {
+    navRange.setValue("📍 T10 (Hàng 4..36)  ➔  🔄 T10-11 (Hàng 37..54)  ➔  📍 T11 (Hàng 55..72)  ➔  🔄 T11-12 (Hàng 73..87)  ➔  📍 T12 (Hàng 88..108)");
+    navRange.setFontColor("#C2410C").setBackground("#FFF7ED");
+  } else {
+    navRange.setValue("(*) Bố cục Song song 3 Cột — Xem toàn cảnh cả 3 tháng Quý 4/2026 ngay từ màn hình đầu tiên");
+    navRange.setFontColor("#1E40AF").setBackground("#EFF6FF");
+  }
+  navRange.setFontFamily("Times New Roman").setFontSize(9).setFontWeight("bold");
+  navRange.setHorizontalAlignment("center").setVerticalAlignment("middle");
+  navRange.setBorder(true, true, true, false, false, false, "#FDBA74", SpreadsheetApp.BorderStyle.SOLID);
+
+  // Phải 1: Nhãn Bộ Lọc (I2:J2 - 2 cột)
+  const filterLbl = roadmapSheet.getRange(2, 9, 1, 2);
+  filterLbl.merge();
+  filterLbl.setValue("🔍 LỌC TRẠNG THÁI:");
+  filterLbl.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor("#005696");
+  filterLbl.setHorizontalAlignment("right").setVerticalAlignment("middle");
+  filterLbl.setBackground("#F1F5F9");
+  filterLbl.setBorder(true, false, true, false, false, false, "#CBD5E1", SpreadsheetApp.BorderStyle.SOLID);
+
+  // Phải 2: Ô Dropdown List Đa Lựa Chọn (K2:L2 - 2 cột)
+  const filterCell = roadmapSheet.getRange(2, 11, 1, 2);
+  filterCell.merge();
+  filterCell.setValue("Tất cả trạng thái");
+  filterCell.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor("#0369A1");
+  filterCell.setHorizontalAlignment("center").setVerticalAlignment("middle");
+  filterCell.setBackground("#E0F2FE");
+  filterCell.setBorder(true, true, true, true, false, false, "#0284C7", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
+
+  const filterList = [
+    "Tất cả trạng thái",
+    "Done (Hoàn thành)",
+    "UAT",
+    "DEV In Progress",
+    "Transfer DEV",
+    "BA/Doc (Đang phân tích)",
+    "To do / Tiếp nhận",
+    "Chưa hoàn thành (Chưa Done)",
+    "☑️ Mở Hộp Thoại Checkbox..."
   ];
-
-  const checkboxRule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
-
-  filterConfigs.forEach(fc => {
-    // Ô Checkbox
-    const cbCell = roadmapSheet.getRange(2, fc.col);
-    cbCell.setDataValidation(checkboxRule);
-    cbCell.setValue(true);
-    cbCell.setBackground(fc.bg);
-    cbCell.setHorizontalAlignment("center").setVerticalAlignment("middle");
-    cbCell.setBorder(true, true, true, false, false, false, fc.border, SpreadsheetApp.BorderStyle.SOLID);
-
-    // Ô Nhãn
-    const lblCell = roadmapSheet.getRange(2, fc.labelCol);
-    lblCell.clearDataValidations();
-    lblCell.setValue(fc.label);
-    lblCell.setFontFamily("Times New Roman").setFontSize(10).setFontWeight("bold").setFontColor(fc.text);
-    lblCell.setBackground(fc.bg);
-    lblCell.setHorizontalAlignment("left").setVerticalAlignment("middle");
-    lblCell.setBorder(true, false, true, true, false, false, fc.border, SpreadsheetApp.BorderStyle.SOLID);
-  });
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(filterList, true)
+    .setAllowInvalid(true)
+    .build();
+  filterCell.setDataValidation(rule);
+  roadmapSheet.setRowHeight(2, 26);
 
   // Dòng 3: Tiêu đề 3 Cột Tháng
   const m10Header = roadmapSheet.getRange(3, 1, 1, 4);
@@ -1012,91 +1031,290 @@ function syncRoadmapFromBacklog(layoutMode) {
 
 /**
  * =========================================================================================
- * BỘ LỌC ĐA TRẠNG THÁI CHECKBOX TRÊN ROADMAP (MULTI-SELECT CHECKBOX FILTER)
+ * BỘ LỌC TRẠNG THÁI DROPDOWN LIST & CHECKBOX (MULTI-SELECT CHECKBOX DROPDOWN)
  * =========================================================================================
- * Người dùng có thể tick chọn đồng thời nhiều trạng thái (ví dụ xem cùng lúc UAT + DEV).
- * Hàng 2 gồm 6 cặp Checkbox + Nhãn tương ứng 12 cột:
- * - Cột 1 (A2): [✓] TẤT CẢ (B2)
- * - Cột 3 (C2): [✓] DONE (D2)
- * - Cột 5 (E2): [✓] UAT (F2)
- * - Cột 7 (G2): [✓] DEV IN PROG (H2)
- * - Cột 9 (I2): [✓] BA & TRANS (J2)
- * - Cột 11 (K2): [✓] TO DO (L2)
+ * Người dùng có thể:
+ * 1. Chọn trạng thái trực tiếp từ ô Dropdown List (K2:L2).
+ *    - Hỗ trợ Native Chips (Allow multiple selections) của Google Sheets.
+ *    - Hỗ trợ Multi-select Append/Toggle: Khi chọn thêm một trạng thái, ô tự động nối chuỗi (ví dụ: "Done, UAT").
+ * 2. Mở Hộp thoại / Sidebar Checkbox trực quan (Menu ➔ 'Mở Hộp Thoại Checkbox Bộ Lọc')
+ *    để tick chọn đồng thời nhiều checkbox một cách chuyên nghiệp.
  */
 
 /**
- * Xử lý sự kiện chỉnh sửa Checkbox trên Hàng 2 của Roadmap
+ * Hiển thị Sidebar với các ô Checkbox cho phép chọn nhiều trạng thái cùng lúc
  */
-function handleFilterCheckboxEdit(sheet, col, val) {
+function showFilterSidebar() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const isChecked = (val === 'TRUE' || val === true);
-  const maxRows = sheet.getMaxRows();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  let currentFilter = "Tất cả trạng thái";
+  if (sheet) {
+    currentFilter = String(sheet.getRange(2, 11).getValue() || "Tất cả trạng thái");
+  }
 
-  // 1. Nếu click vào ô A2 (Cột 1: TẤT CẢ)
-  if (col === 1) {
-    const subCheckCols = [3, 5, 7, 9, 11];
-    if (isChecked) {
-      // Bật tất cả 5 checkbox con
-      subCheckCols.forEach(c => sheet.getRange(2, c).setValue(true));
-      sheet.showRows(4, maxRows - 3);
-      activeSS.toast("Hiển thị đầy đủ tất cả các task trên Roadmap!", "Bộ Lọc Đa Trạng Thái", 3);
-    } else {
-      // Tắt tất cả 5 checkbox con
-      subCheckCols.forEach(c => sheet.getRange(2, c).setValue(false));
-      activeSS.toast("Đã bỏ chọn tất cả. Hãy tick chọn ít nhất 1 trạng thái để xem task!", "Bộ Lọc Đa Trạng Thái", 4);
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      font-family: 'Times New Roman', Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background-color: #F8FAFC;
+      color: #1E293B;
     }
-    return;
-  }
+    .header {
+      background: linear-gradient(135deg, #005696, #0284C7);
+      color: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header p {
+      margin: 4px 0 0 0;
+      font-size: 11px;
+      opacity: 0.9;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+    .item:hover {
+      background-color: #F1F5F9;
+    }
+    .item input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      margin-right: 10px;
+      cursor: pointer;
+      accent-color: #005696;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-left: auto;
+    }
+    .btn-apply {
+      width: 100%;
+      padding: 11px;
+      background: #005696;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,86,150,0.3);
+      transition: background 0.2s;
+    }
+    .btn-apply:hover {
+      background: #004070;
+    }
+    .btn-reset {
+      width: 100%;
+      padding: 8px;
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-reset:hover {
+      background: #E2E8F0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>🔍 BỘ LỌC TRẠNG THÁI</h2>
+    <p>Tick chọn nhiều trạng thái cùng lúc trên Roadmap</p>
+  </div>
 
-  // 2. Nếu click vào một trong các ô con: 3 (Done), 5 (UAT), 7 (DEV), 9 (BA & Trans), 11 (To do)
-  const filterRow = sheet.getRange(2, 1, 1, 12).getValues()[0];
-  const isDone = Boolean(filterRow[2]);  // Cột 3 (C2)
-  const isUat = Boolean(filterRow[4]);   // Cột 5 (E2)
-  const isDev = Boolean(filterRow[6]);   // Cột 7 (G2)
-  const isBa = Boolean(filterRow[8]);    // Cột 9 (I2)
-  const isTodo = Boolean(filterRow[10]); // Cột 11 (K2)
+  <div class="card">
+    <div class="item" style="border-bottom: 1px dashed #CBD5E1; margin-bottom: 10px; padding-bottom: 10px;">
+      <input type="checkbox" id="chkAll" onchange="toggleSelectAll(this.checked)">
+      <label for="chkAll" style="font-weight: bold; cursor: pointer;">🔘 TẤT CẢ TRẠNG THÁI</label>
+    </div>
 
-  const allSubChecked = isDone && isUat && isDev && isBa && isTodo;
-  const allSubUnchecked = !isDone && !isUat && !isDev && !isBa && !isTodo;
+    <div class="item" style="background: #F0FDF4;">
+      <input type="checkbox" class="chk-status" value="Done (Hoàn thành)" id="chkDone">
+      <label for="chkDone" style="cursor: pointer; font-weight: bold; color: #166534;">Done (Hoàn thành)</label>
+      <span class="badge" style="background: #DCFCE7; color: #15803D;">100%</span>
+    </div>
 
-  // Cập nhật trạng thái ô TẤT CẢ (A2)
-  const allCell = sheet.getRange(2, 1);
-  if (allSubChecked) {
-    if (!allCell.getValue()) allCell.setValue(true);
-    sheet.showRows(4, maxRows - 3);
-    activeSS.toast("Hiển thị đầy đủ tất cả các task trên Roadmap!", "Bộ Lọc Đa Trạng Thái", 3);
-    return;
-  } else {
-    if (allCell.getValue()) allCell.setValue(false);
-  }
+    <div class="item" style="background: #FAF5FF;">
+      <input type="checkbox" class="chk-status" value="UAT" id="chkUat">
+      <label for="chkUat" style="cursor: pointer; font-weight: bold; color: #6B21A8;">UAT</label>
+      <span class="badge" style="background: #F3E8FF; color: #7E22CE;">75%</span>
+    </div>
 
-  if (allSubUnchecked) {
-    activeSS.toast("Chưa chọn trạng thái nào! Vui lòng tick ít nhất 1 checkbox.", "Bộ Lọc Đa Trạng Thái", 4);
-    return;
-  }
+    <div class="item" style="background: #FEFCE8;">
+      <input type="checkbox" class="chk-status" value="DEV In Progress" id="chkDev">
+      <label for="chkDev" style="cursor: pointer; font-weight: bold; color: #854D0E;">DEV In Progress</label>
+      <span class="badge" style="background: #FEF9C3; color: #A16207;">62.5%</span>
+    </div>
 
-  // Thực hiện lọc đa trạng thái kết hợp
-  applyMultiStatusFilter(sheet, {
-    isDone: isDone,
-    isUat: isUat,
-    isDev: isDev,
-    isBa: isBa,
-    isTodo: isTodo
-  });
+    <div class="item" style="background: #FFF1F2;">
+      <input type="checkbox" class="chk-status" value="Transfer DEV" id="chkTrans">
+      <label for="chkTrans" style="cursor: pointer; font-weight: bold; color: #9F1239;">Transfer DEV / Review</label>
+      <span class="badge" style="background: #FFE4E6; color: #BE123C;">50%</span>
+    </div>
+
+    <div class="item" style="background: #FFF7ED;">
+      <input type="checkbox" class="chk-status" value="BA/Doc (Đang phân tích)" id="chkBa">
+      <label for="chkBa" style="cursor: pointer; font-weight: bold; color: #9A3412;">BA/Doc (Đang phân tích)</label>
+      <span class="badge" style="background: #FFEDD5; color: #C2410C;">37.5%</span>
+    </div>
+
+    <div class="item" style="background: #F8FAFC;">
+      <input type="checkbox" class="chk-status" value="To do / Tiếp nhận" id="chkTodo">
+      <label for="chkTodo" style="cursor: pointer; font-weight: bold; color: #334155;">To do / Tiếp nhận</label>
+      <span class="badge" style="background: #E2E8F0; color: #475569;">12.5%</span>
+    </div>
+  </div>
+
+  <button class="btn-apply" onclick="applyFilter()">🚀 ÁP DỤNG BỘ LỌC</button>
+  <button class="btn-reset" onclick="resetToAll()">🔄 ĐẶT LẠI (XEM TẤT CẢ)</button>
+
+  <script>
+    const currentStr = "${currentFilter}";
+
+    window.onload = function() {
+      if (!currentStr || currentStr.includes("Tất cả")) {
+        document.getElementById('chkAll').checked = true;
+        document.querySelectorAll('.chk-status').forEach(c => c.checked = true);
+      } else {
+        const lower = currentStr.toLowerCase();
+        let any = false;
+        document.querySelectorAll('.chk-status').forEach(c => {
+          const val = c.value.toLowerCase();
+          if (lower.includes(val) || (val.includes("done") && lower.includes("done")) || 
+              (val.includes("uat") && lower.includes("uat")) || (val.includes("dev") && lower.includes("dev")) ||
+              (val.includes("transfer") && lower.includes("transfer")) || (val.includes("ba") && lower.includes("ba")) ||
+              (val.includes("to do") && lower.includes("to do"))) {
+            c.checked = true;
+            any = true;
+          } else {
+            c.checked = false;
+          }
+        });
+        if (!any) {
+          document.getElementById('chkAll').checked = true;
+          document.querySelectorAll('.chk-status').forEach(c => c.checked = true);
+        }
+      }
+    };
+
+    function toggleSelectAll(checked) {
+      document.querySelectorAll('.chk-status').forEach(c => c.checked = checked);
+    }
+
+    function applyFilter() {
+      const selected = [];
+      document.querySelectorAll('.chk-status:checked').forEach(c => {
+        selected.push(c.value);
+      });
+      if (selected.length === 0) {
+        alert("Vui lòng tick chọn ít nhất 1 trạng thái!");
+        return;
+      }
+      google.script.run.withSuccessHandler(function() {
+        // Hoàn tất lọc
+      }).applyFilterFromSidebar(selected);
+    }
+
+    function resetToAll() {
+      document.getElementById('chkAll').checked = true;
+      document.querySelectorAll('.chk-status').forEach(c => c.checked = true);
+      google.script.run.applyFilterFromSidebar(["Tất cả trạng thái"]);
+    }
+  </script>
+</body>
+</html>
+`;
+
+  const htmlOutput = HtmlService.createHtmlOutput(html)
+    .setTitle("🔍 Bộ Lọc Trạng Thái Checkbox")
+    .setWidth(320);
+  SpreadsheetApp.getUi().showSidebar(htmlOutput);
 }
 
 /**
- * Thực thi lọc ẩn/hiện task trên Roadmap theo điều kiện đa trạng thái
- * Tối ưu hóa gom dải hideRows để tốc độ phản hồi tức thì (< 200ms)
+ * Nhận lệnh lọc từ Sidebar Checkbox UI và áp dụng lên Spreadsheet
  */
-function applyMultiStatusFilter(sheet, filterState) {
+function applyFilterFromSidebar(selectedArray) {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
-  const maxRows = sheet.getMaxRows();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (!sheet) return;
 
-  // Reset hiển thị toàn bộ hàng từ dòng 4 trước khi áp dụng bộ lọc mới
-  sheet.showRows(4, maxRows - 3);
+  let filterStr = "";
+  if (!selectedArray || selectedArray.length === 0 || selectedArray.length >= 6 || selectedArray.includes("Tất cả trạng thái")) {
+    filterStr = "Tất cả trạng thái";
+  } else {
+    filterStr = selectedArray.join(", ");
+  }
 
-  const cardValues = sheet.getRange(4, 1, maxRows - 3, 12).getValues();
+  const filterCell = sheet.getRange(2, 11);
+  filterCell.setValue(filterStr);
+  filterRoadmapByString(filterStr);
+}
+
+/**
+ * Thực thi lọc ẩn/hiện task trên Roadmap theo chuỗi giá trị (Hỗ trợ đa trạng thái nối nhau bởi dấu phẩy)
+ * @param {string} filterString - Chuỗi trạng thái (ví dụ: "Done, UAT" hoặc "DEV In Progress")
+ */
+function filterRoadmapByString(filterString) {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const roadmapSheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (!roadmapSheet) return;
+
+  if (!filterString) {
+    filterString = String(roadmapSheet.getRange(2, 11).getValue() || "Tất cả trạng thái");
+  }
+
+  const maxRows = roadmapSheet.getMaxRows();
+  roadmapSheet.showRows(4, maxRows - 3);
+
+  const cleanLower = filterString.trim().toLowerCase();
+  if (cleanLower === "tất cả trạng thái" || cleanLower === "tất cả" || cleanLower === "") {
+    activeSS.toast("Hiển thị đầy đủ tất cả các task trên Roadmap!", "Bộ Lọc Trạng Thái", 3);
+    return;
+  }
+
+  // Tách các token trạng thái được chọn
+  const tokens = cleanLower.split(',').map(s => s.trim()).filter(Boolean);
+
+  const cardValues = roadmapSheet.getRange(4, 1, maxRows - 3, 12).getValues();
   let hiddenCount = 0;
   let visibleCount = 0;
 
@@ -1112,7 +1330,6 @@ function applyMultiStatusFilter(sheet, filterState) {
       break;
     }
 
-    // Tìm tag trạng thái trong các cột
     let taskStatusText = "";
     for (let c of [3, 6, 7, 10, 11]) {
       const val = String(rowVals[c] || "");
@@ -1124,23 +1341,32 @@ function applyMultiStatusFilter(sheet, filterState) {
       }
     }
 
-    // Đánh giá task có thỏa mãn ít nhất 1 checkbox đang TRUE hay không
+    // Task được hiển thị nếu khớp với BẤT KỲ token nào trong danh sách được chọn
     let isMatch = false;
-
-    if (filterState.isDone && taskStatusText.includes("[Done]")) {
-      isMatch = true;
-    }
-    if (filterState.isUat && taskStatusText.includes("[UAT]")) {
-      isMatch = true;
-    }
-    if (filterState.isDev && taskStatusText.includes("[DEV")) {
-      isMatch = true;
-    }
-    if (filterState.isBa && (taskStatusText.includes("[Transfer") || taskStatusText.includes("[BA/Doc]"))) {
-      isMatch = true;
-    }
-    if (filterState.isTodo && (taskStatusText.includes("[To do]") || taskStatusText.includes("[Đã nhận]") || taskStatusText.includes("[Chưa tiếp nhận]"))) {
-      isMatch = true;
+    for (let tok of tokens) {
+      if ((tok.includes("done") || tok.includes("hoàn thành")) && taskStatusText.includes("[Done]")) {
+        isMatch = true; break;
+      }
+      if (tok.includes("uat") && taskStatusText.includes("[UAT]")) {
+        isMatch = true; break;
+      }
+      if (tok.includes("dev") && taskStatusText.includes("[DEV")) {
+        isMatch = true; break;
+      }
+      if (tok.includes("transfer") && taskStatusText.includes("[Transfer")) {
+        isMatch = true; break;
+      }
+      if ((tok.includes("ba") || tok.includes("doc") || tok.includes("phân tích")) && taskStatusText.includes("[BA/Doc]")) {
+        isMatch = true; break;
+      }
+      if ((tok.includes("to do") || tok.includes("tiếp nhận") || tok.includes("đã nhận")) && 
+          (taskStatusText.includes("[To do]") || taskStatusText.includes("[Đã nhận]"))) {
+        isMatch = true; break;
+      }
+      if ((tok.includes("chưa hoàn thành") || tok.includes("chưa done")) && 
+          !taskStatusText.includes("[Done]") && taskStatusText.length > 0) {
+        isMatch = true; break;
+      }
     }
 
     if (!isMatch) {
@@ -1169,49 +1395,65 @@ function applyMultiStatusFilter(sheet, filterState) {
     hideRanges.push([currentHideStart, currentHideCount]);
   }
 
-  // Ẩn theo khối range giúp tốc độ phản hồi cực nhanh
   for (let r of hideRanges) {
-    sheet.hideRows(r[0], r[1]);
+    roadmapSheet.hideRows(r[0], r[1]);
   }
 
-  // Tạo tóm tắt trạng thái đang lọc
-  const activeTags = [];
-  if (filterState.isDone) activeTags.push("Done");
-  if (filterState.isUat) activeTags.push("UAT");
-  if (filterState.isDev) activeTags.push("DEV");
-  if (filterState.isBa) activeTags.push("BA/Trans");
-  if (filterState.isTodo) activeTags.push("To do");
-
-  activeSS.toast(`Đang hiển thị ${visibleCount} task [${activeTags.join(', ')}] (Đã ẩn ${hiddenCount} task)`, "Bộ Lọc Đa Trạng Thái", 4);
+  activeSS.toast(`Đã lọc: [${filterString}] — Hiển thị ${visibleCount} task (Đã ẩn ${hiddenCount} task)`, "Bộ Lọc Trạng Thái", 5);
 }
 
-// Các hàm menu trợ giúp lọc nhanh
+// Các hàm menu lọc nhanh
 function filterShowAll() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (!sheet) return;
-  [1, 3, 5, 7, 9, 11].forEach(c => sheet.getRange(2, c).setValue(true));
-  sheet.showRows(4, sheet.getMaxRows() - 3);
-  activeSS.toast("Hiển thị đầy đủ tất cả các task trên Roadmap!", "Bộ Lọc Đa Trạng Thái", 3);
+  if (sheet) sheet.getRange(2, 11).setValue("Tất cả trạng thái");
+  filterRoadmapByString("Tất cả trạng thái");
 }
-
-function setOnlyFilter(targetCol) {
+function filterShowDone() {
   const activeSS = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
-  if (!sheet) return;
-  sheet.getRange(2, 1).setValue(false); // Bỏ TẤT CẢ
-  [3, 5, 7, 9, 11].forEach(c => sheet.getRange(2, c).setValue(c === targetCol));
-  handleFilterCheckboxEdit(sheet, targetCol, true);
+  if (sheet) sheet.getRange(2, 11).setValue("Done (Hoàn thành)");
+  filterRoadmapByString("Done (Hoàn thành)");
+}
+function filterShowUAT() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("UAT");
+  filterRoadmapByString("UAT");
+}
+function filterShowDEV() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("DEV In Progress");
+  filterRoadmapByString("DEV In Progress");
+}
+function filterShowTransferDEV() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("Transfer DEV");
+  filterRoadmapByString("Transfer DEV");
+}
+function filterShowBADoc() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("BA/Doc (Đang phân tích)");
+  filterRoadmapByString("BA/Doc (Đang phân tích)");
+}
+function filterShowToDo() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("To do / Tiếp nhận");
+  filterRoadmapByString("To do / Tiếp nhận");
+}
+function filterShowUnfinished() {
+  const activeSS = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = activeSS.getSheetByName(ROADMAP_SHEET_NAME);
+  if (sheet) sheet.getRange(2, 11).setValue("Chưa hoàn thành (Chưa Done)");
+  filterRoadmapByString("Chưa hoàn thành (Chưa Done)");
 }
 
-function filterShowDone() { setOnlyFilter(3); }
-function filterShowUAT() { setOnlyFilter(5); }
-function filterShowDEV() { setOnlyFilter(7); }
-function filterShowBADoc() { setOnlyFilter(9); }
-function filterShowToDo() { setOnlyFilter(11); }
-
 /**
- * Trigger tự động OnEdit khi người dùng thao tác trực tiếp trên Google Sheets
+ * Trigger tự động OnEdit khi người dùng chỉnh sửa trên Google Sheets
  */
 function onEdit(e) {
   if (!e || !e.range) return;
@@ -1220,9 +1462,50 @@ function onEdit(e) {
   const row = e.range.getRow();
   const col = e.range.getColumn();
 
-  // 1. Nếu tick/untick Checkbox Bộ Lọc Trạng Thái trên tab Roadmap (Hàng 2, Cột lẻ: 1, 3, 5, 7, 9, 11)
-  if (sheetName === ROADMAP_SHEET_NAME && row === 2 && [1, 3, 5, 7, 9, 11].indexOf(col) !== -1) {
-    handleFilterCheckboxEdit(sheet, col, e.value);
+  // 1. Nếu thao tác tại Ô Dropdown Bộ Lọc Trạng Thái trên tab Roadmap (Hàng 2, Cột 10 đến 12)
+  if (sheetName === ROADMAP_SHEET_NAME && row === 2 && col >= 10 && col <= 12) {
+    const rawVal = String(e.range.getValue() || "").trim();
+
+    // Nếu người dùng chọn mục mở Sidebar Checkbox
+    if (rawVal.includes("Mở Hộp Thoại Checkbox")) {
+      e.range.setValue(e.oldValue || "Tất cả trạng thái");
+      showFilterSidebar();
+      return;
+    }
+
+    // Nếu chọn Tất cả
+    if (rawVal === "Tất cả trạng thái" || rawVal === "Tất cả") {
+      filterRoadmapByString("Tất cả trạng thái");
+      return;
+    }
+
+    // Xử lý Multi-Select Toggle / Append thông minh
+    const oldVal = String(e.oldValue || "").trim();
+    const newVal = String(e.value || "").trim();
+
+    let finalFilterStr = rawVal;
+
+    // Nếu có giá trị cũ và người dùng chọn thêm một mục mới từ dropdown
+    if (oldVal && oldVal !== "Tất cả trạng thái" && newVal && newVal !== "Tất cả trạng thái" && !rawVal.includes(",")) {
+      const oldTokens = oldVal.split(',').map(s => s.trim()).filter(Boolean);
+      const existIdx = oldTokens.indexOf(newVal);
+      if (existIdx !== -1) {
+        // Toggle OFF nếu đã có
+        oldTokens.splice(existIdx, 1);
+      } else {
+        // Toggle ON nếu chưa có
+        oldTokens.push(newVal);
+      }
+
+      if (oldTokens.length === 0) {
+        finalFilterStr = "Tất cả trạng thái";
+      } else {
+        finalFilterStr = oldTokens.join(", ");
+      }
+      e.range.setValue(finalFilterStr);
+    }
+
+    filterRoadmapByString(finalFilterStr);
     return;
   }
   

@@ -331,6 +331,12 @@ for start_r, end_r, px in row_heights:
 merges = [
     # Banner
     {'sheetId': ROADMAP_GID, 'startRowIndex': 0, 'endRowIndex': 1, 'startColumnIndex': 0, 'endColumnIndex': 12},
+    # Nav Note (A2:H2)
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 0, 'endColumnIndex': 8},
+    # Filter Label (I2:J2)
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 8, 'endColumnIndex': 10},
+    # Filter Dropdown (K2:L2)
+    {'sheetId': ROADMAP_GID, 'startRowIndex': 1, 'endRowIndex': 2, 'startColumnIndex': 10, 'endColumnIndex': 12},
     # Month 10
     {'sheetId': ROADMAP_GID, 'startRowIndex': 2, 'endRowIndex': 3, 'startColumnIndex': 0, 'endColumnIndex': 4},
     # Month 11
@@ -408,56 +414,67 @@ banner_cell = {
 }
 row_data_list.append({'values': [banner_cell] + [{}] * 11})
 
-# Row 1: Thanh Lọc Đa Trạng Thái Checkbox (12 Cột = 6 Cặp Checkbox + Nhãn)
-filter_configs = [
-    {'col': 0, 'label': '🔘 TẤT CẢ', 'bg': '#EFF6FF', 'text': '#1D4ED8', 'border': '#BFDBFE'},
-    {'col': 2, 'label': '🟢 DONE', 'bg': '#DCFCE7', 'text': '#15803D', 'border': '#BBF7D0'},
-    {'col': 4, 'label': '🟣 UAT', 'bg': '#F3E8FF', 'text': '#7E22CE', 'border': '#E9D5FF'},
-    {'col': 6, 'label': '🟡 DEV IN PROG', 'bg': '#FEF9C3', 'text': '#A16207', 'border': '#FEF08A'},
-    {'col': 8, 'label': '🟠 BA & TRANS', 'bg': '#FFEDD5', 'text': '#C2410C', 'border': '#FED7AA'},
-    {'col': 10, 'label': '⚪ TO DO', 'bg': '#F1F5F9', 'text': '#475569', 'border': '#CBD5E1'}
-]
+# Row 1: Nav Note (Cột A..H) + Bộ Lọc Trạng Thái Dropdown List (Cột I..L)
+nav_text = "📍 T10 (Hàng 4..36)  ➔  🔄 T10-11 (Hàng 37..54)  ➔  📍 T11 (Hàng 55..72)  ➔  🔄 T11-12 (Hàng 73..87)  ➔  📍 T12 (Hàng 88..108)"
+nav_cell = {
+    'userEnteredValue': {'stringValue': nav_text},
+    'userEnteredFormat': {
+        'backgroundColorStyle': {'rgbColor': hex_to_rgb('#FFF7ED')},
+        'horizontalAlignment': 'CENTER',
+        'verticalAlignment': 'MIDDLE',
+        'textFormat': {
+            'fontFamily': 'Times New Roman',
+            'fontSize': 9,
+            'bold': True,
+            'foregroundColorStyle': {'rgbColor': hex_to_rgb('#C2410C')}
+        },
+        'borders': {
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}},
+            'left': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#FDBA74')}}
+        }
+    }
+}
+filter_lbl_cell = {
+    'userEnteredValue': {'stringValue': '🔍 LỌC TRẠNG THÁI:'},
+    'userEnteredFormat': {
+        'backgroundColorStyle': {'rgbColor': hex_to_rgb('#F1F5F9')},
+        'horizontalAlignment': 'RIGHT',
+        'verticalAlignment': 'MIDDLE',
+        'textFormat': {
+            'fontFamily': 'Times New Roman',
+            'fontSize': 10,
+            'bold': True,
+            'foregroundColorStyle': {'rgbColor': hex_to_rgb('#005696')}
+        },
+        'borders': {
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#CBD5E1')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#CBD5E1')}}
+        }
+    }
+}
+filter_val_cell = {
+    'userEnteredValue': {'stringValue': 'Tất cả trạng thái'},
+    'userEnteredFormat': {
+        'backgroundColorStyle': {'rgbColor': hex_to_rgb('#E0F2FE')},
+        'horizontalAlignment': 'CENTER',
+        'verticalAlignment': 'MIDDLE',
+        'textFormat': {
+            'fontFamily': 'Times New Roman',
+            'fontSize': 10,
+            'bold': True,
+            'foregroundColorStyle': {'rgbColor': hex_to_rgb('#0369A1')}
+        },
+        'borders': {
+            'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'right': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}},
+            'left': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb('#0284C7')}}
+        }
+    }
+}
 
-row1_values = [None] * 12
-for fc in filter_configs:
-    c_idx = fc['col']
-    l_idx = c_idx + 1
-    # Ô Checkbox
-    row1_values[c_idx] = {
-        'userEnteredValue': {'boolValue': True},
-        'userEnteredFormat': {
-            'backgroundColorStyle': {'rgbColor': hex_to_rgb(fc['bg'])},
-            'horizontalAlignment': 'CENTER',
-            'verticalAlignment': 'MIDDLE',
-            'borders': {
-                'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}},
-                'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}},
-                'left': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}},
-                'right': {'style': 'NONE'}
-            }
-        }
-    }
-    # Ô Nhãn
-    row1_values[l_idx] = {
-        'userEnteredValue': {'stringValue': fc['label']},
-        'userEnteredFormat': {
-            'backgroundColorStyle': {'rgbColor': hex_to_rgb(fc['bg'])},
-            'horizontalAlignment': 'LEFT',
-            'verticalAlignment': 'MIDDLE',
-            'textFormat': {
-                'fontFamily': 'Times New Roman',
-                'fontSize': 10,
-                'bold': True,
-                'foregroundColorStyle': {'rgbColor': hex_to_rgb(fc['text'])}
-            },
-            'borders': {
-                'top': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}},
-                'bottom': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}},
-                'left': {'style': 'NONE'},
-                'right': {'style': 'SOLID', 'colorStyle': {'rgbColor': hex_to_rgb(fc['border'])}}
-            }
-        }
-    }
+row1_values = [nav_cell] + [{}] * 7 + [filter_lbl_cell, {}] + [filter_val_cell, {}]
 row_data_list.append({'values': row1_values})
 
 # Row 2: Month Headers
@@ -748,25 +765,37 @@ batch_requests.append({
     }
 })
 
-# Checkbox Data Validation BOOLEAN cho 6 ô Checkbox (Row index 1, Cột 0, 2, 4, 6, 8, 10)
-for fc in filter_configs:
-    batch_requests.append({
-        'setDataValidation': {
-            'range': {
-                'sheetId': ROADMAP_GID,
-                'startRowIndex': 1,
-                'endRowIndex': 2,
-                'startColumnIndex': fc['col'],
-                'endColumnIndex': fc['col'] + 1
+# Dropdown Data Validation cho Ô K2:L2 (Row 1, Cols 10..12)
+filter_options = [
+    'Tất cả trạng thái',
+    'Done (Hoàn thành)',
+    'UAT',
+    'DEV In Progress',
+    'Transfer DEV',
+    'BA/Doc (Đang phân tích)',
+    'To do / Tiếp nhận',
+    'Chưa hoàn thành (Chưa Done)',
+    '☑️ Mở Hộp Thoại Checkbox...'
+]
+batch_requests.append({
+    'setDataValidation': {
+        'range': {
+            'sheetId': ROADMAP_GID,
+            'startRowIndex': 1,
+            'endRowIndex': 2,
+            'startColumnIndex': 10,
+            'endColumnIndex': 12
+        },
+        'rule': {
+            'condition': {
+                'type': 'ONE_OF_LIST',
+                'values': [{'userEnteredValue': opt} for opt in filter_options]
             },
-            'rule': {
-                'condition': {
-                    'type': 'BOOLEAN'
-                },
-                'showCustomUi': True
-            }
+            'showCustomUi': True,
+            'strict': False
         }
-    })
+    }
+})
 
 print(f"Executing batch update on Roadmap_Timeline_Q4 with {len(batch_requests)} operations...")
 batch_url = f"https://sheets.googleapis.com/v4/spreadsheets/{ROADMAP_SPREADSHEET_ID}:batchUpdate"
